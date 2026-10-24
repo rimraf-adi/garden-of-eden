@@ -30,89 +30,196 @@ export interface LearningPath {
 }
 
 export const GARDEN_PATHS: LearningPath[] = [
+  // 1. MATHEMATICS FOR AI (FIRST)
   {
-    id: 'inference-engineering',
-    slug: 'inference-engineering',
-    title: 'Inference Engineering',
-    folderTitle: 'Inference engineering',
-    folderSubtitle: 'GPU & Latency Budgets',
-    folderGraphic: 'network-graph',
+    id: 'mathematics',
+    slug: 'linear-algebra',
+    title: 'Mathematics for Machine Learning',
+    folderTitle: 'Mathematics for Machine learning',
+    folderSubtitle: 'Spaces, Gradients & Manifolds',
+    folderGraphic: 'math-torus',
     accentColor: {
-      folderBg: '#b8cde4', // Slate steel blue
-      folderBorder: '#99b6d8',
-      folderText: '#1c3e66',
-      tagBg: '#e6f0fa',
-      chipBg: '#c8dcfa',
+      folderBg: '#f8df8e', // Warm Ochre Tuscan yellow (Fanout book 3)
+      folderBorder: '#e8c96c',
+      folderText: '#684d07',
+      tagBg: '#fef5d0',
+      chipBg: '#fce9a5',
     },
     bullets: [
-      'KV cache memory sizing & paged attention',
-      'FlashAttention & GPU memory hierarchy math',
-      'Quantization tradeoffs: FP8, AWQ, and GPTQ',
+      'Sets and logic to high-dimensional inference',
+      'Linear algebra, SVD & spectral theorems',
+      'Multivariable calculus, Hessians & KKT duality',
     ],
     stats: {
-      modules: 16,
-      lessons: 112,
+      modules: 12,
+      lessons: 95,
       interactiveCount: 8,
     },
-    href: '/paths/inference-engineering',
-    description: 'Hardware-aware AI engineering: GPU memory bandwidth saturation, batching strategies, speculative decoding, kernel fusion, and production token economics.',
+    href: '/paths/linear-algebra',
+    description: 'First-principles mathematical foundations: vector spaces, singular value decomposition (SVD), multivariable gradients, Hessians, and constrained optimization.',
     modules: [
       {
-        id: 'inf-eng-01',
+        id: 'math-01',
         num: 1,
-        title: 'GPU Memory Hierarchy & Roofline Models',
-        summary: 'Arithmetic intensity, HBM vs SRAM transfer speeds, tensor core throughput, and memory bandwidth bottlenecks.',
-        keyConcepts: ['Roofline Analysis', 'Arithmetic Intensity', 'HBM vs SRAM Bandwidth', 'Tensor Cores']
+        title: 'Vector Spaces & Orthogonal Projections',
+        summary: 'Subspaces, null spaces, Gram-Schmidt orthogonalization, and projection matrices.',
+        keyConcepts: ['Orthogonal Projection', 'Four Fundamental Subspaces', 'Gram-Schmidt']
       },
       {
-        id: 'inf-eng-02',
+        id: 'math-02',
         num: 2,
-        title: 'KV Cache Sizing & PagedAttention',
-        summary: 'Mathematical formulation of token state memory growth, context length scaling, vLLM virtual paging, and prefix caching.',
-        keyConcepts: ['KV Cache Formula', 'PagedAttention', 'Radix Prefix Tree', 'Memory Fragmentation']
+        title: 'Eigenvalues & Spectral Decomposition',
+        summary: 'Symmetric matrices, orthogonal diagonalization, Rayleigh quotients, and quadratic forms.',
+        keyConcepts: ['Spectral Theorem', 'Positive Semi-Definite Cones', 'Rayleigh Quotient']
       },
       {
-        id: 'inf-eng-03',
+        id: 'math-03',
         num: 3,
-        title: 'FlashAttention & Tiling Algorithms',
-        summary: 'IO-aware exact attention computation, online softmax normalization, and SRAM block tiling.',
-        keyConcepts: ['Online Softmax', 'SRAM Tiling', 'IO Complexity O(N^2/M)', 'Kernel Fusion']
+        title: 'Singular Value Decomposition (SVD)',
+        summary: 'Compact SVD, pseudoinverses, condition numbers, and low-rank Eckart-Young theorem.',
+        keyConcepts: ['SVD Decomposition', 'Pseudoinverse', 'Eckart-Young Theorem']
       },
       {
-        id: 'inf-eng-04',
+        id: 'math-04',
         num: 4,
-        title: 'Post-Training Quantization (PTQ)',
-        summary: 'Weight-only vs weight-activation quantization, outlier channel protection, FP8 formats, and AWQ/GPTQ error metrics.',
-        keyConcepts: ['FP8 Formats (E4M3/E5M2)', 'AWQ Activation Awareness', 'GPTQ Second-Order Hessian', 'Per-Tensor vs Per-Channel']
+        title: 'Gradients, Jacobians & Hessian Curvature',
+        summary: 'Multivariable chain rule, second-order Taylor series, and constrained Lagrangian duality.',
+        keyConcepts: ['Jacobian Matrix', 'Hessian Matrix', 'KKT Conditions']
       }
     ]
   },
+
+  // 2. INFORMATION THEORY & PROBABILITY
+  {
+    id: 'information-theory',
+    slug: 'information-theory',
+    title: 'Information Theory & Probability',
+    folderTitle: 'Information Theory',
+    folderSubtitle: 'Entropy & Uncertainty',
+    folderGraphic: 'entropy-waves',
+    accentColor: {
+      folderBg: '#d7c7e9', // Lavender lilac
+      folderBorder: '#bca8d6',
+      folderText: '#46276b',
+      tagBg: '#f2ecfa',
+      chipBg: '#e3d7f4',
+    },
+    bullets: [
+      'Shannon entropy & source coding limits',
+      'Kullback-Leibler divergence & mutual information',
+      'Probability spaces, measure & conjugate priors',
+    ],
+    stats: {
+      modules: 14,
+      lessons: 88,
+      interactiveCount: 6,
+    },
+    href: '/paths/information-theory',
+    description: 'Claude Shannon’s mathematical theory of communication: entropy, differential entropy, data processing inequality, channel capacity, and Bayesian conjugate inference.',
+    modules: [
+      {
+        id: 'inf-01',
+        num: 1,
+        title: 'Entropy & Surprisal',
+        summary: 'Surprisal, Shannon entropy H(X), joint entropy, and conditional uncertainty.',
+        keyConcepts: ['Shannon Entropy', 'Joint Entropy', 'Axiomatic Uniqueness']
+      },
+      {
+        id: 'inf-02',
+        num: 2,
+        title: 'Relative Entropy & Mutual Information',
+        summary: 'KL divergence D(P || Q), Jensen-Shannon divergence, and data processing inequality.',
+        keyConcepts: ['Kullback-Leibler Divergence', 'Mutual Information', 'Data Processing Inequality']
+      },
+      {
+        id: 'inf-03',
+        num: 3,
+        title: 'Channel Capacity & Noisy Coding',
+        summary: 'Shannon channel capacity theorem, continuous Gaussian channels, and rate distortion.',
+        keyConcepts: ['Channel Capacity C', 'Shannon Noisy Coding', 'Rate Distortion']
+      }
+    ]
+  },
+
+  // 3. STATISTICAL LEARNING THEORY
+  {
+    id: 'statistical-learning',
+    slug: 'statistical-learning',
+    title: 'Statistical Learning Theory',
+    folderTitle: 'Learning Theory',
+    folderSubtitle: 'Foundations & Bias',
+    folderGraphic: 'matrix-lattice',
+    accentColor: {
+      folderBg: '#d0e5cf', // Sage green
+      folderBorder: '#b3d1b1',
+      folderText: '#1f481c',
+      tagBg: '#ebf6ea',
+      chipBg: '#d8edd7',
+    },
+    bullets: [
+      'Inductive bias, PAC bounds & sample complexity',
+      'Bayesian decision surfaces & Gaussian estimation',
+      'Dual kernel SVMs, MLPs & decision trees',
+    ],
+    stats: {
+      modules: 19,
+      lessons: 108,
+      interactiveCount: 11,
+    },
+    href: '/chapter/01-introduction',
+    description: 'Foundational statistical learning theory: inductive bias, parametric/nonparametric estimation, dimensionality reduction, cross-entropy loss, and maximum-margin kernel machines.',
+    modules: [
+      {
+        id: 'sl-01',
+        num: 1,
+        title: 'Inductive Bias & Hypothesis Spaces',
+        summary: 'Hypothesis capacity, PAC bounds, and the no-free-lunch theorem.',
+        keyConcepts: ['Inductive Bias', 'Hypothesis Space H', 'VC Dimension']
+      },
+      {
+        id: 'sl-03',
+        num: 3,
+        title: 'Bayesian Decision Theory & Risk',
+        summary: 'Prior, likelihood, posterior odds, 0/1 loss, and minimum risk decision surfaces.',
+        keyConcepts: ['Bayes Formula', '0/1 Loss', 'Posterior Probability']
+      },
+      {
+        id: 'sl-13',
+        num: 13,
+        title: 'Kernel Machines & Dual SVMs',
+        summary: 'Maximum-margin hyperplanes, dual Lagrangian formulation, and Mercer kernel trick.',
+        keyConcepts: ['Support Vectors', 'Mercer Kernels', 'KKT Conditions']
+      }
+    ]
+  },
+
+  // 4. DEEP LEARNING & FOUNDATION MODELS
   {
     id: 'deep-learning',
     slug: 'deep-learning',
-    title: 'Deep Learning & Foundation Models',
-    folderTitle: 'AI Research',
+    title: 'AI Research & Deep Architectures',
+    folderTitle: 'AI research',
     folderSubtitle: 'Architectures & Scales',
     folderGraphic: 'coral-brain',
     accentColor: {
-      folderBg: '#f6d2cc', // Terracotta blush
+      folderBg: '#f6d2cc', // Terracotta blush (Fanout book 1)
       folderBorder: '#e8b5ac',
       folderText: '#6f2d24',
       tagBg: '#feebe7',
       chipBg: '#fad7d1',
     },
     bullets: [
-      'Transformer mechanics & rotary embeddings',
-      'Scaling laws, compute budgets & data regimes',
-      'Diffusion models, VAEs & flow matching',
+      'Math foundations to LLMs & attention mechanics',
+      'Landmark papers, sequenced and derived',
+      'Modern optimizers, scaling laws & diffusion',
     ],
     stats: {
-      modules: 18,
-      lessons: 130,
+      modules: 14,
+      lessons: 108,
       interactiveCount: 12,
     },
     href: '/paths/deep-learning',
-    description: 'Frontier AI research and representation architectures: from scaled self-attention and mixture-of-experts (MoE) to diffusion SDEs and multimodal embeddings.',
+    description: 'Modern deep representation learning: from scaled self-attention and rotary embeddings to mixture-of-experts (MoE), compute-optimal scaling, and diffusion models.',
     modules: [
       {
         id: 'dl-01',
@@ -144,28 +251,89 @@ export const GARDEN_PATHS: LearningPath[] = [
       }
     ]
   },
+
+  // 5. INFERENCE ENGINEERING
+  {
+    id: 'inference-engineering',
+    slug: 'inference-engineering',
+    title: 'Inference Engineering',
+    folderTitle: 'Inference engineering',
+    folderSubtitle: 'Latency & Cost Budgets',
+    folderGraphic: 'network-graph',
+    accentColor: {
+      folderBg: '#b8cde4', // Slate steel blue (Fanout book 4)
+      folderBorder: '#99b6d8',
+      folderText: '#1c3e66',
+      tagBg: '#e6f0fa',
+      chipBg: '#c8dcfa',
+    },
+    bullets: [
+      'Latency and cost budgets & roofline models',
+      'KV cache and batching math & PagedAttention',
+      'Quantization tradeoffs: FP8, AWQ, and GPTQ',
+    ],
+    stats: {
+      modules: 16,
+      lessons: 112,
+      interactiveCount: 8,
+    },
+    href: '/paths/inference-engineering',
+    description: 'Hardware-aware AI systems engineering: GPU memory bandwidth saturation, batching strategies, speculative decoding, kernel fusion, and token economics.',
+    modules: [
+      {
+        id: 'inf-eng-01',
+        num: 1,
+        title: 'GPU Memory Hierarchy & Roofline Models',
+        summary: 'Arithmetic intensity, HBM vs SRAM transfer speeds, tensor core throughput, and memory bandwidth bottlenecks.',
+        keyConcepts: ['Roofline Analysis', 'Arithmetic Intensity', 'HBM vs SRAM Bandwidth', 'Tensor Cores']
+      },
+      {
+        id: 'inf-eng-02',
+        num: 2,
+        title: 'KV Cache Sizing & PagedAttention',
+        summary: 'Mathematical formulation of token state memory growth, context length scaling, vLLM virtual paging, and prefix caching.',
+        keyConcepts: ['KV Cache Formula', 'PagedAttention', 'Radix Prefix Tree', 'Memory Fragmentation']
+      },
+      {
+        id: 'inf-eng-03',
+        num: 3,
+        title: 'FlashAttention & Tiling Algorithms',
+        summary: 'IO-aware exact attention computation, online softmax normalization, and SRAM block tiling.',
+        keyConcepts: ['Online Softmax', 'SRAM Tiling', 'IO Complexity O(N^2/M)', 'Kernel Fusion']
+      },
+      {
+        id: 'inf-eng-04',
+        num: 4,
+        title: 'Post-Training Quantization (PTQ)',
+        summary: 'Weight-only vs weight-activation quantization, outlier channel protection, FP8 formats, and AWQ/GPTQ error metrics.',
+        keyConcepts: ['FP8 Formats (E4M3/E5M2)', 'AWQ Activation Awareness', 'GPTQ Second-Order Hessian', 'Per-Tensor vs Per-Channel']
+      }
+    ]
+  },
+
+  // 6. SYSTEM DESIGN IN DEPTH
   {
     id: 'system-design',
     slug: 'system-design',
-    title: 'System Design & Distributed Infrastructure',
+    title: 'System Design in Depth',
     folderTitle: 'SYSTEM design',
     folderSubtitle: 'Scale & Reliability',
     folderGraphic: 'system-lines',
     accentColor: {
-      folderBg: '#c9dbc8', // Sage green
-      folderBorder: '#a9c4a7',
+      folderBg: '#c7d7c3', // Sage / Olive green (Fanout book 2)
+      folderBorder: '#a8bea3',
       folderText: '#234921',
       tagBg: '#eaf4e9',
       chipBg: '#d0e5cf',
     },
     bullets: [
-      'Distributed consensus: Raft & Paxos invariants',
-      'Consistent hashing & partition sharding',
-      'High-throughput message brokers & LSM storage',
+      'Notes and architectural case studies',
+      'From-scratch distributed consensus implementations',
+      'Built for senior systems & AI infrastructure roles',
     ],
     stats: {
-      modules: 20,
-      lessons: 140,
+      modules: 18,
+      lessons: 120,
       interactiveCount: 9,
     },
     href: '/paths/system-design',
@@ -201,6 +369,8 @@ export const GARDEN_PATHS: LearningPath[] = [
       }
     ]
   },
+
+  // 7. AGENTIC SYSTEMS
   {
     id: 'agentic-systems',
     slug: 'agentic-systems',
@@ -217,7 +387,7 @@ export const GARDEN_PATHS: LearningPath[] = [
     },
     bullets: [
       'Tool-calling schemas & structured output decoding',
-      'ReAct loops, planner-executor architectures',
+      'ReAct loops, supervisor-worker topologies',
       'Hierarchical retrieval & vector indexing',
     ],
     stats: {
@@ -248,206 +418,6 @@ export const GARDEN_PATHS: LearningPath[] = [
         title: 'Advanced Retrieval-Augmented Generation',
         summary: 'Dense vector search, hybrid BM25 fusion, reranking models, chunking strategies, and hypothetical document embeddings (HyDE).',
         keyConcepts: ['Reciprocal Rank Fusion', 'Cross-Encoder Rerankers', 'Chunking Heuristics', 'Vector Indexes (HNSW)']
-      }
-    ]
-  },
-  {
-    id: 'linear-algebra',
-    slug: 'linear-algebra',
-    title: 'Linear Algebra for AI',
-    folderTitle: 'Linear Algebra',
-    folderSubtitle: 'Spaces & Decompositions',
-    folderGraphic: 'matrix-lattice',
-    accentColor: {
-      folderBg: '#d7c7e9', // Lavender lilac
-      folderBorder: '#bca8d6',
-      folderText: '#46276b',
-      tagBg: '#f2ecfa',
-      chipBg: '#e3d7f4',
-    },
-    bullets: [
-      'Vector spaces, null spaces & orthogonal projections',
-      'Eigenvalues, spectral theorem & Rayleigh quotients',
-      'Singular Value Decomposition (SVD) & low-rank tensors',
-    ],
-    stats: {
-      modules: 14,
-      lessons: 95,
-      interactiveCount: 8,
-    },
-    href: '/paths/linear-algebra',
-    description: 'Geometric and computational linear algebra for intelligence: matrix factorizations, positive semi-definite geometry, low-rank approximations, and high-dimensional spaces.',
-    modules: [
-      {
-        id: 'la-01',
-        num: 1,
-        title: 'Vector Spaces & Orthogonal Projections',
-        summary: 'Subspaces, null spaces, Gram-Schmidt orthogonalization, and projection matrices.',
-        keyConcepts: ['Orthogonal Projection', 'Four Fundamental Subspaces', 'Gram-Schmidt']
-      },
-      {
-        id: 'la-02',
-        num: 2,
-        title: 'Eigenvalues & Spectral Decomposition',
-        summary: 'Symmetric matrices, orthogonal diagonalization, Rayleigh quotients, and quadratic forms.',
-        keyConcepts: ['Spectral Theorem', 'Positive Semi-Definite Cones', 'Rayleigh Quotient']
-      },
-      {
-        id: 'la-03',
-        num: 3,
-        title: 'Singular Value Decomposition (SVD)',
-        summary: 'Compact SVD, pseudoinverses, condition numbers, and low-rank Eckart-Young theorem.',
-        keyConcepts: ['SVD Decomposition', 'Pseudoinverse', 'Eckart-Young Theorem']
-      }
-    ]
-  },
-  {
-    id: 'vector-calculus',
-    slug: 'vector-calculus',
-    title: 'Vector Calculus & Optimization',
-    folderTitle: 'Vector Calculus',
-    folderSubtitle: 'Gradients & Manifolds',
-    folderGraphic: 'calculus-surface',
-    accentColor: {
-      folderBg: '#fce3b8', // Warm Apricot
-      folderBorder: '#ecc892',
-      folderText: '#6f420e',
-      tagBg: '#fff2db',
-      chipBg: '#fae3bc',
-    },
-    bullets: [
-      'Directional derivatives, Jacobians & Hessian curvature',
-      'Convex optimization & Karush-Kuhn-Tucker (KKT) duality',
-      'Stochastic gradient geometry & momentum dynamics',
-    ],
-    stats: {
-      modules: 12,
-      lessons: 84,
-      interactiveCount: 7,
-    },
-    href: '/paths/vector-calculus',
-    description: 'Multivariable calculus and optimization theory: directional derivatives, second-order curvature, Taylor expansions, Lagrangian duality, and stochastic dynamics.',
-    modules: [
-      {
-        id: 'vc-01',
-        num: 1,
-        title: 'Gradients & Directional Derivatives',
-        summary: 'Gradient vector fields, steepest ascent paths, and tangent hyperplanes.',
-        keyConcepts: ['Gradient Operator', 'Directional Derivatives', 'Tangent Hyperplanes']
-      },
-      {
-        id: 'vc-02',
-        num: 2,
-        title: 'Jacobians & Hessians',
-        summary: 'Vector-valued functions, Jacobian matrix of layers, Hessian curvature, and condition numbers.',
-        keyConcepts: ['Jacobian Matrix', 'Hessian Curvature', 'Conditioning']
-      },
-      {
-        id: 'vc-03',
-        num: 3,
-        title: 'Constrained Optimization & KKT Duality',
-        summary: 'Lagrangian multipliers, primal-dual optimality, and complementary slackness.',
-        keyConcepts: ['Lagrangian Multipliers', 'KKT Conditions', 'Duality Gap']
-      }
-    ]
-  },
-  {
-    id: 'information-theory',
-    slug: 'information-theory',
-    title: 'Information Theory & Probability',
-    folderTitle: 'Information Theory',
-    folderSubtitle: 'Entropy & Uncertainty',
-    folderGraphic: 'entropy-waves',
-    accentColor: {
-      folderBg: '#fbe28e', // Ochre Tuscan yellow
-      folderBorder: '#ebcd69',
-      folderText: '#684d07',
-      tagBg: '#fef5d0',
-      chipBg: '#fce9a5',
-    },
-    bullets: [
-      'Shannon entropy & source coding limits',
-      'Kullback-Leibler divergence & mutual information',
-      'Probability spaces, measure & conjugate inference',
-    ],
-    stats: {
-      modules: 16,
-      lessons: 110,
-      interactiveCount: 8,
-    },
-    href: '/paths/information-theory',
-    description: 'The mathematical foundation of communication, uncertainty, and learning: entropy, relative entropy, mutual information, channel capacity, and Bayesian inference.',
-    modules: [
-      {
-        id: 'inf-01',
-        num: 1,
-        title: 'Entropy & Information Content',
-        summary: 'Surprisal, Shannon entropy H(X), joint entropy, and conditional uncertainty.',
-        keyConcepts: ['Shannon Entropy', 'Joint Entropy', 'Axiomatic Uniqueness']
-      },
-      {
-        id: 'inf-02',
-        num: 2,
-        title: 'Relative Entropy & Mutual Information',
-        summary: 'KL divergence D(P || Q), Jensen-Shannon divergence, and data processing inequality.',
-        keyConcepts: ['Kullback-Leibler Divergence', 'Mutual Information', 'Data Processing Inequality']
-      },
-      {
-        id: 'inf-03',
-        num: 3,
-        title: 'Channel Capacity & Noisy Coding',
-        summary: 'Shannon channel capacity theorem, continuous Gaussian channels, and rate-distortion theory.',
-        keyConcepts: ['Channel Capacity C', 'Shannon Noisy Coding', 'Rate Distortion']
-      }
-    ]
-  },
-  {
-    id: 'statistical-learning',
-    slug: 'statistical-learning',
-    title: 'Statistical Learning Theory',
-    folderTitle: 'Learning Theory',
-    folderSubtitle: '19 Foundational Modules',
-    folderGraphic: 'math-torus',
-    accentColor: {
-      folderBg: '#d0e5cf', // Minty sage
-      folderBorder: '#b3d1b1',
-      folderText: '#1f481c',
-      tagBg: '#ebf6ea',
-      chipBg: '#d8edd7',
-    },
-    bullets: [
-      'PAC bounds, VC dimension & sample complexity',
-      'Bayesian decision surfaces & Gaussian estimation',
-      'Dual kernel SVMs, MLPs & reinforcement MDPs',
-    ],
-    stats: {
-      modules: 19,
-      lessons: 108,
-      interactiveCount: 11,
-    },
-    href: '/chapter/01-introduction',
-    description: 'Complete 19-chapter foundational treatise on statistical learning theory, inductive bias, parametric/nonparametric estimation, dimensionality reduction, and kernel machines.',
-    modules: [
-      {
-        id: 'sl-01',
-        num: 1,
-        title: 'Introduction & Inductive Bias',
-        summary: 'Hypothesis capacity, PAC bounds, and the no-free-lunch theorem.',
-        keyConcepts: ['Inductive Bias', 'Hypothesis Space H', 'VC Dimension']
-      },
-      {
-        id: 'sl-03',
-        num: 3,
-        title: 'Bayesian Decision Theory',
-        summary: 'Prior, likelihood, posterior odds, 0/1 loss, and minimum risk decision surfaces.',
-        keyConcepts: ['Bayes Formula', '0/1 Loss', 'Posterior Probability']
-      },
-      {
-        id: 'sl-13',
-        num: 13,
-        title: 'Kernel Machines & Dual SVMs',
-        summary: 'Maximum-margin hyperplanes, dual Lagrangian formulation, and Mercer kernel trick.',
-        keyConcepts: ['Support Vectors', 'Mercer Kernels', 'KKT Conditions']
       }
     ]
   }
