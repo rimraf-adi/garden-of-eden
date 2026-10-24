@@ -1,0 +1,419 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Bayesian Estimation}
+\label{chap:14-bayesian-estimation}
+
+In the Bayesian approach, we consider parameters as random variables having a prior distribution. We continue from where we left off in section 4.4 and discuss three cases: estimating the parameters of a distribution, estimating the parameters of a model, and Gaussian processes.
+
+\section{Introduction}
+
+Bayesian estimation is used when we have some prior information regarding a parameter. For example, before looking at a sample to estimate the mean $\mu$ of a distribution, we may have some prior belief that it is close to 2, between 1 and 3. Such prior beliefs are especially important when we have a small sample. In such a case, we are interested in combining what the data tells us, namely, the value calculated from the sample, and our prior information. The maximum likelihood approach we discuss in section 4.2 treats a parameter as an unknown constant. In Bayesian estimation, as we started discussing in section 4.4, a parameter is treated as a random variable, prior probability which allows us to code any prior information we have using a prior probability distribution. For example, knowing that $\mu$ is very likely to be between 1 and 3, we write p($\mu$) in such a way that the bulk of the density lies in the interval [1, 3]. Using Bayes’ rule, we combine the prior and the likelihood and calculate posterior the posterior probability distribution: probability p($\theta$)p(X|$\theta$) (14.1) p($\theta$|X) = p(X)
+
+Figure 14.1 The generative graphical model. The arcs are in the direction of sampling; first we pick $\theta$ from p($\theta$) and then we generate data by sampling from p(xt|$\theta$). The new instance x and the past sample X are independent given $\theta$: this is the iid assumption. If we do not know $\theta$, they are dependent: we infer $\theta$ from given X (shown shaded) using Bayes’ rule, which inverts the direction to calculate p($\theta$|X), which can then be used to fill in x.
+
+p($\theta$) is the prior density; it is what we know regarding the possible values that $\theta$ may take before looking at the sample. p(X|$\theta$) is the sample likelihood; it tells us how likely our sample X is if the parameter of the distribution takes the value $\theta$. For example, if the instances in our sample are between 5 and 10, such a sample is likely if $\mu$ is 7 but is less likely if $\mu$ is 3 and even less likely if $\mu$ is 1. p(X) in the denominator is a normalizer to make sure that the posterior p($\theta$|X) integrates to 1. It is called the posterior probability because it tells us how likely $\theta$ takes a certain value after looking at the sample. The Bayes’ rule takes the prior distribution, combines it with what the data reveals, and generates the posterior distribution. We then use this posterior distribution in our later inferences. For example, let us say that we have a past sample X drawn from some distribution with unknown parameter $\theta$. We can then draw one more instance x, and we would like to calculate its probability distribution. We can visualize this as a graphical model (chapter 16) as shown in figgenerative model ure 14.1. What is depicted is a generative model which represents how the data is generated: We first pick $\theta$ from p($\theta$) and use it to sample X and also the new instance x. We write the joint as
+
+p(x, X, $\theta$) = p($\theta$)p(X|$\theta$)p(x|$\theta$)
+
+which we use in estimating the probability of a new instance x given the past sample X:
+
+p(x, X) $\theta$ p(x, X, $\theta$)d$\theta$ $\theta$ p($\theta$)p(X|$\theta$)p(x|$\theta$)d$\theta$ p(x|X) = = = p(X) p(X) p(X)
+
+(14.2) = p($\theta$|X)p(x|$\theta$)d$\theta$ $\theta$ In calculating p($\theta$|X), Bayes’ rule allows us to invert the direction of the arc and do a diagnostic inference. The inferred $\theta$ distribution is then used to derive a prediction distribution for the new x. We see that our estimate is a weighted sum (we replace d$\theta$ by $\theta$ if $\theta$ is discrete valued) of estimates for all possible values of $\theta$ weighted by how likely $\theta$ is, given the sample X. This is the full Bayesian treatment that may not be possible if the posterior is not easy to integrate. As we saw in section 4.4, in the case of the maximum a maximum a posteriori (MAP) estimate, we use the mode of the posterior: posteriori (MAP) estimate $\theta$MAP = arg max p($\theta$|X) and pMAP(x|X) = p(x|$\theta$MAP) $\theta$
+
+The MAP estimate corresponds to assuming that the posterior makes a very narrow peak around a single point, that is, the mode. If the prior p($\theta$) is uniform over all $\theta$, then the mode of the posterior p($\theta$|X) and the mode of the likelihood p(X|$\theta$) are at the same point, and the MAP estimate is equal to the maximum likelihood (ML) estimate. This implies that using ML corresponds to assuming no a priori distinction between different values of $\theta$. Let us now see how Bayesian estimation is used in different types of distributions and applications.
+
+\section{Estimating the Parameter of a Distribution}
+
+\subsection{Discrete Variables}
+
+Let us say that each instance is a multinomial variable taking one of K distinct states (section 4.2.2). We say xti = 1 if instance t is in state i and xtj = 0, $\forall$j /= i. The parameters are the probabilities of states, q = [q1, q2, . . . , qk]T with qi, i = 1, . . . , K satisfying qi $\geq$0, $\forall$i and i qi = 1. The sample likelihood is
+
+N K xti p(X|q) = q i t=1 i=1
+
+Dirichlet The prior distribution we use is the Dirichlet distribution distribution K $\Gamma$($\alpha$0) Dirichlet(q|$\alpha$) = q$\alpha$i$-$1i $\Gamma$($\alpha$1) $\cdot$ $\cdot$ $\cdot$ $\Gamma$($\alpha$K) i=1
+
+where $\alpha$ = [$\alpha$1, . . . , $\alpha$K]T and $\alpha$0 = i $\alpha$i. $\alpha$i being the parameters of Gamma function the prior are called the hyperparameters. $\Gamma$(x) is the Gamma function defined as
+
+$\infty$ $\Gamma$(x) $\equiv$ ux$-$1e$-$udu
+
+For example, xt may correspond to news documents and states may correspond to K different news categories: sports, politics, arts, and so on. The probabilities qi then correspond to the proportions of different news categories, and priors on them allow us to code our prior beliefs in these proportions; for example, we may expect to have more news related to sports than news related to arts. Given the prior and the likelihood, we can derive the posterior
+
+p(q|X) $\propto$ p(X|q)p(q|$\alpha$) (14.3) $\propto$ q$\alpha$i+Ni$-$1i i
+
+where Ni = Nt=1 xti. We see that the posterior has the same form as the conjugate prior prior and we call such a prior a conjugate prior. Both the prior and the likelihood have the form of product of powers of qi, and we combine them to make up the posterior:
+
+K $\Gamma$($\alpha$0 + N) p(q|X) = q$\alpha$i+Ni$-$1i $\Gamma$($\alpha$1 + N1) $\cdot$ $\cdot$ $\cdot$ $\Gamma$($\alpha$K + NK) i=1 (14.4) = Dirichlet(q|$\alpha$ + n)
+
+where n = [N1, . . . , NK]T and i Ni = N. Looking at equation 14.3, we can bring an interpretation to the hyperparameters $\alpha$i (Bishop 2006). Just as ni are counts of occurrences of state i in a sample of N, we can view $\alpha$i as counts of occurences of state i in some imaginary sample of $\alpha$0 instances. In defining the prior, we are subjectively saying the following: in a sample of $\alpha$0, I would expect $\alpha$i of them to belong to state i. Note that larger $\alpha$0 implies that we have a higher confidence (a more peaked distribution) in our subjective proportions: saying that I expect to have 60 out of 100 occurrences belong to
+
+state 1 has higher confidence than saying that I expect to have 6 out of 10. The posterior then is another Dirichlet that sums up the counts of the occurences of states, imagined and actual, given by the prior and the likelihood, respectively. The conjugacy has a nice implication. In a sequential setting where we receive a sequence of instances, because the posterior and the prior have the same form, the current posterior accumulates information from all past instances and becomes the prior for the next instance. When the variable is binary, xt $\in$\{0, 1\}, the multinomial sample becomes Bernoulli p(X|q) = qxt (1 $-$q)1$-$xt t
+
+beta distribution and the Dirichlet prior reduces to the beta distribution:
+
+$\Gamma$($\alpha$ + $\beta$) beta(q|$\alpha$, $\beta$) = $\Gamma$($\alpha$)$\Gamma$($\beta$)q$\alpha$$-$1(1 $-$q)$\beta$$-$1 For example, xt may be 0 or 1 depending on whether email with index t in a random sample of size N is legitimate or spam, respectively. Then defining a prior on q allows us to define a prior belief on the spam probability: I would expect, on the average, $\alpha$/($\alpha$ + $\beta$) of my emails to be spam. Beta is a conjugate prior, and for the posterior we get
+
+p(q|A, N, $\alpha$, $\beta$) $\propto$qA+$\alpha$$-$1(1 $-$p)N$-$A+$\beta$$-$1
+
+where A = t xt, and we see again that we combine the occurrences in the imaginary and the actual samples. Note that when $\alpha$ = $\beta$ = 1, we have a uniform prior and the posterior has the same shape as the likelihood. As the two counts, whether $\alpha$ and $\beta$ for the prior or $\alpha$+A and $\beta$+N$-$A for the posterior, increase and their difference increases, we get a distribution that is more peaked with smaller variance (see figure 14.2). As we see more data (imagined or actual), the variance decreases.
+
+\subsection{Continuous Variables}
+
+We now consider the case where instances are Gaussian distributed, p(x) $\sim$ N ($\mu$, $\sigma$ 2), and the parameters are $\mu$ and $\sigma$ 2; we have already discussed this briefly section 4.4. The sample likelihood is
+
+1 $-$$\mu$)2 (14.5) p(X|$\mu$, $\sigma$ 2) = $\sqrt{}$ exp $-$(xt t 2$\pi$$\sigma$ 2$\sigma$ 2
+
+4 $\leftarrow$ beta(20,30)
+
+$\leftarrow$ beta(4,6)
+
+beta(1,1)
+
+$\leftarrow$ beta(2,3)
+
+0 0.2 0.4 0.6 0.8 1
+
+Figure 14.2 Plots of beta distributions for different sets of ($\alpha$, $\beta$).
+
+The conjugate prior for $\mu$ is Gaussian, p($\mu$) $\sim$N ($\mu$20, $\sigma$ 02 ), and we write the posterior as
+
+p($\mu$|X) $\propto$ p($\mu$)p(X|$\mu$) $\sim$ N ($\mu$N, $\sigma$ N)2
+
+where $\sigma$ 2 N$\sigma$ 02 (14.6) $\mu$N = 2 2 $\mu$0 + 2 2 m N$\sigma$ 0 + $\sigma$ N$\sigma$ 0 + $\sigma$ 1 1 N (14.7) 2 = 2 + 2 $\sigma$ N $\sigma$ 0 $\sigma$ where m = t xt/N is the sample average. We see that the mean of the posterior density (which is the Bayesian estimate), $\mu$N, is a weighted average of the prior mean $\mu$0 and the sample mean m, with weights being inversely proportional to their variances (see figure 14.3 for an example). Note that because both coefficients are between 0 and 1 and sum to 1, $\mu$N is always between $\mu$0 and m. When the sample size N or the variance of the prior $\sigma$ 02 is large, the Bayes’ estimator is close to m, relying more on the information provided by the sample. When $\sigma$ 02 is small---that is, when we have little prior uncertainty regarding the correct value of $\mu$, or when we have a small sample---our prior guess $\mu$0 has higher effect. $\sigma$N gets smaller when either of $\sigma$0 or $\sigma$ gets smaller or if N is larger. $\sqrt{}$ Note also that $\sigma$N is smaller than both $\sigma$0 and $\sigma$/ N, that is, the posterior
+
+1.4
+
+1.2
+
+0.8 $\leftarrow$ p($\mu$|X)
+
+0.6
+
+0.4 p($\mu$)$\to$
+
+0.2 $\leftarrow$ p(x|$\mu$)
+
+0 2 4 6 8 10
+
+Figure 14.3 20 data points are drawn from p(x) $\sim$N (6, 1.52), prior is p($\mu$) $\sim$ N (4, 0.82), and posterior is then p($\mu$|X) $\sim$N (5.7, 0.32).
+
+variance is smaller than both prior variance and that of m. Incorporating both results in a better posterior estimate than using any of the prior or sample alone. precision For the case of variance, we work with the precision, the reciprocal of the variance, $\lambda$ $\equiv$1/$\sigma$ 2. Using this, the sample likelihood is written as " \# $\lambda$1/2 p(X|$\lambda$) = $\sqrt{}$ exp $-$$\lambda$ $-$$\mu$)2 2(xt t 2$\pi$ [ ] (14.8) = $\lambda$N/2(2$\pi$)$-$N/2 exp [$-$$\lambda$ (xt $-$$\mu$)2 ] 2 t
+
+Gamma distribution The conjugate prior for the precision is the Gamma distribution:
+
+p($\lambda$) $\sim$Gamma(a0, b0) = 0 $\lambda$a0$-$1 exp($-$b0$\lambda$) $\Gamma$(a0)ba0
+
+and the posterior is
+
+p($\lambda$|X) $\propto$ p(X|$\lambda$)p($\lambda$)
+
+$\sim$ Gamma(aN, bN)
+
+where
+
+(14.9) aN = a0 + N/2 N bN = b0 + s2
+
+where s2 = t(xt $-$$\mu$)2/N is the sample variance. Again, we see that posterior estimates are weighted sum of priors and sample statistics.
+
+\section{Bayesian Estimation of the Parameters of a Function}
+
+We now discuss the case where we estimate the parameters, not of a distribution, but some function of the input, for regression or classification. Again, our approach is to consider these parameters as random variables with a prior distribution and use Bayes’ rule to calculate a posterior distribution. We can then either evaluate the full integral, approximate it, or use the MAP estimate.
+
+\subsection{Regression}
+
+Let us take the case of a linear regression model:
+
+(14.10) r = wT x + $\epsilon$ where $\epsilon$ $\sim$N (0, $\beta$$-$1)
+
+where $\beta$ is the precision of the additive noise. The parameters are the weights w and we have a sample X = \{xt, rt\}Nt=1 where x $\in$$\mathbb{R}$d and rt $\in$$\mathbb{R}$, which we can break down into a matrix of inputs and a vector of desired outputs as X = [X, r]. From equation 14.10, we have
+
+p(rt|xt, w, $\beta$) $\sim$N (wT x, $\beta$$-$1)
+
+We saw previously in section 4.6 that the log likelihood is
+
+L(X|w) $\equiv$log p(X|w) = log p(r, X|w)
+
+= log p(r|X, w) + log p(X)
+
+where the second term is a constant, independent of the parameters. We expand the first term as
+
+L(r|X, w, $\beta$) = log p(rt|xt, w, $\beta$) t $\sqrt{}$ (14.11) = $-$N log( 2$\pi$) + N log $\beta$ $-$$\beta$ (rt $-$wTxt)2 2 t
+
+For the case of the ML estimate, we find w that maximizes this, or equivalently, minimizes the last term that is the sum of the squared error, which can be rewritten as
+
+E = (r $-$Xw)T(r $-$Xw)
+
+Taking the derivative with respect to w and setting it to 0, we get the maximum likelihood estimator (we have previously derived this in section 5.8):
+
+(14.12) wML = (XT X)$-$1XT r
+
+Having calculated the parameters, we can now do prediction. Given new input x', the response is calculated as
+
+(14.13) r' = wTMLx'
+
+For nonlinear models, g(x|w), for example, a multilayer perceptron where w are all the weights, we minimize, for example, using gradient descent, ( )2 E(X|w) = rt $-$g(xt|w)
+
+and wLSQ that minimize it is called the least squares estimator. Then, the prediction is calculated as
+
+r' = g(x'|wLSQ)
+
+In the case of the Bayesian approach, for the parameters, we define a Gaussian prior Gaussian prior:
+
+p(w) $\sim$N (0, $\alpha$$-$1I)
+
+which is a conjugate prior and for the posterior, we get
+
+p(w|X) $\sim$N ($\mu$N, $\Sigma$N)
+
+where
+
+(14.14) $\mu$N = $\beta$$\Sigma$NXTr (14.15) $\Sigma$N = ($\alpha$I + $\beta$XT X)$-$1
+
+To calculate the overall output, we integrate over the full posterior
+
+r' = wT x'p(w|X)dw
+
+If we want to use a point estimate, the MAP (or Bayes’, because the posterior is Gaussian) estimator is
+
+(14.16) wMAP = $\mu$N = $\beta$($\alpha$I + $\beta$XT X)$-$1XT r
+
+and we replace the density with a single point, namely, the mean,
+
+r' = wTMAPx'
+
+with variance
+
+(14.17) Var(r') = $\beta$$-$1 + (x')T$\Sigma$Nx'
+
+Comparing equation 14.16 with the ML estimate of equation 14.12, this can be seen as regularization---that is, we add a constant $\alpha$ to the diagonal to better condition the matrix to be inverted. The prior, p(w) $\sim$N (0, $\alpha$$-$1I), says that we expect the parameters to be close to 0 with spread inversely proportional to $\alpha$. When $\alpha$ $\to$0, we have a flat prior and the MAP estimate converges to the ML estimate. We see in figure 14.4 that if we increase $\alpha$, we force parameters to be closer to 0 and the posterior distribution moves closer to the origin and shrinks. If we decrease $\beta$, we assume noise with higher variance and the posterior also has higher variance. If we take the log of the posterior, we have
+
+log p(w|X, r) $\propto$ log p(X, r|w) + log p(w)
+
+$\propto$ log p(r|X, w) + log p(w) = $-$$\beta$ (rt $-$wTxt)2 $-$$\alpha$ wTw + c 2 2 t
+
+which we maximize to find the MAP estimate. In the general case, given our model g(x|w), we can write an augmented error function
+
+Eridge(w|X) = [rt $-$g(xt|w)]2 + $\lambda$ w2i t i
+
+ridge regression with $\lambda$ $\equiv$$\alpha$/$\beta$. This is known as parameter shrinkage or ridge regression in statistics. In section 4.8, we called this regularization and in section 11.9, we called this weight decay in neural networks. The first term is the negative log of the likelihood, and the second term penalizes wi away from 0 (as dictated by $\alpha$ of the prior). Though this approach reduces i w2i , it does not force individual wi to 0; that is, it cannot be used for feature selection, namely, to determine Laplacian prior which xi are redundant. For this, one can use a Laplacian prior that uses the L1 norm instead of the L2 norm (Figueiredo 2003): ( ) $\alpha$ $\alpha$ d p(w|$\alpha$) = exp($-$$\alpha$|wi|) = exp ($-$$\alpha$ |wi|) 2 2 i i
+
+$\alpha$=1, $\beta$=2 prior posterior 3 2 2
+
+w 0 w 0
+
+0 $-$2 $-$2 0 5 $-$2 0 2 $-$2 0 2 w0 w0 $\alpha$=10, $\beta$=2 prior posterior 3 2 2
+
+w 0 w 0
+
+0 $-$2 $-$2 0 5 $-$2 0 2 $-$2 0 2 w0 w0 $\alpha$=1, $\beta$=1 prior posterior 3 2 2
+
+w 0 w 0
+
+0 $-$2 $-$2 0 5 $-$2 0 2 $-$2 0 2 w0 w0
+
+Figure 14.4 Bayesian linear regression for different values of $\alpha$ and $\beta$. To the left: crosses are the data points and straight line is the ML solution. The MAP solution with one standard deviation error bars are also shown dashed. Center: prior density centered at 0 and variance 1/$\alpha$. To the right: posterior density whose mean is the MAP solution. We see that when $\alpha$ is increased, the variance of the prior shrinks and the line moves closer to the flat 0 line. When $\beta$ is decreased, more noise is assumed and the posterior density has higher variance.
+
+The posterior probability is no longer Gaussian and the MAP estimate is found by minimizing
+
+Elasso(w|X) = (rt $-$wT xt)2 + 2$\sigma$ 2$\alpha$ |wi| t i
+
+where $\sigma$ 2 is the variance of noise (for which we plug in our estimate). lasso This is known as lasso (least absolute shrinkage and selection operator) (Tibshirani 1996). To see why L1 induces sparseness, let us consider the case with two weights [w1, w2]T (Figueiredo 2003): $\parallel$[1, 0T$\parallel$2 = $\sqrt{}$ $\sqrt{}$ $\sqrt{}$ $\sqrt{}$ $\sqrt{}$ $\parallel$[1/ 2, 1/ 2]T $\parallel$2 = 1, whereas $\parallel$[1, 0]T$\parallel$1 = 1 < $\parallel$[1/ 2, 1/ 2]T$\parallel$1 = 2, and therefore L1 prefers to set w2 to 0 and use a large w1, rather than having small values for both.
+
+\subsection{The Use of Basis/Kernel Functions}
+
+Using the Bayes’ estimate of equation 14.14, the prediction is written as
+
+r' = (x')T w = $\beta$(x')T$\Sigma$NXT r = $\beta$(x')T $\Sigma$Nxtrt t
+
+dual This is the dual representation. When we can write the parameter in representation terms of the training data, or a subset of it as in support vector machines (chapter 13), we can write the prediction as a function of the current input and past data. We can rewrite this as
+
+(14.18) r' = K(x', xt)rt t
+
+where we define
+
+(14.19) K(x', xt) = $\beta$(x')T $\Sigma$Nxt
+
+We know that we can generalize the linear kernel of equation 14.19 by basis function using a nonlinear basis function $\phi$(x) to map to a new space where we fit the linear model. In such a case, instead of the d-dimensional x we have the k-dimensional $\phi$(x) where k is the number of basis functions and instead of N $\times$ d data matrix X, we have N $\times$ k image of the basis functions $\Phi$. During test, we have \% \&$-$1 r' = $\phi$(x')T w where w = $\beta$$\Sigma$$\phi$N$\Phi$T r and $\Sigma$$\phi$N = $\alpha$I + $\beta$$\Phi$T$\Phi$
+
+= $\beta$$\phi$(x')T$\Sigma$$\phi$N$\Phi$Tr = $\beta$$\phi$(x')T $\Sigma$$\phi$N$\phi$(xt)rt t (14.20) = K(x', xt)rt t
+
+where we define (14.21) K(x', xt) = $\beta$$\phi$(x')T $\Sigma$$\phi$N$\phi$(xt)
+
+as the equivalent kernel. This is the dual representation in the space of $\phi$(x). We see that we can write our estimate as a weighted sum of the kernel function effects of instances in the training set where the effect is given by the kernel function K(x', xt); this is similar to nonparametric kernel smoothers we discuss in chapter 8, or kernel machines of chapter 13. Error bars can be defined using Var(r') = $\beta$$-$1 + $\phi$(x')T $\Sigma$$\phi$N$\phi$(x')
+
+An example is given in figure 14.5 for the linear, quadratic, and fourthdegree kernels. Just as in regression proper where we can work on the original x or $\phi$(x), in Bayesian regression too we can work on the preprocessed $\phi$(x), defining parameters in that space. Later on in this chapter, we are going to see Gaussian processes where we can define and use K(x, xt) directly without needing to calculate $\phi$(x).
+
+\subsection{Bayesian Classification}
+
+In a two-class problem, we have a single output and assuming a linear model, we have
+
+P(C1|xt) = yt = sigmoid(wT xt)
+
+The log likelihood of a Bernoulli sample is given as
+
+L(r|X) = rt log yt + (1 $-$rt) log(1 $-$yt) t
+
+which we maximize, or minimize its negative log---the cross-entropy---to find the ML estimate, for example, using gradient descent. This is called logistic discrimination (section 10.7). In the case of the Bayesian approach, we assume a Gaussian prior
+
+(14.22) p(w) = N (m0, S0)
+
+(a) Linear ($\alpha$ = 1 $\beta$ = 1)
+
+0 1 2 3 4 5 6 7 8 (b) Quadratic
+
+0 1 2 3 4 5 6 7 8 (c) Fourth$-$degree
+
+0 1 2 3 4 5 6 7 8
+
+Figure 14.5 Bayesian regression using kernels with one standard deviation error bars: (a) linear: $\phi$(x) = [1, x]T , (b) quadratic: $\phi$(x) = [1, x, x2]T , and (c) fourth degree: $\phi$(x) = [1, x, x2, x3, x4]T .
+
+and the log of the posterior is given as
+
+log p(w|r, X) $\propto$ log p(w) + log p(r|w, X) = $-$1 $-$m0)T S$-$10 (w $-$m0) 2(w (14.23) + rt log yt + (1 $-$rt) log(1 $-$yt) + c t
+
+This posterior distribution is no longer Gaussian and we cannot inte- Laplace grate exactly. We can use Laplace approximation, which works as follows approximation (MacKay 2003). Let us say we want to approximate some distribution f(x), not necessarily normalized (to integrate to 1). In Laplace approximation, we find the mode of f(x), x0, fit a Gaussian q(x) centered there, and then if we want to integrate, we integrate this fitted Gaussian instead. To find the variance of the Gaussian, we consider the Taylor expansion of f($\cdot$) at x = x0 log f(x) = log f(x0) $-$1 $-$x0)2 + $\cdot$ $\cdot$ $\cdot$ 2a(x
+
+where
+
+d a $\equiv$$-$ log f(x) dx2 ****x=x0
+
+Note that the first, linear term disappears because the first derivative is 0 at the mode. Taking exp, we have " \# f(x) = f(x0) exp $-$a $-$x0)2 2(x
+
+To normalize f(x), we consider that in a Gaussian distribution " \# " \# 1 + $\sqrt{}$ exp $-$a $-$x0)2 = 1 $\Rightarrow$ exp $-$a $-$x0)2 = a/2$\pi$ 2$\pi$(1/$\sqrt{}$a) 2(x 2(x
+
+and therefore " \# + q(x) = a/2$\pi$ exp $-$a $-$x0)2 $\sim$N (x0, 1/a) 2(x
+
+In the multivariate setting where x $\in$$\mathbb{R}$d, we have log f(x) = log f(x0) $-$1 $-$x0)T A(x $-$x0) + $\cdot$ $\cdot$ $\cdot$ 2(x
+
+where A is the (Hessian) matrix of second derivatives: A = $-$$\nabla$$\nabla$log f(x)**x=x0
+
+The Laplace approximation is then " \# |A|1/2 f(x) = exp $-$1 $-$x0)TA(x $-$x0) $\sim$Nd(x0, A$-$1) (2$\pi$)d/2 2(x
+
+Having now discussed how to approximate, we can now use it for the posterior density. wMAP, which is the mode of p(w|r, X), is taken as the mean and the covariance matrix is given by the inverse of the matrix of the second derivatives of the negative log likelihood:
+
+SN = $-$$\nabla$$\nabla$log p(w|r, X) = S$-$10 + yt(1 $-$yt)xt(xt)T t
+
+We then integrate over this Gaussian to estimate the class probability:
+
+P(C1|x) = y = sigmoid(wT x)q(w)dw
+
+where q(w) $\sim$N (wMAP, S$-$1N ). A further complication is that we cannot integrate analytically over a Gaussian convolved with a sigmoid. If we use probit function the probit function instead, which has the same S-shape as the sigmoid, an analytical solution is possible (Bishop 2006).
+
+\section{Gaussian Processes}
+
+Let us say we have the linear model y = wT x. Then, for each w, we have one line. Given a prior distribution p(w), we get a distribution of lines, or to be more specific, for any w, we get a distribution of y values calculated at x as y(x|w) when w is sampled from p(w), and this is what we mean when we talk about a Gaussian process. We know that if p(w) is Gaussian, each y is a linear combination of Gaussians and is also Gaussian; in particular, we are interested in the joint distribution of y values calculated at the N input data points, xt, t = 1, . . . , N (MacKay 1998). We assume a zero mean Gaussian prior
+
+p(x) $\sim$N (0, $\alpha$$-$1I)
+
+Given the N $\times$ d data points X and the d $\times$ 1 weight vector, we write the y outputs as
+
+(14.24) y = Xw
+
+which is N-variate Gaussian with
+
+(14.25) E[y] = XE[w] = 0 Cov(y) = E[yyT] = XE[wwT ]XT = $\alpha$XXT $\equiv$K
+
+where K is the (Gram) matrix with elements
+
+(xi)T xj Ki,j $\equiv$K(xi, xj) = $\alpha$
+
+covariance This is known as the covariance function in the literature of Gaussian function processes and the idea is the same as in kernel functions: If we use a set of basis functions $\phi$(x), we generalize from the dot product of the original inputs to the dot product of basis functions by a kernel
+
+$\phi$(xi)T$\phi$(xj) Ki,j = $\alpha$
+
+The actual observed output r is given by the line with added noise, r = y + $\epsilon$ where $\epsilon$ $\sim$N (0, $\beta$$-$1). For all N data points, we write it as
+
+(14.26) r $\sim$NN(0, CN) where CN = $\beta$$-$1I + K
+
+To make a prediction, we consider the new data as the (N + 1)st data point pair (x', r'), and write the joint using all N +1 data points. We have
+
+(14.27) rN+1 $\sim$NN(0, CN+1)
+
+(a) Linear ($\alpha$ = 1 $\beta$ = 5)
+
+0 1 2 3 4 5 6 7 8 (b) Quadratic
+
+0 1 2 3 4 5 6 7 8 (c) Gaussian
+
+0 1 2 3 4 5 6 7 8
+
+Figure 14.6 Gaussian process regression with one standard deviation error bars: (a) linear kernel, (b) quadratic kernel, (c) Gaussian kernel with spread s2 = 0.5.
+
+where
+
+CN k CN+1 = kT c
+
+with k being the N $\times$ 1 dimensional vector of K(x', xt), t = 1, . . . , N and c = K(x', x') + $\beta$$-$1. Then to make a prediction, we calculate p(r'|x', X, r), which is Gaussian with
+
+E[r'|x'] = kTC$-$1N r Var(r'|x') = c $-$kT C$-$1N k
+
+An example is shown in figure 14.6 using linear, quadratic, and Gaussian kernels. The first two are defined as the dot product of their corresponding basis functions; the Gaussian kernel is defined directly as
+
+$-$xj$\parallel$2KG(xi, xj) = exp $-$$\parallel$xi s2
+
+The mean, which is our point estimate (if we do not integrate over the full distribution), can also be written as a weighted sum of the kernel effects
+
+(14.28) E[r'|x'] = atK(xt, x') t
+
+where at is the tth component of C$-$1N r. Or, we can write it as a weighted sum of the outputs of the training data points where weights are given by the kernel function
+
+(14.29) E[r'|x'] = rtwt t
+
+where wt is the tth component of kTC$-$1N . Note that we can also calculate the variance of a prediction at a point to get an idea about uncertainty in there, and it depends on the instances that affect the prediction in there. In the case of a Gaussian kernel, only instances within a locality are effective and prediction variance is high where there is little data in the vicinity (see figure 14.7). Kernel functions can be defined and used, depending on the application, as we have prevously discussed in the context of kernel machines in chapter 13. The possibility of using kernel functions directly without needing to calculate or store the basis functions offers a great flexibility. Normally, given a training set, we first calculate the parameters, for example using equation 14.12, and then use the parameters to make predictions using equation 14.13, never needing the training set any more. This makes sense because generally the dimensionality of the parameters, which is generally O(d), is much lower than the size of the training set N. When we work with basis functions, however, calculating the parameter explicitly may no longer be the case, because the dimensionality of the basis functions may be very high, even infinite. In such a case, it is cheaper to use the dual representation, taking into account the effects of training instances using kernel functions, as we do here. This idea is also used in nonparametric smoothers (chapter 8) and kernel machines (chapter 13). The requirement here is that CN be invertible and hence positive definite. For this, K should be semidefinite so that after adding $\beta$$-$1 > 0 to the diagonals, we get positive definiteness. We also see that the costliest operation is this inversion of N $\times$N matrix, which fortunately needs to be
+
+N = 20
+
+$-$1
+
+$-$1 $-$0.5 0 0.5 1 N = 10
+
+$-$1
+
+$-$1 $-$0.5 0 0.5 1 N = 5
+
+$-$1
+
+$-$1 $-$0.5 0 0.5 1
+
+Figure 14.7 Gaussian process regression using a Gaussian kernel with s2 = 0.5 and varying number of training data. We see how variance of the prediction is larger where there is few data.
+
+calculated only once (during training) and stored. Still, for large N, one may need an approximation. When we use it for classification for a two-class problem, the output is filtered through a sigmoid, y = sigmoid(wTx), and the distribution of y is no longer Gaussian. The derivation is similar except that the conditional p(rN+1|xN+1, X, r) is not Gaussian either and we need to approximate, for example, using Laplace approximation (Bishop 2006; Rasmussen and Williams 2006).
+
+\section{Notes}
+
+Bayesian approaches have become popular recently with advances in computational power allowing us to sample from or approximate the posterior probabilities. Truth has many cloaks. This preference of simplicity appears in many contexts as the Bayesian approach, regularization, min-
+
+imum description length, or smoothing, and is at the heart of statistical inference and hence machine learning. On the other hand, the subjectivity of priors is disturbing and there are objections to the Bayesian approach; see Gelman 2008, for example. What is the use of a flat prior, and why collect data if we already have a peaked prior? Is a conjugate prior true or merely convenient? Just like with support vector machines, in Gaussian processes too, there are methods by which one can construct new kernels as functions (e.g., weighted sums) of some other kernels and these weights or kertype 2 maximum nel parameters (e.g., spreads) can be optimized by a type 2 maximum likelihood likelihood procedure, so called because we are now optimizing not the procedure parameters (which are the at or wt above) but the hyperparameters on a second level (Bishop 2006; Rasmussen and Williams 2006).
+
+\section{Exercises}
+
+1. For the setting of figure 14.3, observe how the posterior changes as we change N, $\sigma$ 2, and $\sigma$02 .
+
+2. Let us denote by x the number of spam emails I receive in a random sample of n. Assume that the prior for q, the proportion of spam emails is uniform in [0, 1]. Find the posterior distribution for p(q|x).
+
+3. As above, except that assume that p(q) $\sim$N ($\mu$0, $\sigma$02 ). Also assume n is large so that you can use central limit theorem and approximate binomial by a Gaussian. Derive p(q|x).
+
+4. What is Var(r ') when the maximum likelihood estimator is used? Compare it with equation 14.17.
+
+5. In figure 14.6, how does the fit change when we change s2?
+
+6. Propose a filtering algorithm to choose a subset of the training set in Gaussian processes.
+
+active learning 7. Active learning is when the learner is able to generate x itself and ask a supervisor to provide the corresponding r value during learning one by one, instead of passively being given a training set. How can we implement active learning using Gaussian processes? (Hint: Where do we have the largest uncertainty?)
+
+8. Let us say we have inputs from two different representations. How can we use the approaches discussed in this chapter in such a case?
+
+\section{References}
+
+Bishop, C. M. 2006. Pattern Recognition and Machine Learning. New York: Springer.
+
+Figueiredo, M. A. T. 2003. “Adaptive Sparseness for Supervised Learning.” IEEE Transactions on Pattern Analysis and Machine Intelligence 25: 1150--1159.
+
+Gelman, A. 2008. “Objections to Bayesian statistics.” Bayesian Statistics 3: 445-- 450.
+
+MacKay, D. J. C. 1998. “Introduction to Gaussian Processes.” In Neural Networks and Machine Learning, ed. C. M. Bishop, 133--166. Berlin: Springer.
+
+MacKay, D. J. C. 2003. Information Theory, Inference, and Learning Algorithms. Cambridge, UK: Cambridge University Press.
+
+Rasmussen, C. E. , and C. K. I. Williams. 2006. Gaussian Processes for Machine Learning. Cambridge, MA: MIT Press.
+
+Tibshirani, R. 1996. “Regression Shrinkage and Selection via the Lasso.” Journal of the Royal Statistical Society B 58: 267--288.

@@ -1,0 +1,123 @@
+{
+  "chapterNum": 16,
+  "slug": "16-graphical-models",
+  "title": "Graphical Models",
+  "sections": [
+    {
+      "id": "16.1",
+      "title": "Introduction",
+      "rules": [
+        "Graphical models combine probability theory and graph theory into a unified framework.",
+        "Nodes in the graph represent random variables.",
+        "Edges represent direct probabilistic dependencies between variables.",
+        "The absence of edges represents conditional independence assertions.",
+        "Directed graphical models are also called Bayesian networks.",
+        "In a directed acyclic graph, the joint distribution factors into conditional probability distributions.",
+        "Each variable conditions only on its direct parents in the graph.",
+        "This factorization significantly reduces the number of parameters needed to define joint probabilities."
+      ]
+    },
+    {
+      "id": "16.2",
+      "title": "Canonical Cases for Conditional Independence",
+      "rules": [
+        "We analyze conditional independence using three canonical three-node graph connections.",
+        "Serial connection: Variable X points to Y, and Y points to Z.",
+        "X and Z are conditionally independent given intermediate variable Y.",
+        "Conditioning on Y blocks the information path between X and Z.",
+        "Diverging connection: Variable Y points to both X and Z.",
+        "Y is a common cause for variables X and Z.",
+        "Given the common cause Y, variables X and Z are conditionally independent.",
+        "Converging connection: Variables X and Z both point to variable Y.",
+        "X and Z are marginally independent when Y is not observed.",
+        "Conditioning on Y or its descendants makes X and Z dependent.",
+        "This phenomenon is called explaining away."
+      ]
+    },
+    {
+      "id": "16.3",
+      "title": "Example Graphical Models",
+      "rules": [
+        "The naive Bayes classifier is a simple directed graphical model.",
+        "In naive Bayes, the class node is the common parent of all input feature nodes.",
+        "Input features are conditionally independent given the class label.",
+        "A Hidden Markov Model is a directed chain of latent states with emission nodes.",
+        "Each hidden state depends only on the preceding hidden state.",
+        "Linear regression models can be drawn with input nodes, weight nodes, and target nodes.",
+        "Hierarchical Bayesian models add hyperparameter nodes as parents of parameter distributions."
+      ]
+    },
+    {
+      "id": "16.4",
+      "title": "d-Separation",
+      "rules": [
+        "Directed separation, or d-separation, determines conditional independence in any directed acyclic graph.",
+        "A path between two nodes is blocked if it meets specific conditioning criteria.",
+        "A serial or diverging node blocks a path when that node is observed.",
+        "A converging node blocks a path when neither that node nor its descendants are observed.",
+        "Two sets of nodes are d-separated if all paths between them are blocked.",
+        "If two sets are d-separated given an evidence set, they are conditionally independent."
+      ]
+    },
+    {
+      "id": "16.5",
+      "title": "Belief Propagation",
+      "rules": [
+        "Inference calculates the posterior probability distribution of query variables given observed evidence.",
+        "Pearl's belief propagation performs exact inference through local message passing along graph edges.",
+        "In chain graphs, messages propagate forward and backward along the chain.",
+        "In tree graphs, each node has at most one parent.",
+        "Nodes exchange bottom-up diagnostic messages and top-down causal messages.",
+        "In polytrees, multiple parents are permitted, but only one undirected path connects any two nodes.",
+        "Exact belief propagation runs in linear time on polytrees.",
+        "For cyclic graphs, we group nodes into cliques to construct a junction tree.",
+        "Loopy belief propagation runs message passing on cyclic graphs to obtain approximate solutions."
+      ]
+    },
+    {
+      "id": "16.6",
+      "title": "Undirected Graphs: Markov Random Fields",
+      "rules": [
+        "Undirected graphical models are also known as Markov random fields.",
+        "Edges in undirected graphs represent symmetrical correlations rather than causal directions.",
+        "A Markov blanket of a node consists of all its direct neighbors.",
+        "The joint distribution factorizes into non-negative potential functions over maximal cliques.",
+        "Potential functions evaluate local compatibility between clique configurations.",
+        "The partition function normalizes the product of potential functions over all configurations.",
+        "Markov random fields are widely applied in image processing and spatial statistics."
+      ]
+    },
+    {
+      "id": "16.7",
+      "title": "Learning the Structure of a Graphical Model",
+      "rules": [
+        "Structure learning discovers the network graph topology from observational data.",
+        "Constraint-based methods use statistical hypothesis tests to identify conditional independencies.",
+        "Score-based methods evaluate candidate graph structures using scoring metrics like BIC and MDL.",
+        "The space of possible directed acyclic graphs grows super-exponentially with the number of variables.",
+        "Finding the optimal structure is NP-hard.",
+        "Practitioners use heuristic algorithms such as greedy hill climbing or the K2 algorithm."
+      ]
+    },
+    {
+      "id": "16.8",
+      "title": "Influence Diagrams",
+      "rules": [
+        "Influence diagrams extend Bayesian networks to support decision making under uncertainty.",
+        "Chance nodes represent uncertain random variables in the environment.",
+        "Decision nodes represent action choices controlled directly by the decision maker.",
+        "Utility nodes represent the numeric payoff or cost of resulting outcomes.",
+        "An optimal decision policy maximizes expected utility across all possible states."
+      ]
+    },
+    {
+      "id": "16.9",
+      "title": "Notes",
+      "rules": [
+        "Graphical models provide a modular language for complex probabilistic systems.",
+        "When exact inference is intractable, we use Markov Chain Monte Carlo sampling methods.",
+        "Variational methods approximate intractable posterior distributions with simpler tractable families."
+      ]
+    }
+  ]
+}

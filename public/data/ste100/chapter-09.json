@@ -1,0 +1,99 @@
+{
+  "chapterNum": 9,
+  "slug": "09-decision-trees",
+  "title": "Decision Trees",
+  "sections": [
+    {
+      "id": "9.1",
+      "title": "Introduction",
+      "rules": [
+        "A decision tree is a hierarchical model for supervised learning.",
+        "The tree uses a divide-and-conquer strategy to split the input space.",
+        "Internal decision nodes test specific input attributes.",
+        "Leaf nodes store the final class label or numeric prediction.",
+        "The system classifies an input by following a path from root to leaf.",
+        "Decision trees are nonparametric and highly interpretable.",
+        "Human experts can understand and validate tree decisions easily."
+      ]
+    },
+    {
+      "id": "9.2",
+      "title": "Univariate Trees",
+      "rules": [
+        "In a univariate tree, each decision node tests only one input dimension.",
+        "For discrete attributes, the node creates a branch for each possible value.",
+        "For continuous attributes, the node compares the value to a numeric threshold.",
+        "The test splits the input space with hyperplanes orthogonal to coordinate axes.",
+        "In classification trees, we measure node impurity using entropy or the Gini index.",
+        "The algorithm selects the split that maximizes information gain.",
+        "Information gain measures the drop in impurity after the split.",
+        "ID3 and C4.5 use entropy to select the best split attribute.",
+        "CART uses the Gini index for binary classification splits.",
+        "In regression trees, each leaf stores the mean target value of local instances.",
+        "The split criterion minimizes the mean squared error in child nodes."
+      ]
+    },
+    {
+      "id": "9.3",
+      "title": "Pruning",
+      "rules": [
+        "Growing a tree until all leaves are pure causes overfitting.",
+        "Prepruning stops tree growth early before nodes become too small.",
+        "Prepruning rules include minimum sample count and minimum impurity decrease.",
+        "Postpruning grows a complete tree and removes subtrees that do not help generalization.",
+        "We use a separate validation dataset to evaluate subtrees during postpruning.",
+        "Reduced error pruning replaces subtrees with leaves when validation accuracy improves.",
+        "Cost-complexity pruning balances tree error against tree size using a penalty parameter.",
+        "Postpruning generally produces better models than prepruning."
+      ]
+    },
+    {
+      "id": "9.4",
+      "title": "Rule Extraction from Trees",
+      "rules": [
+        "Each path from the root node to a leaf forms an IF-THEN rule.",
+        "The antecedent combines node tests with logical AND operations.",
+        "The consequent predicts the target class or regression value.",
+        "The full set of extracted rules is mutually exclusive and exhaustive.",
+        "Rule pruning removes unnecessary conditions from individual rules.",
+        "Pruned rules are often easier to interpret than the complete tree."
+      ]
+    },
+    {
+      "id": "9.5",
+      "title": "Learning Rules from Data",
+      "rules": [
+        "Sequential covering algorithms learn IF-THEN rules directly from training data.",
+        "The algorithm learns one rule that covers a subset of positive instances.",
+        "The algorithm removes covered instances and repeats the search on remaining data.",
+        "We call this strategy separate-and-conquer.",
+        "Rule induction algorithms search from general rules to specific rules.",
+        "We add conditions to increase precision until the rule meets an accuracy threshold.",
+        "RIPPER is an efficient algorithm for learning propositional rule sets."
+      ]
+    },
+    {
+      "id": "9.6",
+      "title": "Multivariate Trees",
+      "rules": [
+        "A multivariate tree uses multiple input attributes at each decision node.",
+        "A linear multivariate node uses a linear combination of input features.",
+        "The decision boundary at each node is an arbitrary oblique hyperplane.",
+        "Multivariate splits create flexible decision boundaries across multiple dimensions.",
+        "Finding optimal multivariate splits requires numerical optimization or linear programming.",
+        "Multivariate trees are smaller than univariate trees but harder to interpret."
+      ]
+    },
+    {
+      "id": "9.7",
+      "title": "Notes",
+      "rules": [
+        "Hunt's Concept Learning System laid the foundation for decision tree induction.",
+        "Quinlan developed the ID3 and C4.5 tree algorithms.",
+        "Breiman and colleagues created the CART algorithm for classification and regression trees.",
+        "Decision trees handle missing values naturally using surrogate splits.",
+        "Trees perform implicit feature selection by choosing only relevant attributes for splits."
+      ]
+    }
+  ]
+}

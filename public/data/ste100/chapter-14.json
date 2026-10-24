@@ -1,0 +1,112 @@
+{
+  "chapterNum": 14,
+  "slug": "14-bayesian-estimation",
+  "title": "Bayesian Estimation",
+  "sections": [
+    {
+      "id": "14.1",
+      "title": "Introduction",
+      "rules": [
+        "Maximum likelihood considers model parameters as unknown constant values.",
+        "Bayesian estimation considers model parameters as random variables.",
+        "We describe our initial belief about a parameter with a prior probability distribution.",
+        "The sample likelihood shows how likely the data is for a specific parameter value.",
+        "Bayes' rule combines the prior probability distribution and the sample likelihood.",
+        "This combination calculates the posterior probability distribution.",
+        "The marginal likelihood normalizes the posterior distribution so it integrates to one.",
+        "For a new input, the predictive distribution integrates over all parameter values.",
+        "We weight each parameter prediction by its posterior probability.",
+        "A generative graphical model shows how the parameter generates the data.",
+        "The past sample and a new instance are conditionally independent given the parameter.",
+        "Full Bayesian integration is frequently difficult to compute.",
+        "The Maximum a Posteriori (MAP) method selects the mode of the posterior distribution.",
+        "The MAP estimate assumes the posterior distribution has a narrow peak.",
+        "If the prior distribution is uniform, the MAP estimate equals the maximum likelihood estimate."
+      ]
+    },
+    {
+      "id": "14.2",
+      "title": "Estimating the Parameter of a Distribution",
+      "rules": [
+        "Discrete variables: We model multinomial data with discrete state probabilities.",
+        "The conjugate prior for a multinomial distribution is the Dirichlet distribution.",
+        "A conjugate prior produces a posterior distribution from the same probability family.",
+        "Hyperparameters represent imaginary sample counts before we observe actual data.",
+        "The posterior distribution adds observed sample counts to prior hyperparameters.",
+        "Larger hyperparameter values indicate higher confidence in the prior belief.",
+        "For binary data, the multinomial model becomes a Bernoulli distribution.",
+        "The conjugate prior for a Bernoulli distribution is the Beta distribution.",
+        "As the sample size increases, the posterior variance decreases.",
+        "Continuous variables: We estimate the mean and variance of a Gaussian distribution.",
+        "The conjugate prior for a Gaussian mean is another Gaussian distribution.",
+        "The posterior mean is a weighted average of the prior mean and the sample mean.",
+        "The weights depend inversely on the variances of the prior and the sample.",
+        "If the sample size is large, the posterior mean approaches the sample mean.",
+        "If prior variance is small, the prior mean dominates the estimate.",
+        "The posterior variance is smaller than both the prior variance and the sample variance.",
+        "For unknown variance, we calculate precision as the reciprocal of variance.",
+        "The conjugate prior for Gaussian precision is the Gamma distribution.",
+        "The posterior Gamma distribution updates prior hyperparameters with sample statistics."
+      ]
+    },
+    {
+      "id": "14.3",
+      "title": "Bayesian Estimation of the Parameters of a Function",
+      "rules": [
+        "Regression: In linear regression, we predict a continuous target from inputs.",
+        "The model assumes additive Gaussian noise with zero mean and known precision.",
+        "Maximum likelihood minimizes the sum of squared errors between predictions and targets.",
+        "The Bayesian approach defines a zero-mean Gaussian prior distribution on weight parameters.",
+        "This Gaussian prior assumes weights stay close to zero.",
+        "The posterior distribution of the weights is also a Gaussian distribution.",
+        "The MAP estimate adds a regularization term to the diagonal of the input matrix.",
+        "This regularization is identical to ridge regression and weight decay in neural networks.",
+        "Ridge regression reduces weight magnitudes, but does not set weights to zero.",
+        "To select features, we replace the Gaussian prior with a Laplacian prior.",
+        "A Laplacian prior uses the L1 norm instead of the L2 norm.",
+        "The MAP estimate with a Laplacian prior is called the lasso.",
+        "The lasso sets redundant weights to zero and produces sparse models.",
+        "Basis and kernel functions: We map input vectors into high-dimensional feature spaces.",
+        "The dual representation expresses predictions directly as weighted sums of training instances.",
+        "A kernel function calculates inner products without computing explicit basis transformations.",
+        "Bayesian classification: We use a sigmoid function for two-class logistic discrimination.",
+        "The posterior distribution over weights is not Gaussian.",
+        "We use the Laplace approximation to fit a Gaussian distribution at the posterior mode.",
+        "The covariance matrix is the inverse of the Hessian matrix of second derivatives.",
+        "The probit function allows analytical integration for class predictions."
+      ]
+    },
+    {
+      "id": "14.4",
+      "title": "Gaussian Processes",
+      "rules": [
+        "A Gaussian process defines a prior probability distribution directly over functions.",
+        "Any finite collection of function values has a joint multivariate Gaussian distribution.",
+        "The mean function is usually set to zero.",
+        "The covariance matrix measures similarity between input points through a kernel function.",
+        "Common covariance functions include linear, polynomial, and Gaussian radial basis functions.",
+        "Observed outputs add Gaussian noise to the underlying function values.",
+        "The joint distribution of training targets and a new test point is Gaussian.",
+        "Conditioning on training data yields a Gaussian predictive distribution for the new point.",
+        "The predictive mean gives the point prediction as a weighted sum of kernel values.",
+        "The predictive variance indicates uncertainty at the query point.",
+        "Predictive variance is high in regions with few training examples.",
+        "Gaussian processes do not calculate explicit model parameters.",
+        "Training requires inverting an N-by-N covariance matrix.",
+        "Matrix inversion requires cubic computational time in the number of training examples.",
+        "For classification, we pass the Gaussian process output through a sigmoid function."
+      ]
+    },
+    {
+      "id": "14.5",
+      "title": "Notes",
+      "rules": [
+        "Bayesian methods provide a formal mathematical framework for Occam's razor.",
+        "Bayesian algorithms prefer simpler models that explain the observed data.",
+        "Critics note that subjective choice of prior distributions can introduce bias.",
+        "Modern computational power and Markov chain Monte Carlo make complex Bayesian inference practical.",
+        "Type 2 maximum likelihood optimizes hyperparameters by maximizing the marginal likelihood."
+      ]
+    }
+  ]
+}

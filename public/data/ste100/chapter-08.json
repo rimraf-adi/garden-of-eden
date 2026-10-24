@@ -1,0 +1,123 @@
+{
+  "chapterNum": 8,
+  "slug": "08-nonparametric-methods",
+  "title": "Nonparametric Methods",
+  "sections": [
+    {
+      "id": "8.1",
+      "title": "Introduction",
+      "rules": [
+        "Parametric methods assume a fixed model over the entire input space.",
+        "A linear parametric model assumes one global function for all input values.",
+        "When this global assumption fails, parametric models produce large errors.",
+        "Nonparametric methods divide the input space into local neighborhoods.",
+        "The model fits simple local estimates in each neighborhood.",
+        "Nonparametric methods make few prior assumptions about the underlying distribution.",
+        "We also call these methods instance-based or memory-based learning.",
+        "The system stores training data in memory during learning.",
+        "Memory and computation costs increase with sample size."
+      ]
+    },
+    {
+      "id": "8.2",
+      "title": "Nonparametric Density Estimation",
+      "rules": [
+        "We estimate an unknown probability density function from sample data.",
+        "A small region around point x has volume V.",
+        "We approximate the probability mass by the fraction of points in this region.",
+        "The histogram estimator divides the input range into equal bins of width h.",
+        "The histogram assigns points to discrete bins.",
+        "Histograms are not continuous at bin boundaries.",
+        "The kernel estimator places a smooth kernel function on each sample point.",
+        "The kernel function integrates to one over the input space.",
+        "A common choice is the Gaussian kernel.",
+        "The bandwidth parameter h controls the spread of the kernel function.",
+        "A small bandwidth creates a noisy estimate with high variance.",
+        "A large bandwidth oversmoothes the density and increases bias.",
+        "The k-nearest neighbor estimator fixes the count k and adjusts the volume.",
+        "In low-density areas, the volume grows large to capture k points.",
+        "In high-density areas, the volume becomes small for fine resolution."
+      ]
+    },
+    {
+      "id": "8.3",
+      "title": "Generalization to Multivariate Data",
+      "rules": [
+        "We extend kernel density estimation to multidimensional vectors.",
+        "The multivariate kernel integrates to one over the input vector space.",
+        "The multivariate Gaussian kernel uses a covariance matrix.",
+        "When input dimensions are independent, we use the product of univariate kernels.",
+        "The curse of dimensionality affects nonparametric methods in high dimensions.",
+        "Most of the high-dimensional volume remains empty.",
+        "The model needs exponentially more sample points to fill the space.",
+        "Distance values between points become nearly equal in high dimensions."
+      ]
+    },
+    {
+      "id": "8.4",
+      "title": "Nonparametric Classification",
+      "rules": [
+        "We estimate class-conditional densities using nonparametric estimators.",
+        "We apply Bayes' rule to compute posterior class probabilities.",
+        "In kernel classification, each class has its own kernel density estimate.",
+        "The nearest neighbor rule assigns x to the class of the closest point.",
+        "The k-nearest neighbor rule finds the k closest points and counts votes.",
+        "The classifier selects the class with the most votes among the k neighbors.",
+        "The error of the nearest neighbor rule is bounded asymptotically.",
+        "Cover and Hart proved this error is at most twice the optimal Bayes error.",
+        "Voronoi tessellation partitions the space into convex cells around each training point."
+      ]
+    },
+    {
+      "id": "8.5",
+      "title": "Condensed Nearest Neighbor",
+      "rules": [
+        "Nonparametric methods store all training instances in system memory.",
+        "Nearest neighbor search requires large memory and high query computation time.",
+        "Condensing algorithms find a minimal subset of data that maintains classification accuracy.",
+        "Hart's condensed nearest neighbor algorithm constructs a consistent subset Z.",
+        "We initialize Z with one random instance from each target class.",
+        "We classify remaining training points using subset Z.",
+        "If subset Z misclassifies a point, we add that point to Z.",
+        "We repeat this scanning process until no points move into subset Z.",
+        "The condensed set keeps boundary instances and removes interior points."
+      ]
+    },
+    {
+      "id": "8.6",
+      "title": "Nonparametric Regression: Smoothing Models",
+      "rules": [
+        "In regression, we estimate an unknown continuous function g(x).",
+        "Smoothing models compute outputs as weighted averages of nearby target values.",
+        "The running mean smoother computes the average of target values in a window.",
+        "The kernel smoother weights target values using a smooth kernel function.",
+        "The Nadaraya-Watson kernel estimator divides the weighted target sum by the kernel sum.",
+        "The running line smoother fits a local linear regression line in each neighborhood.",
+        "Locally weighted running lines reduce boundary bias compared to running means."
+      ]
+    },
+    {
+      "id": "8.7",
+      "title": "How to Choose the Smoothing Parameter",
+      "rules": [
+        "The smoothing parameter h or k controls model complexity.",
+        "A small parameter value causes overfitting and high variance.",
+        "A large parameter value causes underfitting and high bias.",
+        "We use cross-validation on a validation dataset to find the best parameter.",
+        "In density estimation, we maximize cross-validated log likelihood.",
+        "In regression, we minimize mean squared error on validation data."
+      ]
+    },
+    {
+      "id": "8.8",
+      "title": "Notes",
+      "rules": [
+        "Fix and Hodges introduced nonparametric density estimation in 1951.",
+        "Cover and Hart proved the asymptotic bounds of the nearest neighbor rule in 1967.",
+        "Nonparametric methods are lazy learners because they defer computation until query time.",
+        "Eager learners build an explicit model before receiving test queries.",
+        "Modern hardware and fast index trees make memory-based methods practical for large datasets."
+      ]
+    }
+  ]
+}

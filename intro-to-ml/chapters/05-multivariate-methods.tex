@@ -1,0 +1,363 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Multivariate Methods}
+\label{chap:05-multivariate-methods}
+
+In chapter 4, we discussed the parametric approach to classification and regression. Now, we generalize this to the multivariate case where we have multiple inputs and where the output, which is class code or continuous output, is a function of these multiple inputs. These inputs may be discrete or numeric. We will see how such functions can be learned from a labeled multivariate sample and also how the complexity of the learner can be fine-tuned to the data at hand.
+
+\section{Multivariate Data}
+
+In many applications, several measurements are made on each individual or event generating an observation vector. The sample may be viewed as a data matrix [ ] X11 X12 $\cdot$ $\cdot$ $\cdot$ X1d X21 X22 $\cdot$ $\cdot$ $\cdot$ X2d X = |||||[ ... |||||] XN1 XN2 $\cdot$ $\cdot$ $\cdot$ XNd
+
+where the d columns correspond to d variables denoting the result of input measurements made on an individual or event. These are also called infeature puts, features, or attributes. The N rows correspond to independent and attribute identically distributed observations, examples, or instances on N individobservation example uals or events. instance For example, in deciding on a loan application, an observation vector is the information associated with a customer and is composed of age, marital status, yearly income, and so forth, and we have N such past
+
+customers. These measurements may be of different scales, for example, age in years and yearly income in monetary units. Some like age may be numeric, and some like marital status may be discrete. Typically these variables are correlated. If they are not, there is no need for a multivariate analysis. Our aim may be simplification, that is, summarizing this large body of data by means of relatively few parameters. Or our aim may be exploratory, and we may be interested in generating hypotheses about data. In some applications, we are interested in predicting the value of one variable from the values of other variables. If the predicted variable is discrete, this is multivariate classification, and if it is numeric, this is a multivariate regression problem.
+
+\section{Parameter Estimation}
+
+mean vector The mean vector $\mu$ is defined such that each of its elements is the mean of one column of X:
+
+(5.1) E[x] = $\mu$ = [$\mu$1, . . . , $\mu$d]T
+
+The variance of Xi is denoted as $\sigma$ i2 , and the covariance of two variables Xi and Xj is defined as
+
+(5.2) $\sigma$ij $\equiv$Cov(Xi, Xj) = E[(Xi $-$$\mu$i)(Xj $-$$\mu$j)] = E[XiXj] $-$$\mu$i$\mu$j
+
+with $\sigma$ij = $\sigma$ji, and when i = j, $\sigma$ii = $\sigma$ i2 . With d variables, there are d variances and d(d $-$1)/2 covariances, which are generally represented as covariance matrix a d $\times$d matrix, named the covariance matrix, denoted as $\Sigma$, whose (i, j)th element is $\sigma$ij: [ ] $\sigma$ 12 $\sigma$12 $\cdot$ $\cdot$ $\cdot$ $\sigma$1d $\sigma$21 $\sigma$ 22 $\cdot$ $\cdot$ $\cdot$ $\sigma$2d $\Sigma$ = |||||[ ... |||||] $\sigma$d1 $\sigma$d2 $\cdot$ $\cdot$ $\cdot$ $\sigma$ d2
+
+The diagonal terms are the variances, the off-diagonal terms are the covariances, and the matrix is symmetric. In vector-matrix notation
+
+(5.3) $\Sigma$ $\equiv$Cov(X) = E[(X $-$$\mu$)(X $-$$\mu$)T ] = E[XXT] $-$$\mu$$\mu$T
+
+If two variables are related in a linear way, then the covariance will be positive or negative depending on whether the relationship has a positive
+
+or negative slope. But the size of the relationship is difficult to interpret because it depends on the units in which the two variables are measured. correlation The correlation between variables Xi and Xj is a statistic normalized between $-$1 and +1, defined as
+
+$\sigma$ij (5.4) Corr(Xi, Xj) $\equiv$$\rho$ij = $\sigma$i$\sigma$j
+
+If two variables are independent, then their covariance, and hence their correlation, is 0. However, the converse is not true: the variables may be dependent (in a nonlinear way), and their correlation may be 0. Given a multivariate sample, estimates for these parameters can be sample mean calculated: The maximum likelihood estimator for the mean is the sample mean, m. Its ith dimension is the average of the ith column of X:
+
+N t=1 xt Nt=1 xti (5.5) m = with mi = , i = 1, . . . , d N N
+
+sample covariance The estimator of $\Sigma$ is S, the sample covariance matrix, with entries
+
+Nt=1(xti $-$mi)2 (5.6) s2i = N Nt=1(xti $-$mi)(xtj $-$mj) (5.7) sij = N
+
+These are biased estimates, but if in an application the estimates vary significantly depending on whether we divide by N or N $-$1, we are in serious trouble anyway. sample correlation The sample correlation coefficients are
+
+sij (5.8) rij = sisj
+
+and the sample correlation matrix R contains rij.
+
+\section{Estimation of Missing Values}
+
+Frequently, values of certain variables may be missing in observations. The best strategy is to discard those observations all together, but generally we do not have large enough samples to be able to afford this and we do not want to lose data as the non-missing entries do contain information. We try to fill in the missing entries by estimating them. This is imputation called imputation.
+
+In mean imputation, for a numeric variable, we substitute the mean (average) of the available data for that variable in the sample. For a discrete variable, we fill in with the most likely value, that is, the value most often seen in the data. In imputation by regression, we try to predict the value of a missing variable from other variables whose values are known for that case. Depending on the type of the missing variable, we define a separate regression or classification problem that we train by the data points for which such values are known. If many different variables are missing, we take the means as the initial estimates and the procedure is iterated until predicted values stabilize. If the variables are not highly correlated, the regression approach is equivalent to mean imputation. Depending on the context, however, sometimes the fact that a certain attribute value is missing may be important. For example, in a credit card application, if the applicant does not declare his or her telephone number, that may be a critical piece of information. In such cases, this is represented as a separate value to indicate that the value is missing and is used as such.
+
+\section{Multivariate Normal Distribution}
+
+In the multivariate case where x is d-dimensional and normal distributed, we have " \# 1 (5.9) p(x) = exp $-$1 $-$$\mu$)T$\Sigma$$-$1(x $-$$\mu$) (2$\pi$)d/2|$\Sigma$|1/2 2(x
+
+and we write x $\sim$Nd($\mu$, $\Sigma$) where $\mu$ is the mean vector and $\Sigma$ is the covariance matrix (see figure 5.1). Just as
+
+(x $-$$\mu$)2 = (x $-$$\mu$)($\sigma$ 2)$-$1(x $-$$\mu$) $\sigma$ 2
+
+is the squared distance from x to $\mu$ in standard deviation units, normal- Mahalanobis izing for different variances, in the multivariate case the Mahalanobis distance distance is used:
+
+(5.10) (x $-$$\mu$)T $\Sigma$$-$1(x $-$$\mu$)
+
+(x$-$$\mu$)T$\Sigma$$-$1(x$-$$\mu$) = c2 is the d-dimensional hyperellipsoid centered at $\mu$, and its shape and orientation are defined by $\Sigma$. Because of the use of the inverse of $\Sigma$, if a variable has a larger variance than another, it receives
+
+0.4
+
+0.35
+
+0.3
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+x2 x1
+
+Figure 5.1 Bivariate normal distribution.
+
+less weight in the Mahalanobis distance. Similarly, two highly correlated variables do not contribute as much as two less correlated variables. The use of the inverse of the covariance matrix thus has the effect of standardizing all variables to unit variance and eliminating correlations. Let us consider the bivariate case where d = 2 for visualization purposes (see figure 5.2). When the variables are independent, the major axes of the density are parallel to the input axes. The density becomes an ellipse if the variances are different. The density rotates depending on the sign of the covariance (correlation). The mean vector is $\mu$T = [$\mu$1, $\mu$2], and the covariance matrix is usually expressed as
+
+$\sigma$ 12 $\rho$$\sigma$1$\sigma$2 $\Sigma$ = 2 $\rho$$\sigma$1$\sigma$2 $\sigma$ 2
+
+The joint bivariate density can be expressed in the form (see exercise 1)
+
+\% \& 1 1 (5.11) p(x1, x2) = \$ exp $-$ z21 $-$2$\rho$z1z2 + z22 2(1 $-$$\rho$2) 2$\pi$$\sigma$1$\sigma$2 1 $-$$\rho$2
+
+where zi = (xi $-$$\mu$i)/$\sigma$i, i = 1, 2, are standardized variables; this is called z-normalization z-normalization. Remember that
+
+z21 + 2$\rho$z1z2 + z22 = constant
+
+Cov(x1,x2)=0, Var(x1)=Var(x2) Cov(x1,x2)=0, Var(x1)>Var(x2)
+
+x2
+
+x1
+
+Cov(x1,x2)>0 Cov(x1,x2)<0
+
+Figure 5.2 Isoprobability contour plot of the bivariate normal distribution. Its center is given by the mean, and its shape and orientation depend on the covariance matrix.
+
+for |$\rho$| < 1, is the equation of an ellipse. When $\rho$ > 0, the major axis of the ellipse has a positive slope and if $\rho$ < 0, the major axis has a negative slope. In the expanded Mahalanobis distance of equation 5.11, each variable is normalized to have unit variance, and there is the cross-term that corrects for the correlation between the two variables. The density depends on five parameters: the two means, the two variances, and the correlation. $\Sigma$ is nonsingular, and hence positive definite, provided that variances are nonzero and |$\rho$| < 1. If $\rho$ is +1 or $-$1, the two variables are linearly related, the observations are effectively onedimensional, and one of the two variables can be disposed of. If $\rho$ = 0, then the two variables are independent, the cross-term disappears, and we get a product of two univariate densities. In the multivariate case, a small value of |$\Sigma$| indicates samples are close to $\mu$, just as in the univariate case where a small value of $\sigma$ 2 indicates
+
+samples are close to $\mu$. Small |$\Sigma$| may also indicate that there is high correlation between variables. $\Sigma$ is a symmetric positive definite matrix; this is the multivariate way of saying that Var(X) > 0. If not so, $\Sigma$ is singular and its determinant is 0. This is either due to linear dependence between the dimensions or because one of the dimensions has variance 0. In such a case, dimensionality should be reduced to a get a positive definite matrix; methods for this are discussed in chapter 6. If x $\sim$Nd($\mu$, $\Sigma$), then each dimension of x is univariate normal. (The converse is not true: Each Xi may be univariate normal and X may not be multivariate normal.) Actually any k < d subset of the variables is k-variate normal. A special, naive case is where the components of x are independent and Cov(Xi, Xj) = 0, for i /= j, and Var(Xi) = $\sigma$ i2 , $\forall$i. Then the covariance matrix is diagonal and the joint density is the product of the individual univariate densities: [ ] d d 2 1 [$-$1 xi $-$$\mu$i ](5.12) p(x) = pi(xi) = 'd exp i=1 (2$\pi$)d/2 i=1 $\sigma$i 2 i=1 $\sigma$i
+
+Now let us see another property we make use of in later chapters. Let us say x $\sim$Nd($\mu$, $\Sigma$) and w $\in$$\mathbb{R}$d, then
+
+wT x = w1x1 + w2x2 + $\cdot$ $\cdot$ $\cdot$ + wdxd $\sim$N (wT $\mu$, wT$\Sigma$w)
+
+given that
+
+(5.13) E[wT x] = wTE[x] = wT$\mu$ Var(wT x) = E[(wTx $-$wT$\mu$)2] = E[(wT x $-$wT $\mu$)(wT x $-$wT $\mu$)] = E[wT(x $-$$\mu$)(x $-$$\mu$)Tw] = wT E[(x $-$$\mu$)(x $-$$\mu$)T ]w (5.14) = wT$\Sigma$w
+
+That is, the projection of a d-dimensional normal on the vector w is univariate normal. In the general case, if W is a d $\times$ k matrix with rank k < d, then the k-dimensional WTx is k-variate normal:
+
+(5.15) WTx $\sim$Nk(WT $\mu$, WT $\Sigma$W)
+
+That is, if we project a d-dimensional normal distribution to a space that is k-dimensional, then it projects to a k-dimensional normal.
+
+\section{Multivariate Classification}
+
+When x $\in$$\mathbb{R}$d, if the class-conditional densities, p(x|Ci), are taken as normal density, Nd($\mu$i, $\Sigma$i), we have " \# 1 (5.16) p(x|Ci) = exp $-$1 $-$$\mu$i)T $\Sigma$$-$1i (x $-$$\mu$i) (2$\pi$)d/2|$\Sigma$i|1/2 2(x
+
+The main reason for this is its analytical simplicity (Duda, Hart, and Stork 2001). Besides, the normal density is a model for many naturally occurring phenomena in that examples of most classes can be seen as mildly changed versions of a single prototype, $\mu$i, and the covariance matrix, $\Sigma$i, denotes the amount of noise in each variable and the correlations of these noise sources. While real data may not often be exactly multivariate normal, it is a useful approximation. In addition to its mathematical tractability, the model is robust to departures from normality as is shown in many works (e.g., McLachlan 1992). However, one clear requirement is that the sample of a class should form a single group; if there are multiple groups, one should use a mixture model (chapter 7). Let us say we want to predict the type of a car that a customer would be interested in. Different cars are the classes and x are observable data of customers, for example, age and income. $\mu$i is the vector of mean age and income of customers who buy car type i and $\Sigma$i is their covariance matrix: $\sigma$ i12 and $\sigma$ i22 are the age and income variances, and $\sigma$i12 is the covariance of age and income in the group of customers who buy car type i. When we define the discriminant function as
+
+gi(x) = log p(x|Ci) + log P(Ci)
+
+and assuming p(x|Ci) $\sim$Nd($\mu$i, $\Sigma$i), we have (5.17) gi(x) = $-$d log 2$\pi$ $-$1 log |$\Sigma$i| $-$1 $-$$\mu$i)T $\Sigma$$-$1i (x $-$$\mu$i) + log P(Ci) 2 2 2(x Given a training sample for K $\geq$2 classes, X = \{xt, rt\}, where rti = 1 if xt $\in$Ci and 0 otherwise, estimates for the means and covariances are found using maximum likelihood separately for each class: t rti (5.18) \textasciicircum{}P(Ci) = N t rti xt mi = t rti t rti (xt $-$mi)(xt $-$mi)T Si = t rti
+
+These are then plugged into the discriminant function to get the estimates for the discriminants. Ignoring the first constant term, we have (5.19) gi(x) = $-$1 log |Si| $-$1 $-$mi)TS$-$1i (x $-$mi) + log \textasciicircum{}P(Ci) 2 2(x
+
+Expanding this, we get \% \& gi(x) = $-$1 log |Si| $-$1 xTS$-$1i x $-$2xTS$-$1i mi + mTi S$-$1i mi + log \textasciicircum{}P(Ci) 2 2
+
+quadratic which defines a quadratic discriminant (see figure 5.3) that can also be discriminant written as
+
+(5.20) gi(x) = xT Wix + wTi x + wi0
+
+where Wi = $-$1 i 2S$-$1 wi = S$-$1i mi wi0 = $-$1 i S$-$1i mi $-$1 log |Si| + log \textasciicircum{}P(Ci) 2mT 2
+
+The number of parameters to be estimated are K $\cdot$ d for the means and K $\cdot$ d(d + 1)/2 for the covariance matrices. When d is large and samples are small, Si may be singular and inverses may not exist. Or, |Si| may be nonzero but too small, in which case it will be unstable; small changes in Si will cause large changes in S$-$1i . For the estimates to be reliable on small samples, one may want to decrease dimensionality, d, by redesigning the feature extractor and select a subset of the features or somehow combine existing features. We discuss such methods in chapter 6. Another possibility is to pool the data and estimate a common covariance matrix for all classes:
+
+(5.21) S = \textasciicircum{}P(Ci)Si i
+
+In this case of equal covariance matrices, equation 5.19 reduces to (5.22) gi(x) = $-$1 $-$mi)T S$-$1(x $-$mi) + log \textasciicircum{}P(Ci) 2(x
+
+The number of parameters is K $\cdot$ d for the means and d(d + 1)/2 for the shared covariance matrix. If the priors are equal, the optimal decision rule is to assign input to the class whose mean’s Mahalanobis distance to the input is the smallest. As before, unequal priors shift the boundary
+
+0.1
+
+x|C1)0.05 p(
+
+x2 x1
+
+x) p(C1|0.5
+
+x2 x1
+
+Figure 5.3 Classes have different covariance matrices. Likelihood densities and the posterior probability for one of the classes (top). Class distributions are indicated by isoprobability contours and the discriminant is drawn (bottom).
+
+Figure 5.4 Covariances may be arbitary but shared by both classes.
+
+toward the less likely class. Note that in this case, the quadratic term xTS$-$1x cancels since it is common in all discriminants, and the decision linear discriminant boundaries are linear, leading to a linear discriminant (figure 5.4) that can be written as
+
+(5.23) gi(x) = wTi x + wi0
+
+where
+
+wi = S$-$1mi wi0 = $-$1 i S$-$1mi + log \textasciicircum{}P(Ci) 2mT
+
+Decision regions of such a linear classifier are convex; namely, when two points are chosen arbitrarily in one decision region and are connected by a straight line, all the points on the line will lie in the region. Further simplication may be possible by assuming all off-diagonals of the covariance matrix to be 0, thus assuming independent variables. This naive Bayes’ is the naive Bayes’ classifier where p(xj|Ci) are univariate Gaussian. S classifier and its inverse are diagonal, and we get d xtj $-$mij 2 (5.24) gi(x) = $-$1 + log \textasciicircum{}P(Ci) 2 j=1 sj
+
+The term (xtj$-$mij)/sj has the effect of normalization and measures the distance in terms of standard deviation units. Geometrically speaking,
+
+Figure 5.5 All classes have equal, diagonal covariance matrices, but variances are not equal.
+
+classes are hyperellipsoidal and, because the covariances are zero, are axis-aligned (see figure 5.5). The number of parameters is K $\cdot$ d for the means and d for the variances. Thus the complexity of S is reduced from O(d2) to O(d). Simplifying even further, if we assume all variances to be equal, the Euclidean distance Mahalanobis distance reduces to Euclidean distance. Geometrically, the distribution is shaped spherically, centered around the mean vector mi (see figure 5.6). Then |S| = s2d and S$-$1 = (1/s2)I. The number of parameters in this case is K $\cdot$ d for the means and 1 for s2.
+
+$-$mi$\parallel$2 d (5.25) gi(x) = $-$$\parallel$x + log \textasciicircum{}P(Ci) = $-$1 (xtj $-$mij)2 + log \textasciicircum{}P(Ci) 2s2 2s2 j=1
+
+If the priors are equal, we have gi(x) = $-$$\parallel$x $-$mi$\parallel$2. This is named the nearest mean nearest mean classifier because it assigns the input to the class of the classifier nearest mean. If each mean is thought of as the ideal prototype or temtemplate matching plate for the class, this is a template matching procedure. This can be expanded as
+
+gi(x) = $-$$\parallel$x $-$mi$\parallel$2 = $-$(x $-$mi)T(x $-$mi) (5.26) = $-$(xTx $-$2mTi x + mTi mi)
+
+Figure 5.6 All classes have equal, diagonal covariance matrices of equal variances on both dimensions.
+
+The first term, xTx, is shared in all gi(x) and can be dropped, and we can write the discriminant function as (5.27) gi(x) = wTi x + wi0 where wi = mi and wi0 = $-$(1/2)$\parallel$mi$\parallel$2. If all mi have similar norms, then this term can also be ignored and we can use (5.28) gi(x) = mTi x
+
+When the norms of mi are comparable, dot product can also be used as the similarity measure instead of the (negative) Euclidean distance. We can actually think of finding the best discriminant function as the task of finding the best distance function. This can be seen as another approach to classification: Instead of learning the discriminant functions, gi(x), we want to learn the suitable distance function D(x1, x2), such that for any x1, x2, x3, where x1 and x2 belong to the same class, and x1 and x3 belong to two different classes, we would like to have
+
+D(x1, x2) < D(x1, x3)
+
+\section{Tuning Complexity}
+
+In table 5.1, we see how the number of parameters of the covariance matrix may be reduced, trading offthe comfort of a simple model with
+
+Table 5.1 Reducing variance through simplifying assumptions.
+
+Assumption Covariance matrix No. of parameters Shared, Hyperspheric Si = S = s2I 1 Shared, Axis-aligned Si = S, with sij = 0 d Shared, Hyperellipsoidal Si = S d(d + 1)/2 Different, Hyperellipsoidal Si K $\cdot$ (d(d + 1)/2)
+
+generality. This is another example of bias/variance dilemma. When we make simplifying assumptions about the covariance matrices and decrease the number of parameters to be estimated, we risk introducing bias (see figure 5.7). On the other hand, if no such assumption is made and the matrices are arbitrary, the quadratic discriminant may have large variance on small datasets. The ideal case depends on the complexity of the problem represented by the data at hand and the amount of data we have. When we have a small dataset, even if the covariance matrices are different, it may be better to assume a shared covariance matrix; a single covariance matrix has fewer parameters and it can be estimated using more data, that is, instances of all classes. This corresponds to using linear discriminants, which is very frequently used in classification and which we discuss in more detail in chapter 10. Note that when we use Euclidean distance to measure similarity, we are assuming that all variables have the same variance and that they are independent. In many cases, this does not hold; for example, age and yearly income are in different units, and are dependent in many contexts. In such a case, the inputs may be separately z-normalized in a preprocessing stage (to have zero mean and unit variance), and then Euclidean distance can be used. On the other hand, sometimes even if the variables are dependent, it may be better to assume that they are independent and to use the naive Bayes’ classifier, if we do not have enough data to calculate the dependency accurately. Friedman (1989) proposed a method that combines all these as speregularized cial cases, named regularized discriminant analysis (RDA). We remember discriminant that regularization corresponds to approaches where one starts with high analysis variance and constrains toward lower variance, at the risk of increasing bias. In the case of parametric classification with Gaussian densities, the
+
+Population likelihoods and posteriors
+
+y 2
+
+0 2 4 x Arbitrary covar. Shared covar. 4 4
+
+3 3
+
+y 2 y 2
+
+1 1
+
+0 0 0 2 4 0 2 4 x x Diag. covar. Equal var. 4 4
+
+3 3
+
+y 2 y 2
+
+1 1
+
+0 0 0 2 4 0 2 4 x x
+
+Figure 5.7 Different cases of the covariance matrices fitted to the same data lead to different boundaries.
+
+covariance matrices can be written as a weighted average of the three special cases:
+
+(5.29) S'i = $\alpha$$\sigma$ 2I + $\beta$S + (1 $-$$\alpha$ $-$$\beta$)Si
+
+When $\alpha$ = $\beta$ = 0, this leads to a quadratic classifier. When $\alpha$ = 0 and $\beta$ = 1, the covariance matrices are shared, and we get linear classifiers. When $\alpha$ = 1 and $\beta$ = 0, the covariance matrices are diagonal with $\sigma$ 2 on the diagonals, and we get the nearest mean classifier. In between these
+
+extremes, we get a whole variety of classifiers where $\alpha$, $\beta$ are optimized by cross-validation. Another approach to regularization, when the dataset is small, is one that uses a Bayesian approach by defining priors on $\mu$i and Si or that uses cross-validation to choose the best of the four cases given in table 5.1.
+
+\section{Discrete Features}
+
+In some applications, we have discrete attributes taking one of n different values. For example, an attribute may be color $\in$\{red, blue, green, black\}, or another may be pixel $\in$\{on, off\}. Let us say xj are binary (Bernoulli) where
+
+pij $\equiv$p(xj = 1|Ci)
+
+If xj are independent binary variables, we have
+
+d xj p(x|Ci) = p ij (1 $-$pij)(1$-$xj) j=1
+
+This is another example of the naive Bayes’ classifier where p(xj|Ci) are Bernoulli. The discriminant function is
+
+gi(x) = log p(x|Ci) + log P(Ci)
+
+(5.30) = xj log pij + (1 $-$xj) log(1 $-$pij) + log P(Ci) j
+
+which is linear. The estimator for pij is
+
+t xtjrti (5.31) \textasciicircum{}pij = t rti
+
+document This approach is used in document categorization, an example of which categorization is classifying news reports into various categories, such as, politics, sports, bag of words fashion, and so forth. In the bag of words representation, we choose a priori d words that we believe give information regarding the class (Manning and Schütze 1999). For example, in news classification, words such as “missile,” “athlete,” and “couture” are useful, rather than ambiguous words such as “model,” or even “runway.” In this representation, each text is a d-dimensional binary vector where xj is 1 if word j occurs in the document and is 0 otherwise. Note that this representation loses all ordering information of words, and hence the name bag of words.
+
+After training, \textasciicircum{}pij estimates the probability that word j occurs in document type i. Words whose probabilities are similar for different classes do not convey much information; for them to be useful, we would want the probability to be high for one class (or few) and low for all others; we are going to talk about this type of feature selection in chapter 6. Another spam filtering example application of document categorization is spam filtering where there are two classes of emails as spam and legitimate. In bioinformatics, too, inputs are generally sequences of discrete items, whether base-pairs or amino acids. In the general case, instead of binary features, let us say we have the multinomial xj chosen from the set \{v1, v2, . . . , vnj \}. We define new 0/1 dummy variables as
+
+1 if xtj = vk ztjk = 0 otherwise
+
+Let pijk denote the probability that xj belonging to Ci takes value vk:
+
+pijk $\equiv$p(zjk = 1|Ci) = p(xj = vk|Ci)
+
+If the attributes are independent, we have
+
+d nj zjk (5.32) p(x|Ci) = p ijk j=1 k=1
+
+The discriminant function is then
+
+(5.33) gi(x) = zjk log pijk + log P(Ci) j k
+
+The maximum likelihood estimator for pijk is
+
+t ztjkrti (5.34) \textasciicircum{}pijk = t rti
+
+which can be plugged into equation 5.33 to give us the discriminant.
+
+\section{Multivariate Regression}
+
+multivariate linear In multivariate linear regression, the numeric output r is assumed to be regression written as a linear function, that is, a weighted sum, of several input variables, x1, . . . , xd, and noise. Actually in statistical literature, this is
+
+called multiple regression; statisticians use the term multivariate when there are multiple outputs. The multivariate linear model is
+
+(5.35) rt = g(xt|w0, w1, . . . , wd) + $\epsilon$ = w0 + w1xt1 + w2xt2 + $\cdot$ $\cdot$ $\cdot$ + wdxtd + $\epsilon$
+
+As in the univariate case, we assume $\epsilon$ to be normal with mean 0 and constant variance, and maximizing the likelihood is equivalent to minimizing the sum of squared errors:
+
+(5.36) E(w0, w1, . . . , wd|X) = (rt $-$w0 $-$w1xt1 $-$w2xt2 $-$$\cdot$ $\cdot$ $\cdot$ $-$wdxtd)2 2 t
+
+Taking the derivative with respect to the parameters, wj, j = 0, . . . , d, we get the normal equations:
+
+(5.37) rt = Nw0 + w1 xt1 + w2 xt2 + $\cdot$ $\cdot$ $\cdot$ + wd xtd t t t t xt1rt = w0 xt1 + w1 (xt1)2 + w2 xt1xt2 + $\cdot$ $\cdot$ $\cdot$ + wd xt1xtd t t t t t xt2rt = w0 xt2 + w1 xt1xt2 + w2 (xt2)2 + $\cdot$ $\cdot$ $\cdot$ + wd xt2xtd t t t t t ... xtdrt = w0 xtd + w1 xtdxt1 + w2 xtdxt2 + $\cdot$ $\cdot$ $\cdot$ + wd (xtd)2 t t t t t
+
+Let us define the following vectors and matrix: [ ] [ ] [ ] 1 x11 x12 $\cdot$ $\cdot$ $\cdot$ x1d w0 r 1 1 x21 x22 $\cdot$ $\cdot$ $\cdot$ x2d w1 r2 X = , w = , r = |||||[ ... |||||] |||||[ ... |||||] |||||[ ... |||||] 1 xN1 xN2 $\cdot$ $\cdot$ $\cdot$ xNd wd, rN
+
+Then the normal equations can be written as
+
+(5.38) XTXw = XT r
+
+and we can solve for the parameters as
+
+(5.39) w = (XT X)$-$1XT r
+
+This method is the same as we used for polynomial regression using one input. The two problems are the same if we define the variables as x1 = x, x2 = x2, . . . , xk = xk. This also gives us a hint as to how we can do multivariate multivariate polynomial regression if necessary (exercise 7), but unless d polynomial regression
+
+is small, in multivariate regression, we rarely use polynomials of an order higher than linear. Actually using higher-order terms of inputs as additional inputs is only one possibility; we can define any nonlinear function of the original inputs using basis functions. For example, we can define new inputs x2 = sin(x), x3 = exp(x2) if we believe that such a transformation is useful. Then, using a linear model in this new augmented space will correspond to a nonlinear model in the original space. The same calculation will still be valid; we need only replace X with the data matrix after the basis functions are applied. As we will see later under various guises (e.g., multilayer perceptrons, support vector machines, Gaussian processes), this type of generalizing the linear model is frequently used. One advantage of linear models is that after the regression, looking at the wj, j = 1, . . . , d, values, we can extract knowledge: First, by looking at the signs of wj, we can see whether xj have a positive or negative effect on the output. Second, if all xj are in the same range, by looking at the absolute values of wj, we can get an idea about how important a feature is, rank the features in terms of their importances, and even remove the features whose wj are close to 0. When there are multiple outputs, this can equivalently be defined as a set of independent single-output regression problems.
+
+\section{Notes}
+
+A good review text on linear algebra is Strang 1988. Harville 1997 is another excellent book that looks at matrix algebra from a statistical point of view. One inconvenience with multivariate data is that when the number of dimensions is large, one cannot do a visual analysis. There are methods proposed in the statistical literature for displaying multivariate data; a review is given in Rencher 1995. One possibility is to plot variables two by two as bivariate scatter plots: If the data is multivariate normal, then the plot of any two variables should be roughly linear; this can be used as a visual test of multivariate normality. Another possibility that we discuss in chapter 6 is to project them to one or two dimensions and display there. Most work on pattern recognition is done assuming multivariate normal densities. Sometimes such a discriminant is even called the Bayes’
+
+optimal classifier, but this is generally wrong; it is only optimal if the densities are indeed multivariate normal and if we have enough data to calculate the correct parameters from the data. Rencher 1995 discusses tests for assessing multivariate normality as well as tests for checking for equal covariance matrices. McLachlan 1992 discusses classification with multivariate normals and compares linear and quadratic discriminants. One obvious restriction of multivariate normals is that it does not allow for data where some features are discrete. A variable with n possible values can be converted into n dummy 0/1 variables, but this increases dimensionality. One can do a dimensionality reduction in this n-dimensional space by a method explained in chapter 6 and thereby not increase dimensionality. Parametric classification for such cases of mixed features is discussed in detail in McLachlan 1992.
+
+\section{Exercises}
+
+1. Show equation 5.11.
+
+2. Generate a sample from a multivariate normal density N ($\mu$, $\Sigma$), calculate m and S, and compare them with $\mu$ and $\Sigma$. Check how your estimates change as the sample size changes.
+
+3. Generate samples from two multivariate normal densities N ($\mu$i, $\Sigma$i), i = 1, 2, and calculate the Bayes’ optimal discriminant for the four cases in table 5.1.
+
+4. For a two-class problem, for the four cases of Gaussian densities in table 5.1, derive P(C1|x) log P(C2|x)
+
+5. Another possibility using Gaussian densities is to have them all diagonal but allow them to be different. Derive the discriminant for this case.
+
+6. Let us say in two dimensions, we have two classes with exactly the same mean. What type of boundaries can be defined?
+
+7. Let us say we have two variables x1 and x2 and we want to make a quadratic fit using them, namely,
+
+f(x1, x2) = w0 + w1x1 + w2x2 + w3x1x2 + w4(x1)2 + w5(x2)2
+
+How can we find wi, i = 0, . . ., 5, given a sample of X = \{xt1, xt2, r t\}?
+
+8. In regression we saw that fitting a quadratic is equivalent to fitting a linear model with an extra input corresponding to the square of the input. Can we also do this in classification?
+
+9. In document clustering, ambiguity of words can be decreased by taking the context into account, for example, by considering pairs of words, as in “cocktail party” vs. “party elections.” Discuss how this can be implemented.
+
+\section{References}
+
+Duda, R. O., P. E. Hart, and D. G. Stork. 2001. Pattern Classification, 2nd ed. New York: Wiley.
+
+Friedman, J. H. 1989. “Regularized Discriminant Analysis.” Journal of American Statistical Association 84: 165--175.
+
+Harville, D. A. 1997. Matrix Algebra from a Statistician’s Perspective. New York: Springer.
+
+Manning, C. D., and H. Schütze. 1999. Foundations of Statistical Natural Language Processing. Cambridge, MA: MIT Press.
+
+McLachlan, G. J. 1992. Discriminant Analysis and Statistical Pattern Recognition. New York: Wiley.
+
+Rencher, A. C. 1995. Methods of Multivariate Analysis. New York: Wiley.
+
+Strang, G. 1988. Linear Algebra and its Applications, 3rd ed. New York: Harcourt Brace Jovanovich.

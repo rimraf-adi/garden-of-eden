@@ -1,0 +1,15 @@
+{
+  "title": "Introduction to Machine Learning",
+  "subtitle": "Second Edition",
+  "author": "Ethem Alpaydın",
+  "affiliation": "Department of Computer Engineering, Boğaziçi University",
+  "publisher": "The MIT Press",
+  "series": "Adaptive Computation and Machine Learning series",
+  "seriesEditor": "Thomas G. Dietterich",
+  "publishedYear": 2010,
+  "isbn": "978-0-262-01243-0",
+  "totalPages": 572,
+  "totalChapters": 19,
+  "pdfFile": "/docs/book.pdf",
+  "latexArchive": "/intro-to-ml"
+}

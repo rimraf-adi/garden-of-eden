@@ -1,0 +1,114 @@
+{
+  "chapterNum": 10,
+  "slug": "10-linear-discrimination",
+  "title": "Linear Discrimination",
+  "sections": [
+    {
+      "id": "10.1",
+      "title": "Introduction",
+      "rules": [
+        "Linear discrimination models decision boundaries directly without estimating class densities.",
+        "In discriminant-based classification, we define a discriminant function for each class.",
+        "The decision rule assigns an input to the class with the highest discriminant value.",
+        "A linear discriminant function is a linear combination of input features.",
+        "Linear models have low complexity and low variance.",
+        "Linear models resist overfitting when training datasets are small."
+      ]
+    },
+    {
+      "id": "10.2",
+      "title": "Generalizing the Linear Model",
+      "rules": [
+        "When classes are not linearly separable, we generalize the linear model.",
+        "A quadratic discriminant includes quadratic and cross-product terms of input features.",
+        "The parameter count in a quadratic model grows quadratically with input dimension d.",
+        "Alternatively, we map inputs into a higher-dimensional space using nonlinear basis functions.",
+        "The model remains linear with respect to the new basis representations.",
+        "This transformation allows linear models to solve nonlinear classification problems."
+      ]
+    },
+    {
+      "id": "10.3",
+      "title": "Geometry of the Linear Discriminant",
+      "rules": [
+        "For two classes, a single linear discriminant function g(x) separates the classes.",
+        "The decision boundary is the hyperplane where g(x) equals zero.",
+        "The weight vector w is orthogonal to the separating hyperplane.",
+        "The bias term w0 sets the location of the hyperplane relative to the origin.",
+        "The discriminant value g(x) is proportional to the signed distance from x to the hyperplane.",
+        "For K classes, linear functions divide the input space into K convex decision regions."
+      ]
+    },
+    {
+      "id": "10.4",
+      "title": "Pairwise Separation",
+      "rules": [
+        "When K classes are not linearly separable, we can use pairwise separation.",
+        "Pairwise separation trains a linear classifier for every pair of classes.",
+        "The method requires K*(K - 1)/2 binary classifiers.",
+        "During testing, each binary classifier casts one vote for its preferred class.",
+        "The system assigns the input to the class with the most votes.",
+        "Pairwise separation handles smaller, balanced training sets for each classifier."
+      ]
+    },
+    {
+      "id": "10.5",
+      "title": "Parametric Discrimination Revisited",
+      "rules": [
+        "Gaussian class densities with equal covariance matrices yield linear discriminant functions.",
+        "The weight vector depends on the shared covariance matrix and class mean vectors.",
+        "The bias term includes prior class probabilities and class means.",
+        "Logistic discrimination assumes the same linear log-odds form without assuming normal distributions.",
+        "Direct discriminant learning requires fewer parameters than estimating full Gaussian densities."
+      ]
+    },
+    {
+      "id": "10.6",
+      "title": "Gradient Descent",
+      "rules": [
+        "In discriminant learning, we define an error function over training instances.",
+        "We optimize parameters by moving in the direction opposite to the gradient.",
+        "In batch gradient descent, we update weights after scanning the entire dataset.",
+        "In online gradient descent, we update weights after each training instance.",
+        "The learning rate parameter controls the step size of each weight update.",
+        "A large learning rate can cause oscillation or divergence.",
+        "A small learning rate causes slow convergence to the minimum."
+      ]
+    },
+    {
+      "id": "10.7",
+      "title": "Logistic Discrimination",
+      "rules": [
+        "Logistic discrimination models posterior class probabilities using the sigmoid function.",
+        "The sigmoid function maps any real value into the range between zero and one.",
+        "The log-odds of the posterior probability is a linear function of the input.",
+        "We train parameters by maximizing conditional log likelihood under the Bernoulli model.",
+        "The negative log likelihood gives the cross-entropy error function.",
+        "The error surface is convex, so gradient descent finds the global minimum.",
+        "For multiple classes, the softmax function generalizes the sigmoid function."
+      ]
+    },
+    {
+      "id": "10.8",
+      "title": "Discrimination by Regression",
+      "rules": [
+        "We can formulate classification as a regression problem with indicator target variables.",
+        "For two classes, target values are 1 for class 1 and 0 for class 2.",
+        "We minimize the sum of squared differences between linear outputs and target labels.",
+        "Linear regression can predict output values outside the interval [0, 1].",
+        "Minimizing squared error is sensitive to outliers far from the decision boundary.",
+        "Cross-entropy loss in logistic regression provides better probability estimates than squared error."
+      ]
+    },
+    {
+      "id": "10.9",
+      "title": "Notes",
+      "rules": [
+        "Fisher introduced linear discriminant analysis in 1936.",
+        "Cox developed logistic regression for biomedical data analysis in 1958.",
+        "Linear discriminants remain standard baseline classifiers in machine learning.",
+        "Regularized logistic regression prevents overfitting in high-dimensional datasets."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1312 @@
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 27 Dec. 2024. Version 4.86a.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  "editable-main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./editable-main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/bk11.clo))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./editable-main.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+[1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
+ocal/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+No file editable-main.toc.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.17 \mainmatter
+                 [1] (./chapters/01-introduction.tex
+Chapter 1.
+
+[1]
+[2]
+[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+[4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[5]
+[6]
+[7]
+[8]
+[9] (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd)
+[10{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}])
+[11] (./chapters/02-supervised-learning.tex
+Chapter 2.
+
+[12]
+[13]
+[14]
+[15{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+[16]
+[17]
+[18]
+[19]
+[20]
+[21]
+[22])
+[23]
+[24] (./chapters/03-bayesian-decision-theory.tex
+Chapter 3.
+
+[25]
+[26]
+[27]
+[28]
+[29]
+[30]
+[31])
+[32] (./chapters/04-parametric-methods.tex
+Chapter 4.
+
+[33]
+[34]
+[35]
+[36]
+[37]
+[38]
+[39]
+[40]
+[41]
+[42]
+[43]
+[44])
+[45] (./chapters/05-multivariate-methods.tex
+Chapter 5.
+
+[46]
+[47]
+[48]
+[49]
+[50]
+[51]
+[52]
+[53]
+[54])
+[55] (./chapters/06-dimensionality-reduction.tex
+Chapter 6.
+
+[56]
+[57]
+[58]
+[59]
+[60]
+[61]
+[62]
+[63]
+[64]
+[65]
+[66]
+[67]
+[68]
+[69]
+[70]
+[71])
+[72] (./chapters/07-clustering.tex
+Chapter 7.
+
+[73]
+[74]
+[75]
+[76]
+[77]
+[78]
+[79]
+[80]
+[81]
+[82])
+[83] (./chapters/08-nonparametric-methods.tex
+Chapter 8.
+
+[84]
+[85]
+[86]
+[87]
+[88]
+[89]
+[90]
+[91]
+[92]
+[93])
+[94] (./chapters/09-decision-trees.tex
+Chapter 9.
+
+[95]
+[96]
+[97]
+[98]
+[99]
+[100]
+[101]
+[102]
+[103]
+[104]
+[105]
+[106])
+[107]
+[108] (./chapters/10-linear-discrimination.tex
+Chapter 10.
+
+[109]
+[110]
+[111]
+[112]
+[113]
+[114]
+[115]
+[116]
+[117]
+[118]
+[119])
+[120] (./chapters/11-multilayer-perceptrons.tex
+Chapter 11.
+
+[121]
+[122]
+[123]
+[124]
+[125]
+[126]
+[127]
+[128]
+[129]
+[130]
+[131]
+[132]
+[133]
+[134]
+[135]
+[136]
+[137]
+[138]
+[139]
+[140]
+[141]
+[142])
+[143] (./chapters/12-local-models.tex
+Chapter 12.
+
+[144]
+[145]
+[146]
+[147]
+[148]
+[149]
+[150]
+[151]
+[152]
+[153]
+[154]
+[155]
+[156]
+[157]
+[158])
+[159] (./chapters/13-kernel-machines.tex
+Chapter 13.
+
+[160]
+[161]
+[162]
+[163]
+[164]
+[165]
+[166]
+[167]
+[168]
+[169]
+[170]
+[171]
+[172]
+[173]
+[174])
+[175] (./chapters/14-bayesian-estimation.tex
+Chapter 14.
+
+[176]
+[177]
+[178]
+[179]
+[180]
+[181]
+[182]
+[183]
+[184])
+[185] (./chapters/15-hidden-markov-models.tex
+Chapter 15.
+
+[186]
+[187]
+[188]
+[189]
+[190]
+[191]
+[192]
+[193]
+[194]
+[195]
+[196])
+[197] (./chapters/16-graphical-models.tex
+Chapter 16.
+
+[198]
+[199]
+[200]
+[201]
+[202]
+[203]
+[204]
+[205]
+[206]
+[207]
+[208]
+[209]
+[210]
+[211])
+[212] (./chapters/17-combining-multiple-learners.tex
+Chapter 17.
+
+[213]
+[214]
+[215]
+[216]
+[217]
+[218]
+[219]
+[220]
+[221]
+[222]
+[223]
+[224]
+[225]
+[226])
+[227] (./chapters/18-reinforcement-learning.tex
+Chapter 18.
+
+[228]
+[229]
+[230]
+[231]
+[232]
+[233]
+[234]
+[235]
+[236]
+[237]
+[238]
+[239]
+[240]
+[241])
+[242] (./chapters/19-machine-learning-experiments.tex
+Chapter 19.
+
+[243]
+[244]
+[245]
+[246]
+[247]
+[248]
+[249]
+[250]
+[251]
+[252]
+[253]
+[254]
+[255]
+[256]
+[257]
+[258]
+[259]
+[260]
+[261]
+[262]
+[263])
+[264] (./editable-main.aux (./chapters/01-introduction.aux)
+(./chapters/02-supervised-learning.aux)
+(./chapters/03-bayesian-decision-theory.aux)
+(./chapters/04-parametric-methods.aux) (./chapters/05-multivariate-methods.aux)
+(./chapters/06-dimensionality-reduction.aux) (./chapters/07-clustering.aux)
+(./chapters/08-nonparametric-methods.aux) (./chapters/09-decision-trees.aux)
+(./chapters/10-linear-discrimination.aux)
+(./chapters/11-multilayer-perceptrons.aux) (./chapters/12-local-models.aux)
+(./chapters/13-kernel-machines.aux) (./chapters/14-bayesian-estimation.aux)
+(./chapters/15-hidden-markov-models.aux) (./chapters/16-graphical-models.aux)
+(./chapters/17-combining-multiple-learners.aux)
+(./chapters/18-reinforcement-learning.aux)
+(./chapters/19-machine-learning-experiments.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `editable-main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
+/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/
+lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb><
+/usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local
+/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2
+025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on editable-main.pdf (266 pages, 1070044 bytes).
+Transcript written on editable-main.log.
+Latexmk: Getting log file 'editable-main.log'
+Latexmk: Examining 'editable-main.fls'
+Latexmk: Examining 'editable-main.log'
+Latexmk: Missing input file 'editable-main.toc' (or dependence on it) from following:
+  No file editable-main.toc.
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: Log file says output to 'editable-main.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  chapters/01-introduction.aux
+  chapters/02-supervised-learning.aux
+  chapters/03-bayesian-decision-theory.aux
+  chapters/04-parametric-methods.aux
+  chapters/05-multivariate-methods.aux
+  chapters/06-dimensionality-reduction.aux
+  chapters/07-clustering.aux
+  chapters/08-nonparametric-methods.aux
+  chapters/09-decision-trees.aux
+  chapters/10-linear-discrimination.aux
+  chapters/11-multilayer-perceptrons.aux
+  chapters/12-local-models.aux
+  chapters/13-kernel-machines.aux
+  chapters/14-bayesian-estimation.aux
+  chapters/15-hidden-markov-models.aux
+  chapters/16-graphical-models.aux
+  chapters/17-combining-multiple-learners.aux
+  chapters/18-reinforcement-learning.aux
+  chapters/19-machine-learning-experiments.aux
+  editable-main.aux
+  editable-main.out
+  editable-main.toc
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  "editable-main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./editable-main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/bk11.clo))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./editable-main.aux (./chapters/01-introduction.aux)
+(./chapters/02-supervised-learning.aux)
+(./chapters/03-bayesian-decision-theory.aux)
+(./chapters/04-parametric-methods.aux) (./chapters/05-multivariate-methods.aux)
+(./chapters/06-dimensionality-reduction.aux) (./chapters/07-clustering.aux)
+(./chapters/08-nonparametric-methods.aux) (./chapters/09-decision-trees.aux)
+(./chapters/10-linear-discrimination.aux)
+(./chapters/11-multilayer-perceptrons.aux) (./chapters/12-local-models.aux)
+(./chapters/13-kernel-machines.aux) (./chapters/14-bayesian-estimation.aux)
+(./chapters/15-hidden-markov-models.aux) (./chapters/16-graphical-models.aux)
+(./chapters/17-combining-multiple-learners.aux)
+(./chapters/18-reinforcement-learning.aux)
+(./chapters/19-machine-learning-experiments.aux))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(./editable-main.out) (./editable-main.out)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+[1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
+ocal/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+(./editable-main.toc
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.35 ...line {4}Parametric Methods}{33}{chapter.4}
+                                                  % [1]
+[2]
+[3]
+[4]
+[5]
+[6])
+[7] (./chapters/01-introduction.tex
+Chapter 1.
+
+[1]
+[2]
+[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+[4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[5]
+[6]
+[7]
+[8]
+[9] (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd)
+[10{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}])
+[11] (./chapters/02-supervised-learning.tex
+Chapter 2.
+
+[12]
+[13]
+[14]
+[15{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+[16]
+[17]
+[18]
+[19]
+[20]
+[21]
+[22])
+[23]
+[24] (./chapters/03-bayesian-decision-theory.tex
+Chapter 3.
+
+[25]
+[26]
+[27]
+[28]
+[29]
+[30]
+[31])
+[32] (./chapters/04-parametric-methods.tex
+Chapter 4.
+
+[33]
+[34]
+[35]
+[36]
+[37]
+[38]
+[39]
+[40]
+[41]
+[42]
+[43]
+[44])
+[45] (./chapters/05-multivariate-methods.tex
+Chapter 5.
+
+[46]
+[47]
+[48]
+[49]
+[50]
+[51]
+[52]
+[53]
+[54])
+[55] (./chapters/06-dimensionality-reduction.tex
+Chapter 6.
+
+[56]
+[57]
+[58]
+[59]
+[60]
+[61]
+[62]
+[63]
+[64]
+[65]
+[66]
+[67]
+[68]
+[69]
+[70]
+[71])
+[72] (./chapters/07-clustering.tex
+Chapter 7.
+
+[73]
+[74]
+[75]
+[76]
+[77]
+[78]
+[79]
+[80]
+[81]
+[82])
+[83] (./chapters/08-nonparametric-methods.tex
+Chapter 8.
+
+[84]
+[85]
+[86]
+[87]
+[88]
+[89]
+[90]
+[91]
+[92]
+[93])
+[94] (./chapters/09-decision-trees.tex
+Chapter 9.
+
+[95]
+[96]
+[97]
+[98]
+[99]
+[100]
+[101]
+[102]
+[103]
+[104]
+[105]
+[106])
+[107]
+[108] (./chapters/10-linear-discrimination.tex
+Chapter 10.
+
+[109]
+[110]
+[111]
+[112]
+[113]
+[114]
+[115]
+[116]
+[117]
+[118]
+[119])
+[120] (./chapters/11-multilayer-perceptrons.tex
+Chapter 11.
+
+[121]
+[122]
+[123]
+[124]
+[125]
+[126]
+[127]
+[128]
+[129]
+[130]
+[131]
+[132]
+[133]
+[134]
+[135]
+[136]
+[137]
+[138]
+[139]
+[140]
+[141]
+[142])
+[143] (./chapters/12-local-models.tex
+Chapter 12.
+
+[144]
+[145]
+[146]
+[147]
+[148]
+[149]
+[150]
+[151]
+[152]
+[153]
+[154]
+[155]
+[156]
+[157]
+[158])
+[159] (./chapters/13-kernel-machines.tex
+Chapter 13.
+
+[160]
+[161]
+[162]
+[163]
+[164]
+[165]
+[166]
+[167]
+[168]
+[169]
+[170]
+[171]
+[172]
+[173]
+[174])
+[175] (./chapters/14-bayesian-estimation.tex
+Chapter 14.
+
+[176]
+[177]
+[178]
+[179]
+[180]
+[181]
+[182]
+[183]
+[184])
+[185] (./chapters/15-hidden-markov-models.tex
+Chapter 15.
+
+[186]
+[187]
+[188]
+[189]
+[190]
+[191]
+[192]
+[193]
+[194]
+[195]
+[196])
+[197] (./chapters/16-graphical-models.tex
+Chapter 16.
+
+[198]
+[199]
+[200]
+[201]
+[202]
+[203]
+[204]
+[205]
+[206]
+[207]
+[208]
+[209]
+[210]
+[211])
+[212] (./chapters/17-combining-multiple-learners.tex
+Chapter 17.
+
+[213]
+[214]
+[215]
+[216]
+[217]
+[218]
+[219]
+[220]
+[221]
+[222]
+[223]
+[224]
+[225]
+[226])
+[227] (./chapters/18-reinforcement-learning.tex
+Chapter 18.
+
+[228]
+[229]
+[230]
+[231]
+[232]
+[233]
+[234]
+[235]
+[236]
+[237]
+[238]
+[239]
+[240]
+[241])
+[242] (./chapters/19-machine-learning-experiments.tex
+Chapter 19.
+
+[243]
+[244]
+[245]
+[246]
+[247]
+[248]
+[249]
+[250]
+[251]
+[252]
+[253]
+[254]
+[255]
+[256]
+[257]
+[258]
+[259]
+[260]
+[261]
+[262]
+[263])
+[264] (./editable-main.aux (./chapters/01-introduction.aux)
+(./chapters/02-supervised-learning.aux)
+(./chapters/03-bayesian-decision-theory.aux)
+(./chapters/04-parametric-methods.aux) (./chapters/05-multivariate-methods.aux)
+(./chapters/06-dimensionality-reduction.aux) (./chapters/07-clustering.aux)
+(./chapters/08-nonparametric-methods.aux) (./chapters/09-decision-trees.aux)
+(./chapters/10-linear-discrimination.aux)
+(./chapters/11-multilayer-perceptrons.aux) (./chapters/12-local-models.aux)
+(./chapters/13-kernel-machines.aux) (./chapters/14-bayesian-estimation.aux)
+(./chapters/15-hidden-markov-models.aux) (./chapters/16-graphical-models.aux)
+(./chapters/17-combining-multiple-learners.aux)
+(./chapters/18-reinforcement-learning.aux)
+(./chapters/19-machine-learning-experiments.aux)) )
+(see the transcript file for additional information)</usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
+/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm
+/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local
+/texlive/2025/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2
+025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on editable-main.pdf (272 pages, 1138273 bytes).
+Transcript written on editable-main.log.
+Latexmk: Getting log file 'editable-main.log'
+Latexmk: Examining 'editable-main.fls'
+Latexmk: Examining 'editable-main.log'
+Latexmk: Log file says output to 'editable-main.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  editable-main.aux
+
+------------
+Run number 3 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder  "editable-main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./editable-main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/bk11.clo))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./editable-main.aux (./chapters/01-introduction.aux)
+(./chapters/02-supervised-learning.aux)
+(./chapters/03-bayesian-decision-theory.aux)
+(./chapters/04-parametric-methods.aux) (./chapters/05-multivariate-methods.aux)
+(./chapters/06-dimensionality-reduction.aux) (./chapters/07-clustering.aux)
+(./chapters/08-nonparametric-methods.aux) (./chapters/09-decision-trees.aux)
+(./chapters/10-linear-discrimination.aux)
+(./chapters/11-multilayer-perceptrons.aux) (./chapters/12-local-models.aux)
+(./chapters/13-kernel-machines.aux) (./chapters/14-bayesian-estimation.aux)
+(./chapters/15-hidden-markov-models.aux) (./chapters/16-graphical-models.aux)
+(./chapters/17-combining-multiple-learners.aux)
+(./chapters/18-reinforcement-learning.aux)
+(./chapters/19-machine-learning-experiments.aux))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(./editable-main.out) (./editable-main.out)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+[1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
+ocal/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
+(./editable-main.toc
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.35 ...line {4}Parametric Methods}{33}{chapter.4}
+                                                  % [1]
+[2]
+[3]
+[4]
+[5]
+[6])
+[7] (./chapters/01-introduction.tex
+Chapter 1.
+
+[1]
+[2]
+[3{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
+[4{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+[5]
+[6]
+[7]
+[8]
+[9] (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd)
+[10{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}])
+[11] (./chapters/02-supervised-learning.tex
+Chapter 2.
+
+[12]
+[13]
+[14]
+[15{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
+[16]
+[17]
+[18]
+[19]
+[20]
+[21]
+[22])
+[23]
+[24] (./chapters/03-bayesian-decision-theory.tex
+Chapter 3.
+
+[25]
+[26]
+[27]
+[28]
+[29]
+[30]
+[31])
+[32] (./chapters/04-parametric-methods.tex
+Chapter 4.
+
+[33]
+[34]
+[35]
+[36]
+[37]
+[38]
+[39]
+[40]
+[41]
+[42]
+[43]
+[44])
+[45] (./chapters/05-multivariate-methods.tex
+Chapter 5.
+
+[46]
+[47]
+[48]
+[49]
+[50]
+[51]
+[52]
+[53]
+[54])
+[55] (./chapters/06-dimensionality-reduction.tex
+Chapter 6.
+
+[56]
+[57]
+[58]
+[59]
+[60]
+[61]
+[62]
+[63]
+[64]
+[65]
+[66]
+[67]
+[68]
+[69]
+[70]
+[71])
+[72] (./chapters/07-clustering.tex
+Chapter 7.
+
+[73]
+[74]
+[75]
+[76]
+[77]
+[78]
+[79]
+[80]
+[81]
+[82])
+[83] (./chapters/08-nonparametric-methods.tex
+Chapter 8.
+
+[84]
+[85]
+[86]
+[87]
+[88]
+[89]
+[90]
+[91]
+[92]
+[93])
+[94] (./chapters/09-decision-trees.tex
+Chapter 9.
+
+[95]
+[96]
+[97]
+[98]
+[99]
+[100]
+[101]
+[102]
+[103]
+[104]
+[105]
+[106])
+[107]
+[108] (./chapters/10-linear-discrimination.tex
+Chapter 10.
+
+[109]
+[110]
+[111]
+[112]
+[113]
+[114]
+[115]
+[116]
+[117]
+[118]
+[119])
+[120] (./chapters/11-multilayer-perceptrons.tex
+Chapter 11.
+
+[121]
+[122]
+[123]
+[124]
+[125]
+[126]
+[127]
+[128]
+[129]
+[130]
+[131]
+[132]
+[133]
+[134]
+[135]
+[136]
+[137]
+[138]
+[139]
+[140]
+[141]
+[142])
+[143] (./chapters/12-local-models.tex
+Chapter 12.
+
+[144]
+[145]
+[146]
+[147]
+[148]
+[149]
+[150]
+[151]
+[152]
+[153]
+[154]
+[155]
+[156]
+[157]
+[158])
+[159] (./chapters/13-kernel-machines.tex
+Chapter 13.
+
+[160]
+[161]
+[162]
+[163]
+[164]
+[165]
+[166]
+[167]
+[168]
+[169]
+[170]
+[171]
+[172]
+[173]
+[174])
+[175] (./chapters/14-bayesian-estimation.tex
+Chapter 14.
+
+[176]
+[177]
+[178]
+[179]
+[180]
+[181]
+[182]
+[183]
+[184])
+[185] (./chapters/15-hidden-markov-models.tex
+Chapter 15.
+
+[186]
+[187]
+[188]
+[189]
+[190]
+[191]
+[192]
+[193]
+[194]
+[195]
+[196])
+[197] (./chapters/16-graphical-models.tex
+Chapter 16.
+
+[198]
+[199]
+[200]
+[201]
+[202]
+[203]
+[204]
+[205]
+[206]
+[207]
+[208]
+[209]
+[210]
+[211])
+[212] (./chapters/17-combining-multiple-learners.tex
+Chapter 17.
+
+[213]
+[214]
+[215]
+[216]
+[217]
+[218]
+[219]
+[220]
+[221]
+[222]
+[223]
+[224]
+[225]
+[226])
+[227] (./chapters/18-reinforcement-learning.tex
+Chapter 18.
+
+[228]
+[229]
+[230]
+[231]
+[232]
+[233]
+[234]
+[235]
+[236]
+[237]
+[238]
+[239]
+[240]
+[241])
+[242] (./chapters/19-machine-learning-experiments.tex
+Chapter 19.
+
+[243]
+[244]
+[245]
+[246]
+[247]
+[248]
+[249]
+[250]
+[251]
+[252]
+[253]
+[254]
+[255]
+[256]
+[257]
+[258]
+[259]
+[260]
+[261]
+[262]
+[263])
+[264] (./editable-main.aux (./chapters/01-introduction.aux)
+(./chapters/02-supervised-learning.aux)
+(./chapters/03-bayesian-decision-theory.aux)
+(./chapters/04-parametric-methods.aux) (./chapters/05-multivariate-methods.aux)
+(./chapters/06-dimensionality-reduction.aux) (./chapters/07-clustering.aux)
+(./chapters/08-nonparametric-methods.aux) (./chapters/09-decision-trees.aux)
+(./chapters/10-linear-discrimination.aux)
+(./chapters/11-multilayer-perceptrons.aux) (./chapters/12-local-models.aux)
+(./chapters/13-kernel-machines.aux) (./chapters/14-bayesian-estimation.aux)
+(./chapters/15-hidden-markov-models.aux) (./chapters/16-graphical-models.aux)
+(./chapters/17-combining-multiple-learners.aux)
+(./chapters/18-reinforcement-learning.aux)
+(./chapters/19-machine-learning-experiments.aux)) )
+(see the transcript file for additional information)</usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1
+/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm
+/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb>
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local
+/texlive/2025/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2
+025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on editable-main.pdf (272 pages, 1138273 bytes).
+Transcript written on editable-main.log.
+Latexmk: Getting log file 'editable-main.log'
+Latexmk: Examining 'editable-main.fls'
+Latexmk: Examining 'editable-main.log'
+Latexmk: Log file says output to 'editable-main.pdf'
+Latexmk: All targets (editable-main.pdf) are up-to-date
+

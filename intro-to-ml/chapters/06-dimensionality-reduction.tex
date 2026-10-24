@@ -1,0 +1,565 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Dimensionality Reduction}
+\label{chap:06-dimensionality-reduction}
+
+The complexity of any classifier or regressor depends on the number of inputs. This determines both the time and space complexity and the necessary number of training examples to train such a classifier or regressor. In this chapter, we discuss feature selection methods that choose a subset of important features pruning the rest and feature extraction methods that form fewer, new features from the original inputs.
+
+\section{Introduction}
+
+In an application, whether it is classification or regression, observation data that we believe contain information are taken as inputs and fed to the system for decision making. Ideally, we should not need feature selection or extraction as a separate process; the classifier (or regressor) should be able to use whichever features are necessary, discarding the irrelevant. However, there are several reasons why we are interested in reducing dimensionality as a separate preprocessing step:
+
+\begin{itemize}
+\item In most learning algorithms, the complexity depends on the number of
+\end{itemize}
+
+input dimensions, d, as well as on the size of the data sample, N, and for reduced memory and computation, we are interested in reducing the dimensionality of the problem. Decreasing d also decreases the complexity of the inference algorithm during testing.
+
+\begin{itemize}
+\item When an input is decided to be unnecessary, we save the cost of ex-
+\end{itemize}
+
+tracting it.
+
+\begin{itemize}
+\item Simpler models are more robust on small datasets. Simpler models
+\end{itemize}
+
+have less variance, that is, they vary less depending on the particulars of a sample, including noise, outliers, and so forth.
+
+\begin{itemize}
+\item When data can be explained with fewer features, we get a better idea
+\end{itemize}
+
+about the process that underlies the data and this allows knowledge extraction.
+
+\begin{itemize}
+\item When data can be represented in a few dimensions without loss of
+\end{itemize}
+
+information, it can be plotted and analyzed visually for structure and outliers.
+
+There are two main methods for reducing dimensionality: feature sefeature selection lection and feature extraction. In feature selection, we are interested in finding k of the d dimensions that give us the most information and we discard the other (d $-$k) dimensions. We are going to discuss subset selection as a feature selection method. feature extraction In feature extraction, we are interested in finding a new set of k dimensions that are combinations of the original d dimensions. These methods may be supervised or unsupervised depending on whether or not they use the output information. The best known and most widely used feature extraction methods are Principal Components Analysis (PCA) and Linear Discriminant Analysis (LDA), which are both linear projection methods, unsupervised and supervised respectively. PCA bears much similarity to two other unsupervised linear projection methods, which we also discuss---namely, Factor Analysis (FA) and Multidimensional Scaling (MDS). As examples of nonlinear dimensionality reduction, we are going to see Isometric feature mapping (Isomap) and Locally Linear Embedding (LLE).
+
+\section{Subset Selection}
+
+subset selection In subset selection, we are interested in finding the best subset of the set of features. The best subset contains the least number of dimensions that most contribute to accuracy. We discard the remaining, unimportant dimensions. Using a suitable error function, this can be used in both regression and classification problems. There are 2d possible subsets of d variables, but we cannot test for all of them unless d is small and we employ heuristics to get a reasonable (but not optimal) solution in reasonable (polynomial) time. forward selection There are two approaches: In forward selection, we start with no vari-
+
+ables and add them one by one, at each step adding the one that decreases the error the most, until any further addition does not decrease backward selection the error (or decreases it only sightly). In backward selection, we start with all variables and remove them one by one, at each step removing the one that decreases the error the most (or increases it only slightly), until any further removal increases the error significantly. In either case, checking the error should be done on a validation set distinct from the training set because we want to test the generalization accuracy. With more features, generally we have lower training error, but not necessarily lower validation error. Let us denote by F, a feature set of input dimensions, xi, i = 1, . . . , d. E(F) denotes the error incurred on the validation sample when only the inputs in F are used. Depending on the application, the error is either the mean square error or misclassification error. In sequential forward selection, we start with no features: F = $\emptyset$. At each step, for all possible xi, we train our model on the training set and calculate E(F $\cup$xi) on the validation set. Then, we choose that input xj that causes the least error
+
+(6.1) j = arg min E(F $\cup$xi) i
+
+and we
+
+(6.2) add xj to F if E(F $\cup$xj) < E(F)
+
+We stop if adding any feature does not decrease E. We may even decide to stop earlier if the decrease in error is too small, where there is a user-defined threshold that depends on the application constraints, trading offthe importance of error and complexity. Adding another feature introduces the cost of observing the feature, as well as making the classifier/regressor more complex. This process may be costly because to decrease the dimensions from d to k, we need to train and test the system d+(d$-$1)+(d$-$2)+$\cdot$ $\cdot$ $\cdot$+(d$-$k) times, which is O(d2). This is a local search procedure and does not guarantee finding the optimal subset, namely, the minimal subset causing the smallest error. For example, xi and xj by themselves may not be good but together may decrease the error a lot, but because this algorithm is greedy and adds attributes one by one, it may not be able to detect this. It is possible to generalize and add multiple features at a time, instead of a single one, at the expense of more computation. We can
+
+also backtrack and check which previously added feature can be removed after a current addition, thereby increasing the search space, but this floating search increases complexity. In floating search methods (Pudil, Novovicová, and Kittler 1994), the number of added features and removed features can also change at each step. In sequential backward selection, we start with F containing all features and do a similar process except that we remove one attribute from F as opposed to adding to it, and we remove the one that causes the least error
+
+(6.3) j = arg min E(F $-$xi) i
+
+and we
+
+(6.4) remove xj from F if E(F $-$xj) < E(F)
+
+We stop if removing a feature does not decrease the error. To decrease complexity, we may decide to remove a feature if its removal causes only a slight increase in error. All the variants possible for forward search are also possible for backward search. The complexity of backward search has the same order of complexity as forward search, except that training a system with more features is more costly than training a system with fewer features, and forward search may be preferable especially if we expect many useless features. Subset selection is supervised in that outputs are used by the regressor or classifier to calculate the error, but it can be used with any regression or classification method. In the particular case of multivariate normals for classification, remember that if the original d-dimensional class densities are multivariate normal, then any subset is also multivariate normal and parametric classification can still be used with the advantage of k$\times$k covariance matrices instead of d $\times$ d. In an application like face recognition, feature selection is not a good method for dimensionality reduction because individual pixels by themselves do not carry much discriminative information; it is the combination of values of several pixels together that carry information about the face identity. This is done by feature extraction methods that we discuss next.
+
+\section{Principal Components Analysis}
+
+In projection methods, we are interested in finding a mapping from the inputs in the original d-dimensional space to a new (k < d)-dimensional space, with minimum loss of information. The projection of x on the direction of w is
+
+(6.5) z = wTx
+
+principal Principal components analysis (PCA) is an unsupervised method in that components it does not use the output information; the criterion to be maximized is analysis the variance. The principal component is w1 such that the sample, after projection on to w1, is most spread out so that the difference between the sample points becomes most apparent. For a unique solution and to make the direction the important factor, we require $\parallel$w1$\parallel$= 1. We know from equation 5.14 that if z1 = wT1 x with Cov(x) = $\Sigma$, then Var(z1) = wT1 $\Sigma$w1
+
+We seek w1 such that Var(z1) is maximized subject to the constraint that wT1 w1 = 1. Writing this as a Lagrange problem, we have (6.6) max wT1 $\Sigma$w1 $-$$\alpha$(wT1 w1 $-$1) w1
+
+Taking the derivative with respect to w1 and setting it equal to 0, we have
+
+2$\Sigma$w1 $-$2$\alpha$w1 = 0, and therefore $\Sigma$w1 = $\alpha$w1
+
+which holds if w1 is an eigenvector of $\Sigma$ and $\alpha$ the corresponding eigenvalue. Because we want to maximize
+
+wT1 $\Sigma$w1 = $\alpha$wT1 w1 = $\alpha$
+
+we choose the eigenvector with the largest eigenvalue for the variance to be maximum. Therefore the principal component is the eigenvector of the covariance matrix of the input sample with the largest eigenvalue, $\lambda$1 = $\alpha$. The second principal component, w2, should also maximize variance, be of unit length, and be orthogonal to w1. This latter requirement is so that after projection z2 = wT2 x is uncorrelated with z1. For the second principal component, we have
+
+(6.7) max wT2 $\Sigma$w2 $-$$\alpha$(wT2 w2 $-$1) $-$$\beta$(wT2 w1 $-$0) w2
+
+Taking the derivative with respect to w2 and setting it equal to 0, we have
+
+(6.8) 2$\Sigma$w2 $-$2$\alpha$w2 $-$$\beta$w1 = 0
+
+Premultiply by wT1 and we get
+
+2wT1 $\Sigma$w2 $-$2$\alpha$wT1 w2 $-$$\beta$wT1 w1 = 0
+
+Note that wT1 w2 = 0. wT1 $\Sigma$w2 is a scalar, equal to its transpose wT2 $\Sigma$w1 where, because w1 is the leading eigenvector of $\Sigma$, $\Sigma$w1 = $\lambda$1w1. Therefore
+
+wT1 $\Sigma$w2 = wT2 $\Sigma$w1 = $\lambda$1wT2 w1 = 0
+
+Then $\beta$ = 0 and equation 6.8 reduces to
+
+$\Sigma$w2 = $\alpha$w2
+
+which implies that w2 should be the eigenvector of $\Sigma$ with the second largest eigenvalue, $\lambda$2 = $\alpha$. Similarly, we can show that the other dimensions are given by the eigenvectors with decreasing eigenvalues. Because $\Sigma$ is symmetric, for two different eigenvalues, the eigenvectors are orthogonal. If $\Sigma$ is positive definite (xT $\Sigma$x > 0, for all nonnull x), then all its eigenvalues are positive. If $\Sigma$ is singular, then its rank, the effective dimensionality, is k with k < d and $\lambda$i, i = k + 1, . . . , d are 0 ($\lambda$i are sorted in descending order). The k eigenvectors with nonzero eigenvalues are the dimensions of the reduced space. The first eigenvector (the one with the largest eigenvalue), w1, namely, the principal component, explains the largest part of the variance; the second explains the second largest; and so on. We define
+
+(6.9) z = WT (x $-$m)
+
+where the k columns of W are the k leading eigenvectors of S, the estimator to $\Sigma$. We subtract the sample mean m from x before projection to center the data on the origin. After this linear transformation, we get to a k-dimensional space whose dimensions are the eigenvectors, and the variances over these new dimensions are equal to the eigenvalues (see figure 6.1). To normalize variances, we can divide by the square roots of the eigenvalues.
+
+x2 z1 z2 z2
+
+x1 z1
+
+Figure 6.1 Principal components analysis centers the sample and then rotates the axes to line up with the directions of highest variance. If the variance on z2 is too small, it can be ignored and we have dimensionality reduction from two to one.
+
+Let us see another derivation: We want to find a matrix W such that when we have z = WT x (assume without loss of generality that x are already centered), we will get Cov(z) = D' where D' is any diagonal matrix; that is, we would like to get uncorrelated zi. If we form a (d $\times$ d) matrix C whose ith column is the normalized eigenvector ci of S, then CTC = I and
+
+S = SCCT = S(c1, c2, . . . , cd)CT = (Sc1, Sc2, . . . , Scd)CT = ($\lambda$1c1, $\lambda$2c2, . . . , $\lambda$dcd)CT = $\lambda$1c1cT1 + $\cdot$ $\cdot$ $\cdot$ + $\lambda$dcdcTd (6.10) = CDCT
+
+where D is a diagonal matrix whose diagonal elements are the eigenvalspectral ues, $\lambda$1, . . . , $\lambda$d. This is called the spectral decomposition of S. Since C is decomposition orthogonal and CCT = CTC = I, we can multiply on the left by CT and on the right by C to obtain
+
+(6.11) CTSC = D
+
+We know that if z = WT x, then Cov(z) = WTSW, which we would like to be equal to a diagonal matrix. Then from equation 6.11, we see that
+
+we can set W = C. Let us see an example to get some intuition (Rencher 1995): Assume we are given a class of students with grades on five courses and we want to order these students. That is, we want to project the data onto one dimension, such that the difference between the data points become most apparent. We can use PCA. The eigenvector with the highest eigenvalue is the direction that has the highest variance, that is, the direction on which the students are most spread out. This works better than taking the average because we take into account correlations and differences in variances. In practice even if all eigenvalues are greater than 0, if |S| is small, re- 'd membering that |S| = i=1 $\lambda$i, we understand that some eigenvalues have little contribution to variance and may be discarded. Then, we take into account the leading k components that explain more than, for example, 90 percent, of the variance. When $\lambda$i are sorted in descending order, the proportion of proportion of variance explained by the k principal components is variance $\lambda$1 + $\lambda$2 + $\cdot$ $\cdot$ $\cdot$ + $\lambda$k $\lambda$1 + $\lambda$2 + $\cdot$ $\cdot$ $\cdot$ + $\lambda$k + $\cdot$ $\cdot$ $\cdot$ + $\lambda$d
+
+If the dimensions are highly correlated, there will be a small number of eigenvectors with large eigenvalues and k will be much smaller than d and a large reduction in dimensionality may be attained. This is typically the case in many image and speech processing tasks where nearby inputs (in space or time) are highly correlated. If the dimensions are not correlated, k will be as large as d and there is no gain through PCA. scree graph Scree graph is the plot of variance explained as a function of the number of eigenvectors kept (see figure 6.2). By visually analyzing it, one can also decide on k. At the “elbow,” adding another eigenvector does not significantly increase the variance explained. Another possibility is to ignore the eigenvectors whose eigenvalues are less than the average input variance. Given that i $\lambda$i = i s2i (equal to the trace of S, denoted as tr(S)), the average eigenvalue is equal to the average input variance. When we keep only the eigenvectors with eigenvalues greater than the average eigenvalue, we keep only those that have variance higher than the average input variance. If the variances of the original xi dimensions vary considerably, they affect the direction of the principal components more than the correlations, so a common procedure is to preprocess the data so that each dimension has mean 0 and unit variance, before using PCA. Or, one may
+
+(a) Scree graph for Optdigits
+
+100 Eigenvalues
+
+0 10 20 30 40 50 60 70 Eigenvectors
+
+(b) Proportion of variance explained
+
+0.8
+
+var. 0.6 of Prop. 0.4
+
+0.2
+
+0 10 20 30 40 50 60 70 Eigenvectors
+
+Figure 6.2 (a) Scree graph. (b) Proportion of variance explained is given for the Optdigits dataset from the UCI Repository. This is a handwritten digit dataset with ten classes and sixty-four dimensional inputs. The first twenty eigenvectors explain 90 percent of the variance.
+
+use the eigenvectors of the correlation matrix, R, instead of the covariance matrix, S, for the correlations to be effective and not the individual variances. PCA explains variance and is sensitive to outliers: A few points distant from the center would have a large effect on the variances and thus the eigenvectors. Robust estimation methods allow calculating parameters in the presence of outliers. A simple method is to calculate the Mahalanobis distance of the data points, discarding the isolated data points that are far away. If the first two principal components explain a large percentage of the variance, we can do visual analysis: We can plot the data in this two di-
+
+Optdigits after PCA
+
+2 2 20 9 2 3 2 2 3 2 3 2 3 3 8 3 3 2 2 32 5 00 3 10 3 8 3 8 1 8 0 00 6 8 5 5 888 00 1 0 6 6 0 7 7 9 6 7 6 7 79 7 eigenvector 6 5 8 5 0 6 77 7 9 9 6 9 7 1 $-$10 7 1 9 1 1 1 Second 41 1 9 7 4 9 4 1 9 $-$20 4 4 9 4 4 4 4 4 $-$30 4
+
+$-$40 $-$40 $-$30 $-$20 $-$10 0 10 20 30 40 First eigenvector
+
+Figure 6.3 Optdigits data plotted in the space of two principal components. Only the labels of a hundred data points are shown to minimize the ink-to-noise ratio.
+
+mensional space (figure 6.3) and search visually for structure, groups, outliers, normality, and so forth. This plot gives a better pictorial description of the sample than a plot of any two of the original variables. By looking at the dimensions of the principal components, we can also try to recover meaningful underlying variables that describe the data. For example, in image applications where the inputs are images, the eigenvectors can also be displayed as images and can be seen as templates for eigenfaces important features; they are typically named “eigenfaces,” “eigendigits,” eigendigits and so forth (Turk and Pentland 1991). When d is large, calculating, storing, and processing S may be tedious. It is possible to calculate the eigenvectors and eigenvalues directly from data without explicitly calculating the covariance matrix (Chatfield and
+
+Collins 1980). We know from equation 5.15 that if x $\sim$Nd($\mu$, $\Sigma$), then after projection WTx $\sim$Nk(WT $\mu$, WT $\Sigma$W). If the sample contains d-variate normals, then it projects to k-variate normals allowing us to do parametric discrimination in this hopefully much lower dimensional space. Because zj are uncorrelated, the new covariance matrices will be diagonal, and if they are normalized to have unit variance, Euclidean distance can be used in this new space, leading to a simple classifier. Instance xt is projected to the z-space as
+
+zt = WT (xt $-$$\mu$)
+
+When W is an orthogonal matrix such that WWT = I, it can be backprojected to the original space as
+
+\textasciicircum{}xt = Wzt + $\mu$
+
+\textasciicircum{}xt is the reconstruction of xt from its representation in the z-space. It is known that among all orthogonal linear projections, PCA minimizes reconstruction the reconstruction error, which is the distance between the instance and error its reconstruction from the lower dimensional space:
+
+(6.12) $\parallel$\textasciicircum{}xt $-$x$\parallel$2 t
+
+The reconstruction error depends on how many of the leading components are taken into account. In a visual recognition application---for example, face recognition---displaying \textasciicircum{}xt allows a visual check for information loss during PCA. PCA is unsupervised and does not use output information. It is a onegroup procedure. However, in the case of classification, there are multiple Karhunen-Loève groups. Karhunen-Loève expansion allows using class information; for exexpansion ample, instead of using the covariance matrix of the whole sample, we can estimate separate class covariance matrices, take their average (weighted by the priors) as the covariance matrix, and use its eigenvectors. common principal In common principal components (Flury 1988), we assume that the princomponents cipal components are the same for each class whereas the variances of these components differ for different classes:
+
+Si = CDiCT
+
+This allows pooling data and is a regularization method whose complexity is less than that of a common covariance matrix for all classes,
+
+flexible while still allowing differentiation of Si. A related approach is flexible discriminant discriminant analysis (Hastie, Tibshirani, and Buja 1994), which does a analysis linear projection to a lower-dimensional space where all features are uncorrelated and then uses a minimum distance classifier.
+
+\section{Factor Analysis}
+
+In PCA, from the original dimensions xi, i = 1, . . . , d, we form a new set of variables z that are linear combinations of xi:
+
+z = WT (x $-$$\mu$)
+
+factor analysis In factor analysis (FA), we assume that there is a set of unobservable, latent factors latent factors zj, j = 1, . . . , k, which when acting in combination generate x. Thus the direction is opposite that of PCA (see figure 6.4). The goal is to characterize the dependency among the observed variables by means of a smaller number of factors. Suppose there is a group of variables that have high correlation among themselves and low correlation with all the other variables. Then there may be a single underlying factor that gave rise to these variables. If the other variables can be similarly grouped into subsets, then a few factors can represent these groups of variables. Though factor analysis always partitions the variables into factor clusters, whether the factors mean anything, or really exist, is open to question. FA, like PCA, is a one-group procedure and is unsupervised. The aim is to model the data in a smaller dimensional space without loss of information. In FA, this is measured as the correlation between variables. As in PCA, we have a sample X = \{xt\}t drawn from some unknown probability density with E[x] = $\mu$ and Cov(x) = $\Sigma$. We assume that the factors are unit normals, E[zj] = 0, Var(zj) = 1, and are uncorrelated, Cov(zi, zj) = 0, i /= j. To explain what is not explained by the factors, there is an added source for each input which we denote by $\epsilon$i. It is assumed to be zero-mean, E[$\epsilon$i] = 0, and have some unknown variance, Var($\epsilon$i) = $\psi$i. These specific sources are uncorrelated among themselves, Cov($\epsilon$i, $\epsilon$j) = 0, i /= j, and are also uncorrelated with the factors, Cov($\epsilon$i, zj) = 0, $\forall$i, j. FA assumes that each input dimension, xi, i = 1, . . . , d, can be written as a weighted sum of the k < d factors, zj, j = 1, . . . , k, plus the residual
+
+Figure 6.4 Principal components analysis generates new variables that are linear combinations of the original input variables. In factor analysis, however, we posit that there are factors that when linearly combined generate the input variables.
+
+term (see figure 6.5):
+
+xi $-$$\mu$i = vi1z1 + vi2z2 + $\cdot$ $\cdot$ $\cdot$ + vikzk + $\epsilon$i, $\forall$i = 1, . . . , d
+
+k (6.13) xi $-$$\mu$i = vijzj + $\epsilon$i j=1
+
+This can be written in vector-matrix form as
+
+(6.14) x $-$$\mu$ = Vz + $\epsilon$
+
+where V is the d $\times$ k matrix of weights, called factor loadings. From now on, we are going to assume that $\mu$ = 0 without loss of generality; we can always add $\mu$ after projection. Given that Var(zj) = 1 and Var($\epsilon$i) = $\psi$i
+
+(6.15) Var(xi) = v2i1 + v2i2 + $\cdot$ $\cdot$ $\cdot$ + v2ik + $\psi$i
+
+k j=1 v2ij is the part of the variance explained by the common factors and $\psi$i is the variance specific to xi. In vector-matrix form, we have
+
+(6.16) $\Sigma$ = Cov(x) = Cov(Vz + $\epsilon$)
+
+= Cov(Vz) + Cov($\epsilon$) = VCov(z)VT + $\Psi$ (6.17) = VVT + $\Psi$
+
+z2 x2
+
+z1 x1
+
+Figure 6.5 Factors are independent unit normals that are stretched, rotated, and translated to make up the inputs.
+
+where $\Psi$ is a diagonal matrix with $\psi$i on the diagonals. Because the factors are uncorrelated unit normals, we have Cov(z) = I. With two factors, for example,
+
+Cov(x1, x2) = v11v21 + v12v22
+
+If x1 and x2 have high covariance, then they are related through a factor. If it is the first factor, then v11 and v21 will both be high; if it is the second factor, then v12 and v22 will both be high. In either case, the sum v11v21 + v12v22 will be high. If the covariance is low, then x1 and x2 depend on different factors and in the products in the sum, one term will be high and the other will be low and the sum will be low. We see that
+
+Cov(x1, z2) = Cov(v12z2, z2) = v12Var(z2) = v12
+
+Thus Cov(x, z) = V, and we see that the loadings represent the correlations of variables with the factors. Given S, the estimator of $\Sigma$, we would like to find V and $\Psi$ such that
+
+S = VVT + $\Psi$
+
+If there are only a few factors, that is, if V has few columns, then we have a simplified structure for S, as V is d $\times$ k and $\Psi$ has d values, thus reducing the number of parameters from d2 to d $\cdot$ k + d. Since $\Psi$ is diagonal, covariances are represented by V. Note that PCA does not allow a separate $\Psi$ and it tries to account for both the covariances and the variances. When all $\psi$i are equal, namely, $\Psi$ = $\psi$I, we get
+
+probabilistic PCA probabilistic PCA (Tipping and Bishop 1999) and the conventional PCA is when $\psi$i are 0. Let us now see how we can find the factor loadings and the specific variances: Let us first ignore $\Psi$. Then, from its spectral decomposition, we know that we have
+
+S = CDCT = CD1/2D1/2CT = (CD1/2)(CD1/2)T
+
+where we take only k of the eigenvectors by looking at the proportion of variance explained so that C is the d $\times$ k matrix of eigenvectors and D1/2 is the k $\times$ k diagonal matrix with the square roots of the eigenvalues on its diagonals. Thus we have
+
+(6.18) V = CD1/2
+
+We can find $\psi$j from equation 6.15 as
+
+k (6.19) $\psi$i = s2i $-$ v2ij j=1
+
+Note that when V is multiplied with any orthogonal matrix---namely, having the property TTT = I---that is another valid solution and thus the solution is not unique.
+
+S = (VT)(VT)T = VTTT VT = VIVT = VVT
+
+If T is an orthogonal matrix, the distance to the origin does not change. If z = Tx, then
+
+zTz = (Tx)T(Tx) = xT TT Tx = xTx
+
+Multiplying with an orthogonal matrix has the effect of rotating the axes and allows us to choose the set of axes most interpretable (Rencher 1995). In two dimensions,
+
+cos $\phi$ $-$sin $\phi$ T = sin $\phi$ cos $\phi$
+
+rotates the axes by $\phi$. There are two types of rotation: In orthogonal rotation the factors are still orthogonal after the rotation, and in oblique rotation the factors are allowed to become correlated. The factors are rotated to give the maximum loading on as few factors as possible for each variable, to make the factors interpretable. However, interpretability is subjective and should not be used to force one’s prejudices on the data.
+
+There are two uses of factor analysis: It can be used for knowledge extraction when we find the loadings and try to express the variables using fewer factors. It can also be used for dimensionality reduction when k < d. We already saw how the first one is done. Now, let us see how factor analysis can be used for dimensionality reduction. When we are interested in dimensionality reduction, we need to be able to find the factor scores, zj, from xi. We want to find the loadings wji such that
+
+d (6.20) zj = wjixi + $\epsilon$i, j = 1, . . . , k i=1
+
+where xi are centered to have mean 0. In vector form, for observation t, this can be written as
+
+zt = WT xt + $\epsilon$, $\forall$t = 1, . . . , N
+
+This is a linear model with d inputs and k outputs. Its transpose can be written as
+
+(zt)T = (xt)T W + $\epsilon$T, $\forall$t = 1, . . . , N
+
+Given that we have a sample of N observations, we write
+
+(6.21) Z = XW + $\Xi$
+
+where Z is N $\times$ k of factors, X is N $\times$ d of (centered) observations, and $\Xi$ is N $\times$ k of zero-mean noise. This is multivariate linear regression with multiple outputs, and we know from section 5.8 that W can be found as
+
+W = (XT X)$-$1XTZ
+
+but we do not know Z; it is what we would like to calculate. We multiply and divide both sides by N $-$1 and obtain
+
+XT Z W = (N $-$1)(XT X)$-$1 N $-$1 $-$1 XT X XT Z = N $-$1 N $-$1 (6.22) = S$-$1V
+
+and placing equation 6.22 in equation 6.21, we write
+
+(6.23) Z = XW = XS$-$1V
+
+assuming that S is nonsingular. One can use R instead of S when xi are normalized to have unit variance. For dimensionality reduction, FA offers no advantage over PCA except the interpretability of factors allowing the identification of common causes, a simple explanation, and knowledge extraction. For example, in the context of speech recognition, x corresponds to the acoustic signal, but we know that it is the result of the (nonlinear) interaction of a small number of articulators, namely, jaw, tongue, velum, lips, and mouth, which are positioned appropriately to shape the air as it comes out of the lungs and generate the speech sound. If a speech signal could be transformed to this articulatory space, then recognition would be much easier. Using such generative models is one of the current research directions for speech recognition; in chapter 16, we will discuss how such models can be represented as a graphical model.
+
+\section{Multidimensional Scaling}
+
+Let us say for N points, we are given the distances between pairs of points, dij, for all i, j = 1, . . . , N. We do not know the exact coordinates of the points, their dimensionality, or how the distances are calculated. multidimensional Multidimensional scaling (MDS) is the method for placing these points in scaling a low---for example, two-dimensional---space such that the Euclidean distance between them there is as close as possible to dij, the given distances in the original space. Thus it requires a projection from some unknown dimensional space to, for example, two dimensions. In the archetypical example of multidimensional scaling, we take the road travel distances between cities, and after applying MDS, we get an approximation to the map. The map is distorted such that in parts of the country with geographical obstacles like mountains and lakes where the road travel distance deviates much from the direct bird-flight path (Euclidean distance), the map is stretched out to accommodate longer distances (see figure 6.6). The map is centered on the origin, but the solution is still not unique. We can get any rotated or mirror image version. MDS can be used for dimensionality reduction by calculating pairwise Euclidean distances in the d-dimensional x space and giving this as input to MDS, which then projects it to a lower-dimensional space so as to preserve these distances. Let us say we have a sample X = \{xt\}Nt=1 as usual, where xt $\in$$\mathbb{R}$d. For
+
+Helsinki 1500 Moscow
+
+Dublin
+
+London
+
+Paris Berlin Zurich
+
+Lisbon Madrid $-$500
+
+$-$1000 Istanbul Rome
+
+$-$1500 Athens
+
+$-$2000 $-$2500 $-$2000 $-$1500 $-$1000 $-$500 0 500 1000 1500 2000
+
+Figure 6.6 Map of Europe drawn by MDS. Pairwise road travel distances between these cities are given as input, and MDS places them in two dimensions such that these distances are preserved as well as possible.
+
+two points r and s, the squared Euclidean distance between them is
+
+d d d d d2rs = $\parallel$xr $-$xs$\parallel$2 = (xrj $-$xsj)2 = (xrj)2 $-$2 xrjxsj + (xsj)2 j=1 j=1 j=1 j=1 (6.24) = brr + bss $-$2brs
+
+where brs is defined as
+
+d (6.25) brs = xrjxsj j=1
+
+To constrain the solution, we center the data at the origin and assume
+
+N xtj = 0, $\forall$j = 1, . . . , d t=1
+
+Then, summing up equation 6.24 on r, s, and both r, s, and defining
+
+N T = btt = (xtj)2 t=1 t j
+
+we get
+
+d2rs = T + Nbss r d2rs = Nbrr + T s d2rs = 2NT r s
+
+When we define
+
+1 1 1 d2•s = d2rs , d2r• = d2rs , d2•• = d2rs N r N s N2 r s
+
+and using equation 6.24, we get
+
+r• + d2•s $-$d2•• $-$d2rs)(6.26) brs = 2(d2
+
+Having now calculated brs and knowing that B = XXT as defined in equation 6.25, we look for an approximation. We know from the spectral decomposition that X = CD1/2 can be used as an approximation for X, where C is the matrix whose columns are the eigenvectors of B and D1/2 is a diagonal matrix with square roots of the eigenvalues on the diagonals. Looking at the eigenvalues of B, we decide on a dimensionality k lower than d (and N), as we did in PCA and FA. Let us say cj are the eigenvectors with $\lambda$j as the corresponding eigenvalues. Note that cj is N-dimensional. Then we get the new dimensions as \$ (6.27) ztj = $\lambda$jctj, j = 1, . . . , k, t = 1, . . . , N
+
+That is, the new coordinates of instance t are given by the tth elements of the eigenvectors, cj, j = 1, . . . , k, after normalization. It has been shown (Chatfield and Collins 1980) that the eigenvalues of XXT (N $\times$ N) are the same as those of XTX (d $\times$ d) and the eigenvectors are related by a simple linear transformation. This shows that PCA does the same work with MDS and does it more cheaply. PCA done on the correlation matrix rather than the covariance matrix equals doing MDS with standardized Euclidean distances where each variable has unit variance.
+
+In the general case, we want to find a mapping z = g(x|$\theta$), where z $\in$$\mathbb{R}$k, x $\in$$\mathbb{R}$d, and g(x|$\theta$) is the mapping function from d to k dimensions defined up to a set of parameters $\theta$. Classical MDS we discussed previously corresponds to a linear transformation
+
+(6.28) z = g(x|W) = WT x
+
+but in a general case, a nonlinear mapping can also be used; this is called Sammon mapping Sammon mapping. The normalized error in mapping is called the Sammon stress and is defined as
+
+($\parallel$zr $-$zs$\parallel$$-$$\parallel$xr $-$xs$\parallel$)2 E($\theta$|X) = r,s $\parallel$xr $-$xs$\parallel$2 ($\parallel$g(xr|$\theta$) $-$g(xs|$\theta$)$\parallel$$-$$\parallel$xr $-$xs$\parallel$)2 (6.29) = r,s $\parallel$xr $-$xs$\parallel$2
+
+One can use any regression method for g($\cdot$|$\theta$) and estimate $\theta$ to minimize the stress on the training data X. If g($\cdot$) is nonlinear in x, this will then correspond to a nonlinear dimensionality reduction. In the case of classification, one can include class information in the distance (see Webb 1999) as
+
+d'rs = (1 $-$$\alpha$)drs + $\alpha$crs
+
+where crs is the “distance” between the classes xr and xs belong to. This interclass distance should be supplied subjectively and $\alpha$ is optimized using cross-validation.
+
+\section{Linear Discriminant Analysis}
+
+linear discriminant Linear discriminant analysis (LDA) is a supervised method for dimensionanalysis ality reduction for classification problems. We start with the case where there are two classes, then generalize to K > 2 classes. Given samples from two classes C1 and C2, we want to find the direction, as defined by a vector w, such that when the data are projected onto w, the examples from the two classes are as well separated as possible. As we saw before,
+
+(6.30) z = wTx
+
+is the projection of x onto w and thus is a dimensionality reduction from d to 1.
+
+x2
+
+m2
+
+m1
+
+m2 s2 2 m1 w s1 2
+
+x1
+
+Figure 6.7 Two-dimensional, two-class data projected on w.
+
+m1 and m1 are the means of samples from C1 before and after projection, respectively. Note that m1 $\in$$\mathbb{R}$d and m1 $\in$$\mathbb{R}$. We are given a sample X = \{xt, rt\} such that rt = 1 if xt $\in$C1 and rt = 0 if xt $\in$C2. t wT xtrt m1 = = wTm1 t rt t wT xt(1 $-$rt) (6.31) m2 = = wTm2 t(1 $-$rt) scatter The scatter of samples from C1 and C2 after projection are s21 = (wTxt $-$m1)2rt t (6.32) s22 = (wTxt $-$m2)2(1 $-$rt) t
+
+After projection, for the two classes to be well separated, we would like the means to be as far apart as possible and the examples of classes be scattered in as small a region as possible. So we want |m1 $-$m2| to be Fisher’s linear large and s21 + s22 to be small (see figure 6.7). Fisher’s linear discriminant discriminant is w that maximizes (m1 $-$m2)2 (6.33) J(w) = s21 + s22
+
+Rewriting the numerator, we get
+
+(m1 $-$m2)2 = (wT m1 $-$wT m2)2 = wT(m1 $-$m2)(m1 $-$m2)T w (6.34) = wTSBw
+
+between-class where SB = (m1 $-$m2)(m1 $-$m2)T is the between-class scatter matrix. The scatter matrix denominator is the sum of scatter of examples of classes around their means after projection and can be rewritten as
+
+s21 = (wTxt $-$m1)2rt t = wT(xt $-$m1)(xt $-$m1)Twrt t (6.35) = wTS1w
+
+where
+
+(6.36) S1 = rt(xt $-$m1)(xt $-$m1)T t
+
+within-class is the within-class scatter matrix for C1. S1/ t rt is the estimator of $\Sigma$1. scatter matrix Similarly, s22 = wT S2w with S2 = t(1 $-$rt)(xt $-$m2)(xt $-$m2)T , and we get
+
+s21 + s22 = wTSW w where SW = S1 + S2 is the total within-class scatter. Note that s21 + s22 divided by the total number of samples is the variance of the pooled data. Equation 6.33 can be rewritten as
+
+wTSBw |wT (m1 $-$m2)|2 (6.37) J(w) = = wT SWw wT SWw
+
+Taking the derivative of J with respect to w and setting it equal to 0, we get
+
+wT(m1 $-$m2) 2(m1 $-$m2) $-$wT(m1 $-$m2) SWw = 0 wT SWw wTSW w
+
+Given that wT (m1 $-$m2)/wTSW w is a constant, we have
+
+(6.38) w = cS$-$1W (m1 $-$m2)
+
+where c is some constant. Because it is the direction that is important for us and not the magnitude, we can just take c = 1 and find w.
+
+Remember that when p(x|Ci) $\sim$N ($\mu$i, $\Sigma$), we have a linear discriminant where w = $\Sigma$$-$1($\mu$1 $-$$\mu$2), and we see that Fisher’s linear discriminant is optimal if the classes are normally distributed. Under the same assumption, a threshold, w0, can also be calculated to separate the two classes. But Fisher’s linear discriminant can be used even when the classes are not normal. We have projected the samples from d dimensions to one, and any classification method can be used afterward. In the case of K > 2 classes, we want to find the matrix W such that
+
+(6.39) z = WT x
+
+where z is k-dimensional and W is d $\times$ k. The within-class scatter matrix for Ci is
+
+(6.40) Si = rti (xt $-$mi)(xt $-$mi)T t
+
+where rti = 1 if xt $\in$Ci and 0 otherwise. The total within-class scatter is
+
+K (6.41) SW = Si i=1
+
+When there are K > 2 classes, the scatter of the means is calculated as how much they are scattered around the overall mean
+
+K (6.42) m = mi K i=1
+
+and the between-class scatter matrix is
+
+K (6.43) SB = Ni(mi $-$m)(mi $-$m)T i=1
+
+with Ni = t rti . The between-class scatter matrix after projection is WTSBW and the within-class scatter matrix after projection is WTSW W. These are both k $\times$ k matrices. We want the first scatter to be large, that is, after the projection, in the new k-dimensional space we want class means to be as far apart from each other as possible. We want the second scatter to be small, that is, after the projection, we want samples from the same class to be as close to their mean as possible. For a scatter (or covariance) matrix, a measure of spread is the determinant, remembering that the determinant is the product of eigenvalues and that an
+
+Optdigits after LDA
+
+7 7 77 4 4 7 7 77 7 2 7 7 4 1 4 4 4 9 1 1 4 4 1 4 9 991 9 1 4 5 91 11 1 4 4 3 3 1 9 9 9 0 1 66 33 3 3 3 9 8 3 3 $-$1 2 85 8 8 666 2 5 8 88 2 2 3 5 9 8 6 66 2 5 $-$2 2 2 2 2 8 2 0 2 0 $-$3 0
+
+0 00 0 $-$4 0 0
+
+$-$5 $-$2.5 $-$2 $-$1.5 $-$1 $-$0.5 0 0.5 1 1.5 2 2.5
+
+Figure 6.8 Optdigits data plotted in the space of the first two dimensions found by LDA. Comparing this with figure 6.3, we see that LDA, as expected, leads to a better separation of classes than PCA. Even in this two-dimensional space (there are nine altogether), we can discern separate clouds for different classes.
+
+eigenvalue gives the variance along its eigenvector (component). Thus we are interested in the matrix W that maximizes |WT SBW| (6.44) J(W) = |WT SWW| The largest eigenvectors of S$-$1W SB are the solution. SB is the sum of K matrices of rank 1, namely, (mi $-$m)(mi $-$m)T, and only K $-$1 of them are independent. Therefore, SB has a maximum rank of K $-$1 and we take k = K $-$1. Thus we define a new lower, (K $-$1)-dimensional space where the discriminant is then to be constructed (see figure 6.8). Though LDA uses class separability as its goodness criterion, any classification method can be used in this new space for estimating the discriminants.
+
+We see that to be able to apply LDA, SW should be invertible. If this is not the case, we can first use PCA to get rid of singularity and then apply LDA to its result; however, we should make sure that PCA does not reduce dimensionality so much that LDA does not have anything left to work on.
+
+\section{Isomap}
+
+Principal component analysis (PCA), which we discussed in section 6.3, works when the data lies in a linear subspace. However, this may not hold in many applications. Take, for example, face recognition where a face is represented as a two-dimensional, say 100 $\times$ 100 image. In this case, each face is a point in 10, 000 dimensions. Now let us say that we take a series of pictures as a person slowly rotates his or her head from right to left. The sequence of face images we capture follows a trajectory in the 10, 000-dimensional space and this is not linear. Now consider the faces of many people. The trajectories of all their faces as they rotate their faces define a manifold in the 10, 000-dimensional space, and this is what we want to model. The similarity between two faces cannot simply be written in terms of the sum of the pixel differences, and hence Euclidean distance is not a good metric. It may even be the case that images of two different people with the same pose have smaller Euclidean distance between them than the images of two different poses of the same person. This is not what we want. What should count is geodesic distance the distance along the manifold, which is called the geodesic distance. isometric feature Isometric feature mapping (Isomap) (Tenenbaum, de Silva, and Langford mapping 2000) estimates this distance and applies multidimensional scaling (MDS) (section 6.5), using it for dimensionality reduction. Isomap uses the geodesic distances between all pairs of data points. For neighboring points that are close in the input space, Euclidean distance can be used; for small changes in pose, the manifold is locally linear. For faraway points, geodesic distance is approximated by the sum of the distances between the points along the way over the manifold. This is done by defining a graph whose nodes correspond to the N data points and whose edges connect neighboring points (those with distance less than some $\epsilon$ or one of the n nearest) with weights corresponding to Euclidean distances. The geodesic distance between any two points is calculated as the length of the shortest path between the corresponding
+
+Figure 6.9 Geodesic distance is calculated along the manifold as opposed to the Euclidean distance that does not use this information. After multidimensional scaling, these two instances from two classes will be mapped to faraway positions in the new space, though they are close in the original space.
+
+two nodes. For two points that are not close by, we need to hop over a number of intermediate points along the way, and therefore the distance will be the distance along the manifold, approximated as the sum of local Euclidean distances (see figure 6.9). Two nodes r and s are connected if $\parallel$xr $-$xs$\parallel$< $\epsilon$ (while making sure that the graph is connected), or if xs is one of the n neighbors of xr (while making sure that the distance matrix is symmetric), and we set the edge length to $\parallel$xr $-$xs$\parallel$. For any two nodes r and s, drs is the length of the shortest path between them. We then apply MDS on drs to reduce dimensionality to k by observing the proportion of variance explained. This will have the effect of placing r and s that are far apart in the geodesic space also far in the new k-dimensional space even if they are close in terms of Euclidean distance in the original d-dimensional space. It is clear that the graph distances provide a better approximation as the number of points increases, though there is the trade-offof longer execution time; if time is critical, one can subsample and use a subset of “landmark points” to make the algorithm faster. The parameter $\epsilon$ needs to be carefully tuned; if it is too small, there may be more than one connected component, and if it is too large, “shortcut” edges may be added that corrupt the low-dimensional embedding (Balasubramanian et al. 2002). One problem with Isomap, as with MDS, is that it places the N points in a low-dimensional space, but it does not learn a general mapping function that will allow mapping a new test point; the new point should be added
+
+to the dataset and the whole algorithm needs to be run once more using N + 1 instances.
+
+\section{Locally Linear Embedding}
+
+locally linear Locally linear embedding (LLE) recovers global nonlinear structure from embedding locally linear fits (Roweis and Saul 2000). The idea is that each local patch of the manifold can be approximated linearly and given enough data, each point can be written as a linear, weighted sum of its neighbors (again either defined using a given number of neighbors, n, or distance threshold, $\epsilon$). Given xr and its neighbors xs(r) in the original space, one can find the reconstruction weights Wrs that minimize the error function
+
+(6.45) Ew(W|X) = $\parallel$xr $-$ Wrsxs(r)$\parallel$2 r s
+
+using least squares subject to Wrr = 0, $\forall$r and s Wrs = 1. The idea in LLE is that the reconstruction weights Wrs reflect the intrinsic geometric properties of the data that we expect to be also valid for local patches of the manifold, that is, the new space we are mapping the instances to (see figure 6.10). The second step of LLE is hence to now keep the weights Wrs fixed and let the new coordinates zr take whatever values they need respecting the interpoint constraints given by the weights:
+
+(6.46) Ez(Z|W) = $\parallel$zr $-$ Wrszs$\parallel$2 r s
+
+Nearby points in the original, d-dimensional space should remain nearby and similarly colocated with respect to one another in the new, k-dimensional space. Equation 6.46 can be rewritten as
+
+(6.47) Ez(Z|W) = Mrs(zr)Tzs r,s
+
+where
+
+(6.48) Mrs = $\delta$rs $-$Wrs $-$Wsr + WirWis i
+
+M is sparse (only a small percentage of data points are neighbors of a data point: n $\ll$N), symmetric, and positive semidefinite. As in other dimensionality reduction methods, we require that the data be centered at the origin, E[z] = 0, and that the new coordinates be uncorrelated
+
+Figure 6.10 Local linear embedding first learns the constraints in the original space and next places the points in the new space respecting those constraints. The constraints are learned using the immediate neighbors (shown with continuous lines) but also propagate to second-order neighbors (shown dashed).
+
+and unit length: Cov(z) = I. The solution to equation 6.47 subject to these two constraints is given by the k + 1 eigenvectors with the smallest eigenvalues; we ignore the lowest one and the other k eigenvectors give us the new coordinates. Because the n neighbors span a space of dimensionality n $-$1 (you need distances to three points to uniquely specify your location in two dimensions), LLE can reduce dimensionality up to k $\leq$n$-$1. It is observed (Saul and Roweis 2003) that some margin between k and n is necessary to obtain a good embedding. Note that if n (or $\epsilon$) is small, the graph (that is constructed by connecting each instance to its neighbors) may no longer be connected and it may be necessary to run LLE separately on separate components to find separate manifolds in different parts of the input space. On the other hand, if n (or $\epsilon$) is taken large, some neighbors may be too far for the local linearity assumption to hold and this may corrupt the embedding. It is possible to use different n (or $\epsilon$) in different parts of the input space based on some prior knowledge, but how this can be done is open to research (Saul and Roweis 2003). As with Isomap, LLE solution is the set of new coordinates for the N points, but we do not learn a mapping and hence cannot find z' for a new x'. There are two solutions to this:
+
+1. Using the same idea, one can find the n neighbors of x' in the original d-dimensional space and first learn the reconstruction weights wj that minimizes
+
+(6.49) Ew(w|X) = $\parallel$x' $-$ wsxs$\parallel$2 s
+
+and then use them to reconstruct z' in the new k-dimensional space:
+
+(6.50) z' = wszs s
+
+Note that this approach can also be used to interpolate from an Isomap (or MDS) solution. The drawback however is the need to store the whole set of \{xt, zt\}Nt=1.
+
+2. Using X = \{xt, zt\}Nt=1 as a training set, one can train any regressor, g(xt|$\theta$)---for example, a multilayer perceptron (chapter 11)---as a generalizer to approximate zt from xt, whose parameters $\theta$ is learned to minimize the regression error:
+
+(6.51) E($\theta$|X) = $\parallel$zt $-$g(xt|$\theta$)$\parallel$2 t
+
+Once training is done, we can calculate z' = g(x'|$\theta$). The model g($\cdot$) should be carefully chosen to be able to learn the mapping. There may no longer be a unique optimum and hence there are all the usual problems related to minimization, that is, initialization, local optima, convergence, and so on.
+
+In both Isomap and LLE, there is local information that is propagated over neighbors to get a global solution. In Isomap, the geodesic distance is the sum of local distances; in LLE, the final opimization in placing zt takes into account all local Wrs values. Let us say a and b are neighbors and b and c are neighbors. Though a and c may not be neighbors, there is dependence between a and c either through the graph, dac = dab + dbc, or the weights Wab and Wbc. In both algorithms, the global nonlinear organization is found by integrating local linear constraints that overlap partially.
+
+\section{Notes}
+
+A survey of feature selection algorithms is given in Devijer and Kittler wrappers 1982. Feature subset selection algorithms are also known as the wrapper approach, where the feature selection is thought to “wrap” around the learner it uses as a subroutine (Kohavi and John 1997). Subset selection in regression is discussed in Miller 1990. The forward and backward search procedures we discussed are local search procedures. Fukunaga and Narendra (1977) proposed a branch and bound procedure. At considerable more expense, one can use a stochastic procedure like simulated annealing or genetic algorithms to search more widely in the the search space. There are also filtering algorithms for feature selection where heuristic measures are used to calculate the “relevance” of a feature in a preprocessing stage without actually using the learner. For example, in the case of classification, instead of training a classifier and testing it at each step, one can use a separability measure, like the one used in linear discriminant analysis, to measure the quality of the new space in separating classes from each other (McLachlan 1992). With the cost of computation going down, it is best to include the learner in the loop because there is no guarantee that the heuristic used by the filter will match the bias of the learner that uses the features; no heuristic can replace the actual validation accuracy. A survey of feature selection methods is given by Guyon and Elisseeff(2003). Projection methods work with numeric inputs, and discrete variables should be represented by 0/1 dummy variables, whereas subset selection can use discrete inputs directly. Finding the eigenvectors and eigenvalues is quite straightforward; an example of a code is given in Press et al. 1992. Factor analysis was introduced by the British psychologist Charles Spearman to find the single factor for intelligence which explains the correlation between scores on various intelligence tests. The existence of such a single factor, called g, is highly disputed. More information on multidimensional scaling can be found in Cox and Cox 1994. The projection methods we discussed are batch procedures in that they require that the whole sample be given before the projection directions are found. Mao and Jain (1995) discuss online procedures for doing PCA and LDA, where instances are given one by one and updates are done as new instances arrive. Another possibility in doing a nonlinear projection is when the estimator in Sammon mapping is taken as a nonlinear
+
+function, for example, a multilayer perceptron (section 11.11) (Mao and Jain 1995). It is also possible but much harder to do nonlinear factor analysis. When the models are nonlinear, it is difficult to come up with the right nonlinear model. One also needs to use complicated optimization and approximation methods to solve for the model parameters. For more information, one can refer to the Isomap homepage that is at http://web.mit.edu/cocosci/isomap/isomap.html and the LLE homepage is at http://www.cs.toronto.edu/$\sim$roweis/lle/. Both contain links to related publications and example code. Just as we implement polynomial regression by using linear regression where we consider high-order terms as additional inputs (section 5.8), another way to do nonlinear dimensionality reduction is to first map to a new space by using nonlinear basis functions and then use a linear method there. In chapter 13 where we will discuss kernel methods, we will see how this can be done efficiently. There is a trade-offbetween feature extraction and decision making. If the feature extractor is good, the task of the classifier (or regressor) becomes trivial, for example, when the class code is extracted as a new feature from the existing features. On the other hand, if the classifier is good enough, then there is no need for feature extraction; it does its automatic feature selection or combination internally. We live between these two ideal worlds. There exist algorithms that do some feature selection internally, though in a limited way. Decision trees (chapter 9) do feature selection while generating the decision tree, and multilayer perceptrons (chapter 11) do nonlinear feature extraction in the hidden nodes. We expect to see more development along this line in embedding feature extraction in the actual step of classification/regression.
+
+\section{Exercises}
+
+1. Assuming that the classes are normally distributed, in subset selection, when one variable is added or removed, how can the new discriminant be calculated quickly? For example, how can the new S$-$1new be calculated from S$-$1old? 2. Using Optdigits from the UCI repository, implement PCA. For various number of eigenvectors, reconstruct the digit images and calculate the reconstruction error (equation 6.12).
+
+3. Plot the map of your state/country using MDS, given the road travel distances as input.
+
+4. In Sammon mapping, if the mapping is linear, namely, g(x|W) = WT x, how can W that minimizes the Sammon stress be calculated?
+
+5. Redo exercise 3, this time using Isomap where two cities are connected only if there is a direct road between them that does not pass through any other city.
+
+6. In Isomap, instead of using Euclidean distance, we can also use Mahalanobis distance between neighboring points. What are the advantages and disadvantages of this approach, if any?
+
+7. Draw two-class, two-dimensional data such that (a) PCA and LDA find the same direction and (b) PCA and LDA find totally different directions.
+
+8. Multidimensional scaling can work as long as we have the pairwise distances between objects. We do not actually need to represent the objects as vectors at all as long as we have some measure of similarity. Can you give an example?
+
+9. How can we incorporate class information into Isomap and LLE such that instances of the same class are mapped to nearby locations in the new space?
+
+10. In factor analysis, how can we find the remaining ones if we already know some of the factors?
+
+11. Discuss an application where there are hidden factors (not necessarily linear) and where factor analysis would be expected to work well.
+
+\section{References}
+
+Balasubramanian, M., E. L. Schwartz, J. B. Tenenbaum, V. de Silva, and J. C. Langford. 2002. “The Isomap Algorithm and Topological Stability.” Science 295: 7.
+
+Chatfield, C., and A. J. Collins. 1980. Introduction to Multivariate Analysis. London: Chapman and Hall.
+
+Cox, T. F., and M. A. A. Cox. 1994. Multidimensional Scaling. London: Chapman and Hall.
+
+Devijer, P. A., and J. Kittler. 1982. Pattern Recognition: A Statistical Approach. New York: Prentice-Hall.
+
+Flury, B. 1988. Common Principal Components and Related Multivariate Models. New York: Wiley.
+
+Fukunaga, K., and P. M. Narendra. 1977. “A Branch and Bound Algorithm for Feature Subset Selection.” IEEE Transactions on Computers C-26: 917--922.
+
+Guyon, I., and A. Elisseeff. 2003. “An Introduction to Variable and Feature Selection.” Journal of Machine Learning Research 3: 1157--1182.
+
+Hastie, T. J., R. J. Tibshirani, and A. Buja. 1994. “Flexible Discriminant Analysis by Optimal Scoring.” Journal of the American Statistical Association 89: 1255-- 1270.
+
+Kohavi, R., and G. John. 1997. “Wrappers for Feature Subset Selection.” Artificial Intelligence 97: 273--324.
+
+Mao, J., and A. K. Jain. 1995. “Artificial Neural Networks for Feature Extraction and Multivariate Data Projection.” IEEE Transactions on Neural Networks 6: 296--317.
+
+McLachlan, G. J. 1992. Discriminant Analysis and Statistical Pattern Recognition. New York: Wiley.
+
+Miller, A. J. 1990. Subset Selection in Regression. London: Chapman and Hall.
+
+Press, W. H., B. P. Flannery, S. A. Teukolsky, and W. T. Vetterling. 1992. Numerical Recipes in C. Cambridge, UK: Cambridge University Press.
+
+Pudil, P., J. Novovicová, and J. Kittler. 1994. “Floating Search Methods in Feature Selection.” Pattern Recognition Letters 15: 1119--1125.
+
+Rencher, A. C. 1995. Methods of Multivariate Analysis. New York: Wiley.
+
+Roweis, S. T., and L. K. Saul. 2000. “Nonlinear Dimensionality Reduction by Locally Linear Embedding.” Science 290: 2323--2326.
+
+Saul, K. K., and S. T. Roweis. 2003. “Think Globally, Fit Locally: Unsupervised Learning of Low Dimensional Manifolds.” Journal of Machine Learning Research 4: 119--155.
+
+Tenenbaum, J. B., V. de Silva, and J. C. Langford. 2000. “A Global Geometric Framework for Nonlinear Dimensionality Reduction.” Science 290: 2319-- 2323.
+
+Tipping, M. E., and C. M. Bishop. 1999. “Probabilistic Principal Components Analysis.” Journal of the Royal Statistical Society Series B 61: 611--622.
+
+Turk, M., and A. Pentland. 1991. “Eigenfaces for Recognition.” Journal of Cognitive Neuroscience 3: 71--86.
+
+Webb, A. 1999. Statistical Pattern Recognition. London: Arnold.

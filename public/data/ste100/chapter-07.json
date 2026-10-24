@@ -1,0 +1,108 @@
+{
+  "chapterNum": 7,
+  "slug": "07-clustering",
+  "title": "Clustering",
+  "sections": [
+    {
+      "id": "7.1",
+      "title": "Introduction",
+      "rules": [
+        "Clustering is an unsupervised learning task that groups unlabeled data into clusters of similar instances.",
+        "Clustering discovers natural groupings and structures within unannotated datasets.",
+        "Vector quantization uses cluster prototypes to compress large datasets and images.",
+        "Common applications include customer segmentation, image compression, document organization, and biological sequence grouping."
+      ]
+    },
+    {
+      "id": "7.2",
+      "title": "Mixture Densities",
+      "rules": [
+        "A mixture density models a probability distribution as a weighted sum of k component densities.",
+        "Each mixture component represents a distinct group or cluster.",
+        "Mixture proportions represent prior probabilities of individual components and must sum to one.",
+        "Gaussian mixture models represent each component density with a multivariate normal distribution.",
+        "The parameters of a Gaussian mixture include component priors, mean vectors, and covariance matrices."
+      ]
+    },
+    {
+      "id": "7.3",
+      "title": "k-Means Clustering",
+      "rules": [
+        "The k-means algorithm partitions data into k non-overlapping clusters.",
+        "The objective function minimizes the sum of squared Euclidean distances between points and their assigned cluster centers.",
+        "The algorithm initializes k cluster centers randomly or from selected data points.",
+        "In the assignment step, the algorithm assigns each data point to its nearest cluster center.",
+        "In the update step, the algorithm recomputes each cluster center as the mean of its assigned points.",
+        "The algorithm alternates between assignment and update steps until cluster centers stop changing.",
+        "The k-means algorithm converges to a local minimum of the objective function.",
+        "Initialization influences the final cluster configuration and solution quality."
+      ]
+    },
+    {
+      "id": "7.4",
+      "title": "Expectation-Maximization Algorithm",
+      "rules": [
+        "The Expectation-Maximization algorithm finds maximum likelihood estimates in models with hidden variables.",
+        "In mixture models, cluster assignments are latent unobserved variables.",
+        "In the expectation step, the algorithm calculates the posterior probability that each component generated each point.",
+        "These posterior probabilities represent soft cluster responsibilities.",
+        "In the maximization step, the algorithm updates component priors, means, and covariances using the responsibilities.",
+        "Unlike k-means hard assignments, Expectation-Maximization performs soft probabilistic clustering.",
+        "Every iteration of Expectation-Maximization increases or maintains the data log likelihood."
+      ]
+    },
+    {
+      "id": "7.5",
+      "title": "Mixtures of Latent Variable Models",
+      "rules": [
+        "In high dimensions, estimating full covariance matrices for each mixture component causes overfitting.",
+        "Mixtures of factor analyzers fit a local factor analysis model within each cluster.",
+        "Mixtures of principal component analyzers fit local linear subspaces within each cluster.",
+        "Each local model reduces dimensionality while capturing cluster-specific correlations."
+      ]
+    },
+    {
+      "id": "7.6",
+      "title": "Supervised Learning after Clustering",
+      "rules": [
+        "Unsupervised clustering can discover useful representations for subsequent supervised tasks.",
+        "We can replace raw input features with distances or responsibilities computed from cluster centers.",
+        "Radial basis function neural networks use cluster centers as hidden unit prototypes.",
+        "Semi-supervised learning clusters large pools of unlabeled data and labels cluster centers using few labeled instances."
+      ]
+    },
+    {
+      "id": "7.7",
+      "title": "Hierarchical Clustering",
+      "rules": [
+        "Hierarchical clustering produces a nested tree of clusters called a dendrogram.",
+        "Agglomerative clustering starts with each instance in its own cluster and iteratively merges the closest pair.",
+        "Divisive clustering starts with all instances in one cluster and iteratively splits clusters.",
+        "Single linkage measures cluster distance as the distance between the closest pair of instances.",
+        "Complete linkage measures cluster distance as the distance between the farthest pair of instances.",
+        "Average linkage measures cluster distance as the average distance between all instance pairs.",
+        "Ward's method merges clusters that produce the smallest increase in total within-cluster variance."
+      ]
+    },
+    {
+      "id": "7.8",
+      "title": "Choosing the Number of Clusters",
+      "rules": [
+        "Unsupervised learning lacks ground truth labels for evaluating validation performance directly.",
+        "An elbow plot shows cluster error against k to locate the point of diminishing returns.",
+        "Information criteria like AIC and BIC penalize mixture models for having too many parameters.",
+        "Cross-validation evaluates the likelihood of held-out validation data across different values of k.",
+        "External validation compares cluster results against known domain categories when available."
+      ]
+    },
+    {
+      "id": "7.9",
+      "title": "Notes",
+      "rules": [
+        "Arthur Dempster, Nan Laird, and Donald Rubin formalized the Expectation-Maximization algorithm in nineteen seventy-seven.",
+        "Stuart Lloyd developed the k-means algorithm at Bell Laboratories in nineteen fifty-seven.",
+        "Hierarchical clustering plays an essential role in biological taxonomy and phylogenetic trees."
+      ]
+    }
+  ]
+}

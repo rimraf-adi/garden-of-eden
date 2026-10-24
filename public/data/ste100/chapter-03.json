@@ -1,0 +1,95 @@
+{
+  "chapterNum": 3,
+  "slug": "03-bayesian-decision-theory",
+  "title": "Bayesian Decision Theory",
+  "sections": [
+    {
+      "id": "3.1",
+      "title": "Introduction",
+      "rules": [
+        "Probability theory provides a mathematical foundation for decision making under uncertainty.",
+        "In coin tossing, the outcome heads or tails is uncertain.",
+        "A random variable represents an uncertain numeric or categorical outcome.",
+        "Probability quantifies our degree of belief in an event.",
+        "Sample spaces contain all possible elementary outcomes of an experiment.",
+        "Probability values always lie between zero and one."
+      ]
+    },
+    {
+      "id": "3.2",
+      "title": "Classification",
+      "rules": [
+        "In Bayesian classification, we assign an input feature vector to one of K classes.",
+        "Prior probability P(Ci) is the probability of class Ci before observing the input.",
+        "Class-conditional probability density p(x|Ci) is the likelihood of observing input x given class Ci.",
+        "Evidence p(x) sums the joint probability over all possible classes.",
+        "Bayes' rule computes the posterior probability P(Ci|x) from the prior and likelihood.",
+        "Posterior probability measures our belief in class Ci after observing input x.",
+        "Bayes' classifier chooses the class with the highest posterior probability.",
+        "Bayes' decision rule achieves the minimum probability of classification error."
+      ]
+    },
+    {
+      "id": "3.3",
+      "title": "Losses and Risks",
+      "rules": [
+        "In practical applications, different classification errors have different financial and operational costs.",
+        "The loss matrix specifies the penalty for choosing action alpha_i when the true class is Cj.",
+        "Expected risk measures the expected loss of taking an action given input x.",
+        "The optimal Bayesian decision minimizes the expected risk.",
+        "Zero-one loss assigns zero penalty for correct decisions and one for errors.",
+        "Under zero-one loss, minimizing risk equals maximizing the posterior probability.",
+        "A reject option allows the classifier to withhold decision when uncertainty is high.",
+        "The system rejects an input if the maximum posterior probability falls below a threshold."
+      ]
+    },
+    {
+      "id": "3.4",
+      "title": "Discriminant Functions",
+      "rules": [
+        "A classifier implements a set of K discriminant functions g_i(x).",
+        "The classifier chooses the class with the maximum discriminant value.",
+        "Any monotonic transformation of posterior probabilities preserves decision boundaries.",
+        "Taking the natural logarithm of Bayes' rule gives a convenient discriminant function.",
+        "The log discriminant sums the log likelihood and the log prior.",
+        "Discriminant functions partition the input space into decision regions.",
+        "Decision boundaries separate adjacent decision regions where two discriminant functions are equal."
+      ]
+    },
+    {
+      "id": "3.5",
+      "title": "Utility Theory",
+      "rules": [
+        "Utility theory measures the value, benefit, or satisfaction of an outcome.",
+        "Utility is the negative of loss.",
+        "Expected utility is the expected reward of choosing an action in an uncertain state.",
+        "Rational decision makers choose the action that maximizes expected utility.",
+        "Maximizing expected utility is mathematically equivalent to minimizing expected risk."
+      ]
+    },
+    {
+      "id": "3.6",
+      "title": "Association Rules",
+      "rules": [
+        "An association rule has the form: If X then Y.",
+        "In retail basket analysis, X is the antecedent itemset and Y is the consequent itemset.",
+        "Support measures the proportion of transactions that contain both X and Y.",
+        "Confidence measures the conditional probability that a basket contains Y given that it contains X.",
+        "Lift measures how much more often X and Y occur together than expected by chance.",
+        "A lift value greater than one indicates a positive association between itemsets.",
+        "The Apriori algorithm finds all frequent itemsets that satisfy a minimum support threshold.",
+        "The downward closure property states that all subsets of a frequent itemset must also be frequent.",
+        "Apriori prunes candidate itemsets whose subsets are not frequent."
+      ]
+    },
+    {
+      "id": "3.7",
+      "title": "Notes",
+      "rules": [
+        "Thomas Bayes first formulated the theorem in the eighteenth century.",
+        "Bayesian decision theory provides the optimal theoretical baseline for statistical pattern recognition.",
+        "Rakesh Agrawal and colleagues developed association rule mining and the Apriori algorithm."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Parametric Methods}
+\label{chap:04-parametric-methods}
+
+Having discussed how to make optimal decisions when the uncertainty is modeled using probabilities, we now see how we can estimate these probabilities from a given training set. We start with the parametric approach for classification and regression. We discuss the semiparametric and nonparametric approaches in later chapters. We introduce bias/variance dilemma and model selection methods for trading offmodel complexity and empirical error.
+
+\section{Introduction}
+
+A statistic is any value that is calculated from a given sample. In statistical inference, we make a decision using the information provided by a sample. Our first approach is parametric where we assume that the sample is drawn from some distribution that obeys a known model, for example, Gaussian. The advantage of the parametric approach is that the model is defined up to a small number of parameters---for example, mean, variance---the sufficient statistics of the distribution. Once those parameters are estimated from the sample, the whole distribution is known. We estimate the parameters of the distribution from the given sample, plug in these estimates to the assumed model, and get an estimated distribution, which we then use to make a decision. The method we use to estimate the parameters of a distribution is maximum likelihood estimation. We also introduce Bayesian estimation, which we will continue discussing in chapter 14. We start with density estimation, which is the general case of estimating p(x). We use this for classification where the estimated densities are the class densities, p(x|Ci), and priors, P(Ci), to be able to calculate the pos-
+
+teriors, P(Ci|x), and make our decision. We then discuss regression where the estimated density is p(y|x). In this chapter, x is one-dimensional and thus the densities are univariate. We generalize to the multivariate case in chapter 5.
+
+\section{Maximum Likelihood Estimation}
+
+Let us say we have an independent and identically distributed (iid) sample X = \{xt\}Nt=1. We assume that xt are instances drawn from some known probability density family, p(x|$\theta$), defined up to parameters, $\theta$:
+
+xt $\sim$p(x|$\theta$)
+
+We want to find $\theta$ that makes sampling xt from p(x|$\theta$) as likely as likelihood possible. Because xt are independent, the likelihood of parameter $\theta$ given sample X is the product of the likelihoods of the individual points:
+
+N (4.1) l($\theta$|X) $\equiv$p(X|$\theta$) = p(xt|$\theta$) t=1
+
+maximum likelihood In maximum likelihood estimation, we are interested in finding $\theta$ that estimation makes X the most likely to be drawn. We thus search for $\theta$ that maximizes the likelihood, which we denote by l($\theta$|X). We can maximize the log of the likelihood without changing the value where it takes its maximum. log($\cdot$) converts the product into a sum and leads to further computational simplification when certain densities are assumed, for example, log likelihood containing exponents. The log likelihood is defined as
+
+N (4.2) L($\theta$|X) $\equiv$log l($\theta$|X) = log p(xt|$\theta$) t=1
+
+Let us now see some distributions that arise in the applications we are interested in. If we have a two-class problem, the distribution we use is Bernoulli. When there are K > 2 classes, its generalization is the multinomial. Gaussian (normal) density is the one most frequently used for modeling class-conditional input densities with numeric input. For these three distributions, we discuss the maximum likelihood estimators (MLE) of their parameters.
+
+\subsection{Bernoulli Density}
+
+In a Bernoulli distribution, there are two outcomes: An event occurs or it does not; for example, an instance is a positive example of the class, or it is not. The event occurs and the Bernoulli random variable X takes the value 1 with probability p, and the nonoccurrence of the event has probability 1 $-$p and this is denoted by X taking the value 0. This is written as
+
+(4.3) P(x) = px(1 $-$p)1$-$x, x $\in$\{0, 1\}
+
+The expected value and variance can be calculated as
+
+E[X] = xp(x) = 1 $\cdot$ p + 0 $\cdot$ (1 $-$p) = p x Var(X) = (x $-$E[X])2p(x) = p(1 $-$p) x
+
+p is the only parameter and given an iid sample X = \{xt\}Nt=1, where xt $\in$\{0, 1\}, we want to calculate its estimator, \textasciicircum{}p. The log likelihood is
+
+N L(p|X) = log p(xt)(1 $-$p)(1$-$xt)
+
+t=1 ( )
+
+= xt log p + (N $-$ xt )log(1 $-$p) t t
+
+\textasciicircum{}p that maximizes the log likelihood can be found by solving for dL/dp = 0. The hat (circumflex) denotes that it is an estimate.
+
+t xt (4.4) \textasciicircum{}p = N
+
+The estimate for p is the ratio of the number of occurrences of the event to the number of experiments. Remembering that if X is Bernoulli with p, E[X] = p, and, as expected, the maximum likelihood estimator of the mean is the sample average. Note that the estimate is a function of the sample and is another random variable; we can talk about the distribution of \textasciicircum{}pi given different Xi sampled from the same p(x). For example, the variance of the distribution of \textasciicircum{}pi is expected to decrease as N increases; as the samples get bigger, they (and hence their averages) get more similar.
+
+\subsection{Multinomial Density}
+
+Consider the generalization of Bernoulli where instead of two states, the outcome of a random event is one of K mutually exclusive and exhaustive states, for example, classes, each of which has a probability of occurring pi with Ki=1 pi = 1. Let x1, x2, . . . , xK are the indicator variables where xi is 1 if the outcome is state i and 0 otherwise.
+
+K (4.5) P(x1, x2, . . . , xK) = pxii i=1
+
+Let us say we do N such independent experiments with outcomes X = \{xt\}Nt=1 where
+
+1 if experiment t chooses state i xti = 0 otherwise with i xti = 1. The MLE of pi is t xti (4.6) \textasciicircum{}pi = N The estimate for the probability of state i is the ratio of experiments with outcome of state i to the total number of experiments. There are two ways one can get this: If xi are 0/1, then they can be thought of as K separate Bernoulli experiments. Or, one can explicitly write the log likelihood and find pi that maximize it (subject to the condition that i pi = 1).
+
+\subsection{Gaussian (Normal) Density}
+
+X is Gaussian (normal) distributed with mean E[X] $\equiv$$\mu$ and variance Var(X) $\equiv$$\sigma$ 2, denoted as N ($\mu$, $\sigma$ 2), if its density function is 1 $-$$\mu$)2 (4.7) p(x) = $\sqrt{}$ exp $-$(x , $-$$\infty$< x < $\infty$ 2$\pi$$\sigma$ 2$\sigma$ 2 Given a sample X = \{xt\}Nt=1 with xt $\sim$N ($\mu$, $\sigma$ 2), the log likelihood is t(xt $-$$\mu$)2 L($\mu$, $\sigma$|X) = $-$N log(2$\pi$) $-$N log $\sigma$ $-$ 2 2$\sigma$ 2 The MLE that we find by taking the partial derivatives of the log likelihood and setting them equal to 0 are t xt (4.8) m = N t(xt $-$m)2 s2 = N
+
+We follow the usual convention and use Greek letters for the population parameters and Roman letters for their estimates from the sample. Sometimes, the hat is also used to denote the estimator, for example, \textasciicircum{}$\mu$.
+
+\section{Evaluating an Estimator: Bias and Variance}
+
+Let X be a sample from a population specified up to a parameter $\theta$, and let d = d(X) be an estimator of $\theta$. To evaluate the quality of this estimator, we can measure how much it is different from $\theta$, that is, (d(X) $-$$\theta$)2. But since it is a random variable (it depends on the sample), we need to mean square error average this over possible X and consider r(d, $\theta$), the mean square error of the estimator d defined as
+
+(4.9) r(d, $\theta$) = E[(d(X) $-$$\theta$)2]
+
+bias The bias of an estimator is given as
+
+(4.10) b$\theta$(d) = E[d(X)] $-$$\theta$
+
+unbiased estimator If b$\theta$(d) = 0 for all $\theta$ values, then we say that d is an unbiased estimator of $\theta$. For example, with xt drawn from some density with mean $\mu$, the sample average, m, is an unbiased estimator of the mean, $\mu$, because t xt 1 N$\mu$ E[m] = E = E[xt] = = $\mu$ N N N t
+
+This means that though on a particular sample, m may be different from $\mu$, if we take many such samples, Xi, and estimate many mi = m(Xi), their average will get close to $\mu$ as the number of such samples increases. m is also a consistent estimator, that is, Var(m) $\to$0 as N $\to$$\infty$. t xt 1 N$\sigma$ 2 $\sigma$ 2 Var(m) = Var = Var(xt) = = N N2 N2 N t
+
+As N, the number of points in the sample, gets larger, m deviates less from $\mu$. Let us now check, s2, the MLE of $\sigma$ 2: t(xt $-$m)2 t(xt)2 $-$Nm2 s2 = = N N t E[(xt)2] $-$N $\cdot$ E[m2] E[s2] = N Given that Var(X) = E[X2] $-$E[X]2, we get E[X2] = Var(X) + E[X]2, and we can write
+
+E[(xt)2] = $\sigma$ 2 + $\mu$2 and E[m2] = $\sigma$ 2/N + $\mu$2
+
+Then, plugging these in, we get
+
+N($\sigma$ 2 + $\mu$2) $-$N($\sigma$ 2/N + $\mu$2) N $-$1 2 2 E[s2] = = $\sigma$ /= $\sigma$ N N
+
+which shows that s2 is a biased estimator of $\sigma$ 2. (N/(N $-$1))s2 is an unbiased estimator. However when N is large, the difference is negligable. This is an example of an asymptotically unbiased estimator whose bias goes to 0 as N goes to infinity. The mean square error can be rewritten as follows---d is short for d(X):
+
+r(d, $\theta$) = E (d $-$$\theta$)2
+
+= E (d $-$E[d] + E[d] $-$$\theta$)2
+
+= E (d $-$E[d])2 + (E[d] $-$$\theta$)2 + 2(E[d] $-$$\theta$)(d $-$E[d])
+
+= E (d $-$E[d])2 + E (E[d] $-$$\theta$)2 + 2E [(E[d] $-$$\theta$)(d $-$E[d])]
+
+= E (d $-$E[d])2 + (E[d] $-$$\theta$)2 + 2(E[d] $-$$\theta$)E[d $-$E[d]]
+
+(4.11) = E (d $-$E[d])2 + (E[d] $-$$\theta$)2
+
+variance bias2
+
+The two equalities follow because E[d] is a constant and therefore E[d]$-$ $\theta$ also is a constant, and because E[d $-$E[d]] = E[d] $-$E[d] = 0. In variance equation 4.11, the first term is the variance that measures how much, on average, di vary around the expected value (going from one dataset to another), and the second term is the bias that measures how much the expected value varies from the correct value $\theta$ (figure 4.1). We then write error as the sum of these two terms, the variance and the square of the bias:
+
+(4.12) r(d, $\theta$) = Var(d) + (b$\theta$(d))2
+
+\section{The Bayes’ Estimator}
+
+Sometimes, before looking at a sample, we (or experts of the application) may have some prior information on the possible value range that a parameter, $\theta$, may take. This information is quite useful and should be used, especially when the sample is small. The prior information does not tell us exactly what the parameter value is (otherwise we would not
+
+variance
+
+di
+
+E[d] $\theta$
+
+bias
+
+Figure 4.1 $\theta$ is the parameter to be estimated. di are several estimates (denoted by ‘$\times$’) over different samples Xi. Bias is the difference between the expected value of d and $\theta$. Variance is how much di are scattered around the expected value. We would like both to be small.
+
+need the sample), and we model this uncertainty by viewing $\theta$ as a random variable and by defining a prior density for it, p($\theta$). For example, let us say we are told that $\theta$ is approximately normal and with 90 percent confidence, $\theta$ lies between 5 and 9, symmetrically around 7. Then we can write p($\theta$) to be normal with mean 7 and because
+
+$\theta$ $-$$\mu$ P\{$-$1.64 < < 1.64\} = 0.9 $\sigma$ P\{$\mu$ $-$1.64$\sigma$ < $\theta$ < $\mu$ + 1.64$\sigma$\} = 0.9
+
+we take 1.64$\sigma$ = 2 and use $\sigma$ = 2/1.64. We can thus assume p($\theta$) $\sim$ N (7, (2/1.64)2). prior density The prior density, p($\theta$), tells us the likely values that $\theta$ may take before looking at the sample. We combine this with what the sample data tells us, namely, the likelihood density, p(X|$\theta$), using Bayes’ rule, and get the posterior density posterior density of $\theta$, which tells us the likely $\theta$ values after looking at the sample:
+
+p(X|$\theta$)p($\theta$) p(X|$\theta$)p($\theta$) (4.13) p($\theta$|X) = = p(X) p(X|$\theta$')p($\theta$')d$\theta$'
+
+For estimating the density at x, we have
+
+p(x|X) = p(x, $\theta$|X)d$\theta$
+
+= p(x|$\theta$, X)p($\theta$|X)d$\theta$
+
+= p(x|$\theta$)p($\theta$|X)d$\theta$
+
+p(x|$\theta$, X) = p(x|$\theta$) because once we know $\theta$, the sufficient statistics, we know everything about the distribution. Thus we are taking an average over predictions using all values of $\theta$, weighted by their probabilities. If we are doing a prediction in the form, y = g(x|$\theta$), as in regression, then we have
+
+y = g(x|$\theta$)p($\theta$|X)d$\theta$
+
+Evaluating the integrals may be quite difficult, except in cases where the posterior has a nice form. When the full integration is not feasible, we reduce it to a single point. If we can assume that p($\theta$|X) has a narmaximum a row peak around its mode, then using the maximum a posteriori (MAP) posteriori estimate estimate will make the calculation easier:
+
+(4.14) $\theta$MAP = arg max p($\theta$|X) $\theta$
+
+thus replacing a whole density with a single point, getting rid of the integral and using as
+
+p(x|X) = p(x|$\theta$MAP)
+
+yMAP = g(x|$\theta$MAP)
+
+If we have no prior reason to favor some values of $\theta$, then the prior density is flat and the posterior will have the same form as the likelihood, p(X|$\theta$), and the MAP estimate will be equivalent to the maximum likelihood estimate (section 4.2) where we have
+
+(4.15) $\theta$ML = arg max p(X|$\theta$) $\theta$
+
+Bayes’ estimator Another possibility is the Bayes’ estimator, which is defined as the expected value of the posterior density
+
+(4.16) $\theta$Bayes = E[$\theta$|X] = $\theta$p($\theta$|X)d$\theta$
+
+The reason for taking the expected value is that the best estimate of a random variable is its mean. Let us say $\theta$ is the variable we want to predict with E[$\theta$] = $\mu$. It can be shown that if c, a constant value, is our estimate of $\theta$, then
+
+E[($\theta$ $-$c)2] = E[($\theta$ $-$$\mu$ + $\mu$ $-$c)2] (4.17) = E[($\theta$ $-$$\mu$)2] + ($\mu$ $-$c)2
+
+which is minimum if c is taken as $\mu$. In the case of a normal density, the mode is the expected value and if p($\theta$|X) is normal, then $\theta$Bayes = $\theta$MAP. As an example, let us suppose xt $\sim$N ($\theta$, $\sigma$ 2) and $\theta$ $\sim$N ($\mu$0, $\sigma$ 02 ), where $\mu$0, $\sigma$ 02 , and $\sigma$ 2 are known:
+
+1 t(xt $-$$\theta$)2 p(X|$\theta$) = exp $-$ (2$\pi$)N/2$\sigma$ N 2$\sigma$ 2 1 $-$$\mu$0)2 p($\theta$) = $\sqrt{}$ exp $-$($\theta$ 2 2$\pi$$\sigma$0 2$\sigma$ 0
+
+It can be shown that p($\theta$|X) is normal with
+
+N/$\sigma$ 2 1/$\sigma$ 02 m +(4.18) E[$\theta$|X] = $\mu$0 2 2 2 2 N/$\sigma$ + 1/$\sigma$ 0 N/$\sigma$ + 1/$\sigma$ 0
+
+Thus the Bayes’ estimator is a weighted average of the prior mean $\mu$0 and the sample mean m, with weights being inversely proportional to their variances. As the sample size N increases, the Bayes’ estimator gets closer to the sample average, using more the information provided by the sample. When $\sigma$ 02 is small, that is, when we have little prior uncertainty regarding the correct value of $\theta$, or when N is small, our prior guess $\mu$0 has a higher effect. Note that both MAP and Bayes’ estimators reduce the whole posterior density to a single point and lose information unless the posterior is unimodal and makes a narrow peak around these points. With computation getting cheaper, we can use a Monte Carlo approach that generates samples from the posterior density (Andrieu et al. 2003). There also are approximation methods one can use to evaluate the full integral. We are going to discuss Bayesian estimation in more detail in chapter 14.
+
+\section{Parametric Classification}
+
+We saw in chapter 3 that using the Bayes’ rule, we can write the posterior probability of class Ci as
+
+p(x|Ci)P(Ci) p(x|Ci)P(Ci) (4.19) P(Ci|x) = = K p(x) k=1 p(x|Ck)P(Ck)
+
+and use the discriminant function
+
+gi(x) = p(x|Ci)P(Ci)
+
+or equivalently
+
+(4.20) gi(x) = log p(x|Ci) + log P(Ci)
+
+If we can assume that p(x|Ci) are Gaussian
+
+1 $-$$\mu$i)2 (4.21) p(x|Ci) = $\sqrt{}$ exp $-$(x 2 2$\pi$$\sigma$i 2$\sigma$ i
+
+equation 4.20 becomes
+
+$-$$\mu$i)2 (4.22) gi(x) = $-$1 log 2$\pi$ $-$log $\sigma$i $-$(x 2 + log P(Ci) 2 2$\sigma$ i
+
+Let us see an example: Assume we are a car company selling K different cars, and for simplicity, let us say that the sole factor that affects a customer’s choice is his or her yearly income, which we denote by x. Then P(Ci) is the proportion of customers who buy car type i. If the yearly income distributions of such customers can be approximated with a Gaussian, then p(x|Ci), the probability that a customer who bought car type i has income x, can be taken N ($\mu$i, $\sigma$ i2 ), where $\mu$i is the mean income of such customers and $\sigma$ i2 is their income variance. When we do not know P(Ci) and p(x|Ci), we estimate them from a sample and plug in their estimates to get the estimate for the discriminant function. We are given a sample
+
+(4.23) X = \{xt, rt\}Nt=1
+
+where x $\in$$\mathbb{R}$is one-dimensional and r $\in$\{0, 1\}K such that
+
+1 if xt $\in$Ci (4.24) rti = 0 if xt $\in$Ck, k /= i
+
+For each class separately, the estimates for the means and variances are (relying on equation 4.8)
+
+t xtrti (4.25) mi = t rti t(xt $-$mi)2rti (4.26) s2i = t rti
+
+and the estimates for the priors are (relying on equation 4.6)
+
+t rti (4.27) \textasciicircum{}P(Ci) = N
+
+(a) Likelihoods 0.4
+
+0.3
+
+0.2 p(x|Ci)
+
+0.1
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10 x
+
+(b) Posteriors with equal priors
+
+0.8 p(Ci|x) 0.6 0.4
+
+0.2
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10 x
+
+Figure 4.2 (a) Likelihood functions and (b) posteriors with equal priors for two classes when the input is one-dimensional. Variances are equal and the posteriors intersect at one point, which is the threshold of decision.
+
+Plugging these estimates into equation 4.22, we get $-$mi)2(4.28) gi(x) = $-$1 log 2$\pi$ $-$log si $-$(x + log \textasciicircum{}P(Ci) 2 2s2i The first term is a constant and can be dropped because it is common in all gi(x). If the priors are equal, the last term can also be dropped. If we can further assume that variances are equal, we can write
+
+(4.29) gi(x) = $-$(x $-$mi)2
+
+and thus we assign x to the class with the nearest mean:
+
+Choose Ci if |x $-$mi| = min |x $-$mk| k
+
+With two adjacent classes, the midpoint between the two means is the threshold of decision (see figure 4.2).
+
+g1(x) = g2(x)
+
+(a) Likelihoods 0.4
+
+0.2 p(x|Ci)
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10 x (b) Posteriors with equal priors
+
+0.5 p(Ci|x)
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10 x (c) Expected risks
+
+0.5 R($\alpha$i|x)
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10 x
+
+Figure 4.3 (a) Likelihood functions and (b) posteriors with equal priors for two classes when the input is one-dimensional. Variances are unequal and the posteriors intersect at two points. In (c), the expected risks are shown for the two classes and for reject with $\lambda$ = 0.2 (section 3.3).
+
+(x $-$m1)2 = (x $-$m2)2 m1 + m2 x =
+
+When the variances are different, there are two thresholds (see figure 4.3), which can be calculated easily (exercise 4). If the priors are different, this has the effect of moving the threshold of decision toward the mean of the less likely class. Here we use the maximum likelihood estimators for the parameters but if we have some prior information about them, for example, for the means, we can use a Bayesian estimate of p(x|Ci) with prior on $\mu$i. One note of caution is necessary here: When x is continuous, we should not immediately rush to use Gaussian densities for p(x|Ci). The classification algorithm---that is, the threshold points---will be wrong if the densities are not Gaussian. In statistical literature, tests exist to check for
+
+normality, and such a test should be used before assuming normality. In the case of one-dimensional data, the easiest test is to plot the histogram and to check visually whether the density is bell-shaped, namely, unimodal and symmetric around the center. This is the likelihood-based approach to classification where we use data to estimate the densities separately, calculate posterior densities using Bayes’ rule, and then get the discriminant. In later chapters, we discuss the discriminant-based approach where we bypass the estimation of densities and directly estimate the discriminants.
+
+\section{Regression}
+
+In regression, we would like to write the numeric output, called the dependent variable, as a function of the input, called the independent variable. We assume that the numeric output is the sum of a deterministic function of the input and random noise:
+
+r = f(x) + $\epsilon$
+
+where f(x) is the unknown function, which we would like to approximate by our estimator, g(x|$\theta$), defined up to a set of parameters $\theta$. If we assume that $\epsilon$ is zero mean Gaussian with constant variance $\sigma$ 2, namely, $\epsilon$ $\sim$N (0, $\sigma$ 2), and placing our estimator g($\cdot$) in place of the unknown function f($\cdot$), we have (figure 4.4)
+
+(4.30) p(r|x) $\sim$N (g(x|$\theta$), $\sigma$ 2)
+
+We again use maximum likelihood to learn the parameters $\theta$. The pairs (xt, rt) in the training set are drawn from an unknown joint probability density p(x, r), which we can write as
+
+p(x, r) = p(r|x)p(x)
+
+p(r|x) is the probability of the output given the input, and p(x) is the input density. Given an iid sample X = \{xt, rt\}Nt=1, the log likelihood is
+
+N L($\theta$|X) = log p(xt, rt) t=1
+
+N N = log p(rt|xt) + log p(xt) t=1 t=1
+
+Figure 4.4 Regression assumes 0 mean Gaussian noise added to the model; here, the model is linear.
+
+We can ignore the second term since it does not depend on our estimator, and we have
+
+N 1 $-$g(xt|$\theta$)]2 (4.31) L($\theta$|X) = log $\sqrt{}$ exp $-$[rt 2$\pi$$\sigma$ 2$\sigma$ 2 t=1 [ ] N N 1 1 = log $\sqrt{}$ exp [$-$ [rt $-$g(xt|$\theta$)]2 ] 2$\pi$$\sigma$ 2$\sigma$ 2 t=1 $\sqrt{}$ 1 N = $-$N log( 2$\pi$$\sigma$) $-$ [rt $-$g(xt|$\theta$)]2 2$\sigma$ 2 t=1
+
+The first term is independent of the parameters $\theta$ and can be dropped, as can the factor 1/$\sigma$ 2. Maximizing this is equivalent to minimizing
+
+N (4.32) E($\theta$|X) = [rt $-$g(xt|$\theta$)]2 t=1
+
+which is the most frequently used error function, and $\theta$ that minimize it least squares are called the least squares estimates. This is a transformation frequently estimate done in statistics: When the likelihood l contains exponents, instead of maximizing l, we define an error function, E = $-$log l, and minimize it. linear regression In linear regression, we have a linear model
+
+g(xt|w1, w0) = w1xt + w0
+
+and taking the derivative of the sum of squared errors (equation 4.32) with respect to w1 and w0, we have two equations in two unknowns
+
+rt = Nw0 + w1 xt t t rtxt = w0 xt + w1 (xt)2 t t t
+
+which can be written in vector-matrix form as Aw = y where
+
+N t xt w0 t rt A = , w = , y = t xt t(xt)2 w1 t rtxt
+
+and can be solved as w = A$-$1y. polynomial In the general case of polynomial regression, the model is a polynomial regression in x of order k
+
+g(xt|wk, . . . , w2, w1, w0) = wk(xt)k + $\cdot$ $\cdot$ $\cdot$ + w2(xt)2 + w1xt + w0
+
+The model is still linear with respect to the parameters and taking the derivatives, we get k+1 equations in k+1 unknowns, which can be written in vector matrix form Aw = y where we have [ ] N t xt t(xt)2 $\cdot$ $\cdot$ $\cdot$ t(xt)k t xt t(xt)2 t(xt)3 $\cdot$ $\cdot$ $\cdot$ t(xt)k+1 A = |||||[ ... |||||] t(xt)k t(xt)k+1 t(xt)k+2 $\cdot$ $\cdot$ $\cdot$ t(xt)2k [ ] [ ] w0 t rt w1 t rtxt w = w2 , y = t rt(xt)2 |||||||[ ... |||||||] |||||||[ ... |||||||] wk t rt(xt)k
+
+We can write A = DTD and y = DTr where [ ] [ ] 1 x1 (x1)2 $\cdot$ $\cdot$ $\cdot$ (x1)k r1 1 x2 (x2)2 $\cdot$ $\cdot$ $\cdot$ (x2)k r2 D = , r = |||||[ ... |||||] |||||[ ... |||||] 1 xN (xN)2 $\cdot$ $\cdot$ $\cdot$ (xN)k rN
+
+and we can then solve for the parameters as
+
+(4.33) w = (DTD)$-$1DTr
+
+Assuming Gaussian distributed error and maximizing likelihood corresponds to minimizing the sum of squared errors. Another measure is the relative square relative square error (RSE): error t[rt $-$g(xt|$\theta$)]2 (4.34) ERSE = t(rt $-$r)2
+
+If ERSE is close to 1, then our prediction is as good as predicting by the average; as it gets closer to 0, we have better fit. If ERSE is close to 1, this means that using a model based on input x does not work better than using the average which would be our estimator if there were no x; if ERSE is close to 0, input x helps. coefficient of To check whether regression makes a good fit, a measure is the coeffidetermination cient of determination that is
+
+R2 = 1 $-$ERSE
+
+and for regression to be considered useful, we require R2 to be close to 1. Remember that for best generalization, we should adjust the complexity of our learner model to the complexity of the data. In polynomial regression, the complexity parameter is the order of the fitted polynomial, and therefore we need to find a way to choose the best order that minimizes the generalization error, that is, tune the complexity of the model to best fit the complexity of the function inherent in the data.
+
+\section{Tuning Model Complexity: Bias/Variance Dilemma}
+
+Let us say that a sample X = \{xt, rt\} is drawn from some unknown joint probability density p(x, r). Using this sample, we construct our estimate g($\cdot$). The expected square error (over the joint density) at x can be written as (using equation 4.17)
+
+(4.35) E[(r $-$g(x))2|x] = E[(r $-$E[r|x])2|x] + (E[r|x] $-$g(x))2
+
+noise squared error
+
+The first term on the right is the variance of r given x; it does not depend on g($\cdot$) or X. It is the variance of noise added, $\sigma$ 2. This is the part of error that can never be removed, no matter what estimator we use. The second term quantifies how much g(x) deviates from the regression function, E[r|x]. This does depend on the estimator and the training set.
+
+It may be the case that for one sample, g(x) may be a very good fit; and for some other sample, it may make a bad fit. To quantify how well an estimator g($\cdot$) is, we average over possible datasets. The expected value (average over samples X, all of size N and drawn from the same joint density p(r, x)) is (using equation 4.11)
+
+(4.36) EX[(E[r|x]$-$g(x))2|x] = (E[r|x] $-$EX[g(x)])2 + EX[(g(x) $-$EX[g(x)])2]
+
+bias variance
+
+As we discussed before, bias measures how much g(x) is wrong disregarding the effect of varying samples, and variance measures how much g(x) fluctuate around the expected value, E[g(x)], as the sample varies. We want both to be small. Let us see a didactic example: To estimate the bias and the variance, we generate a number of datasets Xi = \{xti, rti \}, i = 1, . . . , M, from some known f($\cdot$) with added noise, use each dataset to form an estimator gi($\cdot$), and calculate bias and variance. Note that in real life, we cannot do this because we do not know f($\cdot$) or the parameters of the added noise. Then E[g(x)] is estimated by the average over gi($\cdot$):
+
+M g(x) = gi(x) M i=1
+
+Estimated bias and variance are
+
+Bias2(g) = [g(xt) $-$f(xt)]2 N t Variance(g) = [gi(xt) $-$g(xt)]2 NM t i
+
+Let us see some models of different complexity: The simplest is a constant fit
+
+gi(x) = 2
+
+This has no variance because we do not use the data and all gi(x) are the same. But the bias is high, unless of course f(x) is close to 2 for all x. If we take the average of r t in the sample
+
+gi(x) = rti /N t
+
+instead of the constant 2, this decreases the bias because we would expect the average in general to be a better estimate. But this increases the
+
+(a) Function and data (b) Order 1 5 5
+
+0 0
+
+$-$5 $-$5 0 1 2 3 4 5 0 1 2 3 4 5
+
+(c) Order 3 (d) Order 5 5 5
+
+0 0
+
+$-$5 $-$5 0 1 2 3 4 5 0 1 2 3 4 5
+
+Figure 4.5 (a) Function, f(x) = 2 sin(1.5x), and one noisy (N (0, 1)) dataset sampled from the function. Five samples are taken, each containing twenty instances. (b), (c), (d) are five polynomial fits, namely, gi($\cdot$), of order 1, 3, and 5. For each case, dotted line is the average of the five fits, namely, g($\cdot$).
+
+variance because the different samples Xi would have different average values. Normally in this case the decrease in bias would be larger than the increase in variance, and error would decrease. In the context of polynomial regression, an example is given in figure 4.5. As the order of the polynomial increases, small changes in the dataset cause a greater change in the fitted polynomials; thus variance increases. But a complex model on the average allows a better fit to the underlying function; thus bias decreases (see figure 4.6). This is called bias/variance the bias/variance dilemma and is true for any machine learning system dilemma and not only for polynomial regression (Geman, Bienenstock, and Doursat 1992). To decrease bias, the model should be flexible, at the risk of
+
+3.5
+
+2.5
+
+Error 2
+
+Error
+
+1.5
+
+Bias
+
+0.5 Variance
+
+1 2 3 4 5 Order
+
+Figure 4.6 In the same setting as that of figure 4.5, using one hundred models instead of five, bias, variance, and error for polynomials of order 1 to 5. Order 1 has the smallest variance. Order 5 has the smallest bias. As the order is increased, bias decreases but variance increases. Order 3 has the minimum error.
+
+having high variance. If the variance is kept low, we may not be able to make a good fit to data and have high bias. The optimal model is the one that has the best trade-offbetween the bias and the variance. If there is bias, this indicates that our model class does not contain underfitting the solution; this is underfitting. If there is variance, the model class is overfitting too general and also learns the noise; this is overfitting. If g($\cdot$) is of the same hypothesis class with f($\cdot$), for example, a polynomial of the same order, we have an unbiased estimator, and estimated bias decreases as the number of models increase. This shows the error-reducing effect of choosing the right model (which we called inductive bias in chapter 2--- the two uses of “bias” are different but not unrelated). As for variance, it also depends on the size of the training set; the variability due to sample decreases as the sample size increases. To sum up, to get a small value of error, we should have the proper inductive bias (to get small bias in the statistical sense) and have a large enough dataset so that the variability of the model can be constrained with the data.
+
+Note that when the variance is large, bias is low: this indicates that g(x) is a good estimator. So to get a small value of error, we can take a large number of high-variance models and use their average as our estimator. We will discuss such approaches for model combination in chapter 17.
+
+\section{Model Selection Procedures}
+
+There are a number of procedures we can use to fine-tune model complexity. cross-validation In practice, the method we use to find the optimal complexity is crossvalidation. We cannot calculate bias and variance for a model, but we can calculate the total error. Given a dataset, we divide it into two parts as training and validation sets, train candidate models of different complexities, and test their error on the validation set left out during training. As the model complexity increases, training error keeps decreasing. The error on the validation set decreases up to a certain level of complexity, then stops decreasing or does not decrease further significantly, or even increases if there is significant noise. This “elbow” corresponds to the optimal complexity level (see figure 4.7). In real life, we cannot calculate bias and hence error as we do in figure 4.6; the validation error in figure 4.7 is an estimate of that except that it also contains noise: Even if we have the right model that there is no bias and large enough data that variance is negligable, there may still be nonzero validation error. Note that the validation error of figure 4.7 is not as V-shaped as the error of figure 4.6 because the former uses more training data and we know that we can constrain variance with more data. Indeed we see in figure 4.5(d) that even the fifth-order polynomial behaves like a third-order where there is data; for example, at the two extremes where there are fewer data points, it is not as accurate. regularization Another approach that is used frequently is regularization (Breiman 1998). In this approach, we write an augmented error function
+
+(4.37) E' = error on data + $\lambda$ $\cdot$ model complexity
+
+This has a second term that penalizes complex models with large variance, where $\lambda$ gives the weight of this penalty. When we minimize the augmented error function instead of the error on data only, we penalize complex models and thus decrease variance. If $\lambda$ is taken too large, only very simple models are allowed and we risk introducing bias. $\lambda$ is optimized using cross-validation.
+
+(a) Data and fitted polynomials
+
+$-$5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
+
+(b) Error vs. polynomial order Training Validation 2.5
+
+1.5
+
+0.5 1 2 3 4 5 6 7 8
+
+Figure 4.7 In the same setting as that of figure 4.5, training and validation sets (each containing 50 instances) are generated. (a) Training data and fitted polynomials of order from 1 to 8. (b) Training and validation errors as a function of the polynomial order. The “elbow” is at 3.
+
+Another way we can view equation 4.37 is by regarding E' as the error on new test data. The first term on the right is the training error and the second is an optimism term estimating the discrepancy between training and test error (Hastie, Tibshirani, and Friedman 2001). Methods such AIC as Akaike’s information criterion (AIC) and Bayesian information criterion BIC (BIC) work by estimating this optimism and adding it to the training error to estimate test error, without any need for validation. The magnitude of this optimism term increases linearly with d, the number of inputs (here, it is k+1), and decreases as N, training set size, increases; it also increases with $\sigma$ 2, the variance of the noise added (which we can estimate from the error of a low-bias model). For models that are not linear, d should be
+
+replaced with the “effective” number of parameters. structural risk Structural risk minimization (SRM) (Vapnik 1995) uses a set of models minimization ordered in terms of their complexities. An example is polynomials of increasing order. The complexity is generally given by the number of free parameters. VC dimension is another measure of model complexity. In equation 4.37, we can have a set of decreasing $\lambda$i to get a set of models ordered in increasing complexity. Model selection by SRM then corresponds to finding the model simplest in terms of order and best in terms of empirical error on the data. minimum Minimum description length (MDL) (Rissanen 1978; Grünwald 2007) description length uses an information theoretic measure. Kolmogorov complexity of a dataset is defined as the shortest description of the data. If the data is simple, it has a short complexity; for example, if it is a sequence of ‘0’s, we can just write ‘0’ and the length of the sequence. If the data is completely random, then we cannot have any description of the data shorter than the data itself. If a model is appropriate for the data, then it has a good fit to the data, and instead of the data, we can send/store the model description. Out of all the models that describe the data, we want to have the simplest model so that it lends itself to the shortest description. So we again have a trade-offbetween how simple the model is and how well it explains the data. Bayesian model Bayesian model selection is used when we have some prior knowledge selection about the appropriate class of approximating functions. This prior knowledge is defined as a prior distribution over models, p(model). Given the data and assuming a model, we can calculate p(model|data) using Bayes’ rule:
+
+p(data|model)p(model) (4.38) p(model|data) = p(data)
+
+p(model|data) is the posterior probability of the model given our prior subjective knowledge about models, namely, p(model), and the objective support provided by the data, namely, p(data|model). We can then choose the model with the highest posterior probability, or take an average over all models weighted by their posterior probabilities. If we take the log of equation 4.38, we get
+
+(4.39) log p(model|data) = log p(data|model) + log p(model) $-$c
+
+which has the form of equation 4.37; the log likelihood of the data is the training error and the log of the prior is the penalty term. For example,
+
+$-$1
+
+$-$2
+
+$-$3
+
+$-$4
+
+$-$5 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
+
+Figure 4.8 In the same setting as that of figure 4.5, polynomials of order 1 to 4 are fitted. The magnitude of coefficients increase as the order of the polynomial increases. They are as follows: 1 : [$-$0.0769, 0.0016]T, 2 : [0.1682, $-$0.6657, 0.0080]T, 3 : [0.4238, $-$2.5778, 3.4675, $-$0.0002]T, 4 : [$-$0.1093, 1.4356, $-$5.5007, 6.0454, $-$0.0019]T.
+
+if we have a regression model and use the prior p(w) $\sim$N (0, 1/$\lambda$), the MAP corresponds to the minimum of
+
+(4.40) E = [rt $-$g(xt|w)]2 + $\lambda$ w2i t i
+
+That is, we look for wi that both decrease error and are also as close as possible to 0, and the reason we want them close to 0 is then because the fitted polynomial will be smoother. As the polynomial order increases, to get a better fit to the data, the function will go up and down which will mean coefficients moving away from 0 (see figure 4.8); when we add this penalty, we force a flatter, smoother fit. How much we penalize depends on $\lambda$, which is the inverse of the variance of the prior, that is, how much we expect the weights a priori to be away from 0. That is, having such a prior is equivalent to forcing parameters to be close to 0. We are going to talk about this in more detail in chapter 14. That is, when the prior is chosen such that we give higher probabilities to simpler models (following Occam’s razor), the Bayesian approach, regularization, SRM, and MDL are equivalent. Cross-validation is different from all other methods for model selection in that it makes no prior assumption about the model. If there is a large enough validation dataset,
+
+it is the best approach. The other models become useful when the data sample is small.
+
+\section{Notes}
+
+A good source on the basics of maximum likelihood and Bayesian estimation is Ross 1987. Many pattern recognition textbooks discuss classification with parametric models (e.g., MacLachlan 1992; Devroye, Györfi, and Lugosi 1996; Webb 1999; Duda, Hart, and Stork 2001). Tests for checking univariate normality can be found in Rencher 1995. Geman, Bienenstock, and Doursat (1992) discuss bias and variance decomposition for several learning models, which we discuss in later chapters. Bias/variance decomposition is for sum of squared loss and is for regression; such a nice additive splitting of error into bias, variance and noise is not possible for 0/1 loss, because in classification, there is error only if we accidentally move to the other side of the boundary. For a two-class problem, if the correct posterior is 0.7 and if our estimate is 0.8, there is no error; we have error only if our estimate is less than 0.5. Various researchers proposed different definitions of bias and variance for classification; see Friedman 1997 for a review.
+
+\section{Exercises}
+
+1. Write the code that generates a Bernoulli sample with given parameter p, and the code that calculates \textasciicircum{}p from the sample.
+
+2. Write the log likelihood for a multinomial sample and show equation 4.6.
+
+3. Write the code that generates a normal sample with given $\mu$ and $\sigma$, and the code that calculates m and s from the sample. Do the same using the Bayes’ estimator assuming a prior distribution for $\mu$. 4. Given two normal distributions p(x|C1) $\sim$N ($\mu$1, $\sigma$12 ) and p(x|C2) $\sim$N ($\mu$2, $\sigma$22 ) and P(C1) and P(C2), calculate the Bayes’ discriminant points analytically.
+
+5. What is the likelihood ratio p(x|C1) p(x|C2)
+
+in the case of Gaussian densities?
+
+6. For a two-class problem, generate normal samples for two classes with different variances, then use parametric classification to estimate the discriminant points. Compare these with the theoretical values.
+
+7. Assume a linear model and then add 0-mean Gaussian noise to generate a sample. Divide your sample into two as training and validation sets. Use linear regression using the training half. Compute error on the validation set. Do the same for polynomials of degrees 2 and 3 as well.
+
+8. When the training set is small, the contribution of variance to error may be more than that of bias and in such a case, we may prefer a simple model even though we know that it is too simple for the task. Can you give an example? 9. Let us say, given the samples Xi = \{xti, rit \}, we define gi(x) = ri1 , namely, our estimate for any x is the r value of the first instance in the (unordered) dataset Xi. What can you say about its bias and variance, as compared with gi(x) = 2 and gi(x) = t rit /N? What if the sample is ordered, so that gi(x) = mint rit ?
+
+10. In equation 4.40, what is the effect of changing $\lambda$ on bias and variance?
+
+\section{References}
+
+Andrieu, C., N. de Freitas, A. Doucet, and M. I. Jordan. 2003. “An Introduction to MCMC for Machine Learning.” Machine Learning 50: 5--43.
+
+Breiman, L. 1998. “Bias-Variance, Regularization, Instability and Stabilization.” In Neural Networks and Machine Learning, ed. C. M. Bishop, 27--56. Berlin: Springer.
+
+Devroye, L., L. Györfi, and G. Lugosi. 1996. A Probabilistic Theory of Pattern Recognition. New York: Springer.
+
+Duda, R. O., P. E. Hart, and D. G. Stork. 2001. Pattern Classification, 2nd ed. New York: Wiley.
+
+Friedman, J. H. 1997. “On Bias, Variance, 0/1-Loss and the Curse of Dimensionality.” Data Mining and Knowledge Discovery 1: 55--77.
+
+Geman, S., E. Bienenstock, and R. Doursat. 1992. “Neural Networks and the Bias/Variance Dilemma.” Neural Computation 4: 1--58.
+
+Grünwald, P. D. 2007. The Minimum Description Length Principle. Cambridge, MA: MIT Press.
+
+Hastie, T., R. Tibshirani, and J. Friedman. 2001. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. New York: Springer.
+
+McLachlan, G. J. 1992. Discriminant Analysis and Statistical Pattern Recognition. New York: Wiley.
+
+Rencher, A. C. 1995. Methods of Multivariate Analysis. New York: Wiley.
+
+Rissanen, J. 1978. “Modeling by Shortest Data Description.” Automatica 14: 465--471.
+
+Ross, S. M. 1987. Introduction to Probability and Statistics for Engineers and Scientists. New York: Wiley.
+
+Vapnik, V. 1995. The Nature of Statistical Learning Theory. New York: Springer.
+
+Webb, A. 1999. Statistical Pattern Recognition. London: Arnold.

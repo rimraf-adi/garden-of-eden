@@ -1,0 +1,56 @@
+{
+  "chapterNum": 1,
+  "slug": "01-introduction",
+  "title": "Introduction",
+  "sections": [
+    {
+      "id": "1.1",
+      "title": "What Is Machine Learning?",
+      "rules": [
+        "To solve a problem on a computer, you need an algorithm.",
+        "An algorithm is a sequence of instructions that transforms input data into output data.",
+        "For some tasks, we know the exact algorithm (for example, sorting numbers).",
+        "For other tasks, we do not know the algorithm. An example is spam email detection.",
+        "We know the input: an email message.",
+        "We know the output: a decision (spam or not spam).",
+        "We do not know how to write explicit rules to transform the input into the output.",
+        "In machine learning, we use example data to fill this knowledge gap.",
+        "We collect thousands of sample emails.",
+        "We let the computer extract the algorithm from the data.",
+        "In large databases, finding useful models from data is called data mining.",
+        "Machine learning is also a branch of Artificial Intelligence (AI).",
+        "An intelligent system must adapt when the environment changes.",
+        "Machine learning helps solve problems in vision, speech recognition, and robotics.",
+        "Machine learning is programming computers to optimize a performance criterion with example data or past experience.",
+        "The model can be predictive (make predictions for new data) or descriptive (gain knowledge from data)."
+      ]
+    },
+    {
+      "id": "1.2",
+      "title": "Examples of Machine Learning Applications",
+      "rules": [
+        "Learning Associations: In retail, basket analysis finds items that customers buy together.",
+        "If a customer buys product X, calculate conditional probability P(Y|X) to find if they buy Y.",
+        "Classification: In credit scoring, calculate risk to predict whether a customer will default.",
+        "The input is customer information (income, savings). The output is class: low-risk or high-risk.",
+        "A discriminant function separates the examples of different classes.",
+        "Regression: Predict a continuous numeric value (for example, used car price from mileage).",
+        "Both classification and regression are supervised learning problems.",
+        "Unsupervised Learning: There is no supervisor. We find regularities and structure in input data.",
+        "Clustering groups similar inputs together for customer segmentation or image compression.",
+        "Reinforcement Learning: The system outputs a sequence of actions called a policy.",
+        "The system receives delayed rewards and learns past good action sequences."
+      ]
+    },
+    {
+      "id": "1.3",
+      "title": "Notes & Foundations",
+      "rules": [
+        "Humans learn from experience to adapt to changing environments.",
+        "Science is model fitting: Scientists make observations and infer general rules (induction).",
+        "Statistics provides the mathematical framework for parameter estimation.",
+        "Computer science provides efficient algorithms for optimization and inference."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}What Is Machine Learning?}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Examples of Machine Learning Applications}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Learning Associations}{3}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Classification}{3}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Regression}{5}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Unsupervised Learning}{6}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.5}Reinforcement Learning}{7}{subsection.1.2.5}%
+\contentsline {section}{\numberline {1.3}Notes}{8}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Relevant Resources}{9}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Exercises}{10}{section.1.5}%
+\contentsline {section}{\numberline {1.6}References}{11}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Supervised Learning}{12}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Learning a Class from Examples}{12}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Vapnik-Chervonenkis (VC) Dimension}{14}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Probably Approximately Correct (PAC) Learning}{15}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Noise}{16}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Learning Multiple Classes}{17}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Regression}{18}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Model Selection and Generalization}{19}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Dimensions of a Supervised Machine Learning Algorithm}{21}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Notes}{22}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Exercises}{23}{section.2.10}%
+\contentsline {section}{\numberline {2.11}References}{23}{section.2.11}%
+\contentsline {chapter}{\numberline {3}Bayesian Decision Theory}{25}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introduction}{25}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Classification}{26}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Losses and Risks}{27}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Discriminant Functions}{28}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Utility Theory}{29}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Association Rules}{29}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Notes}{31}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Exercises}{31}{section.3.8}%
+\contentsline {section}{\numberline {3.9}References}{31}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Parametric Methods}{33}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction}{33}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Maximum Likelihood Estimation}{33}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Bernoulli Density}{34}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Multinomial Density}{34}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Gaussian (Normal) Density}{35}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Evaluating an Estimator: Bias and Variance}{35}{section.4.3}%
+\contentsline {section}{\numberline {4.4}The Bayes’ Estimator}{36}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Parametric Classification}{37}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Regression}{39}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Tuning Model Complexity: Bias/Variance Dilemma}{40}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Model Selection Procedures}{42}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Notes}{44}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Exercises}{44}{section.4.10}%
+\contentsline {section}{\numberline {4.11}References}{45}{section.4.11}%
+\contentsline {chapter}{\numberline {5}Multivariate Methods}{46}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Multivariate Data}{46}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Parameter Estimation}{46}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Estimation of Missing Values}{47}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Multivariate Normal Distribution}{48}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Multivariate Classification}{49}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Tuning Complexity}{51}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Discrete Features}{52}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Multivariate Regression}{53}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Notes}{54}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Exercises}{54}{section.5.10}%
+\contentsline {section}{\numberline {5.11}References}{55}{section.5.11}%
+\contentsline {chapter}{\numberline {6}Dimensionality Reduction}{56}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{56}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Subset Selection}{57}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Principal Components Analysis}{58}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Factor Analysis}{62}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Multidimensional Scaling}{64}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Linear Discriminant Analysis}{66}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Isomap}{67}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Locally Linear Embedding}{68}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Notes}{70}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Exercises}{71}{section.6.10}%
+\contentsline {section}{\numberline {6.11}References}{71}{section.6.11}%
+\contentsline {chapter}{\numberline {7}Clustering}{73}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Introduction}{73}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Mixture Densities}{74}{section.7.2}%
+\contentsline {section}{\numberline {7.3}k-Means Clustering}{74}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Expectation-Maximization Algorithm}{76}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Mixtures of Latent Variable Models}{78}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Supervised Learning after Clustering}{79}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Hierarchical Clustering}{80}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Choosing the Number of Clusters}{81}{section.7.8}%
+\contentsline {section}{\numberline {7.9}Notes}{82}{section.7.9}%
+\contentsline {section}{\numberline {7.10}Exercises}{82}{section.7.10}%
+\contentsline {section}{\numberline {7.11}References}{82}{section.7.11}%
+\contentsline {chapter}{\numberline {8}Nonparametric Methods}{84}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Introduction}{84}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Nonparametric Density Estimation}{85}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Histogram Estimator}{85}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Kernel Estimator}{86}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}k-Nearest Neighbor Estimator}{87}{subsection.8.2.3}%
+\contentsline {section}{\numberline {8.3}Generalization to Multivariate Data}{88}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Nonparametric Classification}{88}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Condensed Nearest Neighbor}{89}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Nonparametric Regression: Smoothing Models}{90}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Running Mean Smoother}{90}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}Kernel Smoother}{91}{subsection.8.6.2}%
+\contentsline {subsection}{\numberline {8.6.3}Running Line Smoother}{91}{subsection.8.6.3}%
+\contentsline {section}{\numberline {8.7}How to Choose the Smoothing Parameter}{91}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Notes}{92}{section.8.8}%
+\contentsline {section}{\numberline {8.9}Exercises}{93}{section.8.9}%
+\contentsline {section}{\numberline {8.10}References}{93}{section.8.10}%
+\contentsline {chapter}{\numberline {9}Decision Trees}{95}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Introduction}{95}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Univariate Trees}{96}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Classification Trees}{97}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}Regression Trees}{99}{subsection.9.2.2}%
+\contentsline {section}{\numberline {9.3}Pruning}{100}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Rule Extraction from Trees}{101}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Learning Rules from Data}{102}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Multivariate Trees}{104}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Notes}{105}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Exercises}{106}{section.9.8}%
+\contentsline {section}{\numberline {9.9}References}{107}{section.9.9}%
+\contentsline {chapter}{\numberline {10}Linear Discrimination}{109}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Introduction}{109}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Generalizing the Linear Model}{110}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Geometry of the Linear Discriminant}{111}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}Two Classes}{111}{subsection.10.3.1}%
+\contentsline {subsection}{\numberline {10.3.2}Multiple Classes}{112}{subsection.10.3.2}%
+\contentsline {section}{\numberline {10.4}Pairwise Separation}{113}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Parametric Discrimination Revisited}{113}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Gradient Descent}{114}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Logistic Discrimination}{115}{section.10.7}%
+\contentsline {subsection}{\numberline {10.7.1}Two Classes}{115}{subsection.10.7.1}%
+\contentsline {subsection}{\numberline {10.7.2}Multiple Classes}{116}{subsection.10.7.2}%
+\contentsline {section}{\numberline {10.8}Discrimination by Regression}{118}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Notes}{119}{section.10.9}%
+\contentsline {section}{\numberline {10.10}Exercises}{119}{section.10.10}%
+\contentsline {section}{\numberline {10.11}References}{119}{section.10.11}%
+\contentsline {chapter}{\numberline {11}Multilayer Perceptrons}{121}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Introduction}{121}{section.11.1}%
+\contentsline {subsection}{\numberline {11.1.1}Understanding the Brain}{121}{subsection.11.1.1}%
+\contentsline {subsection}{\numberline {11.1.2}Neural Networks as a Paradigm for Parallel Processing}{122}{subsection.11.1.2}%
+\contentsline {section}{\numberline {11.2}The Perceptron}{123}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Training a Perceptron}{125}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Learning Boolean Functions}{126}{section.11.4}%
+\contentsline {section}{\numberline {11.5}Multilayer Perceptrons}{127}{section.11.5}%
+\contentsline {section}{\numberline {11.6}MLP as a Universal Approximator}{128}{section.11.6}%
+\contentsline {section}{\numberline {11.7}Backpropagation Algorithm}{129}{section.11.7}%
+\contentsline {subsection}{\numberline {11.7.1}Nonlinear Regression}{129}{subsection.11.7.1}%
+\contentsline {subsection}{\numberline {11.7.2}Two-Class Discrimination}{130}{subsection.11.7.2}%
+\contentsline {subsection}{\numberline {11.7.3}Multiclass Discrimination}{131}{subsection.11.7.3}%
+\contentsline {subsection}{\numberline {11.7.4}Multiple Hidden Layers}{131}{subsection.11.7.4}%
+\contentsline {section}{\numberline {11.8}Training Procedures}{132}{section.11.8}%
+\contentsline {subsection}{\numberline {11.8.1}Improving Convergence}{132}{subsection.11.8.1}%
+\contentsline {subsection}{\numberline {11.8.2}Overtraining}{132}{subsection.11.8.2}%
+\contentsline {subsection}{\numberline {11.8.3}Structuring the Network}{133}{subsection.11.8.3}%
+\contentsline {subsection}{\numberline {11.8.4}Hints}{134}{subsection.11.8.4}%
+\contentsline {section}{\numberline {11.9}Tuning the Network Size}{135}{section.11.9}%
+\contentsline {section}{\numberline {11.10}Bayesian View of Learning}{136}{section.11.10}%
+\contentsline {section}{\numberline {11.11}Dimensionality Reduction}{137}{section.11.11}%
+\contentsline {section}{\numberline {11.12}Learning Time}{138}{section.11.12}%
+\contentsline {subsection}{\numberline {11.12.1}Time Delay Neural Networks}{139}{subsection.11.12.1}%
+\contentsline {subsection}{\numberline {11.12.2}Recurrent Networks}{139}{subsection.11.12.2}%
+\contentsline {section}{\numberline {11.13}Notes}{140}{section.11.13}%
+\contentsline {section}{\numberline {11.14}Exercises}{141}{section.11.14}%
+\contentsline {section}{\numberline {11.15}References}{141}{section.11.15}%
+\contentsline {chapter}{\numberline {12}Local Models}{144}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Introduction}{144}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Competitive Learning}{144}{section.12.2}%
+\contentsline {subsection}{\numberline {12.2.1}Online k-Means}{145}{subsection.12.2.1}%
+\contentsline {subsection}{\numberline {12.2.2}Adaptive Resonance Theory}{147}{subsection.12.2.2}%
+\contentsline {subsection}{\numberline {12.2.3}Self-Organizing Maps}{147}{subsection.12.2.3}%
+\contentsline {section}{\numberline {12.3}Radial Basis Functions}{148}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Incorporating Rule-Based Knowledge}{151}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Normalized Basis Functions}{152}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Competitive Basis Functions}{153}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Learning Vector Quantization}{154}{section.12.7}%
+\contentsline {section}{\numberline {12.8}Mixture of Experts}{154}{section.12.8}%
+\contentsline {subsection}{\numberline {12.8.1}Cooperative Experts}{156}{subsection.12.8.1}%
+\contentsline {subsection}{\numberline {12.8.2}Competitive Experts}{156}{subsection.12.8.2}%
+\contentsline {section}{\numberline {12.9}Hierarchical Mixture of Experts}{156}{section.12.9}%
+\contentsline {section}{\numberline {12.10}Notes}{157}{section.12.10}%
+\contentsline {section}{\numberline {12.11}Exercises}{157}{section.12.11}%
+\contentsline {section}{\numberline {12.12}and 12.21).}{157}{section.12.12}%
+\contentsline {section}{\numberline {12.13}References}{158}{section.12.13}%
+\contentsline {chapter}{\numberline {13}Kernel Machines}{160}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Introduction}{160}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Optimal Separating Hyperplane}{161}{section.13.2}%
+\contentsline {section}{\numberline {13.3}The Nonseparable Case: Soft Margin Hyperplane}{163}{section.13.3}%
+\contentsline {section}{\numberline {13.4}nu-SVM}{164}{section.13.4}%
+\contentsline {section}{\numberline {13.5}Kernel Trick}{165}{section.13.5}%
+\contentsline {section}{\numberline {13.6}Vectorial Kernels}{166}{section.13.6}%
+\contentsline {section}{\numberline {13.7}Defining Kernels}{167}{section.13.7}%
+\contentsline {section}{\numberline {13.8}Multiple Kernel Learning}{168}{section.13.8}%
+\contentsline {section}{\numberline {13.9}Multiclass Kernel Machines}{169}{section.13.9}%
+\contentsline {section}{\numberline {13.10}Kernel Machines for Regression}{169}{section.13.10}%
+\contentsline {section}{\numberline {13.11}One-Class Kernel Machines}{171}{section.13.11}%
+\contentsline {section}{\numberline {13.12}Kernel Dimensionality Reduction}{173}{section.13.12}%
+\contentsline {section}{\numberline {13.13}Notes}{173}{section.13.13}%
+\contentsline {section}{\numberline {13.14}Exercises}{174}{section.13.14}%
+\contentsline {section}{\numberline {13.15}References}{174}{section.13.15}%
+\contentsline {chapter}{\numberline {14}Bayesian Estimation}{176}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Introduction}{176}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Estimating the Parameter of a Distribution}{177}{section.14.2}%
+\contentsline {subsection}{\numberline {14.2.1}Discrete Variables}{177}{subsection.14.2.1}%
+\contentsline {subsection}{\numberline {14.2.2}Continuous Variables}{178}{subsection.14.2.2}%
+\contentsline {section}{\numberline {14.3}Bayesian Estimation of the Parameters of a Function}{179}{section.14.3}%
+\contentsline {subsection}{\numberline {14.3.1}Regression}{179}{subsection.14.3.1}%
+\contentsline {subsection}{\numberline {14.3.2}The Use of Basis/Kernel Functions}{181}{subsection.14.3.2}%
+\contentsline {subsection}{\numberline {14.3.3}Bayesian Classification}{182}{subsection.14.3.3}%
+\contentsline {section}{\numberline {14.4}Gaussian Processes}{183}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Notes}{184}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Exercises}{185}{section.14.6}%
+\contentsline {section}{\numberline {14.7}References}{185}{section.14.7}%
+\contentsline {chapter}{\numberline {15}Hidden Markov Models}{186}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Introduction}{186}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Discrete Markov Processes}{186}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Hidden Markov Models}{188}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Three Basic Problems of HMMs}{189}{section.15.4}%
+\contentsline {section}{\numberline {15.5}Evaluation Problem}{189}{section.15.5}%
+\contentsline {section}{\numberline {15.6}Finding the State Sequence}{191}{section.15.6}%
+\contentsline {section}{\numberline {15.7}Learning Model Parameters}{192}{section.15.7}%
+\contentsline {section}{\numberline {15.8}Continuous Observations}{193}{section.15.8}%
+\contentsline {section}{\numberline {15.9}The HMM with Input}{194}{section.15.9}%
+\contentsline {section}{\numberline {15.10}Model Selection in HMM}{194}{section.15.10}%
+\contentsline {section}{\numberline {15.11}Notes}{195}{section.15.11}%
+\contentsline {section}{\numberline {15.12}Exercises}{196}{section.15.12}%
+\contentsline {section}{\numberline {15.13}References}{197}{section.15.13}%
+\contentsline {chapter}{\numberline {16}Graphical Models}{198}{chapter.16}%
+\contentsline {section}{\numberline {16.1}Introduction}{198}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Canonical Cases for Conditional Independence}{199}{section.16.2}%
+\contentsline {section}{\numberline {16.3}Example Graphical Models}{202}{section.16.3}%
+\contentsline {subsection}{\numberline {16.3.1}Naive Bayes’ Classifier}{202}{subsection.16.3.1}%
+\contentsline {subsection}{\numberline {16.3.2}Hidden Markov Model}{203}{subsection.16.3.2}%
+\contentsline {subsection}{\numberline {16.3.3}Linear Regression}{204}{subsection.16.3.3}%
+\contentsline {section}{\numberline {16.4}d-Separation}{204}{section.16.4}%
+\contentsline {section}{\numberline {16.5}Belief Propagation}{205}{section.16.5}%
+\contentsline {subsection}{\numberline {16.5.1}Chains}{205}{subsection.16.5.1}%
+\contentsline {subsection}{\numberline {16.5.2}Trees}{206}{subsection.16.5.2}%
+\contentsline {subsection}{\numberline {16.5.3}Polytrees}{206}{subsection.16.5.3}%
+\contentsline {subsection}{\numberline {16.5.4}Junction Trees}{207}{subsection.16.5.4}%
+\contentsline {section}{\numberline {16.6}Undirected Graphs: Markov Random Fields}{208}{section.16.6}%
+\contentsline {section}{\numberline {16.7}Learning the Structure of a Graphical Model}{209}{section.16.7}%
+\contentsline {section}{\numberline {16.8}Influence Diagrams}{210}{section.16.8}%
+\contentsline {section}{\numberline {16.9}Notes}{210}{section.16.9}%
+\contentsline {section}{\numberline {16.10}Exercises}{211}{section.16.10}%
+\contentsline {section}{\numberline {16.11}References}{211}{section.16.11}%
+\contentsline {chapter}{\numberline {17}Combining Multiple Learners}{213}{chapter.17}%
+\contentsline {section}{\numberline {17.1}Rationale}{213}{section.17.1}%
+\contentsline {section}{\numberline {17.2}Generating Diverse Learners}{214}{section.17.2}%
+\contentsline {section}{\numberline {17.3}Model Combination Schemes}{215}{section.17.3}%
+\contentsline {section}{\numberline {17.4}Voting}{216}{section.17.4}%
+\contentsline {section}{\numberline {17.5}Error-Correcting Output Codes}{217}{section.17.5}%
+\contentsline {section}{\numberline {17.6}Bagging}{219}{section.17.6}%
+\contentsline {section}{\numberline {17.7}Boosting}{219}{section.17.7}%
+\contentsline {section}{\numberline {17.8}Mixture of Experts Revisited}{221}{section.17.8}%
+\contentsline {section}{\numberline {17.9}Stacked Generalization}{221}{section.17.9}%
+\contentsline {section}{\numberline {17.10}Fine-Tuning an Ensemble}{222}{section.17.10}%
+\contentsline {section}{\numberline {17.11}Cascading}{223}{section.17.11}%
+\contentsline {section}{\numberline {17.12}Notes}{224}{section.17.12}%
+\contentsline {section}{\numberline {17.13}Exercises}{225}{section.17.13}%
+\contentsline {section}{\numberline {17.14}References}{226}{section.17.14}%
+\contentsline {chapter}{\numberline {18}Reinforcement Learning}{228}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Introduction}{228}{section.18.1}%
+\contentsline {section}{\numberline {18.2}Single State Case: K-Armed Bandit}{229}{section.18.2}%
+\contentsline {section}{\numberline {18.3}Elements of Reinforcement Learning}{230}{section.18.3}%
+\contentsline {section}{\numberline {18.4}Model-Based Learning}{231}{section.18.4}%
+\contentsline {subsection}{\numberline {18.4.1}Value Iteration}{231}{subsection.18.4.1}%
+\contentsline {subsection}{\numberline {18.4.2}Policy Iteration}{232}{subsection.18.4.2}%
+\contentsline {section}{\numberline {18.5}Temporal Difference Learning}{232}{section.18.5}%
+\contentsline {subsection}{\numberline {18.5.1}Exploration Strategies}{232}{subsection.18.5.1}%
+\contentsline {subsection}{\numberline {18.5.2}Deterministic Rewards and Actions}{232}{subsection.18.5.2}%
+\contentsline {subsection}{\numberline {18.5.3}Nondeterministic Rewards and Actions}{233}{subsection.18.5.3}%
+\contentsline {subsection}{\numberline {18.5.4}Eligibility Traces}{234}{subsection.18.5.4}%
+\contentsline {section}{\numberline {18.6}Generalization}{235}{section.18.6}%
+\contentsline {section}{\numberline {18.7}Partially Observable States}{236}{section.18.7}%
+\contentsline {subsection}{\numberline {18.7.1}The Setting}{236}{subsection.18.7.1}%
+\contentsline {subsection}{\numberline {18.7.2}Example: The Tiger Problem}{237}{subsection.18.7.2}%
+\contentsline {section}{\numberline {18.8}Notes}{240}{section.18.8}%
+\contentsline {section}{\numberline {18.9}Exercises}{241}{section.18.9}%
+\contentsline {section}{\numberline {18.10}References}{241}{section.18.10}%
+\contentsline {chapter}{\numberline {19}Design and Analysis of Machine Learning Experiments}{243}{chapter.19}%
+\contentsline {section}{\numberline {19.1}Introduction}{243}{section.19.1}%
+\contentsline {section}{\numberline {19.2}Factors, Response, and Strategy of Experimentation}{245}{section.19.2}%
+\contentsline {section}{\numberline {19.3}Response Surface Design}{246}{section.19.3}%
+\contentsline {section}{\numberline {19.4}Randomization, Replication, and Blocking}{247}{section.19.4}%
+\contentsline {section}{\numberline {19.5}Guidelines for Machine Learning Experiments}{247}{section.19.5}%
+\contentsline {section}{\numberline {19.6}Cross-Validation and Resampling Methods}{249}{section.19.6}%
+\contentsline {subsection}{\numberline {19.6.1}K-Fold Cross-Validation}{250}{subsection.19.6.1}%
+\contentsline {subsection}{\numberline {19.6.2}5times2 Cross-Validation}{250}{subsection.19.6.2}%
+\contentsline {subsection}{\numberline {19.6.3}Bootstrapping}{251}{subsection.19.6.3}%
+\contentsline {section}{\numberline {19.7}Measuring Classifier Performance}{251}{section.19.7}%
+\contentsline {section}{\numberline {19.8}Interval Estimation}{252}{section.19.8}%
+\contentsline {section}{\numberline {19.9}Hypothesis Testing}{254}{section.19.9}%
+\contentsline {section}{\numberline {19.10}Assessing a Classification Algorithm’s Performance}{255}{section.19.10}%
+\contentsline {subsection}{\numberline {19.10.1}Binomial Test}{255}{subsection.19.10.1}%
+\contentsline {subsection}{\numberline {19.10.2}Approximate Normal Test}{255}{subsection.19.10.2}%
+\contentsline {subsection}{\numberline {19.10.3}t Test}{256}{subsection.19.10.3}%
+\contentsline {section}{\numberline {19.11}Comparing Two Classification Algorithms}{256}{section.19.11}%
+\contentsline {subsection}{\numberline {19.11.1}McNemar’s Test}{256}{subsection.19.11.1}%
+\contentsline {subsection}{\numberline {19.11.2}K-Fold Cross-Validated Paired t Test}{256}{subsection.19.11.2}%
+\contentsline {subsection}{\numberline {19.11.3}5 times 2 cv Paired t Test}{257}{subsection.19.11.3}%
+\contentsline {subsection}{\numberline {19.11.4}5 times 2 cv Paired F Test}{257}{subsection.19.11.4}%
+\contentsline {section}{\numberline {19.12}Comparing Multiple Algorithms: Analysis of Variance}{258}{section.19.12}%
+\contentsline {section}{\numberline {19.13}Comparison over Multiple Datasets}{260}{section.19.13}%
+\contentsline {subsection}{\numberline {19.13.1}Comparing Two Algorithms}{261}{subsection.19.13.1}%
+\contentsline {subsection}{\numberline {19.13.2}Multiple Algorithms}{262}{subsection.19.13.2}%
+\contentsline {section}{\numberline {19.14}Notes}{262}{section.19.14}%
+\contentsline {section}{\numberline {19.15}Exercises}{263}{section.19.15}%
+\contentsline {section}{\numberline {19.16}References}{264}{section.19.16}%

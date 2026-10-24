@@ -1,0 +1,479 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Graphical Models}
+\label{chap:16-graphical-models}
+
+Graphical models represent the interaction between variables visually and have the advantage that inference over a large number of variables can be decomposed into a set of local calculations involving a small number of variables making use of conditional independencies. After some examples of inference by hand, we discuss the concept of d-separation and the belief propagation algorithm on a variety of graphs.
+
+\section{Introduction}
+
+graphical models Graphical models, also called Bayesian networks, belief networks, or prob- Bayesian networks abilistic networks, are composed of nodes and arcs between the nodes. belief networks probabilistic Each node corresponds to a random variable, X, and has a value correnetworks sponding to the probability of the random variable, P(X). If there is a directed arc from node X to node Y, this indicates that X has a direct influence on Y. This influence is specified by the conditional probability directed acyclic P(Y|X). The network is a directed acyclic graph (DAG); namely, there are graph no cycles. The nodes and the arcs between the nodes define the structure of the network, and the conditional probabilities are the parameters given the structure. A simple example is given in figure 16.1, which models that rain causes the grass to get wet. It rains on 40 percent of the days and when it rains, there is a 90 percent chance that the grass gets wet; maybe 10 percent of the time it does not rain long enough for us to really consider the grass wet enough. The random variables in this example are binary; they are either true or false. There is a 20 percent probability that the grass gets wet without its actually raining, for example, when a sprinkler is used.
+
+Figure 16.1 Bayesian network modeling that rain is the cause of wet grass.
+
+We see that these three values completely specify the joint distribution of P(R, W). If P(R) = 0.4, then P($\sim$R) = 0.6, and similarly P($\sim$W|R) = 0.1 and P($\sim$W|$\sim$R) = 0.8. The joint is written as
+
+P(R, W) = P(R)P(W|R)
+
+We can calculate the individual (marginal) probability of wet grass by summing up over the possible values that its parent node can take:
+
+P(W) = P(R, W) = P(W|R)P(R) + P(W|$\sim$R)P($\sim$R)
+
+R = 0.9 $\cdot$ 0.4 + 0.2 $\cdot$ 0.6 = 0.48
+
+If we knew that it rained, the probability of wet grass would be 0.9; if we knew for sure that it did not, it would be as low as 0.2; not knowing whether it rained or not, the probability is 0.48. causal graph Figure 16.1 shows a causal graph in that it explains that the cause of wet grass is rain. Bayes’ rule allows us to invert the dependencies and have a diagnosis. For example, knowing that the grass is wet, the probability that it rained can be calculated as follows:
+
+P(W|R)P(R) P(R|W) = = 0.75 P(W)
+
+Knowing that the grass is wet increased the probability of rain from 0.4 to 0.75; this is because P(W|R) is high and P(W|$\sim$R) is low. We form graphs by adding nodes and arcs and generate dependencies. independence X and Y are independent events if
+
+(16.1) p(X, Y) = P(X)P(Y)
+
+conditional X and Y are conditionally independent events given a third event Z if independence (16.2) P(X, Y|Z) = P(X|Z)P(Y|Z)
+
+which can also be rewritten as
+
+(16.3) P(X|Y, Z) = P(X|Z)
+
+In a graphical model, not all nodes are connected; actually, in general, a node is connected to only a small number of other nodes. Certain subgraphs imply conditional independence statements, and these allow us to break down a complex graph into smaller subsets in which inferences can be done locally and whose results are later propagated over the graph. There are three canonical cases and larger graphs are constructed using these as subgraphs.
+
+\section{Canonical Cases for Conditional Independence}
+
+Case 1: Head-to-tail Connection
+
+Three events may be connected serially, as seen in figure 16.2a. We see here that X and Z are independent given Y: Knowing Y tells Z everything; knowing the state of X does not add any extra knowledge for Z; we write P(Z|Y, X) = P(Z|Y). We say that Y blocks the path from X to Z, or in other words, it separates them in the sense that if Y is removed, there is no path between X to Z. In this case, the joint is written as
+
+(16.4) P(X, Y, Z) = P(X)P(Y|X)P(Z|Y)
+
+Writing the joint this way implies independence:
+
+P(X, Y, Z) P(X)P(Y|X)P(Z|Y) (16.5) P(Z|X, Y) = = = P(Z|Y) P(X, Y) P(X)P(Y|X)
+
+Typically, X is the cause of Y and Y is the cause of Z. For example, as seen in figure 16.2b, X can be cloudy sky, Y can be rain, and Z can be wet grass. We can propagate information along the chain. If we do not know the state of cloudy, we have
+
+P(R) = P(R|C)P(C) + P(R|$\sim$C)P($\sim$C) = 0.38
+
+P(W) = P(W|R)P(R) + P(W|$\sim$R)P($\sim$R) = 0.47
+
+Let us say, in the morning we see that the weather is cloudy; what can we say about the probability that the grass will be wet? To do this, we
+
+Figure 16.2 Head-to-tail connection. (a) Three nodes are connected serially. X and Z are independent given the intermediate node Y: P(Z|Y, X) = P(Z|Y). (b) Example: Cloudy weather causes rain, which in turn causes wet grass.
+
+need to propagate evidence first to the intermediate node R, and then to the query node W.
+
+P(W|C) = P(W|R)P(R|C) + P(W|$\sim$R)P($\sim$R|C) = 0.76
+
+Knowing that the weather is cloudy increased the probability of wet grass. We can also propagate evidence back using Bayes’ rule. Let us say that we were traveling and on our return, see that our grass is wet; what is the probability that the weather was cloudy that day? We use Bayes’ rule to invert the direction:
+
+P(W|C)P(C) P(C|W) = = 0.65 P(W)
+
+Knowing that the grass is wet increased the probability of cloudy weather from its default (prior) value of 0.4 to 0.65.
+
+Case 2: Tail-to-tail Connection
+
+X may be the parent of two nodes Y and Z, as shown in figure 16.3a. The joint density is written as
+
+(16.6) P(X, Y, Z) = P(X)P(Y|X)P(Z|X)
+
+Figure 16.3 Tail-to-tail connection. X is the parent of two nodes Y and Z. The two child nodes are independent given the parent: P(Y|X, Z) = P(Y|X). In the example, cloudy weather causes rain and also makes us less likely to turn the sprinkler on.
+
+Normally Y and Z are dependent through X; given X, they become independent:
+
+P(X, Y, Z) P(X)P(Y|X)P(Z|X) (16.7) P(Y, Z|X) = = = P(Y|X)P(Z|X) P(X) P(X)
+
+When its value is known, X blocks the path between Y and Z, or in other words, separates them. In figure 16.3b, we see an example where cloudy weather influences both rain and the use of the sprinkler, one positively and the other negatively. Knowing that it rained, for example, we can invert the dependency using Bayes’ rule and infer the cause:
+
+P(R|C)P(C) P(R|C)P(C) P(C|R) = = P(R) C P(R, C) P(R|C)P(C) (16.8) = = 0.89 P(R|C)P(C) + P(R|$\sim$C)P($\sim$C)
+
+Note that this value is larger than P(C); knowing that it rained increased the probability that the weather is cloudy. In figure 16.3a, if X is not known, knowing Y, for example, we can infer X which we can then use to infer Z. In figure 16.3b, knowing the state of the sprinkler has an effect on the probability that it rained. If we know that the sprinkler is on,
+
+(16.9) P(R|S) = P(R, C|S) = P(R|C)P(C|S) + P(R|$\sim$C)P($\sim$C|S)
+
+C
+
+Figure 16.4 Head-to-head connection. A node has two parents that are independent unless the child is given. For example, an event may have two independent causes.
+
+= P(R|C)P(S|C)P(C) + P(R|$\sim$C)P(S|$\sim$C)P($\sim$C) P(S) P($\sim$S) = 0.22
+
+This is less than P(R) = 0.45; that is, knowing that the sprinkler is on decreases the probability that it rained because sprinkler and rain happens for different states of cloudy weather. If the sprinkler is known to be off, using the same approach, we find that P(R|$\sim$S) = 0.55; the probability of rain increases this time.
+
+Case 3: Head-to-head Connection
+
+In a head-to-head node, there are two parents X and Y to a single node Z, as shown in figure 16.4a. The joint density is written as
+
+(16.10) P(X, Y, Z) = P(X)P(Y)P(Z|X, Y)
+
+X and Y are independent: P(X, Y) = P(X) $\cdot$ P(Y) (exercise 2); they become dependent when Z is known. The concept of blocking or separation is different for this case: The path between X and Y is blocked, or they are separated, when Z is not observed; when Z (or any of its descendants) is observed, they are not blocked, separated, nor are independent.
+
+We see for example in figure 16.4b that node W has two parents, R and S, and thus its probability is conditioned on the values of those two, P(W|R, S). Not knowing anything else, the probability that grass is wet is calculated by marginalizing over the joint:
+
+P(W) = P(W, R, S)
+
+R,S = P(W|R, S)P(R, S) + P(W|$\sim$R, S)P($\sim$R, S)
+
++P(W|R, $\sim$S)P(R, $\sim$S) + P(W|$\sim$R, $\sim$S)P($\sim$R, $\sim$S)
+
+= P(W|R, S)P(R)P(S) + P(W|$\sim$R, S)P($\sim$R)P(S)
+
++P(W|R, $\sim$S)P(R)P($\sim$S) + P(W|$\sim$R, $\sim$S)P($\sim$R)P($\sim$S)
+
+= 0.52
+
+Now, let us say that we know that the sprinkler is on, and we check how this affects the probability. This is a causal (predictive) inference:
+
+P(W|S) = P(W, R|S)
+
+R = P(W|R, S)P(R|S) + P(W|$\sim$R, S)P($\sim$R|S)
+
+= P(W|R, S)P(R) + P(W|$\sim$R, S)P($\sim$R)
+
+= 0.92
+
+We see that P(W|S) > P(W); knowing that the sprinkler is on, the probability of wet grass increases. We can also calculate the probability that the sprinkler is on, given that the grass is wet. This is a diagnostic inference.
+
+P(W|S)P(S) P(S|W) = = 0.35 P(W) P(S|W) > P(S), that is, knowing that the grass is wet increased the probability of having the sprinkler on. Now let us assume that it rained. Then we have P(W|R, S)P(S|R) P(W|R, S)P(S) P(S|R, W) = = P(W|R) P(W|R) = 0.21
+
+explaining away which is less than P(S|W). This is called explaining away; given that we know it rained, the probability of sprinkler causing the wet grass decreases. Knowing that the grass is wet, rain and sprinkler become dependent. Similarly, P(S|$\sim$R, W) > P(S|W). We see the same behavior when we compare P(R|W) and P(R|W, S) (exercise 3).
+
+Figure 16.5 Larger graphs are formed by combining simpler subgraphs over which information is propagated using the implied conditional independencies.
+
+We can construct larger graphs by combining such subgraphs. For example, in figure 16.5 where we combine the two subgraphs, we can, for example, calculate the probability of having wet grass if it is cloudy:
+
+P(W|C) = P(W, R, S|C)
+
+R,S = P(W, R, S|C) + P(W, $\sim$R, S|C)
+
++P(W, R, $\sim$S|C) + P(W, $\sim$R, $\sim$S|C)
+
+= P(W|R, S, C)P(R, S|C)
+
++P(W|$\sim$R, S, C)P($\sim$R, S|C)
+
++P(W|R, $\sim$S, C)P(R, $\sim$S|C)
+
++P(W|$\sim$R, $\sim$S, C)P($\sim$R, $\sim$S|C)
+
+= P(W|R, S)P(R|C)P(S|C)
+
++P(W|$\sim$R, S)P($\sim$R|C)P(S|C)
+
++P(W|R, $\sim$S)P(R|C)P($\sim$S|C)
+
++P(W|$\sim$R, $\sim$S)P($\sim$R|C)P($\sim$S|C)
+
+where we have used that P(W|R, S, C) = P(W|R, S); given R and S, W is independent of C: R and S between them block the path between W and C. Similarly, P(R, S|C) = P(R|C)P(S|C); given C, R and S are independent. We see the advantage of Bayesian networks here, which explicitly encode independencies and allow breaking down inference into calculation over small groups of variables that are propagated from evidence nodes to query nodes. We can calculate P(C|W) and have a diagnostic inference:
+
+P(W|C)P(C) P(C|W) = P(W)
+
+The graphical representation is visual and helps understanding. The network represents conditional independence statements and allows us to break down the problem of representing the joint distribution of many variables into local structures; this eases both analysis and computation. Figure 16.5 represents a joint density of four binary variables that would normally require fifteen values (24 $-$1) to be stored, whereas here there are only nine. If each node has a small number of parents, the complexity decreases from exponential to linear (in the number of nodes). As we have seen earlier, inference is also easier as the joint density is broken down into conditional densities of smaller groups of variables:
+
+(16.11) P(C, S, R, W) = P(C)P(S|C)P(R|C)P(W|S, R)
+
+In the general case, when we have variables X1, . . . , Xd, we write
+
+d (16.12) P(X1, . . . , Xd) = P(Xi|parents(Xi)) i=1
+
+Then given any subset of Xi, namely, setting them to certain values due to evidence, we can calculate the probability distribution of some other subset of Xi by marginalizing over the joint. This is costly because it requires calculating an exponential number of joint probability combinations, even though each of them can be simplified as in equation 16.11. Note, however, that given the same evidence, for different Xi, we may be using the same intermediate values (products of conditional probabilities and sums for marginalization), and in section 16.5, we will discuss the belief propagation algorithm to do inference cheaply by doing the local intermediate calculations once which we can use multiple times for different query nodes.
+
+Though in this example we use binary variables, it is straightforward to generalize for cases where the variables are discrete with any number of possible values (with m possible values and k parents, a table of size mk is needed for the conditional probabilities), or they can be continuous (parameterized, e.g., p(Y|x) $\sim$N ($\mu$(x|$\theta$), $\sigma$ 2); see section 16.3.3). One major advantage to using a Bayesian network is that we do not need to designate explicitly certain variables as input and certain others as output. The value of any set of variables can be established through evidence and the probabilities of any other set of variables can be inferred, and the difference between unsupervised and supervised learning becomes blurry. From this perspective, a graphical model can be thought of as a “probabilistic database” (Jordan 2009), a machine that can answer queries regarding the values of random variables. hidden variables In a problem, there may also be hidden variables whose values are never known through evidence. The advantage of using hidden variables is that the dependency structure can be more easily defined. For example, in basket analysis when we want to find the dependencies among items sold, let us say we know that there is a dependency among “baby food,” “diapers,” and “milk” in that a customer buying one of these is very much likely to buy the other two. Instead of putting (noncausal) arcs among these three, we may designate a hidden node “baby at home” as the hidden cause of the consumption of these three items. When there are hidden nodes, their values are estimated given the values of observed nodes and filled in. It should be stressed at this point that a link from a node X does not, causality and need not, always imply a causality. It only implies a direct influence of X over Y in the sense that the probability of Y is conditioned on the value of X, and two nodes may have a link between them even if there is no direct cause. It is preferable to have the causal relations in constructing the network by providing an explanation of how the data is generated (Pearl 2000) but such causes may not always be accessible.
+
+\section{Example Graphical Models}
+
+\subsection{Naive Bayes’ Classifier}
+
+For the case of classification, the corresponding graphical model is shown in figure 16.6a, with x as the input and C a multinomial variable taking
+
+Figure 16.6 (a) Graphical model for classification. (b) Naive Bayes’ classifier assumes independent inputs.
+
+one of K states for the class code. Bayes’ rule allows a diagnosis, as in the rain and wet grass case we saw in figure 16.1:
+
+P(C)p(x|C) P(C|x) = P(x)
+
+If the inputs are independent, we have the graph shown in figure 16.6b, naive Bayes’ which is called the naive Bayes’ classifier, because it ignores possible declassifier pendencies, namely, correlations, among the inputs and reduces a multivariate problem to a group of univariate problems:
+
+d p(x|C) = p(xj|C) j=1
+
+We have discussed classification for this case in sections 5.5 and 5.7 for numeric and discrete x, respectively. Clustering is also similar except that the multinomial class indicator variable C is observed in classification, but the similar variable, Z, cluster indicator, is not observed. The E-step of the Expectation Maximization algorithm (section 7.4) uses Bayes’ rule to invert the arc and estimates the cluster indicator given the input. generative model Figure 16.6a is a generative model of the process that creates the data. It is as if we first pick a class C at random by sampling from P(C), and then having fixed C, we pick an x by sampling from p(x|C). Thinking of data as sampled from a causal generative model that can be visualized as a graph can ease understanding and also inference in many domains.
+
+Figure 16.7 Hidden Markov model can be drawn as a graphical model where qt are the hidden states and shaded Ot are observed.
+
+For example, in text categorization, generating a text may be thought of as the process where an author decides to write a document on a certain topic and then chooses the set of words accordingly. In bioinformatics, one area among many where a graphical approach used is the modelphylogenetic tree ing of a phylogenetic tree; namely, a directed graph whose leaves are the current species, nonterminal nodes are past ancestors that split into multiple species during a speciation event, and the conditional probabilities depend on the evolutionary distance between a species and its ancestor (Jordan 2004).
+
+\subsection{Hidden Markov Model}
+
+hidden Markov Hidden Markov models (HMM), which we previously discussed in chapmodel ter 15, are an example of case 1 where three successive states qt$-$2, qt$-$1, qt correspond to three states on a chain in a first-order Markov model. The state at time t, qt, depends only on the state at time t $-$1, qt$-$1, and given qt$-$1, qt is independent of qt$-$2
+
+P(qt|qt$-$1, qt$-$2) = P(qt|qt$-$1)
+
+as given by the state transition probability matrix A (see figure 16.7). Each hidden variable generates a discrete observation that is observed, as given by the observation probability matrix B. The forward-backward procedure of hidden Markov models is a special case of belief propagation that we will discuss shortly.
+
+Figure 16.8 Different types of HMM model different assumptions about the way the observed data (shown shaded) is generated from Markov sequences of latent variables.
+
+Different HMM types can be shown as different graphical models. In input-output HMM figure 16.8a, an input-output HMM is shown (see section 15.9) where there are two separate observed input-output sequences and there is also a sequence of hidden states. The output observation depends both on the state and also on the input; one can think of this as a B matrix whose elements are not scalars but parametrized functions of the input. This may similarly be seen as a mixture of expert architecture (section 12.8)
+
+whose gating output (hidden state) depends also on the gating value at the previous time step. factorial HMM Another HMM type that can be easily visualized is a factorial HMM, where there are multiple separate hidden sequences that interact to genpedigree erate a single observation sequence. An example is a pedigree which displays the parent-child relationship (Jordan 2004); figure 16.8b models meiosis where the two sequences correspond to the chromosomes of the father and the mother (which are independent), and at each locus (gene), the offspring receives one allele from the father or the other allele from the mother. coupled HMM A coupled HMM, shown in figure 16.8c, models two parallel but related hidden sequences that generate two parallel observation sequences. For example, in speech recognition, we may have one observed acoustic sequence of uttered words and one observed visual sequence of lip images, each having its hidden states where the two are dependent. switching HMM In a switching HMM, shown in figure 16.8d, there are K parallel independent hidden state sequences and the state variable S at any one time picks one of them and the chosen one generates the output. That is, we switch between state sequences as we go along. In HMM proper, though the observation may be continuous, state is linear dynamical discrete; in a linear dynamical system, also known as the Kalman filter, system both the state and the observations are continuous. In the basic case, Kalman filter state at time t is a linear function of state at t $-$1 with additive zeromean Gaussian noise, and, at each state, the observation is another linear function of the state with additive zero-mean Gaussian noise. The two linear mappings and the covariances of the two noise sources make up the parameters. All HMM variants we discussed earlier can similarly be generalized to use continuous states. By suitably modifying the graphical model, one can adapt the architecture to the characteristics of the process that generates the data. This process of matching the model to the data is a model selection procedure to best trade offbias and variance. The disadvantage is that exact inference may no longer be possible on such extended HMMs, and one would need approximation or sampling methods (Ghahramani 2001; Jordan 2009).
+
+Figure 16.9 Bayesian network for linear regression.
+
+\subsection{Linear Regression}
+
+Linear regression can be visualized as a graphical model, as shown in figure 16.9. Input xt is drawn from a prior p(x) and the dependent variable rt depend on the input x, weights w (drawn from a prior parameterized by $\alpha$, i.e., p(w) $\sim$N (0, $\alpha$$-$1I)), and noise $\epsilon$ (parameterized by $\beta$, i.e., p($\epsilon$) $\sim$N (0, $\beta$$-$1)):
+
+(16.13) p(rt|xt, w) $\sim$N (wT xt, $\beta$$-$1)
+
+There are N such pairs in the training set, which is shown by the rectangular plate in the figure. Given a new input x', the aim is to estimate r', which will be E[r'|x', w]. The weights w are not given but they can be estimated using the training set of [X, r]. Just as in equation 16.9, where C is the cause of R and S, where we used
+
+P(R|S) = P(R, C|S) = P(R|C)P(C|S) + P(R|$\sim$C)P($\sim$C|S)
+
+C
+
+filling in C using S, which we in turn used to estimate R. Here, we write
+
+p(r'|x', r, X) = p(r'|x', w)p(w|X, r)dw
+
+w)p(w) = p(r '|x', w)p(r|X, dw p(r)
+
+(16.14) $\propto$ p(r'|x', w) p(rt|xt, w)p(w)dw t
+
+where the second line is due to Bayes’ rule and the third line is due to the independence of instances in the training set.
+
+\section{d-Separation}
+
+We now generalize the concept of blocking and separation under the d-separation name of d-separation, and we define it in a way so that for arbitrary subsets of nodes A, B, and C, we can check if A and B are independent given C. Jordan (2009) visualizes this as a ball bouncing over the graph and Bayes’ ball calls this the Bayes’ ball. We set the nodes in C to their values, place a ball at each node in A, let the balls move around according to a set of rules, and check whether a ball reaches any node in B. If this is the case, they are dependent; otherwise, they are independent. To check whether A and B are d-separated given C, we consider all possible paths between any node in A and any node in B. Any such path is blocked if
+
+(a) the directions of the edges on the path either meet head-to-tail (case 1) or tail-to-tail (case 2) and the node is in C, or
+
+(b) the directions of the edges on the path meet head-to-head (case 3) and neither that node nor any of its descendant is in C.
+
+If all paths are blocked, we say that A and B are d-separated, that is, independent, given C; otherwise, they are dependent. Examples are given in figure 16.10.
+
+\section{Belief Propagation}
+
+Having discussed some inference examples by hand, we now are interested in an algorithm that can answer queries such as P(X|E) where X
+
+Figure 16.10 Examples of d-separation. The path BCDF is blocked given C because C is a tail-to-tail node. BEFG is blocked by F because F is a head-to-tail node. BEFD is blocked unless F (or G) is given.
+
+is any query node in the graph and E is any subset of evidence nodes whose values are set to certain value. Following Pearl (1988), we start with the simplest case of chains and gradually move on to more complex graphs. Our aim is to find the graph operation counterparts of probabilistic procedures such as Bayes’ rule or marginalization, so that the task of inference can be mapped to general purpose graph algorithms.
+
+\subsection{Chains}
+
+A chain is a sequence of head-to-tail nodes with one root node without any parent; all other nodes have exactly one parent node, and all nodes except the very last, leaf, have a single child. If evidence is in the ancestors of X, we can just do a diagnostic inference and propagate evidence down the chain; if evidence is in the descendants of X, we can do a causal inference and propagate upward using Bayes’ rule. Let us see the general case where we have evidence in both directions, up the chain E+ and
+
+Figure 16.11 Inference along a chain.
+
+down the chain E$-$(see figure 16.11). Note that any evidence node separates X from the nodes on the chain on the other side of the evidence and their values do not affect p(X); this is true in both directions. We consider each node as a processor that receives messages from its neighbors and pass it along after some local calculation. Each node X locally calculates and stores two values: $\lambda$(X) $\equiv$P(E$-$|X) is the propagated E$-$that X receives from its child and forwards to its parent, and $\pi$(X) $\equiv$P(X|E+) is the propagated E+ that X receives from its parent and passes on to its child.
+
+P(E|X)P(X) P(E+, E$-$|X)P(X) P(X|E) = = P(E) P(E) P(E+|X)P(E$-$|X)P(X) = P(E) P(X|E+)P(E+)P(E$-$|X)P(X) = P(X)P(E) (16.15) = $\alpha$P(X|E+)P(E$-$|X) = $\alpha$$\pi$(X)$\lambda$(X)
+
+for some normalizing constant $\alpha$, not dependent on the value of X. The second line is there because E+ and E$-$are independent given X, and the third line is due to Bayes’ rule. If a node E is instantiated to a certain value \textasciitilde{}e, $\lambda$(\textasciitilde{}e) $\equiv$1 and $\lambda$(e) $\equiv$0, for e /= \textasciitilde{}e. The leaf node X that is not instantiated has its $\lambda$(x) $\equiv$1, for all x values. The root node X that is not instantiated takes the prior probabilities as $\pi$ values: $\pi$(x) $\equiv$P(x), $\forall$x. Given these initial conditions, we can devise recursive formulas to propagate evidence along the chain. For the $\pi$-messages, we have
+
+$\pi$(X) $\equiv$ P(X|E+) = P(X|U, E+)P(U|E+)
+
+U (16.16) = P(X|U)P(U|E+) = P(X|U)$\pi$(U)
+
+U U
+
+where the second line follows from the fact that U blocks the path between X and E+. For the $\lambda$-messages, we have
+
+$\lambda$(X) $\equiv$ P(E$-$|X) = P(E$-$|X, Y)P(Y|X)
+
+Y (16.17) = P(E$-$|Y)P(Y|X) = P(Y|X)$\lambda$(Y) Y U
+
+where the second line follows from the fact that Y blocks the path between X and E$-$. When the evidence nodes are set to a value, they initiate traffic and nodes continue updating until there is convergence. Pearl (1988) views this as a parallel machine where each node is implemented by a processor that works in parallel with others and exchanges information through $\lambda$and $\pi$-messages with its parent and child.
+
+\subsection{Trees}
+
+Chains are restrictive because each node can have only a single parent and a single child, that is, a single cause and a single symptom. In a tree, each node may have several children but all nodes, except the single root, have exactly one parent. The same belief propagation also applies here with the difference from chains being that a node receives different $\lambda$-messages from its children, $\lambda$Y(X) denoting the message X receives from its child Y, and sends different $\pi$-messages to its children, $\pi$Y (X) denoting the message X sends to its child Y. Again, we divide possible evidence to two parts, E$-$are nodes that are in the subtree rooted at the query node X, and E+ are evidence nodes elsewhere (see figure 16.12). Note that this second need not be an ancestor of X but may also be in a subtree rooted at a sibling of X. The important point is that again X separates E+ and E$-$so that we can write P(E+, E$-$|X) = P(E+|X)P(E$-$|X), and hence have
+
+P(X|E) = $\alpha$$\pi$(X)$\lambda$(X)
+
+where again $\alpha$ is a normalizing constant. $\lambda$(X) is the evidence in the subtree rooted at X, and if X has two children Y and Z, as shown in figure 16.12, it can be calculated as
+
+$\lambda$(X) $\equiv$ P(E$-$X|X) = P(E$-$Y , E$-$Z |X) (16.18) = P(E$-$Y |X)P(E$-$Z |X) = $\lambda$Y (X)$\lambda$Z(X)
+
+Figure 16.12 In a tree, a node may have several children but a single parent.
+
+In the general case if X has m children, Yj, j = 1, . . . , m, then we multiply all their $\lambda$ values:
+
+m (16.19) $\lambda$(X) = $\lambda$Yj (X) j=1
+
+Once X accumulates $\lambda$ evidence from its children’s $\lambda$-messages, it propagates it up to its parent:
+
+(16.20) $\lambda$X(U) = $\lambda$(X)P(X|U) X
+
+Similarly and in the other direction, $\pi$(X) is the evidence elsewhere that is accumulated in P(U|E+) and passed on to X as a $\pi$-message:
+
+(16.21) $\pi$(X) $\equiv$P(X|E+X) = P(X|U)P(U|E+X) = P(X|U)$\pi$X(U) U U
+
+This calculated $\pi$ value is then propagated down to X’s children. Note that what Y receives from X is what X receives from its parent U and also from its other child Z; together they make up E+Y (see figure 16.12):
+
+$\pi$Y(X) $\equiv$ P(X|E+Y ) = P(X|E+X, E$-$Z )
+
+Figure 16.13 In a polytree, a node may have several children and several parents, but the graph is singly connected; that is, there is a single chain between Ui and Yj passing through X.
+
+P(E$-$Z |X, E+X)P(X|E+X) P(E$-$Z |X)P(X|E+X) = = P(E$-$Z ) P(E$-$Z ) (16.22) = $\alpha$$\lambda$Z(X)$\pi$(X)
+
+Again, if Y has not one sibling Z but multiple, we need to take a product over all their $\lambda$ values:
+
+(16.23) $\pi$Yj(X) = $\alpha$ $\lambda$Ys(X)$\pi$(X) s/=j
+
+\subsection{Polytrees}
+
+polytree In a tree, a node has a single parent, that is, a single cause. In a polytree, a node may have multiple parents, but we require that the graph be singly connected, which means that there is a single chain between any two nodes. If we remove X, the graph will split into two components. This is necessary so that we can continue splitting EX into E+X and E$-$X, which are independent given X (see figure 16.13). If X has multiple parents Ui, i = 1, . . . , k, it receives $\pi$-messages from
+
+all of them, $\pi$X(Ui), which it combines as follows:
+
+$\pi$(X) $\equiv$ P(X|E+X) = P(X, E+U1X, E+U2X, . . . , E+UkX) = $\cdot$ $\cdot$ $\cdot$ P(X|U1, U2, . . . , Uk)P(U1|E+U1X) $\cdot$ $\cdot$ $\cdot$ P(Uk|E+UkX) U1 U2 Uk
+
+k (16.24) = $\cdot$ $\cdot$ $\cdot$ P(X|U1, U2, . . . , Uk) $\pi$X(Ui) U1 U2 Uk i=1
+
+and passes it on to its several children Yj, j = 1, . . . , m:
+
+(16.25) $\pi$Yj(X) = $\alpha$ $\lambda$Ys (X)$\pi$(X) s/=j
+
+In this case when X has multiple parents, a $\lambda$-message X passes on to one of its parents Ui combines not only the evidence X receives from its children but also the $\pi$-messages X receives from its other parents Ur, r /= i; they together make up E$-$UiX:
+
+$\lambda$X(Ui) $\equiv$ P(E$-$UiX|X) = P(E$-$X, E+Ur/=iX, X, Ur/=i|Ui) X Ur/=i = P(E$-$X, E+Ur/=iX|X, Ur/=i, Ui)P(X, Ur/=i|Ui) X Ur/=i = P(E$-$X|X)P(E+Ur/=iX|Ur/=i)P(X|Ur/=i, Ui)P(Ur/=i|Ui) X Ur/=i P(Ur/=i|E+Ur/=iX)P(E+Ur/=iX) = P(E$-$X|X) P(X|Ur/=i, Ui)P(Ur/=i|Ui) P(Ur/=i) X Ur/=i = $\beta$ P(E$-$X|X)P(Ur/=i|E+Ur/=iX)P(X|Ur/=i, Ui) X Ur/=i
+
+= $\beta$ $\lambda$(X) $\pi$X(Ur)P(X|U1, . . . , Uk) X Ur/=i r/=i
+
+(16.26) = $\beta$ $\lambda$(X) P(X|U1, . . . , Uk) $\pi$X(Ur) X Ur/=i r/=i
+
+As in a tree, to find its overall $\lambda$, the parent multiplies the $\lambda$-messages it receives from its children:
+
+m (16.27) $\lambda$(X) = $\lambda$Yj (X) j=1
+
+In this case of multiple parents, we need to store and manipulate the conditional probability given all the parents, p(X|U1, . . . , Uk), which is costly for large k. Approaches have been proposed to decrease the comnoisy OR plexity from exponential in k to linear. For example, in a noisy OR gate, any of the parents is sufficient to cause the event and the likelihood does not decrease when multiple parent events occur. If the probability that X happens when only cause Ui happens is 1 $-$qi
+
+(16.28) P(X|Ui, $\sim$Up/=j) = 1 $-$qi
+
+the probability that X happens when a subset T of them occur is calculated as
+
+(16.29) P(X|T) = 1 $-$ qi ui$\in$T
+
+For example, let us say wet grass has two causes, rain and a sprinkler, with qR = qS = 0.1; that is, both singly have a 90 percent probability of causing wet grass. Then, P(W|R, $\sim$S) = 0.9 and P(W|R, S) = 0.99. Another possibility is to write the conditional probability as some function given a set of parameters, for example, as a linear model ( ) k (16.30) P(X|U1, . . . , Uk, w0, w1, . . . , wk) = sigmoid ( wiUi + w0 ) i=1
+
+where sigmoid guarantees that the output is a probability between 0 and 1. During training, we can learn the parameters wi, i = 0, . . . , d, for example, to maximize the likelihood on a sample.
+
+\subsection{Junction Trees}
+
+If there is a loop, that is, if there is a cycle in the underlying undirected graph---for example, if the parents of X share a common ancestor---the algorithm we discussed earlier does not work. In such a case, there is more than one path on which to propagate evidence and, for example, while evaluating the probability at X, we cannot say that X separates E into E+X and E$-$X as causal (upward) and diagnostic (downward) evidence; removing X does not split the graph into two. Conditioning them on X does not make them independent and the two can interact through some other path not involving X. We can still use the same algorithm if we can convert the graph to a polytree. We define clique nodes that correspond to a set of original variables and connect them so that they form a tree (see figure 16.14). We
+
+Figure 16.14 (a) A multiply connected graph, and (b) its corresponding junction tree with nodes clustered.
+
+can then run the same belief propagation algorithm with some modificajunction tree tions. This is the basic idea behind the junction tree algorithm (Lauritzen and Spiegelhalter 1988; Jensen 1996; Jordan 2009).
+
+\section{Undirected Graphs: Markov Random Fields}
+
+Up to now, we have discussed directed graphs where the influences are undirectional and have used Bayes’ rule to invert the arcs. If the influences are symmetric, we represent them using an undirected graphical Markov random model, also known as a Markov random field. For example, neighboring field pixels in an image tend to have the same color---that is, are correlated--- and this correlation goes both ways. Directed and undirected graphs define conditional independence differently, and, hence, there are probability distributions that are represented by a directed graph and not by an undirected graph, and vice versa (Pearl 1988). Because there are no directions and hence no distinction between the head or the tail of an arc, the treatment of undirected graphs is simpler. For example, it is much easier to check if A and B are independent given C. We just check if after removing all nodes in C, we still have a path between a node in A and a node in B. If so, they are dependent, otherwise, if all paths between nodes in A and nodes in B pass through nodes in C such that removal of C leaves nodes of A and nodes of B in separate components, we have independence.
+
+In the case of an undirected graph, we do not talk about the parent clique or the child but about cliques, which are sets of nodes such that there exists a link between any two nodes in the set. A maximal clique has the maximum number of elements. Instead of conditional probabilities potential function (implying a direction), in undirected graphs we have potential functions $\psi$C(XC) where XC is the set of variables in clique C, and we define the joint distribution as the product of the potential functions of the maximal cliques of the graph
+
+(16.31) p(X) = $\psi$C(XC) Z C
+
+where Z is the normalization constant to make sure that X p(X) = 1:
+
+(16.32) Z = $\psi$C(X) X C
+
+It can be shown that a directed graph is already normalized (exercise 5). Unlike in directed graphs, the potential functions in an undirected graph do not need to have a probabilistic interpretation, and one has more freedom in defining them. In general, we can view potential functions as expressing local constraints, that is, favoring some local configurations over others. For example, in an image, we can define a pairwise potential function between neighboring pixels, which takes a higher value if their colors are similar than the case when they are different (Bishop 2006). Then, setting some of the pixels to their values given as evidence, we can estimate the values of other pixels that are not known, for example, due to occlusion. If we have the directed graph, it is easy to redraw it as an undirected graph, simply by dropping all the directions, and if a node has a single parent, we can set the pairwise potential function simply to the conditional probability. If the node has more than one parent, however, the “explaining away” phenomenon due to the head-to-head node makes the parents dependent, and hence we should have the parents in the same clique so that the clique potential includes all the parents. This is done by connecting all the parents of a node by links so that they are completely connected among them and form a clique. This is called “marrying” the moralization parents, and the process is called moralization. Incidentally, moralization is one of the steps in generating a junction tree, which is undirected. It is straightforward to adapt the belief propagation algorithm to work on undirected graphs, and it is easier because the potential function is
+
+Figure 16.15 (a) A directed graph that would have a loop after moralization, and (b) its corresponding factor graph that is a tree. The three factors are fa(R) $\equiv$ P(R), fb(S) $\equiv$P(S), and fc(R, S, W) $\equiv$P(W|R, S).
+
+symmetric and we do not need to make a difference between causal and diagnostic evidence. Thus, we can do inference on undirected chains and trees. But in polytrees where a node has multiple parents and moralization necessarily creates loops, this would not work. One trick is to factor graph convert it to a factor graph that uses a second kind of factor nodes in addition to the variable nodes, and we write the joint distribution as a product of factors (Kschischang, Frey, and Loeliger 2001)
+
+(16.33) p(X) = fS(XS) Z S
+
+where Xs denotes a subset of the variable nodes used by factor S. Directed graphs are a special case where factors correspond to local conditional distributions, and undirected graphs are another special case where factors are potential functions over maximal cliques. The advantage is that, as we can see in figure 16.15, the tree structure can be kept even after moralization. It is possible to generalize the belief propagation algorithm to work on sum-product factor graphs; this is called the sum-product algorithm (Bishop 2006; Joralgorithm dan 2009) where there is the same idea of doing local computations once and propagating them through the graph as messages. The difference now is that there are two types of messages because there are two kinds of nodes, factors and variables, and we make a distinction between their
+
+messages. Note, however, that a factor graph is bipartite and one kind of node can have a close encounter only with the second kind. In belief propagation, or the sum-product algorithm, the aim is to find the probability of a set of nodes X given that another set of evidence nodes E are clamped to a certain value, that is, P(X|E). In some applications, we may be interested in finding the setting of all X that maximizes the full joint probability distribution p(X). For example, in the undirected case where potential functions code locally consistent configurations, such an approach would propagate local constraints over the whole graph and find a solution that maximizes global consistency. In a graph where nodes correspond to pixels and pairwise potential functions favor correlation, this approach would implement noise removal (Bishop max-product 2006). The algorithm for this, named the max-product algorithm (Bishop algorithm 2006; Jordan 2009) is the same as the sum-product algorithm where we take the maximum (choose the most likely value) rather than the sum (marginalize). This is analogous to the difference between the forwardbackward procedure and the Viterbi algorithm in hidden Markov models that we discussed in chapter 15. Note that the nodes need not correspond to low-level concepts like pixels; in a vision application, for instance, we may have nodes for corners of different types or lines of different orientations with potential functions checking for compatibility, so as to see if they can be part of the same interpretation---remember the Necker cube, for example---so that overall consistent solutions emerge after the consolidation of local evidences. The complexity of the inference algorithms on polytrees or junction trees is determined by the maximum number of parents or the size of the largest clique, and when this is large, exact inference may be infeasible. In such a case, one needs to use an approximation or a sampling algorithm (Jordan 1999; Bishop 2006; Jordan 2009).
+
+\section{Learning the Structure of a Graphical Model}
+
+As in any approach, learning a graphical model has two parts. The first is the learning of parameters given a structure; this is relatively easier (Buntine 1996), and, in graphical models, conditional probability tables or their parameterizations (as in equation 16.30) can be trained to maximize the likelihood, or by using a Bayesian approach if suitable priors are known (chapter 14).
+
+The second, more difficult, and interesting part is to learn the graph structure (Cowell et al. 1999). This is basically a model selection problem, and just like the incremental approaches for learning the structure of a multilayer perceptron (section 11.9), we can see this as a search in the space of all possible graphs. One can, for example, consider operators that can add/remove arcs and/or hidden nodes and then do a search evaluating the improvement at each step (using parameter learning at each intermediate iteration). Note, however, that to check for overfitting, one should regularize properly, corresponding to a Bayesian approach with a prior that favors simpler graphs (Neapolitan 2004). However, because the state space is large, it is most helpful if there is a human expert who can manually define causal relationships among variables and creates subgraphs of small groups of variables.
+
+\section{Influence Diagrams}
+
+Just as in chapter 3, we generalized from probabilities to actions with influence diagrams risks, influence diagrams are graphical models that allow the generalization of graphical models to include decisions and utilities. An influence diagram contains chance nodes representing random variables that we use in graphical models (see figure 16.16). It also has decision nodes and a utility node. A decision node represents a choice of actions. A utility node is where the utility is calculated. Decisions may be based on chance nodes and may affect other chance nodes and the utility node. Inference on an influence diagram is an extension to belief propagation on a graphical model. Given evidence on some of the chance nodes, this evidence is propagated, and for each possible decision, the utility is calculated and the decision having the highest utility is chosen. The influence diagram for classification of a given input is shown in figure 16.16. Given the input, the decision node decides on a class, and for each choice we incur a certain utility (risk).
+
+\section{Notes}
+
+Graphical models have two advantages. One is that we can visualize the interaction of variables and have a better understanding of the process, for example, by using a causal generative model. The second is that by finding graph operations that correspond to basic probabilistic proce-
+
+choose class
+
+x U
+
+Figure 16.16 Influence diagram corresponding to classification. Depending on input x, a class is chosen that incurs a certain utility (risk).
+
+dures such as Bayes’ rule or marginalization, the task of inference can be mapped to general-purpose graph algorithms that can be efficiently represented and implemented. The idea of visual representation of variables and dependencies between them as a graph, and the related factorization of a complicated global function of many variables as a product of local functions involving a small subset of the variables for each, seems to be used in different domains in decision making, coding, and signal processing; Kschischang, Frey, and Loeliger (2001) give a review. The complexity of the inference algorithms on polytrees or junction trees is determined by the maximum number of parents or the size of the largest clique, and when this is large exact inference may be infeasible. In such a case, one needs to use an approximation or a sampling algorithm. Variational approximations and Markov chain Monte Carlo (MCMC) algorithms are discussed in Jordan et al. 1999, MacKay 2003, Andrieu et al. 2003, Bishop 2006, and Jordan 2009. Graphical models are especially suited to represent Bayesian approaches where in addition to nodes for variables, we also have nodes for hidden parameters that influence the observed variables. We may also introduce a hierarchy where we have nodes for the hyperparameters---that is, second-level parameters for the priors of the first-level parameters, and so on. Hidden Markov models is one type of graphical model, and actually any graphical model can be extended in time by unfolding it in time and dynamic graphical adding dependencies between successive copies. Such dynamic graphical models models find application in areas where there is also a temporal dimension--- speech recognition, for example. In fact, a hidden Markov model is noth-
+
+Figure 16.17 A dynamic version where we have a chain of graphs to show dependency in weather in consecutive days.
+
+ing but a sequence of clustering problems where the cluster index at time t is dependent not only on observation at time t but also on the index at time t $-$1, and Baum-Welch algorithm is Expectation-Maximization extended to also include this dependency in time. In section 6.4, we discussed factor analysis where a small number of hidden factors generate the observation; similarly, a linear dynamical system may be viewed as a sequence of such factor analysis models where the current factors also depend on the previous factors. This dynamic dependency may be added when needed. For example, figure 16.5 models the cause of wet grass for a particular day; if we believe that yesterday’s weather has an influence on today’s weather (and we should---it tends to be cloudy on successive days, then sunny for a number of days, and so on), we can have the dynamic graphical model shown in figure 16.17 where we model this dependency. The general graphical model formalism allows us to go beyond the power of HMM proper and lead to improved performances, for example, in speech recognition (Zweig 2003; Bilmes and Bartels 2005). Graphical models are also used in computer vision---for example, in information retrieval (Barnard et al. 2003) and scene analysis (Sudderth et al. 2008). A review of the use of graphical models in bioinformatics (and related software) is given in Donkers and Tuyls 2008.
+
+\section{Exercises}
+
+1. With two independent inputs in a classification problem, that is, p(x1, x2|C) = p(x1|C)p(x2|C), how can we calculate p(x1|x2)? Derive the formula for p(xj|Ci) $\sim$ N ($\mu$ij, $\sigma$ij).2
+
+2. For a head-to-head node, show that equation 16.10 implies P(X, Y) = P(X) $\cdot$ P(Y).
+
+3. In figure 16.4, calculate P(R|W), P(R|W, S), and P(R|W, $\sim$S).
+
+4. In equation 16.30, X is binary. How do we need to modify it if X can take one of K discrete values?
+
+5. Show that in a directed graph where the joint distribution is written as equation 16.12, x p(x) = 1.
+
+6. Draw the Necker cube as a graphical model defining links to indicate mutually reinforcing or inhibiting relations between different corner interpretations.
+
+7. How can we do inference on the dynamic weather graph shown in figure 16.17?
+
+8. Write down the graphical model for linear logistic regression for two classes in the manner of figure 16.9.
+
+9. Propose a suitable goodness measure that can be used in learning graph structure as a state-space search. What are suitable operators?
+
+10. Generally, in a newspaper, a reporter writes a series of articles on successive days related to the same topic as the story develops. How can we model this using a graphical model?
+
+\section{References}
+
+Andrieu, C., N. de Freitas, A. Doucet, and M. I. Jordan. 2003. “An Introduction to MCMC for Machine Learning.” Machine Learning 50: 5--43.
+
+Barnard, K., P. Duygulu, D. Forsyth, N. de Freitas, D. M. Blei, and M. I. Jordan. 2003. “Matching Words and Pictures.” Journal of Machine Learning Research 3: 1107--1135.
+
+Bilmes, J., and C. Bartels. 2005. “Graphical Model Architectures for Speech Recognition.” IEEE Signal Processing Magazine 22: 89--100.
+
+Bishop, C. M. 2006. Pattern Recognition and Machine Learning. New York: Springer.
+
+Buntine, W. 1996. “A Guide to the Literature on Learning Probabilistic Networks from Data.” IEEE Transactions on Knowledge and Data Engineering 8: 195-- 210.
+
+Cowell, R. G., A. P. Dawid, S. L. Lauritzen, and D. J. Spiegelhalter. 1999. Probabilistic Networks and Expert Systems. New York: Springer.
+
+Donkers, J., and K. Tuyls. 2008. “Belief Networks in Bioinformatics.” In Computational Intelligence in Bioinformatics, ed. A. Kelemen, A. Abraham, and Y. Chen, 75--111. Berlin: Springer.
+
+Ghahramani, Z. 2001. “An Introduction to Hidden Markov Models and Bayesian Networks.” International Journal of Pattern Recognition and Artificial Intelligence 15: 9--42.
+
+Jensen, F. 1996. An Introduction to Bayesian Networks. New York: Springer.
+
+Jordan, M. I., ed. 1999. Learning in Graphical Models. Cambridge, MA: MIT Press.
+
+Jordan, M. I. 2004. “Graphical Models.” Statistical Science 19: 140--155.
+
+Jordan, M. I. 2009. An Introduction to Probabilistic Graphical Models. Forthcoming.
+
+Jordan, M. I., Z. Ghahramani, T. S. Jaakkola, and L. K. Saul. 1999. “An Introduction to Variational Methods for Graphical Models.” In Learning in Graphical Models, ed. M. I. Jordan, 105--161. Cambridge, MA: MIT Press.
+
+Kschischang, F. R., B. J. Frey, and H.-A. Loeliger. 2001. “Factor Graphs and the Sum-Product Algorithm.” IEEE Transactions on Information Theory 47: 498--519.
+
+Lauritzen, S. L., and D. J. Spiegelhalter. 1988. “Local Computations with Probabilities on Graphical Structures and their Application to Expert Systems.” Journal of Royal Statistical Society B 50: 157--224.
+
+MacKay, D. J. C. 2003. Information Theory, Inference, and Learning Algorithms. Cambridge, UK: Cambridge University Press.
+
+Neapolitan, R. E. 2004. Learning Bayesian Networks. Upper Saddle River, NJ: Pearson.
+
+Pearl, J. 1988. Probabilistic Reasoning in Intelligent Systems: Networks of Plausible Inference. San Francisco, CA: Morgan Kaufmann.
+
+Pearl, J. 2000. Causality: Models, Reasoning, and Inference. Cambridge, UK: Cambridge University Press.
+
+Sudderth, E. B., A. Torralba, W. T. Freeman, and A. S. Willsky. 2008. “Describing Visual Scenes Using Transformed Objects and Parts.” International Journal of Computer Vision 77: 291--330.
+
+Zweig, G. 2003. “Bayesian Network Structures and Inference Techniques for Automatic Speech Recognition.” Computer Speech and Language 17: 173-- 193.

@@ -1,0 +1,477 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Local Models}
+\label{chap:12-local-models}
+
+We continue our discussion of multilayer neural networks with models where the first layer contains locally receptive units that respond to instances in a localized region of the input space. The second layer on top learns the regression or classification function for these local regions. We discuss learning methods for finding the local regions of importance as well as the models responsible in there.
+
+\section{Introduction}
+
+One way to do function approximation is to divide the input space into local patches and learn a separate fit in each local patch. In chapter 7, we discussed statistical methods for clustering that allowed us to group input instances and model the input distribution. Competitive methods are neural network methods for online clustering. In this chapter, we discuss the online version of k-means, as well as two neural network extensions, adaptive resonance theory (ART), and the self-organizing map (SOM). We then discuss how supervised learning is implemented once the inputs are localized. If the fit in a local patch is constant, then the technique is named the radial basis function (RBF) network; if it is a linear function of the input, it is called the mixture of experts (MoE). We discuss both regression and classification, and also compare this approach with MLP, which we discussed in chapter 11.
+
+\section{Competitive Learning}
+
+In chapter 7, we used the semiparametric Gaussian mixture density, which assumes that the input comes from one of k Gaussian sources. In this section, we make the same assumption that there are k groups (or clusters) in the data, but our approach is not probabilistic in that we do not enforce a parametric model for the sources. Another difference is that the learning methods we propose are online. We do not have the whole sample at hand during training; we receive instances one by one and upcompetitive date model parameters as we get them. The term competitive learning learning is used because it is as if these groups, or rather the units representing these groups, compete among themselves to be the one responsible for winner-take-all representing an instance. The model is also called winner-take-all; it is as if one group wins and gets updated, and the others are not updated at all. These methods can be used by themselves for online clustering, as opposed to the batch methods discussed in chapter 7. An online method has the usual advantages that (1) we do not need extra memory to store the whole training set; (2) updates at each step are simple to implement, for example, in hardware; and (3) the input distribution may change in time and the model adapts itself to these changes automatically. If we were to use a batch algorithm, we would need to collect a new sample and run the batch method from scratch over the whole sample. Starting in section 12.3, we will also discuss how such an approach can be followed by a supervised method to learn regression or classification problems. This will be a two-stage system that can be implemented by a two-layer network, where the first stage (-layer) models the input density and finds the responsible local model, and the second stage is that of the local model generating the final output.
+
+\subsection{Online k-Means}
+
+In equation 7.3, we defined the reconstruction error as
+
+(12.1) E(\{mi\}ki=1|X) = bti $\parallel$xt $-$mi$\parallel$2 2 t i
+
+where
+
+1 if $\parallel$xt $-$mi$\parallel$= minl $\parallel$xt $-$ml$\parallel$ (12.2) bti = 0 otherwise
+
+X = \{xt\}t is the sample and mi, i = 1, . . . , k are the cluster centers. bti is 1 if mi is the closest center to xt in Euclidean distance. It is as if all ml, l = 1, . . . , k compete and mi wins the competition because it is the closest. The batch algorithm, k-means, updates the centers as t bti xt (12.3) mi = t bti
+
+which minimizes equation 12.1, once the winners are chosen using equation 12.2. As we saw before, these two steps of calculating bti and updating mi are iterated until convergence. online k-means We can obtain online k-means by doing stochastic gradient descent, considering the instances one by one, and doing a small update at each step, not forgetting the effect of the previous updates. The reconstruction error for a single instance is
+
+d 1 1 (12.4) Et(\{mi\}ki=1|xt) = bti $\parallel$xt $-$mi$\parallel$2 = bti (xtj $-$mij)2 2 2 i i j=1 where bti is defined as in equation 12.2. Using gradient descent on this, we get the following update rule for each instance xt:
+
+$\partial$Et (12.5) $\Delta$mij = $-$$\eta$ = $\eta$bti (xtj $-$mij) $\partial$mij This moves the closest center (for which bti = 1) toward the input by a factor given by $\eta$. The other centers have their btl , l /= i equal to 0 and are not updated (see figure 12.1). A batch procedure can also be defined by summing up equation 12.5 over all t. Like in any gradient descent procedure, a momentum term can also be added. For convergence, $\eta$ is stability-plasticity gradually decreased to 0. But this implies the stability-plasticity dilemma: dilemma If $\eta$ is decreased toward 0, the network becomes stable but we lose adaptivity to novel patterns that may occur in time because updates become too small. If we keep $\eta$ large, mi may oscillate. The pseudocode of online k-means is given in figure 12.2. This is the online version of the batch algorithm given in figure 7.3. The competitive network can be implemented as a one-layer recurrent network as shown in figure 12.3. The input layer contains the input vector x; note that there is no bias unit. The values of the output units are the bi and they are perceptrons: (12.6) bi = mTi x
+
+x2 mi
+
+x
+
+x1
+
+Figure 12.1 Shaded circles are the centers and the empty circle is the input instance. The online version of k-means moves the closest center along the direction of (x $-$mi) by a factor specified by $\eta$.
+
+Then we need to choose the maximum of the bi and set it equal to 1, and set the others, bl, l /= i to 0. If we would like to do everything purely neural, that is, using a network of concurrently operating processing units, the choosing of the maximum can be implemented through lateral inhibition lateral inhibition. As shown in figure 12.3, each unit has an excitatory recurrent connection (i.e., with a positive weight) to itself, and inhibitory recurrent connections (i.e., with negative weights) to the other output units. With an appropriate nonlinear activation function and positive and negative recurrent weight values, such a network, after some iterations, converges to a state where the maximum becomes 1 and all others become 0 (Grossberg 1980; Feldman and Ballard 1982). The dot product used in equation 12.6 is a similarity measure, and we saw in section 5.5 (equation 5.26) that if mi have the same norm, then the unit with the minimum Euclidean distance, $\parallel$mi $-$x$\parallel$, is the same as the one with the maximum dot product, mTi x. Here, and later when we discuss other competitive methods, we use the Euclidean distance, but we should keep in mind that using the Euclidean distance implies that all input attributes have the same variance and that they are not correlated. If this is not the case, this should be reflected in the distance measure, that is, by using the Mahalanobis distance, or suitable normalization should be done, for example, by PCA, at
+
+Initialize mi, i = 1, . . . , k, for example, to k random xt Repeat For all xt $\in$X in random order i $\leftarrow$arg minj $\parallel$xt $-$mj$\parallel$ mi $\leftarrow$mi + $\eta$(xt $-$mi) Until mi converge
+
+Figure 12.2 Online k-means algorithm. The batch version is given in figure 7.3.
+
+a preprocessing stage before the Euclidean distance is used. We can rewrite equation 12.5 as
+
+(12.7) $\Delta$mtij = $\eta$bti xtj $-$$\eta$bti mij
+
+Let us remember that mij is the weight of the connection from xj to bi. An update of the form, as we see in the first term
+
+(12.8) $\Delta$mtij = $\eta$bti xtj
+
+Hebbian learning is Hebbian learning, which defines the update as the product of the values of the presynaptic and postsynaptic units. It was proposed as a model for neural plasticity: A synapse becomes more important if the units before and after the connection fire simultaneously, indicating that they are correlated. However, with only Hebbian learning, the weights grow without bound (xtj $\geq$0), and we need a second force to decrease the weights that are not updated. One possibility is to explicitly normalize the weights to have $\parallel$mi$\parallel$= 1; if $\Delta$mij > 0 and $\Delta$mil = 0, l /= i, once we normalize mi to unit length, mil decrease. Another possibility is to introduce a weight decay term (Oja 1982), and the second term of equation 12.7 can be seen as such. Hertz, Krogh, and Palmer (1991) discuss competitive networks and Hebbian learning in more detail and show, for example, how such networks can learn to do PCA. Mao and Jain (1995) discuss online algorithms for PCA and LDA. As we saw in chapter 7, one problem is to avoid dead centers, namely, the ones that are there but are not effectively utilized. In the case of competitive networks, this corresponds to centers that never win the competition because they are initialized far away from any input. There are various ways we can avoid this:
+
+1. We can initialize mi by randomly chosen input instances, and make sure that they start from where there is data.
+
+b2
+
+b1 bk m2 m1 mk
+
+x1 xd
+
+Figure 12.3 The winner-take-all competitive neural network, which is a network of k perceptrons with recurrent connections at the output. Dashed lines are recurrent connections, of which the ones that end with an arrow are excitatory and the ones that end with a circle are inhibitory. Each unit at the output reinforces its value and tries to suppress the other outputs. Under a suitable assignment of these recurrrent weights, the maximum suppresses all the others. This has the net effect that the one unit whose mi is closest to x ends up with its bi equal to 1 and all others, namely, bl, l /= i are 0.
+
+2. We can use a leader-cluster algorithm and add units one by one, always adding them at a place where they are needed. One example is the ART model, which we discuss in section 12.2.2.
+
+3. When we update, we do not update only the center of the closest unit but some others as well. As they are updated, they also move toward the input, move gradually toward parts of the input space where there are inputs, and eventually win the competition. One example that we discuss in section 12.2.3 is SOM.
+
+4. Another possibility is to introduce a conscience mechanism (DeSieno 1988): A unit that has won the competition recently feels guilty and allows others to win.
+
+x2 $\rho$ mi
+
+xa
+
+xb
+
+x1
+
+Figure 12.4 The distance from xa to the closest center is less than the vigilance value $\rho$ and the center is updated as in online k-means. However, xb is not close enough to any of the centers and a new group should be created at that position.
+
+\subsection{Adaptive Resonance Theory}
+
+The number of groups, k, should be known and specified before the parameters can be calculated. Another approach is incremental, where one starts with a single group and adds new groups as they are needed. We adaptive resonance discuss the adaptive resonance theory (ART) algorithm (Carpenter and theory Grossberg 1988) as an example of an incremental algorithm. In ART, given an input, all of the output units calculate their values and the one most similar to the input is chosen. This is the unit with the maximum value if the unit uses the dot product as in equation 12.6, or it is the unit with the minimum value if the unit uses the Euclidean distance. Let us assume that we use the Euclidean distance. If the minimum value vigilance is smaller than a certain threshold value, named the vigilance, the update is done as in online k-means. If this distance is larger than vigilance, a new output unit is added and its center is initialized with the instance. This defines a hypersphere whose radius is given by the vigilance defining the volume of scope of each unit; we add a new unit whenever we have an input that is not covered by any unit (see figure 12.4).
+
+Denoting vigilance by $\rho$, we use the following equations at each update:
+
+k (12.9) bi = $\parallel$mi $-$xt$\parallel$= min $\parallel$ml $-$xt$\parallel$ l=1 mk+1 $\leftarrow$xt if bi > $\rho$ $\Delta$mi = $\eta$(xt $-$mi) otherwise
+
+Putting a threshold on distance is equivalent to putting a threshold on the reconstruction error per instance, and if the distance is Euclidean and the error is defined as in equation 12.4, this indicates that the maximum reconstruction error allowed per instance is the square of vigilance.
+
+\subsection{Self-Organizing Maps}
+
+One way to avoid having dead units is by updating not only the winself-organizing map ner but also some of the other units as well. In the self-organizing map (SOM) proposed by Kohonen (1990, 1995), unit indices, namely, i as in mi, define a neighborhood for the units. When mi is the closest center, in addition to mi, its neighbors are also updated. For example, if the neighborhood is of size 2, then mi$-$2, mi$-$1, mi+1, mi+2 are also updated but with less weight as the neighborhood increases. If i is the index of the closest center, the centers are updated as
+
+(12.10) $\Delta$ml = $\eta$ e(l, i)(xt $-$ml)
+
+where e(l, i) is the neighborhood function. e(l, i) = 1 when l = i and decreases as |l $-$i| increases, for example, as a Gaussian, N (i, $\sigma$):
+
+1 $-$i)2 (12.11) e(l, i) = $\sqrt{}$ exp $-$(l 2$\pi$$\sigma$ 2$\sigma$ 2
+
+For convergence, the support of the neighborhood function decreases in time, for example, $\sigma$ decreases, and at the end, only the winner is updated. Because neighboring units are also moved toward the input, we avoid dead units since they get to win competition sometime later, after a little bit of initial help from their neighboring friends (see figure 12.5). Updating the neighbors has the effect that, even if the centers are randomly initialized, because they are moved toward the same input together, once the system converges, units with neighboring indices will also be neighbors in the input space.
+
+mi+2 x2 mi mi+1
+
+x
+
+mi-1 mi-2
+
+x1
+
+Figure 12.5 In the SOM, not only the closest unit but also its neighbors, in terms of indices, are moved toward the input. Here, neighborhood is 1; mi and its 1-nearest neighbors are updated. Note here that mi+1 is far from mi, but as it is updated with mi, and as mi will be updated when mi+1 is the winner, they will become neighbors in the input space as well.
+
+In most applications, the units are organized as a two-dimensional map. That is, each unit will have two indices, mi,j, and the neighborhood will be defined in two dimensions. If mi,j is the closest center, the centers are updated as
+
+(12.12) $\Delta$mk,l = $\eta$e(k, l, i, j)(xt $-$mk,l)
+
+where the neighborhood function is now in two dimensions. After contopographical map vergence, this forms a two-dimensional topographical map of the original d-dimensional input space. The map contains many units in parts of the space where density is high, and no unit will be dedicated to parts where there is no input. Once the map converges, inputs that are close in the original space are mapped to units that are close in the map. In this regard, the map can be interpreted as doing a nonlinear form of multidimensional scaling, mapping from the original x space to the two dimensions, (i, j). Similarly, if the map is one-dimensional, the units are placed on the curve of maximum density in the input space, as a principal curve.
+
+\section{Radial Basis Functions}
+
+In a multilayer perceptron (chapter 11) where hidden units use the dot product, each hidden unit defines a hyperplane and with the sigmoid nonlinearity, a hidden unit has a value between 0 and 1, coding the position of the instance with respect to the hyperplane. Each hyperplane divides the input space in two, and typically for a given input, many of distributed the hidden units have nonzero output. This is called a distributed reprerepresentation sentation because the input is encoded by the simultaneous activation of many hidden units. local Another possibility is to have a local representation where for a given representation input, only one or a few units are active. It is as if these locally tuned units partition the input space among themselves and are selective to only certain inputs. The part of the input space where a unit has nonzero receptive field response is called its receptive field. The input space is then paved with such units. Neurons with such response characteristics are found in many parts of the cortex. For example, cells in the visual cortex respond selectively to stimulation that is both local in retinal position and local in angle of visual orientation. Such locally tuned cells are typically arranged in topogrophical cortical maps in which the values of the variables to which the cells respond vary by their position in the map, as in a SOM. The concept of locality implies a distance function to measure the similarity between the given input x and the position of unit h, mh. Frequently this measure is taken as the Euclidean distance, $\parallel$x $-$mh$\parallel$. The response function is chosen to have a maximum where x = mh and decreasing as they get less similar. Commonly we use the Gaussian function (see figure 12.6):
+
+$-$mh$\parallel$2 (12.13) pth = exp $-$$\parallel$xt 2s2h
+
+Strictly speaking, this is not Gaussian density, but we use the same name anyway. mj and sj respectively denote the center and the spread of the local unit j, and as such define a radially symmetric basis function. One can use an elliptic one with different spreads on different dimensions, or even use the full Mahalanobis distance to allow correlated inputs, at the expense of using a more complicated model (exercise 2). The idea in using such local basis functions is that in the input data, there are groups or clusters of instances and for each such cluster, we
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+$-$5 $-$4 $-$3 $-$2 $-$1 0 1 2 3 4 5
+
+Figure 12.6 The one-dimensional form of the bell-shaped function used in the radial basis function network. This one has m = 0 and s = 1. It is like a Gaussian but it is not a density; it does not integrate to 1. It is nonzero between (m $-$ 3s, m + 3s), but a more conservative interval is (m $-$2s, m + 2s).
+
+define a basis function, pth, which becomes nonzero if instance xt belongs to cluster h. One can use any of the online competitive methods discussed in section 12.2 to find the centers, mh. There is a simple and effective heuristic to find the spreads: Once we have the centers, for each cluster, we find the most distant instance covered by that cluster and set sh to half its distance from the center. We could have used one-third, but we prefer to be conservative. We can also use the statistical clustering method, for example, EM on Gaussian mixtures, that we discussed in chapter 7 to find the cluster parameters, namely, means, variances (and covariances). pth, h = 1, . . . , H define a new H-dimensional space and form a new representation of xt. We can also use bth (equation 12.2) to code the input but bth are 0/1; pth have the additional advantage that they code the distance to their center by a value in (0, 1). How fast the value decays to 0 depends on sh. Figure 12.7 gives an example and compares such Distributed vs a local representation with a distributed representation as used by the local multilayer perceptron. Because Gaussians are local, typically we need representation many more local units than what we would need if we were to use a distributed representation, especially if the input is high-dimensional. In the case of supervised learning, we can then use this new local rep-
+
+w2 w1 + x2 x2 m3 m1 xa xa xb xb
+
+xc xc + m2 x1 x1
+
+Local representation in the Distributed representation in the space of ( p1, p2, p3) space of ( h1, h2) xa : (1.0, 0.0, 0.0) xa : (1.0, 1.0) xb : (0.0, 0.0, 1.0) xb : (0.0, 1.0) xc : (1.0, 1.0, 0.0) xc : (1.0, 0.0)
+
+Figure 12.7 The difference between local and distributed representations. The values are hard, 0/1, values. One can use soft values in (0, 1) and get a more informative encoding. In the local representation, this is done by the Gaussian RBF that uses the distance to the center, mi, and in the distributed representation, this is done by the sigmoid that uses the distance to the hyperplane, wi.
+
+resentation as the input. If we use a perceptron, we have
+
+H (12.14) yt = whpth + w0 h=1
+
+where H is the number of basis functions. This structure is called a radial basis radial basis function (RBF) network (Broomhead and Lowe 1988; Moody function and Darken 1989). Normally, people do not use RBF networks with more than one layer of Gaussian units. H is the complexity parameter, like the number of hidden units in a multilayer perceptron. Previously we denoted it by k, when it corresponded to the number of centers in the case of unsupervised learning. Here, we see the advantage of using ph instead of bh. Because bh are 0/1, if equation 12.14 contained bh instead of the ph, it would give a piecewise constant approximation with discontuinities at the unit region boundaries. ph values are soft and lead to a smooth approximation, taking a weighted average while passing from one region to another. We can easily see that such a network is a universal approximator in that it can
+
+approximate any function with desired accuracy, given enough units. We can form a grid in the input space to our desired accuracy, define a unit that will be active for each cell, and set its outgoing weight, wh, to the desired output value. This architecture bears much similarity to the nonparametric estimators, for example, Parzen windows, we saw in chapter 8, and ph may be seen as kernel functions. The difference is that now we do not have a kernel function over all training instances but group them using a clustering method to make do with fewer kernels. H, the number of units, is the complexity parameter, trading offsimplicity and accuracy. With more units, we approximate the training data better, but we get a complex model and risk overfitting; too few may underfit. Again, the optimal value is determined by cross-validation. Once mh and sh are given and fixed, ph are also fixed. Then wh can be trained easily batch or online. In the case of regression, this is a linear regression model (with ph as the inputs) and the wh can be solved analytically without any iteration (section 4.6). In the case of classification, we need to resort to an iterative procedure. We discussed learning methods for this in chapter 10 and do not repeat them here. What we do here is a two-stage process: we use an unsupervised method for determining the centers, then build a supervised layer on top of that. hybrid learning This is called hybrid learning. We can also learn all parameters, including mh and sh, in a supervised manner. The radial basis function of equation 12.13 is differentiable and we can backpropagate, just as we backpropagated in a multilayer perceptron to update the first-layer weights. The structure is similar to a multilayer perceptron with ph as the hidden units, mh and sh as the first-layer parameters, the Gaussian as the activation function in the hidden layer, and wh as the second-layer weights (see figure 12.8). But before we discuss this, we should remember that training a twolayer network is slow. Hybrid learning trains one layer at a time and is anchor faster. Another technique, called the anchor method, sets the centers to the randomly chosen patterns from the training set without any further update. It is adequate if there are many units. On the other hand, the accuracy normally is not as high as when a completely supervised method is used. Consider the case when the input is uniformly distributed. Then k-means clustering places the units uniformly. If the function is changing significantly in a small part of the space, it is a better idea to have as many centers in places where the func-
+
+yi
+
+wih
+
+ph
+
+p0=+1
+
+mhj , sh
+
+x1 xj xd
+
+Figure 12.8 The RBF network where ph are the hidden units using the bellshaped activation function. mh, sh are the first-layer parameters, and wi are the second-layer weights.
+
+tion changes fast, to make the error as small as possible; this is what the completely supervised method would do. Let us discuss how all of the parameters can be trained in a fully supervised manner. The approach is the same as backpropagation applied to multilayer perceptrons. Let us see the case of regression with multiple outputs. The batch error is
+
+(12.15) E(\{mh, sh, wih\}i,h|X) = (rti $-$yti )2 2 t i
+
+where
+
+H (12.16) yti = wihpth + wi0 h=1
+
+Using gradient descent, we get the following update rule for the second-
+
+layer weights:
+
+(12.17) $\Delta$wih = $\eta$ (rti $-$yti )pth t
+
+This is the usual perceptron update rule, with ph as the inputs. Typically, ph do not overlap much and at each iteration, only a few ph are nonzero and only their wh are updated. That is why RBF networks learn very fast, and faster than multilayer perceptrons that use a distributed representation. Similarly, we can get the update equations for the centers and spreads by backpropagation (chain rule): [ ] (xtj $-$mhj) (12.18) $\Delta$mhj = $\eta$ [ (rti $-$yti )wih ]pth t i s2h [ ] $\parallel$xt $-$mh$\parallel$2 (12.19) $\Delta$sh = $\eta$ [ (rti $-$yti )wih ]pth t i s3h
+
+Let us compare equation 12.18 with equation 12.5: First, here we use ph instead of bh, which means that not only the closest one but all units are updated, depending on their centers and spreads. Second, here the update is supervised and contains the backpropagated error term. The update depends not only on the input but also on the final error (rti $-$yti ), the effect of the unit on the output, wih, the activation of the unit, ph, and the input, (x $-$mh). In practice, equations 12.18 and 12.19 need some extra control. We need to explicitly check that sh do not become very small or very large to be useless; we also need to check that mh stay in the valid input range. In the case of classification, we have
+
+exp h wihpth + wi0 (12.20) yti = k exp h wkhpth + wk0
+
+and the cross-entropy error is
+
+(12.21) E(\{mh, sh, wih\}i,h|X) = $-$ rti log yti t i
+
+Update rules can similarly be derived using gradient descent (exercise 3). Let us look again at equation 12.14. For any input, if ph is nonzero, then it contributes wh to the output. Its contribution is a constant fit, as
+
+given by wh. Normally Gaussians do not overlap much, and one or two of them have a nonzero ph value. In any case, only few units contribute to the output. w0 is the constant offset and is added to the weighted sum of the active (nonzero) units. We also see that y = w0 if all ph are 0. We can therefore view w0 as the “default” value of y: If no Gaussian is active, then the output is given by this value. So a possibility is to make this “default model” a more powerful “rule.” For example, we can write
+
+H (12.22) yt = whpth + vTxt + v0 h=1 rule
+
+exceptions
+
+In this case, the rule is linear: vT xt + v0. When they are nonzero, Gaussians work as localized “exceptions” and modify the output to make up for the difference between the desired output and the rule output. Such a model can be trained in a supervised manner, and the rule can be trained together with the exceptions (exercise 4). We discuss a similar model, cascading, in section 17.11 where we see it as a combination of two learners, one general rule and the other formed by a set of exceptions.
+
+\section{Incorporating Rule-Based Knowledge}
+
+The training of any learning system can be much simpler if we manage to prior knowledge incorporate prior knowledge to initialize the system. For example, prior knowledge may be available in the form of a set of rules that specify the input/output mapping that the model, for example, the RBF network, has to learn. This occurs frequently in industrial and medical applications where rules can be given by experts. Similarly, once a network has been trained, rules can be extracted from the solution in such a way as to better understand the solution to the problem. The inclusion of prior knowledge has the additional advantage that if the network is required to extrapolate into regions of the input space where it has not seen any training data, it can rely on this prior knowledge. Furthermore, in many control applications, the network is required to make reasonable predictions right from the beginning. Before it has seen sufficient training data, it has to rely primarily on this prior knowledge. In many applications we are typically told some basic rules that we try to follow in the beginning but that are then refined and altered through
+
+experience. The better our initial knowledge of a problem, the faster we can achieve good performance and the less training that is required. Such inclusion of prior knowledge or extraction of learned knowledge is easy to do with RBF networks because the units are local. This makes rule extraction rule extraction easier (Tresp, Hollatz, and Ahmad 1997). An example is
+
+(12.23) IF ((x1 $\approx$a) AND (x2 $\approx$b)) OR (x3 $\approx$c) THEN y = 0.1
+
+where x1 $\approx$a means “x1 is approximately a.” In the RBF framework, this rule is encoded by two Gaussian units as
+
+$-$a)2 $-$b)2 p1 = exp $-$(x1 $\cdot$ exp $-$(x2 with w1 = 0.1 2s21 2s22 $-$c)2 p2 = exp $-$(x3 with w2 = 0.1 2s23
+
+“Approximately equal to” is modeled by a Gaussian where the center is the ideal value and the spread denotes the allowed difference around this ideal value. Conjunction is the product of two univariate Gaussians that is a bivariate Gaussian. Then, the first product term can be handled by a two-dimensional, namely, x = [x1, x2], Gaussian centered at (a, b), and the spreads on the two dimensions are given by s1 and s2. Disjunction is modeled by two separate Gaussians, each one handling one of the disjuncts. Given labeled training data, the parameters of the RBF network so constructed can be fine-tuned after the initial construction, using a small value of $\eta$. This formulation is related to the fuzzy logic approach where equafuzzy rule tion 12.23 is named a fuzzy rule. The Gaussian basis function that checks fuzzy membership for approximate equality corresponds to a fuzzy membership function function (Berthold 1999; Cherkassky and Mulier 1998).
+
+\section{Normalized Basis Functions}
+
+In equation 12.14, for an input, it is possible that all of the ph are 0. In some applications, we may want to have a normalization step to make sure that the values of the local units sum up to 1, thus making sure that for any input there is at least one nonzero unit: pth exp[$-$$\parallel$xt $-$mh$\parallel$2/2s2h] (12.24) gth = H = l=1 ptl l exp[$-$$\parallel$xt $-$ml$\parallel$2/2s2l ]
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5
+
+Figure 12.9 (-) Before and (- -) after normalization for three Gaussians whose centers are denoted by ‘*’. Note how the nonzero region of a unit depends also on the positions of other units. If the spreads are small, normalization implements a harder split; with large spreads, units overlap more.
+
+An example is given in figure 12.9. Taking ph as p(x|h), gh correspond to p(h|x), the posterior probability that x belongs to unit h. It is as if the units divide the input space among themselves. We can think of gh as a classifier in itself, choosing the responsible unit for a given input. This classification is done based on distance, as in a parametric Gaussian classifier (chapter 5). The output is a weighted sum
+
+H (12.25) yti = wihgth h=1
+
+where there is no need for a bias term because there is at least one nonzero gh for each x. Using gh instead of ph does not introduce any extra parameters; it only couples the units together: ph depends only on mh and sh, but gh, because of normalization, depends on the centers and spreads of all of the units.
+
+In the case of regression, we have the following update rules using gradient descent: (12.26) $\Delta$wih = $\eta$ (rti $-$yti )gth t (xtj $-$mhj) (12.27) $\Delta$mhj = $\eta$ (rti $-$yti )(wih $-$yti )gth t i s2h
+
+The update rule for sh as well as the rules for classification can similarly be derived. Let us compare these with the update rules for the RBF with unnormalized Gaussians (equation 12.17). Here, we use gh instead of ph, which makes a unit’s update dependent not only on its own parameters, but also on the centers and spreads of other units as well. Comparing equation 12.27 with equation 12.18, we see that instead of wih, we have (wih $-$yti ), which shows the role of normalization on the output. The “responsible” unit wants to decrease the difference between its output, wih, and the final output, yti , proportional to its responsibility, gh.
+
+\section{Competitive Basis Functions}
+
+As we have seen up until now, in an RBF network the final output is determined as a weighted sum of the contributions of the local units. Though the units are local, it is the final weighted sum that is important and that we want to make as close as possible to the required output. For example, in regression we minimize equation 12.15, which is based on the probabilistic model 1 i $-$yti )2 (12.28) p(rt|xt) = $\sqrt{}$ exp $-$(rt 2$\pi$$\sigma$ 2$\sigma$ 2 i where yti is given by equation 12.16 (unnormalized) or equation 12.25 (normalized). In either case, we can view the model as a cooperative one since the units cooperate to generate the final output, yti . We now discuss competitive basis the approach using competitive basis functions where we assume that the functions output is drawn from a mixture model
+
+H (12.29) p(rt|xt) = p(h|xt)p(rt|h, xt)
+
+h=1 p(h|xt) are the mixture proportions and p(rt|h, xt) are the mixture components generating the output if that component is chosen. Note that both of these terms depend on the input x.
+
+The mixture proportions are
+
+p(x|h)p(h) (12.30) p(h|x) = l p(x|l)p(l) ah exp[$-$$\parallel$xt $-$mh$\parallel$2/2s2h] (12.31) gth = l al exp[$-$$\parallel$xt $-$ml$\parallel$2/2s2l ]
+
+We generally assume ah to be equal and ignore them. Let us first take the case of regression where the components are Gaussian. In equation 12.28, noise is added to the weighted sum; here, one component is chosen and noise is added to its output, ytih. Using the mixture model of equation 12.29, the log likelihood is [ ]
+
+] (12.32) L(\{mh, sh, wih\}i,h|X) = log gth exp [$-$1 (rti $-$ytih)2 2 t h i
+
+where ytih = wih is the constant fit done by component h for output i, which, strictly speaking, does not depend on x. (In section 12.8.2, we discuss the case of competitive mixture of experts where the local fit is a linear function of x.) We see that if gth is 1, then it is responsible for generating the right output and needs to minimize the squared error of its prediction, i(rti $-$ytih)2. Using gradient ascent to maximize the log likelihood, we get
+
+(12.33) $\Delta$wih = $\eta$ (rti $-$ytih)f ht t
+
+where gth exp[$-$12 i(rti $-$ytih)2] t (12.34) f h = l gtl exp[$-$12 i(rti $-$ytil)2] p(h|x)p(r|h, x) (12.35) p(h|r, x) = l p(l|x)p(r|l, x)
+
+gth $\equiv$p(h|xt) is the posterior probability of unit h given the input, and it depends on the centers and spreads of all of the units. f ht $\equiv$p(h|r, xt) is the posterior probability of unit h given the input and the desired output, also taking the error into account in choosing the responsible unit. Similarly, we can derive a rule to update the centers:
+
+(xtj $-$mhj) t (12.36) $\Delta$mhj = $\eta$ (f h $-$gth) t s2h
+
+fh is the posterior probability of unit h also taking the required output into account, whereas gh is the posterior probability using only the input space information. Their difference is the error term for the centers. $\Delta$sh can be similarly derived. In the cooperative case, there is no force on the units to be localized. To decrease the error, means and spreads can take any value; it is even possible sometimes for the spreads to increase and flatten out. In the competitive case, however, to increase the likelihood, units are forced to be localized with more separation between them and smaller spreads. In classification, each component by itself is a multinomial. Then the log likelihood is
+
+t i(12.37) L(\{mh, sh, wih\}i,h|X) = log gth (ytih)r t h i [ ] (12.38) = log gth exp [ rti log ytih ] t h i
+
+where exp wih (12.39) ytih = k exp wkh Update rules for wih, mh, and sh can be derived using gradient ascent, which will include t gth exp[ i rti log ytih] (12.40) f h = l gtl exp[ i rti log ytil]
+
+In chapter 7, we discussed the EM algorithm for fitting Gaussian mixtures to data. It is possible to generalize EM for supervised learning as well. Actually, calculating f ht corresponds to the E-step. f ht $\equiv$p(r|h, xt) replaces p(h|xt), which we used in the E-step in chapter 7 when the application was unsupervised. In the M-step for regression, we update the parameters as t f hxtt (12.41) mh = t t f h t f h(xtt $-$mh)(xt $-$mh)T (12.42) Sh = t t f h t f hrtt i (12.43) wih = t t f h We see that wih is a weighted average where weights are the posterior probabilities of units, given the input and the desired output. In the case
+
+of classification, the M-step has no analytical solution and one needs to resort to an iterative procedure, for example, gradient ascent (Jordan and Jacobs 1994).
+
+\section{Learning Vector Quantization}
+
+Let us say we have H units for each class, already labeled by those classes. These units are initialized with random instances from their classes. At each iteration, we find the unit, mi, that is closest to the input instance in Euclidean distance and use the following update rule:
+
+$\Delta$mi = $\eta$(xt $-$mi) if xt and mi have the same class label (12.44) $\Delta$mi = $-$$\eta$(xt $-$mi) otherwise
+
+If the closest center has the correct label, it is moved toward the input to better represent it. If it belongs to the wrong class, it is moved away from the input in the expectation that if it is moved sufficiently away, a center of the correct class will be the closest in a future iteration. This learning vector is the learning vector quantization (LVQ) model proposed by Kohonen quantization (1990, 1995). The LVQ update equation is analogous to equation 12.36 where the direction in which the center is moved depends on the difference between two values: our prediction of the winner unit based on the input distances and what the winner should be based on the required output.
+
+\section{Mixture of Experts}
+
+In RBFs, corresponding to each local patch we give a constant fit. In the case where for any input, we have one gh 1 and all others 0, we get a piecewise constant approximation where for output i, the local fit by patch h is given by wih. From the Taylor expansion, we know that at each point, the function can be written as
+
+(12.45) f(x) = f(a) + (x $-$a)f '(a) + $\cdot$ $\cdot$ $\cdot$
+
+Thus a constant approximation is good if x is close enough to a and f '(a) is close to 0---that is, if f(x) is flat around a. If this is not the case, we need to divide the space into a large number of patches, which is particularly serious when the input dimensionality is high, due to the curse of dimensionality.
+
+yi
+
+wih
+
+gh mh , sh vih
+
+x1 xj xd
+
+Figure 12.10 The mixture of experts can be seen as an RBF network where the second-layer weights are outputs of linear models. Only one linear model is shown for clarity.
+
+piecewise linear An alternative is to have a piecewise linear approximation by taking into approximation account the next term in the Taylor expansion, namely, the linear term. mixture of experts This is what is done by mixture of experts (Jacobs et al. 1991). We write
+
+H (12.46) yti = wihgth h=1
+
+which is the same as equation 12.25 but here, wih, the contribution of patch h to output i is not a constant but a linear function of the input:
+
+(12.47) wtih = vTihxt
+
+vih is the parameter vector that defines the linear function and includes a bias term, making the mixture of experts a generalization of the RBF network. The unit activations can be taken as normalized RBFs: exp[$-$$\parallel$xt $-$mh$\parallel$2/2s2h] (12.48) gth = l exp[$-$$\parallel$xt $-$ml$\parallel$2/2s2l ]
+
+This can be seen as an RBF network except that the second-layer weights are not constants but are outputs of linear models (see figure 12.10). Jacobs et al. (1991) view this in another way: They consider wh as linear
+
+yi
+
+gh wih Local Gating wh experts network vih mhj
+
+x1 xj xd
+
+Figure 12.11 The mixture of experts can be seen as a model for combining multiple models. wh are the models and the gating network is another model determining the weight of each model, as given by gh. Viewed in this way, neither the experts nor the gating are restricted to be linear.
+
+models, each taking the input, and call them experts. gh are considered to be the outputs of a gating network. The gating network works as a classifier does with its outputs summing to 1, assigning the input to one of the experts (see figure 12.11). Considering the gating network in this manner, any classifier can be used in gating. When x is high-dimensional, using local Gaussian units may require a large number of experts and Jacobs et al. (1991) propose to take
+
+exp[mTh xt] (12.49) gth = l exp[mTl xt]
+
+which is a linear classifier. Note that mh are no longer centers but hyperplanes, and as such include bias values. This gating network is implementing a classification where it is dividing linearly the input region for which expert h is responsible from the expertise regions of other experts. As we will see again in chapter 17, the mixture of experts is a general architecture for combining multiple models; the experts and the gating
+
+may be nonlinear, for example, contain multilayer perceptrons, instead of linear perceptrons (exercise 6). An architecture similar to the mixture of experts and running line smoother (section 8.6.3) has been proposed by Bottou and Vapnik (1992). In their approach, no training is done initially. When a test instance is given, a subset of the data close to the test instance is chosen from the training set (as in the k-nearest neighbor, but with a large k), a simple model, for example, a linear classifier, is trained with this local data, the prediction is made for the instance, and then the model is discarded. For the next instance, a new model is created, and so on. On a handwritten digit recognition application, this model has less error than the multilayer perceptron, k-nearest neighbor, and Parzen windows; the disadvantage is the need to train a new model on the fly for each test instance.
+
+\subsection{Cooperative Experts}
+
+In the cooperative case, yti is given by equation 12.46, and we would like to make it as close as possible to the required output, rti . In regression, the error function is
+
+(12.50) E(\{mh, sh, wih\}i,h|X) = (rti $-$yti )2 2 t i
+
+Using gradient descent, second-layer (expert) weight parameters are updated as
+
+(12.51) $\Delta$vih = $\eta$ (rti $-$yti )gthxt t
+
+Compared with equation 12.26, we see that the only difference is that this new update is a function of the input. If we use softmax gating (equation 12.49), using gradient descent we have the following update rule for the hyperplanes:
+
+(12.52) $\Delta$mhj = $\eta$ (rti $-$yti )(wtih $-$yti )gthxtj t i
+
+If we use radial gating (equation 12.48), only the last term, $\partial$ph/$\partial$mhj, differs. In classification, we have
+
+exp h wihgth (12.53) yi = k exp h wkhgth
+
+with wih = vTihx, and update rules can be derived to minimize the crossentropy using gradient descent (exercise 7).
+
+\subsection{Competitive Experts}
+
+Just like the competitive RBFs, we have [ ]
+
+] (12.54) L(\{mh, sh, wih\}i,h|X) = log gth exp [$-$1 (rti $-$ytih)2 2 t h i where ytih = wtih = vihxt. Using gradient ascent, we get (12.55) $\Delta$vih = $\eta$ (rti $-$ytih)f hxtt t (12.56) $\Delta$mh = $\eta$ (f ht $-$gth)xt t
+
+assuming softmax gating as given in equation 12.49. In classification, we have
+
+t i (12.57) L(\{mh, sh, wih\}i,h|X) = log gth (ytih)r t h i [ ] (12.58) = log gth exp [ rti log ytih ] t h i
+
+where exp wtih exp[vihxt] (12.59) ytih = = k exp wtkh k exp[vkhxt]
+
+Jordan and Jacobs (1994) generalize EM for the competitive case with local linear models. Alpaydin and Jordan (1996) compare cooperative and competitive models for classification tasks and see that the cooperative model is generally more accurate but the competitive version learns faster. This is because in the cooperative case, models overlap more and implement a smoother approximation, and thus it is preferable in regression problems. The competitive model makes a harder split; generally only one expert is active for an input and therefore learning is faster.
+
+\section{Hierarchical Mixture of Experts}
+
+In figure 12.11, we see a set of experts and a gating network that chooses hierarchical one of the experts as a function of the input. In a hierarchical mixture mixture of experts
+
+of experts, we replace each expert with a complete system of mixture of experts in a recursive manner (Jordan and Jacobs 1994). This architecture may be seen as a decision tree (chapter 9) where gating networks can be seen as decision nodes. When the gating network is linear, this is like the linear multivariate decision tree discussed in section 9.6. The difference is that the gating network does not make a hard decision but takes a weighted sum of contributions coming from the children. Leaf nodes are linear models, and their predictions are averaged and propagated up the tree. The root gives the final output, which is a weighted average of all of the leaves. This is a soft decision tree as opposed to the decision trees we saw before where only one path from the root to a leaf is taken. Once an architecture is chosen---namely, the depth, the experts, and the gating models---the whole tree can be learned from a labeled sample. Jordan and Jacobs (1994) derive both gradient descent and EM learning rules for such an architecture.
+
+\section{Notes}
+
+An RBF network can be seen as a neural network, implemented by a network of simple processing units. It differs from a multilayer perceptron in that the first and second layers implement different functions. Omohundro (1987) discusses how local models can be implemented as neural networks and also addresses hierarchical data structures for fast localization of relevant local units. Specht (1991) shows how Parzen windows can be implemented as a neural network. Platt (1991) proposed an incremental version of RBF where new units are added as necessary. Fritzke (1995) similarly proposed a growing version of SOM. Lee (1991) compares k-nearest neighbor, multilayer perceptron, and RBF network on a handwritten digit recognition application and concludes that these three methods all have small error rates. RBF networks learn faster than backpropagation on a multilayer perceptron but use more parameters. Both of these methods are superior to the k-NN in terms of classification speed and memory need. Such practical constraints like time, memory, and computational complexity may be more important than small differences in error rate in real-world applications. Kohonen’s SOM (1990, 1995) was one of the most popular neural network methods, having been used in a variety of applications including
+
+exploratory data analysis and as a preprocessing stage before a supervised learner. One interesting and successful application is the traveling salesman problem (Angeniol, Vaubois, and Le Texier 1988). Just like the difference between k-means clustering and EM on Gaussian mixtures generative (chapter 7), generative topographic mapping (GTM) (Bishop, Svensén, and topographic Williams 1998) is a probabilistic version of SOM that optimizes the log mapping likelihood of the data using a mixture of Gaussians whose means are constrained to lie on a two-dimensional manifold (for topological ordering in low dimensions). In an RBF network, once the centers and spreads are fixed (for example, by choosing a random subset of training instances as centers, as in the anchor method), training the second layer is a linear model. This model is equivalent to support vector machines with Gaussian kernels where during learning the best subset of instances, named the support vectors, are chosen; we discuss them in chapter 13. Gaussian processes (chapter 14) where we interpolate from stored training instances are also similar.
+
+\section{Exercises}
+
+1. Show an RBF network that implements XOR.
+
+2. Write down the RBF network that uses elliptic units instead of radial units as in equation 12.13.
+
+3. Derive the update equations for the RBF network for classification (equations
+
+\section{and 12.21).}
+
+4. Show how the system given in equation 12.22 can be trained.
+
+5. Compare the number of parameters of a mixture of experts architecture with an RBF network.
+
+6. Formalize a mixture of experts architecture where the experts and the gating network are multilayer perceptrons. Derive the update equations for regression and classification.
+
+7. Derive the update equations for the cooperative mixture of experts for classification.
+
+8. Derive the update equations for the competitive mixture of experts for classification.
+
+9. Formalize the hierarchical mixture of experts architecture with two levels. Derive the update equations using gradient descent for regression and classification.
+
+10. In mixture of experts, because different experts specialize in different parts of the input space, they may need to focus on different inputs. Discuss how dimensionality can be locally reduced in the experts.
+
+\section{References}
+
+Alpaydin, E., and M. I. Jordan. 1996. “Local Linear Perceptrons for Classification.” IEEE Transactions on Neural Networks 7: 788--792.
+
+Angeniol, B., G. Vaubois, and Y. Le Texier. 1988. “Self Organizing Feature Maps and the Travelling Salesman Problem.” Neural Networks 1: 289--293.
+
+Berthold, M. 1999. “Fuzzy Logic.” In Intelligent Data Analysis: An Introduction, ed. M. Berthold and D. J. Hand, 269--298. Berlin: Springer.
+
+Bishop, C. M., M. Svensén, and C. K. I. Williams. 1998. “GTM: The Generative Topographic Mapping.” Neural Computation 10: 215--234.
+
+Bottou, L., and V. Vapnik. 1992. “Local Learning Algorithms.” Neural Computation 4: 888--900.
+
+Broomhead, D. S., and D. Lowe. 1988. “Multivariable Functional Interpolation and Adaptive Networks.” Complex Systems 2: 321--355.
+
+Carpenter, G. A., and S. Grossberg. 1988. “The ART of Adaptive Pattern Recognition by a Self-Organizing Neural Network.” IEEE Computer 21(3): 77--88.
+
+Cherkassky, V., and F. Mulier. 1998. Learning from Data: Concepts, Theory, and Methods. New York: Wiley.
+
+DeSieno, D. 1988. “Adding a Conscience Mechanism to Competitive Learning.” In IEEE International Conference on Neural Networks, 117--124. Piscataway, NJ: IEEE Press.
+
+Feldman, J. A., and D. H. Ballard. 1982. “Connectionist Models and their Properties.” Cognitive Science 6: 205--254.
+
+Fritzke, B. 1995. “Growing Cell Structures: A Self Organizing Network for Unsupervised and Supervised Training.” Neural Networks 7: 1441--1460.
+
+Grossberg, S. 1980. “How does the Brain Build a Cognitive Code?” Psychological Review 87: 1--51.
+
+Hertz, J., A. Krogh, and R. G. Palmer. 1991. Introduction to the Theory of Neural Computation. Reading, MA: Addison Wesley.
+
+Jacobs, R. A., M. I. Jordan, S. J. Nowlan, and G. E. Hinton. 1991. “Adaptive Mixtures of Local Experts.” Neural Computation 3: 79--87.
+
+Jordan, M. I., and R. A. Jacobs. 1994. “Hierarchical Mixtures of Experts and the EM Algorithm.” Neural Computation 6: 181--214.
+
+Kohonen, T. 1990. “The Self-Organizing Map.” Proceedings of the IEEE 78: 1464--1480.
+
+Kohonen, T. 1995. Self-Organizing Maps. Berlin: Springer.
+
+Lee, Y. 1991. “Handwritten Digit Recognition Using k-Nearest Neighbor, Radial Basis Function, and Backpropagation Neural Networks.” Neural Computation 3: 440--449.
+
+Mao, J., and A. K. Jain. 1995. “Artificial Neural Networks for Feature Extraction and Multivariate Data Projection.” IEEE Transactions on Neural Networks 6: 296--317.
+
+Moody, J., and C. Darken. 1989. “Fast Learning in Networks of Locally-Tuned Processing Units.” Neural Computation 1: 281--294.
+
+Oja, E. 1982. “A Simplified Neuron Model as a Principal Component Analyzer.” Journal of Mathematical Biology 15: 267--273.
+
+Omohundro, S. M. 1987. “Efficient Algorithms with Neural Network Behavior.” Complex Systems 1: 273--347.
+
+Platt, J. 1991. “A Resource Allocating Network for Function Interpolation.” Neural Computation 3: 213--225.
+
+Specht, D. F. 1991. “A General Regression Neural Network.” IEEE Transactions on Neural Networks 2: 568--576.
+
+Tresp, V., J. Hollatz, and S. Ahmad. 1997. “Representing Probabilistic Rules with Networks of Gaussian Basis Functions.” Machine Learning 27: 173--200.

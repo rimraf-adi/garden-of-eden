@@ -1,0 +1,495 @@
+% Generated from docs/book.pdf. Review equations and figures against the source PDF.
+\chapter{Linear Discrimination}
+\label{chap:10-linear-discrimination}
+
+In linear discrimination, we assume that instances of a class are linearly separable from instances of other classes. This is a discriminantbased approach that estimates the parameters of the linear discriminant directly from a given labeled sample.
+
+\section{Introduction}
+
+We remember from the previous chapters that in classification we define a set of discriminant functions gj(x), j = 1, . . . , K, and then we
+
+K choose Ci if gi(x) = max gj(x) j=1
+
+Previously, when we discussed methods for classification, we first estimated the prior probabilities, \textasciicircum{}P(Ci), and the class likelihoods, \textasciicircum{}p(x|Ci), then used Bayes’ rule to calculate the posterior densities. We then defined the discriminant functions in terms of the posterior, for example,
+
+gi(x) = log \textasciicircum{}P(Ci|x)
+
+likelihood-based This is called likelihood-based classification, and we have previously classification discussed the parametric (chapter 5), semiparametric (chapter 7), and nonparametric (chapter 8) approaches to estimating the class likelihoods, p(x|Ci). discriminant-based We are now going to discuss discriminant-based classification where classification we assume a model directly for the discriminant, bypassing the estimation of likelihoods or posteriors. The discriminant-based approach, as we also saw for the case of decision trees in chapter 9, makes an assumption on the form of the discriminant between the classes and makes no assumption about, or requires no knowledge of the densities---for example,
+
+whether they are Gaussian, or whether the inputs are correlated, and so forth. We define a model for the discriminant
+
+gi(x|$\Phi$i)
+
+explicitly parameterized with the set of parameters $\Phi$i, as opposed to a likelihood-based scheme that has implicit parameters in defining the likelihood densities. This is a different inductive bias: instead of making an assumption on the form of the class densities, we make an assumption on the form of the boundaries separating classes. Learning is the optimization of the model parameters $\Phi$i to maximize the quality of the separation, that is, the classification accuracy on a given labeled training set. This differs from the likelihood-based methods that search for the parameters that maximize sample likelihoods, separately for each class. In the discriminant-based approach, we do not care about correctly estimating the densities inside class regions; all we care about is the correct estimation of the boundaries between the class regions. Those who advocate the discriminant-based approach (e.g., Vapnik 1995) state that estimating the class densities is a harder problem than estimating the class discriminants, and it does not make sense to solve a hard problem to solve an easier problem. This is of course true only when the discriminant can be approximated by a simple function. In this chapter, we concern ourselves with the simplest case where the discriminant functions are linear in x:
+
+d (10.1) gi(x|wi, wi0) = wTi x + wi0 = wijxj + wi0 j=1
+
+linear discriminant The linear discriminant is used frequently mainly due to its simplicity: both the space and time complexities are O(d). The linear model is easy to understand: the final output is a weighted sum of the input attributes xj. The magnitude of the weight wj shows the importance of xj and its sign indicates if the effect is positive or negative. Most functions are additive in that the output is the sum of the effects of several attributes where the weights may be positive (enforcing) or negative (inhibiting). For example, when a customer applies for credit, financial institutions calculate the applicant’s credit score that is generally written as a sum of the effects of various attributes; for example, yearly income has a positive effect (higher incomes increase the score).
+
+In many applications, the linear discriminant is also quite accurate. We know, for example, that when classes are Gaussian with a shared covariance matrix, the optimal discriminant is linear. The linear discriminant, however, can be used even when this assumption does not hold, and the model parameters can be calculated without making any assumptions on the class densities. We should always use the linear discriminant before trying a more complicated model to make sure that the additional complexity is justified. As always, we formulate the problem of finding a linear discriminant function as a search for the parameter values that minimize an error function. In particular, we concentrate on gradient methods for optimizing a criterion function.
+
+\section{Generalizing the Linear Model}
+
+quadratic When a linear model is not flexible enough, we can use the quadratic discriminant discriminant function and increase complexity
+
+(10.2) gi(x|Wi, wi, wi0) = xTWix + wix + wi0
+
+but this approach is O(d2) and we again have the bias/variance dilemma: the quadratic model, though is more general, requires much larger training sets and may overfit on small samples. higher-order terms An equivalent way is to preprocess the input by adding higher-order product terms terms, also called product terms. For example, with two inputs x1 and x2, we can define new variables
+
+z1 = x1, z2 = x2, z3 = x21, z4 = x22, z5 = x1x2 and take z = [z1, z2, z3, z4, z5]T as the input. The linear function defined in the five-dimensional z space corresponds to a nonlinear function in the two-dimensional x space. Instead of defining a nonlinear function (discriminant or regression) in the original space, what we do is to define a suitable nonlinear transformation to a new space where the function can be written in a linear form. We write the discriminant as
+
+k (10.3) gi(x) = wj$\phi$ij(x) j=1
+
+basis function where $\phi$ij(x) are basis functions. Higher-order terms are only one set of possible basis functions; other examples are
+
+\begin{itemize}
+\item sin(x1)
+\end{itemize}
+
+\begin{itemize}
+\item exp($-$(x1 $-$m)2/c)
+\end{itemize}
+
+\begin{itemize}
+\item exp($-$$\parallel$x $-$m$\parallel$2/c)
+\end{itemize}
+
+\begin{itemize}
+\item log(x2)
+\end{itemize}
+
+\begin{itemize}
+\item 1(x1 > c)
+\end{itemize}
+
+\begin{itemize}
+\item 1(ax1 + bx2 > c)
+\end{itemize}
+
+where m, a, b, c are scalars, m is a d-dimensional vector, and 1(b) returns 1 if b is true and returns 0 otherwise. The idea of writing a nonlinear function as a linear sum of nonlinear basis functions is an old idea and potential function was originally called potential functions (Aizerman, Braverman, and Rozonoer 1964). Multilayer perceptrons (chapter 11) and radial basis functions (chapter 12) have the advantage that the parameters of the basis functions can be fine-tuned to the data during learning. In chapter 13, we discuss support vector machines that use kernel functions built from such basis functions.
+
+\section{Geometry of the Linear Discriminant}
+
+\subsection{Two Classes}
+
+Let us start with the simpler case of two classes. In such a case, one discriminant function is sufficient:
+
+g(x) = g1(x) $-$g2(x) = (wT1 x + w10) $-$(wT2 x + w20) = (w1 $-$w2)Tx + (w10 $-$w20) = wTx + w0
+
+and we
+
+C1 if g(x) > 0 choose C2 otherwise
+
+weight vector This defines a hyperplane where w is the weight vector and w0 is the threshold threshold. This latter name comes from the fact that the decision rule can be rewritten as follows: choose C1 if wT x > $-$w0, and choose C2
+
+x2 g(x)=w1x1+w2x2+w0=0 g(x)> 0 g(x)< 0 C1 C2
+
++
+
+x1
+
+Figure 10.1 In the two-dimensional case, the linear discriminant is a line that separates the examples from two classes.
+
+otherwise. The hyperplane divides the input space into two half-spaces: the decision region R1 for C1 and R2 for C2. Any x in R1 is on the positive side of the hyperplane and any x in R2 is on its negative side. When x is 0, g(x) = w0 and we see that if w0 > 0, the origin is on the positive side of the hyperplane, and if w0 < 0, the origin is on the negative side, and if w0 = 0, the hyperplane passes through the origin (see figure 10.1). Take two points x1 and x2 both on the decision surface; that is, g(x1) = g(x2) = 0, then
+
+wT x1 + w0 = wT x2 + w0 wT (x1 $-$x2) = 0
+
+and we see that w is normal to any vector lying on the hyperplane. Let us rewrite x as (Duda, Hart, and Stork 2001)
+
+w x = xp + r $\parallel$w$\parallel$
+
+where xp is the normal projection of x onto the hyperplane and r gives us the distance from x to the hyperplane, negative if x is on the negative
+
+x2 g(x)=0 g(x)<0 g(x)>0
+
+|w0|/||w||
+
+x
+
+w |g(x)|/||w||
+
+x1
+
+Figure 10.2 The geometric interpretation of the linear discriminant.
+
+side, and positive if x is on the positive side (see figure 10.2). Calculating g(x) and noting that g(xp) = 0, we have
+
+g(x) (10.4) r = $\parallel$w$\parallel$
+
+We see then that the distance to origin is
+
+w0 (10.5) r0 = $\parallel$w$\parallel$
+
+Thus w0 determines the location of the hyperplane with respect to the origin, and w determines its orientation.
+
+\subsection{Multiple Classes}
+
+When there are K > 2 classes, there are K discriminant functions. When they are linear, we have
+
+(10.6) gi(x|wi, wi0) = wTi x + wi0
+
+x2 H2 H1 +
+
+C1 C2 H3 +
+
++ C3
+
+x1
+
+Figure 10.3 In linear classification, each hyperplane Hi separates the examples of Ci from the examples of all other classes. Thus for it to work, the classes should be linearly separable. Dotted lines are the induced boundaries of the linear classifier.
+
+We are going to talk about learning later on but for now, we assume that the parameters, wi, wi0, are computed so as to have
+
+> 0 if x $\in$Ci (10.7) gi(x|wi, wi0) = $\leq$0 otherwise
+
+for all x in the training set. Using such discriminant functions correlinearly separable sponds to assuming that all classes are linearly separable; that is, for classes each class Ci, there exists a hyperplane Hi such that all x $\in$Ci lie on its positive side and all x $\in$Cj, j /= i lie on its negative side (see figure 10.3). During testing, given x, ideally, we should have only one gj(x), j = 1, . . . , K greater than 0 and all others should be less than 0, but this is not always the case: The positive half-spaces of the hyperplanes may overlap, or, we may have a case where all gj(x) < 0. These may be taken as reject cases, but the usual approach is to assign x to the class having the highest discriminant:
+
+(10.8) Choose Ci if gi(x) = maxKj=1 gj(x)
+
+Remembering that |gi(x)|/$\parallel$wi$\parallel$is the distance from the input point to the hyperplane, assuming that all wi have similar length, this assigns the
+
+x2
+
+H12 +
+
+C1 C2
+
++ H31
+
++ H23 C3
+
+x1
+
+Figure 10.4 In pairwise linear separation, there is a separate hyperplane for each pair of classes. For an input to be assigned to C1, it should be on the positive side of H12 and H13 (which is the negative side of H31); we do not care for the value of H23. In this case, C1 is not linearly separable from other classes but is pairwise linearly separable.
+
+point to the class (among all gj(x) > 0) to whose hyperplane the point is linear classifier most distant. This is called a linear classifier, and geometrically it divides the feature space into K convex decision regions Ri (see figure 10.3).
+
+\section{Pairwise Separation}
+
+If the classes are not linearly separable, one approach is to divide it into pairwise separation a set of linear problems. One possibility is pairwise separation of classes (Duda, Hart, and Stork 2001). It uses K(K $-$1)/2 linear discriminants, gij(x), one for every pair of distinct classes (see figure 10.4):
+
+gij(x|wij, wij0) = wTijx + wij0
+
+The parameters wij, j /= i are computed during training so as to have ( |( > 0 if x $\in$Ci (10.9) gij(x) = $\leq$0 if x $\in$Cj i, j = 1, . . . , K and i /= j |( don’t care otherwise
+
+that is, if xt $\in$Ck where k /= i, k /= j, then xt is not used during training of gij(x).
+
+During testing, we
+
+choose Ci if $\forall$j /= i, gij(x) > 0
+
+In many cases, this may not be true for any i and if we do not want to reject such cases, we can relax the conjunction by using a summation and choosing the maximum of
+
+(10.10) gi(x) = gij(x) j/=i
+
+Even if the classes are not linearly separable, if the classes are pairwise linearly separable---which is much more likely---pairwise separation can be used, leading to nonlinear separation of classes (see figure 10.4). This is another example of breaking down a complex (e.g., nonlinear) problem, into a set of simpler (e.g., linear) problems. We have already seen decision trees (chapter 9) that use this idea, and we will see more examples of this in chapter 17 on combining multiple models, for example, errorcorrecting output codes, and mixture of experts, where the number of linear models is less than O(K2).
+
+\section{Parametric Discrimination Revisited}
+
+In chapter 5, we saw that if the class densities, p(x|Ci), are Gaussian and share a common covariance matrix, the discriminant function is linear
+
+(10.11) gi(x) = wTi x + wi0
+
+where the parameters can be analytically calculated as
+
+wi = $\Sigma$$-$1$\mu$i (10.12) wi0 = $-$1 i $\Sigma$$-$1$\mu$i + log P(Ci) 2$\mu$T
+
+Given a dataset, we first calculate the estimates for $\mu$i and $\Sigma$ and then plug the estimates, mi, S, in equation 10.12 and calculate the parameters of the linear discriminant. Let us again see the special case where there are two classes. We define y $\equiv$P(C1|x) and P(C2|x) = 1 $-$y. Then in classification, we ( ||( y > 0.5 y > 1 and C2 otherwise choose C1 if 1$-$y y > 0 ||( log 1$-$y
+
+logit log y/(1 $-$y) is known as the logit transformation or log odds of y. In log odds the case of two normal classes sharing a common covariance matrix, the log odds is linear:
+
+P(C1|x) P(C1|x) logit(P(C1|x)) = log = log 1 $-$P(C1|x) P(C2|x) p(x|C1) P(C1) = log + log p(x|C2) P(C2) (2$\pi$)$-$d/2|$\Sigma$|$-$1/2 exp[$-$(1/2)(x $-$$\mu$1)T $\Sigma$$-$1(x $-$$\mu$1)] P(C1) = log + log (2$\pi$)$-$d/2|$\Sigma$|$-$1/2 exp[$-$(1/2)(x $-$$\mu$2)T $\Sigma$$-$1(x $-$$\mu$2)] P(C2) (10.13) = wTx + w0
+
+where w = $\Sigma$$-$1($\mu$1 $-$$\mu$2) P(C1) (10.14) w0 = $-$1 + $\mu$2)T $\Sigma$$-$1($\mu$1 $-$$\mu$2) + log 2($\mu$1 P(C2) The inverse of logit
+
+P(C1|x) log = wT x + w0 1 $-$P(C1|x) logistic is the logistic function, also called the sigmoid function (see figure 10.5): sigmoid (10.15) P(C1|x) = sigmoid(wT x + w0) = 1 + exp [$-$(wTx + w0)] During training, we estimate m1, m2, S and plug these estimates in equation 10.14 to calculate the discriminant parameters. During testing, given x, we can either
+
+1. calculate g(x) = wTx + w0 and choose C1 if g(x) > 0, or
+
+2. calculate y = sigmoid(wTx + w0) and choose C1 if y > 0.5,
+
+because sigmoid(0) = 0.5. In this latter case, sigmoid transforms the discriminant value to a posterior probability. This is valid when there are two classes and one discriminant; we see in section 10.7 how we can estimate posterior probabilities for K > 2.
+
+\section{Gradient Descent}
+
+In likelihood-based classification, the parameters were the sufficient statistics of p(x|Ci) and P(Ci), and the method we used to estimate the parameters is maximum likelihood. In the discriminant-based approach,
+
+0.9
+
+0.8
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+$-$10 $-$8 $-$6 $-$4 $-$2 0 2 4 6 8 10
+
+Figure 10.5 The logistic, or sigmoid, function.
+
+the parameters are those of the discriminants, and they are optimized to minimize the classification error on the training set. When w denotes the set of parameters and E(w|X) is the error with parameters w on the given training set X, we look for
+
+w$*$= arg min E(w|X) w
+
+In many cases, some of which we will see shortly, there is no analytical solution and we need to resort to iterative optimization methods, the gradient descent most commonly employed being that of gradient descent. When E(w) is gradient vector a differentiable function of a vector of variables, we have the gradient vector composed of the partial derivatives " \#T $\partial$E $\partial$E $\partial$E $\nabla$wE = , , . . . , $\partial$w1 $\partial$w2 $\partial$wd and the gradient descent procedure to minimize E starts from a random w, and at each step, updates w, in the opposite direction of the gradient
+
+$\partial$E (10.16) $\Delta$wi = $-$$\eta$ , $\forall$i $\partial$wi (10.17) wi = wi + $\Delta$wi
+
+where $\eta$ is called the stepsize, or learning factor, and determines how much to move in that direction. Gradient ascent is used to maximize a
+
+function and goes in the direction of the gradient. When we get to a minimum (or maximum), the derivative is 0 and the procedure terminates. This indicates that the procedure finds the nearest minimum that can be a local minimum, and there is no guarantee of finding the global minimum unless the function has only one minimum. The use of a good value for $\eta$ is also critical; if it is too small, the convergence may be too slow, and a large value may cause oscillations and even divergence. Throughout this book, we use gradient methods that are simple and quite effective. We keep in mind, however, that once a suitable model and an error function is defined, the optimization of the model parameters to minimize the error function can be done by using one of many possible techniques. There are second-order methods and conjugate gradient that converge faster, at the expense of more memory and computation. More costly methods like simulated annealing and genetic algorithms allow a more thorough search of the parameter space and do not depend as much on the initial point.
+
+\section{Logistic Discrimination}
+
+\subsection{Two Classes}
+
+logistic In logistic discrimination, we do not model the class-conditional densities, discrimination p(x|Ci), but rather their ratio. Let us again start with two classes and assume that the log likelihood ratio is linear:
+
+p(x|C1) (10.18) log = wTx + wo0 p(x|C2)
+
+This indeed holds when the class-conditional densities are normal (equation 10.13). But logistic discrimination has a wider scope of applicability; for example, x may be composed of discrete attributes or may be a mixture of continuous and discrete attributes. Using Bayes’ rule, we have
+
+P(C1|x) logit(P(C1|x)) = log 1 $-$P(C1|x) p(x|C1) P(C1) = log + log p(x|C2) P(C2) (10.19) = wT x + w0
+
+where P(C1) (10.20) w0 = wo0 + log P(C2)
+
+Rearranging terms, we get the sigmoid function again:
+
+(10.21) y = \textasciicircum{}P(C1|x) = 1 + exp[$-$(wTx + w0)]
+
+as our estimator of P(C1|x). Let us see how we can learn w and w0. We are given a sample of two classes, X = \{xt, rt\}, where rt = 1 if x $\in$C1 and rt = 0 if x $\in$C2. We assume rt, given xt, is Bernoulli with probability yt $\equiv$P(C1|xt) as calculated in equation 10.21:
+
+rt|xt $\sim$Bernoulli(yt)
+
+Here, we see the difference from the likelihood-based methods where we modeled p(x|Ci); in the discriminant-based approach, we model directly r|x. The sample likelihood is
+
+t) (10.22) l(w, w0|X) = (yt)(r t)(1 $-$yt)(1$-$r t
+
+We know that when we have a likelihood function to maximize, we can always turn it into an error function to be minimized as E = $-$log l, and cross-entropy in our case, we have cross-entropy:
+
+(10.23) E(w, w0|X) = $-$ rt log yt + (1 $-$rt) log(1 $-$yt) t
+
+Because of the nonlinearity of the sigmoid function, we cannot solve directly and we use gradient descent to minimize cross-entropy, equivalent to maximizing the likelihood or the log likelihood. If y = sigmoid(a) = 1/(1 + exp($-$a)), its derivative is given as
+
+dy = y(1 $-$y) da
+
+and we get the following update equations:
+
+$\partial$E rt $-$rt $\Delta$wj = $-$$\eta$ = $\eta$ $-$1 yt(1 $-$yt)xtj $\partial$wj t yt 1 $-$yt = $\eta$ (rt $-$yt)xtj, j = 1, . . . , d t $\partial$E (10.24) $\Delta$w0 = $-$$\eta$ = $\eta$ (rt $-$yt) $\partial$w0 t
+
+For j = 0, . . . , d wj $\leftarrow$rand(-0.01,0.01) Repeat For j = 0, . . . , d $\Delta$wj $\leftarrow$0 For t = 1, . . . , N o $\leftarrow$0 For j = 0, . . . , d o $\leftarrow$o + wjxtj y $\leftarrow$sigmoid(o) For j = 0, . . . , d $\Delta$wj $\leftarrow$$\Delta$wj + (rt $-$y)xtj For j = 0, . . . , d wj $\leftarrow$wj + $\eta$$\Delta$wj Until convergence
+
+Figure 10.6 Logistic discrimination algorithm implementing gradient descent for the single output case with two classes. For w0, we assume that there is an extra input x0, which is always +1: xt0 $\equiv$+1, $\forall$t.
+
+It is best to initialize wj with random values close to 0; generally they are drawn uniformly from the interval [$-$0.01, 0.01]. The reason for this is that if the initial wj are large in magnitude, the weighted sum may also be large and may saturate the sigmoid. We see from figure 10.5 that if the initial weights are close to 0, the sum will stay in the middle region where the derivative is nonzero and an update can take place. If the weighted sum is large in magnitude (smaller than $-$5 or larger than +5), the derivative of the sigmoid will be almost 0 and weights will not be updated. Pseudocode is given in figure 10.6. We see an example in figure 10.7 where the input is one-dimensional. Both the line wx + w0 and its value after the sigmoid are shown as a function of learning iterations. We see that to get outputs of 0 and 1, the sigmoid hardens, which is achieved by increasing the magnitude of w, or $\parallel$w$\parallel$in the multivariate case. Once training is complete and we have the final w and w0, during testing, given xt, we calculate yt = sigmoid(wT xt + w0) and we choose C1 if yt > 0.5 and choose C2 otherwise. This implies that to minimize the number of misclassifications, we do not need to continue learning un-
+
+2.5
+
+1.5
+
+0.5 P(Co|x)
+
+$-$0.5
+
+$-$1
+
+$-$1.5
+
+$-$2 0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5 x
+
+Figure 10.7 For a univariate two-class problem (shown with ‘$\circ$’ and ‘$\times$’ ), the evolution of the line wx + w0 and the sigmoid output after 10, 100, and 1,000 iterations over the sample.
+
+til all yt are 0 or 1, but only until yt are less than or greater than 0.5, that is, on the correct side of the decision boundary. If we do continue training beyond this point, cross-entropy will continue decreasing (|wj| will continue increasing to harden the sigmoid), but the number of misclassifications will not decrease. Generally, we continue training until the number of misclassifications does not decrease (which will be 0 if the early stopping classes are linearly separable). Actually stopping early before we have 0 training error is a form of regularization. Because we start with weights almost 0 and they move away as training continues, stopping early corresponds to a model with more weights close to 0 and effectively fewer parameters. Note that though we assumed the log ratio of the class densities are linear to derive the discriminant, we estimate directly the posterior and never explicitly estimate p(x|Ci) or P(Ci).
+
+\subsection{Multiple Classes}
+
+Let us now generalize to K > 2 classes. We take one of the classes, for example, CK, as the reference class and assume that
+
+p(x|Ci) (10.25) log = wTi x + woi0 p(x|CK)
+
+Then we have
+
+P(Ci|x) (10.26) = exp[wTi x + wi0] P(CK|x) with wi0 = woi0 + log P(Ci)/P(CK). We see that
+
+K$-$1 K$-$1 P(Ci|x) 1 $-$P(CK|x) = = exp[wTi x + wi0] i=1 P(CK|x) P(CK|x) i=1 (10.27) $\Rightarrow$ P(CK|x) = K$-$1 1 + i=1 exp[wTi x + wi0]
+
+and also that
+
+P(Ci|x) = exp[wTi x + wi0] P(CK|x) exp[wTi x + wi0] (10.28) $\Rightarrow$ P(Ci|x) = K$-$1 , i = 1, . . . , K $-$1 1 + j=1 exp[wTj x + wj0]
+
+To treat all classes uniformly, we can write
+
+exp[wTi x + wi0] (10.29) yi = \textasciicircum{}P(Ci|x) = K , i = 1, . . . , K j=1 exp[wTj x + wj0]
+
+softmax which is called the softmax function (Bridle 1990). If the weighted sum for one class is sufficiently larger than for the others, after it is boosted through exponentiation and normalization, its corresponding yi will be close to 1 and the others will be close to 0. Thus it works like taking a maximum, except that it is differentiable; hence the name softmax. Softmax also guarantees that i yi = 1. Let us see how we can learn the parameters. In this case of K > 2 classes, each sample point is a multinomial trial with one draw; that is, rt|xt $\sim$Multk(1, yt), where yti $\equiv$P(Ci|xt). The sample likelihood is
+
+t i (10.30) l(\{wi, wi0\}i|X) = (yti )r t i
+
+and the error function is again cross-entropy:
+
+(10.31) E(\{wi, wi0\}i|X) = $-$ rti log yti t i
+
+We again use gradient descent. If yi = exp(ai)/ j exp(aj), we have
+
+$\partial$yi (10.32) = yi($\delta$ij $-$yj) $\partial$aj
+
+where $\delta$ij is the Kronecker delta, which is 1 if i = j and 0 if i /= j (exercise 3). Given that i rti = 1, we have the following update equations, for j = 1, . . . , K rti $\Delta$wj = $\eta$ yti ($\delta$ij $-$ytj)xt yti t i = $\eta$ rti ($\delta$ij $-$ytj)xt t i [ ] = $\eta$ [ rti $\delta$ij $-$ytj rti ]xt t i i = $\eta$ (rtj $-$ytj)xt t (10.33) $\Delta$wj0 = $\eta$ (rtj $-$ytj) t
+
+Note that because of the normalization in softmax, wj and wj0 are affected not only by xt $\in$Cj but also by xt $\in$Ci, i /= j. The discriminants are updated so that the correct class has the highest weighted sum after softmax, and the other classes have their weighted sums as low as possible. Pseudocode is given in figure 10.8. For a two-dimensional example with three classes, the contour plot is given in figure 10.9, and the discriminants and the posterior probabilities in figure 10.10. During testing, we calculate all yk, k = 1, . . . , K and choose Ci if yi = maxk yk. Again we do not need to continue training to minimize crossentropy as much as possible; we train only until the correct class has the highest weighted sum, and therefore we can stop training earlier by checking the number of misclassifications. When data are normally distributed, the logistic discriminant has a comparable error rate to the parametric, normal-based linear discriminant (McLachlan 1992). Logistic discrimination can still be used when the class-conditional densities are nonnormal or when they are not unimodal, as long as classes are linearly separable.
+
+For i = 1, . . . , K, For j = 0, . . . , d, wij $\leftarrow$rand($-$0.01, 0.01) Repeat For i = 1, . . . , K, For j = 0, . . . , d, $\Delta$wij $\leftarrow$0 For t = 1, . . . , N For i = 1, . . . , K oi $\leftarrow$0 For j = 0, . . . , d oi $\leftarrow$oi + wijxtj For i = 1, . . . , K yi $\leftarrow$exp(oi)/ k exp(ok) For i = 1, . . . , K For j = 0, . . . , d $\Delta$wij $\leftarrow$$\Delta$wij + (rti $-$yi)xtj For i = 1, . . . , K For j = 0, . . . , d wij $\leftarrow$wij + $\eta$$\Delta$wij Until convergence
+
+Figure 10.8 Logistic discrimination algorithm implementing gradient descent for the case with K > 2 classes. For generality, we take xt0 $\equiv$1, $\forall$t.
+
+3.5
+
+2.5
+
+x2 2
+
+1.5
+
+0.5
+
+0 0.5 1 1.5 2 2.5 3 3.5 4 x1
+
+Figure 10.9 For a two-dimensional problem with three classes, the solution found by logistic discrimination. Thin lines are where gi(x) = 0, and the thick line is the boundary induced by the linear classifier choosing the maximum.
+
+0 gi(x1,x2) $-$10
+
+$-$20
+
+x1
+
+x2
+
+0.8
+
+0.6
+
+0.4 P(Ci|x1,x2)
+
+0.2
+
+x1
+
+x2
+
+Figure 10.10 For the same example in figure 10.9, the linear discriminants (top), and the posterior probabilities after the softmax (bottom).
+
+The ratio of class-conditional densities is of course not restricted to be linear (Anderson 1982; McLachlan 1992). Assuming a quadratic discriminant, we have
+
+p(x|Ci) (10.34) log = xT Wix + wTi x + wi0 p(x|CK)
+
+corresponding to and generalizing parametric discrimination with multivariate normal class-conditionals having different covariance matrices. When d is large, just as we can simplify (regularize) $\Sigma$i, we can equally do it on Wi by taking only its leading eigenvectors into account. As discussed in section 10.2, any specified function of the basic variables can be included as x-variates. One can, for example, write the discriminant as a linear sum of nonlinear basis functions
+
+p(x|Ci) (10.35) log = wTi $\phi$(x) + wi0 p(x|CK)
+
+where $\phi$($\cdot$) are the basis functions, which can be viewed as transformed variables. In neural network terminology, this is called a multilayer perceptron (chapter 11), and sigmoid is the most popular basis function. When a Gaussian basis function is used, the model is called radial basis functions (chapter 12). We can even use a completely nonparametric approach, for example, Parzen windows (chapter 8).
+
+\section{Discrimination by Regression}
+
+In regression, the probabilistic model is
+
+(10.36) rt = yt + $\epsilon$
+
+where $\epsilon$ $\sim$N (0, $\sigma$ 2). If rt $\in$\{0, 1\}, yt can be constrained to lie in this range using the sigmoid function. Assuming a linear model and two classes, we have
+
+(10.37) yt = sigmoid(wT xt + w0) = 1 + exp[$-$(wTxt + w0)]
+
+Then the sample likelihood in regression, assuming r|x $\sim$N (y, $\sigma$ 2), is
+
+1 $-$yt)2 (10.38) l(w, w0|X) = $\sqrt{}$ exp $-$(rt 2 t 2$\pi$$\sigma$ 2$\sigma$
+
+Maximizing the log likelihood is minimizing the sum of square errors:
+
+(10.39) E(w, w0|X) = (rt $-$yt)2 2 t
+
+Using gradient descent, we get
+
+$\Delta$w = $\eta$ (rt $-$yt)yt(1 $-$yt)xt t (10.40) $\Delta$w0 = $\eta$ (rt $-$yt)yt(1 $-$yt) t
+
+This method can also be used when there are K > 2 classes. The probabilistic model is
+
+(10.41) rt = yt + $\epsilon$
+
+where $\epsilon$ $\sim$NK(0, $\sigma$ 2IK). Assuming a linear model for each class, we have
+
+(10.42) yti = sigmoid(wTi xt + wi0) = 1 + exp[$-$(wTi xt + wi0)]
+
+Then the sample likelihood is
+
+1 $-$yt$\parallel$2(10.43) l(\{wi, wi0\}i|X) = exp $-$$\parallel$rt 2 (2$\pi$)K/2|$\Sigma$|1/2 2$\sigma$ t
+
+and the error function is
+
+1 1 (10.44) E(\{wi, wi0\}i|X) = $\parallel$rt $-$yt$\parallel$2 = (rti $-$yti )2 2 2 t t i
+
+The update equations for i = 1, . . . , K, are
+
+$\Delta$wi = $\eta$ (rti $-$yti )yti (1 $-$yti )xt t (10.45) $\Delta$wi0 = $\eta$ (rti $-$yti )yti (1 $-$yti ) t
+
+But note that in doing so, we do not make use of the information that only one of yi needs to be 1 and all others are 0, or that i yi = 1. The softmax function of equation 10.29 allows us to incorporate this extra information we have due to the outputs’ estimating class posterior probabilities. Using sigmoid outputs in K > 2 case, we treat yi as if they are independent functions. Note also that for a given class, if we use the regression approach, there will be updates until the right output is 1 and all others are 0. This is not
+
+in fact necessary because during testing, we are just going to choose the maximum anyway; it is enough to train only until the right output is larger than others, which is exactly what the softmax function does. So this approach with multiple sigmoid outputs is more appropriate when the classes are not mutually exclusive and exhaustive. That is, for an xt, all rti may be 0; namely, xt does not belong to any of the classes, or more than one rti may be 1, when classes overlap.
+
+\section{Notes}
+
+The linear discriminant, due to its simplicity, is the classifier most used in pattern recognition (Duda, Hart, and Stork 2001; McLachlan 1992). We discussed the case of Gaussian distributions with a common covariance matrix in chapter 4 and Fisher’s linear discriminant in chapter 6, and in this chapter we discuss the logistic discriminant. In chapter 11, we discuss the perceptron that is the neural network implementation of the linear discriminant. In chapter 13, we will discuss support vector machines, another type of linear discriminant. Logistic discrimination is covered in more detail in Anderson 1982 and in McLachlan 1992. Logistic (sigmoid) is the inverse of logit, which is the canonical link in case of Bernoulli samples. Softmax is its generalization generalized linear to multinomial samples. More information on such generalized linear models models is given in McCullogh and Nelder 1989. Generalizing linear models by using nonlinear basis functions is a very old idea. We will discuss multilayer perceptrons (chapter 11) and radial basis functions (chapter 12) where the parameters of the basis functions can also be learned from data while learning the discriminant. Support vector machines (chapter 13) use kernel functions built from such basis functions.
+
+\section{Exercises}
+
+1. For each of the following basis functions, describe where it is nonzero:
+
+a. sin(x1)
+
+b. exp($-$(x1 $-$a)2/c)
+
+c. exp($-$$\parallel$x $-$a$\parallel$2/c)
+
+d. log(x2)
+
+e. 1(x1 > c)
+
+f. 1(ax1 + bx2 > c)
+
+2. For the two-dimensional case of figure 10.2, show equations 10.4 and 10.5.
+
+3. Show that the derivative of the softmax, yi = exp(ai)/ j exp(aj), is $\partial$yi/$\partial$aj = yi($\delta$ij $-$yj), where $\delta$ij is 1 if i = j and 0 otherwise.
+
+4. With K = 2, show that using two softmax outputs is equal to using one sigmoid output.
+
+5. How can we learn Wi in equation 10.34?
+
+6. In using quadratic (or higher-order) discriminants as in equation 10.34, how can we keep variance under control?
+
+7. What is the implication of the use of a single $\eta$ for all xj in gradient descent?
+
+8. In the univariate case for classification as in figure 10.7, what do w and w0 correspond to?
+
+9. Let us say for univariate x, x $\in$(2, 4) belong to C1 and x < 2 or x > 4 belong to C2. How can we separate the two classes using a linear discriminant?
+
+\section{References}
+
+Aizerman, M. A., E. M. Braverman, and L. I. Rozonoer. 1964. “Theoretical Foundations of the Potential Function Method in Pattern Recognition Learning.” Automation and Remote Control 25: 821--837.
+
+Anderson, J. A. 1982. “Logistic Discrimination.” In Handbook of Statistics, Vol. 2, Classification, Pattern Recognition and Reduction of Dimensionality, ed. P. R. Krishnaiah and L. N. Kanal, 169--191. Amsterdam: North Holland.
+
+Bridle, J. S. 1990. “Probabilistic Interpretation of Feedforward Classification Network Outputs with Relationships to Statistical Pattern Recognition.” In Neurocomputing: Algorithms, Architectures and Applications, ed. F. Fogelman- Soulie and J. Herault, 227--236. Berlin: Springer.
+
+Duda, R. O., P. E. Hart, and D. G. Stork. 2001. Pattern Classification, 2nd ed. New York: Wiley.
+
+McCullagh, P., and J. A. Nelder. 1989. Generalized Linear Models. London: Chapman and Hall.
+
+McLachlan, G. J. 1992. Discriminant Analysis and Statistical Pattern Recognition. New York: Wiley.
+
+Vapnik, V. 1995. The Nature of Statistical Learning Theory. New York: Springer.

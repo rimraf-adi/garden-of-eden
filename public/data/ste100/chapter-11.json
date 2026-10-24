@@ -1,0 +1,153 @@
+{
+  "chapterNum": 11,
+  "slug": "11-multilayer-perceptrons",
+  "title": "Multilayer Perceptrons",
+  "sections": [
+    {
+      "id": "11.1",
+      "title": "Introduction",
+      "rules": [
+        "Artificial neural networks take inspiration from biological neural networks in the brain.",
+        "Biological neurons receive electrical inputs through dendrites and transmit outputs along axons.",
+        "Synaptic connections modulate signal strength between connected neurons.",
+        "Artificial neural networks model complex functions using interconnected computational nodes.",
+        "Neural networks learn internal feature representations directly from raw training data."
+      ]
+    },
+    {
+      "id": "11.2",
+      "title": "The Perceptron",
+      "rules": [
+        "The perceptron is the basic processing unit in artificial neural networks.",
+        "It calculates a weighted sum of its inputs plus a bias parameter.",
+        "The net input passes through an activation function to generate the output.",
+        "Common activation functions include threshold, sigmoid, and hyperbolic tangent functions.",
+        "A perceptron with a threshold activation function forms a linear decision boundary."
+      ]
+    },
+    {
+      "id": "11.3",
+      "title": "Training a Perceptron",
+      "rules": [
+        "The perceptron learning algorithm updates weights when the unit misclassifies an input.",
+        "If the target is 1 and the output is 0, the algorithm adds the input vector to weights.",
+        "If the target is 0 and the output is 1, the algorithm subtracts the input vector from weights.",
+        "Rosenblatt proved the perceptron convergence theorem for linearly separable data.",
+        "If classes are linearly separable, the algorithm finds a separating hyperplane in finite steps.",
+        "If classes are not linearly separable, the algorithm never converges."
+      ]
+    },
+    {
+      "id": "11.4",
+      "title": "Learning Boolean Functions",
+      "rules": [
+        "A single perceptron can learn linearly separable Boolean functions like AND, OR, and NOT.",
+        "Minsky and Papert proved that a single perceptron cannot learn the XOR function.",
+        "XOR inputs (0,0) and (1,1) produce 0, while (0,1) and (1,0) produce 1.",
+        "No single line can separate the true and false points of XOR.",
+        "Learning the XOR function requires an intermediate layer of hidden units."
+      ]
+    },
+    {
+      "id": "11.5",
+      "title": "Multilayer Perceptrons",
+      "rules": [
+        "A multilayer perceptron has an input layer, one or more hidden layers, and an output layer.",
+        "Feedforward networks pass signals strictly forward without feedback connections.",
+        "Hidden units extract nonlinear intermediate features from raw inputs.",
+        "The output layer combines hidden representations to produce final predictions.",
+        "Adding hidden layers allows the network to model complex nonlinear decision boundaries."
+      ]
+    },
+    {
+      "id": "11.6",
+      "title": "MLP as a Universal Approximator",
+      "rules": [
+        "The universal approximation theorem states that an MLP can approximate any continuous function.",
+        "The network needs only one hidden layer with a sufficient count of nonlinear hidden units.",
+        "Each hidden unit creates a localized ridge or step in the feature space.",
+        "Combining multiple hidden units creates arbitrary continuous input-output mappings.",
+        "The theorem guarantees representation capacity, but does not provide an algorithm to find weights."
+      ]
+    },
+    {
+      "id": "11.7",
+      "title": "Backpropagation Algorithm",
+      "rules": [
+        "The backpropagation algorithm trains multilayer perceptrons using gradient descent.",
+        "In the forward pass, inputs propagate forward through layers to compute network outputs.",
+        "The algorithm calculates the error between network predictions and target values.",
+        "In the backward pass, the algorithm computes partial derivatives using the chain rule.",
+        "Error gradients propagate backward from the output layer to hidden layers.",
+        "Connection weights update in proportion to their contribution to total network error."
+      ]
+    },
+    {
+      "id": "11.8",
+      "title": "Training Procedures",
+      "rules": [
+        "Momentum adds a fraction of the previous weight update to the current update.",
+        "Momentum accelerates convergence across flat regions and dampens oscillations in valleys.",
+        "Weight decay adds a penalty on large weights to prevent overfitting.",
+        "Early stopping halts training when validation error begins to rise.",
+        "Data normalization ensures that all input features have comparable numerical ranges.",
+        "Minibatch training updates weights using small groups of examples for stable gradients."
+      ]
+    },
+    {
+      "id": "11.9",
+      "title": "Tuning the Network Size",
+      "rules": [
+        "Network capacity depends on the number of hidden layers and hidden units.",
+        "A small network has high bias and cannot learn complex patterns.",
+        "A large network has high variance and easily overfits training noise.",
+        "Destructive methods start with a large network and prune unnecessary weights or units.",
+        "Constructive methods start with a small network and add hidden units dynamically.",
+        "Cross-validation identifies the architecture that minimizes validation error."
+      ]
+    },
+    {
+      "id": "11.10",
+      "title": "Bayesian View of Learning",
+      "rules": [
+        "The Bayesian approach treats network connection weights as random variables with prior distributions.",
+        "Training computes the posterior probability distribution of weights given the data.",
+        "Predictions average outputs over all possible weights weighted by posterior probability.",
+        "Weight decay corresponds to a zero-mean Gaussian prior distribution over connection weights.",
+        "Bayesian methods provide principled confidence estimates for model predictions."
+      ]
+    },
+    {
+      "id": "11.11",
+      "title": "Dimensionality Reduction",
+      "rules": [
+        "An autoencoder is an MLP trained to reconstruct its own input vector.",
+        "The network compresses inputs into a lower-dimensional bottleneck hidden layer.",
+        "The hidden representation captures the most informative nonlinear features of the data.",
+        "If hidden units use linear activations, the bottleneck spans the principal component subspace.",
+        "Nonlinear hidden activations allow autoencoders to perform nonlinear dimensionality reduction."
+      ]
+    },
+    {
+      "id": "11.12",
+      "title": "Learning Time",
+      "rules": [
+        "Many machine learning applications require processing temporal sequences or time-series data.",
+        "Time-delay neural networks process sliding temporal windows of past inputs.",
+        "Recurrent neural networks contain feedback loops that store internal memory over time.",
+        "Recurrent connections allow the network to maintain an internal state across time steps.",
+        "Backpropagation through time unfolds recurrent networks across temporal steps for training."
+      ]
+    },
+    {
+      "id": "11.13",
+      "title": "Notes",
+      "rules": [
+        "McCulloch and Pitts proposed the first mathematical model of artificial neurons in 1943.",
+        "Rosenblatt invented the perceptron and its learning rule in 1958.",
+        "Rumelhart, Hinton, and Williams popularized the backpropagation algorithm in 1986.",
+        "Deep neural networks extend multilayer perceptrons with modern architectures and regularization."
+      ]
+    }
+  ]
+}

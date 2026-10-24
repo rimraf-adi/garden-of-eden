@@ -1,0 +1,1205 @@
+[
+  {
+    "num": 1,
+    "slug": "01-introduction",
+    "title": "Introduction",
+    "tag": "Foundations",
+    "icon": "BookOpen",
+    "pages": "1-20",
+    "pdfPages": "36-55",
+    "summary": "To solve a problem on a computer, we need an algorithm. An algorithm is a sequence of instructions that should be carried out to transform the input to output. For example, one can devise an algorithm for sorting. The input is a set of numbers and the output is their ordered l...",
+    "wordCount": 7077,
+    "readingTimeMin": 35,
+    "sectionCount": 4,
+    "sections": [
+      {
+        "id": "1.1",
+        "title": "What Is Machine Learning?",
+        "subsectionCount": 0
+      },
+      {
+        "id": "1.2",
+        "title": "Examples of Machine Learning Applications",
+        "subsectionCount": 5
+      },
+      {
+        "id": "1.3",
+        "title": "Notes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "1.4",
+        "title": "Relevant Resources",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 11,
+    "referenceCount": 10
+  },
+  {
+    "num": 2,
+    "slug": "02-supervised-learning",
+    "title": "Supervised Learning",
+    "tag": "Foundations",
+    "icon": "GraduationCap",
+    "pages": "21-46",
+    "pdfPages": "56-81",
+    "summary": "We discuss supervised learning starting from the simplest case, which is learning a class from its positive and negative examples. We generalize and discuss the case of multiple classes, then regression, where the outputs are continuous.",
+    "wordCount": 7404,
+    "readingTimeMin": 37,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "2.1",
+        "title": "Learning a Class from Examples",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.2",
+        "title": "Vapnik-Chervonenkis (VC) Dimension",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.3",
+        "title": "Probably Approximately Correct (PAC) Learning",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.4",
+        "title": "Noise",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.5",
+        "title": "Learning Multiple Classes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.6",
+        "title": "Regression",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.7",
+        "title": "Model Selection and Generalization",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.8",
+        "title": "Dimensions of a Supervised Machine Learning Algorithm",
+        "subsectionCount": 0
+      },
+      {
+        "id": "2.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 14,
+    "referenceCount": 9
+  },
+  {
+    "num": 3,
+    "slug": "03-bayesian-decision-theory",
+    "title": "Bayesian Decision Theory",
+    "tag": "Probabilistic",
+    "icon": "Scale",
+    "pages": "47-60",
+    "pdfPages": "82-95",
+    "summary": "We discuss probability theory as the framework for making decisions under uncertainty. In classification, Bayes’ rule is used to calculate the probabilities of the classes. We generalize to discuss how we can make rational decisions among multiple actions to minimize expected ...",
+    "wordCount": 4259,
+    "readingTimeMin": 21,
+    "sectionCount": 7,
+    "sections": [
+      {
+        "id": "3.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.2",
+        "title": "Classification",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.3",
+        "title": "Losses and Risks",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.4",
+        "title": "Discriminant Functions",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.5",
+        "title": "Utility Theory",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.6",
+        "title": "Association Rules",
+        "subsectionCount": 0
+      },
+      {
+        "id": "3.7",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 13,
+    "referenceCount": 8
+  },
+  {
+    "num": 4,
+    "slug": "04-parametric-methods",
+    "title": "Parametric Methods",
+    "tag": "Parametric",
+    "icon": "TrendingUp",
+    "pages": "61-86",
+    "pdfPages": "96-121",
+    "summary": "Having discussed how to make optimal decisions when the uncertainty is modeled using probabilities, we now see how we can estimate these probabilities from a given training set. We start with the parametric approach for classification and regression. We discuss the semiparamet...",
+    "wordCount": 7295,
+    "readingTimeMin": 36,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "4.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.2",
+        "title": "Maximum Likelihood Estimation",
+        "subsectionCount": 3
+      },
+      {
+        "id": "4.3",
+        "title": "Evaluating an Estimator: Bias and Variance",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.4",
+        "title": "The Bayes’ Estimator",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.5",
+        "title": "Parametric Classification",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.6",
+        "title": "Regression",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.7",
+        "title": "Tuning Model Complexity: Bias/Variance Dilemma",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.8",
+        "title": "Model Selection Procedures",
+        "subsectionCount": 0
+      },
+      {
+        "id": "4.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 9,
+    "referenceCount": 14
+  },
+  {
+    "num": 5,
+    "slug": "05-multivariate-methods",
+    "title": "Multivariate Methods",
+    "tag": "Parametric",
+    "icon": "Layers",
+    "pages": "87-108",
+    "pdfPages": "122-143",
+    "summary": "In chapter 4, we discussed the parametric approach to classification and regression. Now, we generalize this to the multivariate case where we have multiple inputs and where the output, which is class code or continuous output, is a function of these multiple inputs. These inp...",
+    "wordCount": 5556,
+    "readingTimeMin": 28,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "5.1",
+        "title": "Multivariate Data",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.2",
+        "title": "Parameter Estimation",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.3",
+        "title": "Estimation of Missing Values",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.4",
+        "title": "Multivariate Normal Distribution",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.5",
+        "title": "Multivariate Classification",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.6",
+        "title": "Tuning Complexity",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.7",
+        "title": "Discrete Features",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.8",
+        "title": "Multivariate Regression",
+        "subsectionCount": 0
+      },
+      {
+        "id": "5.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 11,
+    "referenceCount": 7
+  },
+  {
+    "num": 6,
+    "slug": "06-dimensionality-reduction",
+    "title": "Dimensionality Reduction",
+    "tag": "Transformations",
+    "icon": "Minimize2",
+    "pages": "109-142",
+    "pdfPages": "144-177",
+    "summary": "The complexity of any classifier or regressor depends on the number of inputs. This determines both the time and space complexity and the necessary number of training examples to train such a classifier or regressor. In this chapter, we discuss feature selection methods that c...",
+    "wordCount": 10062,
+    "readingTimeMin": 50,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "6.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.2",
+        "title": "Subset Selection",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.3",
+        "title": "Principal Components Analysis",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.4",
+        "title": "Factor Analysis",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.5",
+        "title": "Multidimensional Scaling",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.6",
+        "title": "Linear Discriminant Analysis",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.7",
+        "title": "Isomap",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.8",
+        "title": "Locally Linear Embedding",
+        "subsectionCount": 0
+      },
+      {
+        "id": "6.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 10,
+    "referenceCount": 21
+  },
+  {
+    "num": 7,
+    "slug": "07-clustering",
+    "title": "Clustering",
+    "tag": "Unsupervised",
+    "icon": "PieChart",
+    "pages": "143-162",
+    "pdfPages": "178-197",
+    "summary": "In the parametric approach, we assumed that the sample comes from a known distribution. In cases when such an assumption is untenable, we relax this assumption and use a semiparametric approach that allows a mixture of distributions to be used for estimating the input sample. ...",
+    "wordCount": 5980,
+    "readingTimeMin": 30,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "7.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.2",
+        "title": "Mixture Densities",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.3",
+        "title": "k-Means Clustering",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.4",
+        "title": "Expectation-Maximization Algorithm",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.5",
+        "title": "Mixtures of Latent Variable Models",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.6",
+        "title": "Supervised Learning after Clustering",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.7",
+        "title": "Hierarchical Clustering",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.8",
+        "title": "Choosing the Number of Clusters",
+        "subsectionCount": 0
+      },
+      {
+        "id": "7.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 10,
+    "referenceCount": 19
+  },
+  {
+    "num": 8,
+    "slug": "08-nonparametric-methods",
+    "title": "Nonparametric Methods",
+    "tag": "Nonparametric",
+    "icon": "Activity",
+    "pages": "163-184",
+    "pdfPages": "198-219",
+    "summary": "In the previous chapters, we discussed the parametric and semiparametric approaches where we assumed that the data is drawn from one or a mixture of probability distributions of known form. Now, we are going to discuss the nonparametric approach that is used when no such assum...",
+    "wordCount": 5361,
+    "readingTimeMin": 27,
+    "sectionCount": 8,
+    "sections": [
+      {
+        "id": "8.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "8.2",
+        "title": "Nonparametric Density Estimation",
+        "subsectionCount": 3
+      },
+      {
+        "id": "8.3",
+        "title": "Generalization to Multivariate Data",
+        "subsectionCount": 0
+      },
+      {
+        "id": "8.4",
+        "title": "Nonparametric Classification",
+        "subsectionCount": 0
+      },
+      {
+        "id": "8.5",
+        "title": "Condensed Nearest Neighbor",
+        "subsectionCount": 0
+      },
+      {
+        "id": "8.6",
+        "title": "Nonparametric Regression: Smoothing Models",
+        "subsectionCount": 3
+      },
+      {
+        "id": "8.7",
+        "title": "How to Choose the Smoothing Parameter",
+        "subsectionCount": 0
+      },
+      {
+        "id": "8.8",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 16,
+    "referenceCount": 17
+  },
+  {
+    "num": 9,
+    "slug": "09-decision-trees",
+    "title": "Decision Trees",
+    "tag": "Tree Models",
+    "icon": "GitFork",
+    "pages": "185-208",
+    "pdfPages": "220-243",
+    "summary": "A decision tree is a hierarchical data structure implementing the divide-and-conquer strategy. It is an efficient nonparametric method, which can be used for both classification and regression. We discuss learning algorithms that build the tree from a given labeled training sa...",
+    "wordCount": 7705,
+    "readingTimeMin": 39,
+    "sectionCount": 7,
+    "sections": [
+      {
+        "id": "9.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "9.2",
+        "title": "Univariate Trees",
+        "subsectionCount": 2
+      },
+      {
+        "id": "9.3",
+        "title": "Pruning",
+        "subsectionCount": 0
+      },
+      {
+        "id": "9.4",
+        "title": "Rule Extraction from Trees",
+        "subsectionCount": 0
+      },
+      {
+        "id": "9.5",
+        "title": "Learning Rules from Data",
+        "subsectionCount": 0
+      },
+      {
+        "id": "9.6",
+        "title": "Multivariate Trees",
+        "subsectionCount": 0
+      },
+      {
+        "id": "9.7",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 12,
+    "referenceCount": 19
+  },
+  {
+    "num": 10,
+    "slug": "10-linear-discrimination",
+    "title": "Linear Discrimination",
+    "tag": "Discriminative",
+    "icon": "Sliders",
+    "pages": "209-232",
+    "pdfPages": "244-267",
+    "summary": "In linear discrimination, we assume that instances of a class are linearly separable from instances of other classes. This is a discriminantbased approach that estimates the parameters of the linear discriminant directly from a given labeled sample.",
+    "wordCount": 5819,
+    "readingTimeMin": 29,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "10.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.2",
+        "title": "Generalizing the Linear Model",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.3",
+        "title": "Geometry of the Linear Discriminant",
+        "subsectionCount": 2
+      },
+      {
+        "id": "10.4",
+        "title": "Pairwise Separation",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.5",
+        "title": "Parametric Discrimination Revisited",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.6",
+        "title": "Gradient Descent",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.7",
+        "title": "Logistic Discrimination",
+        "subsectionCount": 2
+      },
+      {
+        "id": "10.8",
+        "title": "Discrimination by Regression",
+        "subsectionCount": 0
+      },
+      {
+        "id": "10.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 15,
+    "referenceCount": 7
+  },
+  {
+    "num": 11,
+    "slug": "11-multilayer-perceptrons",
+    "title": "Multilayer Perceptrons",
+    "tag": "Neural Networks",
+    "icon": "Cpu",
+    "pages": "233-278",
+    "pdfPages": "268-313",
+    "summary": "The multilayer perceptron is an artificial neural network structure and is a nonparametric estimator that can be used for classification and regression. We discuss the backpropagation algorithm to train a multilayer perceptron for a variety of applications.",
+    "wordCount": 12917,
+    "readingTimeMin": 65,
+    "sectionCount": 13,
+    "sections": [
+      {
+        "id": "11.1",
+        "title": "Introduction",
+        "subsectionCount": 2
+      },
+      {
+        "id": "11.2",
+        "title": "The Perceptron",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.3",
+        "title": "Training a Perceptron",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.4",
+        "title": "Learning Boolean Functions",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.5",
+        "title": "Multilayer Perceptrons",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.6",
+        "title": "MLP as a Universal Approximator",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.7",
+        "title": "Backpropagation Algorithm",
+        "subsectionCount": 4
+      },
+      {
+        "id": "11.8",
+        "title": "Training Procedures",
+        "subsectionCount": 4
+      },
+      {
+        "id": "11.9",
+        "title": "Tuning the Network Size",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.10",
+        "title": "Bayesian View of Learning",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.11",
+        "title": "Dimensionality Reduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "11.12",
+        "title": "Learning Time",
+        "subsectionCount": 2
+      },
+      {
+        "id": "11.13",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 14,
+    "referenceCount": 36
+  },
+  {
+    "num": 12,
+    "slug": "12-local-models",
+    "title": "Local Models",
+    "tag": "Neural Networks",
+    "icon": "Share2",
+    "pages": "279-308",
+    "pdfPages": "314-343",
+    "summary": "We continue our discussion of multilayer neural networks with models where the first layer contains locally receptive units that respond to instances in a localized region of the input space. The second layer on top learns the regression or classification function for these lo...",
+    "wordCount": 9000,
+    "readingTimeMin": 45,
+    "sectionCount": 11,
+    "sections": [
+      {
+        "id": "12.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.2",
+        "title": "Competitive Learning",
+        "subsectionCount": 3
+      },
+      {
+        "id": "12.3",
+        "title": "Radial Basis Functions",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.4",
+        "title": "Incorporating Rule-Based Knowledge",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.5",
+        "title": "Normalized Basis Functions",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.6",
+        "title": "Competitive Basis Functions",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.7",
+        "title": "Learning Vector Quantization",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.8",
+        "title": "Mixture of Experts",
+        "subsectionCount": 2
+      },
+      {
+        "id": "12.9",
+        "title": "Hierarchical Mixture of Experts",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.10",
+        "title": "Notes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "12.11",
+        "title": "and 12.21).",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 3,
+    "referenceCount": 25
+  },
+  {
+    "num": 13,
+    "slug": "13-kernel-machines",
+    "title": "Kernel Machines",
+    "tag": "Kernel Methods",
+    "icon": "Zap",
+    "pages": "309-340",
+    "pdfPages": "344-375",
+    "summary": "Kernel machines are maximum margin methods that allow the model to be written as a sum of the influences of a subset of the training instances. These influences are given by application-specific similarity kernels, and we discuss “kernelized” classification, regression, outlie...",
+    "wordCount": 9063,
+    "readingTimeMin": 45,
+    "sectionCount": 13,
+    "sections": [
+      {
+        "id": "13.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.2",
+        "title": "Optimal Separating Hyperplane",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.3",
+        "title": "The Nonseparable Case: Soft Margin Hyperplane",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.4",
+        "title": "nu-SVM",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.5",
+        "title": "Kernel Trick",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.6",
+        "title": "Vectorial Kernels",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.7",
+        "title": "Defining Kernels",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.8",
+        "title": "Multiple Kernel Learning",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.9",
+        "title": "Multiclass Kernel Machines",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.10",
+        "title": "Kernel Machines for Regression",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.11",
+        "title": "One-Class Kernel Machines",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.12",
+        "title": "Kernel Dimensionality Reduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "13.13",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 9,
+    "referenceCount": 26
+  },
+  {
+    "num": 14,
+    "slug": "14-bayesian-estimation",
+    "title": "Bayesian Estimation",
+    "tag": "Probabilistic",
+    "icon": "Compass",
+    "pages": "341-362",
+    "pdfPages": "376-397",
+    "summary": "In the Bayesian approach, we consider parameters as random variables having a prior distribution. We continue from where we left off in section 4.4 and discuss three cases: estimating the parameters of a distribution, estimating the parameters of a model, and Gaussian processes.",
+    "wordCount": 5589,
+    "readingTimeMin": 28,
+    "sectionCount": 5,
+    "sections": [
+      {
+        "id": "14.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "14.2",
+        "title": "Estimating the Parameter of a Distribution",
+        "subsectionCount": 2
+      },
+      {
+        "id": "14.3",
+        "title": "Bayesian Estimation of the Parameters of a Function",
+        "subsectionCount": 3
+      },
+      {
+        "id": "14.4",
+        "title": "Gaussian Processes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "14.5",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 8,
+    "referenceCount": 7
+  },
+  {
+    "num": 15,
+    "slug": "15-hidden-markov-models",
+    "title": "Hidden Markov Models",
+    "tag": "Sequential",
+    "icon": "Repeat",
+    "pages": "363-386",
+    "pdfPages": "398-421",
+    "summary": "We relax the assumption that instances in a sample are independent and introduce Markov models to model input sequences as generated by a parametric random process. We discuss how this modeling is done as well as introduce an algorithm for learning the parameters of such a mod...",
+    "wordCount": 6561,
+    "readingTimeMin": 33,
+    "sectionCount": 11,
+    "sections": [
+      {
+        "id": "15.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.2",
+        "title": "Discrete Markov Processes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.3",
+        "title": "Hidden Markov Models",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.4",
+        "title": "Three Basic Problems of HMMs",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.5",
+        "title": "Evaluation Problem",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.6",
+        "title": "Finding the State Sequence",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.7",
+        "title": "Learning Model Parameters",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.8",
+        "title": "Continuous Observations",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.9",
+        "title": "The HMM with Input",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.10",
+        "title": "Model Selection in HMM",
+        "subsectionCount": 0
+      },
+      {
+        "id": "15.11",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 16,
+    "referenceCount": 14
+  },
+  {
+    "num": 16,
+    "slug": "16-graphical-models",
+    "title": "Graphical Models",
+    "tag": "Probabilistic",
+    "icon": "Network",
+    "pages": "387-418",
+    "pdfPages": "422-453",
+    "summary": "Graphical models represent the interaction between variables visually and have the advantage that inference over a large number of variables can be decomposed into a set of local calculations involving a small number of variables making use of conditional independencies. After...",
+    "wordCount": 8574,
+    "readingTimeMin": 43,
+    "sectionCount": 9,
+    "sections": [
+      {
+        "id": "16.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.2",
+        "title": "Canonical Cases for Conditional Independence",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.3",
+        "title": "Example Graphical Models",
+        "subsectionCount": 3
+      },
+      {
+        "id": "16.4",
+        "title": "d-Separation",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.5",
+        "title": "Belief Propagation",
+        "subsectionCount": 4
+      },
+      {
+        "id": "16.6",
+        "title": "Undirected Graphs: Markov Random Fields",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.7",
+        "title": "Learning the Structure of a Graphical Model",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.8",
+        "title": "Influence Diagrams",
+        "subsectionCount": 0
+      },
+      {
+        "id": "16.9",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 10,
+    "referenceCount": 21
+  },
+  {
+    "num": 17,
+    "slug": "17-combining-multiple-learners",
+    "title": "Combining Multiple Learners",
+    "tag": "Ensembles",
+    "icon": "Users",
+    "pages": "419-446",
+    "pdfPages": "454-481",
+    "summary": "We discussed many different learning algorithms in the previous chapters. Though these are generally successful, no one single algorithm is always the most accurate. Now, we are going to discuss models composed of multiple learners that complement each other so that by combini...",
+    "wordCount": 9038,
+    "readingTimeMin": 45,
+    "sectionCount": 12,
+    "sections": [
+      {
+        "id": "17.1",
+        "title": "Rationale",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.2",
+        "title": "Generating Diverse Learners",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.3",
+        "title": "Model Combination Schemes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.4",
+        "title": "Voting",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.5",
+        "title": "Error-Correcting Output Codes",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.6",
+        "title": "Bagging",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.7",
+        "title": "Boosting",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.8",
+        "title": "Mixture of Experts Revisited",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.9",
+        "title": "Stacked Generalization",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.10",
+        "title": "Fine-Tuning an Ensemble",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.11",
+        "title": "Cascading",
+        "subsectionCount": 0
+      },
+      {
+        "id": "17.12",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 10,
+    "referenceCount": 32
+  },
+  {
+    "num": 18,
+    "slug": "18-reinforcement-learning",
+    "title": "Reinforcement Learning",
+    "tag": "Reinforcement",
+    "icon": "Gamepad2",
+    "pages": "447-474",
+    "pdfPages": "482-509",
+    "summary": "In reinforcement learning, the learner is a decision-making agent that takes actions in an environment and receives reward (or penalty) for its actions in trying to solve a problem. After a set of trial-anderror runs, it should learn the best policy, which is the sequence of a...",
+    "wordCount": 9153,
+    "readingTimeMin": 46,
+    "sectionCount": 8,
+    "sections": [
+      {
+        "id": "18.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "18.2",
+        "title": "Single State Case: K-Armed Bandit",
+        "subsectionCount": 0
+      },
+      {
+        "id": "18.3",
+        "title": "Elements of Reinforcement Learning",
+        "subsectionCount": 0
+      },
+      {
+        "id": "18.4",
+        "title": "Model-Based Learning",
+        "subsectionCount": 2
+      },
+      {
+        "id": "18.5",
+        "title": "Temporal Difference Learning",
+        "subsectionCount": 4
+      },
+      {
+        "id": "18.6",
+        "title": "Generalization",
+        "subsectionCount": 0
+      },
+      {
+        "id": "18.7",
+        "title": "Partially Observable States",
+        "subsectionCount": 2
+      },
+      {
+        "id": "18.8",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 12,
+    "referenceCount": 16
+  },
+  {
+    "num": 19,
+    "slug": "19-machine-learning-experiments",
+    "title": "Design and Analysis of Machine Learning Experiments",
+    "tag": "Evaluation",
+    "icon": "FlaskConical",
+    "pages": "475-516",
+    "pdfPages": "510-551",
+    "summary": "Design and Analysis of Machine",
+    "wordCount": 13686,
+    "readingTimeMin": 68,
+    "sectionCount": 14,
+    "sections": [
+      {
+        "id": "19.1",
+        "title": "Introduction",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.2",
+        "title": "Factors, Response, and Strategy of Experimentation",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.3",
+        "title": "Response Surface Design",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.4",
+        "title": "Randomization, Replication, and Blocking",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.5",
+        "title": "Guidelines for Machine Learning Experiments",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.6",
+        "title": "Cross-Validation and Resampling Methods",
+        "subsectionCount": 3
+      },
+      {
+        "id": "19.7",
+        "title": "Measuring Classifier Performance",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.8",
+        "title": "Interval Estimation",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.9",
+        "title": "Hypothesis Testing",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.10",
+        "title": "Assessing a Classification Algorithm’s Performance",
+        "subsectionCount": 3
+      },
+      {
+        "id": "19.11",
+        "title": "Comparing Two Classification Algorithms",
+        "subsectionCount": 4
+      },
+      {
+        "id": "19.12",
+        "title": "Comparing Multiple Algorithms: Analysis of Variance",
+        "subsectionCount": 0
+      },
+      {
+        "id": "19.13",
+        "title": "Comparison over Multiple Datasets",
+        "subsectionCount": 2
+      },
+      {
+        "id": "19.14",
+        "title": "Notes",
+        "subsectionCount": 0
+      }
+    ],
+    "exerciseCount": 10,
+    "referenceCount": 10
+  }
+]
