@@ -13,49 +13,51 @@ import {
   Layers,
   ChevronRight,
   Sprout,
-  Activity
+  Activity,
+  Cpu,
+  Terminal
 } from 'lucide-react';
 import EdenCard, { EdenCardItem } from '@/components/EdenCard';
 import FolderCard from '@/components/FolderCard';
 import { GARDEN_PATHS } from '@/lib/pathsData';
-import { chaptersIndex, bookMeta } from '@/lib/bookData';
+import { chaptersIndex } from '@/lib/bookData';
 
 const EDEN_GROVES: EdenCardItem[] = [
   {
-    id: 'grove-ml',
-    tag: 'Foundations',
-    title: 'Statistical Machine Learning',
-    subtitle: 'Inductive bias, PAC generalization bounds, Bayesian decision surfaces, and kernel machines.',
-    href: '/chapter/01-introduction',
-    accentGlow: '#059669',
-    visualType: 'mycelium',
+    id: 'grove-inference',
+    tag: 'Systems & GPU',
+    title: 'Inference Engineering',
+    subtitle: 'KV cache memory sizing, FlashAttention tiling math, quantization tradeoffs, and token economics.',
+    href: '/paths/inference-engineering',
+    accentGlow: '#0284c7',
+    visualType: 'cobalt-mesh',
     heightClass: 'min-h-[460px]',
   },
   {
-    id: 'grove-dl',
-    tag: 'Architectures',
-    title: 'Deep Representations & Scaling',
-    subtitle: 'Self-attention geometry, transformer scaling laws, latent diffusion, and flow matching dynamics.',
+    id: 'grove-deep-learning',
+    tag: 'Neural Frontiers',
+    title: 'Deep Representations & LLMs',
+    subtitle: 'Self-attention geometry, rotary embeddings, compute scaling laws, and generative flow matching.',
     href: '/paths/deep-learning',
     accentGlow: '#d97706',
     visualType: 'amber-bloom',
     heightClass: 'min-h-[510px] sm:-translate-y-4', // Taller staggered card matching Haumind
   },
   {
-    id: 'grove-inf',
-    tag: 'Uncertainty',
-    title: 'Information Theory & Entropy',
-    subtitle: 'Shannon entropy, channel capacity, mutual information, and the geometric measure of uncertainty.',
-    href: '/paths/information-theory',
-    accentGlow: '#0284c7',
-    visualType: 'prism-refract',
+    id: 'grove-distributed',
+    tag: 'Scale & Resilience',
+    title: 'Distributed AI Infrastructure',
+    subtitle: 'Raft consensus, cluster sharding, FSDP tensor parallelism, and low-latency storage engines.',
+    href: '/paths/system-design',
+    accentGlow: '#059669',
+    visualType: 'mycelium',
     heightClass: 'min-h-[475px]',
   },
   {
     id: 'grove-math',
-    tag: 'Geometry',
-    title: 'Linear Algebra & Optimization',
-    subtitle: 'Spectral decompositions, SVD projections, Riemannian gradients, and dual Lagrangian manifolds.',
+    tag: 'First Principles',
+    title: 'Mathematics of Intelligence',
+    subtitle: 'High-dimensional geometry, SVD projections, Shannon entropy, and Lagrangian dual manifolds.',
     href: '/paths/linear-algebra',
     accentGlow: '#e11d48',
     visualType: 'botanical-petal',
@@ -64,8 +66,6 @@ const EDEN_GROVES: EdenCardItem[] = [
 ];
 
 export default function HomePage() {
-  const [selectedTrack, setSelectedTrack] = useState<string>('all');
-
   return (
     <div className="min-h-screen bg-[#0a0b0d] text-zinc-100 selection:bg-emerald-500/25 selection:text-emerald-200">
       {/* Ambient Top Ethereal Glow */}
@@ -78,7 +78,7 @@ export default function HomePage() {
             {/* Tag capsule */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 text-xs font-mono text-zinc-400">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>The Primordial Groves</span>
+              <span>AI Engineering Arboretum</span>
             </div>
 
             {/* Editorial Headline */}
@@ -93,8 +93,8 @@ export default function HomePage() {
 
           <div className="max-w-md lg:pb-2">
             <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-sans">
-              Every path is different. These are the ways we cultivate mathematical intuition,
-              rigorous proofs, and enduring computational mastery.
+              An aesthetic, living knowledge garden for modern AI engineering. From GPU memory
+              hierarchies, KV-cache math, and distributed consensus to self-attention manifolds and information theory.
             </p>
           </div>
         </div>
@@ -118,9 +118,9 @@ export default function HomePage() {
           </div>
 
           <blockquote className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal leading-relaxed text-zinc-300">
-            At Garden of Eden, we don&apos;t rush through code —{' '}
-            <span className="text-zinc-100 italic">we help it unfold with intention.</span>{' '}
-            Through first-principles mathematics, interactive visual workbenches, and a steady pace,{' '}
+            At Garden of Eden, we don&apos;t rush through abstractions —{' '}
+            <span className="text-zinc-100 italic">we cultivate engineering from first principles.</span>{' '}
+            From GPU memory bandwidth and distributed consensus to tensor calculus and neural scaling,{' '}
             <span className="text-emerald-300">we support knowledge that lasts.</span>
           </blockquote>
 
@@ -140,11 +140,19 @@ export default function HomePage() {
               <Beaker className="h-3.5 w-3.5" />
               <span>Open Simulation Workbench</span>
             </Link>
+
+            <Link
+              href="/practice"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-900/60 bg-amber-950/40 hover:bg-amber-900/40 text-amber-300 transition-colors"
+            >
+              <Target className="h-3.5 w-3.5" />
+              <span>Deliberate Practice Drills</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Fanout-Inspired Tabbed Binder Paths */}
+      {/* Fanout-Inspired Tabbed Binder Portfolios */}
       <section className="py-24 border-t border-zinc-900 bg-[#090a0c]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 space-y-2">
@@ -152,11 +160,11 @@ export default function HomePage() {
               PICK YOUR PATH
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-zinc-100">
-              Curriculum Portfolios
+              AI Engineering Curricula
             </h2>
             <p className="text-sm text-zinc-400 max-w-2xl">
-              Physical tabbed binder folders detailing comprehensive curricula, sequenced lessons,
-              and interactive telemetry across 7 computing disciplines.
+              Sequenced field binders spanning the modern AI engineering stack: from hardware-aware
+              inference and scalable distributed infrastructure to foundation model architectures and pure mathematics.
             </p>
           </div>
 
@@ -168,19 +176,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Alpaydın Core Textbook Chapter Matrix */}
+      {/* Reference Library Archive (Alpaydın & Statistical Foundations) */}
       <section className="py-20 border-t border-zinc-900 bg-[#0a0b0d]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
             <div>
               <div className="font-mono text-xs uppercase tracking-wider font-bold text-zinc-500">
-                Primary Textbook Corpus
+                Classical Reference Corpus
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-normal text-zinc-100 mt-1">
                 Ethem Alpaydın: Introduction to Machine Learning
               </h2>
               <p className="text-xs font-mono text-zinc-400 mt-1">
-                2nd Edition · The MIT Press · 19 Complete Chapters · 495 Verified Equations
+                2nd Edition · The MIT Press · Complete 19 Chapters · 495 Verified Display Equations
               </p>
             </div>
 
@@ -188,13 +196,13 @@ export default function HomePage() {
               href="/chapter/01-introduction"
               className="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition-colors"
             >
-              <span>Begin at Chapter 1</span>
+              <span>Read Full Treatise</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {chaptersIndex.slice(0, 9).map((chapter) => (
+            {chaptersIndex.slice(0, 6).map((chapter) => (
               <Link
                 key={chapter.slug}
                 href={`/chapter/${chapter.slug}`}
@@ -233,7 +241,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-800 bg-zinc-900/60 text-xs font-mono text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
             >
               <BookOpen className="h-4 w-4 text-emerald-400" />
-              <span>Explore All 19 Textbook Chapters</span>
+              <span>Browse All 19 Chapters in Reader</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
