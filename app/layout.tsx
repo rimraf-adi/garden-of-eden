@@ -40,7 +40,7 @@ export default function RootLayout({
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col bg-[#0c0d10] text-zinc-100 dark:bg-[#0a0b0d] dark:text-zinc-100 selection:bg-emerald-500/30 selection:text-emerald-200"
+        className="min-h-full flex flex-col bg-[#fafafc] text-zinc-900 dark:bg-[#08090d] dark:text-zinc-100 selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-200 transition-colors"
       >
         <Navbar />
         <div className="flex-1">{children}</div>

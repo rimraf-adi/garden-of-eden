@@ -37,26 +37,45 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-zinc-200/80 dark:border-zinc-800/80 bg-[#fafafc]/90 dark:bg-[#0a0d14]/90 backdrop-blur-xl text-zinc-900 dark:text-white transition-colors">
+      <header className="sticky top-0 z-50 w-full border-b border-white/20 dark:border-white/10 bg-white/60 dark:bg-[#0a0d14]/70 backdrop-blur-md transition-colors duration-200">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-black text-cyan-600 dark:text-cyan-400 group-hover:rotate-45 transition-transform duration-300">
-              *
-            </span>
-            <span className="text-lg font-extrabold tracking-tight text-zinc-950 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors">
-              GardenOfEden
+          {/* Brand with Zen Cairn Stones Icon */}
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="relative flex flex-col items-center justify-center w-7 h-7">
+              {/* Stylized stacked zen stones icon matching screenshot */}
+              <div className="w-2.5 h-1.5 rounded-full bg-amber-500/80 mb-0.5" />
+              <div className="w-4 h-2 rounded-full bg-amber-600/80 mb-0.5" />
+              <div className="w-5.5 h-2.5 rounded-full bg-amber-700/80" />
+            </div>
+            <span className="font-serif text-lg sm:text-xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+              Garden of Eden
             </span>
           </Link>
 
-          {/* Right: Search and Explore ONLY */}
-          <div className="flex items-center gap-3">
+          {/* Center: Sanctuary Navigation Links */}
+          <nav className="hidden md:flex items-center gap-8 text-xs font-sans font-medium text-zinc-600 dark:text-zinc-400">
+            <Link href="/modules" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
+              Curriculum
+            </Link>
+            <Link href="/paths/linear-algebra" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
+              Foundations
+            </Link>
+            <Link href="/paths/inference-engineering" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
+              Inference
+            </Link>
+            <Link href="/workbench" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
+              Laboratories
+            </Link>
+          </nav>
+
+          {/* Right: Search, Theme Toggle, and Pill CTA */}
+          <div className="flex items-center gap-2.5">
             <button
               onClick={() => setPaletteOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 px-3.5 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-200 transition font-mono shadow-2xs"
+              className="flex items-center gap-2 rounded-full border border-zinc-200/80 dark:border-zinc-800 bg-white/70 dark:bg-zinc-900/60 px-3.5 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-200 transition font-mono backdrop-blur-xs shadow-2xs"
               title="Search (Cmd+K)"
             >
-              <Search className="h-3.5 w-3.5" />
+              <Search className="h-3.5 w-3.5 text-zinc-400" />
               <span className="hidden sm:inline">Search...</span>
               <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700 text-zinc-500">
                 ⌘K
@@ -65,19 +84,19 @@ export default function Navbar() {
 
             <button
               onClick={toggleTheme}
-              className="p-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
+              className="p-1.5 rounded-full border border-zinc-200/80 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-white/80 dark:hover:bg-zinc-800/80 transition"
               title={isDark ? 'Switch to Light' : 'Switch to Dark'}
               aria-label="Toggle theme"
             >
               {isDark ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5 text-zinc-600" />}
             </button>
 
-            {/* Explore Button */}
+            {/* Frosted Glass "Begin Journey" Pill Button */}
             <Link
               href="/modules"
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-zinc-950 text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900/90 dark:bg-white/90 hover:bg-zinc-950 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-medium transition-all shadow-md shadow-zinc-950/10 dark:shadow-white/10 backdrop-blur-xs"
             >
-              <span>Explore</span>
+              <span>Begin Journey</span>
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>

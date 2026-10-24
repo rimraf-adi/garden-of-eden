@@ -35,16 +35,16 @@ export default function ModulesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#fafafc] dark:bg-[#0a0d14] text-zinc-900 dark:text-zinc-100 transition-colors">
+    <div className="min-h-screen bg-[#fafafc] dark:bg-[#08090d] text-zinc-900 dark:text-zinc-100 transition-colors">
       {/* =========================================================================
           FANOUT-INSPIRED HEADER: PICK YOUR PATH / Choose where to start
          ========================================================================= */}
       <section className="pt-16 sm:pt-20 pb-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
         <div className="max-w-3xl space-y-3">
-          <div className="font-mono text-xs uppercase tracking-widest font-bold text-zinc-400 dark:text-zinc-500">
+          <div className="font-mono text-xs uppercase tracking-widest font-bold text-amber-700 dark:text-amber-400">
             PICK YOUR PATH
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white leading-tight">
             Choose where to start
           </h1>
           <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
@@ -67,10 +67,10 @@ export default function ModulesPage() {
       <section className="py-16 sm:py-24 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <div className="font-mono text-xs uppercase tracking-wider font-bold text-cyan-600 dark:text-cyan-400">
+            <div className="font-mono text-xs uppercase tracking-wider font-bold text-amber-700 dark:text-amber-400">
               Complete Table of Contents
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-950 dark:text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white mt-1">
               Curriculum Index
             </h2>
             <p className="text-xs text-zinc-500 font-mono mt-0.5">
@@ -86,7 +86,7 @@ export default function ModulesPage() {
               placeholder="Search chapters or topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-cyan-500"
+              className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-amber-500 shadow-2xs"
             />
           </div>
         </div>
@@ -126,12 +126,12 @@ export default function ModulesPage() {
             >
               <div className="flex items-start gap-4 sm:gap-5">
                 {/* Chapter Number */}
-                <span className="font-mono text-xl sm:text-2xl font-bold text-zinc-400 dark:text-zinc-600 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors w-9 shrink-0">
+                <span className="font-mono text-xl sm:text-2xl font-bold text-zinc-400 dark:text-zinc-600 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors w-9 shrink-0">
                   {mod.num.toString().padStart(2, '0')}
                 </span>
 
                 <div className="space-y-1">
-                  <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors font-sans">
                     {mod.title}
                   </h3>
 
@@ -154,7 +154,7 @@ export default function ModulesPage() {
 
               <div className="sm:text-right shrink-0 flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 pt-1 font-mono text-xs text-zinc-400 dark:text-zinc-500">
                 <span>~{mod.estimatedHours}h read</span>
-                <span className="inline-flex items-center gap-1 text-cyan-600 dark:text-cyan-400 font-medium group-hover:translate-x-1 transition-transform">
+                <span className="inline-flex items-center gap-1 text-amber-700 dark:text-amber-400 font-medium group-hover:translate-x-1 transition-transform">
                   <span>Open</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
