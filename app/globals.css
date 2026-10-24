@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #18181b;
+  --diagram-bg: #ffffff;
+  --diagram-card: #f8fafc;
+  --diagram-grid: #e2e8f0;
+  --diagram-axis: #94a3b8;
+  --diagram-text: #0f172a;
+  --diagram-text-muted: #64748b;
+  --diagram-border: #e2e8f0;
 }
 
 @theme inline {
@@ -14,13 +21,43 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #09090b;
+    --foreground: #f4f4f5;
+    --diagram-bg: #09090b;
+    --diagram-card: #09090b;
+    --diagram-grid: #27272a;
+    --diagram-axis: #52525b;
+    --diagram-text: #f1f5f9;
+    --diagram-text-muted: #a1a1aa;
+    --diagram-border: #27272a;
   }
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --diagram-bg: #09090b;
+  --diagram-card: #09090b;
+  --diagram-grid: #27272a;
+  --diagram-axis: #52525b;
+  --diagram-text: #f1f5f9;
+  --diagram-text-muted: #a1a1aa;
+  --diagram-border: #27272a;
+}
+
+.light {
+  --background: #fafafa;
+  --foreground: #18181b;
+  --diagram-bg: #ffffff;
+  --diagram-card: #f8fafc;
+  --diagram-grid: #e2e8f0;
+  --diagram-axis: #94a3b8;
+  --diagram-text: #0f172a;
+  --diagram-text-muted: #64748b;
+  --diagram-border: #e2e8f0;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
