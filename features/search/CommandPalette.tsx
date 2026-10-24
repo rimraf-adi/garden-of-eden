@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { chaptersIndex } from '@/lib/bookData';
 import { LEARNING_TRACKS, CONCEPT_NODES } from '@/lib/curriculum';
 import { PRACTICE_EXERCISES } from '@/lib/practiceData';
+import { GARDEN_PATHS } from '@/lib/pathsData';
 import {
   Search,
   BookOpen,
@@ -105,6 +106,15 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
       subtitle: 'Continuous distributions, densities, and expectations',
       href: '/appendix',
     },
+    // Garden Paths
+    ...GARDEN_PATHS.map((p) => ({
+      id: `path-${p.id}`,
+      category: 'Track' as const,
+      title: `Path: ${p.title}`,
+      subtitle: p.description,
+      href: p.href,
+      badge: `${p.stats.modules} Mods`,
+    })),
     // Chapters
     ...chaptersIndex.map((ch) => ({
       id: `ch-${ch.slug}`,

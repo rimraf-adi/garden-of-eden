@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #18181b;
-  --diagram-bg: #ffffff;
-  --diagram-card: #f8fafc;
-  --diagram-grid: #e2e8f0;
-  --diagram-axis: #94a3b8;
-  --diagram-text: #0f172a;
-  --diagram-text-muted: #64748b;
-  --diagram-border: #e2e8f0;
+  --background: #0c0d10;
+  --foreground: #f4f4f5;
+  --diagram-bg: #121318;
+  --diagram-card: #181920;
+  --diagram-grid: #232530;
+  --diagram-axis: #52525b;
+  --diagram-text: #f1f5f9;
+  --diagram-text-muted: #a1a1aa;
+  --diagram-border: #232530;
 }
 
 @theme inline {
@@ -17,37 +17,38 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-serif);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #09090b;
+    --background: #090a0c;
     --foreground: #f4f4f5;
-    --diagram-bg: #09090b;
-    --diagram-card: #09090b;
-    --diagram-grid: #27272a;
-    --diagram-axis: #52525b;
-    --diagram-text: #f1f5f9;
-    --diagram-text-muted: #a1a1aa;
-    --diagram-border: #27272a;
+    --diagram-bg: #0e1014;
+    --diagram-card: #12141a;
+    --diagram-grid: #1e222b;
+    --diagram-axis: #4b5563;
+    --diagram-text: #f3f4f6;
+    --diagram-text-muted: #9ca3af;
+    --diagram-border: #1e222b;
   }
 }
 
 .dark {
-  --background: #09090b;
+  --background: #090a0c;
   --foreground: #f4f4f5;
-  --diagram-bg: #09090b;
-  --diagram-card: #09090b;
-  --diagram-grid: #27272a;
-  --diagram-axis: #52525b;
-  --diagram-text: #f1f5f9;
-  --diagram-text-muted: #a1a1aa;
-  --diagram-border: #27272a;
+  --diagram-bg: #0e1014;
+  --diagram-card: #12141a;
+  --diagram-grid: #1e222b;
+  --diagram-axis: #4b5563;
+  --diagram-text: #f3f4f6;
+  --diagram-text-muted: #9ca3af;
+  --diagram-border: #1e222b;
 }
 
 .light {
-  --background: #fafafa;
-  --foreground: #18181b;
+  --background: #fbfbfd;
+  --foreground: #111215;
   --diagram-bg: #ffffff;
   --diagram-card: #f8fafc;
   --diagram-grid: #e2e8f0;
@@ -60,4 +61,13 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Atmospheric mist bloom */
+.eden-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(94, 234, 212, 0.08) 0%, rgba(16, 185, 129, 0.03) 35%, transparent 70%);
+}
+
+.eden-card-glow {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
