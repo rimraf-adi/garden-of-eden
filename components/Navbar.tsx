@@ -2,19 +2,35 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { BookOpen, Search, Menu, X, FileText, Bookmark, Calculator, Sparkles, Sun, Moon } from 'lucide-react';
-import { chaptersIndex } from '@/lib/bookData';
+import {
+  BookOpen,
+  Search,
+  Menu,
+  X,
+  FileText,
+  Bookmark,
+  Calculator,
+  Sparkles,
+  Sun,
+  Moon,
+  Compass,
+  Beaker,
+  Target
+} from 'lucide-react';
+import CommandPalette from '@/features/search/CommandPalette';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [paletteOpen, setPaletteOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     // Check initial theme preference or class
-    const isDarkMode = document.documentElement.classList.contains('dark') ||
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !document.documentElement.classList.contains('light'));
+    const isDarkMode =
+      document.documentElement.classList.contains('dark') ||
+      (window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches &&
+        !document.documentElement.classList.contains('light'));
     setIsDark(isDarkMode);
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -23,6 +39,10 @@ export default function Navbar() {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
     }
+
+    const openListener = () => setPaletteOpen(true);
+    window.addEventListener('open-command-palette', openListener);
+    return () => window.removeEventListener('open-command-palette', openListener);
   }, []);
 
   const toggleTheme = () => {
@@ -41,15 +61,6 @@ export default function Navbar() {
     window.dispatchEvent(new Event('themechange'));
   };
 
-  const filteredChapters = searchQuery.trim()
-    ? chaptersIndex.filter(
-        (ch) =>
-          ch.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ch.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ch.sections.some((s) => s.title.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : [];
-
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-zinc-200 bg-white/90 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/90">
@@ -62,42 +73,68 @@ export default function Navbar() {
               <span className="block text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-tight">
                 Introduction to Machine Learning
               </span>
-              <span className="block text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+              <span className="block text-xs text-zinc-500 dark:text-zinc-400 font-medium font-mono">
                 Ethem Alpaydın · 2nd Edition · MIT Press
               </span>
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300">
-            <Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-              Chapters
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300">
+            <Link
+              href="/roadmap"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
+              <Compass className="h-4 w-4 text-indigo-500" />
+              <span>Roadmap</span>
             </Link>
-            <Link href="/visuals" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
-              <Sparkles className="h-4 w-4 text-indigo-500" />
-              Visual Animations
+            <Link
+              href="/workbench"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
+              <Beaker className="h-4 w-4 text-emerald-500" />
+              <span>Workbench</span>
             </Link>
-            <Link href="/notations" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+            <Link
+              href="/practice"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
+              <Target className="h-4 w-4 text-amber-500" />
+              <span>Practice</span>
+            </Link>
+            <Link
+              href="/visuals"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
+              <Sparkles className="h-4 w-4 text-pink-500" />
+              <span>Visuals</span>
+            </Link>
+            <Link
+              href="/notations"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
               <Calculator className="h-4 w-4" />
-              Notations
+              <span>Notations</span>
             </Link>
-            <Link href="/appendix" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+            <Link
+              href="/appendix"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+            >
               <FileText className="h-4 w-4" />
-              Appendix A
-            </Link>
-            <Link href="/frontmatter" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
-              <Bookmark className="h-4 w-4" />
-              Preface
+              <span>Appendix A</span>
             </Link>
           </nav>
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 text-xs text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-200 transition"
+              onClick={() => setPaletteOpen(true)}
+              className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-800 px-3 py-1.5 text-xs text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-200 transition font-mono"
               title="Search book (Cmd+K)"
             >
               <Search className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Search book...</span>
+              <span className="hidden sm:inline">Search...</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.2 text-[10px] bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">
+                ⌘K
+              </kbd>
             </button>
 
             <button
@@ -111,7 +148,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="lg:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -120,13 +157,38 @@ export default function Navbar() {
 
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-3 space-y-2 text-sm font-medium">
+          <div className="lg:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-3 space-y-2 text-sm font-medium">
             <Link
-              href="/"
+              href="/roadmap"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
-              Chapters Overview
+              <Compass className="h-4 w-4 text-indigo-500" />
+              <span>Concept Roadmap</span>
+            </Link>
+            <Link
+              href="/workbench"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <Beaker className="h-4 w-4 text-emerald-500" />
+              <span>Interactive Workbench</span>
+            </Link>
+            <Link
+              href="/practice"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <Target className="h-4 w-4 text-amber-500" />
+              <span>Practice Drills</span>
+            </Link>
+            <Link
+              href="/visuals"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
+              <Sparkles className="h-4 w-4 text-pink-500" />
+              <span>Visual Animations</span>
             </Link>
             <Link
               href="/notations"
@@ -142,73 +204,12 @@ export default function Navbar() {
             >
               Appendix A: Probability
             </Link>
-            <Link
-              href="/frontmatter"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              Preface & Notes
-            </Link>
           </div>
         )}
       </header>
 
-      {/* Global Search Modal */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 bg-zinc-900/60 backdrop-blur-sm p-4">
-          <div className="w-full max-w-2xl rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden">
-            <div className="flex items-center px-4 border-b border-zinc-200 dark:border-zinc-800">
-              <Search className="h-5 w-5 text-zinc-400 mr-3" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search across all 19 chapters, sections, and topics..."
-                className="w-full py-4 text-sm bg-transparent outline-none text-zinc-900 dark:text-zinc-100 placeholder-zinc-400"
-                autoFocus
-              />
-              <button
-                onClick={() => setSearchOpen(false)}
-                className="p-1 rounded-md text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="max-h-96 overflow-y-auto p-4 space-y-2">
-              {searchQuery.trim() === '' ? (
-                <div className="text-center py-8 text-sm text-zinc-400">
-                  Type a topic (e.g. &ldquo;Bayes&rdquo;, &ldquo;SVM&rdquo;, &ldquo;Q learning&rdquo;, &ldquo;PAC&rdquo;, &ldquo;Decision Trees&rdquo;)
-                </div>
-              ) : filteredChapters.length === 0 ? (
-                <div className="text-center py-8 text-sm text-zinc-400">
-                  No chapters found matching &ldquo;{searchQuery}&rdquo;
-                </div>
-              ) : (
-                filteredChapters.map((ch) => (
-                  <Link
-                    key={ch.slug}
-                    href={`/chapter/${ch.slug}`}
-                    onClick={() => setSearchOpen(false)}
-                    className="block p-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800/80 transition group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-                        Chapter {ch.num} · {ch.tag}
-                      </span>
-                      <span className="text-xs text-zinc-400">{ch.pages}</span>
-                    </div>
-                    <div className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                      {ch.title}
-                    </div>
-                    <p className="text-xs text-zinc-500 line-clamp-2 mt-1">{ch.summary}</p>
-                  </Link>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Global Cmd+K Command Palette */}
+      <CommandPalette isOpen={paletteOpen} onClose={() => setPaletteOpen(false)} />
     </>
   );
 }

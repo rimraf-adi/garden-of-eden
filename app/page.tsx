@@ -6,7 +6,6 @@ import {
   BookOpen,
   Search,
   Clock,
-  FileCode,
   ArrowRight,
   Layers,
   Sparkles,
@@ -14,10 +13,16 @@ import {
   Calculator,
   Compass,
   Cpu,
-  Bookmark,
+  Beaker,
+  Target,
+  Activity,
   CheckCircle2,
+  Terminal,
+  ExternalLink,
 } from 'lucide-react';
 import { chaptersIndex, bookMeta } from '@/lib/bookData';
+import { LEARNING_TRACKS, CONCEPT_NODES } from '@/lib/curriculum';
+import TrackCard from '@/features/roadmap/TrackCard';
 
 const CATEGORIES = [
   'All',
@@ -52,125 +57,140 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-indigo-50/60 via-white to-zinc-50 dark:from-indigo-950/20 dark:via-zinc-950 dark:to-zinc-950 py-16 sm:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
+      {/* Fanout-Inspired Engineering Hero */}
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-16 sm:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left Hero Column */}
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50/80 dark:bg-indigo-950/60 px-3.5 py-1 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>The MIT Press · Adaptive Computation and Machine Learning Series</span>
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.1]">
-                {bookMeta.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-3 text-lg font-medium text-zinc-700 dark:text-zinc-300">
-                <span>By <strong className="text-indigo-600 dark:text-indigo-400 font-bold">{bookMeta.author}</strong></span>
-                <span className="text-zinc-400">·</span>
-                <span>{bookMeta.subtitle}</span>
-                <span className="text-zinc-400">·</span>
-                <span className="text-sm px-2.5 py-0.5 rounded-md bg-zinc-200 dark:bg-zinc-800 font-mono text-zinc-600 dark:text-zinc-400">
-                  {bookMeta.publishedYear}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-mono text-xs font-semibold uppercase tracking-wider">
+                  <Terminal className="h-3.5 w-3.5" />
+                  <span>TOPOLOGY :: ALPAYDIN_2ND_EDITION</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-300 font-mono text-xs font-semibold uppercase tracking-wider">
+                  <Activity className="h-3 w-3" />
+                  <span>SYSTEM_ONLINE</span>
                 </span>
               </div>
 
-              <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
-                A unified, readable treatment of modern machine learning from basic statistics and pattern recognition to deep multilayer perceptrons, support vector machines, graphical models, and reinforcement learning.
-              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.08]">
+                Introduction to Machine Learning
+              </h1>
 
-              <div className="flex flex-wrap gap-4 pt-2">
-                <a
-                  href="#chapters"
-                  className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-500 transition-all active:scale-[0.98]"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Read Chapters
-                </a>
-                <Link
-                  href="/notations"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <Calculator className="h-4 w-4 text-indigo-500" />
-                  Math Notations
-                </Link>
-                <Link
-                  href="/appendix"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <Compass className="h-4 w-4 text-indigo-500" />
-                  Appendix: Probability
-                </Link>
+              <div className="flex flex-wrap items-center gap-3 text-base sm:text-lg font-medium text-zinc-700 dark:text-zinc-300">
+                <span>
+                  By{' '}
+                  <strong className="text-indigo-600 dark:text-indigo-400 font-bold">
+                    {bookMeta.author}
+                  </strong>
+                </span>
+                <span className="text-zinc-400">·</span>
+                <span>The MIT Press (2nd Edition)</span>
+                <span className="text-zinc-400">·</span>
+                <span className="font-mono text-xs px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
+                  STE-100 Compliant
+                </span>
               </div>
 
-              {/* Stats Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-zinc-200/80 dark:border-zinc-800/80">
-                <div className="rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 p-3 text-center sm:text-left">
-                  <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">19</div>
-                  <div className="text-xs font-medium text-zinc-500">Core Chapters</div>
-                </div>
-                <div className="rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 p-3 text-center sm:text-left">
-                  <div className="text-2xl font-black text-zinc-900 dark:text-zinc-100">572</div>
-                  <div className="text-xs font-medium text-zinc-500">Book Pages</div>
-                </div>
-                <div className="rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 p-3 text-center sm:text-left">
-                  <div className="text-2xl font-black text-zinc-900 dark:text-zinc-100">150k+</div>
-                  <div className="text-xs font-medium text-zinc-500">Extracted Words</div>
-                </div>
-                <div className="rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 p-3 text-center sm:text-left">
-                  <div className="text-2xl font-black text-emerald-600 dark:text-emerald-400">100%</div>
-                  <div className="text-xs font-medium text-zinc-500">LaTeX Parsed</div>
-                </div>
+              <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed">
+                An interactive engineering workbench and complete online edition of Alpaydın&apos;s
+                standard graduate textbook. Features 495 display equations, prerequisite DAGs,
+                real-time parameter simulations, and deliberate practice drills.
+              </p>
+
+              {/* Action Buttons Matrix */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Link
+                  href="/roadmap"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-md shadow-indigo-600/20"
+                >
+                  <Compass className="h-4 w-4" />
+                  <span>Explore Concept Roadmap (DAG)</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  href="/workbench"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium text-sm transition-colors"
+                >
+                  <Beaker className="h-4 w-4 text-emerald-500" />
+                  <span>Interactive Workbench</span>
+                </Link>
+
+                <Link
+                  href="/practice"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium text-sm transition-colors"
+                >
+                  <Target className="h-4 w-4 text-amber-500" />
+                  <span>Practice Drills</span>
+                </Link>
               </div>
             </div>
 
-            {/* Book Cover Card */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="relative group max-w-xs w-full">
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 opacity-25 blur-lg group-hover:opacity-40 transition duration-500" />
-                <div className="relative rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 shadow-2xl space-y-6">
-                  <div className="space-y-2 border-b border-zinc-100 dark:border-zinc-800 pb-6">
-                    <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                      MIT Press Edition
-                    </span>
-                    <h3 className="text-2xl font-black tracking-tight text-zinc-900 dark:text-zinc-100">
-                      Introduction to Machine Learning
-                    </h3>
-                    <p className="text-sm font-semibold text-zinc-600 dark:text-zinc-400">
-                      Ethem Alpaydın
-                    </p>
+            {/* Right Telemetry Column (Fanout Control Deck) */}
+            <div className="lg:col-span-4">
+              <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 p-6 shadow-xl shadow-zinc-900/5 space-y-5">
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
+                    <Activity className="h-4 w-4 text-indigo-500" />
+                    <span>CURRICULUM_TELEMETRY</span>
+                  </div>
+                  <span className="font-mono text-[10px] text-zinc-400">V2.4_TURBOPACK</span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 font-mono text-xs">
+                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
+                    <div className="text-[10px] text-zinc-400 uppercase tracking-wider">
+                      Chapters
+                    </div>
+                    <div className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">
+                      19
+                    </div>
+                    <div className="text-[10px] text-zinc-500 mt-1">Complete Textbook</div>
                   </div>
 
-                  <div className="space-y-3 text-xs text-zinc-500 dark:text-zinc-400">
-                    <div className="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-800">
-                      <span>Publisher</span>
-                      <span className="font-medium text-zinc-800 dark:text-zinc-200">The MIT Press</span>
+                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
+                    <div className="text-[10px] text-zinc-400 uppercase tracking-wider">Tracks</div>
+                    <div className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mt-0.5">
+                      07
                     </div>
-                    <div className="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-800">
-                      <span>ISBN</span>
-                      <span className="font-mono text-zinc-800 dark:text-zinc-200">{bookMeta.isbn}</span>
-                    </div>
-                    <div className="flex justify-between py-1 border-b border-zinc-100 dark:border-zinc-800">
-                      <span>Series Editor</span>
-                      <span className="font-medium text-zinc-800 dark:text-zinc-200">{bookMeta.seriesEditor}</span>
-                    </div>
-                    <div className="flex justify-between py-1">
-                      <span>Institution</span>
-                      <span className="font-medium text-zinc-800 dark:text-zinc-200">Boğaziçi University</span>
-                    </div>
+                    <div className="text-[10px] text-zinc-500 mt-1">Structured DAG</div>
                   </div>
 
-                  <div className="pt-2">
-                    <Link
-                      href="/chapter/01-introduction"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 py-3 text-xs font-bold uppercase tracking-wider hover:bg-zinc-800 dark:hover:bg-zinc-200 transition"
-                    >
-                      Start Reading Chapter 1
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
+                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
+                    <div className="text-[10px] text-zinc-400 uppercase tracking-wider">
+                      Display Math
+                    </div>
+                    <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                      495
+                    </div>
+                    <div className="text-[10px] text-zinc-500 mt-1">KaTeX Verified</div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-800">
+                    <div className="text-[10px] text-zinc-400 uppercase tracking-wider">
+                      Simulations
+                    </div>
+                    <div className="text-xl font-bold text-amber-600 dark:text-amber-400 mt-0.5">
+                      11
+                    </div>
+                    <div className="text-[10px] text-zinc-500 mt-1">Interactive Labs</div>
+                  </div>
+                </div>
+
+                <div className="pt-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 space-y-1.5 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center justify-between">
+                    <span>Keyboard shortcut:</span>
+                    <kbd className="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 font-bold">
+                      ⌘K / Ctrl+K
+                    </kbd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Desktop optimized:</span>
+                    <span className="text-emerald-500 font-bold">Recommended</span>
                   </div>
                 </div>
               </div>
@@ -179,41 +199,70 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Chapters Browser Section */}
-      <section id="chapters" className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Complete Table of Contents
-            </h2>
-            <p className="text-sm text-zinc-500 mt-1">
-              Select any chapter to read online or copy the corresponding TeX source.
-            </p>
+      {/* Curriculum Tracks Strip */}
+      <section className="py-12 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <div className="font-mono text-xs uppercase tracking-wider font-bold text-indigo-600 dark:text-indigo-400">
+                07 Pedagogical Sequences
+              </div>
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
+                Learning Tracks & Concept Topography
+              </h2>
+            </div>
+            <Link
+              href="/roadmap"
+              className="text-xs font-mono font-medium text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+            >
+              <span>View Full DAG</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
 
-          {/* Search box */}
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {LEARNING_TRACKS.slice(0, 4).map((track) => (
+              <TrackCard key={track.id} track={track} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter Reader Index */}
+      <section className="py-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-wider font-bold text-zinc-500 dark:text-zinc-400">
+              Complete Textbook Catalog
+            </div>
+            <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mt-1">
+              Table of Contents & Reader
+            </h2>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full sm:w-72">
+            <Search className="absolute left-3.5 top-3 h-4 w-4 text-zinc-400" />
             <input
               type="text"
+              placeholder="Search chapters or topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Filter by title, topic..."
-              className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 pl-10 pr-4 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20"
+              className="w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 py-2.5 pl-10 pr-4 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-indigo-500"
             />
           </div>
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+        {/* Filter Categories */}
+        <div className="flex flex-wrap gap-1.5 pb-6">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-semibold transition-colors ${
+              className={`rounded-lg px-3 py-1.5 text-xs font-mono transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700'
+                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 font-bold'
+                  : 'bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800'
               }`}
             >
               {cat}
@@ -221,122 +270,41 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Grid of Chapters */}
+        {/* Chapters Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredChapters.map((chapter) => (
-            <div
+            <Link
               key={chapter.slug}
-              className="flex flex-col justify-between rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 transition group"
+              href={`/chapter/${chapter.slug}`}
+              className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-6 shadow-sm hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/5 transition-all"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-black text-sm border border-indigo-100 dark:border-indigo-900">
-                    {chapter.num}
+              <div>
+                <div className="flex items-center justify-between mb-3 font-mono text-xs">
+                  <span className="font-bold text-indigo-600 dark:text-indigo-400">
+                    CHAPTER {chapter.num.toString().padStart(2, '0')}
                   </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                    {chapter.tag}
-                  </span>
+                  <span className="text-zinc-400">{chapter.pages}</span>
                 </div>
 
-                <div>
-                  <h3 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                    {chapter.title}
-                  </h3>
-                  <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-3 leading-relaxed">
-                    {chapter.summary}
-                  </p>
-                </div>
-
-                {/* Subsections list preview */}
-                <div className="space-y-1 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
-                    Sections ({chapter.sectionCount})
-                  </span>
-                  <div className="space-y-1">
-                    {chapter.sections.slice(0, 3).map((sec) => (
-                      <div key={sec.id} className="text-xs text-zinc-600 dark:text-zinc-400 truncate flex items-center gap-1.5">
-                        <span className="text-indigo-500 font-mono text-[10px]">{sec.id}</span>
-                        <span>{sec.title}</span>
-                      </div>
-                    ))}
-                    {chapter.sectionCount > 3 && (
-                      <span className="text-[11px] text-zinc-400 italic block">
-                        +{chapter.sectionCount - 3} more sections...
-                      </span>
-                    )}
-                  </div>
-                </div>
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  {chapter.title}
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+                  {chapter.summary}
+                </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-                <div className="flex items-center gap-3 text-xs text-zinc-400">
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {chapter.readingTimeMin} min
-                  </span>
-                  <span>·</span>
-                  <span>pp. {chapter.pages}</span>
-                </div>
-
-                <Link
-                  href={`/chapter/${chapter.slug}`}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-0.5 transition-transform"
-                >
-                  Read Chapter
-                  <ChevronRight className="h-4 w-4" />
-                </Link>
+              <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs font-mono text-zinc-500">
+                <span className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-[11px]">
+                  {chapter.tag}
+                </span>
+                <span className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 font-medium group-hover:translate-x-0.5 transition-transform">
+                  <span>Read</span>
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Highlights / Features Banner */}
-      <section className="py-16 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
-              Textbook Structure
-            </h2>
-            <h3 className="text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Built from Original LaTeX & Rigorous Machine Learning Foundations
-            </h3>
-            <p className="text-sm text-zinc-500 mt-3">
-              Explore the core paradigms that formed the foundation of contemporary artificial intelligence.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-blue-100 dark:bg-blue-950 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                <Layers className="h-5 w-5" />
-              </div>
-              <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">Statistical Learning & Decision Theory</h4>
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                Maximum likelihood estimation, Bayes&apos; estimator, Gaussian processes, and Bayesian decision theory covering risk, loss functions, and discriminant functions.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-purple-100 dark:bg-purple-950 flex items-center justify-center text-purple-600 dark:text-purple-400">
-                <Cpu className="h-5 w-5" />
-              </div>
-              <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">Neural Networks & Kernel Machines</h4>
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                Multilayer perceptrons with backpropagation, RBF networks, Support Vector Machines (SVM), kernel trick, and multiple kernel learning.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 space-y-3">
-              <div className="h-10 w-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                <Compass className="h-5 w-5" />
-              </div>
-              <h4 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">Graphical Models & RL</h4>
-              <p className="text-sm text-zinc-500 leading-relaxed">
-                Hidden Markov Models (HMM), Belief Propagation on trees and polytrees, Markov Decision Processes, Q-learning, Sarsa, and POMDPs.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
     </div>
