@@ -406,7 +406,7 @@ export const GARDEN_PATHS: LearningPath[] = [
     slug: 'statistical-learning',
     title: 'Statistical Learning Theory',
     folderTitle: 'Learning Theory',
-    folderSubtitle: 'Alpaydın 19-Ch Treatise',
+    folderSubtitle: '19 Foundational Modules',
     folderGraphic: 'math-torus',
     accentColor: {
       folderBg: '#d0e5cf', // Minty sage

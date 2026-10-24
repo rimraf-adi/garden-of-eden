@@ -90,19 +90,19 @@ export default function HomePage() {
 
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/roadmap"
+                  href="/modules"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-100 transition-all shadow-lg shadow-cyan-500/10"
                 >
-                  <span>Explore Curricula</span>
+                  <span>Explore Modules</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
                 <Link
-                  href="/workbench"
+                  href="/chapter/01-introduction"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-white font-medium text-sm transition-colors"
                 >
-                  <Beaker className="h-4 w-4 text-cyan-400" />
-                  <span>Simulation Lab</span>
+                  <BookOpen className="h-4 w-4 text-cyan-400" />
+                  <span>Library Modules</span>
                 </Link>
               </div>
 
@@ -119,7 +119,7 @@ export default function HomePage() {
                     DAG
                   </span>
                 </div>
-                <span>★ 495+ Verified Formulas · 19 Chapters · 11 Labs</span>
+                <span>★ 495+ Verified Formulas · 19 Comprehensive Chapters</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function HomePage() {
               </p>
               <div className="pt-2">
                 <Link
-                  href="/roadmap"
+                  href="/modules"
                   className="inline-flex items-center gap-1.5 text-sm font-bold text-zinc-900 hover:text-cyan-600 transition-colors"
                 >
                   <span>Learn More</span>
@@ -345,10 +345,10 @@ export default function HomePage() {
 
           <div className="mt-14">
             <Link
-              href="/roadmap"
+              href="/modules"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 hover:bg-cyan-400 text-zinc-950 font-bold text-sm transition-all"
             >
-              <span>Explore Prerequisite DAG</span>
+              <span>Explore Chronological Modules</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -422,10 +422,10 @@ export default function HomePage() {
               </p>
               <div className="pt-2">
                 <Link
-                  href="/workbench"
+                  href="/modules"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-zinc-950 font-bold text-xs hover:bg-zinc-100 transition-colors"
                 >
-                  <span>Launch Simulation Lab</span>
+                  <span>Explore Modules</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
@@ -433,7 +433,7 @@ export default function HomePage() {
 
             <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs font-mono">
               <div className="space-y-3">
-                <div className="font-bold text-white uppercase tracking-wider">Curriculum</div>
+                <div className="font-bold text-white uppercase tracking-wider">Curricula</div>
                 <ul className="space-y-2">
                   <li><Link href="/paths/inference-engineering" className="hover:text-cyan-400 transition-colors">Inference Engineering</Link></li>
                   <li><Link href="/paths/deep-learning" className="hover:text-cyan-400 transition-colors">Foundation Models</Link></li>
@@ -443,21 +443,20 @@ export default function HomePage() {
               </div>
 
               <div className="space-y-3">
-                <div className="font-bold text-white uppercase tracking-wider">Tools</div>
+                <div className="font-bold text-white uppercase tracking-wider">Architecture</div>
                 <ul className="space-y-2">
-                  <li><Link href="/roadmap" className="hover:text-cyan-400 transition-colors">Prerequisite DAG</Link></li>
-                  <li><Link href="/workbench" className="hover:text-cyan-400 transition-colors">Simulation Workbench</Link></li>
-                  <li><Link href="/practice" className="hover:text-cyan-400 transition-colors">Practice Drills</Link></li>
-                  <li><Link href="/notations" className="hover:text-cyan-400 transition-colors">Math Notations</Link></li>
+                  <li><Link href="/modules" className="hover:text-cyan-400 transition-colors">Chronological Modules</Link></li>
+                  <li><Link href="/chapter/01-introduction" className="hover:text-cyan-400 transition-colors">Curriculum Modules</Link></li>
+                  <li><Link href="/notations" className="hover:text-cyan-400 transition-colors">Mathematical Notations</Link></li>
+                  <li><Link href="/appendix" className="hover:text-cyan-400 transition-colors">Probability Appendix</Link></li>
                 </ul>
               </div>
 
               <div className="space-y-3">
-                <div className="font-bold text-white uppercase tracking-wider">Treatise</div>
+                <div className="font-bold text-white uppercase tracking-wider">Platform</div>
                 <ul className="space-y-2">
-                  <li><Link href="/chapter/01-introduction" className="hover:text-cyan-400 transition-colors">19 Classical Chapters</Link></li>
-                  <li><Link href="/appendix" className="hover:text-cyan-400 transition-colors">Appendix A: Probability</Link></li>
-                  <li><Link href="/frontmatter" className="hover:text-cyan-400 transition-colors">Preface & Notes</Link></li>
+                  <li><Link href="/chapter/01-introduction" className="hover:text-cyan-400 transition-colors">Module Reader</Link></li>
+                  <li><Link href="/frontmatter" className="hover:text-cyan-400 transition-colors">Principles & Ethos</Link></li>
                 </ul>
               </div>
             </div>

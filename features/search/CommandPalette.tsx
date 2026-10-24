@@ -62,12 +62,12 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   const allItems: PaletteItem[] = [
     // Static navigation items
     {
-      id: 'nav-roadmap',
+      id: 'nav-modules',
       category: 'Track',
-      title: 'Concept Roadmap & Topology DAG',
-      subtitle: 'Complete prerequisite dependency flow across 7 tracks',
-      href: '/roadmap',
-      badge: 'MAP',
+      title: 'Curriculum Modules & Chronological Progression',
+      subtitle: 'Complete prerequisite flow from math to AI frontier across 6 phases',
+      href: '/modules',
+      badge: 'MODULES',
     },
     {
       id: 'nav-workbench',

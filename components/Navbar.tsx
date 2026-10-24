@@ -4,16 +4,15 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import {
   Compass,
-  Beaker,
-  Target,
-  Sparkles,
   BookOpen,
   Search,
   Menu,
   X,
   Sun,
   Moon,
-  ArrowRight
+  ArrowRight,
+  Layers,
+  Calculator
 } from 'lucide-react';
 import CommandPalette from '@/features/search/CommandPalette';
 
@@ -54,9 +53,9 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-[#0a0d14]/90 backdrop-blur-xl text-white">
+      <header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-[#0a0d14]/95 backdrop-blur-xl text-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand Logo with Asterisk matching AutoBiz */}
+          {/* Brand Logo with Asterisk */}
           <Link href="/" className="flex items-center gap-2 group">
             <span className="text-xl font-black text-cyan-400 group-hover:rotate-45 transition-transform duration-300">
               *
@@ -66,25 +65,22 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Central Nav Links matching screenshot */}
+          {/* Central Clean Nav Links */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
             <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
-            <Link href="/roadmap" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <Compass className="h-4 w-4 text-cyan-400" />
-              <span>Roadmap DAG</span>
+            <Link href="/modules" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <Layers className="h-4 w-4 text-cyan-400" />
+              <span>Modules</span>
             </Link>
-            <Link href="/workbench" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <Beaker className="h-4 w-4 text-cyan-400" />
-              <span>Simulation Lab</span>
+            <Link href="/chapter/01-introduction" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <BookOpen className="h-4 w-4 text-cyan-400" />
+              <span>Library</span>
             </Link>
-            <Link href="/practice" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <Target className="h-4 w-4 text-cyan-400" />
-              <span>Practice Drills</span>
-            </Link>
-            <Link href="/chapter/01-introduction" className="hover:text-white transition-colors">
-              Textbook
+            <Link href="/notations" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <Calculator className="h-4 w-4 text-zinc-400" />
+              <span>Notations</span>
             </Link>
           </nav>
 
@@ -93,7 +89,7 @@ export default function Navbar() {
             <button
               onClick={() => setPaletteOpen(true)}
               className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3.5 py-1.5 text-xs text-zinc-400 hover:border-zinc-700 hover:text-zinc-200 transition font-mono"
-              title="Search book (Cmd+K)"
+              title="Search curricula (Cmd+K)"
             >
               <Search className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Search...</span>
@@ -113,7 +109,7 @@ export default function Navbar() {
 
             {/* Pill CTA Button */}
             <Link
-              href="/roadmap"
+              href="/modules"
               className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white hover:bg-zinc-100 text-zinc-950 text-xs font-bold transition-all shadow-sm shadow-cyan-500/10"
             >
               <span>Explore</span>
@@ -140,32 +136,25 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/roadmap"
+              href="/modules"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Roadmap DAG
-            </Link>
-            <Link
-              href="/workbench"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
-            >
-              Simulation Lab
-            </Link>
-            <Link
-              href="/practice"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
-            >
-              Practice Drills
+              Modules (Chronological)
             </Link>
             <Link
               href="/chapter/01-introduction"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Textbook Archive
+              Library Modules
+            </Link>
+            <Link
+              href="/notations"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
+            >
+              Mathematical Notations
             </Link>
           </div>
         )}
