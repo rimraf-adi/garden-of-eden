@@ -44,95 +44,89 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#fafafc] dark:bg-[#08090d] text-zinc-900 dark:text-zinc-100 transition-colors selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-200">
       {/* =========================================================================
-          HERO SECTION: Ethereal Garden of Eden Sanctuary (Inspired by ATMA Wellness)
+          HERO SECTION: Full-Bleed Edge-to-Edge Tree of Knowledge Sanctuary
          ========================================================================= */}
-      <section className="relative overflow-hidden pt-12 sm:pt-16 pb-20 sm:pb-28">
-        {/* Subtle Sacred Geometry & Grid Lines in Background */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.06] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <section className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden -mt-16 pt-24 sm:pt-28 pb-10 sm:pb-14">
+        {/* Full-Bleed Background Image (NO bento box, spans entire viewport) */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none">
+          <Image
+            src="/hero-tree.jpg"
+            alt="Garden of Eden — Sacred Tree of Knowledge"
+            fill
+            priority
+            className="object-cover object-center scale-100"
+          />
 
-        {/* Ambient Warm Golden Sunlight Glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-amber-400/20 via-sky-300/15 to-transparent blur-3xl pointer-events-none rounded-full" />
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-400/10 blur-[100px] pointer-events-none rounded-full" />
+          {/* Atmospheric Mist & Sunlight Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#fafafc] via-[#fafafc]/50 to-transparent dark:from-[#08090d] dark:via-[#08090d]/50 dark:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/20 to-transparent dark:from-[#08090d]/85 dark:via-transparent dark:to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Main Visual Frame with the Majestic Golden Tree */}
-          <div className="relative mx-auto max-w-5xl rounded-3xl overflow-hidden border border-white/60 dark:border-white/10 shadow-2xl shadow-amber-900/10 dark:shadow-black/50 bg-gradient-to-b from-sky-50/50 via-amber-50/30 to-white/80 dark:from-zinc-900/60 dark:via-zinc-900/40 dark:to-zinc-950/80 backdrop-blur-md">
-            {/* Atmospheric Background Image of the Tree of Knowledge */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[380px] sm:min-h-[480px]">
-              <Image
-                src="/hero-tree.jpg"
-                alt="Garden of Eden — Sacred Tree of Knowledge"
-                fill
-                priority
-                className="object-cover object-center opacity-90 dark:opacity-75 scale-100 hover:scale-[1.01] transition-transform duration-700 ease-out"
-              />
+          {/* Ambient Warm Golden Sunlight Bloom */}
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-gradient-to-b from-amber-300/25 via-amber-200/10 to-transparent blur-3xl rounded-full" />
 
-              {/* Gentle Morning Mist Gradient Overlays to seamlessly blend text */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent dark:from-[#08090d] dark:via-[#08090d]/50 dark:to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/70 dark:from-transparent dark:via-transparent dark:to-[#08090d]/80" />
+          {/* Full-Screen Faint Sacred Geometry & Matrix Grid Lines */}
+          <div className="absolute inset-0 opacity-15 dark:opacity-10 bg-[radial-gradient(#d97706_1.2px,transparent_1.2px)] [background-size:28px_28px]" />
+          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:5rem_5rem]" />
+        </div>
 
-              {/* Faint Cybernetic / Geometric Grid Matrix Overlay on Top */}
-              <div className="absolute inset-0 pointer-events-none opacity-20 dark:opacity-15 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px]" />
+        {/* Center Content: Pure Editorial Luxury Typography */}
+        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center my-auto pt-8 sm:pt-14 pb-8">
+          <div className="space-y-5 sm:space-y-6">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-serif tracking-tight text-zinc-900 dark:text-white leading-[1.12]">
+              The Art of{' '}
+              <span className="italic font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-600 dark:from-amber-200 dark:via-amber-300 dark:to-yellow-100 drop-shadow-xs">
+                Intelligent Systems
+              </span>{' '}
+              Platform
+            </h1>
 
-              {/* Centered Sanctuary Headline & Actions Overlay */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end text-center px-4 sm:px-8 pb-10 sm:pb-14 z-10">
-                <div className="max-w-3xl space-y-4 sm:space-y-5">
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif tracking-tight text-zinc-900 dark:text-white leading-[1.12]">
-                    The Art of{' '}
-                    <span className="italic font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-600 to-yellow-600 dark:from-amber-200 dark:via-amber-300 dark:to-yellow-100 drop-shadow-xs">
-                      Intelligent Systems
-                    </span>{' '}
-                    Platform
-                  </h1>
+            <p className="max-w-2xl mx-auto text-sm sm:text-lg text-zinc-700 dark:text-zinc-200/90 leading-relaxed font-sans">
+              A personal sanctuary to cultivate first-principles mastery, mathematical rigor,
+              and architectural clarity through science-backed open curricula.
+            </p>
 
-                  <p className="max-w-2xl mx-auto text-xs sm:text-base text-zinc-700 dark:text-zinc-200/90 leading-relaxed font-sans">
-                    A personal sanctuary to cultivate first-principles mastery, mathematical rigor,
-                    and architectural clarity through science-backed open curricula.
-                  </p>
+            {/* Action Buttons matching ATMA Wellness aesthetic */}
+            <div className="flex flex-wrap items-center justify-center gap-3.5 sm:gap-4 pt-3 sm:pt-4">
+              <Link
+                href="/modules"
+                className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full bg-zinc-900 hover:bg-black dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-zinc-950 font-medium text-xs sm:text-sm transition-all shadow-xl shadow-zinc-950/25 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Begin Your Journey
+              </Link>
 
-                  {/* Dual Action Pill Buttons matching ATMA screenshot */}
-                  <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-3">
-                    <Link
-                      href="/modules"
-                      className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-zinc-900 hover:bg-zinc-950 dark:bg-white dark:hover:bg-zinc-100 text-white dark:text-zinc-950 font-medium text-xs sm:text-sm transition-all shadow-xl shadow-zinc-950/20 hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      Begin Your Journey
-                    </Link>
-
-                    <Link
-                      href="#table-of-contents"
-                      className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full border border-zinc-400/80 dark:border-white/20 bg-white/60 dark:bg-zinc-900/60 hover:bg-white dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium text-xs sm:text-sm backdrop-blur-md transition-all shadow-xs"
-                    >
-                      Practice & Explore
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <Link
+                href="#table-of-contents"
+                className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full border border-zinc-400/80 dark:border-white/20 bg-white/70 dark:bg-zinc-900/60 hover:bg-white dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium text-xs sm:text-sm backdrop-blur-md transition-all shadow-xs"
+              >
+                Practice & Explore
+              </Link>
             </div>
+          </div>
+        </div>
 
-            {/* Bottom Floating Grove Strip (Inspired by Brand Logo Strip in ATMA) */}
-            <div className="border-t border-zinc-200/60 dark:border-white/10 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md py-4 px-6 sm:px-10">
-              <div className="flex flex-wrap items-center justify-around gap-6 sm:gap-8 text-[11px] sm:text-xs font-serif text-zinc-600 dark:text-zinc-400">
-                <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
-                  <div className="w-2 h-2 rounded-full bg-amber-500/80" />
-                  <span>Foundations & Geometry</span>
-                </div>
-                <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
-                  <span>Probability & Information</span>
-                </div>
-                <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
-                  <div className="w-2 h-2 rounded-full bg-sky-500/80" />
-                  <span>Statistical Learning Theory</span>
-                </div>
-                <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
-                  <div className="w-2 h-2 rounded-full bg-indigo-500/80" />
-                  <span>Neural Architectures</span>
-                </div>
-                <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
-                  <div className="w-2 h-2 rounded-full bg-purple-500/80" />
-                  <span>Autonomous Agents</span>
-                </div>
+        {/* Floating Bottom Grove Strip (Edge-to-Edge Container, Floating Over Mist) */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl border border-white/80 dark:border-white/10 bg-white/60 dark:bg-zinc-900/50 backdrop-blur-md py-3.5 sm:py-4 px-6 sm:px-8 shadow-lg shadow-zinc-950/5">
+            <div className="flex flex-wrap items-center justify-around gap-4 sm:gap-8 text-xs font-serif text-zinc-600 dark:text-zinc-300">
+              <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
+                <div className="w-2 h-2 rounded-full bg-amber-500/80" />
+                <span>Foundations & Geometry</span>
+              </div>
+              <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
+                <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
+                <span>Probability & Information</span>
+              </div>
+              <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
+                <div className="w-2 h-2 rounded-full bg-sky-500/80" />
+                <span>Statistical Learning Theory</span>
+              </div>
+              <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
+                <div className="w-2 h-2 rounded-full bg-indigo-500/80" />
+                <span>Neural Architectures</span>
+              </div>
+              <div className="flex items-center gap-2 group hover:text-zinc-950 dark:hover:text-white transition-colors cursor-default">
+                <div className="w-2 h-2 rounded-full bg-purple-500/80" />
+                <span>Autonomous Agents</span>
               </div>
             </div>
           </div>
