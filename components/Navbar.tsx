@@ -13,8 +13,7 @@ import {
   X,
   Sun,
   Moon,
-  ArrowRight,
-  Sprout
+  ArrowRight
 } from 'lucide-react';
 import CommandPalette from '@/features/search/CommandPalette';
 
@@ -24,7 +23,6 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Default to dark for ethereal aesthetic
     const isDarkMode =
       document.documentElement.classList.contains('dark') ||
       !document.documentElement.classList.contains('light');
@@ -56,58 +54,37 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#0c0d10]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 w-full border-b border-zinc-800 bg-[#0a0d14]/90 backdrop-blur-xl text-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand Logo with Sprout */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
-              <Sprout className="h-4 w-4" />
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-serif text-lg font-medium tracking-tight text-zinc-100 group-hover:text-emerald-300 transition-colors">
-                Garden of Eden
-              </span>
-              <span className="hidden sm:inline font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-                // COMP_BIO_AI
-              </span>
-            </div>
+          {/* Brand Logo with Asterisk matching AutoBiz */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <span className="text-xl font-black text-cyan-400 group-hover:rotate-45 transition-transform duration-300">
+              *
+            </span>
+            <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+              GardenOfEden
+            </span>
           </Link>
 
-          {/* Central Nav Links */}
-          <nav className="hidden md:flex items-center gap-7 text-xs font-mono tracking-wide text-zinc-400">
-            <Link
-              href="/"
-              className="hover:text-zinc-100 transition-colors"
-            >
-              Groves
+          {/* Central Nav Links matching screenshot */}
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+            <Link href="/" className="hover:text-white transition-colors">
+              Home
             </Link>
-            <Link
-              href="/roadmap"
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-            >
-              <Compass className="h-3.5 w-3.5 text-indigo-400" />
+            <Link href="/roadmap" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <Compass className="h-4 w-4 text-cyan-400" />
               <span>Roadmap DAG</span>
             </Link>
-            <Link
-              href="/workbench"
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-            >
-              <Beaker className="h-3.5 w-3.5 text-emerald-400" />
+            <Link href="/workbench" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <Beaker className="h-4 w-4 text-cyan-400" />
               <span>Simulation Lab</span>
             </Link>
-            <Link
-              href="/practice"
-              className="hover:text-emerald-400 transition-colors flex items-center gap-1.5"
-            >
-              <Target className="h-3.5 w-3.5 text-amber-400" />
+            <Link href="/practice" className="hover:text-white transition-colors flex items-center gap-1.5">
+              <Target className="h-4 w-4 text-cyan-400" />
               <span>Practice Drills</span>
             </Link>
-            <Link
-              href="/chapter/01-introduction"
-              className="hover:text-zinc-100 transition-colors flex items-center gap-1.5"
-            >
-              <BookOpen className="h-3.5 w-3.5 text-zinc-400" />
-              <span>Alpaydın Text</span>
+            <Link href="/chapter/01-introduction" className="hover:text-white transition-colors">
+              Textbook
             </Link>
           </nav>
 
@@ -115,7 +92,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setPaletteOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-xs text-zinc-400 hover:border-zinc-700 hover:text-zinc-200 transition font-mono"
+              className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3.5 py-1.5 text-xs text-zinc-400 hover:border-zinc-700 hover:text-zinc-200 transition font-mono"
               title="Search book (Cmd+K)"
             >
               <Search className="h-3.5 w-3.5" />
@@ -134,13 +111,13 @@ export default function Navbar() {
               {isDark ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5 text-zinc-400" />}
             </button>
 
-            {/* Pill CTA Button matching Haumind */}
+            {/* Pill CTA Button */}
             <Link
               href="/roadmap"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/80 hover:bg-zinc-700/80 hover:border-zinc-600 text-zinc-100 text-xs font-mono font-medium transition-all"
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white hover:bg-zinc-100 text-zinc-950 text-xs font-bold transition-all shadow-sm shadow-cyan-500/10"
             >
-              <span>Enter Garden</span>
-              <ArrowRight className="h-3 w-3 text-emerald-400" />
+              <span>Explore</span>
+              <ArrowRight className="h-3 w-3" />
             </Link>
 
             <button
@@ -154,41 +131,41 @@ export default function Navbar() {
 
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800 bg-zinc-950 px-4 py-3 space-y-2 text-xs font-mono">
+          <div className="md:hidden border-b border-zinc-800 bg-[#0a0d14] px-4 py-3 space-y-2 text-sm font-medium">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Knowledge Groves
+              Home
             </Link>
             <Link
               href="/roadmap"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Concept Roadmap DAG
+              Roadmap DAG
             </Link>
             <Link
               href="/workbench"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Simulation Workbench
+              Simulation Lab
             </Link>
             <Link
               href="/practice"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Deliberate Practice Drills
+              Practice Drills
             </Link>
             <Link
               href="/chapter/01-introduction"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-lg hover:bg-zinc-900 text-zinc-300"
             >
-              Alpaydın 19-Chapter Text
+              Textbook Archive
             </Link>
           </div>
         )}
