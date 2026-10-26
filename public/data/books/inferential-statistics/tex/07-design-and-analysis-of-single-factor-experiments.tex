@@ -1,0 +1,283 @@
+\chapter{Design and Analysis of Single-Factor Experiments: The Analysis of Variance}
+
+\begin{nuance}{how to use this chapter}
+This chapter follows Chapter~13 of the course textbook section by section, with the same titles and order. When more than two treatments are compared, repeated $t$-tests inflate the error rate; the \emph{analysis of variance} (ANOVA) tests all the treatment means at once with a single $F$-test, by comparing variation between treatments with variation within them. We then handle which means differ (multiple comparisons), check the assumptions, treat factors whose levels are random samples, and remove nuisance variation by blocking. Numbering follows the textbook with the chapter number lowered by $6$: Section $7.2$ of this book is Section $13$-$2$ of the textbook, and Section $7.2.1$ is its Section $13$-$2.1$.
+\end{nuance}
+
+\section{Designing Engineering Experiments}
+
+An \emph{experiment} deliberately changes controllable inputs (\emph{factors}) and observes the effect on a response. A factor takes several \emph{levels}; a \emph{treatment} is a particular combination of factor levels. Statistics enters in three ways: choosing the design, analysing the data, and drawing conclusions with known error rates. The three basic principles of design are:
+\begin{itemize}
+  \item \textbf{Replication}: repeating each treatment gives an estimate of experimental error and improves precision;
+  \item \textbf{Randomisation}: assigning treatments to experimental units and running the trials in random order protects against hidden systematic effects and justifies the independence assumption (and, as in Chapter~4, supports cause-and-effect conclusions);
+  \item \textbf{Blocking}: grouping similar units and comparing treatments within each group removes variation that would otherwise be part of the error (Section~\ref{sec:rcbd}).
+\end{itemize}
+A good experiment also states clearly the problem, the response, the factors and ranges, and the analysis planned before any data are collected.
+
+\section{The Completely Randomized Single-Factor Experiment}
+
+\subsection{An Example}
+
+Suppose $a$ treatments (levels of one factor) are compared and the experimental units are assigned to them completely at random; this is a \emph{completely randomized design} (CRD). Let $y_{ij}$ be the $j$-th observation under treatment $i$, $j=1,\dots,n_i$.
+
+\begin{example}\label{ex:anovadata}
+Three machine settings (A, B, C) are tried on four randomly assigned runs each, giving a measured strength:
+\begin{center}
+\begin{tabular}{lcccc|cc}
+\toprule
+Setting & \multicolumn{4}{c|}{Observations} & Total $y_{i\cdot}$ & Mean $\bar{y}_{i\cdot}$\\
+\midrule
+A & 12 & 14 & 13 & 15 & 54 & 13.5\\
+B & 16 & 18 & 17 & 19 & 70 & 17.5\\
+C & 13 & 15 & 14 & 16 & 58 & 14.5\\
+\bottomrule
+\end{tabular}
+\end{center}
+The grand total is $y_{\cdot\cdot}=182$ and the grand mean $\bar{y}_{\cdot\cdot}=15.17$ with $N=12$ observations.
+\end{example}
+
+\subsection{The Analysis of Variance}
+
+\begin{definition}[Single-factor model]
+\[ Y_{ij}=\mu+\tau_i+\varepsilon_{ij},\qquad i=1,\dots,a;\ j=1,\dots,n_i, \]
+where $\mu$ is the overall mean, $\tau_i$ the effect of treatment $i$ (with $\sum n_i\tau_i=0$), and $\varepsilon_{ij}$ are independent $\Normal(0,\sigma^2)$ errors. Equivalently the treatment means are $\mu_i=\mu+\tau_i$.
+\end{definition}
+
+We test $H_0:\mu_1=\mu_2=\dots=\mu_a$ (equivalently all $\tau_i=0$) against $H_1:\mu_i\ne\mu_j$ for at least one pair.
+
+\begin{theorem}[Partition of the total variability]\label{thm:anova-ss}
+\[ \underbrace{\sum_{i=1}^a\sum_{j=1}^{n_i}(y_{ij}-\bar{y}_{\cdot\cdot})^2}_{SS_T}=\underbrace{\sum_{i=1}^an_i(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot})^2}_{SS_{\mathrm{Treatments}}}+\underbrace{\sum_{i=1}^a\sum_{j=1}^{n_i}(y_{ij}-\bar{y}_{i\cdot})^2}_{SS_E}, \]
+with degrees of freedom $N-1=(a-1)+(N-a)$.
+\end{theorem}
+
+\begin{proof}
+Write $y_{ij}-\bar{y}_{\cdot\cdot}=(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot})+(y_{ij}-\bar{y}_{i\cdot})$ and square. The cross term is $2\sum_i(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot})\sum_j(y_{ij}-\bar{y}_{i\cdot})=0$ since deviations from a group mean sum to zero within each group.
+\end{proof}
+
+The \emph{mean squares} are $MS_{\mathrm{Tr}}=SS_{\mathrm{Tr}}/(a-1)$ and $MS_E=SS_E/(N-a)$. Their expected values explain the test:
+\[ \Exp[MS_E]=\sigma^2,\qquad\Exp[MS_{\mathrm{Tr}}]=\sigma^2+\frac{\sum n_i\tau_i^2}{a-1}. \]
+If $H_0$ is true, both estimate $\sigma^2$ and their ratio should be near $1$; if the means differ, $MS_{\mathrm{Tr}}$ is inflated.
+
+\begin{theorem}[The $F$-test of ANOVA]\label{thm:anova-F}
+Under $H_0$ and the model assumptions, $SS_{\mathrm{Tr}}/\sigma^2\sim\chi^2_{a-1}$, $SS_E/\sigma^2\sim\chi^2_{N-a}$, and they are independent, so
+\[ F_0=\frac{MS_{\mathrm{Tr}}}{MS_E}\sim F_{a-1,\,N-a}. \]
+Reject $H_0$ if $f_0>f_{\alpha,a-1,N-a}$.
+\end{theorem}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Source & Sum of squares & df & Mean square & $F_0$ \\
+\midrule
+Treatments & $SS_{\mathrm{Tr}}$ & $a-1$ & $MS_{\mathrm{Tr}}$ & $MS_{\mathrm{Tr}}/MS_E$ \\
+Error & $SS_E$ & $N-a$ & $MS_E$ & \\
+Total & $SS_T$ & $N-1$ & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\emph{Computing formulas} (with $y_{i\cdot}$ the treatment totals): $SS_T=\sum\sum y_{ij}^2-\dfrac{y_{\cdot\cdot}^2}N$, $\ SS_{\mathrm{Tr}}=\sum\dfrac{y_{i\cdot}^2}{n_i}-\dfrac{y_{\cdot\cdot}^2}N$, $\ SS_E=SS_T-SS_{\mathrm{Tr}}$.
+
+\begin{example}[Continuing Example~\ref{ex:anovadata}]\label{ex:anovacalc}
+$SS_{\mathrm{Tr}}=4\big[(13.5-15.17)^2+(17.5-15.17)^2+(14.5-15.17)^2\big]=34.67$. Within each setting the deviations from the mean are $(-1.5,0.5,-0.5,1.5)$ (squares sum to $5$), so $SS_E=15.0$ and $SS_T=49.67$. Degrees of freedom: $2$ and $9$. $MS_{\mathrm{Tr}}=17.33$, $MS_E=1.667$ and $f_0=10.4>f_{0.05,2,9}=4.26$: reject $H_0$ ($P\approx0.005$). The settings do not all give the same mean strength.
+\end{example}
+
+For unequal sample sizes the formulas above hold unchanged; but balanced designs ($n_i=n$) are preferred since the test is more robust to unequal variances and the power is maximised for a given $N$.
+
+\subsection{Multiple Comparisons Following the ANOVA}
+
+A significant $F$ says that \emph{some} means differ, not which. Comparing all $\binom a2$ pairs with $t$-tests at level $\alpha$ each makes the overall probability of at least one false positive (the \emph{experimentwise error rate}) much larger than $\alpha$ (for $a=5$, $10$ pairs and $\alpha=0.05$ each, it is about $0.40$). Several procedures control it.
+
+\begin{definition}[Tukey's method]
+Declare means $\mu_i$ and $\mu_j$ different if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>T_\alpha$ where, in a balanced design,
+\[ T_\alpha=q_\alpha(a,f)\sqrt{\frac{MS_E}n},\qquad f=N-a, \]
+and $q_\alpha(a,f)$ is the upper $\alpha$ point of the studentised range distribution (tabulated). Tukey's method keeps the \emph{overall} error rate for all pairwise comparisons at exactly $\alpha$ (for a balanced design), and gives simultaneous confidence intervals $\bar{y}_{i\cdot}-\bar{y}_{j\cdot}\pm T_\alpha$ for all $\mu_i-\mu_j$.
+\end{definition}
+
+\begin{definition}[Fisher's least significant difference (LSD)]
+Declare $\mu_i\ne\mu_j$ if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>\mathrm{LSD}=t_{\alpha/2,N-a}\sqrt{MS_E\Big(\dfrac1{n_i}+\dfrac1{n_j}\Big)}$. To protect the error rate, apply LSD only \emph{after} a significant $F$-test (``protected LSD'').
+\end{definition}
+
+\begin{example}[Continuing Example~\ref{ex:anovacalc}]
+Tukey: $q_{0.05}(3,9)=3.95$, so $T_{0.05}=3.95\sqrt{1.667/4}=2.55$. The differences are $B-A=4.0$, $B-C=3.0$ and $C-A=1.0$; setting B differs from both others, but A and C are not distinguished. LSD: $t_{0.025,9}\sqrt{1.667\cdot2/4}=2.262(0.913)=2.07$, giving the same conclusions here.
+\end{example}
+
+\subsection{More About Multiple Comparisons (CD Only)}
+
+Fisher's LSD is easy and very widely used, but it is a ``liberal'' procedure: although each test is at level $\alpha$, the Type~I error for the whole set of comparisons (the \emph{experimentwise error rate}) is much greater than $\alpha$. Three other approaches follow.
+
+\subsubsection*{Graphical comparison of means}
+
+Each treatment average $\bar{y}_{i\cdot}$ has standard deviation $\sigma/\sqrt n$. If all treatment means were equal, the observed averages would look like a random sample from a normal distribution with standard deviation $\sigma/\sqrt n$. Imagine this normal curve, whose width is estimated by $\sqrt{MS_E/n}$, drawn on a movable transparency and slid along the axis on which the $a$ treatment means are plotted. If there is a position for which the means all look like typical draws from the curve, there is no evidence of differences; means that do not fit under the curve belong to treatments with different mean responses. This rough but effective method is a graphical representation of the ANOVA result. (The $t$ distribution would be exact, but the normal curve is close.)
+
+\subsubsection*{Orthogonal contrasts}
+
+A \emph{contrast} is a linear combination of treatment totals $C=\sum_{i=1}^ac_iy_{i\cdot}$ with $\sum c_i=0$ (for unbalanced data, $\sum n_ic_i=0$). It expresses a specific comparison chosen before the experiment, such as $H_0:\mu_3=\mu_4$ (coefficients $0,0,1,-1$) or $H_0:\mu_1+\mu_3=\mu_2+\mu_4$ (coefficients $1,-1,1,-1$). The sum of squares for a contrast is
+\[ SS_C=\frac{\big(\sum_ic_iy_{i\cdot}\big)^2}{n\sum_ic_i^2}\qquad\Big(\text{unbalanced: }\frac{\big(\sum c_iy_{i\cdot}\big)^2}{\sum n_ic_i^2}\Big) \]
+with one degree of freedom, tested by $F_0=SS_C/MS_E\sim F_{1,N-a}$. Two contrasts with coefficients $\{c_i\}$ and $\{d_i\}$ are \emph{orthogonal} if $\sum c_id_i=0$ (unbalanced: $\sum n_ic_id_i=0$). A set of $a-1$ mutually orthogonal contrasts partitions $SS_{\mathrm{Tr}}$ into $a-1$ independent single-degree-of-freedom components, so the tests are independent. With $a=3$ treatments where treatment 1 is a control, the contrasts $(-2,1,1)$ (control versus the average of the other two) and $(0,1,-1)$ (one level versus the other) are orthogonal. Contrasts must be chosen \emph{before} the data are examined; choosing the largest observed differences afterwards inflates the Type~I error.
+
+\begin{example}
+For Example~\ref{ex:anovacalc} the totals are $y_{1\cdot}=54$, $y_{2\cdot}=70$, $y_{3\cdot}=58$ with $n=4$. The contrast $c=(-2,1,1)$ gives $C=-108+70+58=20$ and $SS_C=20^2/(4\cdot6)=16.67$; the contrast $d=(0,1,-1)$ gives $C=12$ and $SS_d=12^2/(4\cdot2)=18.00$. Since $c\cdot d=0$ the contrasts are orthogonal and $SS_c+SS_d=34.67=SS_{\mathrm{Tr}}$. Against $MS_E=1.667$: $F_c=10.0$ and $F_d=10.8$, each compared with $f_{0.05,1,9}=5.12$.
+\end{example}
+
+\subsubsection*{Tukey's method}
+
+Tukey's procedure for comparing all pairs of means uses the studentised range statistic $Q=(\bar{Y}_{\max}-\bar{Y}_{\min})/\sqrt{MS_E/n}$, where $\bar{Y}_{\max}$ and $\bar{Y}_{\min}$ are the largest and smallest of the $a$ sample means. For equal sample sizes, means $\mu_i$ and $\mu_j$ are declared different if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>T_\alpha=q_\alpha(a,f)\sqrt{MS_E/n}$, with $f=N-a$ the degrees of freedom of the error, and $q_\alpha(a,f)$ is tabulated. The overall (experimentwise) error rate for all pairwise comparisons is exactly $\alpha$.
+
+\begin{interview}{beyond the textbook}
+Other multiple-comparison procedures that are often used include Bonferroni (test each of $m$ comparisons at $\alpha/m$), Scheff\'e (all possible contrasts, most conservative), Dunnett (each treatment against a control) and Holm and Benjamini--Hochberg corrections (Chapter~13). The textbook's methods are Fisher's LSD, the graphical method, orthogonal contrasts and Tukey's method.
+\end{interview}
+
+\subsection{Residual Analysis and Model Checking}
+
+The residuals are $e_{ij}=y_{ij}-\bar{y}_{i\cdot}$. As in regression, check:
+\begin{itemize}
+  \item a \emph{normal probability plot} of residuals (normality; the $F$-test is fairly robust to moderate departures);
+  \item \emph{residuals versus fitted values $\bar{y}_{i\cdot}$}: a funnel pattern shows that variance grows with the mean (try $\ln y$ or $\sqrt y$);
+  \item \emph{residuals versus run order}: trends suggest a time effect and failure of randomisation or independence;
+  \item \emph{equality of variances} (beyond the textbook): \emph{Bartlett's test} of $H_0:\sigma_1^2=\dots=\sigma_a^2$ uses $\chi_0^2=2.3026\,q/c$ with $q=(N-a)\log_{10}S_p^2-\sum(n_i-1)\log_{10}S_i^2$ and $c=1+\dfrac1{3(a-1)}\Big(\sum\dfrac1{n_i-1}-\dfrac1{N-a}\Big)$, compared with $\chi^2_{\alpha,a-1}$; it is sensitive to non-normality, so Levene's test is often preferred.
+\end{itemize}
+
+\subsection{Determining Sample Size}
+
+The power of the $F$-test depends on the noncentrality parameter. For the balanced case define
+\[ \Phi^2=\frac{n\sum_{i=1}^a\tau_i^2}{a\sigma^2}, \]
+and read the Type II error from OC curves for $a-1$ and $a(n-1)$ degrees of freedom (or compute power from the noncentral $F$ distribution with noncentrality $\lambda=a\Phi^2$). To plan: specify the smallest treatment difference of practical importance, $D$ (maximum minus minimum mean); the worst case for a given $D$ is two means at the extremes with the rest at the centre, giving $\Phi^2=nD^2/(2a\sigma^2)$. Choose $n$ so that the power is adequate (say $0.8$ or $0.9$), using a prior estimate of $\sigma$. Larger $n$, larger $D$ and smaller $\sigma$ all increase power.
+
+\subsection{Technical Details about the Analysis of Variance (CD Only)}
+
+Write the observations as a vector; the sums of squares are quadratic forms $\mathbf{y}\T A_k\mathbf{y}$ with $A_k$ symmetric idempotent matrices summing to the identity and satisfying $A_jA_k=0$. By Cochran's theorem the quadratic forms $\mathbf{y}\T A_k\mathbf{y}/\sigma^2$ are then independent noncentral chi-square variables with degrees of freedom $\operatorname{rank}A_k$ and noncentrality $\boldsymbol\mu\T A_k\boldsymbol\mu/\sigma^2$, which is zero exactly when the corresponding effect is absent. This is the geometric statement that the observation vector is decomposed into orthogonal components: the grand mean, the treatment effect and the residual (Linear Algebra, Chapters~11--12). The ratio of two independent scaled central chi-squares is $F$, which proves Theorem~\ref{thm:anova-F}.
+
+\section{The Random Effects Model}
+
+\subsection{Fixed Versus Random Factors}
+
+In the \emph{fixed effects} model the $a$ treatments are the specific levels of interest, and conclusions refer to those levels only. In a \emph{random effects} model the $a$ levels are a random sample from a large population of possible levels (e.g.\ $a$ randomly chosen operators, batches or looms out of many), and we want to say something about the whole population of levels, in particular how much of the variability they contribute.
+
+\subsection{ANOVA and Variance Components}
+
+\begin{definition}[Random effects model]
+$Y_{ij}=\mu+\tau_i+\varepsilon_{ij}$ with $\tau_i\sim\Normal(0,\sigma_\tau^2)$ and $\varepsilon_{ij}\sim\Normal(0,\sigma^2)$, all independent. The \emph{variance components} are $\sigma_\tau^2$ and $\sigma^2$, and $\Var(Y_{ij})=\sigma_\tau^2+\sigma^2$.
+\end{definition}
+
+The ANOVA table and sums of squares are exactly as before; what changes is the hypothesis and the interpretation. Test $H_0:\sigma_\tau^2=0$ against $H_1:\sigma_\tau^2>0$ with the same $F_0=MS_{\mathrm{Tr}}/MS_E\sim F_{a-1,N-a}$ under $H_0$. For balanced data ($n_i=n$) the expected mean squares are
+\[ \Exp[MS_E]=\sigma^2,\qquad\Exp[MS_{\mathrm{Tr}}]=\sigma^2+n\sigma_\tau^2, \]
+so the variance components are estimated (by the method of moments, i.e.\ \emph{ANOVA estimators}) by
+\[ \hat\sigma^2=MS_E,\qquad\hat\sigma_\tau^2=\frac{MS_{\mathrm{Tr}}-MS_E}n. \]
+
+\begin{example}
+Treating the settings of Example~\ref{ex:anovacalc} as a random sample of levels: $\hat\sigma^2=1.667$ and $\hat\sigma_\tau^2=(17.33-1.667)/4=3.92$. The fraction of total variance due to the factor (the \emph{intraclass correlation}) is $\hat\sigma_\tau^2/(\hat\sigma_\tau^2+\hat\sigma^2)=3.92/5.58=0.70$.
+\end{example}
+
+\begin{pitfall}{negative variance estimates}
+If $MS_{\mathrm{Tr}}<MS_E$ the ANOVA estimate $\hat\sigma_\tau^2$ is negative. This is a sign that the true $\sigma_\tau^2$ is near or at zero; one then reports $\hat\sigma_\tau^2=0$ (or uses maximum-likelihood or REML estimation, which respects the constraint).
+\end{pitfall}
+
+\subsection{Determining Sample Size in the Random Model (CD Only)}
+
+Under $H_1$ the statistic $F_0$ has the \emph{central} $F$ distribution scaled by $\lambda=\sqrt{1+n\sigma_\tau^2/\sigma^2}$: $F_0/\lambda^2\sim F_{a-1,a(n-1)}$. So the power is $\Prob\big(F_{a-1,a(n-1)}>f_{\alpha}/\lambda^2\big)$ and increases with $n\sigma_\tau^2/\sigma^2$. Because the factor levels are themselves sampled, increasing the number of levels $a$ usually helps more than increasing replication $n$ at a fixed total $N=an$.
+
+\section{Randomized Complete Block Design}\label{sec:rcbd}
+
+\subsection{Design and Statistical Analysis}
+
+When the experimental units are heterogeneous (different days, batches, operators), treatments compared in a completely randomized design are confounded with that heterogeneity, which inflates $MS_E$. In a \emph{randomized complete block design} (RCBD) the units are grouped into $b$ \emph{blocks} of $a$ similar units; within each block each of the $a$ treatments appears \emph{once}, in random order. Treatment comparisons are then made within blocks, where the units are alike.
+
+\begin{definition}[RCBD model]
+$Y_{ij}=\mu+\tau_i+\beta_j+\varepsilon_{ij}$, $i=1,\dots,a$ (treatments), $j=1,\dots,b$ (blocks), with $\sum\tau_i=0$, $\sum\beta_j=0$ and $\varepsilon_{ij}\sim\Normal(0,\sigma^2)$ independent.
+\end{definition}
+
+\begin{theorem}[Partition for the RCBD]\label{thm:rcbd-ss}
+\[ SS_T=SS_{\mathrm{Tr}}+SS_{\mathrm{Blocks}}+SS_E, \]
+with
+\[ SS_{\mathrm{Tr}}=b\sum_i(\bar{y}_{i\cdot}-\bar{y}_{\cdot\cdot})^2,\quad SS_{\mathrm{Blocks}}=a\sum_j(\bar{y}_{\cdot j}-\bar{y}_{\cdot\cdot})^2,\quad SS_E=\sum_{i,j}(y_{ij}-\bar{y}_{i\cdot}-\bar{y}_{\cdot j}+\bar{y}_{\cdot\cdot})^2, \]
+and degrees of freedom $ab-1=(a-1)+(b-1)+(a-1)(b-1)$.
+\end{theorem}
+
+\begin{theorem}[Tests for the RCBD]\label{thm:rcbd-F}
+To test $H_0:\tau_1=\dots=\tau_a=0$ use $F_0=MS_{\mathrm{Tr}}/MS_E\sim F_{a-1,(a-1)(b-1)}$ under $H_0$. The blocks can be tested similarly by $MS_{\mathrm{Blocks}}/MS_E$, but this is of secondary interest (blocks were not randomised, so this is a rough guide to whether blocking was worthwhile).
+\end{theorem}
+
+Computing formulas with totals $y_{i\cdot}$ (treatments), $y_{\cdot j}$ (blocks), $y_{\cdot\cdot}$: $SS_{\mathrm{Tr}}=\dfrac1b\sum y_{i\cdot}^2-\dfrac{y_{\cdot\cdot}^2}{ab}$, $SS_{\mathrm{Blocks}}=\dfrac1a\sum y_{\cdot j}^2-\dfrac{y_{\cdot\cdot}^2}{ab}$.
+
+\begin{example}\label{ex:rcbd}
+Three treatments are compared in four blocks (rows: treatments; columns: blocks):
+\begin{center}
+\begin{tabular}{l cccc|c}
+\toprule
+ & B1 & B2 & B3 & B4 & $y_{i\cdot}$\\
+\midrule
+T1 & 10 & 12 & 11 & 15 & 48\\
+T2 & 13 & 14 & 13 & 18 & 58\\
+T3 & 12 & 12 & 13 & 16 & 53\\
+\midrule
+$y_{\cdot j}$ & 35 & 38 & 37 & 49 & 159\\
+\bottomrule
+\end{tabular}
+\end{center}
+The correction term is $159^2/12=2106.75$ and $\sum y^2=2161$, so $SS_T=54.25$. $SS_{\mathrm{Tr}}=(48^2+58^2+53^2)/4-2106.75=12.50$, $SS_{\mathrm{Blocks}}=(35^2+38^2+37^2+49^2)/3-2106.75=39.58$, $SS_E=54.25-12.50-39.58=2.17$. With df $2,3,6$: $MS_{\mathrm{Tr}}=6.25$, $MS_{\mathrm{Blocks}}=13.19$, $MS_E=0.361$; $f_0=17.3>f_{0.05,2,6}=5.14$, so the treatment means differ. The block $F=36.5$ shows large block-to-block differences.
+\end{example}
+
+\subsection{Multiple Comparisons}
+
+Tukey's method applies with $T_\alpha=q_\alpha(a,(a-1)(b-1))\sqrt{MS_E/b}$ (the treatment means are averages of $b$ observations) and Fisher's LSD with $t_{\alpha/2,(a-1)(b-1)}\sqrt{2MS_E/b}$.
+
+\begin{example}
+For Example~\ref{ex:rcbd}: $q_{0.05}(3,6)=4.34$ and $T=4.34\sqrt{0.361/4}=1.30$. Treatment means are $12.0$, $14.5$, $13.25$: T2 differs from T1 (difference $2.5$), but T3 is not distinguished from either (differences $1.25$ and $1.25$).
+\end{example}
+
+\begin{interview}{was blocking worth it?}
+Compare with a completely randomized design on the same units. The estimated error mean square that the CRD would have had is $\widehat{MS}_E^{\mathrm{CRD}}=\dfrac{(b-1)MS_{\mathrm{Blocks}}+b(a-1)MS_E}{ab-1}$, so the relative efficiency is $\widehat{MS}_E^{\mathrm{CRD}}/MS_E$. In Example~\ref{ex:rcbd} this is $(3(13.19)+4\cdot2(0.361))/11\big/0.361=3.86/0.361=10.7$: a CRD would need about ten times as many units to match the precision. Blocking costs $b-1$ degrees of freedom from the error, so it can hurt only if the blocks do not actually reduce variability.
+\end{interview}
+
+\subsection{Residual Analysis and Model Checking}
+
+The residuals are $e_{ij}=y_{ij}-\bar{y}_{i\cdot}-\bar{y}_{\cdot j}+\bar{y}_{\cdot\cdot}$. The usual plots (normal probability, residuals versus fitted values, versus treatment, versus block, versus time) apply. The RCBD assumes \emph{no treatment-by-block interaction} (the treatment effects are the same in every block). Non-additivity shows up as a systematic pattern in the residual plots, and Tukey's one-degree-of-freedom test for nonadditivity can detect it; if the interaction is real, the model should be rethought (for instance with replication within blocks, Chapter~8).
+
+\subsection{Randomized Complete Block Design with Random Factors (CD Only)}
+
+If the blocks (or the treatments) are random samples from a population, the model has random effects $\beta_j\sim\Normal(0,\sigma_\beta^2)$. The ANOVA table and $F$-tests for treatments are unchanged, but the expected mean squares are $\Exp[MS_E]=\sigma^2$, $\Exp[MS_{\mathrm{Blocks}}]=\sigma^2+a\sigma_\beta^2$ and (fixed treatments) $\Exp[MS_{\mathrm{Tr}}]=\sigma^2+\dfrac{b\sum\tau_i^2}{a-1}$, so the block variance component is estimated by $\hat\sigma_\beta^2=(MS_{\mathrm{Blocks}}-MS_E)/a$. For Example~\ref{ex:rcbd}, $\hat\sigma_\beta^2=(13.19-0.361)/3=4.28$, and $\hat\sigma^2=0.361$: nearly all the variability is between blocks.
+
+\begin{summarybox}
+\begin{itemize}
+  \item Replication, randomisation and blocking are the basic design principles. CRD model $y_{ij}=\mu+\tau_i+\varepsilon_{ij}$; $SS_T=SS_{\mathrm{Tr}}+SS_E$; $F_0=MS_{\mathrm{Tr}}/MS_E\sim F_{a-1,N-a}$.
+  \item After a significant $F$ use Tukey ($T_\alpha=q_\alpha(a,N-a)\sqrt{MS_E/n}$), Fisher's LSD, Bonferroni, Dunnett or Scheff\'e; many separate $t$-tests inflate the error rate.
+  \item Check normality, constant variance (Bartlett, Levene) and independence (run order) from residuals; transform the response if needed.
+  \item Random effects: same $F$-test of $H_0:\sigma_\tau^2=0$; $\hat\sigma_\tau^2=(MS_{\mathrm{Tr}}-MS_E)/n$.
+  \item RCBD: $SS_T=SS_{\mathrm{Tr}}+SS_{\mathrm{Blocks}}+SS_E$ with $(a-1)(b-1)$ error df; compare treatments within blocks; efficiency relative to CRD from $\widehat{MS}_E^{\mathrm{CRD}}$.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Four methods of teaching are compared, with scores: method 1: $72,75,78,70,74$; method 2: $80,84,79,85,82$; method 3: $74,76,73,78,75$; method 4: $68,71,70,66,69$. Construct the ANOVA table, test equality of the means at $\alpha=0.05$, and use Tukey's method to find which methods differ ($q_{0.05}(4,16)=4.05$).
+\end{exercise}
+
+\begin{exercise}
+For Exercise~1, compute the residuals, make a normal probability plot, and test equality of variances with Bartlett's test.
+\end{exercise}
+
+\begin{exercise}
+Derive $\Exp[MS_E]=\sigma^2$ for the single-factor model by showing that $SS_E/\sigma^2$ is a sum of $a$ independent $\chi^2_{n_i-1}$ variables.
+\end{exercise}
+
+\begin{exercise}
+Five operators are randomly selected from a large pool and each produces four items; $MS_{\mathrm{Operators}}=48$ and $MS_E=12$. Test $H_0:\sigma_\tau^2=0$ ($f_{0.05,4,15}=3.06$) and estimate $\sigma_\tau^2$, $\sigma^2$ and the proportion of variance due to operators.
+\end{exercise}
+
+\begin{exercise}
+Four fertilisers are tested on plots in five fields (blocks); the ANOVA gives $SS_{\mathrm{Tr}}=120$, $SS_{\mathrm{Blocks}}=300$, $SS_E=90$. Complete the table, test treatments at $\alpha=0.05$, and estimate the relative efficiency of the RCBD to a CRD.
+\end{exercise}
+
+\begin{exercise}
+Show that in a balanced design with $a=2$ treatments the ANOVA $F$-test is equivalent to the pooled two-sample $t$-test ($F_0=T_0^2$).
+\end{exercise}
+
+\begin{exercise}
+An experimenter runs four treatments on $24$ units arranged in a CRD but discovers the units fall into six identifiable batches. Explain how the analysis should change, and why ignoring the batches affects the $F$-test.
+\end{exercise}
+
+\begin{exercise}
+For $a=4$ treatments and $\sigma=2$, find (using $\Phi^2=nD^2/(2a\sigma^2)$) the replication $n$ needed to detect a range of means $D=4$ with high power; discuss how the answer would change with $\sigma=3$.
+\end{exercise}

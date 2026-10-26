@@ -20,6 +20,15 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 BOOKS = {
+    'inferential-statistics': {
+        'title': 'Inferential Statistics',
+        'subtitle': 'From Estimation to Experiments and Regression',
+        'files': [f'chapters/ch{n:02d}.tex' for n in range(1, 15)],
+        'preamble': None,
+        'main': 'main.tex',
+        'parts': {1: 'Estimation & Intervals', 3: 'Tests of Hypotheses', 5: 'Regression & Correlation', 7: 'Designed Experiments', 9: 'Nonparametric & Quality Control', 11: 'Supplementary Chapters'},
+        'theorem_counter': True,
+    },
     'linear-algebra': {
         'title': 'Linear Algebra',
         'subtitle': 'From Linear Systems to the Singular Value Decomposition',
@@ -382,7 +391,7 @@ class Converter:
         if name in ('MakeUppercase', 'uppercase'):
             a, i = self.arg(s, i)
             return self.inline(a).upper(), i
-        if name in ('paragraph', 'subparagraph'):
+        if name in ('paragraph', 'subparagraph', 'subsubsection'):
             a, i = self.arg(s, i)
             return '\x02' + self.inline(a) + '\x02', i
         if name in ('addcontentsline',):

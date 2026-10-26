@@ -1,3 +1,4 @@
+import isIndex from '@/public/data/books/inferential-statistics/index.json';
 import laIndex from '@/public/data/books/linear-algebra/index.json';
 import vcIndex from '@/public/data/books/vector-calculus/index.json';
 import probIndex from '@/public/data/books/probability/index.json';
@@ -57,6 +58,7 @@ export interface BookIndex {
 
 export const BOOK_INDEX: Record<string, BookIndex> = {
   'linear-algebra': laIndex as BookIndex,
+  'inferential-statistics': isIndex as BookIndex,
   'vector-calculus': vcIndex as BookIndex,
   probability: probIndex as BookIndex,
   'differential-equations': odeIndex as BookIndex,

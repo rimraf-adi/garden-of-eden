@@ -1,0 +1,142 @@
+\documentclass[11pt,a4paper,oneside]{book}
+
+% ---------- packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=0.2em,topsep=0.3em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+% ---------- colours and tikz styles ----------
+\definecolor{ink}{HTML}{1F2933}
+\definecolor{accent}{HTML}{B45309}
+\definecolor{accent2}{HTML}{1F5FA8}
+\definecolor{accent3}{HTML}{15803D}
+\definecolor{mid}{HTML}{6B7280}
+\tikzset{
+  >=Stealth,
+  axis/.style={-{Stealth[length=2mm]},thick,mid},
+  vec/.style={-{Stealth[length=2.4mm]},very thick},
+  guide/.style={dashed,mid,thin},
+  pt/.style={circle,fill=ink,inner sep=1.3pt},
+  lab/.style={font=\small,inner sep=1.5pt}
+}
+
+% ---------- macros ----------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Exp}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\se}{se}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\MSE}{MSE}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\Fish}{\mathcal{I}}
+\newcommand{\given}{\mid}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Row}{Row}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\im}{im}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\T}{^{\top}}
+\newcommand{\herm}{^{*}}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+% ---------- theorem environments ----------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcounter{exercise}[chapter]
+\newenvironment{exercise}{\refstepcounter{exercise}\par\medskip\noindent\textbf{Exercise \thechapter.\theexercise.}\ }{\par}
+
+% ---------- call-out boxes ----------
+\newtcolorbox{intuition}{breakable,colback=green!5,colframe=green!45!black,
+  fonttitle=\bfseries,title={Intuition}}
+\newtcolorbox{nuance}[1]{breakable,colback=orange!6,colframe=orange!75!black,
+  fonttitle=\bfseries,title={Nuance: #1}}
+\newtcolorbox{pitfall}[1]{breakable,colback=red!5,colframe=red!70!black,
+  fonttitle=\bfseries,title={Common mistake: #1}}
+\newtcolorbox{interview}[1]{breakable,colback=blue!5,colframe=blue!60!black,
+  fonttitle=\bfseries,title={Interview lens: #1}}
+\newtcolorbox{summarybox}{breakable,colback=black!4,colframe=black!60,
+  fonttitle=\bfseries,title={Chapter summary}}
+
+\title{\Huge\bfseries Inferential Statistics\\[0.3em]\Large From Estimation to Experiments and Regression}
+\author{}
+\date{}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\mainmatter
+
+\part{Point Estimation and Statistical Intervals}
+\input{chapters/ch01}
+\input{chapters/ch02}
+
+\part{Tests of Hypotheses}
+\input{chapters/ch03}
+\input{chapters/ch04}
+
+\part{Regression and Correlation}
+\input{chapters/ch05}
+\input{chapters/ch06}
+
+\part{Designed Experiments}
+\input{chapters/ch07}
+\input{chapters/ch08}
+
+\part{Nonparametric Statistics and Quality Control}
+\input{chapters/ch09}
+\input{chapters/ch10}
+
+\part{Supplementary Chapters}
+\input{chapters/ch11}
+\input{chapters/ch12}
+\input{chapters/ch13}
+\input{chapters/ch14}
+
+\end{document}

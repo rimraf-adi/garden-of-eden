@@ -1,0 +1,648 @@
+{
+ "id": "inferential-statistics",
+ "title": "Inferential Statistics",
+ "subtitle": "From Estimation to Experiments and Regression",
+ "chapters": [
+  {
+   "book": "inferential-statistics",
+   "num": 1,
+   "label": "1",
+   "slug": "01-point-estimation-of-parameters",
+   "title": "Point Estimation of Parameters",
+   "tag": "Estimation & Intervals",
+   "summary": "This chapter follows Chapter 7 of the course textbook (Montgomery and Runger, Applied Statistics and Probability for Engineers) section by section, in the same order and with the same section titles, so that it can be read alongside the textbook. The…",
+   "wordCount": 4081,
+   "readingTimeMin": 20,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "1.1",
+     "title": "Introduction"
+    },
+    {
+     "id": "1.2",
+     "title": "General Concepts of Point Estimation"
+    },
+    {
+     "id": "1.3",
+     "title": "Methods of Point Estimation"
+    },
+    {
+     "id": "1.4",
+     "title": "Sampling Distributions"
+    },
+    {
+     "id": "1.5",
+     "title": "Sampling Distribution of Means"
+    },
+    {
+     "id": "1.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 2,
+   "label": "2",
+   "slug": "02-statistical-intervals-for-a-single-sample",
+   "title": "Statistical Intervals for a Single Sample",
+   "tag": "Estimation & Intervals",
+   "summary": "This chapter follows Chapter 8 of the course textbook section by section, with the same section titles and order. A point estimate gives one number and no sense of its reliability; an interval gives a range of plausible values together with a stated level…",
+   "wordCount": 3400,
+   "readingTimeMin": 17,
+   "sectionCount": 8,
+   "sections": [
+    {
+     "id": "2.1",
+     "title": "Introduction"
+    },
+    {
+     "id": "2.2",
+     "title": "Confidence Interval on the Mean of a Normal Distribution, Variance Known"
+    },
+    {
+     "id": "2.3",
+     "title": "Confidence Interval on the Mean of a Normal Distribution, Variance Unknown"
+    },
+    {
+     "id": "2.4",
+     "title": "Confidence Interval on the Variance and Standard Deviation of a Normal Distribution"
+    },
+    {
+     "id": "2.5",
+     "title": "A Large-Sample Confidence Interval for a Population Proportion"
+    },
+    {
+     "id": "2.6",
+     "title": "A Prediction Interval for a Future Observation"
+    },
+    {
+     "id": "2.7",
+     "title": "Tolerance Intervals for a Normal Distribution"
+    },
+    {
+     "id": "2.8",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 3,
+   "label": "3",
+   "slug": "03-tests-of-hypotheses-for-a-single-sample",
+   "title": "Tests of Hypotheses for a Single Sample",
+   "tag": "Tests of Hypotheses",
+   "summary": "This chapter follows Chapter 9 of the course textbook section by section, with the same titles and order. A confidence interval estimates a parameter; a hypothesis test decides between two competing claims about it. We build the general framework…",
+   "wordCount": 4362,
+   "readingTimeMin": 22,
+   "sectionCount": 9,
+   "sections": [
+    {
+     "id": "3.1",
+     "title": "Hypothesis Testing"
+    },
+    {
+     "id": "3.2",
+     "title": "Tests on the Mean of a Normal Distribution, Variance Known"
+    },
+    {
+     "id": "3.3",
+     "title": "Tests on the Mean of a Normal Distribution, Variance Unknown"
+    },
+    {
+     "id": "3.4",
+     "title": "Tests on the Variance and Standard Deviation of a Normal Distribution"
+    },
+    {
+     "id": "3.5",
+     "title": "Tests on a Population Proportion"
+    },
+    {
+     "id": "3.6",
+     "title": "Summary of Inference Procedures for a Single Sample"
+    },
+    {
+     "id": "3.7",
+     "title": "Testing for Goodness of Fit"
+    },
+    {
+     "id": "3.8",
+     "title": "Contingency Table Tests"
+    },
+    {
+     "id": "3.9",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 4,
+   "label": "4",
+   "slug": "04-statistical-inference-for-two-samples",
+   "title": "Statistical Inference for Two Samples",
+   "tag": "Tests of Hypotheses",
+   "summary": "This chapter follows Chapter 10 of the course textbook section by section, with the same titles and order. The aim is to compare two populations: two means (variances known, then unknown), paired observations, two variances and two proportions. The…",
+   "wordCount": 3644,
+   "readingTimeMin": 18,
+   "sectionCount": 8,
+   "sections": [
+    {
+     "id": "4.1",
+     "title": "Introduction"
+    },
+    {
+     "id": "4.2",
+     "title": "Inference For a Difference in Means of Two Normal Distributions, Variances Known"
+    },
+    {
+     "id": "4.3",
+     "title": "Inference For a Difference in Means of Two Normal Distributions, Variances Unknown"
+    },
+    {
+     "id": "4.4",
+     "title": "Paired $t$-Test"
+    },
+    {
+     "id": "4.5",
+     "title": "Inference on the Variances of Two Normal Distributions"
+    },
+    {
+     "id": "4.6",
+     "title": "Inference on Two Population Proportions"
+    },
+    {
+     "id": "4.7",
+     "title": "Summary Table for Inference Procedures for Two Samples"
+    },
+    {
+     "id": "4.8",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 5,
+   "label": "5",
+   "slug": "05-simple-linear-regression-and-correlation",
+   "title": "Simple Linear Regression and Correlation",
+   "tag": "Regression & Correlation",
+   "summary": "This chapter follows Chapter 11 of the course textbook section by section, with the same titles and order. Regression builds an empirical model for how a response $Y$ changes with a regressor $x$, then uses the machinery of Chapters 2 and 3 (confidence…",
+   "wordCount": 3400,
+   "readingTimeMin": 17,
+   "sectionCount": 12,
+   "sections": [
+    {
+     "id": "5.1",
+     "title": "Empirical Models"
+    },
+    {
+     "id": "5.2",
+     "title": "Simple Linear Regression"
+    },
+    {
+     "id": "5.3",
+     "title": "Properties of the Least Squares Estimators"
+    },
+    {
+     "id": "5.4",
+     "title": "Some Comments on Uses of Regression (CD Only)"
+    },
+    {
+     "id": "5.5",
+     "title": "Hypothesis Tests in Simple Linear Regression"
+    },
+    {
+     "id": "5.6",
+     "title": "Confidence Intervals"
+    },
+    {
+     "id": "5.7",
+     "title": "Prediction of New Observations"
+    },
+    {
+     "id": "5.8",
+     "title": "Adequacy of the Regression Model"
+    },
+    {
+     "id": "5.9",
+     "title": "Transformations to a Straight Line"
+    },
+    {
+     "id": "5.10",
+     "title": "More About Transformations (CD Only)"
+    },
+    {
+     "id": "5.11",
+     "title": "Correlation"
+    },
+    {
+     "id": "5.12",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 6,
+   "label": "6",
+   "slug": "06-multiple-linear-regression",
+   "title": "Multiple Linear Regression",
+   "tag": "Regression & Correlation",
+   "summary": "This chapter follows Chapter 12 of the course textbook section by section, with the same titles and order. Multiple regression extends Chapter 5 to several regressors. The algebra is cleanest in matrix form, and the geometry is the least-squares projection…",
+   "wordCount": 3598,
+   "readingTimeMin": 18,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "6.1",
+     "title": "Multiple Linear Regression Model"
+    },
+    {
+     "id": "6.2",
+     "title": "Hypothesis Tests in Multiple Linear Regression"
+    },
+    {
+     "id": "6.3",
+     "title": "Confidence Intervals in Multiple Linear Regression"
+    },
+    {
+     "id": "6.4",
+     "title": "Prediction of New Observations"
+    },
+    {
+     "id": "6.5",
+     "title": "Model Adequacy Checking"
+    },
+    {
+     "id": "6.6",
+     "title": "Aspects of Multiple Regression Modeling"
+    },
+    {
+     "id": "6.7",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 7,
+   "label": "7",
+   "slug": "07-design-and-analysis-of-single-factor-experiments",
+   "title": "Design and Analysis of Single-Factor Experiments: The Analysis of Variance",
+   "tag": "Designed Experiments",
+   "summary": "This chapter follows Chapter 13 of the course textbook section by section, with the same titles and order. When more than two treatments are compared, repeated $t$-tests inflate the error rate; the analysis of variance (ANOVA) tests all the treatment means…",
+   "wordCount": 3982,
+   "readingTimeMin": 20,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "7.1",
+     "title": "Designing Engineering Experiments"
+    },
+    {
+     "id": "7.2",
+     "title": "The Completely Randomized Single-Factor Experiment"
+    },
+    {
+     "id": "7.3",
+     "title": "The Random Effects Model"
+    },
+    {
+     "id": "7.4",
+     "title": "Randomized Complete Block Design"
+    },
+    {
+     "id": "7.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 8,
+   "label": "8",
+   "slug": "08-design-of-experiments-with-several-factors",
+   "title": "Design of Experiments with Several Factors",
+   "tag": "Designed Experiments",
+   "summary": "This chapter follows Chapter 14 of the course textbook section by section, with the same titles and order. Experiments usually involve several factors at once. A factorial design runs all combinations of the factor levels, which is more efficient than…",
+   "wordCount": 3975,
+   "readingTimeMin": 20,
+   "sectionCount": 11,
+   "sections": [
+    {
+     "id": "8.1",
+     "title": "Introduction"
+    },
+    {
+     "id": "8.2",
+     "title": "Some Applications of Designed Experiments (CD Only)"
+    },
+    {
+     "id": "8.3",
+     "title": "Factorial Experiments"
+    },
+    {
+     "id": "8.4",
+     "title": "Two-Factor Factorial Experiments"
+    },
+    {
+     "id": "8.5",
+     "title": "General Factorial Experiments"
+    },
+    {
+     "id": "8.6",
+     "title": "Factorial Experiments with Random Factors (CD Only)"
+    },
+    {
+     "id": "8.7",
+     "title": "$2^k$ Factorial Designs"
+    },
+    {
+     "id": "8.8",
+     "title": "Blocking and Confounding in the $2^k$ Design"
+    },
+    {
+     "id": "8.9",
+     "title": "Fractional Replication of the $2^k$ Design"
+    },
+    {
+     "id": "8.10",
+     "title": "Response Surface Methods and Designs (CD Only)"
+    },
+    {
+     "id": "8.11",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 9,
+   "label": "9",
+   "slug": "09-nonparametric-statistics",
+   "title": "Nonparametric Statistics",
+   "tag": "Nonparametric & Quality Control",
+   "summary": "This chapter follows Chapter 15 of the course textbook section by section, with the same titles and order, and uses the same procedures, notation and eight-step layout. Worked examples use new data. Critical values come from the textbook’s appendix tables…",
+   "wordCount": 3357,
+   "readingTimeMin": 17,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "9.1",
+     "title": "Introduction"
+    },
+    {
+     "id": "9.2",
+     "title": "Sign Test"
+    },
+    {
+     "id": "9.3",
+     "title": "Wilcoxon Signed-Rank Test"
+    },
+    {
+     "id": "9.4",
+     "title": "Wilcoxon Rank-Sum Test"
+    },
+    {
+     "id": "9.5",
+     "title": "Nonparametric Methods in the Analysis of Variance"
+    },
+    {
+     "id": "9.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 10,
+   "label": "10",
+   "slug": "10-statistical-quality-control",
+   "title": "Statistical Quality Control",
+   "tag": "Nonparametric & Quality Control",
+   "summary": "This chapter follows Chapter 16 of the course textbook section by section, with the same titles, order, notation (PCR, PCR$_k$, $A_2$, $D_3$, $D_4$, $c_4$) and the same constants. Worked examples use new data. Control charts apply the hypothesis-testing…",
+   "wordCount": 5110,
+   "readingTimeMin": 26,
+   "sectionCount": 13,
+   "sections": [
+    {
+     "id": "10.1",
+     "title": "Quality Improvement and Statistics"
+    },
+    {
+     "id": "10.2",
+     "title": "Statistical Quality Control"
+    },
+    {
+     "id": "10.3",
+     "title": "Statistical Process Control"
+    },
+    {
+     "id": "10.4",
+     "title": "Introduction to Control Charts"
+    },
+    {
+     "id": "10.5",
+     "title": "$\\bar{X}$ and $R$ or $S$ Control Charts"
+    },
+    {
+     "id": "10.6",
+     "title": "Control Charts for Individual Measurements"
+    },
+    {
+     "id": "10.7",
+     "title": "Process Capability"
+    },
+    {
+     "id": "10.8",
+     "title": "Attribute Control Charts"
+    },
+    {
+     "id": "10.9",
+     "title": "Control Chart Performance"
+    },
+    {
+     "id": "10.10",
+     "title": "Cumulative Sum Control Chart"
+    },
+    {
+     "id": "10.11",
+     "title": "Other SPC Problem-Solving Tools"
+    },
+    {
+     "id": "10.12",
+     "title": "Implementing SPC"
+    },
+    {
+     "id": "10.13",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 11,
+   "label": "11",
+   "slug": "11-supplement-sampling-distributions-and-descriptiv",
+   "title": "Supplement: Sampling Distributions and Descriptive Statistics",
+   "tag": "Supplementary Chapters",
+   "summary": "This is a supplementary chapter, not part of the textbook’s Chapter 7. It collects what the textbook states without proof or leaves to earlier chapters: descriptive statistics, the sampling distribution of the sample mean, and the exact distributions of…",
+   "wordCount": 2730,
+   "readingTimeMin": 14,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "11.1",
+     "title": "Populations, samples and statistics"
+    },
+    {
+     "id": "11.2",
+     "title": "Describing a data set"
+    },
+    {
+     "id": "11.3",
+     "title": "The sampling distribution of the sample mean"
+    },
+    {
+     "id": "11.4",
+     "title": "The chi-square distribution and the sample variance"
+    },
+    {
+     "id": "11.5",
+     "title": "The $t$ and $F$ distributions"
+    },
+    {
+     "id": "11.6",
+     "title": "Sampling distributions in practice"
+    },
+    {
+     "id": "11.7",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 12,
+   "label": "12",
+   "slug": "12-supplement-estimation-theory",
+   "title": "Supplement: Estimation Theory",
+   "tag": "Supplementary Chapters",
+   "summary": "This supplementary chapter proves the results that Chapter 1 states without proof: why the sample mean is the MVUE for a normal mean, how much precision is possible at all (the Cram'er–Rao bound), why the maximum likelihood estimator is asymptotically…",
+   "wordCount": 2516,
+   "readingTimeMin": 13,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "12.1",
+     "title": "Score function and Fisher information"
+    },
+    {
+     "id": "12.2",
+     "title": "The Cram'er–Rao lower bound"
+    },
+    {
+     "id": "12.3",
+     "title": "Asymptotic properties of the maximum likelihood estimator"
+    },
+    {
+     "id": "12.4",
+     "title": "Sufficiency"
+    },
+    {
+     "id": "12.5",
+     "title": "Bayes estimators and loss functions"
+    },
+    {
+     "id": "12.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 13,
+   "label": "13",
+   "slug": "13-supplement-multiple-testing-resampling-and-a-b-t",
+   "title": "Supplement: Multiple Testing, Resampling and A/B Tests",
+   "tag": "Supplementary Chapters",
+   "summary": "This supplementary chapter covers topics that the textbook does not treat but that modern practice (and most interviews) require: what goes wrong when many hypotheses are tested, how to correct for it, how to do inference by resampling when no formula is…",
+   "wordCount": 2172,
+   "readingTimeMin": 11,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "13.1",
+     "title": "The multiple testing problem"
+    },
+    {
+     "id": "13.2",
+     "title": "The bootstrap"
+    },
+    {
+     "id": "13.3",
+     "title": "Permutation tests"
+    },
+    {
+     "id": "13.4",
+     "title": "A/B testing"
+    },
+    {
+     "id": "13.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "inferential-statistics",
+   "num": 14,
+   "label": "14",
+   "slug": "14-supplement-generalised-linear-models-and-model-a",
+   "title": "Supplement: Generalised Linear Models and Model Assessment",
+   "tag": "Supplementary Chapters",
+   "summary": "This supplementary chapter extends the regression of Chapters 5–6 in two directions that the textbook does not cover. First, responses that are not normal and continuous (yes/no outcomes, counts) are handled by generalised linear models, of which logistic…",
+   "wordCount": 2760,
+   "readingTimeMin": 14,
+   "sectionCount": 8,
+   "sections": [
+    {
+     "id": "14.1",
+     "title": "Why ordinary regression is not enough"
+    },
+    {
+     "id": "14.2",
+     "title": "Generalised linear models"
+    },
+    {
+     "id": "14.3",
+     "title": "Logistic regression"
+    },
+    {
+     "id": "14.4",
+     "title": "Poisson regression"
+    },
+    {
+     "id": "14.5",
+     "title": "Model assessment: how well will the model predict?"
+    },
+    {
+     "id": "14.6",
+     "title": "Cross-validation"
+    },
+    {
+     "id": "14.7",
+     "title": "Regularisation: ridge and lasso"
+    },
+    {
+     "id": "14.8",
+     "title": "Exercises"
+    }
+   ]
+  }
+ ],
+ "figureCount": 6
+}

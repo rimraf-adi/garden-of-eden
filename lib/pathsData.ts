@@ -45,6 +45,30 @@ function bookModules(id: string) {
 
 const ALL_PATHS: LearningPath[] = [
   {
+    id: 'inferential-statistics',
+    slug: 'inferential-statistics',
+    title: 'Inferential Statistics',
+    folderTitle: 'Inferential Statistics',
+    folderSubtitle: 'INFERENTIAL_STATISTICS',
+    folderGraphic: 'entropy-waves',
+    accentColor: {
+      folderBg: '#d7c7e9',
+      folderBorder: '#bca8d6',
+      folderText: '#46276b',
+      tagBg: '#f2ecfa',
+      chipBg: '#e3d7f4',
+    },
+    bullets: [
+      'Point estimation, confidence, prediction & tolerance intervals',
+      'Hypothesis tests, two-sample inference, regression & ANOVA',
+      'Experimental design, nonparametrics & quality control',
+    ],
+    stats: { modules: BOOK_INDEX['inferential-statistics'].chapters.length, lessons: BOOK_INDEX['inferential-statistics'].chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/inferential-statistics',
+    description: 'A course in statistical inference that follows the standard engineering-statistics textbook chapter by chapter (estimation, intervals, tests, regression, experiments, nonparametrics, quality control), with supplementary chapters on estimation theory, resampling, A/B testing and generalised linear models.',
+    modules: bookModules('inferential-statistics'),
+  },
+  {
     id: 'linear-algebra',
     slug: 'linear-algebra',
     title: 'Linear Algebra',

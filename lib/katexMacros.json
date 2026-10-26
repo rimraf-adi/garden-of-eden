@@ -57,5 +57,11 @@
  "\\id": "\\mathrm{id}",
  "\\T": "^{\\top}",
  "\\herm": "^{*}",
- "\\ip": "\\langle #1,#2\\rangle"
+ "\\ip": "\\langle #1,#2\\rangle",
+ "\\se": "\\operatorname{se}",
+ "\\bias": "\\operatorname{bias}",
+ "\\MSE": "\\operatorname{MSE}",
+ "\\Normal": "\\mathcal{N}",
+ "\\Fish": "\\mathcal{I}",
+ "\\Corr": "\\operatorname{Corr}"
 }

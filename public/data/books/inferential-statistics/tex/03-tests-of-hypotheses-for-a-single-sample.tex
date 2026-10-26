@@ -1,0 +1,395 @@
+\chapter{Tests of Hypotheses for a Single Sample}
+
+\begin{nuance}{how to use this chapter}
+This chapter follows Chapter~9 of the course textbook section by section, with the same titles and order. A confidence interval estimates a parameter; a hypothesis test decides between two competing claims about it. We build the general framework (hypotheses, errors, $P$-values, power), then apply it to the mean (variance known and unknown), the variance, a proportion, goodness of fit and contingency tables. Numbering follows the textbook with the chapter number lowered by $6$: Section $3.2$ of this book is Section $9$-$2$ of the textbook, and Section $3.2.1$ is its Section $9$-$2.1$.
+\end{nuance}
+
+\section{Hypothesis Testing}
+
+\subsection{Statistical Hypotheses}
+
+\begin{definition}[Statistical hypothesis]
+A \emph{statistical hypothesis} is a statement about the parameters of one or more populations (or about the form of the distribution). A \emph{hypothesis test} is a rule, based on a random sample, for deciding between two hypotheses:
+\begin{itemize}
+  \item the \emph{null hypothesis} $H_0$, the claim assumed true unless the data contradict it, written as an equality such as $H_0:\mu=50$;
+  \item the \emph{alternative hypothesis} $H_1$, the claim accepted if $H_0$ is rejected, such as $H_1:\mu\ne50$.
+\end{itemize}
+\end{definition}
+
+The two hypotheses are not treated symmetrically. We begin by assuming $H_0$ is true, and reject it only if the sample would be very unlikely under $H_0$. This is a proof by contradiction made probabilistic. For that reason the claim we hope to \emph{establish} is placed in $H_1$.
+
+\begin{example}
+A propellant must have a mean burning rate of $50$ cm/s. To test whether a new batch meets this we take $H_0:\mu=50$ against $H_1:\mu\ne50$. A manufacturer who wants evidence that a new process has \emph{reduced} the defect rate below $5\%$ would test $H_0:p=0.05$ against $H_1:p<0.05$.
+\end{example}
+
+\subsection{Tests of Statistical Hypotheses}
+
+A test uses a \emph{test statistic} (a function of the sample) and a \emph{rejection region} (critical region): the set of values of the statistic for which $H_0$ is rejected. The boundary values are the \emph{critical values}.
+
+\begin{definition}[Type I and Type II errors]
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & $H_0$ true & $H_0$ false \\
+\midrule
+Fail to reject $H_0$ & correct & \textbf{Type II error} \\
+Reject $H_0$ & \textbf{Type I error} & correct \\
+\bottomrule
+\end{tabular}
+\end{center}
+$\alpha=\Prob(\text{Type I error})=\Prob(\text{reject }H_0\mid H_0\text{ true})$ is the \emph{significance level} (or size) of the test. $\beta=\Prob(\text{Type II error})=\Prob(\text{fail to reject }H_0\mid H_0\text{ false})$. The \emph{power} of the test is $1-\beta=\Prob(\text{reject }H_0\mid H_0\text{ false})$. Note that $\beta$ depends on which specific alternative value of the parameter is true.
+\end{definition}
+
+\begin{intuition}
+$\alpha$ is the false-alarm rate and $1-\beta$ is the detection rate. For a fixed sample size the two errors trade off: shrinking the rejection region lowers $\alpha$ but raises $\beta$. Only a larger sample can reduce both. Because $\alpha$ is chosen directly while $\beta$ is not, rejecting $H_0$ is a strong conclusion (error rate controlled at $\alpha$), while failing to reject is a weak one (it may be due to low power). That is why one says ``fail to reject $H_0$'' rather than ``accept $H_0$''.
+\end{intuition}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[axis] (-3.4,0)--(7.6,0); \draw[axis] (0,-0.2)--(0,2.2);
+  \draw[thick,accent2,domain=-3:3,samples=60] plot (\x,{2*exp(-\x*\x/2)});
+  \draw[thick,accent,domain=-0.4:6.8,samples=70] plot (\x,{2*exp(-(\x-3.2)*(\x-3.2)/2)});
+  \fill[accent2!25,domain=1.64:3,samples=40] (1.64,0)--plot (\x,{2*exp(-\x*\x/2)})--(3,0)--cycle;
+  \fill[accent!22,domain=-0.4:1.64,samples=40] (-0.4,0)--plot (\x,{2*exp(-(\x-3.2)*(\x-3.2)/2)})--(1.64,0)--cycle;
+  \draw[dashed,mid] (1.64,0)--(1.64,2.1); \node[lab] at (1.64,2.35){critical value};
+  \node[lab,accent2] at (-1.6,1.6){$H_0$}; \node[lab,accent] at (5.3,1.6){$H_1$};
+  \node[lab] at (2.5,0.25){$\alpha$};
+\end{tikzpicture}
+\caption{Distribution of the test statistic under $H_0$ and under one alternative. The tail of the $H_0$ curve beyond the critical value is $\alpha$; the part of the $H_1$ curve to the left of it is $\beta$.}
+\end{figure}
+
+\subsection{One-Sided and Two-Sided Hypotheses}
+
+\begin{definition}[Forms of the alternative]
+\begin{itemize}
+  \item \emph{Two-sided}: $H_0:\mu=\mu_0$, $H_1:\mu\ne\mu_0$; the rejection region is in both tails.
+  \item \emph{One-sided} (upper): $H_0:\mu=\mu_0$, $H_1:\mu>\mu_0$; rejection region in the upper tail.
+  \item \emph{One-sided} (lower): $H_0:\mu=\mu_0$, $H_1:\mu<\mu_0$; rejection region in the lower tail.
+\end{itemize}
+\end{definition}
+
+\begin{example}[Which hypothesis goes in $H_1$?]
+A bottler requires a mean bursting strength of at least $200$ psi. Formulation (a): $H_0:\mu=200$ against $H_1:\mu>200$. Rejecting $H_0$ is a strong conclusion, so the manufacturer must \emph{demonstrate} that the bottles exceed the specification; bottles are judged unsatisfactory unless the data prove otherwise, and there is some probability that good bottles (true mean slightly above $200$) are not accepted. Formulation (b): $H_0:\mu=200$ against $H_1:\mu<200$. Now the bottles are accepted unless there is strong evidence that they fall short, and some probability remains that bottles slightly below $200$ are judged satisfactory. Which is correct depends on the situation: (a) suits a supplier with a history of problems or safety-critical use; (b) suits a supplier with a good record where small deviations are harmless. In either case \emph{put the statement about which a strong conclusion is wanted in the alternative hypothesis}.
+\end{example}
+
+The alternative must be chosen from the scientific question \emph{before} seeing the data. Choosing a one-sided alternative after looking at which way the data lean doubles the true $\alpha$.
+
+\subsection{General Procedure for Hypothesis Testing}
+
+\begin{definition}[The eight-step procedure]
+\begin{enumerate}[label=\arabic*.]
+  \item From the problem context, identify the parameter of interest.
+  \item State the null hypothesis $H_0$.
+  \item Specify an appropriate alternative hypothesis $H_1$.
+  \item Choose the significance level $\alpha$.
+  \item Determine an appropriate test statistic.
+  \item State the rejection region for the statistic.
+  \item Compute the sample quantities, substitute into the test statistic and find its value (and the $P$-value).
+  \item Decide whether $H_0$ should be rejected and report that in the problem context.
+\end{enumerate}
+\end{definition}
+
+\section{Tests on the Mean of a Normal Distribution, Variance Known}
+
+\subsection{Hypothesis Tests on the Mean}
+
+Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ with $\sigma^2$ known. Test $H_0:\mu=\mu_0$. If $H_0$ is true, then $\bar{X}\sim\Normal(\mu_0,\sigma^2/n)$, so
+\[ Z_0=\frac{\bar{X}-\mu_0}{\sigma/\sqrt n}\sim\Normal(0,1). \]
+
+\begin{theorem}[$z$-test]\label{thm:ztest}
+For a given $\alpha$, reject $H_0:\mu=\mu_0$ in favour of
+\begin{itemize}
+  \item $H_1:\mu\ne\mu_0$ if $\abs{z_0}>z_{\alpha/2}$;
+  \item $H_1:\mu>\mu_0$ if $z_0>z_\alpha$;
+  \item $H_1:\mu<\mu_0$ if $z_0<-z_\alpha$.
+\end{itemize}
+Each test has Type I error exactly $\alpha$.
+\end{theorem}
+
+\begin{example}\label{ex:ztest}
+The burning rate of a propellant has $\sigma=2$ cm/s. For a sample of $n=25$, $\bar{x}=51.3$. Test $H_0:\mu=50$ against $H_1:\mu\ne50$ at $\alpha=0.05$. The statistic is $z_0=(51.3-50)/(2/\sqrt{25})=3.25$. Since $\abs{3.25}>z_{0.025}=1.96$, reject $H_0$: there is evidence that the mean burning rate differs from $50$ cm/s.
+\end{example}
+
+\subsection{$P$-Values in Hypothesis Tests}
+
+Reporting only ``reject'' or ``fail to reject'' at a fixed $\alpha$ hides how strong the evidence is.
+
+\begin{definition}[$P$-value]
+The \emph{$P$-value} is the smallest level of significance at which the observed value of the test statistic would lead to rejection of $H_0$; equivalently, the probability, computed assuming $H_0$ is true, of obtaining a test statistic value at least as extreme (in the direction of $H_1$) as the one observed.
+\end{definition}
+
+For the $z$-test with observed $z_0$: $P=2\big[1-\Phi(\abs{z_0})\big]$ for the two-sided alternative; $P=1-\Phi(z_0)$ for $H_1:\mu>\mu_0$; $P=\Phi(z_0)$ for $H_1:\mu<\mu_0$. The rule: \emph{reject $H_0$ if $P<\alpha$.}
+
+\begin{example}
+In Example~\ref{ex:ztest}, $P=2[1-\Phi(3.25)]=2(0.00058)=0.0012$. The data would be very unusual if $\mu$ were $50$; $H_0$ would be rejected at every conventional level.
+\end{example}
+
+\begin{pitfall}{what a $P$-value is not}
+The $P$-value is \emph{not} the probability that $H_0$ is true, and $1-P$ is not the probability that $H_1$ is true. It is the probability of data this extreme \emph{if $H_0$ were true}. A small $P$ also does not measure the size of the effect: with a huge sample a trivial difference gives a tiny $P$ (see Section~\ref{sec:practical}).
+\end{pitfall}
+
+\subsection{Connection Between Hypothesis Tests and Confidence Intervals}
+
+\begin{theorem}[Duality]\label{thm:duality}
+The two-sided level-$\alpha$ test of $H_0:\mu=\mu_0$ rejects if and only if $\mu_0$ lies outside the $100(1-\alpha)\%$ confidence interval for $\mu$. Likewise the one-sided tests correspond to one-sided confidence bounds.
+\end{theorem}
+
+\begin{proof}
+$\abs{\bar{x}-\mu_0}>z_{\alpha/2}\sigma/\sqrt n$ is exactly the statement that $\mu_0\notin\big[\bar{x}-z_{\alpha/2}\sigma/\sqrt n,\ \bar{x}+z_{\alpha/2}\sigma/\sqrt n\big]$.
+\end{proof}
+
+So a confidence interval answers every possible two-sided hypothesis test at once: it is the set of all values $\mu_0$ that would not be rejected.
+
+\subsection{Type II Error and Choice of Sample Size}
+
+Suppose the true mean is $\mu=\mu_0+\delta$ with $\delta\ne0$. Then $\bar{X}\sim\Normal(\mu_0+\delta,\sigma^2/n)$ and $Z_0=\dfrac{\bar{X}-\mu_0}{\sigma/\sqrt n}\sim\Normal\Big(\dfrac{\delta\sqrt n}\sigma,\ 1\Big)$.
+
+\begin{theorem}[Type II error of the $z$-test]\label{thm:beta-z}
+For the two-sided test,
+\[ \beta=\Phi\Big(z_{\alpha/2}-\frac{\delta\sqrt n}\sigma\Big)-\Phi\Big(-z_{\alpha/2}-\frac{\delta\sqrt n}\sigma\Big). \]
+For the one-sided alternative $H_1:\mu>\mu_0$ (with $\delta>0$), $\beta=\Phi\big(z_\alpha-\delta\sqrt n/\sigma\big)$; for $H_1:\mu<\mu_0$ ($\delta<0$), $\beta=1-\Phi\big(-z_\alpha-\delta\sqrt n/\sigma\big)$.
+\end{theorem}
+
+\begin{proof}
+$\beta=\Prob(-z_{\alpha/2}\le Z_0\le z_{\alpha/2})$ with $Z_0\sim\Normal(\delta\sqrt n/\sigma,1)$; subtract the mean and use $\Phi$.
+\end{proof}
+
+\begin{example}\label{ex:beta}
+In Example~\ref{ex:ztest} suppose the true mean is $51$, so $\delta=1$ and $\delta\sqrt n/\sigma=1\cdot5/2=2.5$. With $\alpha=0.05$, $\beta=\Phi(1.96-2.5)-\Phi(-1.96-2.5)=\Phi(-0.54)-\Phi(-4.46)=0.2946-0.0000=0.295$. The test misses a shift of $1$ cm/s about $29.5\%$ of the time; its power there is about $70.5\%$.
+\end{example}
+
+The properties of $\beta$: it decreases as $\abs{\delta}$ increases (large departures are easier to detect), as $n$ increases and as $\alpha$ increases, and it increases with $\sigma$. A plot of $\beta$ (or the power) against $\delta$ is the \emph{operating characteristic (OC) curve} (or power curve); textbooks tabulate OC curves in terms of the standardised difference $d=\abs{\delta}/\sigma$.
+
+\begin{theorem}[Sample size for the $z$-test]\label{thm:samplesize-test}
+To achieve Type II error $\beta$ at a specified true difference $\delta$ with a level-$\alpha$ test, use approximately
+\[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2\sigma^2}{\delta^2}\quad\text{(two-sided)},\qquad n=\frac{(z_\alpha+z_\beta)^2\sigma^2}{\delta^2}\quad\text{(one-sided)}. \]
+(The two-sided formula neglects the term $\Phi(-z_{\alpha/2}-\delta\sqrt n/\sigma)$, which is negligible when $\beta$ is small.)
+\end{theorem}
+
+\begin{example}
+For Example~\ref{ex:beta}, how large must $n$ be to detect $\delta=1$ with probability $0.90$ ($\beta=0.10$) at $\alpha=0.05$? $n=(z_{0.025}+z_{0.10})^2\sigma^2/\delta^2=(1.96+1.28)^2(2)^2/1^2=42$. (The textbook's operating characteristic charts with $d=\delta/\sigma=0.5$ give a very similar value, about $40$.)
+\end{example}
+
+\subsection{Large Sample Test}
+
+If $n$ is large (say $n\ge40$), the central limit theorem justifies the $z$-test even without normality, and replacing $\sigma$ by $s$ is harmless:
+\[ Z_0=\frac{\bar{X}-\mu_0}{S/\sqrt n}\ \text{ is approximately }\Normal(0,1)\text{ when }H_0\text{ is true}. \]
+All the decision rules of Theorem~\ref{thm:ztest} then apply.
+
+\subsection{Some Practical Comments on Hypothesis Tests}\label{sec:practical}
+
+\begin{itemize}
+  \item \textbf{Statistical versus practical significance.} A test can detect a difference too small to matter if $n$ is large, and can miss an important difference if $n$ is small. Always report the estimated size of the effect with a confidence interval, not just $P$.
+  \item \textbf{$\alpha$ is chosen by the analyst}, conventionally $0.05$ or $0.01$; the $P$-value lets the reader judge for themselves.
+  \item \textbf{Assumptions matter.} Independence and (for small $n$) normality should be checked.
+  \item \textbf{Do not choose the hypotheses after looking at the data.} Testing many hypotheses and reporting the significant ones inflates the false-positive rate (Chapter~13).
+\end{itemize}
+
+\section{Tests on the Mean of a Normal Distribution, Variance Unknown}
+
+\subsection{Hypothesis Tests on the Mean}
+
+When $\sigma$ is unknown and the population is normal, replace $\sigma$ by $S$; the statistic then follows a $t$ distribution.
+
+\begin{theorem}[One-sample $t$-test]\label{thm:ttest}
+To test $H_0:\mu=\mu_0$ use $T_0=\dfrac{\bar{X}-\mu_0}{S/\sqrt n}$, which has a $t_{n-1}$ distribution when $H_0$ is true. Reject $H_0$ in favour of
+\begin{itemize}
+  \item $H_1:\mu\ne\mu_0$ if $\abs{t_0}>t_{\alpha/2,n-1}$;
+  \item $H_1:\mu>\mu_0$ if $t_0>t_{\alpha,n-1}$;
+  \item $H_1:\mu<\mu_0$ if $t_0<-t_{\alpha,n-1}$.
+\end{itemize}
+\end{theorem}
+
+\begin{example}\label{ex:ttest}
+A drilled shaft is specified to have a mean diameter $2.5$ mm. A sample of $n=16$ has $\bar{x}=2.58$ and $s=0.12$. Test $H_0:\mu=2.5$ against $H_1:\mu\ne2.5$ at $\alpha=0.05$. $t_0=(2.58-2.5)/(0.12/4)=2.667$. With $15$ degrees of freedom $t_{0.025,15}=2.131$. Since $2.667>2.131$, reject $H_0$.
+\end{example}
+
+\subsection{$P$-Value for a $t$-Test}
+
+The $P$-value is a tail area under $t_{n-1}$. Tables give only a few critical points, so the $P$-value is usually bracketed. In Example~\ref{ex:ttest}, $t_{0.01,15}=2.602$ and $t_{0.005,15}=2.947$, so the one-sided tail area is between $0.005$ and $0.01$ and the two-sided $0.01<P<0.02$ (software gives $P=0.0176$).
+
+\subsection{Choice of Sample Size}
+
+If the true mean is $\mu_0+\delta$, the statistic $T_0$ has a \emph{noncentral} $t$ distribution with noncentrality $\delta\sqrt n/\sigma$, and $\beta$ must be computed from it (software, or the OC curves in terms of $d=\abs{\delta}/\sigma$). A good approximation for planning is the normal-theory formula of Theorem~\ref{thm:samplesize-test} plus a small correction:
+\[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2\sigma^2}{\delta^2}+\frac{z_{\alpha/2}^2}2. \]
+Since $\sigma$ is unknown, a rough estimate from a pilot study or past data is needed; the answer is only as good as that estimate.
+
+\subsection{Likelihood Ratio Approach to Development of Test Procedures (CD Only)}
+
+The tests above are all instances of one general construction.
+
+\begin{definition}[Likelihood ratio test]
+Let $L(\theta)$ be the likelihood, $\Theta_0$ the set of parameter values allowed by $H_0$ and $\Theta$ the full parameter space. The \emph{likelihood ratio} is
+\[ \Lambda=\frac{\max_{\theta\in\Theta_0}L(\theta)}{\max_{\theta\in\Theta}L(\theta)}\in[0,1], \]
+and the test rejects $H_0$ for small values of $\Lambda$ (data much more probable under the best unrestricted parameter than under the best parameter allowed by $H_0$).
+\end{definition}
+
+\begin{example}[The $t$-test is a likelihood ratio test]
+For a normal sample, the unrestricted maximum of the likelihood uses $\hat\mu=\bar{x}$, $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$; under $H_0:\mu=\mu_0$ it uses $\hat\sigma_0^2=\frac1n\sum(x_i-\mu_0)^2=\hat\sigma^2+(\bar{x}-\mu_0)^2$. Then $\Lambda=(\hat\sigma^2/\hat\sigma_0^2)^{n/2}=\big[1+\tfrac{t_0^2}{n-1}\big]^{-n/2}$, a decreasing function of $\abs{t_0}$. Rejecting for small $\Lambda$ is the same as rejecting for large $\abs{t_0}$.
+\end{example}
+
+\begin{theorem}[Wilks' theorem]\label{thm:wilks}
+Under $H_0$ and regularity conditions, $-2\ln\Lambda$ has approximately a chi-square distribution as $n\to\infty$, with degrees of freedom equal to the number of parameters restricted by $H_0$. So reject if $-2\ln\Lambda>\chi^2_{\alpha,r}$.
+\end{theorem}
+
+\section{Tests on the Variance and Standard Deviation of a Normal Distribution}
+
+\subsection{The Hypothesis Testing Procedures}
+
+Test $H_0:\sigma^2=\sigma_0^2$ for a normal population. The statistic is
+\[ \chi_0^2=\frac{(n-1)S^2}{\sigma_0^2},\qquad\chi_0^2\sim\chi^2_{n-1}\text{ when }H_0\text{ is true.} \]
+
+\begin{theorem}[$\chi^2$-test for a variance]\label{thm:chisqtest}
+Reject $H_0:\sigma^2=\sigma_0^2$ in favour of
+\begin{itemize}
+  \item $H_1:\sigma^2\ne\sigma_0^2$ if $\chi_0^2>\chi^2_{\alpha/2,n-1}$ or $\chi_0^2<\chi^2_{1-\alpha/2,n-1}$;
+  \item $H_1:\sigma^2>\sigma_0^2$ if $\chi_0^2>\chi^2_{\alpha,n-1}$;
+  \item $H_1:\sigma^2<\sigma_0^2$ if $\chi_0^2<\chi^2_{1-\alpha,n-1}$.
+\end{itemize}
+Tests on $\sigma$ are the same with $\sigma_0^2$ replaced by its square.
+\end{theorem}
+
+\begin{example}\label{ex:vartest}
+A filling machine is acceptable if $\sigma^2\le0.01$. A sample of $n=20$ has $s^2=0.0153$. Test $H_0:\sigma^2=0.01$ against $H_1:\sigma^2>0.01$ at $\alpha=0.05$. $\chi_0^2=19(0.0153)/0.01=29.07$ and $\chi^2_{0.05,19}=30.14$. Since $29.07<30.14$, do not reject $H_0$ ($P\approx0.065$): the evidence of a variance exceeding the limit is suggestive but not conclusive at the $5\%$ level.
+\end{example}
+
+\subsection{$\beta$-Error and Choice of Sample Size}
+
+If the true variance is $\sigma^2=\lambda^2\sigma_0^2$, then $(n-1)S^2/\sigma_0^2=\lambda^2V$ with $V\sim\chi^2_{n-1}$. For the two-sided test with critical values $c_L=\chi^2_{1-\alpha/2,n-1}$, $c_U=\chi^2_{\alpha/2,n-1}$,
+\[ \beta=\Prob\big(c_L\le\lambda^2V\le c_U\big)=\Prob\Big(\frac{c_L}{\lambda^2}\le V\le\frac{c_U}{\lambda^2}\Big), \]
+and for the upper one-sided test $\beta=\Prob\big(V\le\chi^2_{\alpha,n-1}/\lambda^2\big)$. OC curves in terms of $\lambda=\sigma/\sigma_0$ tabulate these. A large $\lambda$ (a big increase in the standard deviation) is detected with moderate $n$, but small departures from $\sigma_0$ need large samples.
+
+\section{Tests on a Population Proportion}
+
+\subsection{Large-Sample Tests on a Proportion}
+
+Let $X$ be the number of successes in $n$ trials, $\hat{P}=X/n$, and test $H_0:p=p_0$. Under $H_0$, $X$ is binomial$(n,p_0)$, approximately normal with mean $np_0$ and variance $np_0(1-p_0)$ when $np_0\ge5$ and $n(1-p_0)\ge5$:
+\[ Z_0=\frac{X-np_0}{\sqrt{np_0(1-p_0)}}=\frac{\hat{P}-p_0}{\sqrt{p_0(1-p_0)/n}}\approx\Normal(0,1). \]
+The decision rules are those of Theorem~\ref{thm:ztest}.
+
+\begin{example}\label{ex:proptest}
+A process makes $5\%$ defectives. After a change, $x=4$ defectives are found in $n=200$ items. Test $H_0:p=0.05$ against $H_1:p<0.05$ at $\alpha=0.05$. $z_0=(4-200\cdot0.05)/\sqrt{200\cdot0.05\cdot0.95}=-6/3.082=-1.947<-1.645$, so reject $H_0$ ($P=\Phi(-1.947)=0.0258$): the defect rate has been reduced.
+\end{example}
+
+\subsection{Small-Sample Tests on a Proportion (CD Only)}
+
+When the normal approximation is poor, use the exact binomial distribution. For $H_1:p>p_0$ the $P$-value is $\Prob(X\ge x\mid p=p_0)=\sum_{k\ge x}\binom nkp_0^k(1-p_0)^{n-k}$; for $H_1:p<p_0$ it is $\Prob(X\le x\mid p=p_0)$; for a two-sided alternative one doubles the smaller tail (capped at $1$).
+
+\begin{example}
+A machine should succeed $30\%$ of the time. If it succeeds $x=11$ times in $n=20$ trials, is its success rate higher ($H_0:p=0.3$ against $H_1:p>0.3$)? $P=\Prob(X\ge11\mid n=20,p=0.3)=0.0171$, so $H_0$ is rejected at $\alpha=0.05$.
+\end{example}
+
+\subsection{Type II Error and Choice of Sample Size}
+
+If the true proportion is $p\ne p_0$, then $\hat{P}\approx\Normal\big(p,p(1-p)/n\big)$ and, for the two-sided test,
+\[ \beta\approx\Phi\Big(\frac{p_0-p+z_{\alpha/2}\sqrt{p_0(1-p_0)/n}}{\sqrt{p(1-p)/n}}\Big)-\Phi\Big(\frac{p_0-p-z_{\alpha/2}\sqrt{p_0(1-p_0)/n}}{\sqrt{p(1-p)/n}}\Big). \]
+Solving for $n$ (two-sided, ignoring the second term; replace $z_{\alpha/2}$ by $z_\alpha$ for one-sided):
+\[ n\approx\left[\frac{z_{\alpha/2}\sqrt{p_0(1-p_0)}+z_\beta\sqrt{p(1-p)}}{p-p_0}\right]^2. \]
+
+\begin{example}
+To detect an increase of the defect rate from $p_0=0.05$ to $p=0.07$ with power $0.9$ ($\beta=0.1$) at $\alpha=0.05$ (one-sided): $n=\big[(1.645\sqrt{0.0475}+1.2816\sqrt{0.0651})/0.02\big]^2=\big[(0.3585+0.3270)/0.02\big]^2=1175$ items.
+\end{example}
+
+\section{Summary of Inference Procedures for a Single Sample}
+
+\begin{center}
+\small
+\begin{tabular}{p{2.4cm}p{3.2cm}p{3.6cm}p{3.4cm}}
+\toprule
+Parameter and assumptions & Test statistic & Reject $H_0$ (two-sided) & Confidence interval \\
+\midrule
+$\mu$, $\sigma$ known (normal or $n$ large) & $z_0=\dfrac{\bar{x}-\mu_0}{\sigma/\sqrt n}$ & $\abs{z_0}>z_{\alpha/2}$ & $\bar{x}\pm z_{\alpha/2}\sigma/\sqrt n$ \\
+$\mu$, $\sigma$ unknown (normal) & $t_0=\dfrac{\bar{x}-\mu_0}{s/\sqrt n}$ & $\abs{t_0}>t_{\alpha/2,n-1}$ & $\bar{x}\pm t_{\alpha/2,n-1}s/\sqrt n$ \\
+$\sigma^2$ (normal) & $\chi_0^2=\dfrac{(n-1)s^2}{\sigma_0^2}$ & $\chi_0^2>\chi^2_{\alpha/2,n-1}$ or $<\chi^2_{1-\alpha/2,n-1}$ & $\dfrac{(n-1)s^2}{\chi^2_{\alpha/2}}\le\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2}}$ \\
+$p$ (large $n$) & $z_0=\dfrac{x-np_0}{\sqrt{np_0(1-p_0)}}$ & $\abs{z_0}>z_{\alpha/2}$ & $\hat{p}\pm z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Testing for Goodness of Fit}
+
+A \emph{goodness-of-fit test} checks whether the population follows a specified distribution. Divide the range of the variable into $k$ classes (bins). Let $O_i$ be the observed frequency in class $i$ and $E_i=np_i$ the expected frequency, where $p_i$ is the probability of class $i$ under the hypothesised distribution.
+
+\begin{theorem}[Chi-square goodness-of-fit test]\label{thm:gof}
+Under $H_0$ (the data come from the specified distribution), the statistic
+\[ X_0^2=\sum_{i=1}^k\frac{(O_i-E_i)^2}{E_i} \]
+has approximately a chi-square distribution with $k-p-1$ degrees of freedom, where $p$ is the number of parameters of the distribution that were \emph{estimated} from the data. Reject $H_0$ if $x_0^2>\chi^2_{\alpha,k-p-1}$. The approximation requires every $E_i\ge5$ (combine adjacent classes if necessary).
+\end{theorem}
+
+\begin{example}[Fair die]
+A die is rolled $60$ times, with counts $8,12,9,11,14,6$ for faces $1$ to $6$. Under $H_0$ (fair die) $E_i=10$. $x_0^2=(4+4+1+1+16+16)/10=4.2$ with $k-1=5$ degrees of freedom ($p=0$). Since $4.2<\chi^2_{0.05,5}=11.07$, we do not reject fairness.
+\end{example}
+
+\begin{example}[Poisson with estimated mean]
+Suppose the number of defects per unit is to be tested against a Poisson distribution whose mean is estimated by $\bar{x}$ from the same data. With $k=5$ classes after combining, $p=1$ parameter is estimated, so the degrees of freedom are $k-p-1=3$. Estimating a parameter uses up one degree of freedom because it makes the fit look better than it would for a fixed specified distribution.
+\end{example}
+
+\section{Contingency Table Tests}
+
+Two classifications of the same units can be summarised in an $r\times c$ \emph{contingency table}, where $O_{ij}$ is the number of units in row category $i$ and column category $j$. We ask whether the two classifications are \emph{independent}.
+
+\begin{theorem}[Chi-square test of independence]\label{thm:indep}
+Let $R_i$ be the row totals, $C_j$ the column totals and $n$ the grand total. Under $H_0$: ``the row and column classifications are independent'', the expected counts are $E_{ij}=\dfrac{R_iC_j}n$, and
+\[ X_0^2=\sum_{i=1}^r\sum_{j=1}^c\frac{(O_{ij}-E_{ij})^2}{E_{ij}}\ \approx\ \chi^2_{(r-1)(c-1)}. \]
+Reject $H_0$ if $x_0^2>\chi^2_{\alpha,(r-1)(c-1)}$ (again requiring $E_{ij}\ge5$ roughly).
+\end{theorem}
+
+\begin{proof}[Why the degrees of freedom are $(r-1)(c-1)$]
+There are $rc$ cells. The row and column probabilities $p_{i\cdot}$ and $p_{\cdot j}$ must be estimated from the data; there are $(r-1)+(c-1)$ free estimates (each set sums to $1$). The degrees of freedom are $rc-1-[(r-1)+(c-1)]=(r-1)(c-1)$.
+\end{proof}
+
+\begin{example}\label{ex:cont}
+Two treatments are compared: treatment A has $40$ successes and $10$ failures, treatment B has $30$ successes and $20$ failures. The row totals are $50,50$, column totals $70,30$ and $n=100$. The expected counts are $35,15,35,15$. $x_0^2=\dfrac{25}{35}+\dfrac{25}{15}+\dfrac{25}{35}+\dfrac{25}{15}=4.76$ with $1$ degree of freedom. Since $4.76>\chi^2_{0.05,1}=3.84$, reject independence ($P=0.029$): the success rate depends on the treatment.
+\end{example}
+
+The same test applies when the data are a set of random samples from $r$ populations classified into $c$ categories (a \emph{test of homogeneity}): $H_0$ is that all populations have the same category probabilities, and the statistic and degrees of freedom are identical.
+
+\begin{interview}{common slips with chi-square tests}
+Counts, never percentages, go into $O_i$ and $E_i$. The statistic is always upper-tailed (large values indicate poor fit). Small expected counts invalidate the approximation. Degrees of freedom are $k-1$ minus the number of estimated parameters for goodness of fit and $(r-1)(c-1)$ for independence. A significant result shows association, not causation, and says nothing about its strength: use a measure such as Cram\'er's $V=\sqrt{x_0^2/(n\min(r-1,c-1))}$.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item $H_0$ is assumed true until the data contradict it; $\alpha=\Prob(\text{reject }H_0\mid H_0)$, $\beta=\Prob(\text{fail to reject}\mid H_0\text{ false})$, power $=1-\beta$. Rejecting is strong; failing to reject is weak.
+  \item Follow the eight steps. The $P$-value is the probability of a result at least as extreme if $H_0$ were true; reject if $P<\alpha$. A two-sided test rejects iff the value $\mu_0$ falls outside the $100(1-\alpha)\%$ confidence interval.
+  \item $z$-test (known $\sigma$): $\beta=\Phi(z_{\alpha/2}-\delta\sqrt n/\sigma)-\Phi(-z_{\alpha/2}-\delta\sqrt n/\sigma)$, $n\approx(z_{\alpha/2}+z_\beta)^2\sigma^2/\delta^2$. $t$-test: $t_0=(\bar{x}-\mu_0)/(s/\sqrt n)\sim t_{n-1}$.
+  \item Variance: $\chi_0^2=(n-1)s^2/\sigma_0^2\sim\chi^2_{n-1}$. Proportion: $z_0=(x-np_0)/\sqrt{np_0(1-p_0)}$, exact binomial for small $n$.
+  \item Likelihood ratio tests generate the standard tests; $-2\ln\Lambda\approx\chi^2$ (Wilks).
+  \item Goodness of fit: $\sum(O-E)^2/E\sim\chi^2_{k-p-1}$; independence in an $r\times c$ table: $\chi^2_{(r-1)(c-1)}$ with $E_{ij}=R_iC_j/n$.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+The mean breaking strength of a cable is claimed to be at least $1800$ lb. A sample of $50$ cables has $\bar{x}=1792$ with $\sigma=15$ known. Test the claim at $\alpha=0.01$ with the eight-step procedure and find the $P$-value.
+\end{exercise}
+
+\begin{exercise}
+For the test in Exercise~1, compute $\beta$ when the true mean is $1785$ and the sample size needed for $\beta=0.05$ at that alternative.
+\end{exercise}
+
+\begin{exercise}
+Twelve measurements of the octane rating of a gasoline have $\bar{x}=88.3$ and $s=0.9$. Test $H_0:\mu=87.5$ against $H_1:\mu\ne87.5$ at $\alpha=0.05$ and compare your decision with the $95\%$ confidence interval.
+\end{exercise}
+
+\begin{exercise}
+Explain why the sentence ``the probability that the null hypothesis is true is $0.03$'' is not a correct reading of $P=0.03$. Give a correct reading.
+\end{exercise}
+
+\begin{exercise}
+A sample of $n=25$ has $s^2=18.5$. Test $H_0:\sigma^2=12$ against $H_1:\sigma^2>12$ at $\alpha=0.05$ and compute $\beta$ when the true variance is $24$.
+\end{exercise}
+
+\begin{exercise}
+In a poll of $n=500$, $265$ favour a proposal. Test $H_0:p=0.5$ against $H_1:p>0.5$ at $\alpha=0.05$. How large a sample would detect $p=0.55$ with power $0.8$?
+\end{exercise}
+
+\begin{exercise}
+The numbers of accidents per week over $50$ weeks are: $0$: 17 weeks, $1$: 19, $2$: 9, $3$: 4, $4$ or more: 1. Test whether a Poisson distribution with $\lambda$ estimated from the data fits ($\alpha=0.05$; combine classes as needed).
+\end{exercise}
+
+\begin{exercise}
+A survey cross-classifies $200$ employees by shift (day/night) and quality rating (high/medium/low): day: $50,\ 30,\ 20$; night: $20,\ 35,\ 45$. Test independence at $\alpha=0.05$ and describe the association.
+\end{exercise}

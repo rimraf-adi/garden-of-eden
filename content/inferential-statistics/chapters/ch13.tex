@@ -1,0 +1,166 @@
+\chapter{Supplement: Multiple Testing, Resampling and A/B Tests}
+
+\begin{nuance}{place in the course}
+This supplementary chapter covers topics that the textbook does not treat but that modern practice (and most interviews) require: what goes wrong when many hypotheses are tested, how to correct for it, how to do inference by resampling when no formula is available (the bootstrap and permutation tests), and how to design and read an A/B test. It builds on Chapters~2--4.
+\end{nuance}
+
+\section{The multiple testing problem}
+
+A single test at level $\alpha=0.05$ has a $5\%$ chance of a false positive when $H_0$ is true. If we run $m$ independent tests of true null hypotheses, the probability of at least one false positive is
+\[ 1-(1-\alpha)^m,\qquad\text{which is }0.40\text{ for }m=10\text{ and }0.994\text{ for }m=100. \]
+Testing many hypotheses (many genes, many metrics, many subgroups, many models) and reporting only the significant ones is the main source of non-reproducible findings (``$p$-hacking'', or the ``garden of forking paths'').
+
+\begin{definition}[Error rates for $m$ tests]
+Let $V$ be the number of false positives (true nulls rejected) and $R$ the total number of rejections.
+\begin{itemize}
+  \item The \emph{family-wise error rate} is $\mathrm{FWER}=\Prob(V\ge1)$.
+  \item The \emph{false discovery rate} is $\mathrm{FDR}=\Exp\Big[\dfrac V{\max(R,1)}\Big]$, the expected proportion of rejections that are false.
+\end{itemize}
+\end{definition}
+
+\subsection{Controlling the family-wise error rate}
+
+\begin{theorem}[Bonferroni correction]\label{thm:bonf}
+Rejecting each hypothesis $H_{0i}$ whose $P$-value satisfies $p_i\le\alpha/m$ controls $\mathrm{FWER}\le\alpha$, whatever the dependence among the tests.
+\end{theorem}
+
+\begin{proof}
+Let $I_0$ be the set of true nulls, $\abs{I_0}\le m$. By the union bound, $\Prob(V\ge1)=\Prob\big(\bigcup_{i\in I_0}\{p_i\le\alpha/m\}\big)\le\sum_{i\in I_0}\Prob(p_i\le\alpha/m)\le m\cdot\alpha/m=\alpha$, using that a $P$-value is (super)uniform under $H_0$.
+\end{proof}
+
+Bonferroni is simple but conservative. \emph{Holm's step-down procedure} is uniformly more powerful with the same guarantee: sort the $P$-values $p_{(1)}\le\dots\le p_{(m)}$; reject $H_{(1)},\dots,H_{(k-1)}$ where $k$ is the smallest index with $p_{(k)}>\alpha/(m-k+1)$ (and stop there).
+
+\begin{example}
+Five tests give $P$-values $0.003,\ 0.011,\ 0.020,\ 0.045,\ 0.30$. Bonferroni at $\alpha=0.05$ uses the threshold $0.01$ and rejects only the first. Holm compares $0.003$ with $0.05/5=0.010$ (reject), $0.011$ with $0.05/4=0.0125$ (reject), $0.020$ with $0.05/3=0.0167$ (fail, stop): it rejects the first two.
+\end{example}
+
+\subsection{Controlling the false discovery rate}
+
+When thousands of hypotheses are screened, controlling FWER is too strict. The \emph{Benjamini--Hochberg} (BH) procedure controls the FDR.
+
+\begin{theorem}[Benjamini--Hochberg]\label{thm:bh}
+Order the $P$-values $p_{(1)}\le\dots\le p_{(m)}$ and let $k=\max\{i:p_{(i)}\le i\,q/m\}$. Rejecting $H_{(1)},\dots,H_{(k)}$ controls $\mathrm{FDR}\le q\,m_0/m\le q$ when the $P$-values of true nulls are independent (and under positive dependence), where $m_0$ is the number of true nulls.
+\end{theorem}
+
+For the five $P$-values above with $q=0.05$: the thresholds $iq/m=0.01,0.02,0.03,0.04,0.05$; $p_{(4)}=0.045>0.04$, $p_{(3)}=0.020\le0.03$, so $k=3$ and the first three hypotheses are rejected. BH is more powerful than Holm because it tolerates a controlled fraction of false discoveries.
+
+\begin{interview}{adjusted $P$-values and what ``significant'' means}
+A Bonferroni-adjusted $P$-value is $\min(1,mp_i)$; BH-adjusted values ($q$-values) are the smallest $q$ at which $H_i$ would be rejected. Use FWER control when a single false positive is costly (clinical confirmatory trials, a safety claim) and FDR control for exploratory screens where follow-up experiments will weed out false leads. Reporting only the best of many metrics without adjustment is a classic interview red flag.
+\end{interview}
+
+\section{The bootstrap}
+
+The bootstrap approximates the sampling distribution of a statistic by resampling the observed data. Let $x_1,\dots,x_n$ be the data, $\hat F_n$ the empirical distribution (probability $1/n$ at each $x_i$) and $\hat\theta=T(x_1,\dots,x_n)$ the statistic of interest.
+
+\begin{definition}[Nonparametric bootstrap]
+A \emph{bootstrap sample} $x_1^*,\dots,x_n^*$ is drawn \emph{with replacement} from the data (i.e.\ i.i.d.\ from $\hat F_n$); $\hat\theta^*=T(x_1^*,\dots,x_n^*)$. Repeating $B$ times (typically $B=1000$--$10{,}000$) gives the bootstrap distribution of $\hat\theta^*$, used as an approximation of the unknown sampling distribution of $\hat\theta$.
+\end{definition}
+
+\begin{itemize}
+  \item \textbf{Standard error:} $\se_{\mathrm{boot}}(\hat\theta)=$ the standard deviation of $\hat\theta^*_1,\dots,\hat\theta^*_B$ (Chapter~1).
+  \item \textbf{Bias estimate:} $\overline{\hat\theta^*}-\hat\theta$.
+  \item \textbf{Percentile interval:} the $\alpha/2$ and $1-\alpha/2$ quantiles of the bootstrap distribution (Chapter~2).
+  \item \textbf{Basic (pivotal) interval:} $\big[2\hat\theta-q^*_{1-\alpha/2},\ 2\hat\theta-q^*_{\alpha/2}\big]$, which corrects for bias and skewness.
+  \item \textbf{Bootstrap-$t$ interval:} resample the studentised statistic $(\hat\theta^*-\hat\theta)/\se^*$ and use its quantiles; it has better coverage than the percentile interval for the mean.
+\end{itemize}
+
+\begin{example}
+For the data $4.1,\ 5.3,\ 3.9,\ 6.2,\ 4.8,\ 5.5,\ 4.4$ (median $4.8$), $B=2000$ bootstrap medians would take values among the data points themselves (the median of a bootstrap sample of seven values is always one of the seven), with the distribution concentrated on $4.4,\ 4.8,\ 5.3$. A percentile $95\%$ interval is read from the sorted bootstrap medians, for example $(4.1,\ 5.5)$. No formula for the standard error of a median was needed.
+\end{example}
+
+\begin{nuance}{when the bootstrap fails}
+The bootstrap works for smooth statistics (means, regression coefficients, quantiles in the interior) with i.i.d.\ data. It fails or needs modification for extremes (the maximum of a sample, as in the uniform$(0,\theta)$ problem), for heavy-tailed data with infinite variance, for dependent data (use the block bootstrap) and for very small samples, where the data are a poor picture of the population. It also quantifies only sampling variability, not bias in the data collection.
+\end{nuance}
+
+\begin{theorem}[Why the bootstrap works for the mean]\label{thm:bootstrap-mean}
+For the sample mean, conditional on the data, $\sqrt n(\bar{X}^*-\bar{x})$ has the same limiting distribution $\Normal(0,\sigma^2)$ as $\sqrt n(\bar{X}-\mu)$; moreover the bootstrap variance of $\bar{X}^*$ is exactly $\hat\sigma^2/n$ with $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$.
+\end{theorem}
+
+\begin{proof}[Idea]
+Conditional on the data, the $x_i^*$ are i.i.d.\ with mean $\bar{x}$ and variance $\hat\sigma^2$, so $\Var(\bar{X}^*)=\hat\sigma^2/n$ exactly, and the CLT applies to them (with $\hat\sigma^2\to\sigma^2$).
+\end{proof}
+
+\section{Permutation tests}
+
+A \emph{permutation test} gives an exact distribution-free test of the hypothesis that two groups have the \emph{same distribution}. Under $H_0$ the group labels are exchangeable, so all ways of reassigning the labels are equally likely.
+
+\begin{definition}[Permutation test for two groups]
+Choose a statistic $T$ (for instance the difference of means, $\bar{x}_1-\bar{x}_2$). Compute $T_{\mathrm{obs}}$. Repeatedly shuffle the pooled data into groups of the same sizes and recompute $T$. The $P$-value is the proportion of shuffles with $\abs{T}\ge\abs{T_{\mathrm{obs}}}$ (two-sided). With all $\binom{n_1+n_2}{n_1}$ shuffles the test is exact; in practice one uses a large random sample of shuffles ($P=(1+\#\{|T^*|\ge|T_{\mathrm{obs}}|\})/(B+1)$).
+\end{definition}
+
+\begin{example}
+Groups: A: $12,15,11$ ($\bar{x}=12.67$) and B: $18,20,17$ ($\bar{x}=18.33$). Observed difference $T_{\mathrm{obs}}=-5.67$. There are $\binom63=20$ ways to choose which three of the six values form group A; only the two extreme assignments (A $=\{11,12,15\}$ and its mirror image A $=\{17,18,20\}$) give $\abs{T}\ge5.67$, so the exact two-sided $P=2/20=0.10$. A rank-based statistic gives the Wilcoxon rank-sum test (Chapter~9) as a permutation test on ranks.
+\end{example}
+
+Permutation tests make no distributional assumption and work for any statistic. They test exchangeability, which is stronger than equality of means; they are the natural tool for randomised experiments, where the randomisation itself justifies the reference distribution.
+
+\section{A/B testing}
+
+An A/B test is a randomised comparison of two versions (A control, B treatment) on a metric: conversion rate, revenue per user, latency. Statistically it is the two-sample problem of Chapter~4 (two proportions or two means), but practice adds several issues.
+
+\subsection{Sample size and power}
+
+For two proportions with baseline $p_1$ and a minimum detectable effect giving $p_2$, the required sample size \emph{per arm} for a two-sided test at level $\alpha$ with power $1-\beta$ is (Chapter~4)
+\[ n\approx\frac{\Big(z_{\alpha/2}\sqrt{2\bar{p}\bar{q}}+z_\beta\sqrt{p_1q_1+p_2q_2}\Big)^2}{(p_2-p_1)^2},\qquad\bar{p}=\tfrac{p_1+p_2}2. \]
+A useful rule of thumb for $\alpha=0.05$ and power $0.8$: $n\approx16\,\sigma^2/\Delta^2$ per arm for means with standard deviation $\sigma$ and effect $\Delta$, and $n\approx16\,\bar{p}\bar{q}/\Delta^2$ for proportions. Because $n$ scales as $1/\Delta^2$, detecting an effect half as large needs four times the traffic.
+
+\begin{example}
+Baseline conversion $p_1=10\%$; the smallest change worth detecting is $+1$ percentage point ($p_2=11\%$). The rule of thumb gives $n\approx16(0.105)(0.895)/0.01^2=15{,}000$ users per arm; the full formula gives about $14{,}750$.
+\end{example}
+
+\subsection{Pitfalls}
+
+\begin{itemize}
+  \item \textbf{Peeking and optional stopping.} Checking the $P$-value daily and stopping when it first falls below $0.05$ inflates the Type~I error far above $5\%$. Fix the sample size in advance, or use a \emph{sequential} design with adjusted boundaries (for example the Pocock or O'Brien--Fleming group-sequential boundaries) or an always-valid method.
+  \item \textbf{Multiple metrics and segments.} Declare one primary metric in advance; correct the secondary ones (see the first section of this chapter).
+  \item \textbf{Sample ratio mismatch.} If the observed split of users between arms differs from the planned split (tested with a chi-square test), the randomisation or logging is broken and the results cannot be trusted.
+  \item \textbf{Novelty and seasonality effects,} interference between users (network effects), and non-independent units (several observations per user: randomise and analyse at the user level).
+  \item \textbf{Statistical versus practical significance:} always report the estimated effect with a confidence interval, not just $P$.
+\end{itemize}
+
+\subsection{Variance reduction}
+
+A pre-experiment covariate $X$ (for example the user's activity before the test) correlated with the outcome $Y$ can be used to reduce the variance: the \emph{CUPED} estimator replaces $Y$ by $Y-\theta(X-\bar{X})$ with $\theta=\Cov(X,Y)/\Var X$; the adjusted outcome has variance $(1-\rho^2)\Var Y$, where $\rho=\Corr(X,Y)$. With $\rho=0.7$ the variance halves, so half the sample size suffices. This is the regression-adjustment idea of Chapter~6 applied to the treatment effect.
+
+\begin{summarybox}
+\begin{itemize}
+  \item $m$ true nulls tested at $\alpha$ give $\Prob(\text{some false positive})=1-(1-\alpha)^m$. Bonferroni ($\alpha/m$) and Holm control the FWER; Benjamini--Hochberg ($p_{(i)}\le iq/m$) controls the FDR.
+  \item The bootstrap resamples the data with replacement to estimate standard errors, bias and intervals (percentile, basic, bootstrap-$t$) for any statistic; it fails for extremes and dependent data without modification.
+  \item Permutation tests reshuffle group labels to get exact distribution-free $P$-values; they underpin randomisation inference.
+  \item A/B tests: plan $n\approx16\sigma^2/\Delta^2$ per arm, avoid peeking, pre-specify the primary metric, check for sample ratio mismatch, report effect sizes with intervals, and use covariate adjustment (CUPED) to gain power.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Twelve $P$-values are $0.001,\ 0.004,\ 0.008,\ 0.012,\ 0.019,\ 0.027,\ 0.041,\ 0.050,\ 0.12,\ 0.24,\ 0.51,\ 0.88$. Find the rejections under unadjusted testing at $0.05$, Bonferroni, Holm and Benjamini--Hochberg at $q=0.05$.
+\end{exercise}
+
+\begin{exercise}
+Show that the probability of at least one false positive among $m$ independent tests is $1-(1-\alpha)^m$ and that Bonferroni's threshold $\alpha/m$ gives FWER at most $\alpha$ also when the tests are dependent.
+\end{exercise}
+
+\begin{exercise}
+For the data $7,\ 9,\ 12,\ 14,\ 18$, perform a bootstrap by hand with $B=5$ resamples (use your own random draws) to estimate the standard error of the mean and compare with $s/\sqrt n$.
+\end{exercise}
+
+\begin{exercise}
+Carry out an exact permutation test for the difference of means with groups $\{3,5,8\}$ and $\{9,11,14\}$ and give the two-sided $P$-value.
+\end{exercise}
+
+\begin{exercise}
+An A/B test has baseline conversion $4\%$. How many users per arm are needed to detect a relative improvement of $10\%$ ($4\%\to4.4\%$) with power $0.8$ at $\alpha=0.05$? What if the improvement is $20\%$ relative?
+\end{exercise}
+
+\begin{exercise}
+Simulate the effect of peeking: draw two groups from the same normal distribution, test after every $10$ observations per group up to $200$, and record how often some $P$-value falls below $0.05$. Explain your finding.
+\end{exercise}
+
+\begin{exercise}
+Show that the CUPED adjustment $Y-\theta(X-\bar{X})$ is unbiased for the treatment effect when $X$ is measured before randomisation, and derive its variance reduction factor $1-\rho^2$.
+\end{exercise}
+
+\begin{exercise}
+Explain why the bootstrap fails for the sample maximum of a uniform$(0,\theta)$ sample: what is the probability that the bootstrap maximum equals the observed maximum?
+\end{exercise}
