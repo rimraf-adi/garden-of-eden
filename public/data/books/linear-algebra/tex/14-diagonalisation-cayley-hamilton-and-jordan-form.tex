@@ -1,0 +1,192 @@
+\chapter{Diagonalisation, Cayley--Hamilton and Jordan Form}
+
+Chapter~10 showed that a basis of eigenvectors turns a matrix into a diagonal one. This chapter makes that precise: when is a matrix diagonalisable, what can one compute once it is, and what is the best one can do when it is not? The answers are the diagonalisability criterion, the matrix exponential and difference equations, the Cayley--Hamilton theorem, the minimal polynomial and the Jordan canonical form.
+
+\section{Diagonalisable matrices}
+
+\begin{definition}[Diagonalisable]
+A square matrix $A$ is \emph{diagonalisable} if it is similar to a diagonal matrix: $A=PDP^{-1}$ with $D=\diag(\lambda_1,\dots,\lambda_n)$ and $P$ invertible.
+\end{definition}
+
+\begin{theorem}[Diagonalisation criterion]\label{thm:diagcrit}
+For $A\in\C^{n\times n}$ the following are equivalent.
+\begin{enumerate}[label=(\alph*)]
+  \item $A$ is diagonalisable.
+  \item $\C^n$ has a basis of eigenvectors of $A$.
+  \item For every eigenvalue, the geometric multiplicity equals the algebraic multiplicity.
+  \item The eigenspaces $E_{\lambda}$ of $A$ satisfy $\sum_\lambda\dim E_\lambda=n$.
+\end{enumerate}
+In that case $P$ has eigenvectors as columns and $D$ the corresponding eigenvalues on the diagonal.
+\end{theorem}
+
+\begin{proof}
+(a)$\Leftrightarrow$(b): $AP=PD$ says that the $j$-th column $\mathbf{p}_j$ of $P$ satisfies $A\mathbf{p}_j=\lambda_j\mathbf{p}_j$, and $P$ is invertible iff its columns are a basis. (b)$\Leftrightarrow$(d): eigenspaces for distinct eigenvalues are independent (Theorem~\ref{thm:eigindep}), so $\bigoplus E_\lambda$ is a subspace of dimension $\sum\dim E_\lambda$, which is $\C^n$ iff the sum is $n$. (c)$\Leftrightarrow$(d): $\sum_\lambda(\text{alg.\ mult.})=n$ and $\dim E_\lambda\le$ alg.\ mult.\ (Theorem~\ref{thm:geoalg}), so equality of the sums holds iff each term is equal.
+\end{proof}
+
+\begin{example}[Diagonalising a $3\times3$ matrix]
+Let $A=\begin{pmatrix}2&0&0\\1&3&1\\-1&1&3\end{pmatrix}$. One computes $p_A(\lambda)=(2-\lambda)\big((3-\lambda)^2-1\big)=-(\lambda-2)^2(\lambda-4)$, so $\lambda=2$ has algebraic multiplicity $2$ and $\lambda=4$ multiplicity $1$. For $\lambda=2$: $A-2I=\begin{pmatrix}0&0&0\\1&1&1\\-1&1&1\end{pmatrix}$ has rank $2$, hence a one-dimensional nullspace (geometric multiplicity $1<2$), so $A$ is \emph{not} diagonalisable.
+\end{example}
+
+\begin{example}[A diagonalisable example]\label{ex:diag3}
+$B=\begin{pmatrix}1&1&0\\0&2&0\\0&0&1\end{pmatrix}$ has eigenvalues $1,1,2$. For $\lambda=1$: $B-I=\begin{pmatrix}0&1&0\\0&1&0\\0&0&0\end{pmatrix}$ has rank $1$, nullspace of dimension $2$: spanned by $(1,0,0)$ and $(0,0,1)$. For $\lambda=2$: eigenvector $(1,1,0)$. Three independent eigenvectors exist, so
+\[ P=\begin{pmatrix}1&0&1\\0&0&1\\0&1&0\end{pmatrix},\qquad P^{-1}BP=\diag(1,1,2). \]
+\end{example}
+
+Sufficient conditions: $n$ distinct eigenvalues (Corollary~\ref{cor:distinct}); and real symmetric matrices (Chapter~15), which are always diagonalisable, even with repeated eigenvalues.
+
+\begin{pitfall}{invertible does not mean diagonalisable, and vice versa}
+The matrix $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ is invertible but not diagonalisable; $\begin{pmatrix}0&0\\0&1\end{pmatrix}$ is diagonalisable but not invertible. Diagonalisability concerns eigenvectors; invertibility concerns the eigenvalue $0$. The two are unrelated.
+\end{pitfall}
+
+\section{Powers, recurrences and differential equations}
+
+If $A=PDP^{-1}$ then $A^k=PD^kP^{-1}$, and for any polynomial (or convergent power series) $f$, $f(A)=Pf(D)P^{-1}$ with $f(D)=\diag(f(\lambda_i))$.
+
+\begin{example}[Fibonacci numbers]\label{ex:fib}
+Let $F_{k+1}=F_k+F_{k-1}$ with $F_0=0$, $F_1=1$. In matrix form $\begin{pmatrix}F_{k+1}\\F_k\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}\begin{pmatrix}F_k\\F_{k-1}\end{pmatrix}$. The matrix has characteristic polynomial $\lambda^2-\lambda-1$ with roots $\varphi=\frac{1+\sqrt5}2$ and $\psi=\frac{1-\sqrt5}2$, and eigenvectors $(\varphi,1)$ and $(\psi,1)$. Diagonalising gives \emph{Binet's formula}
+\[ F_k=\frac{\varphi^k-\psi^k}{\sqrt5}. \]
+Since $\abs{\psi}<1$, $F_k$ is the integer nearest to $\varphi^k/\sqrt5$ for every $k\ge0$.
+\end{example}
+
+\begin{theorem}[Matrix exponential and linear ODEs]\label{thm:expm}
+Define $e^{At}=\sum_{k=0}^\infty\frac{t^kA^k}{k!}$, which converges for every square $A$. Then $\mathbf{x}(t)=e^{At}\mathbf{x}_0$ is the unique solution of $\mathbf{x}'=A\mathbf{x}$, $\mathbf{x}(0)=\mathbf{x}_0$. If $A=PDP^{-1}$ is diagonalisable, $e^{At}=P\diag(e^{\lambda_1t},\dots,e^{\lambda_nt})P^{-1}$, so
+\[ \mathbf{x}(t)=c_1e^{\lambda_1t}\mathbf{p}_1+\dots+c_ne^{\lambda_nt}\mathbf{p}_n,\qquad\mathbf{c}=P^{-1}\mathbf{x}_0. \]
+\end{theorem}
+
+\begin{proof}
+Termwise differentiation of the series gives $\frac{d}{dt}e^{At}=Ae^{At}$ (the series converges uniformly on compact sets since $\norm{A^k}\le\norm{A}^k$). Uniqueness: if $\mathbf{y}'=A\mathbf{y}$ then $\frac{d}{dt}(e^{-At}\mathbf{y})=-Ae^{-At}\mathbf{y}+e^{-At}A\mathbf{y}=\mathbf{0}$ (the matrices $A$ and $e^{-At}$ commute), so $e^{-At}\mathbf{y}$ is constant. For the diagonalisable case $A^k=PD^kP^{-1}$ gives $e^{At}=Pe^{Dt}P^{-1}$.
+\end{proof}
+
+\begin{example}
+For $A=\begin{pmatrix}0&1\\-2&-3\end{pmatrix}$ (the equation $y''+3y'+2y=0$ with $\mathbf{x}=(y,y')$), the eigenvalues are $-1,-2$ with eigenvectors $(1,-1)$ and $(1,-2)$. General solution: $\mathbf{x}=c_1e^{-t}(1,-1)+c_2e^{-2t}(1,-2)$; both exponentials decay, so the origin is a stable node. In general $\mathbf{x}(t)\to\mathbf{0}$ for every start iff all eigenvalues have negative real part.
+\end{example}
+
+\begin{pitfall}{$e^{A+B}\ne e^Ae^B$ in general}
+The familiar law $e^{x+y}=e^xe^y$ requires $AB=BA$. Without commutativity it fails, for example for $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ and $B=\begin{pmatrix}0&0\\1&0\end{pmatrix}$.
+\end{pitfall}
+
+\section{The Cayley--Hamilton theorem}
+
+A polynomial $q$ \emph{annihilates} $A$ if $q(A)=0$. Substituting $A$ into its own characteristic polynomial gives zero.
+
+\begin{theorem}[Cayley--Hamilton]\label{thm:ch}
+For every square matrix $A$, $p_A(A)=0$, where $p_A(\lambda)=\det(\lambda I-A)$.
+\end{theorem}
+
+\begin{proof}
+Consider the adjugate $B(\lambda)=\adj(\lambda I-A)$, whose entries are polynomials in $\lambda$ of degree at most $n-1$; write $B(\lambda)=B_0+B_1\lambda+\dots+B_{n-1}\lambda^{n-1}$ with constant matrices $B_i$. By Theorem~\ref{thm:cramer}, $(\lambda I-A)B(\lambda)=p_A(\lambda)I$. Write $p_A(\lambda)=\sum c_k\lambda^k$ and compare coefficients of each power of $\lambda$ on both sides of
+\[ (\lambda I-A)(B_0+B_1\lambda+\dots+B_{n-1}\lambda^{n-1})=\sum_kc_k\lambda^kI. \]
+This gives $-AB_0=c_0I$, $B_0-AB_1=c_1I$, $\dots$, $B_{n-2}-AB_{n-1}=c_{n-1}I$, $B_{n-1}=c_nI$. Multiply the equation for $\lambda^k$ by $A^k$ and add all of them: the left sides telescope to $0$, while the right sides sum to $\sum c_kA^k=p_A(A)$. Hence $p_A(A)=0$.
+\end{proof}
+
+\begin{example}
+For $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$, $p_A=\lambda^2-5\lambda-2$, so $A^2=5A+2I$: indeed $A^2=\begin{pmatrix}7&10\\15&22\end{pmatrix}=5A+2I$. This reduces every power of $A$ to a combination of $I$ and $A$, and rearranged, $A^{-1}=\tfrac12(A-5I)$, an explicit formula for the inverse.
+\end{example}
+
+\begin{interview}{why a ``wrong'' proof fails}
+The tempting argument ``$p_A(A)=\det(AI-A)=\det0=0$'' is invalid: it substitutes a matrix into a scalar-valued determinant, mixing two different meanings of $\det$ (a scalar versus a matrix polynomial). The adjugate argument above avoids this. Be ready to explain this subtlety.
+\end{interview}
+
+\section{The minimal polynomial}
+
+\begin{definition}[Minimal polynomial]
+The \emph{minimal polynomial} $m_A$ of $A$ is the monic polynomial of smallest degree with $m_A(A)=0$.
+\end{definition}
+
+\begin{theorem}[Properties]\label{thm:minpoly}
+(i) $m_A$ exists, is unique, and divides every polynomial $q$ with $q(A)=0$; in particular $m_A\mid p_A$. (ii) The roots of $m_A$ are exactly the eigenvalues of $A$. (iii) $A$ is diagonalisable (over $\C$) iff $m_A$ has no repeated roots.
+\end{theorem}
+
+\begin{proof}
+(i) Cayley--Hamilton gives some annihilating polynomial, so a monic one of least degree $m_A$ exists. If $q(A)=0$, divide: $q=sm_A+r$ with $\deg r<\deg m_A$; then $r(A)=0$, so $r=0$ by minimality. Uniqueness follows. (ii) If $A\mathbf{v}=\lambda\mathbf{v}$ then $0=m_A(A)\mathbf{v}=m_A(\lambda)\mathbf{v}$, so $m_A(\lambda)=0$; conversely each root of $m_A$ is a root of $p_A$ by (i), and $p_A$ and $m_A$ have the same roots because every root of $p_A$ is an eigenvalue. (iii) If $A=PDP^{-1}$, the polynomial $\prod(\lambda-\mu)$ over the distinct diagonal entries $\mu$ annihilates $A$, so $m_A$ divides a product of distinct linear factors. Conversely, if $m_A=\prod_{i=1}^s(\lambda-\mu_i)$ with distinct $\mu_i$, the polynomials $L_i(\lambda)=\prod_{j\ne i}\frac{\lambda-\mu_j}{\mu_i-\mu_j}$ satisfy $\sum L_i=1$, so $\mathbf{v}=\sum L_i(A)\mathbf{v}$, and each $L_i(A)\mathbf{v}$ is an eigenvector or zero because $(A-\mu_i)L_i(A)=\text{const}\cdot m_A(A)=0$. Hence the eigenspaces span $\C^n$.
+\end{proof}
+
+\begin{example}
+$\begin{pmatrix}2&1\\0&2\end{pmatrix}$ has $p=(\lambda-2)^2$ and, as $A-2I\ne0$, $m=(\lambda-2)^2$ with a repeated root, so it is not diagonalisable; $2I$ has $m=\lambda-2$. Both have the same characteristic polynomial, showing that the minimal polynomial carries information that $p_A$ does not.
+\end{example}
+
+\section{Jordan canonical form}
+
+If $A$ is not diagonalisable, the best one can do over $\C$ is block-diagonal form with Jordan blocks.
+
+\begin{definition}[Jordan block]
+The $k\times k$ \emph{Jordan block} for $\lambda$ is $J_k(\lambda)=\lambda I_k+N_k$ where $N_k$ has ones on the superdiagonal and zeros elsewhere:
+\[ J_3(\lambda)=\begin{pmatrix}\lambda&1&0\\0&\lambda&1\\0&0&\lambda\end{pmatrix}. \]
+\end{definition}
+
+\begin{theorem}[Jordan normal form]\label{thm:jordan}
+Every $A\in\C^{n\times n}$ is similar to a block-diagonal matrix $J=\diag(J_{k_1}(\lambda_1),\dots,J_{k_r}(\lambda_r))$, unique up to the order of the blocks. For each eigenvalue $\lambda$:
+\begin{itemize}
+  \item the sum of the sizes of the blocks for $\lambda$ is its algebraic multiplicity;
+  \item the number of blocks for $\lambda$ is its geometric multiplicity $\dim E_\lambda$;
+  \item the size of the largest block for $\lambda$ is the multiplicity of $\lambda$ as a root of the minimal polynomial.
+\end{itemize}
+\end{theorem}
+
+The proof builds \emph{Jordan chains}: for a block of size $k$ there are \emph{generalised eigenvectors} $\mathbf{v}_1,\dots,\mathbf{v}_k$ with $(A-\lambda I)\mathbf{v}_1=\mathbf{0}$ and $(A-\lambda I)\mathbf{v}_{j}=\mathbf{v}_{j-1}$. Existence uses the decomposition of $\C^n$ into the \emph{generalised eigenspaces} $\Null(A-\lambda I)^{n}$ (which are $A$-invariant and independent), and on each such space the operator $A-\lambda I$ is nilpotent, for which the chain structure is derived by a careful induction on the nilpotency index. We omit these details; the statement and its uses are what matter in applications.
+
+\begin{example}[Reading off Jordan structure]\label{ex:jordan}
+Suppose $A$ is $5\times5$ with $p_A=(\lambda-3)^5$, $\rank(A-3I)=2$ and $\rank(A-3I)^2=1$, $\rank(A-3I)^3=0$. Then $\dim E_3=5-2=3$ blocks; $\dim\Null(A-3I)^2=4$, so the number of blocks of size $\ge2$ is $4-3=1$ and of size $\ge3$ is $5-4=1$. So there is one block of size $3$ and two of size $1$: $J=\diag(J_3(3),J_1(3),J_1(3))$, and $m_A=(\lambda-3)^3$.
+\end{example}
+
+\begin{theorem}[Functions of Jordan blocks]\label{thm:jordanpow}
+For $J=J_k(\lambda)$ and any polynomial or analytic $f$,
+\[ f(J)=\begin{pmatrix}f(\lambda)&f'(\lambda)&\frac{f''(\lambda)}{2!}&\cdots\\&f(\lambda)&f'(\lambda)&\ddots\\&&\ddots&\ddots\end{pmatrix}, \]
+the upper triangular Toeplitz matrix with entries $f^{(j)}(\lambda)/j!$ on the $j$-th superdiagonal. In particular $J^m$ has $\binom{m}{j}\lambda^{m-j}$ on the $j$-th superdiagonal, and $e^{Jt}=e^{\lambda t}\sum_{j<k}\frac{t^j}{j!}N^j$.
+\end{theorem}
+
+\begin{proof}
+Write $J=\lambda I+N$ with $N^k=0$. Since $\lambda I$ commutes with $N$, the binomial theorem gives $J^m=\sum_j\binom mj\lambda^{m-j}N^j$, and $N^j$ has ones on the $j$-th superdiagonal. For the exponential, $e^{Jt}=e^{\lambda t}e^{Nt}$ and $e^{Nt}=\sum_{j<k}t^jN^j/j!$ (a finite sum).
+\end{proof}
+
+\begin{intuition}
+Jordan blocks explain why solutions of ODEs and recurrences with repeated eigenvalues contain polynomial factors: $te^{\lambda t}$ and $m\lambda^{m-1}$ appear because $f(J)$ involves $f'(\lambda)$. A repeated root of a characteristic polynomial with a non-diagonalisable matrix produces resonance-like growth: for $\mathbf{x}'=J_2(\lambda)\mathbf{x}$ the solution is $e^{\lambda t}(c_1+c_2t,c_2)$.
+\end{intuition}
+
+\begin{nuance}{Jordan form is not numerically computable}
+The Jordan form is discontinuous in the entries of $A$: an arbitrarily small perturbation of a defective matrix is diagonalisable with a wildly different eigenvector matrix. So software uses the Schur decomposition $A=UTU\herm$ (unitary $U$, triangular $T$), which exists for every matrix and is computed stably. Jordan form is a tool for theory and exact computation.
+\end{nuance}
+
+\begin{summarybox}
+\begin{itemize}
+  \item $A$ is diagonalisable iff there is a basis of eigenvectors iff geometric $=$ algebraic multiplicity for every eigenvalue iff the minimal polynomial has distinct roots.
+  \item Then $A^k=PD^kP^{-1}$ and $e^{At}=Pe^{Dt}P^{-1}$, which solve recurrences (Binet's formula) and linear ODEs.
+  \item Cayley--Hamilton: $p_A(A)=0$; the minimal polynomial divides $p_A$, has the same roots, and detects diagonalisability.
+  \item Every complex matrix is similar to a Jordan form; blocks counts and sizes are read from ranks of $(A-\lambda I)^j$.
+  \item Jordan blocks produce the polynomial factors $t^je^{\lambda t}$ in solutions.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Diagonalise $A=\begin{pmatrix}5&-2\\9&-2\end{pmatrix}$ if possible, and compute $A^{10}$ and $e^{At}$.
+\end{exercise}
+
+\begin{exercise}
+For which values of $a$ is $\begin{pmatrix}1&a\\0&1\end{pmatrix}$ diagonalisable? For which is $\begin{pmatrix}a&1\\0&2\end{pmatrix}$?
+\end{exercise}
+
+\begin{exercise}
+Solve $\mathbf{x}'=\begin{pmatrix}3&1\\0&3\end{pmatrix}\mathbf{x}$, $\mathbf{x}(0)=(1,2)$, using $e^{Jt}$ for the Jordan block.
+\end{exercise}
+
+\begin{exercise}
+Verify Cayley--Hamilton for $\begin{pmatrix}2&1\\1&3\end{pmatrix}$ and use it to compute $A^{-1}$ and $A^3$.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $A$ is diagonalisable and has only the eigenvalue $\lambda$, then $A=\lambda I$.
+\end{exercise}
+
+\begin{exercise}
+Find the Jordan form of $\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ and of $\begin{pmatrix}2&1&0\\0&2&0\\0&0&2\end{pmatrix}$, and their minimal polynomials.
+\end{exercise}
+
+\begin{exercise}
+Solve the recurrence $a_{k+2}=4a_{k+1}-4a_k$, $a_0=1$, $a_1=0$ (repeated root!) using the companion matrix and its Jordan form.
+\end{exercise}
+
+\begin{exercise}
+Show that if $AB=BA$ then $e^{A+B}=e^Ae^B$; and compute $e^{A+B}$ and $e^Ae^B$ for the non-commuting pair in the text to see that they differ.
+\end{exercise}

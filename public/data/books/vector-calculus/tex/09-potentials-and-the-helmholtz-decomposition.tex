@@ -1,0 +1,225 @@
+\chapter{Potentials and the Helmholtz Decomposition}
+\label{ch:helmholtz}
+
+Divergence and curl measure two different local features of a field: sources and swirls. A natural question: \emph{do the divergence and the curl together determine the field?} The Helmholtz theorem answers yes, under mild decay conditions, and gives an explicit formula. It also shows that every nice field splits into a ``gradient part'' (no swirl) and a ``curl part'' (no sources).
+
+%====================================================================
+\section{Scalar and vector potentials}
+%====================================================================
+
+We collect what we know about when potentials exist.
+
+\begin{theorem}[Existence of potentials on star-shaped regions]\label{thm:potentials}
+Let $U\subseteq\R^3$ be open and star-shaped, and $\vec F$ a $C^1$ vector field on $U$.
+\begin{enumerate}[label=(\alph*)]
+  \item If $\curl\vec F=\vec0$, there is a function $f$ with $\vec F=\nabla f$. (\emph{Scalar potential.})
+  \item If $\divg\vec F=0$, there is a field $\vec A$ with $\vec F=\curl\vec A$. (\emph{Vector potential.})
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+This is the Poincar\'e lemma, Theorem~\ref{thm:poincare}, proved in Chapter~\ref{ch:fields}. Recall the explicit formulas for a region star-shaped with respect to the origin: $f(\vec x)=\int_0^1\vec F(t\vec x)\cdot\vec x\,\dd t$ and $\vec A(\vec x)=\int_0^1t\,\vec F(t\vec x)\times\vec x\,\dd t$.
+\end{proof}
+
+Potentials are not unique. If $\vec F=\nabla f$ then also $\vec F=\nabla(f+c)$ for a constant $c$. If $\vec F=\curl\vec A$ then also $\vec F=\curl(\vec A+\nabla\lambda)$ for any scalar function $\lambda$, because $\curl\nabla\lambda=\vec0$. Changing $\vec A$ in this way is called a \emph{gauge transformation}.
+
+\begin{proposition}[Coulomb gauge]\label{prop:coulombgauge}
+If $\vec F=\curl\vec A$ with $\vec A$ of class $C^2$ and $\lambda$ solves $\lap\lambda=-\divg\vec A$, then $\vec A'=\vec A+\nabla\lambda$ satisfies $\curl\vec A'=\vec F$ and $\divg\vec A'=0$.
+\end{proposition}
+
+\begin{proof}
+$\curl\vec A'=\curl\vec A=\vec F$ and $\divg\vec A'=\divg\vec A+\lap\lambda=0$. (The equation for $\lambda$ is a Poisson equation, solvable by Theorem~\ref{thm:poisson} for decaying data.)
+\end{proof}
+
+%====================================================================
+\section{The Helmholtz theorem}
+%====================================================================
+
+We say that a field $\vec F$ \emph{decays fast enough} if $\vec F$ is $C^2$, and $\vec F$ and its first derivatives are bounded by $C(1+\norm{\vec x})^{-2-\varepsilon}$ for some $\varepsilon>0$. The decay is needed so that the integrals below converge and boundary terms at infinity vanish.
+
+\begin{theorem}[Helmholtz decomposition]\label{thm:helmholtz}
+Let $\vec F$ be a field on $\R^3$ that decays fast enough. Then
+\[
+\vec F=-\nabla\phi+\curl\vec A,
+\]
+where
+\[
+\phi(\vec x)=\frac1{4\pi}\iiint\frac{\divg\vec F(\vec y)}{\norm{\vec x-\vec y}}\,\dd V_{\vec y},\qquad\vec A(\vec x)=\frac1{4\pi}\iiint\frac{\curl\vec F(\vec y)}{\norm{\vec x-\vec y}}\,\dd V_{\vec y}.
+\]
+Moreover, $\curl(\nabla\phi)=\vec0$ and $\divg(\curl\vec A)=0$: the first part is irrotational, the second is solenoidal.
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: write $\vec F$ as a Laplacian.} Define
+\[
+\vec W(\vec x)=\frac1{4\pi}\iiint\frac{\vec F(\vec y)}{\norm{\vec x-\vec y}}\,\dd V_{\vec y}.
+\]
+The integral converges since $\abs{\vec F}\le C(1+r)^{-2-\varepsilon}$. By Theorem~\ref{thm:poisson} (applied to each component), $\lap\vec W=-\vec F$.
+
+\emph{Step 2: the vector identity.} By Theorem~\ref{thm:identities}, $\lap\vec W=\nabla(\divg\vec W)-\curl\curl\vec W$. Hence
+\[
+\vec F=-\lap\vec W=-\nabla(\divg\vec W)+\curl(\curl\vec W).
+\]
+So the decomposition holds with $\phi=\divg\vec W$ and $\vec A=\curl\vec W$. It remains to compute these.
+
+\emph{Step 3: $\divg\vec W=\phi$.} Put $R=\norm{\vec x-\vec y}$. Differentiating under the integral sign, $\divg\vec W=\frac1{4\pi}\iiint\vec F(\vec y)\cdot\nabla_{\vec x}\frac1R\,\dd V_{\vec y}$. Since $\nabla_{\vec x}\frac1R=-\nabla_{\vec y}\frac1R$,
+\[
+\divg\vec W=-\frac1{4\pi}\iiint\vec F(\vec y)\cdot\nabla_{\vec y}\frac1R\,\dd V_{\vec y}=\frac1{4\pi}\iiint\frac{\divg\vec F(\vec y)}R\,\dd V_{\vec y}-\frac1{4\pi}\iiint\divg_{\vec y}\Bigl(\frac{\vec F(\vec y)}R\Bigr)\dd V_{\vec y},
+\]
+using $\divg(f\vec F)=\nabla f\cdot\vec F+f\divg\vec F$. The last integral is, by the divergence theorem over a large ball $B_\rho$, equal to the flux of $\vec F/R$ through the sphere of radius $\rho$, which is at most $\frac{C\rho^{-2-\varepsilon}}{\rho-\norm{\vec x}}\cdot4\pi\rho^2\to0$ as $\rho\to\infty$. So $\divg\vec W=\phi$.
+
+\emph{Step 4: $\curl\vec W=\vec A$.} In the same way, $\curl\vec W=\frac1{4\pi}\iiint\nabla_{\vec x}\frac1R\times\vec F(\vec y)\,\dd V_{\vec y}=-\frac1{4\pi}\iiint\nabla_{\vec y}\frac1R\times\vec F\,\dd V_{\vec y}$. With $\curl(f\vec F)=\nabla f\times\vec F+f\curl\vec F$,
+\[
+\curl\vec W=\frac1{4\pi}\iiint\frac{\curl\vec F}R\,\dd V_{\vec y}-\frac1{4\pi}\iiint\curl_{\vec y}\Bigl(\frac{\vec F}R\Bigr)\dd V_{\vec y},
+\]
+and the last integral is a surface integral $\oiint\hat{\vec n}\times(\vec F/R)\,\dd S$ (Theorem~\ref{thm:gradint}) that tends to $0$ for the same reason. So $\curl\vec W=\vec A$.
+
+Finally, $\curl\nabla\phi=\vec0$ and $\divg\curl\vec A=0$ are the identities of Theorem~\ref{thm:identities}.
+\end{proof}
+
+\begin{intuition}
+Every field is the sum of a pure ``source'' part and a pure ``swirl'' part. The scalar $\phi$ is the potential generated by the \emph{divergence} treated as a charge density; the vector $\vec A$ is the potential generated by the \emph{curl} treated as a current. The formula is just Coulomb's law for fictitious charges $\divg\vec F$ and fictitious currents $\curl\vec F$.
+\end{intuition}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \def\fieldplot#1#2#3{ % unused placeholder
+  }
+  % panel 1: F = (x-y, x+y)
+  \foreach \panel/\xs in {1/0,2/4.6,3/9.2}{
+    \begin{scope}[xshift=\xs cm]
+      \foreach \x in {-1.2,-0.6,0,0.6,1.2}{\foreach \y in {-1.2,-0.6,0,0.6,1.2}{
+        \ifnum\panel=1
+          \pgfmathsetmacro{\fx}{(\x-\y)*0.28}\pgfmathsetmacro{\fy}{(\x+\y)*0.28}
+        \fi
+        \ifnum\panel=2
+          \pgfmathsetmacro{\fx}{\x*0.28}\pgfmathsetmacro{\fy}{\y*0.28}
+        \fi
+        \ifnum\panel=3
+          \pgfmathsetmacro{\fx}{-\y*0.28}\pgfmathsetmacro{\fy}{\x*0.28}
+        \fi
+        \draw[-{Stealth[length=1.4mm]},accent!80!black] (\x,\y)--++(\fx,\fy);
+      }}
+      \node[pt] at (0,0) {};
+    \end{scope}
+  }
+  \node[font=\large] at (2.3,0) {$=$};
+  \node[font=\large] at (6.9,0) {$+$};
+  \node[font=\small,align=center] at (0,-2.0) {$\vec F=(x-y,\,x+y)$};
+  \node[font=\small,align=center] at (4.6,-2.0) {$-\nabla\phi=(x,y)$\\{\scriptsize curl $=0$, div $=2$}};
+  \node[font=\small,align=center] at (9.2,-2.0) {$\curl\vec A=(-y,x)$\\{\scriptsize div $=0$, curl $=2$}};
+\end{tikzpicture}
+\caption{Helmholtz decomposition of a simple field. The expanding part (sources, no swirl) and the rotating part (swirl, no sources) add up to the spiral field $\vec F$. Here $\phi=-\tfrac12r^2$ and $\vec A=-\tfrac12 r^2\khat$ (up to a gauge).}
+\label{fig:helmexample}
+\end{figure}
+
+\begin{remark}
+The field in Figure~\ref{fig:helmexample} does not decay at infinity, so Theorem~\ref{thm:helmholtz} does not apply to it literally; but the algebra of the decomposition still holds, because both pieces are explicit. For fields on bounded regions one adds a third, \emph{harmonic} part (both curl-free and divergence-free) determined by the boundary conditions.
+\end{remark}
+
+%====================================================================
+\section{Uniqueness}
+%====================================================================
+
+\begin{theorem}[Uniqueness]\label{thm:helmuniq}
+Let $\vec F_1,\vec F_2$ be fields on $\R^3$ that are $C^1$, with $\divg\vec F_1=\divg\vec F_2$, $\curl\vec F_1=\curl\vec F_2$ everywhere, and both tending to $\vec0$ at infinity. Then $\vec F_1=\vec F_2$.
+\end{theorem}
+
+\begin{proof}
+Let $\vec G=\vec F_1-\vec F_2$. Then $\divg\vec G=0$, $\curl\vec G=\vec0$, and $\vec G\to\vec0$ at infinity. Since $\curl\vec G=\vec0$ on $\R^3$ (star-shaped), $\vec G=\nabla h$ by Theorem~\ref{thm:potentials}. Then $\lap h=\divg\vec G=0$, so every component $G_i=\partial_ih$ is harmonic ($\lap\partial_ih=\partial_i\lap h=0$ since $h$ is smooth enough; $h$ is $C^2$ and harmonic functions are $C^\infty$; we assume this standard fact). Each $G_i$ is a bounded harmonic function on $\R^3$ tending to $0$ at infinity. By the maximum principle on a ball $B_\rho$, $\abs{G_i(\vec x)}\le\max_{\partial B_\rho}\abs{G_i}\to0$ as $\rho\to\infty$. Thus $G_i\equiv0$.
+\end{proof}
+
+\begin{theorem}[Uniqueness on a bounded region]\label{thm:helmbounded}
+Let $E$ be a bounded simply connected region with connected boundary. A $C^1$ field $\vec F$ on $\overline E$ is determined by $\divg\vec F$, $\curl\vec F$ in $E$, and the normal component $\vec F\cdot\hat{\vec n}$ on $\partial E$.
+\end{theorem}
+
+\begin{proof}
+Let $\vec G$ be the difference of two such fields. Then $\divg\vec G=0$, $\curl\vec G=\vec0$, $\vec G\cdot\hat{\vec n}=0$. As $E$ is simply connected, $\vec G=\nabla h$ (Theorem~\ref{thm:consequences}(a) and Theorem~\ref{thm:pathind}) with $\lap h=0$, $\partial_nh=0$. By Corollary~\ref{cor:uniq}, $h$ is constant, so $\vec G=\nabla h=\vec0$.
+\end{proof}
+
+\begin{pitfall}
+Without the boundary condition (or decay), uniqueness fails. For instance, $\vec G=\nabla x=\ihat$ and $\vec G=\vec0$ both have zero divergence and zero curl on $\R^3$. Likewise the field $\vec G=(-y,x)/(x^2+y^2)$ has zero divergence and curl on the punctured plane but is not zero, because the domain has a hole. Topology and boundary behaviour are part of the data.
+\end{pitfall}
+
+%====================================================================
+\section{Applications}
+%====================================================================
+
+\subsection{Electrostatics and magnetostatics}
+
+For static fields, Maxwell's equations decouple:
+\[
+\divg\vec E=\rho/\varepsilon_0,\ \curl\vec E=\vec0\qquad\text{and}\qquad\divg\vec B=0,\ \curl\vec B=\mu_0\vec J .
+\]
+By Helmholtz, $\vec E=-\nabla\phi$ with $\phi=\frac1{4\pi\varepsilon_0}\iiint\frac{\rho(\vec y)}{\norm{\vec x-\vec y}}\dd V$ (Coulomb's law), and $\vec B=\curl\vec A$ with
+\[
+\vec A(\vec x)=\frac{\mu_0}{4\pi}\iiint\frac{\vec J(\vec y)}{\norm{\vec x-\vec y}}\,\dd V_{\vec y}.
+\]
+
+\begin{theorem}[Biot--Savart law]\label{thm:biotsavart}
+For a steady current density $\vec J$,
+\[
+\vec B(\vec x)=\frac{\mu_0}{4\pi}\iiint\vec J(\vec y)\times\frac{\vec x-\vec y}{\norm{\vec x-\vec y}^3}\,\dd V_{\vec y}.
+\]
+\end{theorem}
+
+\begin{proof}
+$\vec B=\curl\vec A=\frac{\mu_0}{4\pi}\iiint\nabla_{\vec x}\frac1R\times\vec J(\vec y)\,\dd V$ (as $\vec J(\vec y)$ does not depend on $\vec x$, $\curl(f\vec J)=\nabla f\times\vec J$). Since $\nabla_{\vec x}\frac1R=-\frac{\vec x-\vec y}{R^3}$, $\nabla\frac1R\times\vec J=-\frac{\vec x-\vec y}{R^3}\times\vec J=\vec J\times\frac{\vec x-\vec y}{R^3}$.
+\end{proof}
+
+For a thin wire carrying current $I$, $\vec J\,\dd V\to I\,\dd\vec\ell$ and the law becomes $\vec B=\frac{\mu_0I}{4\pi}\oint\dd\vec\ell\times\dfrac{\vec x-\vec y}{\norm{\vec x-\vec y}^3}$.
+
+\begin{example}[Field of a long straight wire]
+Amp\`ere's law (Stokes' theorem applied to $\curl\vec B=\mu_0\vec J$): $\oint_C\vec B\cdot\dd\vec r=\mu_0I_{\text{enc}}$. For a circle of radius $r$ around an infinite straight wire along the $z$-axis, symmetry gives $\vec B=B(r)\ehat_\theta$, so $2\pi rB=\mu_0I$ and $\vec B=\dfrac{\mu_0I}{2\pi r}\ehat_\theta$. This is the vortex field $\vec G=\frac1r\ehat_\theta$ times $\frac{\mu_0I}{2\pi}$! It is curl-free outside the wire but not conservative; the circulation $\mu_0I$ is exactly the winding-number phenomenon of Theorem~\ref{thm:winding}.
+\end{example}
+
+\subsection{Time-dependent fields and gauges}
+
+Since $\divg\vec B=0$ always, we can write $\vec B=\curl\vec A$. Faraday's law then reads $\curl(\vec E+\partial_t\vec A)=\vec0$, so $\vec E+\partial_t\vec A=-\nabla\phi$:
+\[
+\vec E=-\nabla\phi-\pd{\vec A}t,\qquad\vec B=\curl\vec A .
+\]
+These two homogeneous equations are then \emph{automatically} satisfied. The choice of $(\phi,\vec A)$ is not unique: $\vec A\to\vec A+\nabla\lambda$, $\phi\to\phi-\partial_t\lambda$ leaves $\vec E,\vec B$ unchanged. Thus the physical fields are gauge invariant, while the potentials are not.
+
+\subsection{Fluid flow}
+
+The velocity field of a fluid splits as $\vec v=\nabla\psi+\curl\vec A$. The first part is the \emph{potential flow} (irrotational: no spinning of fluid particles); the second is the \emph{solenoidal flow} (incompressible: no sources). Vorticity $\vec\omega=\curl\vec v$ is the source of the second part: it generates $\vec v$ via a Biot--Savart law, exactly like current generates $\vec B$. This analogy is used to compute the flow induced by vortex rings and tornadoes.
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item On star-shaped regions: $\curl\vec F=0\Rightarrow\vec F=\nabla f$; $\divg\vec F=0\Rightarrow\vec F=\curl\vec A$. Potentials are unique only up to a constant (scalar) or a gradient (vector, ``gauge'').
+  \item \textbf{Helmholtz:} a decaying $\vec F$ equals $-\nabla\phi+\curl\vec A$ with $\phi=\frac1{4\pi}\iiint\frac{\divg\vec F}R$, $\vec A=\frac1{4\pi}\iiint\frac{\curl\vec F}R$. Proof: $\vec F=-\lap\vec W$ and $\lap=\nabla\divg-\curl\curl$.
+  \item A decaying field is determined by its divergence and curl; on bounded regions one also needs boundary data, and topology matters.
+  \item Static Maxwell: Coulomb's law and the Biot--Savart law are the Helmholtz formulas with the Poisson kernel $1/(4\pi R)$.
+  \item $\vec E=-\nabla\phi-\partial_t\vec A$, $\vec B=\curl\vec A$; gauge freedom.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{State the Helmholtz theorem.} A decaying field is the sum of a gradient and a curl; explicit formulas via Newtonian potentials of $\divg\vec F$ and $\curl\vec F$.
+  \item \emph{Why is $\vec A$ not unique?} $\curl\nabla\lambda=0$ (gauge freedom). Fix it by $\divg\vec A=0$.
+  \item \emph{When does $\divg\vec F=0$ imply $\vec F=\curl\vec A$?} On star-shaped regions. On the punctured space it fails: $\vec r/r^3$ has zero divergence but flux $4\pi$ through a sphere, while the flux of a curl through a closed surface is $0$.
+  \item \emph{Do divergence and curl determine a field?} Yes with decay at infinity; no otherwise ($\ihat$, constant fields).
+  \item \emph{Derive the Biot--Savart law from $\curl\vec B=\mu_0\vec J$, $\divg\vec B=0$.}
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Decompose $\vec F=(x+z,\ y,\ -z+x)$ into a gradient and a curl on $\R^3$. (Hint: compute $\divg$ and $\curl$, find $\phi$ with $\lap\phi=-\divg\vec F$ by trial.)
+\end{exercise}
+\begin{exercise}
+Show that $\vec r/r^3$ has no vector potential on $\R^3\setminus\{\vec0\}$. (Hint: flux through the unit sphere and Theorem~\ref{thm:consequences}(b).)
+\end{exercise}
+\begin{exercise}
+Find a vector potential for the uniform field $\vec B=B_0\khat$ in Coulomb gauge. (Answer: $\vec A=\frac{B_0}2(-y,x,0)$.)
+\end{exercise}
+\begin{exercise}
+Show that the potential $\phi$ in Theorem~\ref{thm:helmholtz} satisfies $\lap\phi=-\divg\vec F$ and $\vec A$ satisfies $\lap\vec A=-\curl\vec F$.
+\end{exercise}
+\begin{exercise}
+Compute the magnetic field on the axis of a circular loop of radius $a$ carrying current $I$, at height $z$ above the centre, using the Biot--Savart law. (Answer: $B_z=\dfrac{\mu_0Ia^2}{2(a^2+z^2)^{3/2}}$.)
+\end{exercise}

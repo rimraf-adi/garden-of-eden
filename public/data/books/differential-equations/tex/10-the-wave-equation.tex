@@ -1,0 +1,89 @@
+\chapter{The Wave Equation}
+
+\section{The vibrating string}
+
+A string of length $L$ is fixed at both ends. Let $u(x,t)$ be its displacement. For small vibrations:
+\begin{align*}
+\text{PDE:}\quad & u_{tt} = c^2u_{xx}, \qquad 0<x<L,\ t>0,\qquad c = \sqrt{T/\rho},\\
+\text{BC:}\quad & u(0,t) = 0,\quad u(L,t)=0,\\
+\text{IC:}\quad & u(x,0) = f(x)\ \text{(initial shape)},\quad u_t(x,0) = g(x)\ \text{(initial velocity)}.
+\end{align*}
+
+\begin{methodbox}{Solving the wave equation on $0<x<L$}
+\begin{enumerate}
+  \item Put $u=X(x)T(t)$. Get $X''+\lambda X=0$ and $T'' + c^2\lambda T = 0$.
+  \item BCs $X(0)=X(L)=0$ give (Chapter 6) $\lambda_n = (n\pi/L)^2$ and $X_n = \sin\dfrac{n\pi x}{L}$.
+  \item With $\omega_n = \dfrac{n\pi c}{L}$, the time equation $T''+\omega_n^2T=0$ gives $T_n = B_n\cos\omega_nt + B_n^*\sin\omega_nt$.
+  \item Superpose:
+  \[ u(x,t) = \sum_{n=1}^{\infty}\big(B_n\cos\omega_nt + B_n^*\sin\omega_nt\big)\sin\frac{n\pi x}{L}. \]
+  \item Use the initial conditions. At $t=0$: $u = \sum B_n\sin\frac{n\pi x}{L} = f(x)$, and $u_t = \sum B_n^*\omega_n\sin\frac{n\pi x}{L} = g(x)$. These are half-range sine series, so
+  \[ B_n = \frac2L\int_0^L f(x)\sin\frac{n\pi x}{L}\,\dd x, \qquad B_n^* = \frac{2}{n\pi c}\int_0^L g(x)\sin\frac{n\pi x}{L}\,\dd x. \]
+\end{enumerate}
+\end{methodbox}
+
+Each term $\sin\frac{n\pi x}{L}\cos\omega_nt$ is a \textbf{normal mode}. The lowest mode ($n=1$) is the \textbf{fundamental}, with frequency $f_1 = \dfrac{c}{2L}$ Hz. The others (harmonics) have frequencies $nf_1$. This is why a shorter or tighter string gives a higher note.
+
+\begin{derivbox}{Normal modes and frequencies}
+The mode $n$ has time equation $T'' + c^2\lambda_nT = 0$ with $\lambda_n = (n\pi/L)^2$, so $T'' + \omega_n^2T = 0$ with $\omega_n = c\sqrt{\lambda_n} = \dfrac{n\pi c}{L}$. The solution $T = B\cos\omega_nt + B^*\sin\omega_nt$ oscillates with frequency
+\[ f_n = \frac{\omega_n}{2\pi} = \frac{nc}{2L}\ \text{Hz}, \qquad\text{so } f_1 = \frac{c}{2L}\text{ and } f_n = nf_1. \]
+The shape $\sin\frac{n\pi x}{L}$ has $n$ half-waves on the string, so its wavelength is $2L/n$. With $c = \sqrt{T/\rho}$ we see why the pitch rises when the string is shorter or tighter.
+\end{derivbox}
+
+\begin{examplebox}{String released from rest}
+$L=\pi$, $c=1$, $f(x) = x(\pi - x)$, $g = 0$. Then $B_n^*=0$ and
+\[ B_n = \frac2\pi\int_0^\pi x(\pi-x)\sin nx\,\dd x. \]
+Integrate by parts twice: $\displaystyle\int_0^\pi x(\pi-x)\sin nx\,\dd x = \frac{2\big(1-(-1)^n\big)}{n^3}$. So $B_n = \dfrac{4(1-(-1)^n)}{\pi n^3}$, which is $\dfrac{8}{\pi n^3}$ for odd $n$ and $0$ for even $n$.
+\[ u(x,t) = \frac8\pi\sum_{n\ \text{odd}}\frac{\sin nx\cos nt}{n^3}. \]
+The terms fall as $1/n^3$, so only the first few modes matter. \textit{Check at $t=0$, $x=\pi/2$:} $\frac8\pi\big(1 - \frac1{27} + \frac1{125} - \cdots\big)\approx 2.467$, and $f(\pi/2) = \pi^2/4 = 2.467$. \checkmark
+\end{examplebox}
+
+\begin{examplebox}{String struck at rest}
+$L=\pi$, $c=1$, $f=0$, $g(x) = \sin 2x$. All $B_n=0$. $B_n^* = \dfrac{2}{n\pi}\displaystyle\int_0^\pi\sin 2x\sin nx\,\dd x$. By orthogonality this is zero unless $n=2$, and for $n=2$ it equals $\dfrac{2}{2\pi}\cdot\dfrac\pi2 = \dfrac12$. So
+\[ u(x,t) = \tfrac12\sin 2x\,\sin 2t. \]
+\textit{Check:} $u_t(x,0) = \sin 2x$. \checkmark
+\end{examplebox}
+
+\section{D'Alembert's solution (infinite string)}
+
+For a very long string, with no ends, we do not need Fourier series.
+
+\begin{defbox}{D'Alembert's formula}
+For $u_{tt} = c^2u_{xx}$ on $-\infty<x<\infty$ with $u(x,0)=f(x)$ and $u_t(x,0)=g(x)$:
+\[ u(x,t) = \frac12\big[f(x-ct) + f(x+ct)\big] + \frac{1}{2c}\int_{x-ct}^{x+ct}g(s)\,\dd s. \]
+\end{defbox}
+
+\begin{derivbox}{D'Alembert's formula}
+\textbf{Step 1: new variables.} Let $\xi = x - ct$ and $\eta = x + ct$, and write $u(x,t) = U(\xi,\eta)$. By the chain rule, $\xi_x = \eta_x = 1$, $\xi_t = -c$, $\eta_t = c$:
+\[ u_x = U_\xi + U_\eta,\qquad u_t = -cU_\xi + cU_\eta. \]
+Apply the same rules again:
+\[ u_{xx} = U_{\xi\xi} + 2U_{\xi\eta} + U_{\eta\eta},\qquad u_{tt} = c^2\big(U_{\xi\xi} - 2U_{\xi\eta} + U_{\eta\eta}\big). \]
+So $u_{tt} - c^2u_{xx} = -4c^2U_{\xi\eta}$, and the wave equation becomes $U_{\xi\eta} = 0$.
+
+\textbf{Step 2: solve.} $U_{\xi\eta} = 0$ means $U_\xi$ does not depend on $\eta$, so $U_\xi = \varphi'(\xi)$ and $U = \varphi(\xi) + \psi(\eta)$. Therefore
+\[ u(x,t) = \varphi(x - ct) + \psi(x + ct). \]
+
+\textbf{Step 3: initial conditions.} At $t=0$: $\varphi(x) + \psi(x) = f(x)$ and $u_t(x,0) = -c\varphi'(x) + c\psi'(x) = g(x)$. Integrate the second one: $\psi(x) - \varphi(x) = \frac1c\int_{x_0}^xg(s)\,\dd s + K$. Solving the two equations,
+\[ \varphi(x) = \frac12f(x) - \frac1{2c}\int_{x_0}^xg\,\dd s - \frac K2,\qquad \psi(x) = \frac12f(x) + \frac1{2c}\int_{x_0}^xg\,\dd s + \frac K2. \]
+Put $x - ct$ into $\varphi$ and $x+ct$ into $\psi$ and add. The constants $K$ and $x_0$ cancel, and we get
+\[ u(x,t) = \frac12\big[f(x-ct) + f(x+ct)\big] + \frac1{2c}\int_{x-ct}^{x+ct}g(s)\,\dd s. \]
+\end{derivbox}
+
+\textbf{Meaning.} The term $f(x-ct)$ is the shape $f$ moving to the right with speed $c$. The term $f(x+ct)$ moves to the left. An initial bump with zero velocity splits into two bumps of half the height that travel apart. In general every solution has the form $\varphi(x-ct) + \psi(x+ct)$.
+
+\begin{examplebox}{D'Alembert check}
+$f(x)=\sin x$, $g=0$: $u = \tfrac12[\sin(x-ct) + \sin(x+ct)] = \sin x\cos ct$. This is the standing wave from Chapter 9, problem 5. \checkmark
+\end{examplebox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item A string with $L=\pi$, $c=1$ starts with $u(x,0) = \sin x - 3\sin 2x$ and $u_t(x,0)=0$. Find $u(x,t)$.
+  \item A string with $L=\pi$, $c=2$ has $f=0$ and $g(x) = \sin x$. Find $u(x,t)$.
+  \item Find the fundamental frequency of a string with $L=0.65$ m and wave speed $c=300$ m/s.
+  \item Use d'Alembert's formula with $f(x) = \sin x$, $g=0$.
+  \item For $L = \pi$, $c=1$, $g=0$, $f(x)=x(\pi - x)$, write the first two non-zero terms of $u(x,t)$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $B_1=1$, $B_2=-3$: $u = \sin x\cos t - 3\sin 2x\cos 2t$. \quad (2) $\omega_1 = \pi c/L = 2$, $B_1^* = \dfrac{2}{\pi\cdot 2}\displaystyle\int_0^\pi\sin^2x\,\dd x = \dfrac12$: $u = \tfrac12\sin x\sin 2t$. \quad (3) $f_1 = c/(2L) = 300/1.3 \approx 231$ Hz. \quad (4) $u = \sin x\cos ct$. \quad (5) $u\approx\dfrac8\pi\Big(\sin x\cos t + \dfrac{\sin 3x\cos 3t}{27}\Big)$.
+\end{answerbox}

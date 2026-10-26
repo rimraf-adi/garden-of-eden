@@ -1,0 +1,251 @@
+\chapter{Bridges: Statistics and Information Theory}
+\label{ch:bridges}
+
+Probability theory is the foundation of two large neighbouring fields. Statistics runs the
+logic backwards: given data, infer the law. Information theory measures uncertainty and
+compresses it. This chapter derives the core concepts from the tools already developed.
+
+\section{Estimation}
+
+Let $X_1,\dots,X_n$ be i.i.d.\ from a law $P_\theta$ with unknown parameter $\theta$. An
+\emph{estimator} is a function $\hat\theta=T(X_1,\dots,X_n)$, itself a random variable.
+
+\begin{definition}
+The \emph{bias} is $\Exp_\theta\hat\theta-\theta$; the \emph{mean squared error} is
+$\mathrm{MSE}=\Exp(\hat\theta-\theta)^2=\Var\hat\theta+\mathrm{bias}^2$ (the bias--variance
+decomposition: add and subtract $\Exp\hat\theta$). The estimator is \emph{consistent} if
+$\hat\theta_n\xrightarrow{P}\theta$.
+\end{definition}
+
+\begin{example}[Sample variance]
+Let $S^2=\frac1{n-1}\sum(X_i-\bar X)^2$. Since $\sum(X_i-\bar X)^2=\sum(X_i-\mu)^2-n(\bar X-\mu)^2$,
+\[
+\Exp\sum(X_i-\bar X)^2=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2 ,
+\]
+so $S^2$ is unbiased, while dividing by $n$ is biased downward by the factor $\frac{n-1}n$.
+(For normal data, though, dividing by $n+1$ minimises the MSE: unbiasedness is not sacred.)
+\end{example}
+
+\subsection{Maximum likelihood}
+
+The \emph{likelihood} is $L(\theta)=\prod_if(X_i;\theta)$ and the \emph{MLE} maximises
+$\ell(\theta)=\sum\ln f(X_i;\theta)$.
+
+\begin{example}
+\emph{Bernoulli($p$)}: $\ell=S\ln p+(n-S)\ln(1-p)$, $\ell'=S/p-(n-S)/(1-p)=0\Rightarrow\hat p=S/n$.
+\emph{Normal}: $\ell=-\frac n2\ln\sigma^2-\frac1{2\sigma^2}\sum(X_i-\mu)^2+c$, giving $\hat\mu=\bar X$ and
+$\hat\sigma^2=\frac1n\sum(X_i-\bar X)^2$. \emph{Uniform$(0,\theta)$}: $L=\theta^{-n}\indic_{\theta\ge\max X_i}$, so
+$\hat\theta=\max X_i$ (not found by differentiation; it is biased: $\Exp\max=\frac n{n+1}\theta$).
+\end{example}
+
+\begin{definition}[Fisher information and score]
+For a regular model, the \emph{score} is $s(\theta;x)=\partial_\theta\ln f(x;\theta)$ and the Fisher
+information is $I(\theta)=\Var_\theta(s)=\Exp_\theta[s^2]$.
+\end{definition}
+
+\begin{proposition}\label{prop:score}
+Under regularity (differentiation under the integral allowed), $\Exp_\theta[s]=0$ and
+$I(\theta)=-\Exp_\theta[\partial_\theta^2\ln f]$.
+\end{proposition}
+\begin{proof}
+$\Exp[s]=\int\frac{\partial_\theta f}{f}f\,dx=\partial_\theta\int f\,dx=\partial_\theta1=0$. Differentiating
+$\int s\,f\,dx=0$ gives $\int(\partial_\theta s)f+\int s\,\partial_\theta f=0$, and
+$\partial_\theta f=sf$, so $\Exp[\partial_\theta s]+\Exp[s^2]=0$.
+\end{proof}
+
+\begin{theorem}[Cram\'er--Rao bound]\label{thm:cramerrao}
+For an unbiased estimator $\hat\theta$ based on $n$ i.i.d.\ observations,
+$\Var(\hat\theta)\ge\dfrac1{nI(\theta)}$.
+\end{theorem}
+\begin{proof}
+Let $s_n=\sum_is(\theta;X_i)$, with mean $0$ and variance $nI$. Unbiasedness
+$\Exp\hat\theta=\theta$ differentiated in $\theta$ gives
+$1=\int\hat\theta\,\partial_\theta\prod f=\Exp[\hat\theta s_n]=\Cov(\hat\theta,s_n)$.
+By Cauchy--Schwarz, $1\le\Var(\hat\theta)\Var(s_n)=\Var(\hat\theta)\,nI$.
+\end{proof}
+
+\begin{theorem}[Asymptotic normality of the MLE (sketch)]
+Under regularity, $\sqrt n(\hat\theta_n-\theta)\xrightarrow{d}N\bigl(0,1/I(\theta)\bigr)$.
+\end{theorem}
+\begin{proof}[Derivation]
+Expand the score equation $0=\ell'(\hat\theta)\approx\ell'(\theta)+(\hat\theta-\theta)\ell''(\theta)$, so
+$\sqrt n(\hat\theta-\theta)\approx\dfrac{n^{-1/2}\ell'(\theta)}{-n^{-1}\ell''(\theta)}$. The numerator is
+$n^{-1/2}\sum s(\theta;X_i)\xrightarrow{d}N(0,I)$ (CLT; scores have mean $0$, variance $I$). The denominator
+converges to $I(\theta)$ (LLN and Proposition~\ref{prop:score}). Slutsky gives $N(0,I)/I=N(0,1/I)$. Making the
+Taylor remainder rigorous uses consistency of $\hat\theta$ and a bound on $\ell'''$ (cited).
+\end{proof}
+
+So the MLE asymptotically attains the Cram\'er--Rao bound: it is \emph{efficient}.
+
+\section{Sufficiency}
+
+A statistic $T(X)$ is \emph{sufficient} for $\theta$ if the conditional law of the data given $T$
+does not depend on $\theta$: it contains all information about $\theta$.
+
+\begin{theorem}[Fisher--Neyman factorisation]
+$T$ is sufficient iff $f(x;\theta)=g(T(x);\theta)\,h(x)$ for some $g,h$.
+\end{theorem}
+\begin{proof}[Proof (discrete case)]
+($\Leftarrow$) $\Prob_\theta(X=x\given T=t)=\dfrac{g(t;\theta)h(x)}{\sum_{x':T(x')=t}g(t;\theta)h(x')}=\dfrac{h(x)}{\sum_{x':T(x')=t}h(x')}$,
+free of $\theta$. ($\Rightarrow$) Put $g(t;\theta)=\Prob_\theta(T=t)$ and $h(x)=\Prob(X=x\given T=T(x))$, which by
+hypothesis does not depend on $\theta$.
+\end{proof}
+
+\begin{example}
+For Bernoulli data, $f=p^S(1-p)^{n-S}$, so $S=\sum X_i$ is sufficient. For $N(\mu,1)$,
+$\prod\phi(x_i-\mu)\propto e^{\mu\sum x_i-n\mu^2/2}\cdot e^{-\sum x_i^2/2}$ and $\bar X$ is sufficient.
+\end{example}
+
+\begin{theorem}[Rao--Blackwell]
+If $\hat\theta$ is unbiased and $T$ sufficient, then $\tilde\theta=\Exp[\hat\theta\given T]$ is a genuine
+estimator (free of $\theta$), unbiased, with $\Var\tilde\theta\le\Var\hat\theta$.
+\end{theorem}
+\begin{proof}
+Sufficiency makes the conditional expectation free of $\theta$. The tower property gives
+unbiasedness, and the law of total variance gives
+$\Var\hat\theta=\Exp\Var(\hat\theta\given T)+\Var\tilde\theta\ge\Var\tilde\theta$.
+\end{proof}
+
+\section{Bayesian inference}
+
+In the Bayesian view $\theta$ itself is random with a \emph{prior} density $\pi(\theta)$. Bayes' formula
+(Chapter~\ref{ch:conditional}) gives the \emph{posterior}
+\[
+\pi(\theta\given x)=\frac{f(x\given\theta)\pi(\theta)}{\int f(x\given\theta')\pi(\theta')d\theta'}\propto\text{likelihood}\times\text{prior}.
+\]
+
+\begin{example}[Beta--Binomial conjugacy]
+With prior $\theta\sim\mathrm{Beta}(a,b)$ and $S\mid\theta\sim\mathrm{Bin}(n,\theta)$:
+\[
+\pi(\theta\given S)\propto\theta^{S}(1-\theta)^{n-S}\cdot\theta^{a-1}(1-\theta)^{b-1}=\theta^{a+S-1}(1-\theta)^{b+n-S-1},
+\]
+i.e.\ the posterior is $\mathrm{Beta}(a+S,\,b+n-S)$. The posterior mean is
+$\dfrac{a+S}{a+b+n}=\dfrac{a+b}{a+b+n}\cdot\dfrac a{a+b}+\dfrac n{a+b+n}\cdot\dfrac Sn$, a weighted average of prior mean and MLE;
+the data dominate as $n\to\infty$. Laplace's rule of succession is the case $a=b=1$: after $S$ successes in
+$n$ trials, $\Prob(\text{next success})=\frac{S+1}{n+2}$. (Compare the Polya urn, Chapter~\ref{ch:mart}.)
+\end{example}
+
+\begin{example}[Normal--normal]
+Prior $\mu\sim N(\mu_0,\tau^2)$, data $X_i\mid\mu\sim N(\mu,\sigma^2)$. Completing the square in the exponent
+$-\frac{(\mu-\mu_0)^2}{2\tau^2}-\frac{n(\bar x-\mu)^2}{2\sigma^2}$ yields posterior precision
+$\frac1{\tau^2}+\frac n{\sigma^2}$ and mean the precision-weighted average of $\mu_0$ and $\bar x$.
+\end{example}
+
+\begin{nuance}{frequentist and Bayesian answers meet}
+A $95\%$ confidence interval is a statement about the \emph{procedure} (it covers the true fixed
+$\theta$ in $95\%$ of repetitions), while a $95\%$ credible interval is a statement about the posterior
+probability of $\theta$ given the observed data. Bernstein--von Mises (cited) says that for large $n$,
+regular posteriors are approximately $N(\hat\theta,1/(nI))$, so the two intervals nearly agree.
+\end{nuance}
+
+\section{Entropy and information}
+
+\begin{definition}[Entropy]
+For a discrete random variable with PMF $p$, the \emph{entropy} is
+$H(X)=-\sum_xp(x)\log p(x)=\Exp[-\log p(X)]$ (base $2$: bits; base $e$: nats).
+\end{definition}
+
+Entropy is the average surprise $-\log p$ of an outcome. Properties: $H\ge0$ with equality iff $X$ is
+deterministic; $H(X)\le\log\abs{\mathcal X}$ with equality iff uniform.
+
+\begin{theorem}[Gibbs' inequality and KL divergence]\label{thm:gibbs}
+For PMFs $p,q$ on the same set, the Kullback--Leibler divergence
+\[
+D(p\Vert q)=\sum_xp(x)\log\frac{p(x)}{q(x)}\ \ge0,
+\]
+with equality iff $p=q$.
+\end{theorem}
+\begin{proof}
+By Jensen's inequality for the concave $\log$ (Chapter~\ref{ch:condexp}), restricting to $\{p>0\}$:
+$-D(p\Vert q)=\sum p\log\frac qp\le\log\sum p\frac qp=\log\sum_{p>0}q\le\log1=0$. Equality in Jensen
+requires $q/p$ constant on $\{p>0\}$, and $\sum q=1$ then forces $q=p$.
+\end{proof}
+
+\begin{corollary}
+$H(X)\le\log\abs{\mathcal X}$: take $q$ uniform, $0\le D(p\Vert u)=\log\abs{\mathcal X}-H(p)$.
+\end{corollary}
+
+\begin{definition}[Joint, conditional entropy; mutual information]
+$H(X,Y)=-\Exp\log p(X,Y)$, $H(Y\given X)=\Exp[-\log p(Y\given X)]=H(X,Y)-H(X)$ (the chain rule, from
+$p(x,y)=p(x)p(y\given x)$), and
+\[
+I(X;Y)=H(Y)-H(Y\given X)=D\bigl(p_{X,Y}\,\Vert\,p_Xp_Y\bigr)\ge0 .
+\]
+\end{definition}
+Mutual information is zero iff $X,Y$ are independent (by the equality case of Gibbs). Equivalently,
+$H(Y\given X)\le H(Y)$: \emph{conditioning on average reduces entropy}, although a particular
+observation can increase it.
+
+\begin{theorem}[Maximum entropy]
+Among densities on $\R$ with variance $\sigma^2$, the normal maximises differential entropy
+$h(f)=-\int f\ln f$, with $h=\tfrac12\ln(2\pi e\sigma^2)$. Among positive-support densities with mean
+$1/\lambda$, the exponential maximises it.
+\end{theorem}
+\begin{proof}
+Let $f$ have variance $\sigma^2$ (mean $0$ WLOG) and $\phi$ the $N(0,\sigma^2)$ density. Then
+$0\le D(f\Vert\phi)=\int f\ln f-\int f\ln\phi=-h(f)+\tfrac12\ln(2\pi\sigma^2)+\frac{\Exp_f X^2}{2\sigma^2}=
+-h(f)+\tfrac12\ln(2\pi e\sigma^2)$. The exponential case is analogous with
+$\ln\phi=\ln\lambda-\lambda x$.
+\end{proof}
+
+This is one more reason for the normal's ubiquity: the CLT adds many independent contributions and the
+sum tends to the maximum-entropy distribution allowed by the variance.
+
+\begin{theorem}[Source coding bound (Shannon)]
+Any uniquely decodable binary code for $X$ has expected length $\ge H(X)$ bits, and a prefix code exists with
+expected length $<H(X)+1$.
+\end{theorem}
+\begin{proof}
+\emph{Lower bound.} Code lengths $\ell_x$ satisfy Kraft's inequality $\sum_x2^{-\ell_x}\le1$ (cited; for prefix
+codes, count the leaves of a binary tree at depth $\max\ell$). Let $q(x)=2^{-\ell_x}/c$ with
+$c=\sum2^{-\ell_x}\le1$. Then
+$\Exp\ell-H(X)=\sum p\log\frac{p}{2^{-\ell}}=D(p\Vert q)-\log c\ge0$.
+\emph{Upper bound.} Choose $\ell_x=\lceil-\log_2p(x)\rceil$; Kraft holds since
+$\sum2^{-\ell_x}\le\sum p=1$, and $\ell_x<-\log_2p(x)+1$.
+\end{proof}
+
+\section{Heavy tails and copulas}
+
+\paragraph{Heavy tails.} A law is \emph{heavy-tailed} if its tail decays like a power law,
+$\Prob(X>x)\sim cx^{-\alpha}$. Then moments of order $\ge\alpha$ are infinite
+($\Exp X^k=\int kx^{k-1}\Prob(X>x)dx$), so for $\alpha\le2$ the CLT fails and sums are dominated by the
+\emph{single largest term} (the ``one big jump'' principle): for i.i.d.\ Pareto, $\Prob(S_n>x)\sim n\Prob(X>x)$.
+Contrast this with light tails, where large sums arise from many moderately large terms. Heavy tails invalidate
+sample means, variances and many standard risk measures.
+
+\paragraph{Copulas.} A copula separates the marginals from the dependence structure.
+
+\begin{theorem}[Sklar]
+Every joint CDF satisfies $F(x,y)=C(F_X(x),F_Y(y))$ for a copula $C$ (the joint CDF of uniform marginals),
+unique when the marginals are continuous.
+\end{theorem}
+\begin{proof}[Idea]
+For continuous marginals, $U=F_X(X)$ and $V=F_Y(Y)$ are uniform (probability integral transform) and
+$C$ is the joint CDF of $(U,V)$: $F(x,y)=\Prob(U\le F_X(x),V\le F_Y(y))$. The general case adds
+randomisation at atoms (cited).
+\end{proof}
+
+\begin{pitfall}{correlation is not dependence}
+Pearson correlation measures only linear dependence and depends on the marginals. Two variables with the
+same copula but different marginals have different correlations. Rank-based measures (Spearman's
+$\rho$, Kendall's $\tau$) depend only on the copula. Gaussian copulas have no tail dependence,
+which was a notorious failure in credit-risk modelling: joint extreme events were underestimated.
+\end{pitfall}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Show that for Poisson($\lambda$) the Fisher information per observation is $1/\lambda$ and that
+$\bar X$ attains the Cram\'er--Rao bound.
+\item Find the MLE and its bias for the exponential rate $\lambda$ ($\hat\lambda=1/\bar X$).
+\item For Uniform$(0,\theta)$, find an unbiased estimator based on the maximum and compare its
+variance to $2\bar X$.
+\item Compute the entropy of Geometric$(p)$ and verify it is the maximum-entropy law on $\{1,2,\dots\}$ with
+fixed mean.
+\item Show that $I(X;Y)=H(X)+H(Y)-H(X,Y)$ and that $I(X;Y)=I(Y;X)$.
+\item Prove the data-processing inequality: if $X\to Y\to Z$ is a Markov chain then $I(X;Z)\le I(X;Y)$.
+\item Verify the Beta--Binomial posterior update is order independent: updating on two batches
+sequentially equals updating on the pooled data.
+\item Show that for i.i.d.\ Pareto($\alpha=1.5$) the sample variance does not converge.
+\end{enumerate}

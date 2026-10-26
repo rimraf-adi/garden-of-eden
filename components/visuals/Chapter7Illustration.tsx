@@ -14,8 +14,8 @@ export default function Chapter7Illustration() {
   const rawClusters = [
     // Cluster 1 (Top-Left, Indigo)
     {
-      color: '#6366f1',
-      glow: 'rgba(99, 102, 241, 0.25)',
+      color: '#d97706',
+      glow: 'rgba(217, 119, 6, 0.25)',
       trueCenter: { x: -0.55, y: 0.45 },
       pts: [
         { x: -0.65, y: 0.55 },
@@ -319,7 +319,7 @@ export default function Chapter7Illustration() {
         ctx.fillStyle = isDark ? '#94a3b8' : '#475569';
         ctx.fillText('Contour lines: 1σ and 2σ', hudX + 12, hudY + 86);
         ctx.fillText('Gaussian density mixture', hudX + 12, hudY + 104);
-        ctx.fillStyle = '#6366f1';
+        ctx.fillStyle = '#d97706';
         ctx.fillText('P(Gᵢ|xᵗ) soft assignments', hudX + 12, hudY + 126);
       } else {
         const stepName = currentStep === 1 ? '1. Reassign Voronoi cells' : '2. Update centers of mass';
@@ -357,13 +357,13 @@ export default function Chapter7Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
           <span className="flex h-3 w-3 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
           </span>
           <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
             Interactive Visual · Chapter 7: Clustering (k-Means & EM Mixtures)
@@ -376,7 +376,7 @@ export default function Chapter7Illustration() {
             onClick={() => setMode('kmeans-voronoi')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg transition ${
               mode === 'kmeans-voronoi'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >
@@ -398,7 +398,7 @@ export default function Chapter7Illustration() {
             onClick={() => setMode('iterations')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg transition ${
               mode === 'iterations'
-                ? 'bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >
@@ -452,7 +452,7 @@ export default function Chapter7Illustration() {
             </>
           )}
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-purple-500 font-semibold shrink-0">
+        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-amber-500 font-semibold shrink-0">
           <Sparkles className="h-3 w-3" />
           60 FPS Seamless Loop
         </span>

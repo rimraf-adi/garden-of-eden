@@ -44,7 +44,7 @@ export function MathDisplay({ math, tag, displayMode = true }: MathDisplayProps)
   }
 
   return (
-    <div className="my-6 flex items-center justify-between overflow-x-auto rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 px-6 py-4 shadow-sm hover:border-indigo-300 dark:hover:border-indigo-700 transition">
+    <div className="my-6 flex items-center justify-between overflow-x-auto rounded-2xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-900/60 px-6 py-4 shadow-sm hover:border-amber-300 dark:hover:border-amber-700 transition">
       <div className="flex-1 overflow-x-auto py-1 text-center sm:text-left">
         <span
           dangerouslySetInnerHTML={{ __html: html }}
@@ -52,7 +52,7 @@ export function MathDisplay({ math, tag, displayMode = true }: MathDisplayProps)
         />
       </div>
       {tag && (
-        <span className="ml-4 font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900 px-2.5 py-1 rounded-lg shrink-0">
+        <span className="ml-4 font-mono text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 border border-amber-100 dark:border-amber-900 px-2.5 py-1 rounded-lg shrink-0">
           {tag}
         </span>
       )}

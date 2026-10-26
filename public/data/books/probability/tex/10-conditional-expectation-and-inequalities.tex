@@ -1,0 +1,411 @@
+\chapter{Conditional Expectation and Inequalities}
+\label{ch:condexp}
+
+Conditioning is the central operation of probability: it is how information
+changes our estimates. This chapter extends conditional probability to random
+variables, proves the tower property and the law of total variance, shows that
+conditional expectation is the best predictor in mean square, and develops the
+standard inequalities (Markov, Chebyshev, Jensen, Chernoff, Hoeffding) that turn
+moments and transforms into probability bounds. It ends with symmetry arguments,
+which solve many problems with no computation at all.
+
+\section{Conditional distributions and expectation: the discrete case}
+
+Let $X,Y$ be discrete. For $y$ with $p_Y(y)>0$ the \emph{conditional PMF} of $X$
+given $Y=y$ is
+\[
+p_{X\given Y}(x\given y)=\Prob(X=x\given Y=y)=\frac{p_{X,Y}(x,y)}{p_Y(y)} .
+\]
+For fixed $y$ this is a PMF in $x$ (it is $\Prob(\cdot\given Y=y)$ restricted to
+$\{X=x\}$, a probability measure by Theorem~\ref{thm:condmeasure}).
+
+\begin{definition}[Conditional expectation]
+For $y$ with $p_Y(y)>0$ define
+$\psi(y)=\Exp[X\given Y=y]=\sum_xx\,p_{X\given Y}(x\given y)$, provided the series
+converges absolutely. The random variable $\Exp[X\given Y]:=\psi(Y)$ is the
+\emph{conditional expectation of $X$ given $Y$}.
+\end{definition}
+
+The notation hides an important point: $\Exp[X\given Y=y]$ is a \emph{number} (a
+function of $y$), while $\Exp[X\given Y]$ is a \emph{random variable} (a function
+of $Y$), whose value changes as $Y$ changes. It is ``the average of $X$ given what
+$Y$ tells us''.
+
+\begin{theorem}[Defining property and tower property]\label{thm:tower}
+Let $X$ be integrable. Then for every bounded function $g$,
+\[
+\Exp\bigl[g(Y)\,X\bigr]=\Exp\bigl[g(Y)\,\Exp[X\given Y]\bigr].
+\tag{$\ast$}
+\]
+In particular (take $g\equiv1$), the \emph{tower property}
+$\Exp\bigl[\Exp[X\given Y]\bigr]=\Exp[X]$.
+\end{theorem}
+\begin{proof}
+\[
+\Exp[g(Y)X]=\sum_{x,y}g(y)\,x\,p_{X,Y}(x,y)=\sum_yg(y)p_Y(y)\sum_xx\frac{p_{X,Y}(x,y)}{p_Y(y)}
+=\sum_yg(y)\psi(y)p_Y(y)=\Exp[g(Y)\psi(Y)].
+\]
+All rearrangements are justified by absolute convergence, because $g$ is bounded
+and $X$ is integrable.
+\end{proof}
+
+\begin{theorem}[Properties of conditional expectation]\label{thm:condprops}
+Assume all expectations exist.
+\begin{enumerate}[label=(\roman*)]
+\item (Linearity) $\Exp[aX+bZ\given Y]=a\Exp[X\given Y]+b\Exp[Z\given Y]$.
+\item (Monotonicity) If $X\le Z$ then $\Exp[X\given Y]\le\Exp[Z\given Y]$.
+\item (Taking out what is known) $\Exp[h(Y)X\given Y]=h(Y)\Exp[X\given Y]$.
+\item (Independence) If $X$ and $Y$ are independent, $\Exp[X\given Y]=\Exp[X]$.
+\item (Total law) $\Exp[X]=\sum_y\Exp[X\given Y=y]\,\Prob(Y=y)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Each statement holds for each fixed value $Y=y$ because $\Exp[\,\cdot\given Y=y]$ is an
+ordinary expectation under the probability measure $\Prob(\cdot\given Y=y)$, so
+(i) and (ii) are linearity and monotonicity of expectation. (iii) Given $Y=y$ the
+factor $h(Y)=h(y)$ is a constant. (iv) $p_{X\given Y}(x\given y)=p_X(x)$ by
+independence. (v) is the tower property written out.
+\end{proof}
+
+\begin{nuance}{the total law is the law of total probability in disguise}
+With $X=\indic_A$, we have $\Exp[X\given Y=y]=\Prob(A\given Y=y)$, and (v) becomes
+$\Prob(A)=\sum_y\Prob(A\given Y=y)\Prob(Y=y)$: Theorem~\ref{thm:lotp}.
+\end{nuance}
+
+\subsection*{Best prediction in mean square}
+
+\begin{theorem}[Conditional expectation is the best predictor]\label{thm:bestpred}
+Let $\Exp[X^2]<\infty$. For every function $h$ with $\Exp[h(Y)^2]<\infty$,
+\[
+\Exp\bigl[(X-h(Y))^2\bigr]=\Exp\bigl[(X-\psi(Y))^2\bigr]+\Exp\bigl[(\psi(Y)-h(Y))^2\bigr]
+\ \ge\ \Exp\bigl[(X-\psi(Y))^2\bigr],
+\]
+with equality iff $h(Y)=\psi(Y)$ almost surely. So $\psi(Y)=\Exp[X\given Y]$ is the
+function of $Y$ minimising mean squared error.
+\end{theorem}
+\begin{proof}
+Write $X-h(Y)=(X-\psi(Y))+(\psi(Y)-h(Y))$ and expand the square. The cross term is
+$2\Exp[(X-\psi(Y))\,g(Y)]$ with $g=\psi-h$; by the defining property $(\ast)$,
+$\Exp[g(Y)X]=\Exp[g(Y)\psi(Y)]$, so the cross term vanishes. (Boundedness of $g$
+in $(\ast)$ is removed by a limiting argument using $\Exp[g(Y)^2]<\infty$;
+see Chapter~\ref{ch:measure}.)
+\end{proof}
+
+Geometrically, $X-\Exp[X\given Y]$ is ``orthogonal'' to every function of $Y$, and
+$\Exp[X\given Y]$ is the orthogonal projection of $X$ onto the space of functions
+of $Y$. This viewpoint is the key to the abstract definition in
+Chapter~\ref{ch:measure}.
+
+\subsection*{The law of total variance}
+
+Define the \emph{conditional variance}
+$\Var(X\given Y)=\Exp\bigl[(X-\psi(Y))^2\given Y\bigr]$.
+
+\begin{theorem}[Law of total variance]\label{thm:totalvar}
+If $\Exp[X^2]<\infty$,
+\[
+\Var(X)=\Exp\bigl[\Var(X\given Y)\bigr]+\Var\bigl(\Exp[X\given Y]\bigr).
+\]
+\end{theorem}
+\begin{proof}
+Write $X-\mu=(X-\psi(Y))+(\psi(Y)-\mu)$ where $\mu=\Exp[X]=\Exp[\psi(Y)]$. Square
+and take expectations. The cross term $2\Exp[(X-\psi(Y))(\psi(Y)-\mu)]$ is zero by
+$(\ast)$ with $g=\psi-\mu$. The first square has expectation
+$\Exp[\Exp[(X-\psi(Y))^2\given Y]]=\Exp[\Var(X\given Y)]$ by the tower property, and
+the second is $\Var(\psi(Y))$.
+\end{proof}
+
+The two terms are the \emph{unexplained} variance (average spread of $X$ around its
+prediction) and the \emph{explained} variance (spread of the prediction itself).
+
+\begin{example}[Random sums, again]
+Let $S=\sum_{i=1}^NX_i$ with $X_i$ i.i.d.\ (mean $\mu$, variance $\sigma^2$), $N$
+independent of the $X_i$. Given $N=n$, $\Exp[S\given N]=N\mu$ and
+$\Var(S\given N)=N\sigma^2$. The tower property and the law of total variance give
+\[
+\Exp[S]=\mu\Exp[N],\qquad\Var(S)=\sigma^2\Exp[N]+\mu^2\Var(N),
+\]
+exactly as in Theorem~\ref{thm:randomsum}, with no generating functions.
+\end{example}
+
+\section{The continuous case}
+
+If $(X,Y)$ has joint density $f$, the \emph{conditional density} of $X$ given $Y=y$ is
+\[
+f_{X\given Y}(x\given y)=\frac{f(x,y)}{f_Y(y)},\qquad f_Y(y)>0,
+\]
+and $\Exp[X\given Y=y]=\int xf_{X\given Y}(x\given y)\,dx$. The defining
+property $(\ast)$, the tower property, the total variance formula and
+Theorems~\ref{thm:condprops} and \ref{thm:bestpred} hold with the same proofs, with
+sums replaced by integrals (the interchange of integrals is justified by Fubini's
+theorem, Chapter~\ref{ch:measure}). Example: for the bivariate normal,
+Theorem~\ref{thm:bvn}(ii) gives $\Exp[Y\given X]=\rho X$ and $\Var(Y\given X)=1-\rho^2$,
+and the total variance formula recovers $\Var(Y)=(1-\rho^2)+\rho^2=1$.
+
+\begin{nuance}{conditioning on a probability-zero event is a definition, not a theorem}
+For continuous $Y$ we condition on $\{Y=y\}$, which has probability zero, so
+$\Prob(A\given Y=y)=\Prob(A\cap\{Y=y\})/\Prob(Y=y)$ is $0/0$. What we have
+defined is a \emph{function} $\psi(y)$ that satisfies $(\ast)$; it is determined only
+up to a set of $y$ of probability zero, and its value at any single point is
+arbitrary. It also depends on \emph{how} the null event is approached. Take a
+point uniformly distributed on a sphere and condition on ``the point lies on a given
+great circle''. If the circle is regarded as the equator (condition on latitude
+$=0$), the position along it is uniformly distributed. If the same kind of circle is
+regarded as a meridian (condition on longitude fixed), the conditional density of the
+latitude along it is proportional to the cosine of the latitude, which is \emph{not}
+uniform. The same geometric set gets different conditional distributions depending on
+the variable being conditioned on. This is the Borel--Kolmogorov paradox. The remedy is always to specify
+the conditioning \emph{variable}, not just the event.
+\end{nuance}
+
+\section{First-step analysis}
+
+The law of total expectation turns hard problems into linear equations: condition
+on the outcome of the first step, and use the fact that the process restarts.
+
+\begin{example}[Expected waiting time for HH and for HT]\label{ex:hhht}
+A fair coin is tossed until a given pattern appears. Let $E$ be the expected number
+of tosses. For \textbf{HH}: define states ``start'' ($E_0$) and ``last toss was H''
+($E_1$). From the start, one toss is made; heads moves to state $1$, tails stays at
+the start: $E_0=1+\tfrac12E_1+\tfrac12E_0$. From state $1$: heads ends the game,
+tails returns to start: $E_1=1+\tfrac12\cdot0+\tfrac12E_0$. Substituting,
+$E_0=1+\tfrac12(1+\tfrac12E_0)+\tfrac12E_0=\tfrac32+\tfrac34E_0$, so $E_0=6$.
+
+For \textbf{HT}: $E_0=1+\tfrac12E_1+\tfrac12E_0$ as before, but from state $1$,
+heads keeps us in state $1$ and tails ends: $E_1=1+\tfrac12E_1$, so $E_1=2$ and
+$E_0=1+1+\tfrac12E_0$ gives $E_0=4$. The two patterns are equally likely in any
+fixed window of tosses, yet HH takes longer on average: HH can overlap itself, so
+its occurrences come in clumps, and the clumping increases the wait for the
+\emph{first} occurrence.
+\end{example}
+
+\begin{example}[Waiting for $n$ heads in a row]\label{ex:nheads}
+Let $E_n$ be the expected number of tosses to get $n$ consecutive heads. To get $n$
+in a row we first need $n-1$ in a row (expected $E_{n-1}$ tosses), then one more
+toss: heads (probability $\tfrac12$) completes the run; tails (probability
+$\tfrac12$) sends us back to the start. Hence
+\[
+E_n=E_{n-1}+1+\tfrac12\cdot0+\tfrac12E_n\ \Longrightarrow\ E_n=2E_{n-1}+2,
+\qquad E_0=0,
+\]
+and by induction $E_n=2^{n+1}-2$. For $n=2$ we get $6$, matching the previous example.
+\end{example}
+
+\begin{interview}{first-step analysis}
+Whenever a process regenerates (coin sequences, random walks, dice-until-condition),
+set up one equation per state: $E_s=1+\sum_{s'}\Prob(s\to s')E_{s'}$, with $E=0$ at
+absorbing targets, and solve the linear system. We return to this systematically for
+Markov chains in Chapter~\ref{ch:markov}.
+\end{interview}
+
+\section{Basic inequalities}
+
+\begin{theorem}[Markov's inequality]\label{thm:markov}
+If $X\ge0$ and $a>0$, then $\Prob(X\ge a)\le\Exp[X]/a$.
+\end{theorem}
+\begin{proof}
+Pointwise, $a\indic_{\{X\ge a\}}\le X$ (if $X\ge a$ the left is $a\le X$; otherwise it
+is $0\le X$). Take expectations: $a\Prob(X\ge a)\le\Exp[X]$.
+\end{proof}
+
+\begin{theorem}[Chebyshev's inequality]\label{thm:chebyshev}
+If $\Exp[X^2]<\infty$ and $t>0$, then $\Prob(\abs{X-\mu}\ge t)\le\sigma^2/t^2$.
+\end{theorem}
+\begin{proof}
+Apply Markov to the non-negative variable $(X-\mu)^2$ and the level $t^2$.
+\end{proof}
+
+Chebyshev says that at least $1-1/k^2$ of the mass lies within $k$ standard
+deviations of the mean, for \emph{any} distribution with finite variance. It is
+crude (for the normal the actual probability beyond $2\sigma$ is $0.046$, versus the
+bound $0.25$) but universal.
+
+\begin{theorem}[One-sided Chebyshev (Cantelli)]\label{thm:cantelli}
+For $t>0$, $\Prob(X-\mu\ge t)\le\dfrac{\sigma^2}{\sigma^2+t^2}$.
+\end{theorem}
+\begin{proof}
+For any $u\ge0$, $\{X-\mu\ge t\}\subseteq\{(X-\mu+u)^2\ge(t+u)^2\}$, so by Markov
+\[
+\Prob(X-\mu\ge t)\le\frac{\Exp[(X-\mu+u)^2]}{(t+u)^2}=\frac{\sigma^2+u^2}{(t+u)^2}.
+\]
+Choose $u=\sigma^2/t$ (which minimises the right side): the bound becomes
+$\dfrac{\sigma^2+\sigma^4/t^2}{(t+\sigma^2/t)^2}=\dfrac{\sigma^2}{\sigma^2+t^2}$.
+\end{proof}
+
+\begin{theorem}[Jensen's inequality]\label{thm:jensen}
+If $\varphi:\R\to\R$ is convex and $X$, $\varphi(X)$ are integrable, then
+$\varphi(\Exp[X])\le\Exp[\varphi(X)]$. If $\varphi$ is strictly convex, equality holds
+iff $X$ is almost surely constant.
+\end{theorem}
+\begin{proof}
+A convex function has a supporting line at every point: with $\mu=\Exp[X]$ there is
+a constant $c$ (a subgradient at $\mu$) such that
+$\varphi(x)\ge\varphi(\mu)+c(x-\mu)$ for all $x$. Substitute $x=X$ and take
+expectations: $\Exp[\varphi(X)]\ge\varphi(\mu)+c\cdot0=\varphi(\mu)$. For strictly
+convex $\varphi$ the supporting line touches the graph only at $\mu$, so equality
+forces $X=\mu$ almost surely.
+\end{proof}
+
+\begin{example}[Consequences of Jensen]
+\begin{itemize}
+\item $\varphi(x)=x^2$: $(\Exp[X])^2\le\Exp[X^2]$, i.e.\ $\Var(X)\ge0$.
+\item $\varphi(x)=\abs x^p$, $p\ge1$: $\bigl(\Exp\abs X\bigr)^p\le\Exp\abs X^p$, so
+$\norm{X}_r=(\Exp\abs X^r)^{1/r}$ is non-decreasing in $r\ge1$.
+\item $\varphi(x)=-\ln x$ for $X>0$: $\Exp[\ln X]\le\ln\Exp[X]$, the AM--GM inequality
+for expectations.
+\item $\varphi(x)=e^{tx}$: $M_X(t)\ge e^{t\Exp[X]}$.
+\end{itemize}
+\end{example}
+
+\begin{pitfall}{Jensen reverses for concave functions, and $\Exp[1/X]\ne1/\Exp[X]$}
+For concave $\varphi$ the inequality reverses. For instance
+$\Exp[1/X]\ge1/\Exp[X]$ for $X>0$ (since $1/x$ is convex). A common error in
+finance and queueing is to replace $\Exp[g(X)]$ by $g(\Exp[X])$; Jensen shows the
+sign of the error.
+\end{pitfall}
+
+\section{Exponential bounds: Chernoff and Hoeffding}
+
+Chebyshev's polynomial tail $1/t^2$ is too weak for sums of many independent
+variables. Applying Markov to an exponential gives far sharper bounds.
+
+\begin{theorem}[Chernoff bound]\label{thm:chernoff}
+For every $a$ and every $t>0$ in the domain of the MGF,
+\[
+\Prob(X\ge a)\le e^{-ta}M_X(t),\qquad\text{so}\qquad
+\Prob(X\ge a)\le\inf_{t>0}e^{-ta}M_X(t).
+\]
+\end{theorem}
+\begin{proof}
+$\{X\ge a\}=\{e^{tX}\ge e^{ta}\}$ since $e^{tx}$ is increasing; apply Markov to the
+non-negative variable $e^{tX}$.
+\end{proof}
+
+\begin{example}[Normal tail]
+For $Z\sim N(0,1)$, $e^{-ta}M(t)=e^{-ta+t^2/2}$ is minimised at $t=a$, giving
+$\Prob(Z\ge a)\le e^{-a^2/2}$ for $a>0$.
+\end{example}
+
+\begin{example}[Binomial tail via relative entropy]\label{ex:chernoffbin}
+Let $X\sim\mathrm{Bin}(n,p)$ and $\alpha\in(p,1)$. Then $e^{-t\alpha n}M_X(t)=
+\exp\bigl(n[-t\alpha+\ln(q+pe^t)]\bigr)$. Setting the derivative of the bracket to
+zero, $-\alpha+pe^t/(q+pe^t)=0$, gives $e^t=\alpha q/((1-\alpha)p)$, and then
+$q+pe^t=q/(1-\alpha)$. Substituting,
+\[
+-t\alpha+\ln(q+pe^t)=-\alpha\ln\frac\alpha p-(1-\alpha)\ln\frac{1-\alpha}q=-D(\alpha\|p),
+\]
+where $D(\alpha\|p)=\alpha\ln\frac\alpha p+(1-\alpha)\ln\frac{1-\alpha}{1-p}\ge0$ is the
+\emph{relative entropy} (Kullback--Leibler divergence) between Bernoulli laws. Hence
+\[
+\Prob(X\ge\alpha n)\le e^{-nD(\alpha\|p)}.
+\]
+The tail probability decays \emph{exponentially} in $n$, with rate given by $D$.
+(Cram\'er's theorem says this rate is exact to first order.)
+\end{example}
+
+\begin{lemma}[Hoeffding's lemma]\label{lem:hoeffding}
+If $\Exp[X]=0$ and $a\le X\le b$ almost surely, then for every real $s$,
+$\Exp[e^{sX}]\le\exp\bigl(s^2(b-a)^2/8\bigr)$.
+\end{lemma}
+\begin{proof}
+Note $a\le0\le b$. By convexity of $x\mapsto e^{sx}$, for $x\in[a,b]$,
+$e^{sx}\le\frac{b-x}{b-a}e^{sa}+\frac{x-a}{b-a}e^{sb}$. Taking expectations
+and using $\Exp[X]=0$:
+\[
+\Exp[e^{sX}]\le\frac{b\,e^{sa}-a\,e^{sb}}{b-a}.
+\]
+Set $p=-a/(b-a)\in[0,1]$ and $u=s(b-a)$. Then the right side equals
+$e^{-pu}(1-p+pe^u)=e^{L(u)}$ where $L(u)=-pu+\ln(1-p+pe^u)$. We have $L(0)=0$,
+$L'(u)=-p+\dfrac{pe^u}{1-p+pe^u}$ so $L'(0)=0$, and
+\[
+L''(u)=r(1-r),\qquad r=\frac{pe^u}{1-p+pe^u}\in[0,1],
+\]
+so $L''(u)\le\tfrac14$ for all $u$. By Taylor's theorem with Lagrange remainder,
+$L(u)=L(0)+L'(0)u+\tfrac12L''(\xi)u^2\le u^2/8=s^2(b-a)^2/8$.
+\end{proof}
+
+\begin{theorem}[Hoeffding's inequality]\label{thm:hoeffding}
+Let $X_1,\dots,X_n$ be independent with $a_i\le X_i\le b_i$, and
+$S_n=\sum X_i$. Then for every $t>0$,
+\[
+\Prob\bigl(S_n-\Exp[S_n]\ge t\bigr)\le\exp\Bigl(-\frac{2t^2}{\sum_i(b_i-a_i)^2}\Bigr),
+\]
+and the same bound holds for $\Prob(S_n-\Exp[S_n]\le-t)$; the two-sided probability
+is at most twice the bound.
+\end{theorem}
+\begin{proof}
+By the Chernoff method with parameter $s>0$, independence, and
+Lemma~\ref{lem:hoeffding} applied to $X_i-\Exp[X_i]$ (which lies in an interval of
+length $b_i-a_i$ and has mean zero),
+\[
+\Prob(S_n-\Exp[S_n]\ge t)\le e^{-st}\prod_i\Exp\bigl[e^{s(X_i-\Exp X_i)}\bigr]
+\le\exp\Bigl(-st+\frac{s^2}8\sum_i(b_i-a_i)^2\Bigr).
+\]
+The exponent is minimised at $s=4t/\sum(b_i-a_i)^2$, giving
+$-2t^2/\sum(b_i-a_i)^2$.
+\end{proof}
+
+\begin{example}[Polling]
+Let $X_i\in\{0,1\}$ be i.i.d.\ Bernoulli$(p)$ answers and $\hat p=S_n/n$. Then
+$\Prob(\abs{\hat p-p}\ge\epsilon)\le2e^{-2n\epsilon^2}$. For accuracy
+$\epsilon=0.03$ with failure probability at most $5\%$ we need
+$2e^{-2n(0.0009)}\le0.05$, i.e.\ $n\ge\ln(40)/(0.0018)\approx2050$ samples
+(no dependence on $p$).
+\end{example}
+
+\section{Symmetry and exchangeability}
+
+\begin{definition}[Exchangeable]
+Random variables $X_1,\dots,X_n$ are \emph{exchangeable} if
+$(X_{\pi(1)},\dots,X_{\pi(n)})$ has the same joint distribution as $(X_1,\dots,X_n)$
+for every permutation $\pi$ of $\{1,\dots,n\}$.
+\end{definition}
+
+I.i.d.\ variables are exchangeable. So are the successive draws from an urn
+\emph{without} replacement: the probability of any specific sequence of colours is
+$\frac{K(K-1)\cdots}{N(N-1)\cdots}$, a product of numerators that depends only on how many
+of each colour appear, not on their order.
+
+\begin{interview}{symmetry solves many problems without computation}
+If $X_1,\dots,X_n$ are exchangeable, then each $X_i$ has the same distribution, each
+pair $(X_i,X_j)$ the same joint law, and so on. Example: a card dealt \emph{second}
+from a shuffled deck is an ace with probability $4/52$, the same as the first.
+Example (aces before kings): in a shuffled deck, what is the probability that the
+first ace comes before the first king? Look only at the relative order of the $8$
+cards that are aces or kings. By exchangeability the first of these $8$ is equally
+likely to be any of them, so it is an ace with probability $4/8=\tfrac12$. All the
+other cards are irrelevant.
+\end{interview}
+
+\begin{example}[Expected number of cards before the first ace]
+The $4$ aces split the other $48$ cards into $5$ groups (before the first ace, between,
+and after the last). By symmetry each of the $48$ cards is equally likely to fall in
+each of the $5$ groups, so the expected size of the first group is $48/5=9.6$, and the
+first ace is on average at position $9.6+1=10.6$.
+\end{example}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Roll a die and let $N$ be the result; then toss $N$ fair coins. Find
+$\Exp[H\given N]$, $\Exp[H]$ and $\Var(H)$, where $H$ is the number of heads.
+\item Show $\Var(X)=\Exp[\Var(X\given Y)]+\Var(\Exp[X\given Y])$ in the example
+where $Y$ is a fair coin and $X\given Y\sim N(\pm1,1)$.
+\item Find the expected number of tosses to get TTH, HTH, and HHH. Which is
+largest?
+\item Use Markov's inequality to show $\Prob(X\ge10)\le0.1$ if $X\ge0$ and
+$\Exp[X]=1$, and show the bound can be attained.
+\item Show that for a random variable with mean $0$ and variance $1$,
+$\Prob(X\ge t)\le\frac1{1+t^2}$ and that this is attained for some distribution.
+\item (Paley--Zygmund) Prove $\Prob(X>\theta\Exp[X])\ge(1-\theta)^2\frac{(\Exp
+X)^2}{\Exp[X^2]}$ for $X\ge0$ and $0<\theta<1$. (Hint: Cauchy--Schwarz applied to
+$X\indic_{\{X>\theta\Exp X\}}$.)
+\item $n$ fair coins are tossed. Using Hoeffding, bound the probability that the
+number of heads exceeds $n/2+\sqrt{n\ln n}$.
+\item A deck is shuffled. Find the expected number of cards strictly between the
+first ace and the second ace. (Symmetry.)
+\item (Challenge) Prove that if $X_1,\dots,X_n$ are exchangeable with
+$\Exp[X_1^2]<\infty$, then $\Cov(X_1,X_2)\ge-\Var(X_1)/(n-1)$. (Hint: compute
+$\Var(\sum X_i)\ge0$.)
+\end{enumerate}

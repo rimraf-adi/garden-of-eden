@@ -143,7 +143,7 @@ export default function Chapter3Illustration() {
       // --- 1. Shaded Risk / Error Regions ---
       if (mode !== 'reject-option') {
         // Class 1 False Alarm / Error tail (where x > threshX but class is C1)
-        ctx.fillStyle = 'rgba(99, 102, 241, 0.18)';
+        ctx.fillStyle = 'rgba(217, 119, 6, 0.18)';
         ctx.beginPath();
         ctx.moveTo(toCanvasX(threshX), toCanvasY(0));
         for (let x = threshX; x <= 4; x += 0.05) {
@@ -196,7 +196,7 @@ export default function Chapter3Illustration() {
       }
 
       // --- 2. Draw Class 1 Density Curve (Indigo) ---
-      ctx.strokeStyle = '#6366f1';
+      ctx.strokeStyle = '#d97706';
       ctx.lineWidth = 3;
       ctx.beginPath();
       for (let x = -4; x <= 4; x += 0.05) {
@@ -209,7 +209,7 @@ export default function Chapter3Illustration() {
 
       // Class 1 Label & Mean Marker
       const peak1Y = toCanvasY(joint1(mean1));
-      ctx.fillStyle = '#818cf8';
+      ctx.fillStyle = '#fbbf24';
       ctx.font = 'bold 12px ui-sans-serif, system-ui';
       ctx.fillText(`p(x|C₁) · P(C₁) [P(C₁) = ${(prior1 * 100).toFixed(0)}%]`, toCanvasX(mean1) - 60, peak1Y - 14);
 
@@ -253,7 +253,7 @@ export default function Chapter3Illustration() {
       ctx.fillText(`Threshold x* = ${threshX.toFixed(2)}`, threshCanvasX + 8, padY + 60);
 
       // Decision region indicators at bottom
-      ctx.fillStyle = '#818cf8';
+      ctx.fillStyle = '#fbbf24';
       ctx.font = 'bold 11px ui-sans-serif, system-ui';
       ctx.fillText('◀ Decide C₁', toCanvasX(-3.2), padY + plotH + 18);
 
@@ -302,12 +302,12 @@ export default function Chapter3Illustration() {
       ctx.fillText(`Probe x = ${probeX.toFixed(2)}`, hudX + 10, hudY + 18);
 
       // Posterior bar C1
-      ctx.fillStyle = '#818cf8';
+      ctx.fillStyle = '#fbbf24';
       ctx.font = '10px ui-sans-serif, system-ui';
       ctx.fillText(`P(C₁|x): ${(post1 * 100).toFixed(1)}%`, hudX + 10, hudY + 36);
       ctx.fillStyle = '#312e81';
       ctx.fillRect(hudX + 90, hudY + 28, 85, 8);
-      ctx.fillStyle = '#6366f1';
+      ctx.fillStyle = '#d97706';
       ctx.fillRect(hudX + 90, hudY + 28, 85 * post1, 8);
 
       // Posterior bar C2
@@ -332,13 +332,13 @@ export default function Chapter3Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
           <span className="flex h-3 w-3 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
           </span>
           <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
             Interactive Visual · Chapter 3: Bayesian Decision Theory & Risk
@@ -351,7 +351,7 @@ export default function Chapter3Illustration() {
             onClick={() => setMode('likelihood-threshold')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg transition ${
               mode === 'likelihood-threshold'
-                ? 'bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >
@@ -427,7 +427,7 @@ export default function Chapter3Illustration() {
             </>
           )}
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-indigo-500 font-semibold shrink-0">
+        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-amber-500 font-semibold shrink-0">
           <Sparkles className="h-3 w-3" />
           60 FPS Seamless Loop
         </span>

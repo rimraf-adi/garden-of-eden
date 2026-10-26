@@ -45,17 +45,17 @@ export default function PracticePage() {
   });
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+    <div className="min-h-screen bg-[#fafafc] dark:bg-[#08090d] bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.12),transparent_55%)]">
       {/* Engineering Header */}
       <div className="border-b border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40 backdrop-blur-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-mono text-xs font-semibold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/60 border border-amber-100 dark:border-amber-900/60 text-amber-700 dark:text-amber-300 font-mono text-xs font-semibold uppercase tracking-wider mb-3">
                 <Target className="h-3.5 w-3.5" />
                 <span>DRILLS :: DELIBERATE_PRACTICE_SYSTEM</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
+              <h1 className="text-3xl sm:text-4xl font-serif font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
                 Deliberate Practice & Analytical Drills
               </h1>
               <p className="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
@@ -65,7 +65,7 @@ export default function PracticePage() {
             </div>
 
             {/* Mastery Score Progress */}
-            <div className="flex items-center gap-4 font-mono text-xs p-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm">
+            <div className="flex items-center gap-4 font-mono text-xs p-3.5 rounded-xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md shadow-sm">
               <div>
                 <div className="text-zinc-400 text-[10px] uppercase tracking-wider">Mastered</div>
                 <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
@@ -112,7 +112,7 @@ export default function PracticePage() {
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-2.5 py-1 rounded-lg text-xs transition-colors ${
                       selectedCategory === cat
-                        ? 'bg-indigo-600 text-white font-bold'
+                        ? 'bg-amber-600 text-white font-bold'
                         : 'text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800'
                     }`}
                   >
@@ -130,7 +130,7 @@ export default function PracticePage() {
                 placeholder="Search drills..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-indigo-500"
+                className="w-full pl-9 pr-3 py-1.5 rounded-lg border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 outline-none focus:border-amber-500"
               />
             </div>
           </div>

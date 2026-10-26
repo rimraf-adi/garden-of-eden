@@ -1,0 +1,271 @@
+\chapter{Vectors, Geometry and Norms}
+
+Linear algebra begins with a simple idea: some quantities need several numbers at once, and these numbers can be added and scaled. A point in the plane, a force, a colour, a row of a data table and the pixel values of an image all behave this way. This chapter builds the language that the rest of the book uses: vectors in $\R^n$, the operations on them, length and angle, and the two classical products. Everything here is elementary, but each definition is chosen carefully, because later chapters generalise it.
+
+\section{Vectors in $\R^n$}
+
+\begin{definition}[Vector in $\R^n$]
+For a positive integer $n$, the set $\R^n$ is the set of all ordered lists of $n$ real numbers,
+\[ \mathbf{x}=(x_1,x_2,\dots,x_n),\qquad x_i\in\R. \]
+The numbers $x_i$ are the \emph{components} (or coordinates) of $\mathbf{x}$. Two vectors are equal exactly when all their components are equal. We write vectors as columns when we multiply by matrices:
+\[ \mathbf{x}=\begin{pmatrix}x_1\\ \vdots\\ x_n\end{pmatrix}. \]
+\end{definition}
+
+The case $n=1$ is the real line, $n=2$ the plane, $n=3$ ordinary space. For $n>3$ there is no picture, but the algebra is identical, and that is the point of the subject: geometric intuition from $\R^2$ and $\R^3$ guides the algebra in $\R^{1000}$.
+
+There are two useful pictures of a vector. As a \emph{point}, $\mathbf{x}$ is a location. As an \emph{arrow}, it is a displacement from the origin $\mathbf{0}=(0,\dots,0)$ to that location. A vector is determined by its components, and an arrow that starts elsewhere but has the same direction and length represents the same vector.
+
+\begin{definition}[Addition and scalar multiplication]
+For $\mathbf{x},\mathbf{y}\in\R^n$ and $c\in\R$ define, component by component,
+\[ \mathbf{x}+\mathbf{y}=(x_1+y_1,\dots,x_n+y_n),\qquad c\,\mathbf{x}=(cx_1,\dots,cx_n). \]
+\end{definition}
+
+Geometrically, $\mathbf{x}+\mathbf{y}$ is obtained by placing the tail of $\mathbf{y}$ at the head of $\mathbf{x}$ (the \emph{parallelogram rule}), and $c\mathbf{x}$ stretches $\mathbf{x}$ by the factor $\lvert c\rvert$, reversing its direction when $c<0$.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.1]
+  \draw[axis] (-0.3,0)--(4.6,0); \draw[axis] (0,-0.3)--(0,3.4);
+  \draw[vec,accent2] (0,0)--(3,1) node[midway,below right,lab]{$\mathbf{x}$};
+  \draw[vec,accent3] (0,0)--(1,2) node[midway,above left,lab]{$\mathbf{y}$};
+  \draw[guide] (3,1)--(4,3); \draw[guide] (1,2)--(4,3);
+  \draw[vec,accent] (0,0)--(4,3) node[midway,above,lab]{$\mathbf{x}+\mathbf{y}$};
+\end{tikzpicture}
+\caption{The parallelogram rule for adding $\mathbf{x}=(3,1)$ and $\mathbf{y}=(1,2)$.}
+\end{figure}
+
+\begin{theorem}[Algebraic rules]\label{thm:rules}
+For all $\mathbf{x},\mathbf{y},\mathbf{z}\in\R^n$ and $a,b\in\R$:
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathbf{x}+\mathbf{y}=\mathbf{y}+\mathbf{x}$ and $(\mathbf{x}+\mathbf{y})+\mathbf{z}=\mathbf{x}+(\mathbf{y}+\mathbf{z})$;
+  \item $\mathbf{x}+\mathbf{0}=\mathbf{x}$ and $\mathbf{x}+(-\mathbf{x})=\mathbf{0}$;
+  \item $a(\mathbf{x}+\mathbf{y})=a\mathbf{x}+a\mathbf{y}$ and $(a+b)\mathbf{x}=a\mathbf{x}+b\mathbf{x}$;
+  \item $(ab)\mathbf{x}=a(b\mathbf{x})$ and $1\mathbf{x}=\mathbf{x}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Each identity holds in every component because it holds for real numbers. For instance, the $i$-th component of $a(\mathbf{x}+\mathbf{y})$ is $a(x_i+y_i)=ax_i+ay_i$, which is the $i$-th component of $a\mathbf{x}+a\mathbf{y}$.
+\end{proof}
+
+These eight rules are exactly the axioms that define an abstract vector space in Chapter~6. Nothing else about $\R^n$ will be needed to prove most of linear algebra, and this is why the theory applies to polynomials, functions and matrices as well.
+
+\subsection*{Linear combinations}
+
+\begin{definition}[Linear combination and span]
+A \emph{linear combination} of vectors $\mathbf{v}_1,\dots,\mathbf{v}_k\in\R^n$ is a vector $c_1\mathbf{v}_1+\dots+c_k\mathbf{v}_k$ with scalars $c_i\in\R$. The set of all linear combinations is the \emph{span}, written $\Span\{\mathbf{v}_1,\dots,\mathbf{v}_k\}$.
+\end{definition}
+
+\begin{example}
+In $\R^2$, $\Span\{(1,0)\}$ is the horizontal axis, $\Span\{(1,0),(0,1)\}$ is the whole plane, and $\Span\{(1,2),(2,4)\}$ is only the line $y=2x$, because $(2,4)=2(1,2)$ adds no new direction.
+\end{example}
+
+\begin{intuition}
+Think of $\mathbf{v}_1,\dots,\mathbf{v}_k$ as a set of allowed moves. The span is every place you can reach by taking each move any number of times, forwards or backwards. Redundant moves, those already reachable from the others, do not enlarge the span. Chapter~7 turns this remark into the theory of independence and dimension.
+\end{intuition}
+
+\section{Length, distance and the dot product}
+
+\begin{definition}[Dot product]
+For $\mathbf{x},\mathbf{y}\in\R^n$ the \emph{dot product} (or inner product) is
+\[ \mathbf{x}\cdot\mathbf{y}=\ip{\mathbf{x}}{\mathbf{y}}=\sum_{i=1}^n x_iy_i=\mathbf{x}\T\mathbf{y}. \]
+\end{definition}
+
+The dot product is linear in each argument, symmetric, and satisfies $\mathbf{x}\cdot\mathbf{x}=\sum x_i^2\ge 0$ with equality only for $\mathbf{x}=\mathbf{0}$. These three properties (bilinearity, symmetry, positive definiteness) are all that Chapter~11 will use to define inner products on general spaces.
+
+\begin{definition}[Norm and distance]
+The \emph{Euclidean norm} (length) of $\mathbf{x}$ is $\norm{\mathbf{x}}=\sqrt{\mathbf{x}\cdot\mathbf{x}}=\sqrt{x_1^2+\dots+x_n^2}$. The \emph{distance} between $\mathbf{x}$ and $\mathbf{y}$ is $\norm{\mathbf{x}-\mathbf{y}}$. A vector with $\norm{\mathbf{u}}=1$ is a \emph{unit vector}; any nonzero $\mathbf{x}$ gives the unit vector $\mathbf{x}/\norm{\mathbf{x}}$ in the same direction.
+\end{definition}
+
+In $\R^2$ and $\R^3$ the norm is the Pythagorean length, so these definitions agree with school geometry. The next theorem is the single most used inequality in linear algebra.
+
+\begin{theorem}[Cauchy--Schwarz inequality]\label{thm:cs}
+For all $\mathbf{x},\mathbf{y}\in\R^n$,
+\[ \abs{\mathbf{x}\cdot\mathbf{y}}\le\norm{\mathbf{x}}\,\norm{\mathbf{y}}, \]
+with equality if and only if one of the vectors is a scalar multiple of the other.
+\end{theorem}
+
+\begin{proof}
+If $\mathbf{y}=\mathbf{0}$ both sides are $0$ and the vectors are dependent, so assume $\mathbf{y}\ne\mathbf{0}$. For every real $t$,
+\[ 0\le\norm{\mathbf{x}-t\mathbf{y}}^2=\norm{\mathbf{x}}^2-2t\,\mathbf{x}\cdot\mathbf{y}+t^2\norm{\mathbf{y}}^2. \]
+Choose $t=\dfrac{\mathbf{x}\cdot\mathbf{y}}{\norm{\mathbf{y}}^2}$. Then
+\[ 0\le\norm{\mathbf{x}}^2-\frac{(\mathbf{x}\cdot\mathbf{y})^2}{\norm{\mathbf{y}}^2}, \]
+which rearranges to the claim. Equality forces $\norm{\mathbf{x}-t\mathbf{y}}=0$, that is $\mathbf{x}=t\mathbf{y}$. Conversely, if $\mathbf{x}=t\mathbf{y}$ both sides equal $\abs{t}\norm{\mathbf{y}}^2$.
+\end{proof}
+
+\begin{corollary}[Triangle inequality]\label{cor:tri}
+$\norm{\mathbf{x}+\mathbf{y}}\le\norm{\mathbf{x}}+\norm{\mathbf{y}}$.
+\end{corollary}
+
+\begin{proof}
+Expand and apply Cauchy--Schwarz:
+\[ \norm{\mathbf{x}+\mathbf{y}}^2=\norm{\mathbf{x}}^2+2\,\mathbf{x}\cdot\mathbf{y}+\norm{\mathbf{y}}^2\le\norm{\mathbf{x}}^2+2\norm{\mathbf{x}}\norm{\mathbf{y}}+\norm{\mathbf{y}}^2=\big(\norm{\mathbf{x}}+\norm{\mathbf{y}}\big)^2. \]
+Take square roots.
+\end{proof}
+
+\subsection*{Angles and orthogonality}
+
+Cauchy--Schwarz says $\dfrac{\mathbf{x}\cdot\mathbf{y}}{\norm{\mathbf{x}}\norm{\mathbf{y}}}\in[-1,1]$ for nonzero vectors, so the following definition makes sense in every dimension.
+
+\begin{definition}[Angle, orthogonality]
+For nonzero $\mathbf{x},\mathbf{y}$ the \emph{angle} $\theta\in[0,\pi]$ between them is defined by
+\[ \cos\theta=\frac{\mathbf{x}\cdot\mathbf{y}}{\norm{\mathbf{x}}\,\norm{\mathbf{y}}}. \]
+Vectors are \emph{orthogonal} (perpendicular), written $\mathbf{x}\perp\mathbf{y}$, when $\mathbf{x}\cdot\mathbf{y}=0$. The zero vector is orthogonal to every vector.
+\end{definition}
+
+In the plane this reproduces the law of cosines: $\norm{\mathbf{x}-\mathbf{y}}^2=\norm{\mathbf{x}}^2+\norm{\mathbf{y}}^2-2\norm{\mathbf{x}}\norm{\mathbf{y}}\cos\theta$, which is the expansion of $\norm{\mathbf{x}-\mathbf{y}}^2$ with the dot product.
+
+\begin{theorem}[Pythagoras]
+If $\mathbf{x}\perp\mathbf{y}$ then $\norm{\mathbf{x}+\mathbf{y}}^2=\norm{\mathbf{x}}^2+\norm{\mathbf{y}}^2$.
+\end{theorem}
+
+\begin{proof}
+$\norm{\mathbf{x}+\mathbf{y}}^2=\norm{\mathbf{x}}^2+2\,\mathbf{x}\cdot\mathbf{y}+\norm{\mathbf{y}}^2$ and the middle term vanishes.
+\end{proof}
+
+\subsection*{Projection onto a line}
+
+Let $\mathbf{a}\ne\mathbf{0}$. We want to split $\mathbf{x}$ into a part along $\mathbf{a}$ and a part perpendicular to $\mathbf{a}$.
+
+\begin{theorem}[Orthogonal decomposition along a line]\label{thm:projline}
+Every $\mathbf{x}\in\R^n$ can be written uniquely as $\mathbf{x}=\mathbf{p}+\mathbf{r}$ with $\mathbf{p}=c\mathbf{a}$ for some scalar $c$ and $\mathbf{r}\perp\mathbf{a}$. Moreover
+\[ \mathbf{p}=\proj_{\mathbf{a}}\mathbf{x}=\frac{\mathbf{a}\cdot\mathbf{x}}{\mathbf{a}\cdot\mathbf{a}}\,\mathbf{a}. \]
+\end{theorem}
+
+\begin{proof}
+Suppose $\mathbf{x}=c\mathbf{a}+\mathbf{r}$ with $\mathbf{a}\cdot\mathbf{r}=0$. Taking the dot product with $\mathbf{a}$ gives $\mathbf{a}\cdot\mathbf{x}=c\,\mathbf{a}\cdot\mathbf{a}$, so $c$ is forced to equal $\frac{\mathbf{a}\cdot\mathbf{x}}{\mathbf{a}\cdot\mathbf{a}}$: uniqueness. For existence define $c$ by this formula and $\mathbf{r}=\mathbf{x}-c\mathbf{a}$; then $\mathbf{a}\cdot\mathbf{r}=\mathbf{a}\cdot\mathbf{x}-c\,\mathbf{a}\cdot\mathbf{a}=0$.
+\end{proof}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.2]
+  \draw[axis] (-0.3,0)--(4.8,0); \draw[axis] (0,-0.3)--(0,3.2);
+  \draw[vec,accent2] (0,0)--(4,0.8) node[at end,right,lab]{$\mathbf{a}$};
+  \draw[vec,accent] (0,0)--(2.4,2.6) node[midway,above left,lab]{$\mathbf{x}$};
+  \coordinate (P) at ({(2.4*4+2.6*0.8)/(16+0.64)*4},{(2.4*4+2.6*0.8)/(16+0.64)*0.8});
+  \draw[guide] (2.4,2.6)--(P);
+  \draw[vec,accent3] (0,0)--(P) node[midway,below right,lab]{$\proj_{\mathbf{a}}\mathbf{x}$};
+  \node[pt] at (P) {};
+\end{tikzpicture}
+\caption{The orthogonal projection of $\mathbf{x}$ onto the line through $\mathbf{a}$; the dashed segment is perpendicular to $\mathbf{a}$.}
+\end{figure}
+
+Projection is the seed of orthogonality, least squares and the SVD; Chapter~12 develops it fully.
+
+\begin{example}
+Project $\mathbf{x}=(3,4)$ onto $\mathbf{a}=(1,1)$. Here $\mathbf{a}\cdot\mathbf{x}=7$ and $\mathbf{a}\cdot\mathbf{a}=2$, so $\proj_{\mathbf{a}}\mathbf{x}=\frac72(1,1)=(3.5,3.5)$ and the remainder is $\mathbf{r}=(-0.5,0.5)$, which indeed satisfies $\mathbf{a}\cdot\mathbf{r}=0$.
+\end{example}
+
+\begin{pitfall}{dividing by the wrong norm}
+The projection formula divides by $\mathbf{a}\cdot\mathbf{a}=\norm{\mathbf{a}}^2$, not by $\norm{\mathbf{a}}$. If $\mathbf{a}$ is already a unit vector the two agree, which is why the shortcut $\proj_{\mathbf{a}}\mathbf{x}=(\mathbf{a}\cdot\mathbf{x})\mathbf{a}$ is correct only for unit $\mathbf{a}$.
+\end{pitfall}
+
+\section{Other norms}
+
+The Euclidean norm is one of many ways to measure size. Three others appear constantly in applications.
+
+\begin{definition}[$p$-norms]
+For $p\ge1$ define $\norm{\mathbf{x}}_p=\big(\sum_i\abs{x_i}^p\big)^{1/p}$, and $\norm{\mathbf{x}}_\infty=\max_i\abs{x_i}$. The cases $p=1$ (sum of absolute values), $p=2$ (Euclidean) and $p=\infty$ are the most common.
+\end{definition}
+
+Every norm satisfies three axioms: positivity ($\norm{\mathbf{x}}\ge0$, with equality only at $\mathbf{0}$), homogeneity ($\norm{c\mathbf{x}}=\abs{c}\norm{\mathbf{x}}$) and the triangle inequality. In $\R^n$ all norms are equivalent: for every pair of norms there are constants $m,M>0$ with $m\norm{\mathbf{x}}_a\le\norm{\mathbf{x}}_b\le M\norm{\mathbf{x}}_a$. For example $\norm{\mathbf{x}}_\infty\le\norm{\mathbf{x}}_2\le\norm{\mathbf{x}}_1\le\sqrt n\,\norm{\mathbf{x}}_2$.
+
+\begin{interview}{why $\ell^1$ and $\ell^2$ behave differently}
+The unit ball of $\norm{\cdot}_2$ is round, that of $\norm{\cdot}_1$ is a diamond with corners on the coordinate axes, and that of $\norm{\cdot}_\infty$ is a square. When a linear constraint is intersected with the smallest ball that touches it, the diamond tends to touch at a corner, where many coordinates are zero. This is the geometric reason that $\ell^1$ penalties (lasso) produce sparse solutions while $\ell^2$ penalties (ridge) shrink all coordinates smoothly.
+\end{interview}
+
+\section{The cross product in $\R^3$}
+
+The dot product turns two vectors into a number. In $\R^3$ only there is a second product that turns two vectors into a vector.
+
+\begin{definition}[Cross product]
+For $\mathbf{x},\mathbf{y}\in\R^3$,
+\[ \mathbf{x}\times\mathbf{y}=(x_2y_3-x_3y_2,\;x_3y_1-x_1y_3,\;x_1y_2-x_2y_1). \]
+\end{definition}
+
+\begin{theorem}[Properties of the cross product]\label{thm:cross}
+For $\mathbf{x},\mathbf{y},\mathbf{z}\in\R^3$ and $c\in\R$:
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathbf{x}\times\mathbf{y}=-\mathbf{y}\times\mathbf{x}$, and $\mathbf{x}\times\mathbf{x}=\mathbf{0}$;
+  \item the product is linear in each argument;
+  \item $(\mathbf{x}\times\mathbf{y})\cdot\mathbf{x}=(\mathbf{x}\times\mathbf{y})\cdot\mathbf{y}=0$;
+  \item $\norm{\mathbf{x}\times\mathbf{y}}^2=\norm{\mathbf{x}}^2\norm{\mathbf{y}}^2-(\mathbf{x}\cdot\mathbf{y})^2$, hence $\norm{\mathbf{x}\times\mathbf{y}}=\norm{\mathbf{x}}\norm{\mathbf{y}}\sin\theta$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts (i) and (ii) follow directly from the formula. For (iii), expand $(\mathbf{x}\times\mathbf{y})\cdot\mathbf{x}$: the six terms $x_1x_2y_3-x_1x_3y_2+x_2x_3y_1-x_2x_1y_3+x_3x_1y_2-x_3x_2y_1$ cancel in pairs. For (iv), expand both sides in the components $x_i,y_i$; each is the sum of the nine terms $x_i^2y_j^2$ with $i\ne j$ minus the cross terms $2x_ix_jy_iy_j$ (Lagrange's identity). The sine formula follows from $\cos^2\theta+\sin^2\theta=1$.
+\end{proof}
+
+Thus $\mathbf{x}\times\mathbf{y}$ is perpendicular to both factors, has length equal to the area of the parallelogram they span, and points in the direction given by the right-hand rule. The sign ambiguity of this direction is settled in Chapter~5, where the determinant measures oriented volume.
+
+\begin{example}
+For $\mathbf{x}=(1,2,0)$ and $\mathbf{y}=(0,1,3)$ we get $\mathbf{x}\times\mathbf{y}=(6,-3,1)$. It is orthogonal to both vectors, and its norm $\sqrt{46}$ is the area of the parallelogram with sides $\mathbf{x},\mathbf{y}$.
+\end{example}
+
+\begin{nuance}{the cross product does not generalise}
+Only in $\R^3$ is there a vector perpendicular to a pair of given vectors that is unique up to scale. In $\R^2$ the perpendicular to one vector is a line; in $\R^4$ two vectors have a whole plane of perpendiculars. The general replacement for the cross product is the wedge product of differential forms, and for the idea of ``oriented area'' it is the determinant.
+\end{nuance}
+
+\section{Lines and planes}
+
+A \emph{line} in $\R^n$ through the point $\mathbf{p}$ with direction $\mathbf{d}\ne\mathbf{0}$ is $\{\mathbf{p}+t\mathbf{d}:t\in\R\}$. In $\R^2$ and $\R^3$ we can also describe hyperplanes by a single equation.
+
+\begin{proposition}[Hyperplanes]
+Let $\mathbf{n}\ne\mathbf{0}$ and $b\in\R$. The solution set of $\mathbf{n}\cdot\mathbf{x}=b$ in $\R^n$ is a hyperplane: a translate of the subspace $\{\mathbf{x}:\mathbf{n}\cdot\mathbf{x}=0\}$ of vectors orthogonal to the \emph{normal vector} $\mathbf{n}$. The distance from a point $\mathbf{q}$ to this hyperplane is $\dfrac{\abs{\mathbf{n}\cdot\mathbf{q}-b}}{\norm{\mathbf{n}}}$.
+\end{proposition}
+
+\begin{proof}
+Let $\mathbf{x}_0$ satisfy $\mathbf{n}\cdot\mathbf{x}_0=b$. Then $\mathbf{n}\cdot\mathbf{x}=b$ if and only if $\mathbf{n}\cdot(\mathbf{x}-\mathbf{x}_0)=0$, which is the translate claim. For the distance, the closest point is $\mathbf{q}-c\,\mathbf{n}$ with $\mathbf{n}\cdot(\mathbf{q}-c\mathbf{n})=b$, giving $c=\frac{\mathbf{n}\cdot\mathbf{q}-b}{\norm{\mathbf{n}}^2}$; its distance from $\mathbf{q}$ is $\abs{c}\norm{\mathbf{n}}$.
+\end{proof}
+
+This is the form in which a linear classifier appears: $\mathbf{w}\cdot\mathbf{x}+b>0$ labels the points on one side of the hyperplane, and $\abs{\mathbf{w}\cdot\mathbf{x}+b}/\norm{\mathbf{w}}$ is the geometric margin of $\mathbf{x}$.
+
+\begin{interview}{signed distance and margins}
+Many machine-learning questions reduce to this proposition. If a support vector machine scales $\mathbf{w}$ so that the closest points satisfy $\abs{\mathbf{w}\cdot\mathbf{x}+b}=1$, the margin is $1/\norm{\mathbf{w}}$, so maximising the margin means minimising $\norm{\mathbf{w}}$.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item $\R^n$ with componentwise addition and scaling satisfies eight rules; these will become the axioms of a vector space.
+  \item The dot product gives length, distance, angle and orthogonality in every dimension, through the Cauchy--Schwarz inequality.
+  \item Projection onto a line decomposes a vector into parallel and perpendicular parts, using $\proj_{\mathbf{a}}\mathbf{x}=\frac{\mathbf{a}\cdot\mathbf{x}}{\mathbf{a}\cdot\mathbf{a}}\mathbf{a}$.
+  \item Other norms ($\ell^1,\ell^\infty$) have different geometry but are all equivalent in $\R^n$.
+  \item The cross product exists only in $\R^3$; its length is a parallelogram area.
+  \item Hyperplanes $\mathbf{n}\cdot\mathbf{x}=b$ and their distance formula underlie linear classifiers.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Show that $\norm{\mathbf{x}+\mathbf{y}}^2+\norm{\mathbf{x}-\mathbf{y}}^2=2\norm{\mathbf{x}}^2+2\norm{\mathbf{y}}^2$ (the parallelogram law), and interpret it for a parallelogram.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\mathbf{x}\perp\mathbf{y}$ if and only if $\norm{\mathbf{x}+\mathbf{y}}=\norm{\mathbf{x}-\mathbf{y}}$. What does this say about the diagonals of a rhombus?
+\end{exercise}
+
+\begin{exercise}
+Find the angle between $\mathbf{x}=(1,2,2)$ and $\mathbf{y}=(2,-1,2)$, and the projection of $\mathbf{x}$ onto $\mathbf{y}$.
+\end{exercise}
+
+\begin{exercise}
+Prove the reverse triangle inequality $\big\lvert\norm{\mathbf{x}}-\norm{\mathbf{y}}\big\rvert\le\norm{\mathbf{x}-\mathbf{y}}$.
+\end{exercise}
+
+\begin{exercise}
+Verify the inequalities $\norm{\mathbf{x}}_\infty\le\norm{\mathbf{x}}_2\le\norm{\mathbf{x}}_1\le\sqrt n\,\norm{\mathbf{x}}_2$ and give an example for each of the four equalities.
+\end{exercise}
+
+\begin{exercise}
+Find the distance from the point $(1,2,3)$ to the plane $2x-y+2z=5$ and the foot of the perpendicular.
+\end{exercise}
+
+\begin{exercise}
+Use Lagrange's identity to prove that the area of the triangle with vertices $\mathbf{0},\mathbf{x},\mathbf{y}\in\R^3$ equals $\tfrac12\norm{\mathbf{x}\times\mathbf{y}}$. Compute it for $\mathbf{x}=(1,0,2)$, $\mathbf{y}=(0,3,1)$.
+\end{exercise}
+
+\begin{exercise}
+Suppose $\mathbf{u}_1,\dots,\mathbf{u}_k$ are pairwise orthogonal nonzero vectors in $\R^n$. Show they are linearly independent, meaning $\sum c_i\mathbf{u}_i=\mathbf{0}$ forces all $c_i=0$. (Hint: take the dot product with $\mathbf{u}_j$.)
+\end{exercise}

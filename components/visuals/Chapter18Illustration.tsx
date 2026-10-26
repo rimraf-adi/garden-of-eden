@@ -474,7 +474,7 @@ export default function Chapter18Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="w-full my-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
+    <div className="w-full my-8 bg-white/70 dark:bg-zinc-900/50 border border-white/80 dark:border-white/10 rounded-3xl overflow-hidden shadow-lg shadow-zinc-950/5">
       {/* Header Bar */}
       <div className="px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4">
         <div>

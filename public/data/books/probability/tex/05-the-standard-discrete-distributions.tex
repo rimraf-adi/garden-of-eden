@@ -1,0 +1,315 @@
+\chapter{The Standard Discrete Distributions}
+\label{ch:dist}
+
+A small family of distributions accounts for most discrete models. For each we
+state the model, derive the PMF, and compute the mean and variance. We use only
+tools developed so far; where independence of random variables would give a
+shorter derivation, we note it and give the proof in Chapter~\ref{ch:joint}.
+
+\section{Bernoulli and binomial}
+
+\begin{definition}[Bernoulli]
+$X$ has the \emph{Bernoulli}$(p)$ distribution if $\Prob(X=1)=p$ and
+$\Prob(X=0)=1-p=q$. This is the indicator of a ``success'' in one trial.
+\end{definition}
+
+Its mean is $p$ and its variance is $pq$ (Chapter~\ref{ch:drv}, indicators).
+
+\begin{definition}[Binomial]
+$X$ has the \emph{binomial}$(n,p)$ distribution if
+\[
+\Prob(X=k)=\binom nkp^kq^{n-k},\qquad k=0,1,\dots,n .
+\]
+It is the number of successes in $n$ independent trials, each with success
+probability $p$ (Example~\ref{ex:trials}).
+\end{definition}
+
+The probabilities sum to $1$ by the binomial theorem:
+$\sum_k\binom nkp^kq^{n-k}=(p+q)^n=1$.
+
+\begin{theorem}[Mean and variance of the binomial]\label{thm:binmoments}
+If $X\sim\mathrm{Bin}(n,p)$ then $\Exp[X]=np$ and $\Var(X)=npq$.
+\end{theorem}
+\begin{proof}
+We use the identities $k\binom nk=n\binom{n-1}{k-1}$ and
+$k(k-1)\binom nk=n(n-1)\binom{n-2}{k-2}$, both immediate from the factorial
+formula. Then
+\[
+\Exp[X]=\sum_{k=1}^nk\binom nkp^kq^{n-k}=np\sum_{k=1}^n\binom{n-1}{k-1}p^{k-1}q^{n-k}
+=np\,(p+q)^{n-1}=np.
+\]
+Similarly
+\[
+\Exp[X(X-1)]=\sum_{k=2}^nk(k-1)\binom nkp^kq^{n-k}=n(n-1)p^2(p+q)^{n-2}=n(n-1)p^2.
+\]
+Hence $\Exp[X^2]=\Exp[X(X-1)]+\Exp[X]=n(n-1)p^2+np$ and
+\[
+\Var(X)=n(n-1)p^2+np-n^2p^2=np-np^2=npq.\qedhere
+\]
+\end{proof}
+
+(Probabilistic shortcut: $X$ is a sum of $n$ independent Bernoulli$(p)$ variables;
+linearity gives the mean at once and independence gives the variance, as shown in
+Chapter~\ref{ch:joint}.)
+
+\begin{proposition}[Mode of the binomial]
+The ratio $\dfrac{\Prob(X=k)}{\Prob(X=k-1)}=\dfrac{(n-k+1)p}{kq}$ exceeds $1$ iff
+$k<(n+1)p$. So the PMF increases up to $\lfloor(n+1)p\rfloor$ and decreases
+afterwards; the mode is $\lfloor(n+1)p\rfloor$ (with a tie at $k=(n+1)p$ when this
+is an integer).
+\end{proposition}
+\begin{proof}
+The ratio is a direct computation from the PMF. The inequality
+$(n-k+1)p>kq$ rearranges to $(n+1)p>k(p+q)=k$.
+\end{proof}
+
+\section{Geometric and negative binomial}
+
+\begin{definition}[Geometric]
+$X$ has the \emph{geometric}$(p)$ distribution, $0<p\le1$, if
+\[
+\Prob(X=k)=q^{k-1}p,\qquad k=1,2,\dots
+\]
+It is the number of independent trials up to and including the first success.
+\end{definition}
+
+The total mass is $\sum_{k\ge1}q^{k-1}p=p/(1-q)=1$. The tail is
+$\Prob(X\ge k)=q^{k-1}$ (the first $k-1$ trials fail).
+
+\begin{theorem}[Moments of the geometric]\label{thm:geomoments}
+$\Exp[X]=1/p$ and $\Var(X)=q/p^2$.
+\end{theorem}
+\begin{proof}
+By the tail-sum formula (Proposition~\ref{prop:expprops}(v)),
+$\Exp[X]=\sum_{k\ge1}q^{k-1}=1/(1-q)=1/p$.
+For the variance compute $\Exp[X(X-1)]=\sum_{k\ge2}k(k-1)q^{k-1}p$. Differentiating
+the geometric series $\sum_{k\ge0}x^k=(1-x)^{-1}$ twice (valid for $\abs x<1$)
+gives $\sum_{k\ge2}k(k-1)x^{k-2}=2(1-x)^{-3}$. Hence
+\[
+\Exp[X(X-1)]=pq\sum_{k\ge2}k(k-1)q^{k-2}=\frac{2pq}{(1-q)^3}=\frac{2q}{p^2}.
+\]
+So $\Exp[X^2]=\frac{2q}{p^2}+\frac1p$ and
+$\Var(X)=\frac{2q}{p^2}+\frac1p-\frac1{p^2}=\frac{2q+p-1}{p^2}=\frac q{p^2}$.
+\end{proof}
+
+\begin{theorem}[Memorylessness]\label{thm:memoryless}
+If $X\sim\mathrm{Geom}(p)$ then for non-negative integers $m,n$,
+\[
+\Prob(X>m+n\given X>m)=\Prob(X>n).
+\]
+Conversely, if $X$ takes values in $\{1,2,\dots\}$, has $\Prob(X>n)>0$ for all $n$,
+and satisfies this identity, then $X$ is geometric.
+\end{theorem}
+\begin{proof}
+We have $\Prob(X>n)=q^n$. Then
+$\Prob(X>m+n\given X>m)=q^{m+n}/q^m=q^n$.
+Conversely, let $G(n)=\Prob(X>n)$. The condition says $G(m+n)=G(m)G(n)$, so
+$G(n)=G(1)^n$ by induction. Setting $q=G(1)=\Prob(X>1)$ gives $\Prob(X>n)=q^n$
+and so $\Prob(X=n)=q^{n-1}-q^n=q^{n-1}(1-q)$, the geometric PMF with
+$p=1-q$.
+\end{proof}
+
+In words: the process ``forgets'' its past. If you have already failed $m$ times,
+the number of further trials is distributed as if you were starting over.
+
+\begin{nuance}{two conventions for the geometric distribution}
+Some books define the geometric variable as the number of \emph{failures} before
+the first success, taking values $0,1,2,\dots$ with mean $q/p$. Always check the
+convention. In this book geometric counts trials, starting at $1$.
+\end{nuance}
+
+\begin{definition}[Negative binomial]
+$X$ has the \emph{negative binomial}$(r,p)$ distribution if it is the trial number
+on which the $r$th success occurs:
+\[
+\Prob(X=k)=\binom{k-1}{r-1}p^rq^{k-r},\qquad k=r,r+1,\dots
+\]
+\end{definition}
+
+\emph{Derivation.} The $r$th success is on trial $k$ exactly when trial $k$ is a
+success and exactly $r-1$ of the first $k-1$ trials are successes. The latter
+has probability $\binom{k-1}{r-1}p^{r-1}q^{k-r}$, and multiplying by the
+independent success probability $p$ on trial $k$ gives the formula. With $r=1$ we
+recover the geometric distribution.
+
+\begin{theorem}\label{thm:nbmean}
+If $X\sim\mathrm{NB}(r,p)$ then $\Exp[X]=r/p$.
+\end{theorem}
+\begin{proof}
+Use $k\binom{k-1}{r-1}=r\binom kr$. Then
+\[
+\Exp[X]=\sum_{k\ge r}k\binom{k-1}{r-1}p^rq^{k-r}
+=\frac rp\sum_{k\ge r}\binom kr p^{r+1}q^{k-r}.
+\]
+The terms in the last sum are $\Prob(Y=k+1)$ for $Y\sim\mathrm{NB}(r+1,p)$, since
+$\binom{(k+1)-1}{(r+1)-1}p^{r+1}q^{(k+1)-(r+1)}=\binom kr p^{r+1}q^{k-r}$. The
+PMF of $Y$ sums to $1$ over $k+1=r+1,r+2,\dots$, so the sum equals $1$.
+\end{proof}
+
+(The mean $r/p$ is expected: waiting for $r$ successes is $r$ consecutive waits,
+each with mean $1/p$.)
+
+\section{The Poisson distribution}
+
+\begin{definition}[Poisson]
+$X$ has the \emph{Poisson}$(\lambda)$ distribution, $\lambda>0$, if
+\[
+\Prob(X=k)=e^{-\lambda}\frac{\lambda^k}{k!},\qquad k=0,1,2,\dots
+\]
+\end{definition}
+
+Total mass: $\sum_{k\ge0}e^{-\lambda}\lambda^k/k!=e^{-\lambda}e^\lambda=1$ by the
+exponential series.
+
+\begin{theorem}[Poisson limit of the binomial]\label{thm:poissonlimit}
+Let $X_n\sim\mathrm{Bin}(n,p_n)$ with $np_n\to\lambda\in(0,\infty)$. Then for
+every fixed $k\ge0$,
+\[
+\Prob(X_n=k)\longrightarrow e^{-\lambda}\frac{\lambda^k}{k!}.
+\]
+\end{theorem}
+\begin{proof}
+Write $\lambda_n=np_n\to\lambda$. Then
+\[
+\Prob(X_n=k)=\frac{n(n-1)\cdots(n-k+1)}{k!}\,\frac{\lambda_n^k}{n^k}
+\Bigl(1-\frac{\lambda_n}n\Bigr)^{n-k}.
+\]
+As $n\to\infty$ with $k$ fixed: $\frac{n(n-1)\cdots(n-k+1)}{n^k}=
+\prod_{j=0}^{k-1}(1-j/n)\to1$; $\lambda_n^k\to\lambda^k$;
+$(1-\lambda_n/n)^{-k}\to1$; and $(1-\lambda_n/n)^n\to e^{-\lambda}$. For the last
+limit, take logarithms: $n\ln(1-\lambda_n/n)=-\lambda_n+O(\lambda_n^2/n)\to-\lambda$,
+using $\ln(1-x)=-x+O(x^2)$ as $x\to0$. Multiplying the limits gives the claim.
+\end{proof}
+
+\begin{theorem}[Moments of the Poisson]\label{thm:poissmoments}
+If $X\sim\mathrm{Poisson}(\lambda)$ then $\Exp[X]=\Var(X)=\lambda$.
+\end{theorem}
+\begin{proof}
+$\Exp[X]=\sum_{k\ge1}k\,e^{-\lambda}\frac{\lambda^k}{k!}=\lambda\sum_{k\ge1}
+e^{-\lambda}\frac{\lambda^{k-1}}{(k-1)!}=\lambda$. Likewise
+$\Exp[X(X-1)]=\sum_{k\ge2}e^{-\lambda}\frac{\lambda^k}{(k-2)!}=\lambda^2$, so
+$\Var(X)=\lambda^2+\lambda-\lambda^2=\lambda$.
+\end{proof}
+
+The binomial limit explains the meaning: Poisson models the number of rare events
+among many opportunities, where each event is unlikely but the expected total
+$\lambda$ is moderate (misprints on a page, calls arriving at an exchange in a
+minute, radioactive decays). It is also consistent with the moments: the binomial
+has mean $np\to\lambda$ and variance $npq\to\lambda$.
+
+\begin{nuance}{how good is the Poisson approximation?}
+For $X=\sum_{i=1}^nI_i$ a sum of \emph{independent} Bernoulli$(p_i)$ indicators
+with $\lambda=\sum p_i$, the distance between the law of $X$ and the
+Poisson$(\lambda)$ law (in total variation) is at most $\sum_ip_i^2$ (Le Cam's
+inequality; we cite it without proof). The approximation is good when every
+individual $p_i$ is small, even if the $p_i$ differ. It can also be good under
+weak dependence (the Chen--Stein method), as in the birthday problem for matching
+pairs.
+\end{nuance}
+
+\begin{example}[Misprints]
+A book has $500$ pages and $400$ misprints, each independently on a uniformly
+random page. The number on a given page is $\mathrm{Bin}(400,1/500)$, with mean
+$0.8$. Poisson$(0.8)$ gives $\Prob(\text{no misprint on page 1})\approx
+e^{-0.8}\approx0.449$; the exact value is $(499/500)^{400}\approx0.4489$.
+\end{example}
+
+\section{The hypergeometric distribution}
+
+An urn contains $N$ balls, $K$ of them red. Draw $n$ balls \emph{without
+replacement}. The number $X$ of red balls drawn has the \emph{hypergeometric}
+distribution:
+\[
+\Prob(X=k)=\frac{\binom Kk\binom{N-K}{n-k}}{\binom Nn},
+\]
+for integers $k$ with $\max(0,n-N+K)\le k\le\min(n,K)$. Counting argument: all
+$\binom Nn$ subsets of size $n$ are equally likely; those with exactly $k$ red
+balls are formed by choosing the red ones and the non-red ones separately. The
+probabilities sum to $1$ by Vandermonde's identity (Theorem~\ref{thm:vander}).
+
+\begin{theorem}[Mean of the hypergeometric]
+$\Exp[X]=n\dfrac KN$.
+\end{theorem}
+\begin{proof}
+Number the draws $1,\dots,n$ and let $I_j$ indicate that draw $j$ is red. Then
+$X=\sum_jI_j$. By symmetry each draw is equally likely to be any of the $N$ balls,
+so $\Prob(I_j=1)=K/N$, even though the draws are dependent. Linearity of
+expectation gives $\Exp[X]=nK/N$.
+\end{proof}
+
+The variance $n\frac KN\bigl(1-\frac KN\bigr)\frac{N-n}{N-1}$ is derived in
+Example~\ref{ex:hypervar} of the next chapter. Notice that it is the binomial
+variance (drawing with replacement, $p=K/N$) times the \emph{finite population
+correction} $\frac{N-n}{N-1}$.
+
+\begin{proposition}[Binomial limit of the hypergeometric]
+Let $N\to\infty$ with $K/N\to p\in(0,1)$ and $n$ fixed. Then the hypergeometric
+PMF converges to the Bin$(n,p)$ PMF.
+\end{proposition}
+\begin{proof}
+Write
+$\Prob(X=k)=\binom nk\dfrac{K(K-1)\cdots(K-k+1)\cdot(N-K)\cdots(N-K-n+k+1)}
+{N(N-1)\cdots(N-n+1)}$ (counting ordered sequences with a specified pattern of
+red and non-red positions, times the $\binom nk$ patterns). The numerator has $k$
+factors each $\sim pN$ and $n-k$ factors each $\sim(1-p)N$; the denominator has $n$
+factors each $\sim N$. Hence the ratio tends to $p^k(1-p)^{n-k}$.
+\end{proof}
+
+\section{Summary}
+
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Distribution & PMF & Mean & Variance\\
+\midrule
+Bernoulli$(p)$ & $p^k q^{1-k}$, $k\in\{0,1\}$ & $p$ & $pq$\\[0.3em]
+Binomial$(n,p)$ & $\binom nk p^kq^{n-k}$ & $np$ & $npq$\\[0.3em]
+Geometric$(p)$ & $q^{k-1}p$, $k\ge1$ & $1/p$ & $q/p^2$\\[0.3em]
+NegBin$(r,p)$ & $\binom{k-1}{r-1}p^rq^{k-r}$, $k\ge r$ & $r/p$ & $rq/p^2$\\[0.3em]
+Poisson$(\lambda)$ & $e^{-\lambda}\lambda^k/k!$ & $\lambda$ & $\lambda$\\[0.3em]
+Hypergeom$(N,K,n)$ & $\binom Kk\binom{N-K}{n-k}/\binom Nn$ & $nK/N$ &
+$n\frac KN\frac{N-K}N\frac{N-n}{N-1}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The negative binomial variance $rq/p^2$ is verified in Chapter~\ref{ch:joint}
+(sum of $r$ independent geometrics).
+
+\begin{interview}{recognising the distribution from the story}
+Most exam problems say which distribution to use if you identify the story:
+\emph{fixed number of independent trials, count successes}: binomial;
+\emph{trials until first success}: geometric; \emph{trials until $r$th success}:
+negative binomial; \emph{sampling without replacement from a finite population,
+count a type}: hypergeometric; \emph{rare events in a large number of
+opportunities}: Poisson. Always state which assumption (independence,
+constant $p$) justifies the choice.
+\end{interview}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item A fair coin is tossed $10$ times. Find the probabilities of exactly $5$
+heads, at least $8$ heads, and the most likely number of heads.
+\item A basketball player makes each free throw with probability $0.7$,
+independently. What is the probability the first miss occurs on the fourth shot?
+The expected number of shots until the first miss?
+\item Prove: if $X\sim\mathrm{Poisson}(\lambda)$, then $\Prob(X=k+1)/\Prob(X=k)=
+\lambda/(k+1)$, and deduce the mode is $\lfloor\lambda\rfloor$.
+\item A call centre receives on average $3$ calls per minute (Poisson). Find the
+probability of no calls in a given minute, and of more than $5$ calls.
+\item Banach's matchbox: a person has two boxes with $n$ matches each, picking a
+box at random for each use. When a box is found empty, the other contains $k$
+matches. Show the probability is
+$\binom{2n-k}{n}2^{-(2n-k)}$. (Count the draws carefully; there are two
+symmetric cases.)
+\item Show $\Exp[1/(1+X)]=\frac{1-q^{n+1}}{(n+1)p}$ for $X\sim\mathrm{Bin}(n,p)$.
+\item In a lottery $6$ numbers are drawn from $49$. Find the probability that a
+ticket with $6$ chosen numbers matches exactly $3$.
+\item Prove the memoryless property for the geometric distribution in the form
+$\Exp[X-m\given X>m]=\Exp[X]$.
+\item (Challenge) Prove the Poisson limit theorem (Theorem~\ref{thm:poissonlimit})
+for hypergeometric variables: if $N\to\infty$, $K\to\infty$, $n\to\infty$ with
+$nK/N\to\lambda$ and $n/N\to0$, then the hypergeometric PMF converges to Poisson.
+\end{enumerate}

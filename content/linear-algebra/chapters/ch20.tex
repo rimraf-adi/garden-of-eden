@@ -1,0 +1,191 @@
+\chapter{Markov Chains, PageRank and Graph Laplacians}
+
+Matrices with nonnegative entries have their own beautiful theory: the Perron--Frobenius theorem says that the dominant eigenvalue is real and positive, with a positive eigenvector. This one fact explains why Markov chains settle down to a stationary distribution, why PageRank is well defined, and why the Laplacian of a graph encodes its connectivity. This chapter develops these three applications from the linear algebra of the previous chapters. They are staples of data-science and algorithms interviews, because each reduces a combinatorial or probabilistic question to an eigenvalue question.
+
+\section{Stochastic matrices and Markov chains}
+
+\begin{definition}[Stochastic matrix, Markov chain]
+A square matrix $P=(p_{ij})$ is \emph{(row) stochastic} if $p_{ij}\ge0$ and every row sums to $1$: $P\mathbf{1}=\mathbf{1}$. A \emph{Markov chain} with transition matrix $P$ on states $\{1,\dots,n\}$ moves from state $i$ to state $j$ with probability $p_{ij}$, independently of the past. If the current distribution is the row vector $\boldsymbol\pi^{(t)}$ then $\boldsymbol\pi^{(t+1)}=\boldsymbol\pi^{(t)}P$, so $\boldsymbol\pi^{(t)}=\boldsymbol\pi^{(0)}P^t$. A distribution $\boldsymbol\pi$ with $\boldsymbol\pi P=\boldsymbol\pi$ is \emph{stationary}.
+\end{definition}
+
+The entry $(P^t)_{ij}$ is the probability of being in state $j$ after $t$ steps starting from $i$. A stationary distribution is a left eigenvector of $P$ for the eigenvalue $1$, normalised to sum to $1$.
+
+\begin{theorem}[Spectrum of a stochastic matrix]\label{thm:stochspec}
+Every stochastic matrix $P$ has eigenvalue $1$ (with right eigenvector $\mathbf{1}$), and every eigenvalue satisfies $\abs{\lambda}\le1$. Hence a stationary distribution's eigenvalue exists and $\rho(P)=1$.
+\end{theorem}
+
+\begin{proof}
+$P\mathbf{1}=\mathbf{1}$ shows $1$ is an eigenvalue of $P$ and hence of $P\T$. For the bound, $\norm{P}_\infty=\max_i\sum_j\abs{p_{ij}}=1$, and $\rho(P)\le\norm{P}_\infty$ (Theorem~\ref{thm:specrad}).
+\end{proof}
+
+\begin{example}[A weather chain]\label{ex:weather}
+States: sunny (S), rainy (R). $P=\begin{pmatrix}0.9&0.1\\0.5&0.5\end{pmatrix}$. Solve $\boldsymbol\pi P=\boldsymbol\pi$ with $\pi_S+\pi_R=1$: $0.9\pi_S+0.5\pi_R=\pi_S$ gives $0.5\pi_R=0.1\pi_S$, so $\pi_R=\pi_S/5$ and $\boldsymbol\pi=(5/6,\ 1/6)$. The eigenvalues of $P$ are $1$ and $\tr P-1=0.4$. Indeed $P^t\to\mathbf{1}\boldsymbol\pi$ with error decaying like $0.4^t$.
+\end{example}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.1,>=Stealth]
+  \node[draw,circle,minimum size=1cm,fill=accent!12] (S) at (0,0){S};
+  \node[draw,circle,minimum size=1cm,fill=accent2!12] (R) at (4,0){R};
+  \draw[->,thick] (S) to[out=30,in=150] node[above,lab]{$0.1$} (R);
+  \draw[->,thick] (R) to[out=210,in=-30] node[below,lab]{$0.5$} (S);
+  \draw[->,thick] (S) to[out=150,in=210,looseness=6] node[left,lab]{$0.9$} (S);
+  \draw[->,thick] (R) to[out=-30,in=30,looseness=6] node[right,lab]{$0.5$} (R);
+\end{tikzpicture}
+\caption{The weather chain of Example~\ref{ex:weather}; the matrix $P$ lists the arrow weights out of each state.}
+\end{figure}
+
+\subsection*{Convergence to stationarity}
+
+\begin{definition}[Regular chain]
+$P$ is \emph{regular} (or primitive) if some power $P^t$ has all entries strictly positive: from any state one can reach any state in exactly $t$ steps.
+\end{definition}
+
+\begin{theorem}[Convergence theorem]\label{thm:markovconv}
+If $P$ is regular, there is a unique stationary distribution $\boldsymbol\pi$, it has all entries positive, and for every initial distribution $\boldsymbol\mu$, $\boldsymbol\mu P^t\to\boldsymbol\pi$ as $t\to\infty$. Equivalently, $P^t\to\mathbf{1}\boldsymbol\pi$ (every row converges to $\boldsymbol\pi$).
+\end{theorem}
+
+\begin{proof}
+Suppose first that all entries of $P$ are at least $\delta>0$. For probability vectors $\boldsymbol\mu,\boldsymbol\nu$ the difference $\mathbf{d}=\boldsymbol\mu-\boldsymbol\nu$ has coordinates summing to $0$; write $\mathbf{d}=\mathbf{d}^+-\mathbf{d}^-$ with $\norm{\mathbf{d}^+}_1=\norm{\mathbf{d}^-}_1=\tfrac12\norm{\mathbf{d}}_1=:a$. Since $P$ is stochastic, $\mathbf{d}^+P$ and $\mathbf{d}^-P$ are nonnegative vectors of $\ell^1$ mass $a$, and each of their entries is at least $a\delta$ (entry $j$ of $\mathbf{d}^+P$ is $\sum_id^+_ip_{ij}\ge\delta a$). Subtracting the constant vector $a\delta\mathbf{1}$ from both, which has mass $na\delta$,
+\[ \norm{\mathbf{d}P}_1\le\norm{\mathbf{d}^+P-a\delta\mathbf{1}}_1+\norm{\mathbf{d}^-P-a\delta\mathbf{1}}_1=2(a-na\delta)=(1-n\delta)\norm{\mathbf{d}}_1. \]
+Hence $P$ is a strict contraction on distributions in the $\ell^1$ norm, with factor $\gamma=1-n\delta<1$. By the Banach fixed-point theorem there is a unique stationary $\boldsymbol\pi$ and $\norm{\boldsymbol\mu P^t-\boldsymbol\pi}_1\le\gamma^t\norm{\boldsymbol\mu-\boldsymbol\pi}_1\to0$. Positivity of $\boldsymbol\pi$ follows from $\boldsymbol\pi=\boldsymbol\pi P\ge\delta\mathbf{1}$. For a regular chain apply the same argument to $P^{t_0}$, which is positive: $\boldsymbol\mu P^{kt_0}\to\boldsymbol\pi$, and the intermediate steps $\boldsymbol\mu P^{kt_0+s}=(\boldsymbol\mu P^s)P^{kt_0}$ converge to $\boldsymbol\pi$ too, since $\boldsymbol\pi$ is unique and stationary for $P$.
+\end{proof}
+
+\begin{theorem}[Perron--Frobenius]\label{thm:pf}
+Let $A\ge0$ be a square matrix that is \emph{irreducible} (its directed graph is strongly connected). Then $\rho(A)>0$ is an eigenvalue, it is algebraically simple, and it has an eigenvector with all entries positive; no other eigenvalue has a nonnegative eigenvector. If $A$ is moreover \emph{primitive} (some power is positive), every other eigenvalue satisfies $\abs{\lambda}<\rho(A)$.
+\end{theorem}
+
+\begin{proof}[Comment]
+The full proof is longer than the stochastic case above (it uses the Collatz--Wielandt characterisation $\rho(A)=\max_{\mathbf{x}\ge0}\min_i(A\mathbf{x})_i/x_i$ and a fixed-point argument). For stochastic matrices, Theorems~\ref{thm:stochspec} and~\ref{thm:markovconv} establish what we need: $\rho=1$ with positive eigenvectors $\mathbf{1}$ and $\boldsymbol\pi$.
+\end{proof}
+
+\begin{nuance}{periodicity}
+The chain on two states that deterministically alternates, $P=\begin{pmatrix}0&1\\1&0\end{pmatrix}$, is irreducible with stationary distribution $(\tfrac12,\tfrac12)$, but $\boldsymbol\mu P^t$ oscillates and does not converge: the eigenvalues are $1$ and $-1$, both of modulus $1$. A \emph{periodic} chain is not primitive. Adding any self-loop (a lazy chain $\tfrac12(I+P)$) makes it aperiodic and restores convergence.
+\end{nuance}
+
+\subsection*{Speed of convergence}
+
+For diagonalisable $P$ the error decays like $\abs{\lambda_2}^t$, where $\lambda_2$ is the eigenvalue of second-largest modulus. The \emph{spectral gap} $1-\abs{\lambda_2}$ governs the mixing time: roughly $\log(1/\varepsilon)/(1-\abs{\lambda_2})$ steps to get within $\varepsilon$ of stationarity.
+
+\begin{definition}[Reversibility]
+$P$ is \emph{reversible} with respect to $\boldsymbol\pi>0$ if $\pi_ip_{ij}=\pi_jp_{ji}$ for all $i,j$ (detailed balance).
+\end{definition}
+
+\begin{theorem}[Reversible chains are symmetric in disguise]\label{thm:reversible}
+If $P$ is reversible with respect to $\boldsymbol\pi$ and $D=\diag(\boldsymbol\pi)$, then $S=D^{1/2}PD^{-1/2}$ is symmetric. Hence $P$ is diagonalisable with real eigenvalues in $[-1,1]$, and $\boldsymbol\pi$ is stationary.
+\end{theorem}
+
+\begin{proof}
+$S_{ij}=\sqrt{\pi_i}\,p_{ij}/\sqrt{\pi_j}$ and detailed balance gives $\sqrt{\pi_i}\,p_{ij}/\sqrt{\pi_j}=\sqrt{\pi_j}\,p_{ji}/\sqrt{\pi_i}=S_{ji}$. $S$ is similar to $P$, so the spectral theorem for $S$ yields real eigenvalues, a full orthonormal eigenbasis for $S$ and diagonalisability of $P$. Summing detailed balance over $i$ gives $\boldsymbol\pi P=\boldsymbol\pi$.
+\end{proof}
+
+Reversibility underlies Markov chain Monte Carlo: the Metropolis--Hastings algorithm designs a reversible chain with a prescribed $\boldsymbol\pi$, and the spectral gap of $S$ controls how fast sampling converges.
+
+\section{PageRank}
+
+Model a web surfer who follows a uniformly random outgoing link from a page. Let $P$ be the stochastic matrix with $p_{ij}=1/\mathrm{outdeg}(i)$ if $i\to j$. The long-run fraction of time spent at each page is the stationary vector $\boldsymbol\pi$, if it exists and is unique. Two problems arise: pages with no outgoing links (dangling nodes), and a web graph that is not strongly connected. Brin and Page fixed both with \emph{teleportation}: with probability $1-\alpha$ the surfer jumps to a uniformly random page.
+
+\begin{definition}[Google matrix]
+$G=\alpha P+(1-\alpha)\tfrac1n\mathbf{1}\mathbf{1}\T$ with damping factor $\alpha\in(0,1)$ (typically $0.85$), where dangling rows of $P$ are replaced by $\tfrac1n\mathbf{1}\T$. The \emph{PageRank vector} is the stationary distribution of $G$.
+\end{definition}
+
+\begin{theorem}[PageRank is well defined and fast]\label{thm:pagerank}
+$G$ is stochastic with all entries at least $(1-\alpha)/n>0$, so it is regular; hence $\boldsymbol\pi G=\boldsymbol\pi$ has a unique positive solution, and power iteration $\boldsymbol\pi^{(t+1)}=\boldsymbol\pi^{(t)}G$ converges from any starting distribution at the geometric rate $\alpha^t$. Every eigenvalue of $G$ other than $1$ has modulus at most $\alpha$.
+\end{theorem}
+
+\begin{proof}
+Positivity of the entries is immediate. The contraction factor in the proof of Theorem~\ref{thm:markovconv} is $1-n\delta\le\alpha$ with $\delta=(1-\alpha)/n$. For the spectrum: for any vector $\mathbf{x}$ with $\mathbf{x}\T\mathbf{1}=0$, $\mathbf{x}\T G=\alpha\mathbf{x}\T P$ since $\mathbf{x}\T\mathbf{1}=0$ kills the teleportation term, so on the invariant subspace $\mathbf{1}^\perp$ the eigenvalues of $G\T$ are $\alpha$ times those of $P\T$, of modulus $\le\alpha$.
+\end{proof}
+
+\begin{interview}{why damping 0.85?}
+$\alpha$ trades fidelity to the link structure (large $\alpha$) against convergence speed and stability (small $\alpha$): the error shrinks like $\alpha^t$, so $0.85$ needs about $85$ iterations for $10^{-6}$ accuracy, while $0.99$ would need over $1000$. The teleportation term also makes the ranking robust to small changes in the graph. The vector is never computed by solving $\boldsymbol\pi(G-I)=0$ directly: the web has billions of nodes, but multiplying a sparse $P$ by a vector is cheap, which is exactly power iteration.
+\end{interview}
+
+\section{Graph Laplacians and spectral clustering}
+
+Let $\Gamma$ be an undirected graph on vertices $1,\dots,n$ with symmetric adjacency matrix $W$ (weights $w_{ij}\ge0$) and degree matrix $D=\diag(d_i)$, $d_i=\sum_jw_{ij}$.
+
+\begin{definition}[Graph Laplacian]
+$L=D-W$. The \emph{normalised} Laplacians are $L_{\mathrm{sym}}=D^{-1/2}LD^{-1/2}=I-D^{-1/2}WD^{-1/2}$ and $L_{\mathrm{rw}}=D^{-1}L=I-P$ where $P=D^{-1}W$ is the random-walk transition matrix.
+\end{definition}
+
+\begin{theorem}[Quadratic form of the Laplacian]\label{thm:laplacianform}
+For every $\mathbf{x}\in\R^n$,
+\[ \mathbf{x}\T L\mathbf{x}=\frac12\sum_{i,j}w_{ij}(x_i-x_j)^2\ge0. \]
+Hence $L$ is symmetric positive semidefinite, with $L\mathbf{1}=\mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+$\mathbf{x}\T D\mathbf{x}=\sum_id_ix_i^2=\sum_{i,j}w_{ij}x_i^2$ and $\mathbf{x}\T W\mathbf{x}=\sum_{i,j}w_{ij}x_ix_j$. So $\mathbf{x}\T L\mathbf{x}=\sum_{i,j}w_{ij}(x_i^2-x_ix_j)=\tfrac12\sum_{i,j}w_{ij}(x_i^2-2x_ix_j+x_j^2)$, using symmetry of $W$.
+\end{proof}
+
+\begin{theorem}[Connected components]\label{thm:components}
+The multiplicity of the eigenvalue $0$ of $L$ equals the number of connected components of the graph, and the eigenspace is spanned by the indicator vectors of the components.
+\end{theorem}
+
+\begin{proof}
+$L\mathbf{x}=\mathbf{0}$ implies $\mathbf{x}\T L\mathbf{x}=0$, so by Theorem~\ref{thm:laplacianform} $x_i=x_j$ whenever $w_{ij}>0$; hence $\mathbf{x}$ is constant on each connected component. Conversely any such vector is in the nullspace.
+\end{proof}
+
+\begin{example}
+The path graph on $3$ vertices ($1-2-3$) has $L=\begin{pmatrix}1&-1&0\\-1&2&-1\\0&-1&1\end{pmatrix}$ with eigenvalues $0,1,3$ and eigenvectors $(1,1,1)$, $(1,0,-1)$, $(1,-2,1)$. The graph is connected, so $0$ is simple. The Fiedler vector $(1,0,-1)$ changes sign across the middle vertex, indicating where to cut the path.
+\end{example}
+
+The second-smallest eigenvalue $\lambda_2$ (the \emph{algebraic connectivity}) is positive iff the graph is connected, and the associated eigenvector, the \emph{Fiedler vector}, minimises the Rayleigh quotient $\mathbf{x}\T L\mathbf{x}/\mathbf{x}\T\mathbf{x}$ over vectors orthogonal to $\mathbf{1}$ (Theorem~\ref{thm:rayleigh}).
+
+\begin{theorem}[Cheeger inequality]\label{thm:cheeger}
+Let $h(\Gamma)$ be the conductance (the minimum over vertex subsets $S$ of the weight cut between $S$ and its complement, relative to the smaller side's volume). For the normalised Laplacian with smallest nonzero eigenvalue $\lambda_2$,
+\[ \frac{\lambda_2}2\le h(\Gamma)\le\sqrt{2\lambda_2}. \]
+\end{theorem}
+
+\begin{intuition}
+A small $\lambda_2$ means that there is a ``bottleneck'': a way to split the graph into two parts with few edges between them. Spectral clustering exploits this: compute the few smallest eigenvectors of $L_{\mathrm{sym}}$, use them as coordinates for each vertex, and cluster the vertices in that embedding with $k$-means. The same inequality bounds how slowly a random walk mixes on a graph with a bottleneck: $1-\abs{\lambda_2(P)}$ is small exactly when $\lambda_2(L_{\mathrm{rw}})$ is small.
+\end{intuition}
+
+\begin{interview}{what does each part of the spectrum of $L$ tell you?}
+$\lambda_1=0$ with the constant vector (always); multiplicity of $0$ is the number of components; $\lambda_2$ measures connectivity and its eigenvector suggests a two-way cut; $\lambda_{\max}\le2\max_id_i$ bounds the largest frequency; and $\tr L=\sum d_i=2\cdot(\text{number of edges})$ for an unweighted graph. In graph signal processing the eigenvectors are the Fourier basis of the graph, with eigenvalues acting as frequencies, and graph neural networks apply polynomials of $L$ as filters.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item A stochastic matrix has eigenvalue $1$ and spectral radius $1$; stationary distributions are left eigenvectors $\boldsymbol\pi P=\boldsymbol\pi$.
+  \item For a regular (irreducible, aperiodic) chain, $\boldsymbol\mu P^t\to\boldsymbol\pi$ for every start, at rate $\abs{\lambda_2}^t$; the proof is an $\ell^1$ contraction. Perron--Frobenius: nonnegative irreducible matrices have a simple positive dominant eigenvalue with a positive eigenvector.
+  \item Reversible chains are similar to symmetric matrices, hence have real spectra; this is the basis of MCMC analysis.
+  \item PageRank is the stationary vector of $G=\alpha P+(1-\alpha)\tfrac1n\mathbf{1}\mathbf{1}\T$, computed by power iteration with convergence rate $\alpha^t$.
+  \item $L=D-W$ is PSD with $\mathbf{x}\T L\mathbf{x}=\tfrac12\sum w_{ij}(x_i-x_j)^2$; the multiplicity of $0$ counts components and $\lambda_2$ (Cheeger) measures bottlenecks, which drives spectral clustering.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Find the stationary distribution of $P=\begin{pmatrix}0&1&0\\0.5&0&0.5\\0&1&0\end{pmatrix}$. Is the chain regular? Does $\boldsymbol\mu P^t$ converge?
+\end{exercise}
+
+\begin{exercise}
+For $P=\begin{pmatrix}0.7&0.3\\0.4&0.6\end{pmatrix}$ compute $\boldsymbol\pi$, the eigenvalues, and $\lim P^t$. How many steps until the error is below $10^{-6}$?
+\end{exercise}
+
+\begin{exercise}
+Prove that if $P$ is a stochastic matrix then so is $P^t$, and that a convex combination of stochastic matrices is stochastic.
+\end{exercise}
+
+\begin{exercise}
+Show that the random walk on an undirected connected graph has stationary distribution $\pi_i=d_i/\sum_jd_j$ by verifying detailed balance.
+\end{exercise}
+
+\begin{exercise}
+Compute the PageRank (with $\alpha=0.85$ or exactly solve for $\alpha=\tfrac12$) of the three-page web $1\to2$, $2\to3$, $3\to1$, $3\to2$.
+\end{exercise}
+
+\begin{exercise}
+Find the Laplacian and its eigenvalues for the complete graph $K_n$ and for the cycle $C_4$.
+\end{exercise}
+
+\begin{exercise}
+Prove that $L_{\mathrm{sym}}$ has eigenvalues in $[0,2]$ and that $D^{1/2}\mathbf{1}$ is an eigenvector for the eigenvalue $0$.
+\end{exercise}
+
+\begin{exercise}
+Show that the graph with two triangles joined by a single edge has a small $\lambda_2$ and a Fiedler vector whose signs separate the triangles; compute it numerically or by symmetry.
+\end{exercise}

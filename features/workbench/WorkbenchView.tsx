@@ -213,7 +213,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
             onClick={() => setActiveExp(tab.id as ExperimentType)}
             className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-2 ${
               activeExp === tab.id
-                ? 'bg-indigo-600 text-white font-bold shadow-md shadow-indigo-600/20'
+                ? 'bg-amber-600 text-white font-bold shadow-md shadow-amber-600/20'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800/80'
             }`}
           >
@@ -221,7 +221,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
             <span
               className={`text-[10px] px-1.5 py-0.2 rounded ${
                 activeExp === tab.id
-                  ? 'bg-indigo-700 text-indigo-100'
+                  ? 'bg-amber-700 text-amber-100'
                   : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-500'
               }`}
             >
@@ -234,7 +234,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
       {/* Main Split-Pane Workbench Workspace */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Side: Interactive Canvas / Visualization Engine (8 cols) */}
-        <div className="lg:col-span-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-xl overflow-hidden flex flex-col">
+        <div className="lg:col-span-8 rounded-2xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md shadow-xl overflow-hidden flex flex-col">
           {/* Canvas Title Bar */}
           <div className="px-5 py-3.5 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between font-mono text-xs bg-zinc-50/50 dark:bg-zinc-900/50">
             <div className="flex items-center gap-2">
@@ -296,7 +296,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
                     })
                     .join(' ')}
                   fill="none"
-                  stroke="#818cf8"
+                  stroke="#fbbf24"
                   strokeWidth="3"
                 />
 
@@ -376,14 +376,14 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
             {activeExp === 'svm-margin' && (
               <svg viewBox="0 0 600 400" className="w-full h-full">
                 {/* Hyperplane line w^T x + w0 = 0 */}
-                <line x1="80" y1="360" x2="520" y2="40" stroke="#6366f1" strokeWidth="3" />
+                <line x1="80" y1="360" x2="520" y2="40" stroke="#d97706" strokeWidth="3" />
                 {/* Positive margin */}
                 <line
                   x1="130"
                   y1="360"
                   x2="570"
                   y2="40"
-                  stroke="#6366f1"
+                  stroke="#d97706"
                   strokeWidth="1.5"
                   strokeDasharray="4,4"
                   opacity="0.6"
@@ -394,7 +394,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
                   y1="360"
                   x2="470"
                   y2="40"
-                  stroke="#6366f1"
+                  stroke="#d97706"
                   strokeWidth="1.5"
                   strokeDasharray="4,4"
                   opacity="0.6"
@@ -532,7 +532,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
                     })
                   )}
                   {/* Agent marker */}
-                  <circle cx="40" cy="40" r="14" fill="#6366f1" stroke="#ffffff" strokeWidth="2" />
+                  <circle cx="40" cy="40" r="14" fill="#d97706" stroke="#ffffff" strokeWidth="2" />
                   <text
                     x="40"
                     y="44"
@@ -562,7 +562,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
                     <span>True sin(2πx)</span>
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <span className="h-0.5 w-3 bg-indigo-400" />
+                    <span className="h-0.5 w-3 bg-amber-400" />
                     <span>Polynomial Fit g(x|w)</span>
                   </span>
                 </>
@@ -586,7 +586,7 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
                     <span>Support Vectors (α &gt; 0)</span>
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <span className="h-0.5 w-3 bg-indigo-500" />
+                    <span className="h-0.5 w-3 bg-amber-500" />
                     <span>Optimal Hyperplane</span>
                   </span>
                 </>
@@ -600,10 +600,10 @@ export default function WorkbenchView({ initialExperiment = 'polynomial' }: Work
         {/* Right Side: Interactive Parameter Sliders & Live Telemetry (4 cols) */}
         <div className="lg:col-span-4 space-y-4">
           {/* Parameter Sliders Box */}
-          <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 shadow-sm space-y-4">
+          <div className="rounded-2xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md p-5 shadow-sm space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
               <div className="flex items-center gap-2">
-                <Sliders className="h-4 w-4 text-indigo-500" />
+                <Sliders className="h-4 w-4 text-amber-500" />
                 <span className="font-mono text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
                   PARAMETER_CONTROLS
                 </span>

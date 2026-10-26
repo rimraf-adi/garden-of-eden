@@ -112,7 +112,7 @@ export default function EdenCard({ card }: EdenCardProps) {
               <defs>
                 <linearGradient id="prism-beam" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.45" />
-                  <stop offset="50%" stopColor="#818cf8" stopOpacity="0.25" />
+                  <stop offset="50%" stopColor="#fbbf24" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#c084fc" stopOpacity="0" />
                 </linearGradient>
               </defs>

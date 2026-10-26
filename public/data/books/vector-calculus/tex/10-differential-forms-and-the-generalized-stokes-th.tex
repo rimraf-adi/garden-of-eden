@@ -1,0 +1,375 @@
+\chapter{Differential Forms and the Generalized Stokes Theorem}
+\label{ch:forms}
+
+In Chapter~\ref{ch:theorems} we met five theorems that look alike: the fundamental theorem of calculus, the fundamental theorem for line integrals, Green, Stokes and Gauss. Differential forms give the language in which they are \emph{one} theorem. They also explain the identities $\curl\nabla f=\vec0$ and $\divg\curl\vec F=0$ (both are the single statement $\dd^2=0$), why coordinate changes behave so well in integrals, and how the topology of a space controls which fields have potentials.
+
+We work in $\R^n$ (mostly $n=2,3$), with smooth ($C^\infty$) functions to avoid regularity bookkeeping.
+
+%====================================================================
+\section{Forms and the wedge product}
+%====================================================================
+
+\subsection{Why forms?}
+
+We have written integrals like $\int P\,\dd x+Q\,\dd y$ and $\iint\vec F\cdot\hat{\vec n}\,\dd S$. What are $\dd x$ and $\dd y\wedge\dd z$ as objects? A \emph{$k$-form} is something that can be integrated over a $k$-dimensional surface: it eats $k$ tangent vectors and returns a number (an oriented ``$k$-volume measurement''). Two fundamental properties are required: it is linear in each vector, and it changes sign if two vectors are swapped (a signed area flips sign when we reverse orientation).
+
+\begin{definition}[$k$-form at a point]
+A \emph{$k$-covector} on $\R^n$ is a map $\alpha:(\R^n)^k\to\R$ that is linear in each argument and \emph{alternating}: $\alpha(\dots,\vec v,\dots,\vec w,\dots)=-\alpha(\dots,\vec w,\dots,\vec v,\dots)$. A \emph{$k$-form} $\omega$ on an open set $U$ assigns a $k$-covector $\omega_{\vec x}$ to each $\vec x\in U$, smoothly.
+\end{definition}
+
+The simplest examples: a $0$-form is a smooth function $f$. The coordinate function $x^i$ has differential $\dd x^i$, the $1$-form $\vec v\mapsto v_i$ ($i$th component of $\vec v$). A general $1$-form is
+\[
+\omega=\sum_iP_i\,\dd x^i,\qquad\omega_{\vec x}(\vec v)=\sum_iP_i(\vec x)v_i=\vec P(\vec x)\cdot\vec v .
+\]
+So a $1$-form is just a vector field in disguise: it measures the component of a tangent vector along $\vec P$. This is the integrand of work: $\vec F\cdot\dd\vec r=\sum F_i\dd x^i$.
+
+\begin{definition}[Wedge product]
+For $1$-forms $\alpha,\beta$, define $(\alpha\wedge\beta)(\vec v,\vec w)=\alpha(\vec v)\beta(\vec w)-\alpha(\vec w)\beta(\vec v)$. In general, $\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$ is the $k$-form that returns the determinant of the $k\times k$ matrix of the components $i_1,\dots,i_k$ of its $k$ arguments, and the wedge product of forms is extended by bilinearity. Every $k$-form can be written uniquely as
+\[
+\omega=\sum_{i_1<\dots<i_k}f_{i_1\dots i_k}(\vec x)\,\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}.
+\]
+\end{definition}
+
+For instance $(\dd x\wedge\dd y)(\vec v,\vec w)=v_1w_2-v_2w_1$: the signed area of the parallelogram spanned by the projections of $\vec v,\vec w$ onto the $xy$-plane.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.3]
+  \draw[axisline] (-0.3,0)--(3.3,0) node[right]{$x$};
+  \draw[axisline] (0,-0.3)--(0,2.6) node[above]{$y$};
+  \filldraw[fill=accent!15,draw=accent,thick] (0.3,0.2)--(2.1,0.5)--(2.9,2.1)--(1.1,1.8)--cycle;
+  \draw[vecstyle,accent2] (0.3,0.2)--(2.1,0.5) node[midway,below,font=\small]{$\vec v$};
+  \draw[vecstyle,accent3] (0.3,0.2)--(1.1,1.8) node[midway,left,font=\small]{$\vec w$};
+  \node[font=\small] at (1.7,1.1) {$\dd x\wedge\dd y(\vec v,\vec w)$};
+  \node[font=\scriptsize,accent4] at (1.7,0.8) {$=$ signed area};
+\end{tikzpicture}
+\caption{The $2$-form $\dd x\wedge\dd y$ measures the signed (oriented) area of the parallelogram spanned by two vectors. Swapping $\vec v$ and $\vec w$ changes the sign.}
+\label{fig:wedgearea}
+\end{figure}
+
+\begin{proposition}[Rules for the wedge product]\label{prop:wedge}
+For a $k$-form $\alpha$, an $l$-form $\beta$ and a form $\gamma$:
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha\wedge(\beta+\gamma)=\alpha\wedge\beta+\alpha\wedge\gamma$ and $(\alpha\wedge\beta)\wedge\gamma=\alpha\wedge(\beta\wedge\gamma)$ (bilinear, associative).
+  \item $\alpha\wedge\beta=(-1)^{kl}\beta\wedge\alpha$. In particular $\alpha\wedge\alpha=0$ for odd $k$, and $\dd x^i\wedge\dd x^i=0$.
+  \item In $\R^n$, every $k$-form with $k>n$ is zero.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) is built into the definition. (b) For basis forms $\dd x^I=\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$ and $\dd x^J$ with $l$ factors, moving each of the $l$ factors of $\dd x^J$ past the $k$ factors of $\dd x^I$ costs $k$ transpositions of adjacent $1$-forms, each giving a factor $-1$ (swapping two columns of a determinant); in total $(-1)^{kl}$. If $k$ is odd, $\alpha\wedge\alpha=-\alpha\wedge\alpha$ forces $\alpha\wedge\alpha=0$. (c) A basis form $\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$ with $k>n$ has a repeated index, hence is $0$ by (b).
+\end{proof}
+
+\subsection{The dictionary in $\R^3$}
+
+In $\R^3$ the forms of degree $0,1,2,3$ have $1,3,3,1$ components, which is why vectors and scalars can stand for them:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{llll}
+\toprule
+\textbf{Degree} & \textbf{Basis} & \textbf{Form} & \textbf{Vector-calculus object} \\
+\midrule
+0 & $1$ & $f$ & scalar function $f$ \\
+1 & $\dd x,\dd y,\dd z$ & $F_1\dd x+F_2\dd y+F_3\dd z$ & field $\vec F$, integrand $\vec F\cdot\dd\vec r$ \\
+2 & $\dd y\wedge\dd z,\ \dd z\wedge\dd x,\ \dd x\wedge\dd y$ & $F_1\dd y\wedge\dd z+F_2\dd z\wedge\dd x+F_3\dd x\wedge\dd y$ & field $\vec F$, integrand $\vec F\cdot\dd\vec S$ \\
+3 & $\dd x\wedge\dd y\wedge\dd z$ & $f\,\dd x\wedge\dd y\wedge\dd z$ & scalar $f$, integrand $f\,\dd V$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Wedge product and the cross and dot products]\label{prop:wedgedict}
+If $\alpha=\sum a_i\dd x^i$ and $\beta=\sum b_i\dd x^i$ correspond to $\vec a,\vec b$, then $\alpha\wedge\beta$ corresponds to the $2$-form of $\vec a\times\vec b$. If $\alpha$ is a $1$-form for $\vec a$ and $\beta$ a $2$-form for $\vec b$, then $\alpha\wedge\beta=(\vec a\cdot\vec b)\,\dd x\wedge\dd y\wedge\dd z$.
+\end{proposition}
+
+\begin{proof}
+Expand: $\alpha\wedge\beta=\sum_{i,j}a_ib_j\dd x^i\wedge\dd x^j$. Terms with $i=j$ vanish and $\dd x^j\wedge\dd x^i=-\dd x^i\wedge\dd x^j$, so
+\[
+\alpha\wedge\beta=(a_2b_3-a_3b_2)\dd y\wedge\dd z+(a_3b_1-a_1b_3)\dd z\wedge\dd x+(a_1b_2-a_2b_1)\dd x\wedge\dd y,
+\]
+which are the components of $\vec a\times\vec b$. For the second statement, in $\alpha\wedge\beta=\sum_{i,j}a_ib_j\,\dd x^i\wedge(\text{basis 2-form})_j$ only $i=j$ survives: $\dd x\wedge\dd y\wedge\dd z=\dd y\wedge\dd z\wedge\dd x=\dd z\wedge\dd x\wedge\dd y$ (cyclic permutations are even), giving $(a_1b_1+a_2b_2+a_3b_3)\dd x\wedge\dd y\wedge\dd z$.
+\end{proof}
+
+%====================================================================
+\section{The exterior derivative}
+%====================================================================
+
+\begin{definition}[Exterior derivative]
+For a $0$-form $f$, $\dd f=\sum_i\pd f{x^i}\dd x^i$. For a $k$-form $\omega=\sum_If_I\,\dd x^I$,
+\[
+\dd\omega=\sum_I\dd f_I\wedge\dd x^I=\sum_I\sum_j\pd{f_I}{x^j}\,\dd x^j\wedge\dd x^I .
+\]
+\end{definition}
+
+\begin{theorem}[Properties of $\dd$]\label{thm:dprops}
+\begin{enumerate}[label=(\alph*)]
+  \item \emph{Linearity:} $\dd(a\omega+b\eta)=a\,\dd\omega+b\,\dd\eta$ for constants $a,b$.
+  \item \emph{Leibniz rule:} if $\omega$ is a $k$-form then $\dd(\omega\wedge\eta)=\dd\omega\wedge\eta+(-1)^k\omega\wedge\dd\eta$.
+  \item \emph{$\dd^2=0$:} $\dd(\dd\omega)=0$ for every form $\omega$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) is clear. (b) By linearity it suffices to take $\omega=f\,\dd x^I$, $\eta=g\,\dd x^J$. Then $\omega\wedge\eta=fg\,\dd x^I\wedge\dd x^J$ and, by the product rule $\dd(fg)=g\,\dd f+f\,\dd g$,
+\[
+\dd(\omega\wedge\eta)=g\,\dd f\wedge\dd x^I\wedge\dd x^J+f\,\dd g\wedge\dd x^I\wedge\dd x^J .
+\]
+The first term is $\dd\omega\wedge\eta$. In the second, move $\dd g$ past $\dd x^I$ (which has $k$ factors): $\dd g\wedge\dd x^I=(-1)^k\dd x^I\wedge\dd g$, giving $(-1)^kf\,\dd x^I\wedge\dd g\wedge\dd x^J=(-1)^k\omega\wedge\dd\eta$.
+
+(c) First for a function $f$: $\dd\dd f=\sum_j\sum_i\frac{\partial^2f}{\partial x^j\partial x^i}\dd x^j\wedge\dd x^i$. The coefficient of $\dd x^j\wedge\dd x^i$ is symmetric in $(i,j)$ by Clairaut's theorem, while $\dd x^j\wedge\dd x^i$ is antisymmetric; the terms $(i,j)$ and $(j,i)$ cancel in pairs, and the terms $i=j$ vanish. So $\dd^2f=0$. For $\omega=f\,\dd x^I$: $\dd\omega=\dd f\wedge\dd x^I$, and by (b) $\dd(\dd f\wedge\dd x^I)=\dd\dd f\wedge\dd x^I-\dd f\wedge\dd(\dd x^I)=0-0$, because $\dd x^I=\dd x^{i_1}\wedge\dots$ is a wedge of closed forms $\dd x^{i}=\dd(x^i)$ with $\dd\dd x^i=0$, and repeated use of (b) gives $\dd(\dd x^I)=0$.
+\end{proof}
+
+\begin{theorem}[$\dd$ is grad, curl, div]\label{thm:ddict}
+Under the dictionary of the table above, in $\R^3$:
+\begin{enumerate}[label=(\alph*)]
+  \item $\dd$ on $0$-forms is the gradient: $\dd f\leftrightarrow\nabla f$.
+  \item $\dd$ on $1$-forms is the curl: $\dd(\vec F\cdot\dd\vec r)=\curl\vec F\cdot\dd\vec S$.
+  \item $\dd$ on $2$-forms is the divergence: $\dd(\vec F\cdot\dd\vec S)=(\divg\vec F)\,\dd V$.
+\end{enumerate}
+Consequently $\dd^2=0$ gives $\curl\nabla f=\vec0$ and $\divg\curl\vec F=0$.
+\end{theorem}
+
+\begin{proof}
+(a) is the definition. (b) For $\omega=P\,\dd x+Q\,\dd y+R\,\dd z$,
+\begin{align*}
+\dd\omega&=\dd P\wedge\dd x+\dd Q\wedge\dd y+\dd R\wedge\dd z\\
+&=(P_y\dd y+P_z\dd z)\wedge\dd x+(Q_x\dd x+Q_z\dd z)\wedge\dd y+(R_x\dd x+R_y\dd y)\wedge\dd z\\
+&=(R_y-Q_z)\dd y\wedge\dd z+(P_z-R_x)\dd z\wedge\dd x+(Q_x-P_y)\dd x\wedge\dd y,
+\end{align*}
+where we used $\dd y\wedge\dd x=-\dd x\wedge\dd y$ etc. The coefficients are the components of $\curl\vec F$. (c) For $\omega=F_1\dd y\wedge\dd z+F_2\dd z\wedge\dd x+F_3\dd x\wedge\dd y$, only $\partial_xF_1\dd x\wedge\dd y\wedge\dd z$, $\partial_yF_2\dd y\wedge\dd z\wedge\dd x$ and $\partial_zF_3\dd z\wedge\dd x\wedge\dd y$ survive (any other term contains a repeated $\dd x^i$), and all three equal $\dd x\wedge\dd y\wedge\dd z$ (cyclic permutations). So $\dd\omega=(F_{1,x}+F_{2,y}+F_{3,z})\dd x\wedge\dd y\wedge\dd z$.
+\end{proof}
+
+\begin{intuition}
+The ``three derivatives'' of vector calculus are one operator $\dd$ in different dimensions. And the two identities $\curl\nabla=0$, $\divg\curl=0$ that took separate computations are \emph{one} identity $\dd^2=0$, coming from the symmetry of second derivatives. The Leibniz rule (b) also generates the product rules of Theorem~\ref{thm:identities}.
+\end{intuition}
+
+\begin{example}[The identity $\divg(\vec a\times\vec b)=\vec b\cdot\curl\vec a-\vec a\cdot\curl\vec b$]
+Let $\alpha,\beta$ be $1$-forms for $\vec a,\vec b$. By Proposition~\ref{prop:wedgedict}, $\alpha\wedge\beta$ is the $2$-form of $\vec a\times\vec b$, so $\divg(\vec a\times\vec b)\dd V=\dd(\alpha\wedge\beta)=\dd\alpha\wedge\beta-\alpha\wedge\dd\beta=(\curl\vec a\cdot\vec b-\vec a\cdot\curl\vec b)\dd V$, using the dictionary of Proposition~\ref{prop:wedgedict} for the product of a $2$-form and a $1$-form.
+\end{example}
+
+%====================================================================
+\section{Pullback and integration}
+%====================================================================
+
+\subsection{Pullback}
+
+Let $\Phi:U\to V$ be a smooth map and $\omega$ a $k$-form on $V$. The \emph{pullback} $\Phi^*\omega$ is the $k$-form on $U$ defined by
+\[
+(\Phi^*\omega)_{\vec u}(\vec v_1,\dots,\vec v_k)=\omega_{\Phi(\vec u)}\bigl(\Jac\Phi(\vec u)\vec v_1,\dots,\Jac\Phi(\vec u)\vec v_k\bigr),
+\]
+i.e.\ we first push the vectors forward by the Jacobian matrix, then apply $\omega$. In coordinates, one substitutes: if $\vec x=\Phi(\vec u)$, then $\Phi^*(\dd x^i)=\dd\Phi^i=\sum_j\pd{\Phi^i}{u^j}\dd u^j$, $\Phi^*(f)=f\circ\Phi$, and $\Phi^*(\alpha\wedge\beta)=\Phi^*\alpha\wedge\Phi^*\beta$.
+
+\begin{theorem}[Pullback commutes with $\dd$]\label{thm:pullbackd}
+$\Phi^*(\dd\omega)=\dd(\Phi^*\omega)$.
+\end{theorem}
+
+\begin{proof}
+For a $0$-form $f$: $\Phi^*\dd f=\sum_i(\partial_if\circ\Phi)\dd\Phi^i=\dd(f\circ\Phi)$ by the chain rule. For $\omega=f\,\dd x^{i_1}\wedge\dots\wedge\dd x^{i_k}$, $\Phi^*\omega=(f\circ\Phi)\,\dd\Phi^{i_1}\wedge\dots\wedge\dd\Phi^{i_k}$. By Theorem~\ref{thm:dprops}(b),(c), $\dd(\Phi^*\omega)=\dd(f\circ\Phi)\wedge\dd\Phi^{i_1}\wedge\dots\wedge\dd\Phi^{i_k}$ (the factors $\dd\Phi^{i}$ are closed). This equals $\Phi^*(\dd f)\wedge\Phi^*(\dd x^{i_1})\wedge\dots=\Phi^*(\dd f\wedge\dd x^{i_1}\wedge\dots)=\Phi^*(\dd\omega)$.
+\end{proof}
+
+\begin{proposition}[Pullback of the top form is the Jacobian]\label{prop:pullbacktop}
+If $\Phi:U\to V$ is a map between open subsets of $\R^n$ and $\omega=f\,\dd x^1\wedge\dots\wedge\dd x^n$, then $\Phi^*\omega=(f\circ\Phi)\,\det\Jac\Phi\;\dd u^1\wedge\dots\wedge\dd u^n$.
+\end{proposition}
+
+\begin{proof}
+$\Phi^*(\dd x^1\wedge\dots\wedge\dd x^n)$ evaluated on $\vec e_1,\dots,\vec e_n$ is, by the definition,
+\[
+(\dd x^1\wedge\dots\wedge\dd x^n)(\Jac\Phi\,\vec e_1,\dots,\Jac\Phi\,\vec e_n)=\det\Jac\Phi,
+\]
+because $\dd x^1\wedge\dots\wedge\dd x^n$ is the determinant of its arguments, and the columns of $\Jac\Phi$ are the vectors $\Jac\Phi\,\vec e_j$.
+\end{proof}
+
+This is where the Jacobian determinant of Chapter~\ref{ch:multint} comes from: it is \emph{built in} to the pullback of the volume form. For polar coordinates, $\Phi^*(\dd x\wedge\dd y)=\dd(r\cos\theta)\wedge\dd(r\sin\theta)=(\cos\theta\,\dd r-r\sin\theta\,\dd\theta)\wedge(\sin\theta\,\dd r+r\cos\theta\,\dd\theta)=r\,\dd r\wedge\dd\theta$.
+
+\subsection{Integration}
+
+Let $D\subset\R^k$ be a region and $\Phi:D\to\R^n$ a smooth parametrization of a $k$-dimensional surface $S$. For a $k$-form $\omega$ on $\R^n$ we define
+\[
+\int_S\omega=\int_D\Phi^*\omega,\qquad\text{where}\qquad\int_Dg\,\dd u^1\wedge\dots\wedge\dd u^k:=\int_Dg\,\dd u^1\cdots\dd u^k
+\]
+(the ordinary Riemann integral). A reparametrization $\Phi\circ\Psi$ (with $\Psi$ a diffeomorphism) changes the integral by the Jacobian of $\Psi$, which by Proposition~\ref{prop:pullbacktop} and the change-of-variables theorem~\ref{thm:cov} gives the same value if $\det\Jac\Psi>0$ and the opposite sign if $\det\Jac\Psi<0$. So $\int_S\omega$ depends on the surface and its \emph{orientation}.
+
+\begin{theorem}[The old integrals are integrals of forms]\label{thm:oldint}
+Let $\vec r:[a,b]\to\R^3$ and $\vec r:D\to\R^3$ be parametrizations of a curve and of a surface. Then
+\[
+\int_C\vec F\cdot\dd\vec r=\int_C\omega_{\vec F},\qquad\iint_S\vec F\cdot\dd\vec S=\int_S\eta_{\vec F},
+\]
+where $\omega_{\vec F}$ and $\eta_{\vec F}$ are the $1$-form and the $2$-form of $\vec F$.
+\end{theorem}
+
+\begin{proof}
+For the curve, $\vec r^*(F_1\dd x+F_2\dd y+F_3\dd z)=(F_1x'+F_2y'+F_3z')\dd t=\vec F\cdot\vec r\,'\,\dd t$. For the surface, $\vec r^*(\dd y\wedge\dd z)=(y_u\dd u+y_v\dd v)\wedge(z_u\dd u+z_v\dd v)=(y_uz_v-y_vz_u)\dd u\wedge\dd v$, which is the first component of $\vec r_u\times\vec r_v$. Likewise for the other two components. Thus $\vec r^*\eta_{\vec F}=\vec F\cdot(\vec r_u\times\vec r_v)\,\dd u\wedge\dd v$, which is the flux integrand.
+\end{proof}
+
+So work and flux integrals are line and surface integrals of forms, and the awkward orientation conventions (cross product, normal vector) are automatic: orientation of the parametrization is orientation of the surface.
+
+%====================================================================
+\section{The generalized Stokes theorem}
+%====================================================================
+
+Let $\Omega$ be an oriented $k$-dimensional region (a ``chain'') with boundary $\partial\Omega$ carrying the induced orientation (``outward normal first''). The convention: a basis $(\vec v_1,\dots,\vec v_{k-1})$ of the boundary is positively oriented if $(\vec n,\vec v_1,\dots,\vec v_{k-1})$ is positively oriented in $\Omega$, where $\vec n$ points outward. For $k=2$ this gives the counterclockwise orientation (region on the left), and for $k=1$ the endpoint $b$ gets $+$ and $a$ gets $-$ (so that $\int_a^b\dd f=f(b)-f(a)$).
+
+\begin{theorem}[Generalized Stokes theorem]\label{thm:genstokes}
+Let $\Omega$ be a compact oriented $k$-dimensional surface with boundary (a region of $\R^k$, or a parametrized piece of a surface in $\R^n$) and let $\omega$ be a smooth $(k-1)$-form on a neighbourhood of $\Omega$. Then
+\[
+\int_\Omega\dd\omega=\int_{\partial\Omega}\omega .
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: the unit cube.} Let $\Omega=[0,1]^k\subset\R^k$ with the standard orientation. A $(k-1)$-form on $\R^k$ can be written
+\[
+\omega=\sum_{i=1}^kf_i\;\dd x^1\wedge\dots\wedge\widehat{\dd x^i}\wedge\dots\wedge\dd x^k,
+\]
+where the hat means that $\dd x^i$ is omitted. Then
+\[
+\dd\omega=\sum_i\pd{f_i}{x^i}\dd x^i\wedge\dd x^1\wedge\dots\wedge\widehat{\dd x^i}\wedge\dots\wedge\dd x^k=\sum_i(-1)^{i-1}\pd{f_i}{x^i}\dd x^1\wedge\dots\wedge\dd x^k,
+\]
+since moving $\dd x^i$ to its place across $i-1$ factors gives $(-1)^{i-1}$. By Fubini and the fundamental theorem of calculus in the variable $x^i$,
+\[
+\int_{[0,1]^k}\dd\omega=\sum_i(-1)^{i-1}\Bigl(\int_{x^i=1}f_i-\int_{x^i=0}f_i\Bigr),
+\]
+where $\int_{x^i=c}f_i$ is the ordinary integral over the other $k-1$ variables. Now compute $\int_{\partial\Omega}\omega$. The boundary consists of the faces $\{x^j=0\}$ and $\{x^j=1\}$. On the face $x^j=c$ we have $\dd x^j=0$, so every term of $\omega$ except $f_j\,\dd x^1\wedge\dots\widehat{\dd x^j}\dots\wedge\dd x^k$ vanishes. For the orientation of the face $\{x^j=1\}$: the outward normal is $\vec e_j$, and $(\vec e_j,\vec e_1,\dots,\widehat{\vec e_j},\dots,\vec e_k)$ differs from the standard basis by moving $\vec e_j$ across $j-1$ vectors, so the sign relative to the coordinate order is $(-1)^{j-1}$. The opposite face $\{x^j=0\}$ has the opposite sign. Hence
+\[
+\int_{\partial\Omega}\omega=\sum_j(-1)^{j-1}\Bigl(\int_{x^j=1}f_j-\int_{x^j=0}f_j\Bigr),
+\]
+the same as above.
+
+\emph{Step 2: parametrized pieces.} Suppose $\Omega=\Phi(Q)$ for a smooth parametrization $\Phi:Q\to\R^n$ of the cube $Q=[0,1]^k$ (orientation-preserving). By definition of integrals and Theorem~\ref{thm:pullbackd},
+\[
+\int_\Omega\dd\omega=\int_Q\Phi^*\dd\omega=\int_Q\dd(\Phi^*\omega)=\int_{\partial Q}\Phi^*\omega=\int_{\Phi(\partial Q)}\omega=\int_{\partial\Omega}\omega,
+\]
+where Step 1 was applied to the $(k-1)$-form $\Phi^*\omega$.
+
+\emph{Step 3: general regions.} A general compact oriented region is cut into finitely many pieces of the type in Step 2 (this is possible for all regions we consider: discs, balls, surfaces with boundary, and so on). The integrals $\int\dd\omega$ add up. The boundary integrals also add up, and the integrals over interior faces cancel because each interior face occurs twice with opposite induced orientations (as in the proof of Green's theorem).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \foreach \i in {0,...,3}{\foreach \j in {0,...,2}{
+    \draw[accent!50,fill=accent!8] (\i,\j) rectangle (\i+1,\j+1);
+    \draw[accent2,-{Stealth[length=1.6mm]},thin] (\i+0.2,\j+0.12)--(\i+0.8,\j+0.12);
+    \draw[accent2,-{Stealth[length=1.6mm]},thin] (\i+0.88,\j+0.2)--(\i+0.88,\j+0.8);
+    \draw[accent2,-{Stealth[length=1.6mm]},thin] (\i+0.8,\j+0.88)--(\i+0.2,\j+0.88);
+    \draw[accent2,-{Stealth[length=1.6mm]},thin] (\i+0.12,\j+0.8)--(\i+0.12,\j+0.2);
+  }}
+  \draw[accent,very thick] (0,0) rectangle (4,3);
+  \draw[accent,ultra thick,-{Stealth[length=3mm]}] (1.5,0)--(2.5,0);
+  \node[font=\small] at (2,-0.45) {the arrows on interior edges cancel in pairs};
+\end{tikzpicture}
+\caption{Why Stokes' theorem is true. Each small cell contributes $\dd\omega\times\text{area}\approx$ its circulation. On a shared interior edge the two cells use opposite directions, so only the outer boundary survives.}
+\label{fig:stokescells}
+\end{figure}
+
+\subsection{All the classical theorems at once}
+
+\begin{theorem}[Special cases]\label{thm:special}
+Theorem~\ref{thm:genstokes} contains:
+\begin{enumerate}[label=(\arabic*)]
+  \item $k=1$, $\omega=f$: the fundamental theorem of calculus, and for a curve $C$: $\int_C\nabla f\cdot\dd\vec r=f(B)-f(A)$.
+  \item $k=2$ in $\R^2$, $\omega=P\,\dd x+Q\,\dd y$: Green's theorem.
+  \item $k=2$ for a surface $S\subset\R^3$, $\omega=\vec F\cdot\dd\vec r$: Stokes' theorem.
+  \item $k=3$, $\omega=\vec F\cdot\dd\vec S$: the divergence theorem.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\dd f$ is the $1$-form of $\nabla f$ and $\partial C=\{B\}-\{A\}$. (2) By Theorem~\ref{thm:ddict}(b) in the plane, $\dd\omega=(Q_x-P_y)\dd x\wedge\dd y$. (3) $\dd\omega$ is the $2$-form of $\curl\vec F$, and by Theorem~\ref{thm:oldint}, $\int_S\dd\omega=\iint_S\curl\vec F\cdot\dd\vec S$. (4) $\dd\omega=(\divg\vec F)\dd V$ by Theorem~\ref{thm:ddict}(c), and $\int_E\divg\vec F\dd V$ is the ordinary volume integral, because $\dd x\wedge\dd y\wedge\dd z$ integrates to the usual volume with standard orientation.
+\end{proof}
+
+\begin{example}[Boundary of a boundary]
+$\partial\partial\Omega=\emptyset$. Apply Stokes twice: $\int_\Omega\dd\dd\eta=\int_{\partial\partial\Omega}\eta=0$. So $\dd^2=0$ \emph{is dual to} $\partial^2=0$. This is why the flux of a curl through a closed surface (which has no boundary) is zero, as in Theorem~\ref{thm:consequences}(b).
+\end{example}
+
+%====================================================================
+\section{Closed and exact forms; a glimpse of de Rham cohomology}
+%====================================================================
+
+\begin{definition}
+A form $\omega$ is \emph{closed} if $\dd\omega=0$ and \emph{exact} if $\omega=\dd\eta$ for some form $\eta$.
+\end{definition}
+
+By $\dd^2=0$, \emph{exact $\Rightarrow$ closed}. This is the form-version of ``$\vec F=\nabla f\Rightarrow\curl\vec F=\vec0$'', and ``$\vec F=\curl\vec A\Rightarrow\divg\vec F=0$''. The converse (closed $\Rightarrow$ exact) is the Poincar\'e lemma, which is true on star-shaped regions (Theorem~\ref{thm:poincare} and its generalization to all degrees), but may fail on regions with holes.
+
+\begin{definition}[de Rham cohomology]
+$H^k(U)=\{\text{closed }k\text{-forms on }U\}\big/\{\text{exact }k\text{-forms on }U\}$.
+\end{definition}
+
+This vector space measures the \emph{failure} of the Poincar\'e lemma on $U$. It depends only on the topology of $U$: a ball has $H^k=0$ for $k\ge1$, and the holes of $U$ appear as nonzero classes.
+
+\begin{theorem}[The punctured plane has $H^1\ne0$]\label{thm:H1}
+On $U=\R^2\setminus\{\vec0\}$ the $1$-form $\dd\theta=\dfrac{x\,\dd y-y\,\dd x}{x^2+y^2}$ is closed but not exact.
+\end{theorem}
+
+\begin{proof}
+Closed: $\dd\bigl(\frac{x}{x^2+y^2}\bigr)\wedge\dd y-\dd\bigl(\frac{y}{x^2+y^2}\bigr)\wedge\dd x=\bigl[\partial_x\frac x{x^2+y^2}+\partial_y\frac y{x^2+y^2}\bigr]\dd x\wedge\dd y=0$ (a direct computation: $\frac{y^2-x^2}{(x^2+y^2)^2}+\frac{x^2-y^2}{(x^2+y^2)^2}=0$). Not exact: if $\dd\theta=\dd g$ then, for the unit circle $C$, Stokes (Theorem~\ref{thm:special}(1) with $\partial C=\emptyset$) gives $\oint_C\dd g=0$, but $\oint_C\dd\theta=2\pi$ (Theorem~\ref{thm:vortex}).
+\end{proof}
+
+In fact $H^1(\R^2\setminus\{\vec0\})\cong\R$ is spanned by the class of $\dd\theta$: every closed $1$-form on the punctured plane is $c\,\dd\theta+\dd g$. We state this without proof, together with the general principle (de Rham's theorem): $\dim H^k(U)$ equals the number of independent $k$-dimensional ``holes'' of $U$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Space} & $\dim H^0$ & $\dim H^1$ & $\dim H^2$ \\
+\midrule
+$\R^n$, ball, star-shaped region & 1 & 0 & 0 \\
+$\R^2\setminus\{\vec0\}$, circle & 1 & 1 & 0 \\
+$\R^3\setminus\{\vec0\}$, sphere & 1 & 0 & 1 \\
+torus & 1 & 2 & 1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{example}[The class that detects $\vec r/r^3$]
+On $\R^3\setminus\{\vec0\}$ the $2$-form $\eta=\dfrac{x\,\dd y\wedge\dd z+y\,\dd z\wedge\dd x+z\,\dd x\wedge\dd y}{r^3}$ of the field $\vec r/r^3$ is closed ($\divg(\vec r/r^3)=0$) but not exact, since $\oiint_{S^2}\eta=4\pi\ne0$. This is the $H^2$ class of the sphere, the topological content of Gauss's law. The ``Dirac monopole'' of physics is the magnetic analogue.
+\end{example}
+
+\begin{remark}[Beyond $\R^n$]
+Everything in this chapter works on any smooth manifold: a curved surface such as a sphere or a torus is covered by coordinate patches, forms are defined patch by patch, and the pullback rule makes them compatible. Stokes' theorem holds verbatim. This is the language in which general relativity, gauge theory and symplectic mechanics are written.
+\end{remark}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item A $k$-form is an alternating multilinear measurement of $k$ vectors; $\dd x^{I}$ are the basis; $\alpha\wedge\beta=(-1)^{kl}\beta\wedge\alpha$.
+  \item In $\R^3$: $0$-forms $\leftrightarrow$ scalars; $1$-forms $\leftrightarrow$ $\vec F\cdot\dd\vec r$; $2$-forms $\leftrightarrow$ $\vec F\cdot\dd\vec S$; $3$-forms $\leftrightarrow$ $f\,\dd V$; $\wedge$ is the cross (or dot) product.
+  \item $\dd$ is grad, curl, div; $\dd^2=0$ (from Clairaut) gives $\curl\nabla=0$, $\divg\curl=0$.
+  \item Pullback $\Phi^*$ commutes with $\dd$ and wedge; $\Phi^*(\dd x^1\wedge\dots\wedge\dd x^n)=\det\Jac\Phi\,\dd u^1\wedge\dots\wedge\dd u^n$ (the Jacobian).
+  \item $\int_\Omega\dd\omega=\int_{\partial\Omega}\omega$ contains FTC, Green, Stokes and Gauss. Proof: cube + pullback + gluing.
+  \item Exact $\Rightarrow$ closed; the converse depends on topology: $H^k(U)$ counts holes. $\dd\theta$ on the punctured plane and $\vec r/r^3$ on punctured space are the basic examples.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{What is a differential $1$-form?} A field of linear functionals on tangent vectors, i.e.\ the integrand of a line integral.
+  \item \emph{Why is $\dd x\wedge\dd y=-\dd y\wedge\dd x$?} Signed area changes sign when the two vectors are swapped; orientation.
+  \item \emph{Show that $\curl\nabla f=0$ and $\divg\curl\vec F=0$ in one line.} $\dd^2=0$.
+  \item \emph{State the generalized Stokes theorem and list its special cases.}
+  \item \emph{Where does the Jacobian in the change of variables come from?} The pullback of the volume form.
+  \item \emph{Closed versus exact?} Closed means $\dd\omega=0$ (local condition); exact means a global primitive exists; the difference is cohomology, which sees holes.
+  \item \emph{Why does $\vec r/r^3$ have no vector potential?} The flux through a sphere is $4\pi$, but exact $2$-forms integrate to $0$ on closed surfaces.
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Compute $\dd\omega$ for $\omega=x^2y\,\dd x+xz\,\dd y+yz\,\dd z$, and compare with $\curl\vec F$. (Answer: $\dd\omega=(z-x)\,\dd y\wedge\dd z+(z-x^2)\,\dd x\wedge\dd y$, matching $\curl\vec F=(z-x,\ 0,\ z-x^2)$.)
+\end{exercise}
+\begin{exercise}
+Pull back $\omega=\dd x\wedge\dd y\wedge\dd z$ by the spherical coordinate map and recover $\rho^2\sin\varphi\,\dd\rho\wedge\dd\varphi\wedge\dd\theta$.
+\end{exercise}
+\begin{exercise}
+Prove that if $\omega$ is closed and $\eta$ is exact then $\omega\wedge\eta$ is exact. (Hint: $\eta=\dd\beta$ and Theorem~\ref{thm:dprops}(b).)
+\end{exercise}
+\begin{exercise}
+Show that the $1$-form $\omega=\dfrac{-y\,\dd x+x\,\dd y}{x^2+y^2}$ becomes exact on $\R^2$ minus the closed negative real axis, with primitive $\theta=\arg(x,y)\in(-\pi,\pi)$. Why does this not contradict Theorem~\ref{thm:H1}?
+\end{exercise}
+\begin{exercise}
+Derive Green's theorem from the generalized Stokes theorem for $D=[0,1]^2$ directly by the computation in Step 1 of the proof.
+\end{exercise}
+\begin{exercise}
+In $\R^4$ with coordinates $(t,x,y,z)$ define $F=E_1\,\dd t\wedge\dd x+B_3\,\dd x\wedge\dd y+\dots$ (the electromagnetic $2$-form). Show that Faraday's law and $\divg\vec B=0$ together are the single equation $\dd F=0$. (This is the covariant form of two of Maxwell's equations.)
+\end{exercise}

@@ -313,19 +313,19 @@ export default function Chapter6Illustration() {
           const projX = originX + dirX * projDist * scale;
           const projY = originY - dirY * projDist * scale;
 
-          ctx.strokeStyle = 'rgba(99, 102, 241, 0.3)';
+          ctx.strokeStyle = 'rgba(217, 119, 6, 0.3)';
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(px, py);
           ctx.lineTo(projX, projY);
           ctx.stroke();
 
-          ctx.fillStyle = '#6366f1';
+          ctx.fillStyle = '#d97706';
           ctx.beginPath();
           ctx.arc(px, py, 4.5, 0, Math.PI * 2);
           ctx.fill();
 
-          ctx.fillStyle = '#818cf8';
+          ctx.fillStyle = '#fbbf24';
           ctx.beginPath();
           ctx.arc(projX, projY, 3.5, 0, Math.PI * 2);
           ctx.fill();
@@ -403,7 +403,7 @@ export default function Chapter6Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
@@ -433,7 +433,7 @@ export default function Chapter6Illustration() {
             onClick={() => setMode('eigenvectors')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg transition ${
               mode === 'eigenvectors'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >

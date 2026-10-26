@@ -1,0 +1,187 @@
+\chapter{Problem-Solving Patterns and Classical Paradoxes}
+\label{ch:patterns}
+
+This closing chapter collects the recurring \emph{techniques} for solving probability problems and
+the famous paradoxes that test them. Each paradox is resolved by identifying exactly which assumption
+was mishandled, which is the most reliable way to build intuition.
+
+\section{A toolkit of patterns}
+
+\begin{enumerate}
+\item \textbf{Count the complement.} ``At least one'' is $1-\Prob(\text{none})$. Birthday problem:
+$1-\prod_{k=0}^{n-1}(1-k/365)\approx1-e^{-n(n-1)/730}$, exceeding $\tfrac12$ at $n=23$.
+\item \textbf{Linearity of expectation with indicators.} Break the count into indicators; dependence is
+irrelevant. Expected fixed points of a random permutation is $n\cdot\frac1n=1$ for all $n$; expected
+number of distinct values in $n$ draws from $m$ equally likely is $m\bigl(1-(1-\tfrac1m)^n\bigr)$.
+\item \textbf{Symmetry.} If $X,Y$ are exchangeable, $\Prob(X>Y)=\tfrac12(1-\Prob(X=Y))$ with no computation.
+The probability that the $k$th card dealt is an ace equals that of the first.
+\item \textbf{Condition on the first step} (first-step analysis, Chapter~\ref{ch:condexp}). Expected flips for
+HH: $E=\tfrac12(1+E)+\tfrac14(2+E)+\tfrac14\cdot2\Rightarrow E=6$.
+\item \textbf{Condition on the right variable.} Compute $\Exp[Y]=\Exp[\Exp[Y\given X]]$ with $X$ chosen to make
+the inner expectation easy.
+\item \textbf{Reflection and bijections.} Convert hard counts into easy ones by a one-to-one
+map (ballot problem, Chapter~\ref{ch:markov}).
+\item \textbf{Martingales.} When a quantity ``has no drift'', optional stopping gives answers in one line.
+\item \textbf{Generating functions.} Convert convolutions into products and recurrences into algebra.
+\item \textbf{Bounds when exact is hard.} Union bound, Markov/Chebyshev, Chernoff; the probabilistic method:
+if $\Exp[X]\ge c$ then some outcome has $X\ge c$.
+\item \textbf{Change of order.} $\Exp X=\int\Prob(X>x)dx$; swap sum and integral (Tonelli).
+\item \textbf{Sanity checks.} Small cases ($n=1,2$), limits ($p\to0,1$), units/symmetry, and the sum of
+probabilities equal to $1$.
+\end{enumerate}
+
+\begin{interview}{a standard solving routine}
+(1) State the sample space and what ``uniformly random'' means. (2) Identify an event or random variable.
+(3) Pick a pattern above. (4) Verify with a small case. Many ``paradoxes'' are really failures of step (1).
+\end{interview}
+
+\subsection*{Three worked problems}
+
+\begin{example}[Expected maximum of $n$ uniforms]
+With $M=\max U_i$, $\Prob(M\le x)=x^n$, so $\Exp M=\int_0^1(1-x^n)dx=1-\frac1{n+1}=\frac n{n+1}$.
+\end{example}
+
+\begin{example}[Broken stick triangle]
+Break a unit stick at two independent uniform points. A triangle forms iff every piece is $<\tfrac12$.
+By inclusion--exclusion over the events $\{$piece $i\ge\tfrac12\}$, which are mutually exclusive (two
+pieces cannot both be $\ge\tfrac12$ unless they are exactly $\tfrac12$), each with probability $\tfrac14$
+(the vector of pieces is uniform on the simplex, and $\Prob(\text{piece}_1\ge\tfrac12)=(1-\tfrac12)^2$), the
+probability is $1-3\cdot\tfrac14=\tfrac14$.
+\end{example}
+
+\begin{example}[Random walk returns]
+Probability that a symmetric walk on $\Z^d$ ever returns to the origin is $1$ for $d=1,2$ and
+strictly less than $1$ for $d\ge3$ (P\'olya; about $0.34$ in $d=3$). The reason: the return probability at step
+$2n$ is $\asymp n^{-d/2}$ and $\sum n^{-d/2}$ converges iff $d\ge3$ (Chapter~\ref{ch:markov}). ``A drunk man
+finds his way home, a drunk bird may be lost forever.''
+\end{example}
+
+\section{Classical paradoxes}
+
+\subsection{Monty Hall}
+
+Three doors, one prize. You pick door 1. The host, who \emph{knows} where the prize is, always opens a
+different door showing a goat, then offers a switch. By Bayes with prize position $P$ uniform and the host
+choosing uniformly between two goat doors when he has a choice:
+\[
+\Prob(P=2\given\text{host opens }3)=\frac{\tfrac13\cdot1}{\tfrac13\cdot\tfrac12+\tfrac13\cdot1+\tfrac13\cdot0}=\frac23 .
+\]
+Switching wins with probability $\tfrac23$.
+
+\begin{pitfall}{the host's protocol is part of the problem}
+If the host opens a random door and it \emph{happens} to show a goat, switching gives only $\tfrac12$.
+The data ``door 3 has a goat'' is the same; the likelihood of the data differs. This is the general
+moral: always model the \emph{process that generated the information}.
+\end{pitfall}
+
+\subsection{Simpson's paradox}
+
+Treatment A can have a higher success rate than B within each of two subgroups, yet a lower rate overall.
+Example: A: $\tfrac{81}{87}$ (mild) and $\tfrac{192}{263}$ (severe) versus B: $\tfrac{234}{270}$ and $\tfrac{55}{80}$.
+Within each group A wins ($93.1\%>86.7\%$, $73.0\%>68.8\%$), but overall $\tfrac{273}{350}=78\%<\tfrac{289}{350}=83\%$.
+The reason is arithmetic: the overall rate is a weighted average with \emph{different weights}
+(A treats mostly the hard cases). Formally $\Prob(S\given T)=\sum_g\Prob(S\given T,g)\Prob(g\given T)$ and the
+weights $\Prob(g\given T)$ depend on $T$. Which comparison is correct depends on the causal structure: if the group
+is a confounder (severity influenced the choice of treatment), use the stratified comparison.
+
+\subsection{Bertrand's paradox}
+
+``Pick a random chord of a circle; what is the probability it is longer than the side of the inscribed
+equilateral triangle?'' Three natural definitions of ``random'' give three answers:
+\begin{itemize}
+\item random endpoints on the circle: $\tfrac13$;
+\item random radius, then a random point on it as the midpoint: $\tfrac12$;
+\item random midpoint uniform in the disc: $\tfrac14$.
+\end{itemize}
+\textit{Resolution}: ``random chord'' does not specify a probability space. The three methods define
+different measures on the set of chords. Only with an invariance requirement (rotation, translation and
+scale invariance, as in Jaynes' argument) does the second answer, $\tfrac12$, become singled out.
+
+\subsection{The two-envelope paradox}
+
+Two envelopes contain $x$ and $2x$. You hold one with amount $A$ and reason: the other holds $2A$ or $A/2$
+with probability $\tfrac12$ each, so its expectation is $\tfrac54A>A$ and you should always switch, an
+absurdity (by symmetry switching back is again profitable).
+
+\textit{Resolution}: Let the smaller amount be $X$. The step ``the other is $2A$ or $A/2$ with probability $\tfrac12$
+each \emph{conditional on} $A=a$'' implies a prior on $X$ with $\Prob(X=a)=\Prob(X=a/2)$-type
+consistency for every $a$, i.e.\ a uniform ``improper'' prior on the powers of $2$, which cannot be a probability
+distribution. For any proper prior, $\Exp[B\given A=a]$ exceeds $a$ only for small $a$ and falls below it for
+large $a$. And if $\Exp[X]<\infty$, unconditional expected gain from switching is exactly $0$. If $\Exp[X]=\infty$
+(a valid distribution), expectations of $A$ and $B$ are both infinite and the comparison is meaningless.
+
+\subsection{St.\ Petersburg paradox}
+
+Toss a fair coin until the first head, at toss $N$; win $2^N$. Then
+$\Exp[\text{win}]=\sum_{n\ge1}2^{-n}2^n=\sum1=\infty$, yet nobody would pay much to play. Resolutions:
+\begin{itemize}
+\item \emph{Finite bankroll}: if the casino can pay at most $2^k$, the value is $\approx k/2+1$ (log of the cap).
+\item \emph{Utility}: with $u(w)=\ln w$ (Bernoulli), $\Exp\ln(\text{win})=\sum2^{-n}n\ln2=2\ln2$, finite, certainty
+equivalent $4$.
+\item \emph{Typical behaviour}: the average of $n$ plays grows like $\log_2n$ (a weak law with truncation---Feller),
+never settling to a limit.
+\end{itemize}
+The paradox warns that expectation is the wrong summary when the distribution has an infinite mean.
+
+\subsection{The boy--girl problems}
+
+``A family has two children; at least one is a boy. Probability both are boys?'' The sample space
+$\{BB,BG,GB,GG\}$ restricted to ``at least one B'' gives $\tfrac13$. But if the information is ``the elder is a boy''
+the answer is $\tfrac12$; if ``I met one child, a boy'' (random child), it is $\tfrac12$. The wording encodes
+\emph{how the information was selected}, once more the Monty Hall lesson.
+
+\subsection{Sleeping Beauty and the prosecutor's fallacy}
+
+The \textbf{prosecutor's fallacy} confuses $\Prob(\text{evidence}\given\text{innocent})$ with
+$\Prob(\text{innocent}\given\text{evidence})$. If a DNA match has false-match probability $10^{-6}$ in a
+city of $10^7$, about $10$ innocent matches are expected; given only the match, the chance that a matching person
+is the culprit is about $\tfrac1{11}$, not $1-10^{-6}$. Always apply Bayes with the prior.
+
+\subsection{Non-transitive dice and the Condorcet cycle}
+
+Dice A: $\{2,2,4,4,9,9\}$, B: $\{1,1,6,6,8,8\}$, C: $\{3,3,5,5,7,7\}$. Enumerating the $9$ equally likely pairs
+of faces (each face value is doubled, so the distribution is unaffected) gives $\Prob(A>B)=\tfrac59$,
+$\Prob(B>C)=\tfrac59$, $\Prob(C>A)=\tfrac59$. ``Beats'' is not transitive, so no die is best: the relation
+$\Prob(X>Y)>\tfrac12$ is not an order on random variables, unlike $\Exp X>\Exp Y$.
+
+\subsection{Friendship and regression to the mean}
+
+The \textbf{friendship paradox}: your friends have on average more friends than you, because a friend is sampled
+proportionally to degree (size-biasing, cf.\ the inspection paradox, Chapter~\ref{ch:poisson}): the expected degree of a
+random friend is $\Exp[D^2]/\Exp[D]\ge\Exp[D]$. \textbf{Regression to the mean}: if $X,Y$ are standardised with
+correlation $\rho<1$, then $\Exp[Y\given X=x]=\rho x$, closer to the mean than $x$; extreme first performances are
+followed by less extreme ones with no causal intervention (Chapter~\ref{ch:jointcont}).
+
+\section{Practice list for interviews}
+
+Each should be solvable in minutes with the toolkit above.
+\begin{enumerate}
+\item Expected number of rolls of a fair die to see all six faces ($14.7$; coupon collector).
+\item Probability a random permutation of $n$ has no fixed point ($\to e^{-1}$).
+\item Expected length of the longest run of heads in $n$ tosses ($\approx\log_2n$).
+\item Two players alternate drawing balls without replacement; who is favoured? (Each position equally likely
+by symmetry.)
+\item A stick is broken at a random point; expected ratio of the shorter to the longer ($2\ln2-1\approx0.386$).
+\item Choose $n$ points on a circle; probability they lie on a semicircle ($n/2^{n-1}$).
+\item From a stream of unknown length, keep one uniformly random item with $O(1)$ memory (reservoir sampling: replace the
+current item with the $k$th with probability $1/k$).
+\item Gambler starts with $\$k$, wins/loses $\$1$ fairly until $0$ or $N$; ruin probability $1-k/N$.
+\item Expected time for a fair coin to show three heads in a row ($14$).
+\item The secretary problem: stop at the best after rejecting the first $n/e$.
+\end{enumerate}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Derive $n/2^{n-1}$ for points on a semicircle by conditioning on the point that is the ``first'' in clockwise
+order of the semicircle.
+\item Prove the reservoir sampling claim by induction.
+\item Verify the Simpson's paradox numbers above.
+\item Show Bertrand's three probabilities by direct integration.
+\item Show $\Exp[D^2]\ge(\Exp D)^2$ and interpret the friendship paradox.
+\item Find three non-transitive dice with all faces from $\{1,\dots,9\}$ other than those above, and compute their cycle
+probability.
+\item (Challenge) Show that in the two-envelope setting with a geometric prior on the smaller amount, switching is
+profitable only for small observed amounts.
+\end{enumerate}

@@ -1,0 +1,257 @@
+\chapter{The Poisson Process}
+\label{ch:poisson}
+
+The Poisson process models events that occur at random moments in continuous time:
+customer arrivals, radioactive decays, insurance claims, packets at a router. It
+combines two earlier ideas, the Poisson distribution (counts) and the exponential
+distribution (waiting times), and gives a single object with several equivalent
+descriptions. We derive each description and the main properties: superposition,
+thinning, the uniformity of arrival times, and the inspection paradox.
+
+\section{Definition and equivalent descriptions}
+
+\begin{definition}[Counting process]
+A \emph{counting process} $(N(t))_{t\ge0}$ has $N(0)=0$, takes non-negative integer
+values, and is non-decreasing and right-continuous with jumps of size $1$. $N(t)$ is the
+number of events in $(0,t]$. The \emph{arrival times} are $T_n=\inf\{t:N(t)\ge n\}$ and
+the \emph{interarrival times} are $\tau_n=T_n-T_{n-1}$ ($T_0=0$).
+\end{definition}
+
+\begin{definition}[Poisson process]\label{def:pp}
+A counting process $N$ is a \emph{Poisson process with rate $\lambda>0$} if
+\begin{enumerate}[label=(\roman*)]
+\item (\emph{independent increments}) for $0\le t_0<t_1<\dots<t_k$ the increments
+$N(t_1)-N(t_0),\dots,N(t_k)-N(t_{k-1})$ are independent, and
+\item (\emph{Poisson increments}) $N(t)-N(s)\sim\mathrm{Poisson}(\lambda(t-s))$ for $s<t$.
+\end{enumerate}
+\end{definition}
+
+The next three results show that this definition is equivalent to two others that are
+easier to verify in applications.
+
+\begin{theorem}[Infinitesimal characterisation]\label{thm:ppinfinitesimal}
+Let $N$ be a counting process with independent and stationary increments (the
+distribution of $N(t+h)-N(t)$ depends only on $h$) such that, as $h\downarrow0$,
+\[
+\Prob(N(h)=1)=\lambda h+o(h),\qquad\Prob(N(h)\ge2)=o(h).
+\]
+Then $N$ is a Poisson process with rate $\lambda$.
+\end{theorem}
+\begin{proof}
+Let $P_n(t)=\Prob(N(t)=n)$. For $n=0$: by independence and stationarity of increments,
+$P_0(t+h)=P_0(t)P_0(h)$ and $P_0(h)=1-\lambda h+o(h)$, so
+\[
+\frac{P_0(t+h)-P_0(t)}h=P_0(t)\frac{P_0(h)-1}h\to-\lambda P_0(t),
+\]
+i.e.\ $P_0'=-\lambda P_0$ with $P_0(0)=1$, whence $P_0(t)=e^{-\lambda t}$. For $n\ge1$,
+conditioning on $N(t)$ and the increment over $(t,t+h]$,
+\[
+P_n(t+h)=P_n(t)P_0(h)+P_{n-1}(t)\Prob(N(h)=1)+\sum_{j\ge2}P_{n-j}(t)\Prob(N(h)=j),
+\]
+and the last sum is at most $\Prob(N(h)\ge2)=o(h)$. Therefore
+$P_n'(t)=-\lambda P_n(t)+\lambda P_{n-1}(t)$, $P_n(0)=0$. Put $Q_n(t)=e^{\lambda t}P_n(t)$;
+then $Q_n'=\lambda Q_{n-1}$, $Q_0\equiv1$, and induction gives $Q_n(t)=(\lambda t)^n/n!$.
+So $P_n(t)=e^{-\lambda t}(\lambda t)^n/n!$: $N(t)\sim\mathrm{Poisson}(\lambda t)$. By
+stationarity the same holds for any increment of length $t-s$.
+\end{proof}
+
+\begin{theorem}[Interarrival characterisation]\label{thm:ppinterarrival}
+A counting process whose interarrival times $\tau_1,\tau_2,\dots$ are i.i.d.\
+$\mathrm{Exp}(\lambda)$ has $N(t)\sim\mathrm{Poisson}(\lambda t)$ for every $t$ (and is a
+Poisson process).
+\end{theorem}
+\begin{proof}
+We prove the marginal statement. $T_n=\tau_1+\dots+\tau_n\sim\mathrm{Gamma}(n,\lambda)$
+(Theorem~\ref{thm:gammasum}) and $\{N(t)\ge n\}=\{T_n\le t\}$. Let
+$G_n(t)=\Prob(T_n\le t)=\int_0^t\frac{\lambda^nx^{n-1}e^{-\lambda x}}{(n-1)!}dx$. We claim
+$G_n(t)=\sum_{k\ge n}e^{-\lambda t}(\lambda t)^k/k!$. Both sides vanish at $t=0$ and have
+the same derivative: differentiating the series,
+\[
+\frac d{dt}\sum_{k\ge n}e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+=\lambda\sum_{k\ge n}\Bigl[e^{-\lambda t}\frac{(\lambda t)^{k-1}}{(k-1)!}-e^{-\lambda t}\frac{(\lambda t)^k}{k!}\Bigr]
+=\lambda e^{-\lambda t}\frac{(\lambda t)^{n-1}}{(n-1)!},
+\]
+(a telescoping sum), which is the Gamma density. Hence
+$\Prob(N(t)\ge n)=\sum_{k\ge n}e^{-\lambda t}(\lambda t)^k/k!$ for all $n$, and subtracting
+consecutive tails gives $\Prob(N(t)=n)=e^{-\lambda t}(\lambda t)^n/n!$. (Independence of
+increments follows from the memorylessness of the exponential: at any time the future
+interarrival times are independent of the past and again i.i.d.\ Exp$(\lambda)$.)
+\end{proof}
+
+Conversely, in a Poisson process the interarrival times are i.i.d.\ Exp$(\lambda)$: the
+first arrival satisfies $\Prob(\tau_1>t)=\Prob(N(t)=0)=e^{-\lambda t}$, and by independent
+and stationary increments the process restarts afresh at each arrival.
+
+\begin{nuance}{three views of the same object}
+Poisson process $\iff$ i.i.d.\ exponential gaps $\iff$ independent, stationary,
+and ``rare, one at a time'' increments. Memorylessness of the exponential distribution
+is what ties the gap description to the independent-increments description: the process
+cannot remember when the last event occurred.
+\end{nuance}
+
+\section{Arrival times are uniform given the count}
+
+\begin{theorem}[Conditional uniformity]\label{thm:ppuniform}
+Given $N(t)=n$, the arrival times $(T_1,\dots,T_n)$ have the same joint law as the order
+statistics of $n$ i.i.d.\ $U(0,t)$ random variables. That is, the conditional joint density
+is $n!/t^n$ on $\{0<t_1<\dots<t_n<t\}$.
+\end{theorem}
+\begin{proof}
+The joint density of $(T_1,\dots,T_n)$ follows from the change of variables
+$t_k=\tau_1+\dots+\tau_k$ (Jacobian $1$, triangular matrix) applied to the product
+density $\lambda^ne^{-\lambda(\tau_1+\dots+\tau_n)}$: it is $\lambda^ne^{-\lambda t_n}$ on
+$0<t_1<\dots<t_n$. The event $\{N(t)=n\}$ is $\{T_n\le t<T_{n+1}\}$, and
+$\Prob(T_{n+1}>t\given T_1,\dots,T_n)=e^{-\lambda(t-t_n)}$. So the joint density of the
+first $n$ arrival times and the event $\{N(t)=n\}$ is
+$\lambda^ne^{-\lambda t_n}e^{-\lambda(t-t_n)}=\lambda^ne^{-\lambda t}$ on
+$0<t_1<\dots<t_n<t$; it is constant. Dividing by $\Prob(N(t)=n)=e^{-\lambda t}(\lambda t)^n/n!$
+gives conditional density $n!/t^n$, which is the density of the order statistics of $n$
+uniform points (the $n!$ orderings of $n$ i.i.d.\ uniform points all produce the same
+ordered vector).
+\end{proof}
+
+This theorem says: once you know how many events occurred in $(0,t]$, their locations are
+like uniformly scattered points. It is the reason the Poisson process is called a model of
+``complete randomness''.
+
+\begin{example}[Expected sum of waiting times]
+Customers arrive according to a Poisson process of rate $\lambda$ over $[0,t]$. The total
+waiting time until time $t$ of all customers who have arrived is $W=\sum_i(t-T_i)$. Given
+$N(t)=n$, each $t-T_i$ behaves like $U(0,t)$, so $\Exp[W\given N(t)=n]=nt/2$ and
+$\Exp[W]=\Exp[N(t)]t/2=\lambda t^2/2$.
+\end{example}
+
+\section{Superposition and thinning}
+
+\begin{theorem}[Superposition]\label{thm:superposition}
+If $N_1,N_2$ are independent Poisson processes with rates $\lambda_1,\lambda_2$, then
+$N_1+N_2$ is a Poisson process with rate $\lambda_1+\lambda_2$.
+\end{theorem}
+\begin{proof}
+Independent and stationary increments are inherited from the two independent processes.
+For a fixed interval, $N_1(t)-N_1(s)$ and $N_2(t)-N_2(s)$ are independent Poisson
+variables, and the sum is Poisson with the sum of the parameters
+(Theorem~\ref{thm:closure}(ii)). Counting a combined event at a time when both processes
+jump has probability zero.
+\end{proof}
+
+\begin{theorem}[Thinning]\label{thm:thinning}
+Let $N$ be a Poisson process of rate $\lambda$, and suppose each event is independently
+of type~1 with probability $p$ and of type~2 with probability $q=1-p$. Let $N_1,N_2$ count
+the events of each type. Then $N_1$ and $N_2$ are \emph{independent} Poisson processes of
+rates $\lambda p$ and $\lambda q$.
+\end{theorem}
+\begin{proof}
+We verify the joint law of the counts in a fixed interval of length $t$. Given
+$N(t)=a+b$, the number of type-1 events is $\mathrm{Bin}(a+b,p)$, so
+\[
+\Prob(N_1(t)=a,N_2(t)=b)=e^{-\lambda t}\frac{(\lambda t)^{a+b}}{(a+b)!}\binom{a+b}{a}p^aq^b
+=\Bigl[e^{-\lambda pt}\frac{(\lambda pt)^a}{a!}\Bigr]\Bigl[e^{-\lambda qt}\frac{(\lambda qt)^b}{b!}\Bigr],
+\]
+using $e^{-\lambda t}=e^{-\lambda pt}e^{-\lambda qt}$. The product form shows independence and the
+Poisson marginals. Independent increments of the thinned processes follow from the
+independent increments of $N$ and independent labelling.
+\end{proof}
+
+\begin{nuance}{the independence in thinning is surprising and special}
+If a Poisson number of customers each buys with probability $p$, the numbers of buyers and
+non-buyers are \emph{independent}. For a fixed (non-random) total $n$ they would be
+perfectly negatively correlated ($b=n-a$). The randomness of the total is exactly what
+restores independence. This characterises the Poisson law.
+\end{nuance}
+
+\begin{example}[Which comes first?]\label{ex:race}
+Two independent Poisson processes with rates $\lambda_1,\lambda_2$ run in parallel. The
+first event of the superposition occurs at the minimum of two independent exponentials, and
+by Theorem~\ref{thm:minexp} the first event comes from process~1 with probability
+$\lambda_1/(\lambda_1+\lambda_2)$. After each event, by memorylessness, the race restarts.
+Hence the probability that process~1 gets $m$ events before process~2 gets $n$ is the
+probability that in a sequence of independent trials, each a success with probability
+$\lambda_1/(\lambda_1+\lambda_2)$, we have at least $m$ successes in the first $m+n-1$
+trials.
+\end{example}
+
+\section{The inspection paradox}
+
+\begin{example}[Waiting for a bus]\label{ex:inspection}
+Buses arrive as a Poisson process with rate $\lambda=1/10$ per minute (mean gap $10$
+minutes). You arrive at a fixed time $t$ far from the start. How long do you wait? By
+memorylessness the residual wait is $\mathrm{Exp}(\lambda)$, with mean $10$ minutes
+(not $5$!). The time since the previous bus (the \emph{age}) is $\min(\mathrm{Exp}(\lambda),t)$
+(looking backwards, the process is again Poisson, truncated at time $0$), with mean
+$(1-e^{-\lambda t})/\lambda\to10$. The gap that contains your arrival time has length
+age plus residual:
+\[
+\Exp[\text{length of the gap covering }t]=\frac{1-e^{-\lambda t}}\lambda+\frac1\lambda\xrightarrow[t\to\infty]{}\frac2\lambda=20\text{ minutes},
+\]
+twice the average gap.
+\end{example}
+
+\begin{nuance}{length-biased sampling}
+There is no contradiction: a random \emph{time} is more likely to land in a long gap than
+in a short one, since long gaps cover more time. The gap seen from a randomly chosen time
+has the \emph{size-biased} density $xf(x)/\Exp[\tau]$; for exponential gaps this is the
+Gamma$(2,\lambda)$ density, with mean $2/\lambda$. The same effect explains why your friends
+have more friends than you do on average, why classes seem larger than the university's
+average class size, and why a random passenger finds the bus fuller than average.
+\end{nuance}
+
+\section{Related processes}
+
+\begin{definition}[Compound Poisson process]
+Let $N$ be a Poisson process of rate $\lambda$ and $Y_1,Y_2,\dots$ i.i.d.\ and independent
+of $N$. The \emph{compound Poisson process} is $X(t)=\sum_{i=1}^{N(t)}Y_i$.
+\end{definition}
+
+By the random-sum formulas (Theorem~\ref{thm:randomsum}) with $N(t)\sim\mathrm{Poisson}(\lambda t)$
+(mean and variance both $\lambda t$),
+\[
+\Exp[X(t)]=\lambda t\,\Exp[Y],\qquad\Var(X(t))=\lambda t\,\Exp[Y^2].
+\]
+(Since $\Var(X(t))=\Exp[N]\Var(Y)+\Var(N)\Exp[Y]^2=\lambda t(\Var(Y)+\Exp[Y]^2)$.) This is the
+Cram\'er--Lundberg model of insurance claims: premiums arrive at a constant rate, claims at
+Poisson times with random sizes.
+
+\begin{definition}[Non-homogeneous Poisson process]
+A counting process with independent increments and
+$N(t)-N(s)\sim\mathrm{Poisson}\bigl(\int_s^t\lambda(u)\,du\bigr)$ is a
+\emph{non-homogeneous Poisson process} with \emph{intensity function} $\lambda(u)\ge0$.
+\end{definition}
+
+It is obtained from a rate-$1$ Poisson process by the time change
+$\Lambda(t)=\int_0^t\lambda(u)\,du$ (that is, $N(t)=N_1(\Lambda(t))$), or by thinning a
+rate-$\lambda_{\max}$ process, accepting an event at time $u$ with probability
+$\lambda(u)/\lambda_{\max}$. The latter is also the standard simulation method
+(Chapter~\ref{ch:sim}).
+
+\begin{interview}{Poisson process problem patterns}
+(1) \emph{Time to $n$th event}: Gamma$(n,\lambda)$, mean $n/\lambda$. (2) \emph{Count in an
+interval}: Poisson$(\lambda\times\text{length})$, and disjoint intervals are independent.
+(3) \emph{Two competing streams}: superposition; the probability that stream $i$ goes first
+is $\lambda_i/\sum\lambda_j$. (4) \emph{Classification of events}: thinning gives independent
+Poisson streams. (5) \emph{Given $n$ events in $[0,t]$}: the times are i.i.d.\ uniform.
+(6) \emph{Time of arrival of a random observer}: size-biased gap, mean $2/\lambda$.
+\end{interview}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Customers arrive at rate $6$ per hour. Find the probability that no one arrives
+in a $15$-minute interval, that at least $2$ arrive, and the expected time until the $5$th
+arrival.
+\item Given exactly one event in $[0,t]$, show that its time is uniform on $[0,t]$.
+\item Show that $\Cov(N(s),N(t))=\lambda\min(s,t)$.
+\item Events of two independent Poisson processes of rates $2$ and $3$ are merged. What is
+the probability that the first $5$ events contain exactly $2$ of the first type?
+\item A shop has two kinds of customers, arriving as independent Poisson processes with
+rates $3$ and $5$ per hour. Given that exactly $4$ customers arrived in the first hour,
+what is the probability that exactly $1$ was of the first type?
+\item Let $X(t)$ be compound Poisson with $\lambda=2$ and claims uniform on $[0,1]$. Find the
+mean and variance of $X(5)$.
+\item Prove that $T_n/n\to1/\lambda$ almost surely as $n\to\infty$ and hence
+$N(t)/t\to\lambda$ almost surely as $t\to\infty$.
+\item (Challenge) Derive the density of the length of the gap covering the fixed time $t$
+for a Poisson process and verify that it converges to the Gamma$(2,\lambda)$ density as
+$t\to\infty$.
+\end{enumerate}

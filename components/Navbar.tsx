@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Search, ArrowRight, Sun, Moon } from 'lucide-react';
+import Logo from '@/components/Logo';
 import CommandPalette from '@/features/search/CommandPalette';
 
 export default function Navbar() {
@@ -39,34 +40,13 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 w-full border-b border-zinc-200/50 dark:border-white/10 bg-white/40 dark:bg-[#08090d]/50 backdrop-blur-md transition-colors duration-200">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Brand with Zen Cairn Stones Icon */}
+          {/* Brand */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative flex flex-col items-center justify-center w-7 h-7">
-              {/* Stylized stacked zen stones icon matching screenshot */}
-              <div className="w-2.5 h-1.5 rounded-full bg-amber-500/80 mb-0.5" />
-              <div className="w-4 h-2 rounded-full bg-amber-600/80 mb-0.5" />
-              <div className="w-5.5 h-2.5 rounded-full bg-amber-700/80" />
-            </div>
+            <Logo className="h-8 w-8 transition-transform duration-300 group-hover:scale-105" />
             <span className="font-serif text-lg sm:text-xl font-medium tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
               Garden of Eden
             </span>
           </Link>
-
-          {/* Center: Sanctuary Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-sans font-medium text-zinc-600 dark:text-zinc-400">
-            <Link href="/modules" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
-              Curriculum
-            </Link>
-            <Link href="/paths/linear-algebra" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
-              Foundations
-            </Link>
-            <Link href="/paths/inference-engineering" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
-              Inference
-            </Link>
-            <Link href="/workbench" className="hover:text-zinc-950 dark:hover:text-white transition-colors">
-              Laboratories
-            </Link>
-          </nav>
 
           {/* Right: Search, Theme Toggle, and Pill CTA */}
           <div className="flex items-center gap-2.5">
@@ -91,12 +71,12 @@ export default function Navbar() {
               {isDark ? <Sun className="h-3.5 w-3.5 text-amber-400" /> : <Moon className="h-3.5 w-3.5 text-zinc-600" />}
             </button>
 
-            {/* Frosted Glass "Begin Journey" Pill Button */}
+            {/* Frosted Glass "Explore" Pill Button */}
             <Link
               href="/modules"
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900/90 dark:bg-white/90 hover:bg-zinc-950 dark:hover:bg-white text-white dark:text-zinc-950 text-xs font-medium transition-all shadow-md shadow-zinc-950/10 dark:shadow-white/10 backdrop-blur-xs"
             >
-              <span>Begin Journey</span>
+              <span>Explore</span>
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>

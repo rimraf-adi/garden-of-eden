@@ -1,0 +1,182 @@
+\chapter{Eigenvalues and Eigenvectors}
+
+Most vectors change direction when a matrix acts on them. A few special vectors do not: they are only stretched or shrunk. These are the \emph{eigenvectors}, and the stretch factors are the \emph{eigenvalues}. They are the directions in which a matrix is simplest, they govern the long-run behaviour of repeated multiplication, and they are the key to diagonalisation, differential equations, Markov chains, vibration analysis, PageRank and principal component analysis. From this chapter on, scalars are allowed to be complex, because real matrices can have complex eigenvalues; the reason is explained below.
+
+\section{Definition}
+
+\begin{definition}[Eigenvalue and eigenvector]
+Let $A$ be an $n\times n$ matrix over $\K=\R$ or $\C$. A scalar $\lambda\in\C$ is an \emph{eigenvalue} of $A$ if there is a \emph{nonzero} vector $\mathbf{v}$ with
+\[ A\mathbf{v}=\lambda\mathbf{v}. \]
+Such a $\mathbf{v}$ is an \emph{eigenvector} for $\lambda$. For an eigenvalue $\lambda$ the subspace $E_\lambda=\Null(A-\lambda I)$ is the \emph{eigenspace}; its dimension is the \emph{geometric multiplicity} of $\lambda$.
+\end{definition}
+
+The requirement $\mathbf{v}\ne\mathbf{0}$ is essential, since $A\mathbf{0}=\lambda\mathbf{0}$ for every $\lambda$. An eigenvector spans a line that $A$ maps into itself: the line is \emph{invariant}.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[axis] (-2.2,0)--(3.2,0); \draw[axis] (0,-1.6)--(0,3.0);
+  \draw[guide] (-1.5,-1.5)--(2.6,2.6); \draw[guide] (-1.2,1.2)--(1.4,-1.4);
+  \draw[vec,accent2] (0,0)--(1,1); \draw[vec,accent2,dotted] (1,1)--(2.4,2.4);
+  \node[lab,accent2] at (1.6,1.2){$\mathbf{v}_1$};\node[lab,accent2] at (2.5,2.0){$4\mathbf{v}_1$};
+  \draw[vec,accent3] (0,0)--(0.7,-0.7); \draw[vec,accent3,dotted] (0.7,-0.7)--(1.1,-1.1);
+  \node[lab,accent3] at (0.9,-0.3){$\mathbf{v}_2$};\node[lab,accent3] at (1.9,-1.0){$2\mathbf{v}_2$};
+\end{tikzpicture}
+\caption{For $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$ the eigenvectors $\mathbf{v}_1=(1,1)$ and $\mathbf{v}_2=(1,-1)$ stay on their lines ($A\mathbf{v}_1=4\mathbf{v}_1$, $A\mathbf{v}_2=2\mathbf{v}_2$), stay on the dashed lines (dotted: their images), while any vector off these two lines is turned.}
+\end{figure}
+
+\section{The characteristic polynomial}
+
+$A\mathbf{v}=\lambda\mathbf{v}$ with $\mathbf{v}\ne\mathbf{0}$ means $(A-\lambda I)\mathbf{v}=\mathbf{0}$ has a nontrivial solution, which happens exactly when $A-\lambda I$ is singular.
+
+\begin{theorem}[Characteristic equation]\label{thm:chareq}
+$\lambda$ is an eigenvalue of $A$ if and only if $\det(A-\lambda I)=0$. The function $p_A(\lambda)=\det(\lambda I-A)$ is a monic polynomial of degree $n$, the \emph{characteristic polynomial} of $A$:
+\[ p_A(\lambda)=\lambda^n-(\tr A)\lambda^{n-1}+\dots+(-1)^n\det A. \]
+\end{theorem}
+
+\begin{proof}
+The equivalence is Theorem~\ref{thm:detinv}. From the Leibniz formula, $\det(\lambda I-A)$ is a sum of products of $n$ entries, one from each row and column; only the diagonal product $\prod(\lambda-a_{ii})$ contributes a term of degree $n$ or $n-1$, which gives the leading coefficients $1$ and $-\sum a_{ii}=-\tr A$. The constant term is $p_A(0)=\det(-A)=(-1)^n\det A$.
+\end{proof}
+
+By the fundamental theorem of algebra, $p_A$ has $n$ roots in $\C$ counted with multiplicity: $p_A(\lambda)=\prod(\lambda-\lambda_i)$. Comparing coefficients:
+
+\begin{corollary}[Trace and determinant]\label{cor:trdet}
+If $\lambda_1,\dots,\lambda_n$ are the eigenvalues of $A$ (with algebraic multiplicity), then
+\[ \tr A=\lambda_1+\dots+\lambda_n,\qquad\det A=\lambda_1\cdots\lambda_n. \]
+In particular $A$ is invertible iff $0$ is not an eigenvalue.
+\end{corollary}
+
+The multiplicity of $\lambda$ as a root of $p_A$ is its \emph{algebraic multiplicity}.
+
+\begin{example}[Computing eigenvalues and eigenvectors]\label{ex:eigcompute}
+Let $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$. Then $\det(A-\lambda I)=(2-\lambda)^2-1=\lambda^2-4\lambda+3=(\lambda-1)(\lambda-3)$, so $\lambda_1=1$, $\lambda_2=3$ (check: sum $4=\tr A$, product $3=\det A$). For $\lambda=1$: $A-I=\begin{pmatrix}1&1\\1&1\end{pmatrix}$, nullspace spanned by $(1,-1)$. For $\lambda=3$: $A-3I=\begin{pmatrix}-1&1\\1&-1\end{pmatrix}$, nullspace spanned by $(1,1)$.
+\end{example}
+
+\begin{example}[Triangular matrices]
+The eigenvalues of a triangular matrix are its diagonal entries, because $\det(\lambda I-A)=\prod(\lambda-a_{ii})$ (Proposition~\ref{prop:dettri}). For $\begin{pmatrix}2&5&1\\0&2&3\\0&0&7\end{pmatrix}$ they are $2,2,7$.
+\end{example}
+
+\begin{example}[Rotation: complex eigenvalues]\label{ex:rotcomplex}
+For $R=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$ (rotation by $90^\circ$), $\det(\lambda I-R)=\lambda^2+1$ with roots $\pm i$. No real vector keeps its direction under a rotation, so there are no real eigenvectors; over $\C$ the eigenvectors are $(1,\mp i)$. A real matrix has complex eigenvalues in conjugate pairs: if $A\mathbf{v}=\lambda\mathbf{v}$ then, conjugating, $A\overline{\mathbf{v}}=\overline{\lambda}\,\overline{\mathbf{v}}$. This is why we work over $\C$ when studying eigenvalues.
+\end{example}
+
+\begin{pitfall}{eigenvalues are not found by row reduction}
+Row operations change eigenvalues: the matrices $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ and its echelon form $\begin{pmatrix}2&1\\0&3/2\end{pmatrix}$ have different eigenvalues ($1,3$ versus $2,\tfrac32$). The pivots are not eigenvalues. Only similarity transformations $P^{-1}AP$ preserve eigenvalues (Theorem~\ref{thm:simInv}).
+\end{pitfall}
+
+\section{Multiplicities and eigenspaces}
+
+\begin{theorem}[Geometric $\le$ algebraic]\label{thm:geoalg}
+For every eigenvalue $\lambda$, $1\le\dim E_\lambda\le$ (algebraic multiplicity of $\lambda$).
+\end{theorem}
+
+\begin{proof}
+Let $d=\dim E_\lambda$ and extend a basis $\mathbf{v}_1,\dots,\mathbf{v}_d$ of $E_\lambda$ to a basis of $\C^n$, forming an invertible $P$ whose first $d$ columns are the $\mathbf{v}_i$. Then $P^{-1}AP=\begin{pmatrix}\lambda I_d&*\\0&B\end{pmatrix}$, whose characteristic polynomial is $(\lambda'-\lambda)^d\det(\lambda' I-B)$, so $(\lambda'-\lambda)^d$ divides $p_A$.
+\end{proof}
+
+\begin{example}[Defective matrix]\label{ex:defective}
+$J=\begin{pmatrix}2&1\\0&2\end{pmatrix}$ has $p_J=(\lambda-2)^2$, so $\lambda=2$ has algebraic multiplicity $2$. But $J-2I=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ has a one-dimensional nullspace spanned by $(1,0)$: geometric multiplicity $1$. There is only one independent eigenvector, so $J$ is \emph{defective}; it is not diagonalisable (Chapter~14). By contrast $2I$ has geometric multiplicity $2$.
+\end{example}
+
+\begin{theorem}[Eigenvectors of distinct eigenvalues are independent]\label{thm:eigindep}
+If $\mathbf{v}_1,\dots,\mathbf{v}_k$ are eigenvectors for pairwise distinct eigenvalues $\lambda_1,\dots,\lambda_k$, then they are linearly independent. More generally, eigenspaces for distinct eigenvalues are independent subspaces.
+\end{theorem}
+
+\begin{proof}
+Suppose not, and take a shortest nontrivial relation $\sum_{i=1}^rc_i\mathbf{v}_{i}=\mathbf{0}$ (all $c_i\neq0$, $r\ge2$ since a single eigenvector is nonzero). Apply $A$ to get $\sum c_i\lambda_i\mathbf{v}_i=\mathbf{0}$, and subtract $\lambda_r$ times the original: $\sum_{i<r}c_i(\lambda_i-\lambda_r)\mathbf{v}_i=\mathbf{0}$. This is a shorter nontrivial relation (the coefficients $c_i(\lambda_i-\lambda_r)$ are nonzero by distinctness), a contradiction.
+\end{proof}
+
+\begin{corollary}[Distinct eigenvalues are enough]\label{cor:distinct}
+If an $n\times n$ matrix has $n$ distinct eigenvalues, it has $n$ independent eigenvectors, hence a basis of eigenvectors.
+\end{corollary}
+
+\section{Eigenvalues of related matrices}
+
+\begin{proposition}[Functions of a matrix]\label{prop:eigfunc}
+If $A\mathbf{v}=\lambda\mathbf{v}$ then, with the same $\mathbf{v}$:
+\begin{enumerate}[label=(\roman*)]
+  \item $A^k\mathbf{v}=\lambda^k\mathbf{v}$, and $q(A)\mathbf{v}=q(\lambda)\mathbf{v}$ for every polynomial $q$;
+  \item if $A$ is invertible, $A^{-1}\mathbf{v}=\lambda^{-1}\mathbf{v}$ (and $\lambda\ne0$);
+  \item $(A+cI)\mathbf{v}=(\lambda+c)\mathbf{v}$ (shifting);
+  \item $A$ and $A\T$ have the same eigenvalues (though generally different eigenvectors), since $\det(A\T-\lambda I)=\det(A-\lambda I)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Apply $A$ repeatedly; multiply $A\mathbf{v}=\lambda\mathbf{v}$ by $A^{-1}$; add $c\mathbf{v}$; use $\det X\T=\det X$.
+\end{proof}
+
+\begin{theorem}[Gershgorin circle theorem]\label{thm:gershgorin}
+Every eigenvalue of $A$ lies in at least one disc $D_i=\{z:\abs{z-a_{ii}}\le\sum_{j\ne i}\abs{a_{ij}}\}$. In particular a \emph{strictly diagonally dominant} matrix ($\abs{a_{ii}}>\sum_{j\ne i}\abs{a_{ij}}$ for all $i$) is invertible.
+\end{theorem}
+
+\begin{proof}
+Let $A\mathbf{v}=\lambda\mathbf{v}$ and choose $i$ with $\abs{v_i}=\max_j\abs{v_j}>0$. Row $i$ gives $(\lambda-a_{ii})v_i=\sum_{j\ne i}a_{ij}v_j$, so $\abs{\lambda-a_{ii}}\abs{v_i}\le\sum_{j\ne i}\abs{a_{ij}}\abs{v_j}\le\sum_{j\ne i}\abs{a_{ij}}\abs{v_i}$. Divide by $\abs{v_i}$. If $A$ is strictly diagonally dominant, no disc contains $0$, so $0$ is not an eigenvalue.
+\end{proof}
+
+\section{Applications in one page}
+
+\begin{example}[Powers: a population model]
+A population with two age groups evolves by $\mathbf{x}_{k+1}=A\mathbf{x}_k$ with $A=\begin{pmatrix}0&2\\0.5&0\end{pmatrix}$. The eigenvalues satisfy $\lambda^2-1=0$, so $\lambda=\pm1$, and the dominant behaviour of $A^k\mathbf{x}_0$ is governed by them: with $\lambda=1$ the population is stable. If instead the largest eigenvalue had modulus $>1$ the population would grow geometrically at that rate; if $<1$ it would die out.
+\end{example}
+
+\begin{example}[Differential equations]
+A solution of $\mathbf{x}'=A\mathbf{x}$ of the form $e^{\lambda t}\mathbf{v}$ exists exactly when $A\mathbf{v}=\lambda\mathbf{v}$: substituting gives $\lambda e^{\lambda t}\mathbf{v}=Ae^{\lambda t}\mathbf{v}$. A basis of eigenvectors therefore decouples the system into scalar equations (Chapter~14). The sign of $\mathrm{Re}\,\lambda$ decides stability.
+\end{example}
+
+\begin{interview}{eigenvalues in one sentence each}
+\emph{Markov chains:} the stationary distribution is the eigenvector for $\lambda=1$. \emph{PageRank:} the dominant eigenvector of the web's link matrix. \emph{PCA:} the principal components are eigenvectors of the covariance matrix, with eigenvalues as variances. \emph{Stability:} a linear iteration $\mathbf{x}_{k+1}=A\mathbf{x}_k$ converges to $\mathbf{0}$ for all starts iff every $\abs{\lambda}<1$. \emph{Hessian:} the signs of its eigenvalues classify critical points.
+\end{interview}
+
+\begin{interview}{power iteration}
+To find the dominant eigenvector, repeat $\mathbf{x}\leftarrow A\mathbf{x}/\norm{A\mathbf{x}}$. If $A$ has a unique eigenvalue of largest modulus (and $\mathbf{x}_0$ has a nonzero component along its eigenvector), the iterates converge to that eigenvector at rate $\abs{\lambda_2/\lambda_1}$. This is the heart of PageRank and the starting point for Krylov methods (Chapter~21).
+\end{interview}
+
+\begin{nuance}{eigenvalues are unstable for non-normal matrices}
+The eigenvalues of a symmetric matrix are well-conditioned: a perturbation of size $\varepsilon$ moves them by at most $\varepsilon$. For non-symmetric matrices they can be extremely sensitive: the Jordan-like matrix with ones on the superdiagonal and $\varepsilon$ in the corner has eigenvalues of size $\varepsilon^{1/n}$ even though it is within $\varepsilon$ of nilpotent. Eigenvalue questions about non-normal matrices need care, and pseudospectra rather than spectra describe their behaviour.
+\end{nuance}
+
+\begin{summarybox}
+\begin{itemize}
+  \item $A\mathbf{v}=\lambda\mathbf{v}$ with $\mathbf{v}\ne\mathbf{0}$; eigenvalues are the roots of $\det(\lambda I-A)=0$, a degree-$n$ polynomial.
+  \item $\tr A=\sum\lambda_i$ and $\det A=\prod\lambda_i$; the eigenvalues of a triangular matrix are its diagonal entries.
+  \item Real matrices can have complex eigenvalues (in conjugate pairs), e.g.\ rotations.
+  \item $1\le$ geometric multiplicity $\le$ algebraic multiplicity; equality can fail (defective matrices).
+  \item Eigenvectors for distinct eigenvalues are independent; $n$ distinct eigenvalues give a basis of eigenvectors.
+  \item Eigenvalues drive powers, differential equations, stability, Markov chains and PCA; Gershgorin discs localise them cheaply.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Find the eigenvalues and eigenvectors of $\begin{pmatrix}1&2\\4&3\end{pmatrix}$ and of $\begin{pmatrix}2&0&0\\1&3&0\\0&1&3\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+Show that if $A^2=A$ then every eigenvalue is $0$ or $1$; if $A^2=I$ then every eigenvalue is $\pm1$; if $A^k=0$ then every eigenvalue is $0$.
+\end{exercise}
+
+\begin{exercise}
+Prove Corollary~\ref{cor:trdet} for a $2\times2$ matrix by direct expansion, and use it to find the eigenvalues of a $2\times 2$ matrix with trace $5$ and determinant $6$.
+\end{exercise}
+
+\begin{exercise}
+Find the eigenvalues of $\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$ and eigenvectors over $\C$.
+\end{exercise}
+
+\begin{exercise}
+Show that $AB$ and $BA$ have the same nonzero eigenvalues. (Hint: if $AB\mathbf{v}=\lambda\mathbf{v}$ with $\lambda\ne0$, apply $B$.)
+\end{exercise}
+
+\begin{exercise}
+Compute the matrix $\begin{pmatrix}0&1\\1&1\end{pmatrix}$'s eigenvalues and show they satisfy $\lambda^2=\lambda+1$ (the golden ratio and its conjugate).
+\end{exercise}
+
+\begin{exercise}
+Use Gershgorin discs to show that $\begin{pmatrix}4&1&0\\1&5&1\\0&1&6\end{pmatrix}$ is invertible and locate its eigenvalues.
+\end{exercise}
+
+\begin{exercise}
+Find a $3\times 3$ matrix with eigenvalue $1$ of algebraic multiplicity $3$ and geometric multiplicity $2$.
+\end{exercise}

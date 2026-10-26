@@ -1,0 +1,472 @@
+{
+ "id": "differential-equations",
+ "title": "Differential Equations",
+ "subtitle": "Initial and boundary value problems, transforms and PDEs",
+ "chapters": [
+  {
+   "book": "differential-equations",
+   "num": 1,
+   "label": "1",
+   "slug": "01-first-order-odes",
+   "title": "First-Order ODEs",
+   "tag": "Part A · ODE",
+   "summary": "A differential equation (DE) is an equation that contains a function and its derivatives. If the function depends on one variable only, the equation is an ordinary differential equation (ODE). If it depends on two or more variables, the equation is a…",
+   "wordCount": 1921,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "1.1",
+     "title": "Basic words"
+    },
+    {
+     "id": "1.2",
+     "title": "Separable equations"
+    },
+    {
+     "id": "1.3",
+     "title": "Linear first-order equations"
+    },
+    {
+     "id": "1.4",
+     "title": "Exact equations"
+    },
+    {
+     "id": "1.5",
+     "title": "Bernoulli equations"
+    },
+    {
+     "id": "1.6",
+     "title": "Modelling with first-order ODEs"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 2,
+   "label": "2",
+   "slug": "02-second-order-linear-odes",
+   "title": "Second-Order Linear ODEs",
+   "tag": "Part A · ODE",
+   "summary": "Second-order linear ODEs describe springs, masses, pendulums (for small angles), and RLC circuits. They are the most important ODEs in engineering.",
+   "wordCount": 2299,
+   "readingTimeMin": 11,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "2.1",
+     "title": "Homogeneous equations with constant coefficients"
+    },
+    {
+     "id": "2.2",
+     "title": "Non-homogeneous equations"
+    },
+    {
+     "id": "2.3",
+     "title": "Euler–Cauchy equations"
+    },
+    {
+     "id": "2.4",
+     "title": "Modelling: springs and circuits"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 3,
+   "label": "3",
+   "slug": "03-higher-order-odes-and-systems",
+   "title": "Higher-Order ODEs and Systems",
+   "tag": "Part A · ODE",
+   "summary": "For $a_ny^{(n)} + \\dots + a_1y' + a_0y = 0$, the characteristic equation is $a_nr^n + \\dots + a_1r + a_0 = 0$. Each root gives solutions: a real root $r$ of multiplicity $m$ gives $e^{rx},\\ xe^{rx},\\ \\dots,\\ x^{m-1}e^{rx}$; a complex pair $\\alpha\\pm…",
+   "wordCount": 1322,
+   "readingTimeMin": 7,
+   "sectionCount": 3,
+   "sections": [
+    {
+     "id": "3.1",
+     "title": "Higher-order linear equations"
+    },
+    {
+     "id": "3.2",
+     "title": "Turning one ODE into a system"
+    },
+    {
+     "id": "3.3",
+     "title": "Linear systems: the eigenvalue method"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 4,
+   "label": "4",
+   "slug": "04-laplace-transforms",
+   "title": "Laplace Transforms",
+   "tag": "Part A · ODE",
+   "summary": "The Laplace transform turns an ODE into an algebra problem. It is the best tool for IVPs with discontinuous or impulsive forcing, which are common in circuits and control.",
+   "wordCount": 1373,
+   "readingTimeMin": 7,
+   "sectionCount": 3,
+   "sections": [
+    {
+     "id": "4.1",
+     "title": "Definition and basic table"
+    },
+    {
+     "id": "4.2",
+     "title": "Rules"
+    },
+    {
+     "id": "4.3",
+     "title": "Examples"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 5,
+   "label": "5",
+   "slug": "05-numerical-methods-for-ivps",
+   "title": "Numerical Methods for IVPs",
+   "tag": "Part A · ODE",
+   "summary": "Most real ODEs have no formula for the solution. We then compute the solution step by step on a computer. All methods in this chapter solve an IVP y' = f(x,y), \\qquad y(x_0) = y_0 . We choose a step size $h$ and compute approximations $y_n \\approx y(x_n)$…",
+   "wordCount": 1202,
+   "readingTimeMin": 6,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "5.1",
+     "title": "Three standard methods"
+    },
+    {
+     "id": "5.2",
+     "title": "Stability and step size"
+    },
+    {
+     "id": "5.3",
+     "title": "Higher-order ODEs and systems"
+    },
+    {
+     "id": "5.4",
+     "title": "A short program"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 6,
+   "label": "6",
+   "slug": "06-boundary-value-problems-and-eigenvalues",
+   "title": "Boundary Value Problems and Eigenvalues",
+   "tag": "Part A · ODE",
+   "summary": "This chapter is the bridge from ODE to PDE. When we solve the wave, heat and Laplace equations by separation of variables (Part B), the ODE parts are boundary value problems. The key idea is the eigenvalue.",
+   "wordCount": 1520,
+   "readingTimeMin": 8,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "6.1",
+     "title": "IVP versus BVP"
+    },
+    {
+     "id": "6.2",
+     "title": "The eigenvalue problem"
+    },
+    {
+     "id": "6.3",
+     "title": "Orthogonality"
+    },
+    {
+     "id": "6.4",
+     "title": "Non-homogeneous BVPs"
+    },
+    {
+     "id": "6.5",
+     "title": "Numerical BVP methods"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 7,
+   "label": "7",
+   "slug": "07-fourier-series",
+   "title": "Fourier Series",
+   "tag": "Part B · PDE",
+   "summary": "A Fourier series writes a periodic function as a sum of sines and cosines. We need it to fit initial conditions in PDEs. The eigenfunctions of Chapter 6 are exactly these sines and cosines.",
+   "wordCount": 1657,
+   "readingTimeMin": 8,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "7.1",
+     "title": "Definition and formulas"
+    },
+    {
+     "id": "7.2",
+     "title": "Worked examples"
+    },
+    {
+     "id": "7.3",
+     "title": "Half-range expansions"
+    },
+    {
+     "id": "7.4",
+     "title": "Parseval’s identity"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 8,
+   "label": "8",
+   "slug": "08-fourier-integrals-and-transforms",
+   "title": "Fourier Integrals and Transforms",
+   "tag": "Part B · PDE",
+   "summary": "A Fourier series needs a periodic function on a finite interval. For a function on an infinite or half-infinite domain (a very long rod, a semi-infinite string) we use the Fourier transform. It is the limit of the Fourier series when the period goes to…",
+   "wordCount": 1373,
+   "readingTimeMin": 7,
+   "sectionCount": 2,
+   "sections": [
+    {
+     "id": "8.1",
+     "title": "Fourier transform"
+    },
+    {
+     "id": "8.2",
+     "title": "Fourier cosine and sine transforms"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 9,
+   "label": "9",
+   "slug": "09-pde-basics-and-separation-of-variables",
+   "title": "PDE Basics and Separation of Variables",
+   "tag": "Part B · PDE",
+   "summary": "A partial differential equation has an unknown function of two or more variables, and partial derivatives of it. For example $u(x,t)$ could be the temperature at position $x$ and time $t$. We write $u_t = \\partial u/\\partial t$,…",
+   "wordCount": 1479,
+   "readingTimeMin": 7,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "9.1",
+     "title": "What is a PDE?"
+    },
+    {
+     "id": "9.2",
+     "title": "Classification"
+    },
+    {
+     "id": "9.3",
+     "title": "Conditions that make the solution unique"
+    },
+    {
+     "id": "9.4",
+     "title": "Separation of variables"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 10,
+   "label": "10",
+   "slug": "10-the-wave-equation",
+   "title": "The Wave Equation",
+   "tag": "Part B · PDE",
+   "summary": "A string of length $L$ is fixed at both ends. Let $u(x,t)$ be its displacement. For small vibrations: \\begin{aligned} \\text{PDE:}\\quad & u_{tt} = c^2u_{xx}, \\qquad 00,\\qquad c = \\sqrt{T/\\rho},\\\\ \\text{BC:}\\quad & u(0,t) = 0,\\quad u(L,t)=0,\\\\…",
+   "wordCount": 1137,
+   "readingTimeMin": 6,
+   "sectionCount": 2,
+   "sections": [
+    {
+     "id": "10.1",
+     "title": "The vibrating string"
+    },
+    {
+     "id": "10.2",
+     "title": "D’Alembert’s solution (infinite string)"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 11,
+   "label": "11",
+   "slug": "11-the-heat-equation",
+   "title": "The Heat Equation",
+   "tag": "Part B · PDE",
+   "summary": "A thin rod of length $L$ has temperature $u(x,t)$. The heat equation is u_t = k\\,u_{xx}, \\qquad 00, where $k$ is the thermal diffusivity. The initial temperature is $u(x,0)=f(x)$. The BCs decide which series we use. Ends BC Series in $x$ Held at $0^\\circ$…",
+   "wordCount": 1217,
+   "readingTimeMin": 6,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "11.1",
+     "title": "Heat flow in a rod"
+    },
+    {
+     "id": "11.2",
+     "title": "Ends at zero temperature"
+    },
+    {
+     "id": "11.3",
+     "title": "Insulated ends"
+    },
+    {
+     "id": "11.4",
+     "title": "Ends at non-zero temperatures"
+    },
+    {
+     "id": "11.5",
+     "title": "Infinite rod"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 12,
+   "label": "12",
+   "slug": "12-the-laplace-equation",
+   "title": "The Laplace Equation",
+   "tag": "Part B · PDE",
+   "summary": "The Laplace equation u_{xx} + u_{yy} = 0 describes the steady temperature in a flat plate, the electric potential in a region without charge, and the flow of an ideal fluid. A solution is called a harmonic function. There is no time variable, so we only…",
+   "wordCount": 1232,
+   "readingTimeMin": 6,
+   "sectionCount": 3,
+   "sections": [
+    {
+     "id": "12.1",
+     "title": "Steady states"
+    },
+    {
+     "id": "12.2",
+     "title": "Rectangle"
+    },
+    {
+     "id": "12.3",
+     "title": "Disk"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 13,
+   "label": "13",
+   "slug": "13-numerical-methods-for-pdes",
+   "title": "Numerical Methods for PDEs",
+   "tag": "Part B · PDE",
+   "summary": "When the region is irregular or the equation has variable coefficients, we solve PDEs on a computer. The standard tool is the finite difference method: replace derivatives by differences on a grid.",
+   "wordCount": 1759,
+   "readingTimeMin": 9,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "13.1",
+     "title": "Difference formulas"
+    },
+    {
+     "id": "13.2",
+     "title": "Laplace equation"
+    },
+    {
+     "id": "13.3",
+     "title": "Heat equation: explicit method"
+    },
+    {
+     "id": "13.4",
+     "title": "Crank–Nicolson method"
+    },
+    {
+     "id": "13.5",
+     "title": "Wave equation"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 14,
+   "label": "14",
+   "slug": "14-series-solutions-legendre-and-bessel",
+   "title": "Series Solutions: Legendre and Bessel",
+   "tag": "Part C · Extra",
+   "summary": "Some ODEs with variable coefficients have no solution in terms of $e^x$, $\\sin x$ or powers. They appear when we solve PDEs in a sphere (Legendre) or a cylinder and a circular drum (Bessel). We solve them with power series.",
+   "wordCount": 1960,
+   "readingTimeMin": 10,
+   "sectionCount": 3,
+   "sections": [
+    {
+     "id": "14.1",
+     "title": "The power series method"
+    },
+    {
+     "id": "14.2",
+     "title": "Legendre’s equation"
+    },
+    {
+     "id": "14.3",
+     "title": "Bessel’s equation"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 15,
+   "label": "15",
+   "slug": "15-stability-and-the-phase-plane",
+   "title": "Stability and the Phase Plane",
+   "tag": "Part C · Extra",
+   "summary": "Often we do not need the exact solution. We only need to know: does the system settle down, blow up, or oscillate? This is stability. It is the main question in control, circuits and mechanics.",
+   "wordCount": 1415,
+   "readingTimeMin": 7,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "15.1",
+     "title": "Phase plane and critical points"
+    },
+    {
+     "id": "15.2",
+     "title": "Linear systems"
+    },
+    {
+     "id": "15.3",
+     "title": "Nonlinear systems: linearization"
+    },
+    {
+     "id": "15.4",
+     "title": "Stability of higher-order systems"
+    }
+   ]
+  },
+  {
+   "book": "differential-equations",
+   "num": 16,
+   "label": "16",
+   "slug": "16-first-order-pdes",
+   "title": "First-Order PDEs",
+   "tag": "Part C · Extra",
+   "summary": "A first-order PDE has the unknown $z(x,y)$ and its first derivatives only. We use the common shorthand p = \\frac{\\partial z}{\\partial x}, \\qquad q = \\frac{\\partial z}{\\partial y}.",
+   "wordCount": 1726,
+   "readingTimeMin": 9,
+   "sectionCount": 3,
+   "sections": [
+    {
+     "id": "16.1",
+     "title": "Forming a PDE"
+    },
+    {
+     "id": "16.2",
+     "title": "Lagrange’s linear equation"
+    },
+    {
+     "id": "16.3",
+     "title": "Non-linear equations: standard forms and Charpit’s method"
+    }
+   ]
+  }
+ ],
+ "figureCount": 5
+}

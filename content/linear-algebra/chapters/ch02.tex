@@ -1,0 +1,231 @@
+\chapter{Linear Systems and Gaussian Elimination}
+
+The oldest problem in linear algebra is to solve several linear equations at once. Everything else in the subject, from determinants to eigenvalues, was invented to understand when such systems have solutions, how many, and how to find them quickly. This chapter develops the central algorithm, Gaussian elimination, and uses it to answer the three basic questions: does a solution exist, is it unique, and what does the full solution set look like?
+
+\section{Systems of linear equations}
+
+\begin{definition}[Linear system]
+A \emph{linear equation} in the unknowns $x_1,\dots,x_n$ is an equation $a_1x_1+\dots+a_nx_n=b$ with constants $a_i,b\in\R$. A \emph{system} of $m$ linear equations in $n$ unknowns is
+\[
+\begin{aligned}
+a_{11}x_1+a_{12}x_2+\dots+a_{1n}x_n&=b_1\\
+&\;\;\vdots\\
+a_{m1}x_1+a_{m2}x_2+\dots+a_{mn}x_n&=b_m.
+\end{aligned}
+\]
+A \emph{solution} is a vector $\mathbf{x}\in\R^n$ satisfying all $m$ equations. The system is \emph{consistent} if it has at least one solution and \emph{inconsistent} otherwise. If every $b_i=0$ the system is \emph{homogeneous}.
+\end{definition}
+
+\subsection*{Two pictures: rows and columns}
+
+\textbf{The row picture.} Each equation $\mathbf{a}_i\cdot\mathbf{x}=b_i$ describes a hyperplane (Chapter~1). A solution is a point lying on all of them. In $\R^2$ two equations are two lines; three situations occur.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.8]
+  \begin{scope}
+    \draw[axis] (-0.2,0)--(3.6,0); \draw[axis] (0,-0.2)--(0,3);
+    \draw[thick,accent2] (0.2,2.6)--(3.4,0.4); \draw[thick,accent3] (0.2,0.4)--(3.4,2.6);
+    \node[pt] at (1.8,1.5){}; \node[lab] at (1.8,-0.6){one solution};
+  \end{scope}
+  \begin{scope}[xshift=5cm]
+    \draw[axis] (-0.2,0)--(3.6,0); \draw[axis] (0,-0.2)--(0,3);
+    \draw[thick,accent2] (0.2,0.6)--(3.4,2.4); \draw[thick,accent3] (0.2,1.4)--(3.4,3.2);
+    \node[lab] at (1.8,-0.6){no solution};
+  \end{scope}
+  \begin{scope}[xshift=10cm]
+    \draw[axis] (-0.2,0)--(3.6,0); \draw[axis] (0,-0.2)--(0,3);
+    \draw[very thick,accent] (0.2,0.6)--(3.4,2.4);
+    \node[lab] at (1.8,-0.6){infinitely many};
+  \end{scope}
+\end{tikzpicture}
+\caption{Two equations in two unknowns: lines that cross, are parallel, or coincide.}
+\end{figure}
+
+\textbf{The column picture.} Write the left-hand sides as a combination of the columns of coefficients. With $\mathbf{c}_j=(a_{1j},\dots,a_{mj})\in\R^m$ the system is the single vector equation
+\[ x_1\mathbf{c}_1+x_2\mathbf{c}_2+\dots+x_n\mathbf{c}_n=\mathbf{b}. \]
+So the system is consistent exactly when $\mathbf{b}$ is a linear combination of the columns, that is, when $\mathbf{b}\in\Span\{\mathbf{c}_1,\dots,\mathbf{c}_n\}$. The column picture is the one that generalises to the column space of Chapter~8.
+
+\begin{theorem}[Only three outcomes]\label{thm:three}
+A linear system has no solution, exactly one solution, or infinitely many solutions.
+\end{theorem}
+
+\begin{proof}
+Suppose $\mathbf{x}$ and $\mathbf{y}$ are distinct solutions. Then for every real $t$ the point $\mathbf{x}+t(\mathbf{y}-\mathbf{x})$ is also a solution: each equation is linear, so $\mathbf{a}_i\cdot\big(\mathbf{x}+t(\mathbf{y}-\mathbf{x})\big)=(1-t)b_i+tb_i=b_i$. These points are distinct for distinct $t$, so there are infinitely many solutions.
+\end{proof}
+
+\section{Matrix notation and elementary operations}
+
+Writing every $x_j$ and the plus signs is wasteful. The coefficients live in a rectangular array.
+
+\begin{definition}[Matrix, augmented matrix]
+An $m\times n$ \emph{matrix} $A=(a_{ij})$ is a rectangular array of numbers with $m$ rows and $n$ columns. The system above has \emph{coefficient matrix} $A$, unknown vector $\mathbf{x}\in\R^n$ and right-hand side $\mathbf{b}\in\R^m$, and we write it $A\mathbf{x}=\mathbf{b}$. Its \emph{augmented matrix} is $[A\mid\mathbf{b}]$, the matrix $A$ with $\mathbf{b}$ attached as an extra column.
+\end{definition}
+
+Here $A\mathbf{x}$ is defined to be $x_1\mathbf{c}_1+\dots+x_n\mathbf{c}_n$, the combination of columns above. The next chapter studies this product in depth.
+
+To solve a system we transform it into a simpler one with the same solutions. Three operations do this.
+
+\begin{definition}[Elementary row operations]
+On the rows of a matrix we may
+\begin{enumerate}[label=(\roman*)]
+  \item \emph{swap} two rows, $R_i\leftrightarrow R_j$;
+  \item \emph{scale} a row by a nonzero constant, $R_i\to cR_i$ with $c\ne0$;
+  \item \emph{add a multiple} of one row to another, $R_i\to R_i+cR_j$ with $j\ne i$.
+\end{enumerate}
+Two matrices are \emph{row equivalent} if one can be obtained from the other by a sequence of such operations.
+\end{definition}
+
+\begin{theorem}[Row operations preserve solutions]\label{thm:rowops}
+If $[A\mid\mathbf{b}]$ and $[A'\mid\mathbf{b}']$ are row equivalent, the systems $A\mathbf{x}=\mathbf{b}$ and $A'\mathbf{x}=\mathbf{b}'$ have the same solution set.
+\end{theorem}
+
+\begin{proof}
+It suffices to treat one operation, since the general case is a chain. Swapping equations or scaling an equation by $c\ne0$ clearly does not change which $\mathbf{x}$ satisfy all equations. For adding $c$ times equation $j$ to equation $i$: any solution of the old system satisfies the new equation, being a sum of two true equations. Conversely, every operation is undone by the operation of the same type with $-c$ (or $1/c$, or swapping again), so a solution of the new system is a solution of the old one.
+\end{proof}
+
+\section{Echelon forms and Gaussian elimination}
+
+\begin{definition}[Echelon forms]
+A matrix is in \emph{row echelon form} (REF) if
+\begin{enumerate}[label=(\roman*)]
+  \item all zero rows are at the bottom, and
+  \item the first nonzero entry of each row (its \emph{leading entry} or \emph{pivot}) lies strictly to the right of the pivot in the row above.
+\end{enumerate}
+It is in \emph{reduced row echelon form} (RREF) if moreover every pivot equals $1$ and is the only nonzero entry in its column.
+\end{definition}
+
+\begin{example}
+The first matrix is in REF; the second is in RREF; the third is neither.
+\[
+\begin{pmatrix}2&1&3&0\\0&0&5&1\\0&0&0&4\end{pmatrix},\quad
+\begin{pmatrix}1&0&2&0\\0&1&-1&0\\0&0&0&1\end{pmatrix},\quad
+\begin{pmatrix}0&1&1\\1&0&2\end{pmatrix}.
+\]
+\end{example}
+
+\begin{theorem}[Gaussian elimination]\label{thm:gauss}
+Every matrix is row equivalent to a matrix in row echelon form, and to a matrix in reduced row echelon form. The reduced form is \emph{unique}.
+\end{theorem}
+
+\begin{proof}[Proof of existence]
+Induct on the number of columns. Scan the first column from the left that contains a nonzero entry; swap that entry into the top position of the rows not yet processed; use operation (iii) to clear all entries below it; then repeat on the submatrix to the right of and below the pivot. This produces REF. To reach RREF, scale each pivot to $1$ and use operation (iii) to clear the entries above each pivot, working from the last pivot backwards. Uniqueness of RREF is proved in Chapter~8 using the row space, where it becomes transparent.
+\end{proof}
+
+The algorithm described in this proof is \emph{Gaussian elimination} (to REF) and \emph{Gauss--Jordan elimination} (to RREF).
+
+\begin{example}[Worked example]\label{ex:gauss}
+Solve
+\[ x+2y+z=4,\qquad 2x+5y+z=9,\qquad x+y+3z=5. \]
+The augmented matrix reduces as follows.
+\[
+\begin{pmatrix}1&2&1&4\\2&5&1&9\\1&1&3&5\end{pmatrix}
+\xrightarrow[R_3-R_1]{R_2-2R_1}
+\begin{pmatrix}1&2&1&4\\0&1&-1&1\\0&-1&2&1\end{pmatrix}
+\xrightarrow{R_3+R_2}
+\begin{pmatrix}1&2&1&4\\0&1&-1&1\\0&0&1&2\end{pmatrix}.
+\]
+This is REF. Back substitution gives $z=2$, then $y-z=1$ so $y=3$, then $x+6+2=4$ so $x=-4$. The unique solution is $(x,y,z)=(-4,3,2)$.
+\end{example}
+
+\section{Reading the solution set}
+
+In RREF the columns containing pivots are \emph{pivot columns}; the unknowns they correspond to are \emph{basic variables}. The others are \emph{free variables}.
+
+\begin{theorem}[Structure of solutions]\label{thm:struct}
+Let $[A\mid\mathbf{b}]$ be reduced to REF.
+\begin{enumerate}[label=(\roman*)]
+  \item The system is inconsistent if and only if some row has the form $(0\ \cdots\ 0\mid\beta)$ with $\beta\ne0$, equivalently if the last column of the augmented matrix is a pivot column.
+  \item If it is consistent and there are no free variables, the solution is unique.
+  \item If it is consistent and there is at least one free variable, there are infinitely many solutions, parametrised by the free variables.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A row $(0\cdots0\mid\beta)$ with $\beta\neq0$ says $0=\beta$, which is false, proving the ``if'' part of (i); conversely, if no such row occurs, solve for the basic variables from the bottom row up, which is possible because each pivot is nonzero. This produces a solution, so the system is consistent. If there are no free variables, every variable is basic and its value is forced by back substitution. If a free variable exists, assign it any real value; back substitution then determines the rest, giving a solution for each value.
+\end{proof}
+
+\begin{example}[Infinitely many solutions]
+Consider $x_1+2x_2-x_4=3$, $x_3+x_4=1$ (already in RREF). The pivots are in columns $1$ and $3$, so $x_2,x_4$ are free. Writing $x_2=s$, $x_4=t$,
+\[ \mathbf{x}=\begin{pmatrix}3\\0\\1\\0\end{pmatrix}+s\begin{pmatrix}-2\\1\\0\\0\end{pmatrix}+t\begin{pmatrix}1\\0\\-1\\1\end{pmatrix}. \]
+This is the \emph{parametric vector form}: a particular solution plus an arbitrary combination of two vectors that solve the homogeneous system.
+\end{example}
+
+\begin{theorem}[General solution = particular + homogeneous]\label{thm:partplushom}
+If $\mathbf{x}_p$ is one solution of $A\mathbf{x}=\mathbf{b}$, then every solution has the form $\mathbf{x}_p+\mathbf{x}_h$ where $A\mathbf{x}_h=\mathbf{0}$, and every such vector is a solution.
+\end{theorem}
+
+\begin{proof}
+If $A\mathbf{x}=\mathbf{b}$ then $A(\mathbf{x}-\mathbf{x}_p)=\mathbf{b}-\mathbf{b}=\mathbf{0}$, so $\mathbf{x}_h=\mathbf{x}-\mathbf{x}_p$ solves the homogeneous system. Conversely $A(\mathbf{x}_p+\mathbf{x}_h)=\mathbf{b}+\mathbf{0}$.
+\end{proof}
+
+This theorem, valid for every linear problem (algebraic, differential, difference equations), is the structural reason the homogeneous solution set, the \emph{nullspace}, is so important. A homogeneous system always has the trivial solution $\mathbf{x}=\mathbf{0}$; it has a nontrivial one exactly when a free variable exists.
+
+\begin{corollary}[More unknowns than equations]\label{cor:underdet}
+A homogeneous system with more unknowns than equations ($n>m$) has a nontrivial solution.
+\end{corollary}
+
+\begin{proof}
+There are at most $m$ pivots, so at least $n-m>0$ free variables.
+\end{proof}
+
+\begin{pitfall}{treating a free variable as ``not determined''}
+Free variables are not unknowns you failed to solve for. They are genuine degrees of freedom: any value works, and different values give different valid solutions. A solution set with $k$ free variables is a $k$-dimensional flat object (a line, plane, or higher analogue), a notion made precise by dimension in Chapter~7.
+\end{pitfall}
+
+\section{Computation, cost and numerical care}
+
+\begin{nuance}{pivoting}
+Mathematically any nonzero entry can serve as a pivot. On a computer with finite precision, dividing by a tiny pivot amplifies rounding error catastrophically. \emph{Partial pivoting} chooses, at each step, the entry of largest absolute value in the current column as the pivot. This is why library routines swap rows even when the natural pivot is nonzero. Chapter~4 puts this in matrix form (the $PA=LU$ factorisation).
+\end{nuance}
+
+Counting arithmetic operations: reducing an $n\times n$ system to REF takes about $\tfrac23n^3$ floating-point operations, and back substitution about $n^2$. Thus doubling the size of a system multiplies the cost of elimination by eight. Gauss--Jordan to RREF costs about $n^3$, one reason that solving $A\mathbf{x}=\mathbf{b}$ by computing $A^{-1}$ is wasteful: elimination on $[A\mid\mathbf{b}]$ is cheaper and more accurate.
+
+\begin{interview}{how many solutions?}
+A frequent question: ``a system has $m$ equations and $n$ unknowns; what can you say?'' The expected answer separates consistency from uniqueness. Uniqueness needs a pivot in every column of $A$ (so $m\ge n$). Consistency for every right-hand side needs a pivot in every row of $A$ (so $m\le n$). Both together force a square matrix with $n$ pivots, which is exactly invertibility, studied in Chapter~3.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item A system $A\mathbf{x}=\mathbf{b}$ is the same as asking whether $\mathbf{b}$ is a combination of the columns of $A$.
+  \item There are only three possibilities: no solution, one, or infinitely many.
+  \item Row operations (swap, scale, add a multiple) do not change the solution set; Gaussian elimination reduces any matrix to echelon form, Gauss--Jordan to the unique reduced form.
+  \item Pivots decide everything: a pivot in the augmented column means inconsistent; a free (non-pivot) column means infinitely many solutions.
+  \item Every solution is a particular solution plus a homogeneous solution.
+  \item Elimination costs $O(n^3)$ and needs pivoting to be numerically safe.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Solve by Gaussian elimination: $x+y+z=6$, $2x-y+z=3$, $x+2y-z=2$.
+\end{exercise}
+
+\begin{exercise}
+For which values of $k$ does the system $x+2y=1$, $3x+6y=k$ have (a) no solution, (b) infinitely many?
+\end{exercise}
+
+\begin{exercise}
+Reduce $\begin{pmatrix}1&2&-1&3\\2&4&1&0\\3&6&0&3\end{pmatrix}$ to RREF and write the solutions of the homogeneous system in parametric vector form.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $\mathbf{x}$ and $\mathbf{y}$ solve $A\mathbf{x}=\mathbf{0}$, then so does $a\mathbf{x}+b\mathbf{y}$ for all scalars $a,b$.
+\end{exercise}
+
+\begin{exercise}
+Is $\mathbf{b}=(1,2,3)$ in the span of $(1,0,1)$ and $(0,1,1)$? In the span of $(1,1,0)$, $(0,1,1)$ and $(1,2,1)$? Explain through row reduction.
+\end{exercise}
+
+\begin{exercise}
+Show that a system of $3$ equations in $5$ unknowns can never have a unique solution. Can it be inconsistent? Give an example of each possibility that does occur.
+\end{exercise}
+
+\begin{exercise}
+Three planes in $\R^3$ have normals $(1,1,1)$, $(1,2,3)$ and $(2,3,4)$. Describe the possible intersections depending on the right-hand sides.
+\end{exercise}
+
+\begin{exercise}
+Find a polynomial $p(t)=a+bt+ct^2$ with $p(1)=2$, $p(2)=3$, $p(3)=6$. Why is this a linear system, and why does it have exactly one solution?
+\end{exercise}

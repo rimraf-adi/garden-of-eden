@@ -1,0 +1,327 @@
+\chapter{Fields in Physics}
+\label{ch:physics}
+
+The integral theorems turn physical laws that are stated over regions (``what flows in minus what flows out equals what accumulates'') into local equations (partial differential equations). In this chapter we derive the continuity equation, Gauss's law, Poisson's equation, the key properties of harmonic functions, Maxwell's equations, the transport theorem, and the heat and wave equations.
+
+%====================================================================
+\section{Conservation laws and the continuity equation}
+%====================================================================
+
+Let $\rho(\vec x,t)$ be the density of some conserved quantity (mass, charge, \dots) and $\vec J$ its \emph{flux density} (amount crossing a unit area per unit time). For a fixed region $E$ with boundary $\partial E$, conservation says
+\[
+\frac{\dd}{\dd t}\iiint_E\rho\,\dd V=-\oiint_{\partial E}\vec J\cdot\hat{\vec n}\,\dd S+\iiint_Es\,\dd V,
+\]
+where $s$ is a source density. (The change inside equals what flows in, plus what is created.)
+
+\begin{theorem}[Continuity equation]\label{thm:continuity}
+If $\rho,\vec J$ are $C^1$, then conservation for every region $E$ is equivalent to
+\[
+\pd\rho t+\divg\vec J=s .
+\]
+For a fluid with velocity $\vec v$, $\vec J=\rho\vec v$.
+\end{theorem}
+
+\begin{proof}
+Move the time derivative inside the integral (allowed for $C^1$ functions on a fixed bounded region; Leibniz rule, Theorem~\ref{thm:leibniz}), and apply the divergence theorem to the surface term:
+\[
+\iiint_E\Bigl(\pd\rho t+\divg\vec J-s\Bigr)\dd V=0\quad\text{for every region }E.
+\]
+If the continuous integrand were nonzero at a point, it would have one sign on a small ball around it, and the integral over that ball would not be $0$. So the integrand is $0$ everywhere. The converse is obtained by integrating the equation.
+\end{proof}
+
+\begin{example}[Incompressible flow]
+If $\rho$ is constant and $s=0$, the continuity equation says $\divg\vec v=0$: the velocity field is divergence-free. Water cannot be created or compressed anywhere. In particular, there is a vector potential $\vec A$ with $\vec v=\curl\vec A$ (Chapter~\ref{ch:helmholtz}).
+\end{example}
+
+\begin{example}[Steady state]
+If nothing changes with time, $\partial_t\rho=0$, and $\divg\vec J=s$: field lines of $\vec J$ start only at sources.
+\end{example}
+
+%====================================================================
+\section{Gauss's law and the point charge}
+%====================================================================
+
+The electric field $\vec E$ of charges is defined by Coulomb's law. Experiments show that the flux of $\vec E$ through any closed surface is proportional to the enclosed charge $Q$:
+\[
+\oiint_{\partial E}\vec E\cdot\hat{\vec n}\,\dd S=\frac{Q_{\text{enc}}}{\varepsilon_0}=\frac1{\varepsilon_0}\iiint_E\rho\,\dd V .
+\]
+By the divergence theorem, the left side is $\iiint_E\divg\vec E\,\dd V$; since $E$ is arbitrary,
+\[
+\boxed{\ \divg\vec E=\frac\rho{\varepsilon_0}\ }\qquad\text{(Gauss's law, differential form).}
+\]
+For a point charge $q$ at the origin, Coulomb's law gives $\vec E=\dfrac q{4\pi\varepsilon_0}\dfrac{\vec r}{r^3}$. We already saw that $\divg(\vec r/r^3)=0$ for $\vec r\ne\vec 0$, but the flux through every sphere around $0$ is $4\pi$. So all the divergence sits \emph{at the origin}. This is exactly what the Dirac delta ``function'' expresses.
+
+\begin{definition}[Dirac delta]
+$\delta^3$ is the object with $\iiint\delta^3(\vec x)\varphi(\vec x)\,\dd V=\varphi(\vec 0)$ for every smooth test function $\varphi$ with compact support. It is not a function; it is defined by this property. Derivatives of non-smooth fields are understood in the same sense: $\divg\vec F=g$ means $-\iiint\vec F\cdot\nabla\varphi\,\dd V=\iiint g\varphi\,\dd V$ for all test functions $\varphi$ (this is the integration-by-parts formula, Theorem~\ref{thm:ibp}, with no boundary term because $\varphi$ vanishes far away).
+\end{definition}
+
+\begin{theorem}[Divergence of the Coulomb field]\label{thm:delta}
+In the sense of distributions,
+\[
+\divg\frac{\vec r}{r^3}=4\pi\,\delta^3(\vec r),\qquad\lap\frac1r=-4\pi\,\delta^3(\vec r).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\varphi$ be a smooth test function with compact support and $\vec F=\vec r/r^3$. Let $E_\varepsilon$ be the region $\{\varepsilon<r<R\}$ with $R$ so large that $\varphi=0$ near the outer sphere. On $E_\varepsilon$, $\divg(\varphi\vec F)=\nabla\varphi\cdot\vec F+\varphi\divg\vec F=\nabla\varphi\cdot\vec F$. The divergence theorem for $E_\varepsilon$, whose only boundary contributing is the small sphere (with outward normal of $E_\varepsilon$ equal to $-\ehat_r$), gives
+\[
+\iiint_{r>\varepsilon}\vec F\cdot\nabla\varphi\,\dd V=-\oiint_{r=\varepsilon}\varphi\,\vec F\cdot\ehat_r\,\dd S=-\frac1{\varepsilon^2}\oiint_{r=\varepsilon}\varphi\,\dd S=-4\pi\Bigl(\frac1{4\pi\varepsilon^2}\oiint_{r=\varepsilon}\varphi\,\dd S\Bigr).
+\]
+The bracket is the average of $\varphi$ over the sphere, which tends to $\varphi(\vec0)$ as $\varepsilon\to0$ (continuity). The integrand $\vec F\cdot\nabla\varphi$ is bounded by $C/r^2$, which is integrable near $0$ in $\R^3$, so the left side tends to $\iiint\vec F\cdot\nabla\varphi\,\dd V$. Therefore $-\iiint\vec F\cdot\nabla\varphi\,\dd V=4\pi\varphi(\vec0)$, i.e.\ $\divg\vec F=4\pi\delta^3$. The second formula follows from $\nabla(1/r)=-\vec r/r^3$.
+\end{proof}
+
+\begin{theorem}[Solution of Poisson's equation]\label{thm:poisson}
+Let $\rho$ be smooth with compact support. Then $\phi(\vec x)=\dfrac1{4\pi}\iiint\dfrac{\rho(\vec y)}{\norm{\vec x-\vec y}}\,\dd V_{\vec y}$ solves $\lap\phi=-\rho$.
+\end{theorem}
+
+\begin{proof}[Idea of proof]
+Differentiate under the integral sign (in distributions) and use $\lap_{\vec x}\frac1{\norm{\vec x-\vec y}}=-4\pi\delta^3(\vec x-\vec y)$ from Theorem~\ref{thm:delta}:
+$\lap\phi=\frac1{4\pi}\iiint\rho(\vec y)\bigl(-4\pi\delta^3(\vec x-\vec y)\bigr)\dd V_{\vec y}=-\rho(\vec x)$.
+\end{proof}
+
+In electrostatics $\vec E=-\nabla\phi$, so $\lap\phi=-\rho/\varepsilon_0$: the potential is the superposition of point-charge potentials $\frac{q}{4\pi\varepsilon_0r}$.
+
+\begin{intuition}
+The solution formula says: chop the charge into tiny point charges, compute each point charge's potential $\propto1/r$, and add. The delta function is the mathematical tool that makes this rigorous: $1/(4\pi r)$ is the response of the Laplacian to a unit point source. It is called a \emph{fundamental solution} or Green's function.
+\end{intuition}
+
+\begin{example}[Field of a uniformly charged ball]
+A ball of radius $a$ with uniform density $\rho_0$. By symmetry $\vec E=E(r)\ehat_r$. Apply Gauss's law to a sphere of radius $r$: $4\pi r^2E=\frac1{\varepsilon_0}\cdot\frac43\pi r^3\rho_0$ for $r<a$ (so $E$ grows linearly) and $4\pi r^2E=\frac{Q}{\varepsilon_0}$ for $r>a$ (so $E=Q/(4\pi\varepsilon_0r^2)$, as for a point charge).
+\end{example}
+
+%====================================================================
+\section{Harmonic functions}
+%====================================================================
+
+A $C^2$ function $u$ is \emph{harmonic} on an open set if $\lap u=0$ there. Examples: constants, linear functions, $1/r$ in $\R^3\setminus\{0\}$, $\ln r$ in $\R^2\setminus\{0\}$, $x^2-y^2$, $xy$, $\mathrm{Re}\,z^n$, $\mathrm{Im}\,z^n$. Electrostatic potentials in charge-free regions and steady-state temperatures are harmonic.
+
+\begin{theorem}[Mean value property]\label{thm:mvp}
+Let $u$ be harmonic on an open set containing the closed ball $\overline B_R(\vec p)\subset\R^3$. Then for every $0<\rho\le R$,
+\[
+u(\vec p)=\frac1{4\pi\rho^2}\oiint_{\partial B_\rho(\vec p)}u\,\dd S .
+\]
+\end{theorem}
+
+\begin{proof}
+Parametrize the sphere by the unit sphere: points $\vec p+\rho\vec\omega$ with $\vec\omega\in S^2$, $\dd S=\rho^2\dd\Omega$. Define the average
+\[
+\varphi(\rho)=\frac1{4\pi}\oiint_{S^2}u(\vec p+\rho\vec\omega)\,\dd\Omega .
+\]
+Differentiating under the integral sign (the integrand is $C^1$ in $\rho$) and using the chain rule, $\frac{\dd}{\dd\rho}u(\vec p+\rho\vec\omega)=\nabla u\cdot\vec\omega$:
+\[
+\varphi'(\rho)=\frac1{4\pi}\oiint_{S^2}\nabla u(\vec p+\rho\vec\omega)\cdot\vec\omega\,\dd\Omega=\frac1{4\pi\rho^2}\oiint_{\partial B_\rho}\pd un\,\dd S=\frac1{4\pi\rho^2}\iiint_{B_\rho}\lap u\,\dd V=0,
+\]
+using the divergence theorem for $\nabla u$ and $\lap u=0$ (the outward normal of the sphere is $\vec\omega$). So $\varphi$ is constant on $(0,R]$. As $\rho\to0$, $\varphi(\rho)\to u(\vec p)$ by continuity of $u$. Hence $\varphi(\rho)=u(\vec p)$ for all $\rho$.
+\end{proof}
+
+\begin{corollary}[Volume mean value]\label{cor:mvpvol}
+Under the same hypothesis, $u(\vec p)=\dfrac1{\Vol(B_R)}\iiint_{B_R(\vec p)}u\,\dd V$.
+\end{corollary}
+
+\begin{proof}
+Integrate the sphere identity $4\pi\rho^2u(\vec p)=\oiint_{\partial B_\rho}u\,\dd S$ over $\rho\in[0,R]$ (the left side gives $\frac43\pi R^3u(\vec p)$, the right side is the volume integral in spherical shells).
+\end{proof}
+
+\begin{theorem}[Strong maximum principle]\label{thm:maxprinciple}
+Let $E$ be a bounded connected open set and let $u$ be harmonic in $E$ and continuous on $\overline E$. If $u$ attains its maximum over $\overline E$ at an interior point, then $u$ is constant. In particular, $\max_{\overline E}u=\max_{\partial E}u$ and $\min_{\overline E}u=\min_{\partial E}u$.
+\end{theorem}
+
+\begin{proof}
+Let $M=\max_{\overline E}u$ (it exists since $\overline E$ is compact) and $A=\{\vec x\in E:u(\vec x)=M\}$. Suppose $A\ne\emptyset$.
+
+\emph{$A$ is closed in $E$:} $u$ is continuous.
+
+\emph{$A$ is open:} let $\vec p\in A$ and $B_R(\vec p)\subset E$. By Corollary~\ref{cor:mvpvol}, $M=u(\vec p)$ is the average of $u$ over the ball, and $u\le M$ everywhere. The average of a continuous function $\le M$ can equal $M$ only if the function equals $M$ everywhere on the ball. So $B_R(\vec p)\subset A$.
+
+Since $E$ is connected and $A$ is nonempty, open and closed in $E$, $A=E$. Thus $u\equiv M$ on $E$, hence on $\overline E$ by continuity. For the last statement apply the result to $-u$ as well.
+\end{proof}
+
+\begin{theorem}[Uniqueness and stability]\label{thm:dirichlet}
+If two harmonic functions on a bounded domain agree on the boundary, they agree everywhere. Moreover $\max_{\overline E}\abs{u_1-u_2}\le\max_{\partial E}\abs{u_1-u_2}$.
+\end{theorem}
+
+\begin{proof}
+Apply the maximum principle to $w=u_1-u_2$ and to $-w$.
+\end{proof}
+
+\begin{intuition}
+A harmonic function has no local bumps. Each value is the average of its neighbours, so a bump (a strict local maximum) would contradict the averaging. A soap film stretched on a wire frame is (approximately) harmonic: its height is determined by the wire, and the film never goes above the highest point of the wire.
+\end{intuition}
+
+\begin{example}[Why no stable electrostatic trapping]
+Earnshaw's theorem: a point charge cannot be held in stable equilibrium by electrostatic forces alone in a charge-free region. Stable equilibrium would need the potential energy $q\phi$ to have a strict local minimum, but $\phi$ is harmonic, so by the maximum principle it has no strict local extrema in the interior.
+\end{example}
+
+%====================================================================
+\section{Maxwell's equations}
+%====================================================================
+
+Electromagnetism is described by two vector fields $\vec E,\vec B$ and sources $\rho,\vec J$ (charge density and current density):
+\begin{align*}
+\divg\vec E&=\rho/\varepsilon_0, & \curl\vec E&=-\pd{\vec B}t,\\
+\divg\vec B&=0, & \curl\vec B&=\mu_0\vec J+\mu_0\varepsilon_0\pd{\vec E}t .
+\end{align*}
+The integral forms follow from the divergence and Stokes theorems: the flux of $\vec E$ through a closed surface is $Q/\varepsilon_0$ (Gauss); the flux of $\vec B$ through a closed surface is $0$ (no magnetic monopoles); the circulation of $\vec E$ around a loop is $-\frac{\dd}{\dd t}$(flux of $\vec B$ through the loop) (Faraday's law); and the circulation of $\vec B$ is $\mu_0\times$(current through the loop) plus a displacement-current term (Amp\`ere--Maxwell).
+
+\begin{theorem}[Charge conservation follows from Maxwell]\label{thm:chargecons}
+Maxwell's equations imply $\partial_t\rho+\divg\vec J=0$.
+\end{theorem}
+
+\begin{proof}
+Take the divergence of the last equation and use $\divg\curl=0$: $0=\mu_0\divg\vec J+\mu_0\varepsilon_0\partial_t\divg\vec E$, and by Gauss's law $\varepsilon_0\divg\vec E=\rho$. So $\divg\vec J+\partial_t\rho=0$.
+\end{proof}
+
+\begin{remark}
+Maxwell added the term $\mu_0\varepsilon_0\partial_t\vec E$ precisely to make this identity true; without it, the Amp\`ere law would give $\divg\vec J=0$, which is wrong for charging capacitors. This is a good example of vector calculus identities guiding physics.
+\end{remark}
+
+\begin{theorem}[Electromagnetic waves]\label{thm:emwave}
+In vacuum ($\rho=0,\vec J=\vec0$), each Cartesian component of $\vec E$ satisfies the wave equation $\partial_t^2\vec E=c^2\lap\vec E$ with $c=1/\sqrt{\mu_0\varepsilon_0}$.
+\end{theorem}
+
+\begin{proof}
+Take the curl of Faraday's law: $\curl\curl\vec E=-\partial_t\curl\vec B=-\mu_0\varepsilon_0\partial_t^2\vec E$. By the identity $\curl\curl\vec E=\nabla(\divg\vec E)-\lap\vec E$ (Theorem~\ref{thm:identities}) and $\divg\vec E=0$, the left side is $-\lap\vec E$. Hence $\lap\vec E=\mu_0\varepsilon_0\partial_t^2\vec E$.
+\end{proof}
+
+The number $c=1/\sqrt{\mu_0\varepsilon_0}\approx3\times10^8\,$m/s is the speed of light. This is how Maxwell realized that light is an electromagnetic wave.
+
+%====================================================================
+\section{Transport theorem}
+%====================================================================
+
+The continuity equation was derived for a fixed region. For a region $\Omega(t)$ that moves with a fluid (always consisting of the same particles) we need the \emph{transport theorem}. Let $\vec v(\vec x,t)$ be the velocity field and $\Phi_t$ the flow map: $\Phi_t(\vec X)$ is the position at time $t$ of the particle that started at $\vec X$. Then $\partial_t\Phi_t=\vec v(\Phi_t,t)$.
+
+\begin{lemma}[Euler's formula]\label{lem:euler}
+Let $J(\vec X,t)=\det\Jac\Phi_t(\vec X)$. Then $\partial_tJ=J\,(\divg\vec v)\circ\Phi_t$.
+\end{lemma}
+
+\begin{proof}
+Let $A(t)=\Jac\Phi_t$. Differentiating $\partial_t\Phi=\vec v(\Phi,t)$ with respect to $\vec X$ and using the chain rule gives $\dot A=(\Jac\vec v)A$. For an invertible matrix function, $\frac{\dd}{\dd t}\det A=\det A\cdot\tr(A^{-1}\dot A)$ (Jacobi's formula; it follows from the expansion of $\det(A+\epsilon\dot A)=\det A\cdot\det(I+\epsilon A^{-1}\dot A)=\det A\,(1+\epsilon\tr(A^{-1}\dot A)+O(\epsilon^2))$). Hence $\partial_tJ=J\tr\bigl(A^{-1}(\Jac\vec v)A\bigr)=J\tr(\Jac\vec v)=J\divg\vec v$, because the trace is invariant under similarity.
+\end{proof}
+
+\begin{theorem}[Reynolds transport theorem]\label{thm:reynolds}
+Let $\Omega(t)=\Phi_t(\Omega_0)$. For a $C^1$ function $f$,
+\[
+\frac{\dd}{\dd t}\iiint_{\Omega(t)}f\,\dd V=\iiint_{\Omega(t)}\Bigl(\pd ft+\divg(f\vec v)\Bigr)\dd V=\iiint_{\Omega(t)}\pd ft\,\dd V+\oiint_{\partial\Omega(t)}f\,\vec v\cdot\hat{\vec n}\,\dd S .
+\]
+\end{theorem}
+
+\begin{proof}
+Change variables to the fixed region $\Omega_0$ (Theorem~\ref{thm:cov}):
+\[
+\iiint_{\Omega(t)}f\,\dd V=\iiint_{\Omega_0}f(\Phi_t(\vec X),t)\,J(\vec X,t)\,\dd V_{\vec X}.
+\]
+Differentiate under the integral. By the chain rule and Lemma~\ref{lem:euler},
+\[
+\partial_t\bigl(f\circ\Phi_t\cdot J\bigr)=\Bigl(\pd ft+\vec v\cdot\nabla f+f\divg\vec v\Bigr)\circ\Phi_t\;J=\Bigl(\pd ft+\divg(f\vec v)\Bigr)\circ\Phi_t\;J .
+\]
+Changing variables back to $\Omega(t)$ gives the first equality, and the divergence theorem the second.
+\end{proof}
+
+\begin{corollary}[Continuity equation for mass]\label{cor:masscons}
+Conservation of mass for a moving fluid parcel, $\frac{\dd}{\dd t}\iiint_{\Omega(t)}\rho\,\dd V=0$, is equivalent to $\partial_t\rho+\divg(\rho\vec v)=0$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:reynolds} with $f=\rho$ and use the same localization argument as in Theorem~\ref{thm:continuity}.
+\end{proof}
+
+\begin{intuition}
+Reynolds' theorem says: the rate of change of a quantity inside a moving region is (change inside at fixed points) + (what is carried across the moving boundary). The term $\divg\vec v$ in Euler's formula is the relative rate of volume growth: a flow with $\divg\vec v>0$ expands, and one with $\divg\vec v=0$ preserves volumes (incompressible).
+\end{intuition}
+
+%====================================================================
+\section{The heat equation and the wave equation}
+%====================================================================
+
+\begin{theorem}[Heat equation]\label{thm:heat}
+Let $u(\vec x,t)$ be temperature. If the heat flux obeys Fourier's law $\vec q=-k\nabla u$ (heat flows from hot to cold) and energy is conserved, with $c\rho$ the heat capacity per volume, then
+\[
+c\rho\,\pd ut=\divg(k\nabla u)+s,\qquad\text{and for constant }k:\quad\pd ut=\alpha\lap u+\frac s{c\rho},\ \ \alpha=\frac k{c\rho}.
+\]
+\end{theorem}
+
+\begin{proof}
+The energy density is $c\rho u$ and its flux is $\vec q$. Apply Theorem~\ref{thm:continuity}: $\partial_t(c\rho u)+\divg\vec q=s$. Insert $\vec q=-k\nabla u$.
+\end{proof}
+
+The steady states ($\partial_tu=0$, $s=0$) are exactly the harmonic functions. Hence the maximum principle for heat conduction: in a steady state, the hottest point of an object without heat sources is on its boundary.
+
+\begin{theorem}[Energy decay for the heat equation]\label{thm:heatdecay}
+Let $u$ solve $u_t=\alpha\lap u$ in a bounded region $E$ with $u=0$ on $\partial E$. Then $\mathcal E(t)=\frac12\iiint_Eu^2\dd V$ is non-increasing, and strictly decreasing unless $u\equiv0$. In particular, the initial-boundary value problem has at most one solution.
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+\dot{\mathcal E}&=\iiint uu_t\dd V=\alpha\iiint u\lap u\,\dd V\\
+&=-\alpha\iiint\norm{\nabla u}^2\dd V+\alpha\oiint u\,\partial_nu\,\dd S=-\alpha\iiint\norm{\nabla u}^2\dd V\le0,
+\end{align*}
+by Green's first identity \eqref{eq:green1} and $u=0$ on the boundary. For two solutions with the same data, the difference $w$ has $\mathcal E_w(0)=0$ and $\mathcal E_w$ non-increasing and $\ge0$, so $\mathcal E_w\equiv0$.
+\end{proof}
+
+\begin{theorem}[Wave equation: energy conservation]\label{thm:waveenergy}
+Let $u_{tt}=c^2\lap u$ in $E$ with $u=0$ on $\partial E$. The energy $\mathcal E(t)=\frac12\iiint_E\bigl(u_t^2+c^2\norm{\nabla u}^2\bigr)\dd V$ is constant in time.
+\end{theorem}
+
+\begin{proof}
+$\dot{\mathcal E}=\iiint\bigl(u_tu_{tt}+c^2\nabla u\cdot\nabla u_t\bigr)\dd V$. By Theorem~\ref{thm:ibp}, $\iiint\nabla u\cdot\nabla u_t\dd V=\oiint u_t\,\partial_nu\,\dd S-\iiint u_t\lap u\,\dd V$, and the boundary term vanishes because $u_t=0$ on $\partial E$. So $\dot{\mathcal E}=\iiint u_t\bigl(u_{tt}-c^2\lap u\bigr)\dd V=0$.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{llll}
+\toprule
+\textbf{Type} & \textbf{Equation} & \textbf{Behaviour} & \textbf{Example} \\
+\midrule
+Elliptic & $\lap u=f$ & equilibrium, smooth, max principle & electrostatics, steady heat \\
+Parabolic & $u_t=\alpha\lap u$ & smoothing, energy decays & heat diffusion \\
+Hyperbolic & $u_{tt}=c^2\lap u$ & waves, energy conserved & sound, light \\
+\bottomrule
+\end{tabular}
+\caption{The three model equations, all built from the Laplacian.}
+\end{table}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item Conservation law $\Rightarrow$ continuity equation $\partial_t\rho+\divg\vec J=s$ (divergence theorem plus localization).
+  \item $\divg(\vec r/r^3)=4\pi\delta^3$ and $\lap(1/r)=-4\pi\delta^3$; the Poisson solution is the superposition $\phi=\frac1{4\pi}\iiint\rho/\norm{\vec x-\vec y}$.
+  \item Harmonic functions: mean value property (derivative of the spherical average is a flux of $\nabla u$, which is $0$), strong maximum principle, uniqueness.
+  \item Maxwell: $\divg\curl=0$ forces charge conservation; $\curl\curl=\nabla\divg-\lap$ gives the wave equation with $c=1/\sqrt{\mu_0\varepsilon_0}$.
+  \item Transport: $\partial_tJ=J\divg\vec v$; $\frac{\dd}{\dd t}\iiint_{\Omega(t)}f=\iiint(f_t+\divg(f\vec v))$.
+  \item Heat equation (energy decays), wave equation (energy conserved), both via Green's first identity.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{Derive the continuity equation.} Rate of change of mass inside equals minus flux out; use the divergence theorem and shrink the region.
+  \item \emph{What is $\divg(\vec r/r^3)$?} $0$ away from the origin, $4\pi\delta^3$ as a distribution.
+  \item \emph{State and prove the mean value property.} The spherical average is constant because its derivative is the flux of $\nabla u$ divided by area, i.e.\ $\iiint\lap u=0$.
+  \item \emph{Why do harmonic functions satisfy the maximum principle?} Otherwise an interior maximum would exceed the average of its neighbours.
+  \item \emph{Why did Maxwell add the displacement current?} Consistency: $\divg\curl\vec B=0$ forces $\divg\vec J=-\partial_t\rho$.
+  \item \emph{What does $\divg\vec v$ measure?} The relative rate of volume change of a fluid parcel.
+  \item \emph{Elliptic, parabolic, hyperbolic: give an example and a key property of each.}
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Show that $u=1/\norm{\vec r}$ is harmonic in $\R^3\setminus\{\vec0\}$ and $u=\ln r$ in $\R^2\setminus\{\vec0\}$, using the Laplacian in spherical and polar coordinates (Corollary~\ref{cor:cylsph}).
+\end{exercise}
+\begin{exercise}
+Find the electric field of an infinite line charge with density $\lambda$ using Gauss's law and a cylinder. (Answer: $E=\lambda/(2\pi\varepsilon_0r)$.)
+\end{exercise}
+\begin{exercise}
+Prove the two-dimensional mean value property for harmonic functions, with circles in place of spheres. (Same proof; $\varphi'(\rho)=\frac1{2\pi\rho}\oint\partial_nu\,\dd s=\frac1{2\pi\rho}\iint\lap u\,\dd A=0$.)
+\end{exercise}
+\begin{exercise}
+Show that $u(x,t)=e^{-\alpha k^2t}\sin kx$ solves the one-dimensional heat equation and that $u(x,t)=\sin(kx-kct)$ solves the wave equation.
+\end{exercise}
+\begin{exercise}
+Show that a harmonic function that is bounded on all of $\R^3$ is constant (Liouville). (Hint: compare the volume averages over two large balls whose centres differ by a fixed vector; the difference of the volumes is a thin shell.)
+\end{exercise}
+\begin{exercise}
+Let $\vec v=(x,0,0)$ be a flow field. Compute $\divg\vec v$ and verify Lemma~\ref{lem:euler}: find $\Phi_t$ and $J$. (Answer: $\Phi_t(X,Y,Z)=(Xe^t,Y,Z)$, $J=e^t$, $\divg\vec v=1$.)
+\end{exercise}

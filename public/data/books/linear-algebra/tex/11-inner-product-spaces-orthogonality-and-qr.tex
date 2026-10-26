@@ -1,0 +1,212 @@
+\chapter{Inner-Product Spaces, Orthogonality and QR}
+
+Chapter~1 gave $\R^n$ a geometry through the dot product. Many other spaces need one too: functions have lengths and angles (a Fourier series is an expansion in orthogonal functions), and so do random variables (covariance is an inner product). This chapter abstracts the dot product to \emph{inner products} on arbitrary real or complex vector spaces, builds orthonormal bases with the Gram--Schmidt process, and derives the QR factorisation, the numerically preferred way to orthogonalise and to solve least squares problems.
+
+\section{Inner products}
+
+\begin{definition}[Real inner product]
+An \emph{inner product} on a real vector space $V$ is a function $\ip{\cdot}{\cdot}:V\times V\to\R$ such that for all $\mathbf{u},\mathbf{v},\mathbf{w}\in V$ and $a,b\in\R$:
+\begin{enumerate}[label=(I\arabic*)]
+  \item \textbf{Symmetry:} $\ip{\mathbf{u}}{\mathbf{v}}=\ip{\mathbf{v}}{\mathbf{u}}$;
+  \item \textbf{Linearity:} $\ip{a\mathbf{u}+b\mathbf{v}}{\mathbf{w}}=a\ip{\mathbf{u}}{\mathbf{w}}+b\ip{\mathbf{v}}{\mathbf{w}}$;
+  \item \textbf{Positive definiteness:} $\ip{\mathbf{v}}{\mathbf{v}}\ge0$, with equality iff $\mathbf{v}=\mathbf{0}$.
+\end{enumerate}
+A vector space with an inner product is an \emph{inner-product space}. The \emph{norm} is $\norm{\mathbf{v}}=\sqrt{\ip{\mathbf{v}}{\mathbf{v}}}$.
+\end{definition}
+
+For complex spaces, (I1) is replaced by conjugate symmetry $\ip{\mathbf{u}}{\mathbf{v}}=\overline{\ip{\mathbf{v}}{\mathbf{u}}}$, and linearity holds in the first slot (so the product is conjugate-linear in the second); the standard example on $\C^n$ is $\ip{\mathbf{x}}{\mathbf{y}}=\sum x_i\overline{y_i}=\mathbf{y}\herm\mathbf{x}$. We state everything for the real case and note where the complex case differs.
+
+\begin{example}[Inner products]\label{ex:ips}
+\begin{enumerate}[label=(\alph*)]
+  \item The dot product $\mathbf{x}\T\mathbf{y}$ on $\R^n$.
+  \item \emph{Weighted} dot product $\sum w_ix_iy_i$ with all $w_i>0$, and more generally $\ip{\mathbf{x}}{\mathbf{y}}_G=\mathbf{x}\T G\mathbf{y}$ for any symmetric positive definite $G$ (Chapter~16). Every inner product on $\R^n$ has this form.
+  \item On $C[a,b]$: $\ip{f}{g}=\int_a^bf(t)g(t)\,dt$.
+  \item On $\R^{m\times n}$: the \emph{Frobenius} inner product $\ip{A}{B}=\tr(A\T B)=\sum_{i,j}a_{ij}b_{ij}$, with norm $\norm{A}_F=\sqrt{\sum a_{ij}^2}$.
+  \item On random variables with finite variance: $\ip{X}{Y}=\mathbb{E}[XY]$; for centred variables this is the covariance.
+\end{enumerate}
+\end{example}
+
+The properties proved in Chapter~1 used only (I1)--(I3), so they hold in every inner-product space.
+
+\begin{theorem}[Cauchy--Schwarz, triangle, Pythagoras]\label{thm:csgen}
+In any inner-product space: $\abs{\ip{\mathbf{u}}{\mathbf{v}}}\le\norm{\mathbf{u}}\norm{\mathbf{v}}$, with equality iff $\mathbf{u},\mathbf{v}$ are dependent; $\norm{\mathbf{u}+\mathbf{v}}\le\norm{\mathbf{u}}+\norm{\mathbf{v}}$; and $\ip{\mathbf{u}}{\mathbf{v}}=0$ implies $\norm{\mathbf{u}+\mathbf{v}}^2=\norm{\mathbf{u}}^2+\norm{\mathbf{v}}^2$.
+\end{theorem}
+
+\begin{proof}
+Repeat the proofs of Theorem~\ref{thm:cs}, Corollary~\ref{cor:tri} and the Pythagorean theorem of Chapter~1, replacing the dot product by $\ip{\cdot}{\cdot}$; only the three axioms were used.
+\end{proof}
+
+\begin{interview}{Cauchy--Schwarz in disguise}
+Many named inequalities are Cauchy--Schwarz for a particular inner product: $\big(\sum a_ib_i\big)^2\le\sum a_i^2\sum b_i^2$ (the dot product), $\big(\int fg\big)^2\le\int f^2\int g^2$ (the $L^2$ product), and $\operatorname{Cov}(X,Y)^2\le\operatorname{Var}X\operatorname{Var}Y$ (the covariance inner product, which is why correlation lies in $[-1,1]$).
+\end{interview}
+
+\section{Orthogonal and orthonormal bases}
+
+\begin{definition}[Orthogonal, orthonormal]
+A list $\mathbf{q}_1,\dots,\mathbf{q}_k$ is \emph{orthogonal} if $\ip{\mathbf{q}_i}{\mathbf{q}_j}=0$ for $i\ne j$, and \emph{orthonormal} if moreover $\norm{\mathbf{q}_i}=1$, that is $\ip{\mathbf{q}_i}{\mathbf{q}_j}=\delta_{ij}$ (the Kronecker delta).
+\end{definition}
+
+\begin{theorem}[Independence and coordinates]\label{thm:orthocoord}
+\begin{enumerate}[label=(\roman*)]
+  \item Orthogonal lists of nonzero vectors are linearly independent.
+  \item If $\mathbf{q}_1,\dots,\mathbf{q}_n$ is an orthonormal basis of $V$, then for every $\mathbf{v}\in V$
+  \[ \mathbf{v}=\sum_{i=1}^n\ip{\mathbf{v}}{\mathbf{q}_i}\,\mathbf{q}_i,\qquad\norm{\mathbf{v}}^2=\sum_{i=1}^n\ip{\mathbf{v}}{\mathbf{q}_i}^2\ \text{(Parseval)}. \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $\sum c_i\mathbf{q}_i=\mathbf{0}$, take the inner product with $\mathbf{q}_j$ to get $c_j\norm{\mathbf{q}_j}^2=0$. (ii) Write $\mathbf{v}=\sum x_i\mathbf{q}_i$ and take the inner product with $\mathbf{q}_j$: $\ip{\mathbf{v}}{\mathbf{q}_j}=x_j$. Parseval follows from taking the inner product of the expansion with itself and using orthonormality.
+\end{proof}
+
+\emph{Coordinates in an orthonormal basis are just inner products}, with no linear system to solve. This is why orthonormal bases are so prized: the Fourier coefficients of a function and the principal-component scores of a data point are exactly this computation.
+
+\begin{definition}[Orthogonal matrix]
+A real square matrix $Q$ is \emph{orthogonal} if its columns are orthonormal, equivalently $Q\T Q=I$, equivalently $Q^{-1}=Q\T$. (The complex analogue, $Q\herm Q=I$, is \emph{unitary}.)
+\end{definition}
+
+\begin{theorem}[Orthogonal matrices preserve geometry]\label{thm:orthprops}
+For orthogonal $Q$: $\ip{Q\mathbf{x}}{Q\mathbf{y}}=\ip{\mathbf{x}}{\mathbf{y}}$; hence $Q$ preserves lengths ($\norm{Q\mathbf{x}}=\norm{\mathbf{x}}$) and angles; $\det Q=\pm1$; products and inverses of orthogonal matrices are orthogonal; and the rows of $Q$ are also orthonormal.
+\end{theorem}
+
+\begin{proof}
+$(Q\mathbf{x})\T(Q\mathbf{y})=\mathbf{x}\T Q\T Q\mathbf{y}=\mathbf{x}\T\mathbf{y}$. $1=\det I=\det(Q\T Q)=(\det Q)^2$. $(Q_1Q_2)\T Q_1Q_2=Q_2\T Q_1\T Q_1Q_2=I$. Since $Q^{-1}=Q\T$ is also a two-sided inverse, $QQ\T=I$, which says the rows are orthonormal.
+\end{proof}
+
+The orthogonal matrices with $\det=1$ are \emph{rotations}; those with $\det=-1$ include reflections. In the plane they are $R_\theta$ and the reflections $\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$.
+
+\section{Gram--Schmidt orthogonalisation}
+
+Given an arbitrary basis, how do we produce an orthonormal one for the same space? Subtract from each new vector its projection onto the span of the previous ones. The tool is the projection onto a line (Theorem~\ref{thm:projline}), which in an inner-product space reads $\proj_{\mathbf{q}}\mathbf{x}=\ip{\mathbf{x}}{\mathbf{q}}\mathbf{q}$ for a unit vector $\mathbf{q}$.
+
+\begin{theorem}[Gram--Schmidt]\label{thm:gs}
+Let $\mathbf{a}_1,\dots,\mathbf{a}_k$ be linearly independent. Define recursively
+\[ \mathbf{w}_j=\mathbf{a}_j-\sum_{i<j}\ip{\mathbf{a}_j}{\mathbf{q}_i}\mathbf{q}_i,\qquad\mathbf{q}_j=\frac{\mathbf{w}_j}{\norm{\mathbf{w}_j}}. \]
+Then $\mathbf{q}_1,\dots,\mathbf{q}_k$ is orthonormal and $\Span\{\mathbf{q}_1,\dots,\mathbf{q}_j\}=\Span\{\mathbf{a}_1,\dots,\mathbf{a}_j\}$ for every $j$.
+\end{theorem}
+
+\begin{proof}
+Induct on $j$. Assume $\mathbf{q}_1,\dots,\mathbf{q}_{j-1}$ are orthonormal with the same span as $\mathbf{a}_1,\dots,\mathbf{a}_{j-1}$. Then $\mathbf{w}_j\ne\mathbf{0}$, since otherwise $\mathbf{a}_j$ would lie in $\Span\{\mathbf{a}_1,\dots,\mathbf{a}_{j-1}\}$, contradicting independence. For $l<j$,
+\[ \ip{\mathbf{w}_j}{\mathbf{q}_l}=\ip{\mathbf{a}_j}{\mathbf{q}_l}-\sum_{i<j}\ip{\mathbf{a}_j}{\mathbf{q}_i}\ip{\mathbf{q}_i}{\mathbf{q}_l}=\ip{\mathbf{a}_j}{\mathbf{q}_l}-\ip{\mathbf{a}_j}{\mathbf{q}_l}=0, \]
+so $\mathbf{q}_j\perp\mathbf{q}_l$. Also $\mathbf{a}_j=\mathbf{w}_j+\sum_{i<j}(\cdots)\mathbf{q}_i\in\Span\{\mathbf{q}_1,\dots,\mathbf{q}_j\}$ and $\mathbf{q}_j\in\Span\{\mathbf{a}_1,\dots,\mathbf{a}_j\}$, giving equal spans.
+\end{proof}
+
+\begin{corollary}\label{cor:onbexists}
+Every finite-dimensional inner-product space has an orthonormal basis, and every orthonormal list extends to one.
+\end{corollary}
+
+\begin{example}\label{ex:gs}
+Orthonormalise $\mathbf{a}_1=(1,1,0)$, $\mathbf{a}_2=(1,0,1)$, $\mathbf{a}_3=(0,1,1)$. First $\mathbf{q}_1=\frac1{\sqrt2}(1,1,0)$. Then $\ip{\mathbf{a}_2}{\mathbf{q}_1}=\frac1{\sqrt2}$, so $\mathbf{w}_2=(1,0,1)-\frac12(1,1,0)=(\tfrac12,-\tfrac12,1)$ and $\mathbf{q}_2=\frac1{\sqrt6}(1,-1,2)$. Next $\ip{\mathbf{a}_3}{\mathbf{q}_1}=\frac1{\sqrt2}$ and $\ip{\mathbf{a}_3}{\mathbf{q}_2}=\frac{1}{\sqrt6}(-1+2)=\frac1{\sqrt6}$, so
+\[ \mathbf{w}_3=(0,1,1)-\tfrac12(1,1,0)-\tfrac16(1,-1,2)=(-\tfrac23,\tfrac23,\tfrac23),\qquad\mathbf{q}_3=\tfrac1{\sqrt3}(-1,1,1). \]
+\end{example}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.2]
+  \draw[axis] (-0.3,0)--(4.2,0); \draw[axis] (0,-0.3)--(0,3.2);
+  \draw[vec,accent2] (0,0)--(3,0) node[below,lab]{$\mathbf{q}_1=\mathbf{a}_1/\norm{\mathbf{a}_1}$};
+  \draw[vec,accent] (0,0)--(2.2,2.4) node[above left,lab]{$\mathbf{a}_2$};
+  \draw[guide] (2.2,2.4)--(2.2,0);
+  \draw[vec,accent3] (2.2,0)--(2.2,2.4) node[right,lab]{$\mathbf{w}_2$};
+  \draw[vec,mid] (0,0)--(2.2,0);
+\end{tikzpicture}
+\caption{One Gram--Schmidt step: subtract from $\mathbf{a}_2$ its component along $\mathbf{q}_1$; what remains, $\mathbf{w}_2$, is perpendicular to $\mathbf{q}_1$.}
+\end{figure}
+
+\begin{nuance}{classical versus modified Gram--Schmidt}
+The formula above (\emph{classical} Gram--Schmidt) subtracts all projections computed from the \emph{original} $\mathbf{a}_j$. In floating-point arithmetic, if the input vectors are nearly dependent, the computed $\mathbf{q}_j$ lose orthogonality badly. The \emph{modified} version subtracts the projections one at a time from the \emph{updated} vector, $\mathbf{w}\leftarrow\mathbf{w}-\ip{\mathbf{w}}{\mathbf{q}_i}\mathbf{q}_i$ for $i=1,\dots,j-1$. In exact arithmetic the two agree; numerically the modified version is far more stable. Householder reflections (below) are better still.
+\end{nuance}
+
+\section{The QR factorisation}
+
+Write Gram--Schmidt in matrix form. Each $\mathbf{a}_j$ is a combination of $\mathbf{q}_1,\dots,\mathbf{q}_j$ with coefficients $r_{ij}=\ip{\mathbf{a}_j}{\mathbf{q}_i}$ for $i<j$ and $r_{jj}=\norm{\mathbf{w}_j}>0$.
+
+\begin{theorem}[QR factorisation]\label{thm:qr}
+Every $A\in\R^{m\times n}$ with linearly independent columns factors uniquely as $A=QR$, where $Q\in\R^{m\times n}$ has orthonormal columns ($Q\T Q=I_n$) and $R\in\R^{n\times n}$ is upper triangular with positive diagonal. Moreover $\Col Q=\Col A$.
+\end{theorem}
+
+\begin{proof}
+Existence is Gram--Schmidt: $\mathbf{a}_j=\sum_{i\le j}r_{ij}\mathbf{q}_i$ says $A=QR$. For uniqueness, suppose $Q_1R_1=Q_2R_2$. Then $Q_2\T Q_1=R_2R_1^{-1}$ is upper triangular and orthogonal; an upper triangular orthogonal matrix is diagonal (its inverse $=$ transpose is both upper and lower triangular) with entries $\pm1$, and positivity of the diagonals of $R_1,R_2$ forces it to be $I$.
+\end{proof}
+
+\begin{example}
+For the matrix $A=[\mathbf{a}_1\ \mathbf{a}_2\ \mathbf{a}_3]$ of Example~\ref{ex:gs}, with $r_{11}=\sqrt2$, $r_{12}=\frac1{\sqrt2}$, $r_{13}=\frac1{\sqrt2}$, $r_{22}=\norm{\mathbf{w}_2}=\sqrt{\tfrac32}$, $r_{23}=\frac1{\sqrt6}$, $r_{33}=\norm{\mathbf{w}_3}=\frac{2}{\sqrt3}$, we have $A=QR$ with $R=\begin{pmatrix}\sqrt2&1/\sqrt2&1/\sqrt2\\0&\sqrt{3/2}&1/\sqrt6\\0&0&2/\sqrt3\end{pmatrix}$.
+\end{example}
+
+\subsection*{Why QR is preferred numerically}
+
+Solving $A\mathbf{x}=\mathbf{b}$ for an invertible square $A=QR$ reduces to $R\mathbf{x}=Q\T\mathbf{b}$, a triangular solve; this costs about twice as much as $LU$, but $Q$ preserves lengths, so no error amplification arises from the orthogonal factor. For least squares (Chapter~12), QR is the standard algorithm because it avoids forming $A\T A$, which squares the condition number.
+
+\begin{theorem}[Householder reflections]\label{thm:householder}
+For a nonzero $\mathbf{v}\in\R^m$, the matrix $H=I-2\frac{\mathbf{v}\mathbf{v}\T}{\mathbf{v}\T\mathbf{v}}$ is orthogonal and symmetric (a reflection across the hyperplane $\mathbf{v}^\perp$). Given any $\mathbf{x}\ne\mathbf{0}$, choosing $\mathbf{v}=\mathbf{x}+\sgn(x_1)\norm{\mathbf{x}}\mathbf{e}_1$ gives $H\mathbf{x}=-\sgn(x_1)\norm{\mathbf{x}}\mathbf{e}_1$.
+\end{theorem}
+
+\begin{proof}
+$H\T=H$ is clear, and $H\T H=H^2=I-4\frac{\mathbf{v}\mathbf{v}\T}{\mathbf{v}\T\mathbf{v}}+4\frac{\mathbf{v}(\mathbf{v}\T\mathbf{v})\mathbf{v}\T}{(\mathbf{v}\T\mathbf{v})^2}=I$. For the second claim, a reflection preserves length and, for this choice of $\mathbf{v}$, one computes $\mathbf{v}\T\mathbf{x}=\tfrac12\mathbf{v}\T\mathbf{v}$, so $H\mathbf{x}=\mathbf{x}-\mathbf{v}$, which equals $-\sgn(x_1)\norm{\mathbf{x}}\mathbf{e}_1$.
+\end{proof}
+
+Applying such reflections column by column zeroes out everything below the diagonal and produces $A=QR$ with $Q$ a product of reflections; this is the algorithm used in LAPACK, since it is backward stable.
+
+\begin{interview}{QR versus normal equations}
+When asked ``how would you solve linear least squares robustly?'', the answer is QR (or the SVD), not $(A\T A)^{-1}A\T\mathbf{b}$. The condition number of $A\T A$ is the \emph{square} of that of $A$, so forming it can lose half of the available digits. QR works directly on $A$.
+\end{interview}
+
+\section{Orthogonal complements}
+
+\begin{definition}[Orthogonal complement]
+For a subset $S$ of an inner-product space $V$, $S^\perp=\{\mathbf{v}\in V:\ip{\mathbf{v}}{\mathbf{s}}=0\ \text{for all }\mathbf{s}\in S\}$.
+\end{definition}
+
+\begin{theorem}[Properties of $W^\perp$]\label{thm:perp}
+If $W$ is a subspace of a finite-dimensional inner-product space $V$, then $W^\perp$ is a subspace, $V=W\oplus W^\perp$, $\dim W+\dim W^\perp=\dim V$, and $(W^\perp)^\perp=W$.
+\end{theorem}
+
+\begin{proof}
+$W^\perp$ is a subspace since the conditions are linear. Take an orthonormal basis $\mathbf{q}_1,\dots,\mathbf{q}_k$ of $W$ (Corollary~\ref{cor:onbexists}) and set $\mathbf{p}=\sum\ip{\mathbf{v}}{\mathbf{q}_i}\mathbf{q}_i\in W$. Then $\mathbf{v}-\mathbf{p}\in W^\perp$, which gives $V=W+W^\perp$; the sum is direct because $W\cap W^\perp=\{\mathbf{0}\}$ (a vector orthogonal to itself is $\mathbf{0}$). Dimensions add. Finally $W\subseteq(W^\perp)^\perp$ and both have dimension $\dim V-\dim W^\perp=\dim W$.
+\end{proof}
+
+Combined with Theorem~\ref{thm:ftla2}: $\Null A=(\Row A)^\perp$ and $\Null A\T=(\Col A)^\perp$.
+
+\begin{summarybox}
+\begin{itemize}
+  \item An inner product (symmetric, linear, positive definite) gives norm, angle and orthogonality on any vector space; examples include weighted dot products, $\int fg$, $\tr(A\T B)$ and $\mathbb{E}[XY]$.
+  \item Cauchy--Schwarz, the triangle inequality and Pythagoras hold in every inner-product space.
+  \item In an orthonormal basis, coordinates are inner products and $\norm{\mathbf{v}}^2$ is the sum of squares of coordinates (Parseval).
+  \item Orthogonal matrices ($Q\T Q=I$) preserve lengths and angles; $\det Q=\pm1$.
+  \item Gram--Schmidt turns any independent list into an orthonormal one with the same nested spans, and is the matrix factorisation $A=QR$; Householder reflections compute it stably.
+  \item $V=W\oplus W^\perp$ and $\Null A=(\Row A)^\perp$.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Show that $\ip{p}{q}=\int_{-1}^1p(t)q(t)\,dt$ is an inner product on $\mathcal{P}_2$ and orthogonalise $1,t,t^2$ (the result is proportional to the first Legendre polynomials $1,t,3t^2-1$).
+\end{exercise}
+
+\begin{exercise}
+Prove the parallelogram law $\norm{\mathbf{u}+\mathbf{v}}^2+\norm{\mathbf{u}-\mathbf{v}}^2=2\norm{\mathbf{u}}^2+2\norm{\mathbf{v}}^2$ in any inner-product space, and the polarisation identity $\ip{\mathbf{u}}{\mathbf{v}}=\tfrac14(\norm{\mathbf{u}+\mathbf{v}}^2-\norm{\mathbf{u}-\mathbf{v}}^2)$.
+\end{exercise}
+
+\begin{exercise}
+Apply Gram--Schmidt to $(1,1,1)$, $(1,1,0)$, $(1,0,0)$, and write $A=QR$.
+\end{exercise}
+
+\begin{exercise}
+Prove that every $2\times2$ orthogonal matrix is either $R_\theta$ or a reflection $\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+If $Q$ is orthogonal and $\mathbf{x}\ne\mathbf{0}$, can $Q\mathbf{x}=2\mathbf{x}$? Show that every eigenvalue of a real orthogonal matrix has absolute value $1$.
+\end{exercise}
+
+\begin{exercise}
+Compute the Householder reflection $H$ with $H(3,4)\T=(5,0)\T$ or $(-5,0)\T$ and verify that $H$ is orthogonal.
+\end{exercise}
+
+\begin{exercise}
+Find $W^\perp$ for $W=\Span\{(1,1,1),(1,-1,0)\}\subset\R^3$ and verify $\dim W+\dim W^\perp=3$.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\norm{A}_F^2=\tr(A\T A)$ is unchanged when $A$ is multiplied on either side by an orthogonal matrix.
+\end{exercise}

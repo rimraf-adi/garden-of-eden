@@ -1,0 +1,153 @@
+\chapter{Boundary Value Problems and Eigenvalues}
+
+This chapter is the bridge from ODE to PDE. When we solve the wave, heat and Laplace equations by separation of variables (Part B), the ODE parts are \emph{boundary value problems}. The key idea is the \textbf{eigenvalue}.
+
+\section{IVP versus BVP}
+
+\begin{defbox}{Boundary value problem (BVP)}
+In an \textbf{IVP} all conditions are given at \emph{one} point, for example $y(0)=1$ and $y'(0)=0$. In a \textbf{BVP} the conditions are given at \emph{two} points, for example $y(0) = 0$ and $y(L) = 0$. Typical physical meaning: a beam fixed at both ends, a rod with its ends held at set temperatures, a string tied at both ends.
+\end{defbox}
+
+\begin{notebox}
+A linear IVP always has exactly one solution. A BVP may have \textbf{one solution, no solution, or infinitely many}.
+\end{notebox}
+
+\begin{examplebox}{Three outcomes for $y'' + y = 0$}
+The general solution is $y = c_1\cos x + c_2\sin x$.
+\begin{itemize}
+  \item $y(0)=0$ and $y(\pi/2)=1$: $c_1 = 0$ and $c_2 = 1$. \textbf{One} solution, $y = \sin x$.
+  \item $y(0)=0$ and $y(\pi)=0$: $c_1 = 0$ and $c_2\sin\pi = 0$ is always true. \textbf{Infinitely many} solutions, $y = c_2\sin x$.
+  \item $y(0)=0$ and $y(\pi)=1$: $c_1=0$ and $c_2\sin\pi = 0 \neq 1$. \textbf{No} solution.
+\end{itemize}
+\end{examplebox}
+
+\section{The eigenvalue problem}
+
+\begin{defbox}{Eigenvalue problem}
+Consider
+\[ y'' + \lambda y = 0, \qquad y(0) = 0, \quad y(L) = 0 . \]
+The function $y=0$ always works (the \textbf{trivial} solution). The values of $\lambda$ for which a \emph{non-zero} solution exists are the \textbf{eigenvalues}. The non-zero solutions are the \textbf{eigenfunctions}.
+\end{defbox}
+
+\begin{examplebox}{Solving $y'' + \lambda y = 0$, $y(0)=y(L)=0$}
+We test the three possible signs of $\lambda$.
+
+\textbf{Case $\lambda = 0$.} $y'' = 0$ gives $y = c_1 + c_2x$. $y(0)=0$ gives $c_1 = 0$ and $y(L)=0$ gives $c_2 = 0$. Only the trivial solution.
+
+\textbf{Case $\lambda<0$.} Write $\lambda=-\mu^2$. Then $y = c_1\cosh\mu x + c_2\sinh\mu x$. $y(0)=0$ gives $c_1=0$, and $y(L)=c_2\sinh\mu L = 0$ forces $c_2=0$. Only the trivial solution.
+
+\textbf{Case $\lambda>0$.} Write $\lambda=k^2$ with $k>0$. Then $y = A\cos kx + B\sin kx$. $y(0)=0$ gives $A=0$. Then $y(L) = B\sin kL = 0$. For a non-zero solution we need $B\neq0$, so $\sin kL=0$, that is $kL = n\pi$.
+
+\textbf{Result:}
+\[ \lambda_n = \Big(\frac{n\pi}{L}\Big)^2, \qquad y_n(x) = \sin\frac{n\pi x}{L}, \qquad n = 1, 2, 3, \dots \]
+\end{examplebox}
+
+The same method works for other boundary conditions (BC). These are the four cases you will meet in PDEs. In every case, the eigenvalues are $\lambda = k^2$.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Boundary conditions & Eigenvalues $\lambda_n$ & Eigenfunctions \\
+\midrule
+$y(0)=0,\ y(L)=0$ & $\Big(\dfrac{n\pi}{L}\Big)^2,\ n\ge1$ & $\sin\dfrac{n\pi x}{L}$ \\
+$y'(0)=0,\ y'(L)=0$ & $\Big(\dfrac{n\pi}{L}\Big)^2,\ n\ge0$ & $\cos\dfrac{n\pi x}{L}$ \\
+$y(0)=0,\ y'(L)=0$ & $\Big(\dfrac{(2n-1)\pi}{2L}\Big)^2,\ n\ge1$ & $\sin\dfrac{(2n-1)\pi x}{2L}$ \\
+$y'(0)=0,\ y(L)=0$ & $\Big(\dfrac{(2n-1)\pi}{2L}\Big)^2,\ n\ge1$ & $\cos\dfrac{(2n-1)\pi x}{2L}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{notebox}
+With $y'(0)=y'(L)=0$ the value $\lambda=0$ \emph{is} an eigenvalue, with the constant eigenfunction $y=1$. (This is the case $n=0$.) It is physical: a rod with both ends insulated can hold a constant temperature.
+\end{notebox}
+
+\section{Orthogonality}
+
+\begin{defbox}{Orthogonality of eigenfunctions}
+Eigenfunctions for different eigenvalues are \textbf{orthogonal}. For the sine case,
+\[ \int_0^L \sin\frac{m\pi x}{L}\,\sin\frac{n\pi x}{L}\,\dd x = \begin{cases}0 & m\neq n,\\[2pt] L/2 & m=n.\end{cases} \]
+The same holds for the cosine functions in the table (with $L$ instead of $L/2$ for $n=0$). This is the basis of Fourier series (Chapter 7).
+\end{defbox}
+
+\begin{derivbox}{Why eigenfunctions are orthogonal}
+\textbf{Direct check for the sine case.} Use $\sin A\sin B = \frac12\big[\cos(A-B) - \cos(A+B)\big]$. For $m\neq n$:
+\[ \int_0^L\sin\frac{m\pi x}{L}\sin\frac{n\pi x}{L}\,\dd x = \frac12\Big[\frac{L\sin\big((m-n)\pi x/L\big)}{(m-n)\pi} - \frac{L\sin\big((m+n)\pi x/L\big)}{(m+n)\pi}\Big]_0^L = 0, \]
+because $\sin(k\pi)=0$ for integers $k$. For $m = n$ the first cosine is $1$: $\frac12\int_0^L\big(1 - \cos\frac{2n\pi x}{L}\big)\dd x = \frac L2$.
+
+\textbf{General argument (all four boundary conditions).} Let $y_m, y_n$ satisfy $y_m'' = -\lambda_my_m$ and $y_n'' = -\lambda_ny_n$. Multiply the first by $y_n$, the second by $y_m$, and subtract:
+\[ y_m''y_n - y_n''y_m = (\lambda_n - \lambda_m)\,y_my_n. \]
+The left side equals $\dfrac{\dd}{\dd x}\big(y_m'y_n - y_n'y_m\big)$. Integrate from $0$ to $L$:
+\[ \Big[y_m'y_n - y_n'y_m\Big]_0^L = (\lambda_n - \lambda_m)\int_0^Ly_my_n\,\dd x. \]
+At each end, either $y=0$ (Dirichlet) or $y'=0$ (Neumann) for both functions, so every product in the bracket vanishes. The left side is zero. If $\lambda_m\neq\lambda_n$, then $\int_0^Ly_my_n\,\dd x = 0$.
+\end{derivbox}
+
+For example, $\displaystyle\int_0^\pi\sin x\sin 2x\,\dd x = \tfrac12\int_0^\pi(\cos x - \cos 3x)\,\dd x = 0$.
+
+\textbf{Sturm--Liouville form (statement only).} Many BVPs can be written as $\big(p(x)y'\big)' + \big(q(x) + \lambda w(x)\big)y = 0$ with suitable BCs. For such problems the eigenvalues are real, they form an increasing list $\lambda_1<\lambda_2<\cdots$, and the eigenfunctions are orthogonal with weight $w(x)$: $\int y_my_n\,w\,\dd x = 0$ for $m\neq n$. We use this fact for Bessel and Legendre functions in Part C.
+
+\section{Non-homogeneous BVPs}
+
+\begin{examplebox}{A BVP with a unique solution}
+Solve $y'' = 6x$, \; $y(0)=0$, \; $y(1) = 2$.
+
+Integrate twice: $y = x^3 + c_1x + c_2$. $y(0)=0$ gives $c_2=0$. $y(1)=1 + c_1 = 2$ gives $c_1=1$:
+\[ y = x^3 + x. \]
+\end{examplebox}
+
+\begin{examplebox}{Steady temperature in a rod}
+In steady state, the temperature $T(x)$ in a rod of length $2$ m with no heat source satisfies $T''=0$. The ends are held at $T(0)=80^\circ$C and $T(2) = 20^\circ$C. Then $T = c_1 + c_2x$, $c_1 = 80$, $80 + 2c_2 = 20$, so $c_2=-30$:
+\[ T(x) = 80 - 30x . \]
+The temperature drops linearly along the rod.
+\end{examplebox}
+
+\section{Numerical BVP methods}
+
+\begin{derivbox}{The central difference for $y''$}
+Expand $y(x\pm h)$ in a Taylor series about $x$:
+\begin{align*}
+y(x+h) &= y + hy' + \tfrac{h^2}{2}y'' + \tfrac{h^3}{6}y''' + \tfrac{h^4}{24}y^{(4)} + \cdots,\\
+y(x-h) &= y - hy' + \tfrac{h^2}{2}y'' - \tfrac{h^3}{6}y''' + \tfrac{h^4}{24}y^{(4)} - \cdots.
+\end{align*}
+Add the two lines. The odd terms cancel:
+\[ y(x+h) + y(x-h) = 2y + h^2y'' + \tfrac{h^4}{12}y^{(4)} + \cdots \]
+Solve for $y''$:
+\[ y''(x) = \frac{y(x+h) - 2y(x) + y(x-h)}{h^2} - \frac{h^2}{12}y^{(4)} + \cdots \]
+So the difference quotient approximates $y''$ with error of order $h^2$. Subtracting the two lines instead gives $y(x+h) - y(x-h) = 2hy' + \tfrac{h^3}{3}y''' + \cdots$, so $y'\approx\dfrac{y(x+h)-y(x-h)}{2h}$, also with error $O(h^2)$.
+\end{derivbox}
+
+\begin{methodbox}{Finite difference method}
+\begin{enumerate}
+  \item Divide $[a,b]$ into $N$ equal parts of width $h$. Points: $x_i = a + ih$.
+  \item Replace the second derivative by the central difference
+  \[ y''(x_i) \approx \frac{y_{i+1} - 2y_i + y_{i-1}}{h^2}. \]
+  \item Write one equation for every interior point. Put the known boundary values $y_0$ and $y_N$ into them.
+  \item Solve the resulting linear system.
+\end{enumerate}
+\end{methodbox}
+
+\begin{examplebox}{Finite differences}
+Solve $y''=6x$, $y(0) = 0$, $y(1)=2$ with $h = 0.25$. The interior points are $x = 0.25,\,0.5,\,0.75$. At each point $y_{i+1} - 2y_i + y_{i-1} = h^2\cdot 6x_i = 0.375\,x_i$, so the right sides are $0.09375,\ 0.1875,\ 0.28125$. With $y_0=0$ and $y_4=2$:
+\begin{align*}
+-2y_1 + y_2 &= 0.09375,\\
+y_1 - 2y_2 + y_3 &= 0.1875,\\
+y_2 - 2y_3 &= 0.28125 - 2 = -1.71875.
+\end{align*}
+The solution is $y_1 = 0.265625$, $y_2 = 0.625$, $y_3 = 1.171875$. These equal the exact values $x^3 + x$ because the central difference is exact for cubic functions.
+\end{examplebox}
+
+\textbf{Shooting method (idea).} Turn the BVP into an IVP by guessing the missing initial slope $y'(a)=s$. Solve the IVP with RK4 and check the value at $x=b$. Adjust $s$ (like a root-finding problem) until $y(b)$ matches the required boundary value.
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Find the eigenvalues and eigenfunctions of $y'' + \lambda y = 0$, $y(0)=0$, $y'(L)=0$.
+  \item Does $y'' + 4y = 0$, $y(0)=0$, $y(\pi)=0$ have non-zero solutions?
+  \item Solve $y'' + 9y = 0$, $y(0)=0$, $y(\pi/2) = 1$.
+  \item Solve $y'' = 12x^2$, $y(0)=0$, $y(1)=1$.
+  \item A rod of length 2 m has $T''=0$, $T(0)=80^\circ$C and $T(2)=20^\circ$C. Find $T(1)$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $\lambda_n = \big(\frac{(2n-1)\pi}{2L}\big)^2$, $y_n = \sin\frac{(2n-1)\pi x}{2L}$, $n=1,2,\dots$ \quad (2) Yes: $y = c\sin 2x$ for any $c$ (here $k=2$ and $2\pi = 2\cdot\pi$, so $\sin k\pi=0$). \quad (3) $y = B\sin 3x$ and $y(\pi/2) = B\sin(3\pi/2) = -B = 1$, so $y = -\sin 3x$. \quad (4) $y = x^4 + c_1x + c_2$, $c_2 = 0$, $1 + c_1 = 1$, so $y = x^4$. \quad (5) $T = 80 - 30x$, so $T(1) = 50^\circ$C.
+\end{answerbox}

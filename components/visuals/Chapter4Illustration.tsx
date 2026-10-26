@@ -388,7 +388,7 @@ export default function Chapter4Illustration() {
           ctx.arc(cx, cy, 5, 0, Math.PI * 2);
           ctx.fill();
 
-          ctx.strokeStyle = '#6366f1';
+          ctx.strokeStyle = '#d97706';
           ctx.lineWidth = 2;
           ctx.stroke();
         });
@@ -432,7 +432,7 @@ export default function Chapter4Illustration() {
   }, [isPlaying, orderMode, selectedDegree]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">

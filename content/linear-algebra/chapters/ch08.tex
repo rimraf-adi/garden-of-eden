@@ -1,0 +1,205 @@
+\chapter{Rank and the Four Fundamental Subspaces}
+
+Every matrix carries four subspaces: the column space and nullspace introduced in Chapter~6, and their counterparts for the transpose, the row space and the left nullspace. Together they describe completely what the matrix does. The dimensions of these subspaces are tied together by the rank, and the rank-nullity theorem of this chapter is the most useful counting principle in linear algebra. We also close two debts from Chapter~2: the uniqueness of the reduced row echelon form, and the claim that row rank equals column rank.
+
+\section{Row space and rank}
+
+\begin{definition}[Row space, rank]
+For $A\in\R^{m\times n}$, the \emph{row space} $\Row A=\Col A\T\subseteq\R^n$ is the span of the rows of $A$ (written as column vectors). The \emph{left nullspace} is $\Null A\T=\{\mathbf{y}\in\R^m:A\T\mathbf{y}=\mathbf{0}\}$, equivalently $\{\mathbf{y}:\mathbf{y}\T A=\mathbf{0}\T\}$. The \emph{rank} of $A$ is $\rank A=\dim\Col A$.
+\end{definition}
+
+\begin{proposition}[Row operations preserve the row space]\label{prop:rowspace}
+If $B$ is obtained from $A$ by elementary row operations then $\Row B=\Row A$. Consequently the nonzero rows of an echelon form of $A$ form a basis of $\Row A$.
+\end{proposition}
+
+\begin{proof}
+Each new row is a linear combination of old rows, so $\Row B\subseteq\Row A$; since every operation is reversible, $\Row A\subseteq\Row B$. The nonzero rows of an echelon matrix are independent: in a combination $\sum c_i\mathbf{r}_i=\mathbf{0}$ look at the first pivot column, where only the first row is nonzero, to get $c_1=0$, and continue downward.
+\end{proof}
+
+\begin{theorem}[Column rank equals row rank]\label{thm:rowcol}
+$\dim\Col A=\dim\Row A$. This common value is the number of pivots of $A$.
+\end{theorem}
+
+\begin{proof}
+Let $r$ be the number of pivots in an echelon form of $A$. By Proposition~\ref{prop:rowspace}, $\dim\Row A=r$. For the column space, the pivot columns of $A$ itself are independent (a relation among them is a solution of $A\mathbf{x}=\mathbf{0}$ with free variables set to zero, and echelon form shows it is trivial), and every other column is a combination of them (the pivot columns of the echelon form express the free columns, and row operations preserve linear relations among columns because they preserve $\Null A$). Hence the pivot columns of $A$ are a basis of $\Col A$, and $\dim\Col A=r$.
+\end{proof}
+
+\begin{nuance}{which columns form the basis}
+A basis of $\Col A$ is given by the pivot columns of the \emph{original} matrix $A$, in the positions where the echelon form has pivots. The pivot columns of the echelon matrix itself span a different subspace (row operations do not preserve the column space).
+\end{nuance}
+
+\begin{example}
+For $A=\begin{pmatrix}1&2&1&3\\2&4&0&2\\3&6&1&5\end{pmatrix}$, elimination gives $\begin{pmatrix}1&2&1&3\\0&0&-2&-4\\0&0&0&0\end{pmatrix}$. The pivots are in columns $1,3$, so $\rank A=2$; $\Col A$ has basis $(1,2,3)\T,(1,0,1)\T$, and $\Row A$ has basis $(1,2,1,3)$, $(0,0,1,2)$.
+\end{example}
+
+\begin{corollary}[Uniqueness of the reduced row echelon form]\label{cor:rrefunique}
+Every matrix has exactly one reduced row echelon form.
+\end{corollary}
+
+\begin{proof}
+Let $R$ and $R'$ be reduced echelon forms of $A$. Both have the row space $\Row A$. In an RREF the pivot positions are exactly the columns $j$ for which $\Row A$ contains a vector whose first nonzero coordinate is in column $j$; so $R,R'$ have the same pivot columns. Each row of $R$ is then determined as the unique vector in $\Row A$ with a $1$ in its pivot column and zeros in all other pivot columns, and the same holds for $R'$. So $R=R'$.
+\end{proof}
+
+\section{The rank-nullity theorem}
+
+\begin{theorem}[Rank--nullity]\label{thm:ranknull}
+For every $A\in\R^{m\times n}$,
+\[ \rank A+\dim\Null A=n. \]
+\end{theorem}
+
+\begin{proof}
+$\rank A$ is the number of pivot columns, and $\dim\Null A$ is the number of free variables, i.e.\ non-pivot columns. Their total is the number $n$ of columns. To see that the free variables count the dimension: the solution of $A\mathbf{x}=\mathbf{0}$ is $\sum_{\text{free }j}x_j\mathbf{s}_j$, where $\mathbf{s}_j$ is the special solution with $x_j=1$ and other free variables $0$; these special solutions are independent (look at the free coordinates), so they form a basis of $\Null A$.
+\end{proof}
+
+\begin{intuition}
+The $n$ input dimensions are split into two parts: $\rank A$ dimensions that survive, mapping to the image, and $\dim\Null A$ dimensions that are crushed to zero. Nothing is lost or created: survivors plus casualties equal inputs. The same count holds for every linear map (Chapter~9), and it is often stated: dimension of domain $=$ dimension of image $+$ dimension of kernel.
+\end{intuition}
+
+\begin{theorem}[Consequences for systems]\label{thm:rankconseq}
+Let $A\in\R^{m\times n}$ have rank $r$.
+\begin{enumerate}[label=(\roman*)]
+  \item $r\le\min(m,n)$.
+  \item $A\mathbf{x}=\mathbf{b}$ is solvable for \emph{every} $\mathbf{b}$ iff $r=m$ (full row rank, a pivot in every row).
+  \item The solution, when it exists, is unique iff $r=n$ (full column rank, a pivot in every column).
+  \item If $m=n$ the following are equivalent: $A$ invertible, $r=n$, $\Null A=\{\mathbf{0}\}$, $\Col A=\R^n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Shape and rank & Solutions of $A\mathbf{x}=\mathbf{b}$ & Typical situation \\
+\midrule
+$r=m=n$ & exactly one, always & invertible \\
+$r=n<m$ & $0$ or $1$ & overdetermined (more equations) \\
+$r=m<n$ & $\infty$, always & underdetermined (more unknowns) \\
+$r<\min(m,n)$ & $0$ or $\infty$ & rank-deficient \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{The four fundamental subspaces}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \node[draw,rounded corners,minimum width=3.4cm,minimum height=3cm,fill=accent!10] (rowsp) at (0,1.6){};
+  \node[lab] at (0,2.2){$\Row A$};\node[lab] at (0,1.7){dim $r$};
+  \node[draw,rounded corners,minimum width=3.4cm,minimum height=1.6cm,fill=accent2!10] (nul) at (0,-1.2){};
+  \node[lab] at (0,-1.0){$\Null A$};\node[lab] at (0,-1.5){dim $n-r$};
+  \node[draw,rounded corners,minimum width=3.4cm,minimum height=3cm,fill=accent3!12] (colsp) at (7,1.6){};
+  \node[lab] at (7,2.2){$\Col A$};\node[lab] at (7,1.7){dim $r$};
+  \node[draw,rounded corners,minimum width=3.4cm,minimum height=1.6cm,fill=accent2!10] (lnul) at (7,-1.2){};
+  \node[lab] at (7,-1.0){$\Null A\T$};\node[lab] at (7,-1.5){dim $m-r$};
+  \draw[vec] (1.8,1.6)--(5.2,1.6) node[midway,above,lab]{$A\mathbf{x}$};
+  \draw[guide] (1.8,-1.2)--(5.2,-1.2) node[midway,above,lab]{$\mapsto\mathbf{0}$};
+  \node[lab] at (0,3.6){$\R^n$};\node[lab] at (7,3.6){$\R^m$};
+\end{tikzpicture}
+\caption{The four fundamental subspaces. In the domain $\R^n$, the row space and nullspace are perpendicular and split $\R^n$; in the codomain $\R^m$, the column space and left nullspace do likewise.}
+\end{figure}
+
+\begin{theorem}[Fundamental theorem of linear algebra, part I: dimensions]\label{thm:ftla1}
+For $A\in\R^{m\times n}$ of rank $r$:
+\[ \dim\Col A=\dim\Row A=r,\qquad\dim\Null A=n-r,\qquad\dim\Null A\T=m-r. \]
+\end{theorem}
+
+\begin{proof}
+The first equality is Theorem~\ref{thm:rowcol}; the second is rank--nullity for $A$; the third is rank--nullity for $A\T$, which has rank $r$ and $m$ columns.
+\end{proof}
+
+\begin{theorem}[Fundamental theorem of linear algebra, part II: orthogonality]\label{thm:ftla2}
+In $\R^n$, every vector of $\Null A$ is orthogonal to every vector of $\Row A$; in $\R^m$, every vector of $\Null A\T$ is orthogonal to every vector of $\Col A$. Moreover $\Row A\oplus\Null A=\R^n$ and $\Col A\oplus\Null A\T=\R^m$.
+\end{theorem}
+
+\begin{proof}
+If $A\mathbf{x}=\mathbf{0}$ then each row $\mathbf{r}_i$ satisfies $\mathbf{r}_i\cdot\mathbf{x}=0$, so $\mathbf{x}$ is orthogonal to every row and hence to their span. The intersection of two orthogonal subspaces is $\{\mathbf{0}\}$ (a vector orthogonal to itself is $\mathbf{0}$), so the sum $\Row A+\Null A$ is direct with dimension $r+(n-r)=n$; by Theorem~\ref{thm:subdim} it equals $\R^n$. The second statement is the first applied to $A\T$.
+\end{proof}
+
+Chapter~11 reformulates this as $\Null A=(\Row A)^\perp$, the orthogonal complement. The consequence for solvability is classical.
+
+\begin{corollary}[Fredholm alternative]\label{cor:fredholm}
+$A\mathbf{x}=\mathbf{b}$ has a solution if and only if $\mathbf{y}\T\mathbf{b}=0$ for every $\mathbf{y}$ with $A\T\mathbf{y}=\mathbf{0}$.
+\end{corollary}
+
+\begin{proof}
+$\mathbf{b}\in\Col A$ iff $\mathbf{b}$ is orthogonal to $\Null A\T$, because $\Col A$ is the orthogonal complement of $\Null A\T$ in $\R^m$ by Theorem~\ref{thm:ftla2}.
+\end{proof}
+
+\begin{example}
+For $A=\begin{pmatrix}1&2\\2&4\\3&6\end{pmatrix}$, $\Col A=\Span\{(1,2,3)\T\}$ and $\Null A\T$ is the plane $\{y_1+2y_2+3y_3=0\}$. The system $A\mathbf{x}=\mathbf{b}$ is solvable iff $\mathbf{b}$ is a multiple of $(1,2,3)\T$, that is, iff $b_2=2b_1$ and $b_3=3b_1$; these two conditions are exactly $\mathbf{y}\T\mathbf{b}=0$ for a basis $(-2,1,0)\T,(-3,0,1)\T$ of the left nullspace.
+\end{example}
+
+\section{Rank inequalities and rank-one matrices}
+
+\begin{proposition}[Rank of sums and products]\label{prop:rankineq}
+\begin{enumerate}[label=(\roman*)]
+  \item $\rank(AB)\le\min(\rank A,\rank B)$.
+  \item $\rank(A+B)\le\rank A+\rank B$.
+  \item If $P,Q$ are invertible, $\rank(PAQ)=\rank A$.
+  \item (Sylvester) For $A\in\R^{m\times n}$, $B\in\R^{n\times p}$: $\rank A+\rank B-n\le\rank(AB)$.
+  \item $\rank(A\T A)=\rank A$; in particular $A\T A$ is invertible iff $A$ has independent columns.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) $\Col(AB)\subseteq\Col A$, and $\Row(AB)\subseteq\Row B$. (ii) $\Col(A+B)\subseteq\Col A+\Col B$, so use the dimension formula. (iii) follows from (i) applied to $PAQ$ and to $P^{-1}(PAQ)Q^{-1}=A$. (iv) Apply rank--nullity to the restriction of $A$ to $\Col B$: $\rank(AB)=\rank B-\dim(\Null A\cap\Col B)\ge\rank B-\dim\Null A=\rank B-(n-\rank A)$. (v) If $A\T A\mathbf{x}=\mathbf{0}$ then $\norm{A\mathbf{x}}^2=\mathbf{x}\T A\T A\mathbf{x}=0$, so $A\mathbf{x}=\mathbf{0}$. Thus $\Null A\T A=\Null A$, and rank--nullity gives equal ranks.
+\end{proof}
+
+\begin{theorem}[Rank-one matrices]\label{thm:rankone}
+A matrix has rank $1$ iff it is a product $\mathbf{u}\mathbf{v}\T$ of a nonzero column and a nonzero row. More generally, $\rank A=r$ iff $A$ is a sum of $r$ (and no fewer) rank-one matrices.
+\end{theorem}
+
+\begin{proof}
+If $\rank A=1$ every column is a multiple of a basis vector $\mathbf{u}$ of $\Col A$: the $j$-th column is $v_j\mathbf{u}$, so $A=\mathbf{u}\mathbf{v}\T$. Conversely every column of $\mathbf{u}\mathbf{v}\T$ is a multiple of $\mathbf{u}$. For rank $r$, pick a basis $\mathbf{u}_1,\dots,\mathbf{u}_r$ of $\Col A$ and write each column as a combination: $A=UC$ with $U=[\mathbf{u}_1\cdots\mathbf{u}_r]$, and expand $UC=\sum\mathbf{u}_k\mathbf{c}_k\T$ in the outer-product form (Proposition~\ref{prop:fourviews}).
+\end{proof}
+
+This is the \emph{rank factorisation} $A=UC$ with $U\in\R^{m\times r}$, $C\in\R^{r\times n}$. It stores an $m\times n$ matrix using $r(m+n)$ numbers instead of $mn$, the idea behind low-rank compression and LoRA adapters in machine learning.
+
+\begin{interview}{counting parameters with rank}
+``How many free parameters has an $m\times n$ matrix of rank $r$?'' The answer is $r(m+n-r)$. A factorisation $A=UC$ uses $mr+rn$ numbers, but $UC=(UG)(G^{-1}C)$ for every invertible $r\times r$ matrix $G$, which removes $r^2$ redundant parameters. A generic $1000\times1000$ matrix has $10^6$ free entries, while a rank-$10$ matrix has only $10(2000-10)=19{,}900$.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item $\rank A$ is the number of pivots; it equals the dimension of both the column space and the row space.
+  \item Rank--nullity: $\rank A+\dim\Null A=n$.
+  \item The four subspaces have dimensions $r,\ r,\ n-r,\ m-r$; $\Row A\perp\Null A$ in $\R^n$ and $\Col A\perp\Null A\T$ in $\R^m$, and each pair is a direct-sum decomposition.
+  \item $A\mathbf{x}=\mathbf{b}$ is solvable iff $\mathbf{b}\perp\Null A\T$ (Fredholm).
+  \item $\rank(AB)\le\min(\rank A,\rank B)$ and $\rank(A\T A)=\rank A$.
+  \item Rank $r$ means a sum of $r$ outer products, the basis of low-rank approximation.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Find the rank and bases of all four subspaces of $A=\begin{pmatrix}1&2&0&1\\2&4&1&1\\3&6&1&2\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+Can a $3\times 5$ matrix have a $2$-dimensional nullspace? A $4\times 3$ matrix with a $4$-dimensional column space? Explain.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\rank(A)=\rank(A\T)$ using only the fact that row operations preserve the row space and $\Null$.
+\end{exercise}
+
+\begin{exercise}
+If $A$ is $m\times n$ with independent columns, show that $A\T A$ is invertible. Is the converse true?
+\end{exercise}
+
+\begin{exercise}
+Show that $\rank\begin{pmatrix}A&B\end{pmatrix}\ge\max(\rank A,\rank B)$ and give an example where the inequality is strict.
+\end{exercise}
+
+\begin{exercise}
+Let $A=\mathbf{u}\mathbf{v}\T$ with $\mathbf{u},\mathbf{v}\ne\mathbf{0}$. Find $\Col A$, $\Null A$, and show $A^2=(\mathbf{v}\T\mathbf{u})A$.
+\end{exercise}
+
+\begin{exercise}
+For which $b$ is $\begin{pmatrix}1&2\\2&4\end{pmatrix}\mathbf{x}=\begin{pmatrix}1\\b\end{pmatrix}$ solvable? Verify the Fredholm criterion with an explicit vector in $\Null A\T$.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $AB=0$ then $\rank A+\rank B\le n$ (where $A$ is $m\times n$ and $B$ is $n\times p$).
+\end{exercise}

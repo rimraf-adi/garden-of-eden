@@ -1,0 +1,153 @@
+\chapter{Series Solutions: Legendre and Bessel}
+
+Some ODEs with variable coefficients have no solution in terms of $e^x$, $\sin x$ or powers. They appear when we solve PDEs in a sphere (Legendre) or a cylinder and a circular drum (Bessel). We solve them with power series.
+
+\section{The power series method}
+
+\begin{methodbox}{Power series method}
+\begin{enumerate}
+  \item Assume $y = \sum_{k=0}^\infty a_kx^k$. Then $y' = \sum ka_kx^{k-1}$ and $y'' = \sum k(k-1)a_kx^{k-2}$.
+  \item Substitute into the ODE. Shift indices so every sum has the same power $x^k$.
+  \item Set the total coefficient of each power of $x$ to zero. This gives a \textbf{recurrence relation} between the $a_k$.
+  \item Choose the free constants ($a_0$, $a_1$) and compute the other $a_k$.
+\end{enumerate}
+\end{methodbox}
+
+\begin{examplebox}{Check the method on $y''+y=0$}
+$\sum k(k-1)a_kx^{k-2} + \sum a_kx^k = 0$. The coefficient of $x^k$ is $(k+2)(k+1)a_{k+2} + a_k = 0$, so
+\[ a_{k+2} = -\frac{a_k}{(k+2)(k+1)}. \]
+Even terms: $a_2 = -\frac{a_0}{2}$, $a_4 = \frac{a_0}{24}$, \dots; odd terms: $a_3 = -\frac{a_1}{6}$, \dots. So $y = a_0\big(1 - \frac{x^2}{2} + \frac{x^4}{24} - \cdots\big) + a_1\big(x - \frac{x^3}{6} + \cdots\big) = a_0\cos x + a_1\sin x$. The method works. For equations without elementary solutions, the series is the answer.
+\end{examplebox}
+
+\section{Legendre's equation}
+
+\begin{defbox}{Legendre's equation}
+\[ (1-x^2)\,y'' - 2x\,y' + n(n+1)\,y = 0 . \]
+Substituting the power series gives the recurrence
+\[ a_{k+2} = \frac{k(k+1) - n(n+1)}{(k+2)(k+1)}\,a_k . \]
+When $n$ is a non-negative integer, the numerator is zero at $k=n$, so the series \textbf{stops} and we get a polynomial. With the standard scaling $P_n(1) = 1$ it is the \textbf{Legendre polynomial} $P_n(x)$.
+\end{defbox}
+
+\[ P_0 = 1,\quad P_1 = x,\quad P_2 = \tfrac12(3x^2-1),\quad P_3 = \tfrac12(5x^3 - 3x),\quad P_4 = \tfrac18(35x^4 - 30x^2 + 3). \]
+
+\begin{derivbox}{The Legendre recurrence and the polynomials}
+Put $y = \sum a_kx^k$ into $(1-x^2)y'' - 2xy' + n(n+1)y = 0$:
+\[ (1-x^2)y'' = \sum k(k-1)a_kx^{k-2} - \sum k(k-1)a_kx^{k},\qquad -2xy' = -2\sum ka_kx^k. \]
+In the first sum shift the index ($k\to k+2$) so that every sum contains $x^k$. The coefficient of $x^k$ must vanish:
+\[ (k+2)(k+1)a_{k+2} - k(k-1)a_k - 2ka_k + n(n+1)a_k = 0. \]
+Since $k(k-1) + 2k = k(k+1)$, this gives
+\[ a_{k+2} = \frac{k(k+1) - n(n+1)}{(k+2)(k+1)}\,a_k. \]
+If $n$ is an integer, the numerator is zero for $k = n$. Then $a_{n+2} = a_{n+4} = \cdots = 0$, so the series with the same parity as $n$ stops at $x^n$ and is a polynomial. (The other series, of the opposite parity, does not stop, and it is unbounded at $x=\pm1$.) We scale the polynomial so that $P_n(1) = 1$.
+
+\emph{Example, $n=2$:} start with $a_0$. $a_2 = \frac{0 - 6}{2}a_0 = -3a_0$ and $a_4 = \frac{6-6}{12}a_2 = 0$. So $y = a_0(1 - 3x^2)$. For $P_2(1) = 1$ we need $a_0(1-3) = 1$, $a_0 = -\frac12$, so $P_2 = -\frac12 + \frac32x^2 = \frac12(3x^2-1)$.
+\end{derivbox}
+
+\begin{defbox}{Orthogonality}
+\[ \int_{-1}^{1}P_m(x)P_n(x)\,\dd x = \begin{cases}0 & m\ne n,\\[2pt] \dfrac{2}{2n+1} & m=n.\end{cases} \]
+So any function on $(-1,1)$ can be written as $f(x) = \sum c_nP_n(x)$ with $c_n = \dfrac{2n+1}{2}\displaystyle\int_{-1}^1f(x)P_n(x)\,\dd x$. In spherical problems $x = \cos\theta$.
+\end{defbox}
+
+\begin{derivbox}{Why Legendre polynomials are orthogonal}
+Legendre's equation can be written $\big((1-x^2)y'\big)' + n(n+1)y = 0$. For $P_m$ and $P_n$,
+\[ \big((1-x^2)P_m'\big)' = -m(m+1)P_m,\qquad \big((1-x^2)P_n'\big)' = -n(n+1)P_n. \]
+Multiply the first by $P_n$ and the second by $P_m$, and subtract:
+\[ \big((1-x^2)P_m'\big)'P_n - \big((1-x^2)P_n'\big)'P_m = \big[n(n+1) - m(m+1)\big]P_mP_n. \]
+The left side is $\dfrac{\dd}{\dd x}\Big[(1-x^2)\big(P_m'P_n - P_n'P_m\big)\Big]$. Integrate from $-1$ to $1$. The bracket vanishes at $x = \pm1$ because of the factor $1-x^2$. So
+\[ 0 = \big[n(n+1) - m(m+1)\big]\int_{-1}^1P_mP_n\,\dd x. \]
+If $m\ne n$ the first factor is not zero, so $\int_{-1}^1P_mP_n\,\dd x = 0$. (The value $2/(2n+1)$ for $m=n$ is stated, and you can check it for small $n$ as in the example below.)
+\end{derivbox}
+
+\begin{examplebox}{Orthogonality check}
+$\displaystyle\int_{-1}^1P_1P_3\,\dd x = \tfrac12\int_{-1}^1(5x^4 - 3x^2)\,\dd x = \tfrac12\big(2 - 2\big) = 0$.
+\quad $\displaystyle\int_{-1}^1P_2^2\,\dd x = \tfrac14\int_{-1}^1(9x^4 - 6x^2 + 1)\,\dd x = \tfrac14\Big(\tfrac{18}{5} - 4 + 2\Big) = \tfrac25 = \tfrac{2}{2\cdot2+1}$. \checkmark
+\end{examplebox}
+
+\section{Bessel's equation}
+
+When the series has a singular point at $x=0$ (as in $x^2y''+\dots$) we use the \textbf{Frobenius method}: try $y = x^r\sum a_kx^k$ and find $r$ from the \textbf{indicial equation}.
+
+\begin{defbox}{Bessel's equation of order $\nu$}
+\[ x^2y'' + xy' + (x^2-\nu^2)\,y = 0 . \]
+The indicial equation gives $r=\pm\nu$. One solution that is bounded at $x=0$ is the \textbf{Bessel function of the first kind}
+\[ J_\nu(x) = \sum_{m=0}^\infty\frac{(-1)^m}{m!\,(m+\nu)!}\Big(\frac x2\Big)^{2m+\nu}\quad(\nu\text{ integer}). \]
+A second, independent solution $Y_\nu(x)$ is infinite at $x=0$. In a region that includes the centre we must drop $Y_\nu$.
+\end{defbox}
+
+\begin{derivbox}{Frobenius method for Bessel's equation}
+Try $y = \sum_{k=0}^\infty a_kx^{k+r}$ with $a_0\neq0$. Then $xy' = \sum(k+r)a_kx^{k+r}$ and $x^2y'' = \sum(k+r)(k+r-1)a_kx^{k+r}$. Substitute into $x^2y'' + xy' + (x^2-\nu^2)y = 0$:
+\[ \sum\Big[(k+r)^2 - \nu^2\Big]a_kx^{k+r} + \sum a_kx^{k+r+2} = 0. \]
+\textbf{Lowest power} $x^r$: $(r^2-\nu^2)a_0 = 0$. Since $a_0\ne0$, the \textbf{indicial equation} is $r^2 = \nu^2$, so $r = \pm\nu$.
+
+\textbf{Power $x^{r+1}$:} $\big((r+1)^2-\nu^2\big)a_1 = 0$, so $a_1 = 0$ (for the usual case where $(r+1)^2\ne\nu^2$).
+
+\textbf{Power $x^{r+k}$} ($k\ge2$): $\big[(k+r)^2-\nu^2\big]a_k + a_{k-2} = 0$. Take $r=\nu$, so $(k+\nu)^2-\nu^2 = k(k+2\nu)$:
+\[ a_k = -\frac{a_{k-2}}{k(k+2\nu)}. \]
+All odd coefficients are zero. For $k = 2m$: $a_{2m} = -\dfrac{a_{2m-2}}{4m(m+\nu)}$, and by repeating,
+\[ a_{2m} = \frac{(-1)^m\,a_0}{4^m\,m!\,(\nu+1)(\nu+2)\cdots(\nu+m)}. \]
+For integer $\nu$ choose $a_0 = \dfrac{1}{2^\nu\nu!}$. Then $(\nu+1)\cdots(\nu+m) = \dfrac{(\nu+m)!}{\nu!}$ and
+\[ y = \sum_{m=0}^\infty\frac{(-1)^m}{m!\,(m+\nu)!}\Big(\frac x2\Big)^{2m+\nu} = J_\nu(x). \]
+The other root $r=-\nu$ gives, for integer $\nu$, a second solution with a $\ln x$ term, which is unbounded at $x=0$ (this is $Y_\nu$).
+\end{derivbox}
+
+\begin{examplebox}{Order zero by hand}
+For $\nu=0$, put $y=\sum a_kx^k$ in $x^2y''+xy'+x^2y=0$. The coefficient of $x^k$ is $k^2a_k + a_{k-2}=0$, so $a_k = -\dfrac{a_{k-2}}{k^2}$. With $a_0=1$ and $a_1=0$: $a_2 = -\frac14$, $a_4 = \frac1{64}$, $a_6 = -\frac1{2304}$. So
+\[ J_0(x) = 1 - \frac{x^2}{4} + \frac{x^4}{64} - \frac{x^6}{2304} + \cdots, \qquad J_1(x) = \frac x2 - \frac{x^3}{16} + \frac{x^5}{384} - \cdots \]
+At $x=1$, three terms give $J_0(1)\approx 0.7656$, close to the true value $0.7652$.
+\end{examplebox}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.9\textwidth,height=5.2cm,xlabel={$x$},xmin=0,xmax=10,ymin=-0.5,ymax=1.1,grid=both,grid style={gray!20},
+  legend pos=north east,legend style={font=\small}]
+\addplot[accent,thick] table[x=x,y=j0] {bessel.dat};
+\addlegendentry{$J_0$}
+\addplot[notec,thick] table[x=x,y=j1] {bessel.dat};
+\addlegendentry{$J_1$}
+\end{axis}
+\end{tikzpicture}
+
+{\small Figure: $J_0$ and $J_1$ look like decaying cosine and sine waves. $J_0$ has zeros at $2.405,\ 5.520,\ 8.654,\dots$ and $J_1$ has zeros at $3.832,\ 7.016,\dots$}
+\end{center}
+
+\begin{derivbox}{Bessel identities and orthogonality}
+\textbf{$J_0' = -J_1$.} Differentiate the series $J_0 = \sum\frac{(-1)^m}{(m!)^2}\big(\frac x2\big)^{2m}$ term by term: $J_0' = \sum_{m\ge1}\frac{(-1)^m\,2m}{(m!)^2\,2}\big(\frac x2\big)^{2m-1} = \sum_{m\ge1}\frac{(-1)^m}{m!\,(m-1)!}\big(\frac x2\big)^{2m-1}$. Put $m = j+1$: $= -\sum_{j\ge0}\frac{(-1)^j}{j!\,(j+1)!}\big(\frac x2\big)^{2j+1} = -J_1$.
+
+\textbf{$(xJ_1)' = xJ_0$.} We have $xJ_1 = \sum\frac{(-1)^m}{m!\,(m+1)!}\frac{x^{2m+2}}{2^{2m+1}}$. Its derivative is $\sum\frac{(-1)^m(2m+2)}{m!\,(m+1)!}\frac{x^{2m+1}}{2^{2m+1}} = \sum\frac{(-1)^m}{m!\,m!}\frac{x^{2m+1}}{2^{2m}} = xJ_0$, because $\frac{2m+2}{(m+1)!} = \frac{2}{m!}$.
+
+\textbf{Orthogonality with weight $r$.} Let $u_i(r) = J_0(k_ir)$ with $k_i = \alpha_i/a$. Then $r^2u'' + ru' + k_i^2r^2u = 0$, which is $\big(ru_i'\big)' = -k_i^2\,r\,u_i$. Multiply the equation for $u_i$ by $u_j$, the equation for $u_j$ by $u_i$, and subtract:
+\[ \frac{\dd}{\dd r}\Big[r\big(u_i'u_j - u_j'u_i\big)\Big] = \big(k_j^2 - k_i^2\big)\,r\,u_iu_j . \]
+Integrate from $0$ to $a$. At $r=0$ the bracket is zero because of the factor $r$ (the functions are bounded). At $r=a$ both $u_i(a) = J_0(\alpha_i)$ and $u_j(a)$ are zero. So $(k_j^2 - k_i^2)\int_0^ar\,u_iu_j\,\dd r = 0$, and for $i\neq j$ the integral is zero.
+\end{derivbox}
+
+\begin{defbox}{Useful facts}
+\begin{itemize}
+  \item $J_0'(x) = -J_1(x)$ \quad and \quad $\dfrac{\dd}{\dd x}\big(xJ_1(x)\big) = xJ_0(x)$.
+  \item $J_n$ has infinitely many positive zeros $\alpha_1<\alpha_2<\cdots$.
+  \item \textbf{Orthogonality (weight $r$):} $\displaystyle\int_0^a rJ_0\Big(\frac{\alpha_ir}{a}\Big)J_0\Big(\frac{\alpha_jr}{a}\Big)\dd r = 0$ for $i\ne j$, where $\alpha_i$ are the zeros of $J_0$.
+  \item \textbf{Fourier--Bessel series:} write $f(r) = \displaystyle\sum_{i}c_iJ_0\Big(\frac{\alpha_ir}{a}\Big)$. The coefficients are
+  \[ c_i = \frac{2}{a^2J_1(\alpha_i)^2}\int_0^arf(r)\,J_0\Big(\frac{\alpha_ir}{a}\Big)\dd r. \]
+\end{itemize}
+\end{defbox}
+
+\begin{examplebox}{Circular drum}
+A drum of radius $a$ with a fixed rim vibrates radially with modes $J_0(\alpha_ir/a)\cos\omega_it$ and frequencies $\omega_i = \dfrac{c\,\alpha_i}{a}$. For $a=0.2$ m and $c = 100$ m/s the fundamental is
+\[ \omega_1 = \frac{100\times2.4048}{0.2} = 1202\ \text{rad/s}, \qquad f_1 = \frac{\omega_1}{2\pi}\approx 191\ \text{Hz}. \]
+The overtones are at $\alpha_2/\alpha_1 = 2.29$ and $\alpha_3/\alpha_1=3.60$ times $f_1$. They are \emph{not} whole-number multiples, which is why a drum sounds different from a string.
+\end{examplebox}
+
+Similarly, for the heat equation in a cylinder with temperature $0$ at the surface, the radial solution is $u = \sum c_iJ_0\big(\alpha_ir/a\big)e^{-k\alpha_i^2t/a^2}$.
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Find the recurrence for the power series solution of $y''-y=0$ and identify the solution.
+  \item Use the Legendre recurrence for $n=3$ to build $P_3(x)$.
+  \item Show that $\displaystyle\int_{-1}^1P_0P_2\,\dd x = 0$.
+  \item Evaluate $J_0(1)$ using the series up to $x^4$.
+  \item A drum has radius $0.5$ m and wave speed $150$ m/s. Find the fundamental frequency.
+  \item Find the coefficients $a_2$, $a_4$, $a_6$ of $J_0$ from the recurrence $a_k=-a_{k-2}/k^2$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $(k+2)(k+1)a_{k+2} = a_k$, so $y = a_0\cosh x + a_1\sinh x$. \quad (2) $a_{k+2} = \dfrac{k(k+1)-12}{(k+2)(k+1)}a_k$. Odd terms: $a_3 = \dfrac{2-12}{6}a_1 = -\dfrac53a_1$, and $a_5=0$ because $k=3$ makes the numerator zero. So $y = a_1(x - \tfrac53x^3)$. Scale so that $y(1)=1$: $a_1=-\tfrac32$ and $P_3 = \tfrac12(5x^3-3x)$. \quad (3) $\tfrac12\displaystyle\int_{-1}^1(3x^2-1)\,\dd x = \tfrac12(2-2) = 0$. \quad (4) $1 - \tfrac14 + \tfrac1{64} = 0.7656$. \quad (5) $\omega = \dfrac{150(2.4048)}{0.5} = 721$ rad/s, so $f\approx115$ Hz. \quad (6) $a_2 = -\tfrac14$, $a_4 = \tfrac1{64}$, $a_6 = -\tfrac1{2304}$.
+\end{answerbox}

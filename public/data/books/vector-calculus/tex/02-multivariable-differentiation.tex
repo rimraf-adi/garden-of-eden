@@ -1,0 +1,704 @@
+\chapter{Multivariable Differentiation}
+\label{ch:diff}
+
+In one variable, the derivative is the slope of a tangent line. In several variables, the derivative is a \emph{linear map} that is the best linear approximation to the function. This chapter builds the theory step by step: limits, partial derivatives, the total derivative, the chain rule, the gradient, Taylor expansion, optimization, and the inverse and implicit function theorems.
+
+%====================================================================
+\section{Functions of several variables}
+%====================================================================
+
+A \emph{scalar field} is a function $f:U\to\R$ with $U\subseteq\R^n$ (for example, temperature in a room). A \emph{vector-valued function} is a map $\vec f:U\to\R^m$ (for example, wind velocity). For $n=2$, the \emph{graph} of $f$ is the surface $z=f(x,y)$ in $\R^3$. A \emph{level set} (or contour) of $f$ is the set $\{\vec x: f(\vec x)=c\}$. For $n=2$ the level sets are curves; for $n=3$ they are surfaces.
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.4cm,view={125}{28},ticks=none,xlabel={$x$},ylabel={$y$},zlabel={$z$},
+  colormap={b}{color=(softblue) color=(accent)},z buffer=sort,axis lines=box]
+\addplot3[surf,domain=-1.5:1.5,y domain=-1.5:1.5,samples=22,shader=faceted interp,faceted color=ink!35,opacity=0.95]{x^2+y^2};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.15]
+  \draw[axisline,mid] (-2.2,0)--(2.3,0) node[right]{$x$};
+  \draw[axisline,mid] (0,-2.2)--(0,2.3) node[above]{$y$};
+  \foreach \lvl/\col in {0.5/20,1/35,2/50,3/65,4/80}{
+    \pgfmathsetmacro{\rr}{sqrt(\lvl)}
+    \draw[accent!\col!ink,thick] (0,0) circle (\rr);
+    \node[font=\scriptsize,accent!\col!ink,fill=white,inner sep=1pt] at (\rr*0.707,\rr*0.707) {$\lvl$};
+  }
+\end{tikzpicture}
+\end{minipage}
+\caption{The function $f(x,y)=x^2+y^2$. Left: its graph, a paraboloid. Right: its level curves $f=c$, which are circles of radius $\sqrt c$. Contours that are close together mean that $f$ changes quickly.}
+\label{fig:paraboloid}
+\end{figure}
+
+\begin{intuition}
+A contour map (like a hiking map) shows a surface by drawing curves of constant height. Where the lines are dense, the slope is steep. The gradient, defined later in this chapter, will point \emph{across} these lines in the direction of steepest climb.
+\end{intuition}
+
+%====================================================================
+\section{Limits and continuity}
+%====================================================================
+
+\begin{definition}[Limit and continuity]
+Let $f:U\to\R^m$ with $U\subseteq\R^n$, and let $\vec a$ be a limit point of $U$. We say $\lim_{\vec x\to\vec a}f(\vec x)=\vec L$ if for every $\eps>0$ there exists $\delta>0$ such that
+\[
+0<\norm{\vec x-\vec a}<\delta,\ \vec x\in U\quad\Longrightarrow\quad\norm{f(\vec x)-\vec L}<\eps .
+\]
+The function $f$ is \emph{continuous at $\vec a\in U$} if $\lim_{\vec x\to\vec a}f(\vec x)=f(\vec a)$.
+\end{definition}
+
+The important point: $\vec x$ may approach $\vec a$ from \emph{any direction and along any path}. In one variable there are only two directions (left and right); in two variables there are infinitely many.
+
+\begin{proposition}[Path test]\label{prop:pathtest}
+If the limit $\lim_{\vec x\to\vec a}f(\vec x)$ exists, then along every path $\vec\gamma(t)\to\vec a$ ($\vec\gamma(t)\ne\vec a$) the limit of $f(\vec\gamma(t))$ exists and has the same value. Hence, if two paths give different limits, the limit does not exist.
+\end{proposition}
+
+\begin{proof}
+Let $\vec L$ be the limit and $\eps>0$. Choose $\delta$ as in the definition. Since $\vec\gamma(t)\to\vec a$, for $t$ close to the endpoint we have $0<\norm{\vec\gamma(t)-\vec a}<\delta$, hence $\norm{f(\vec\gamma(t))-\vec L}<\eps$.
+\end{proof}
+
+\begin{example}[A limit that does not exist]
+Let $f(x,y)=\dfrac{xy}{x^2+y^2}$ for $(x,y)\ne(0,0)$. Along the line $y=mx$ we get
+\[
+f(x,mx)=\frac{mx^2}{x^2+m^2x^2}=\frac{m}{1+m^2},
+\]
+which depends on $m$. For $m=0$ the limit is $0$; for $m=1$ it is $\tfrac12$. By Proposition~\ref{prop:pathtest}, $\lim_{(x,y)\to(0,0)}f$ does not exist. (The function is constant along each ray, with a different constant for each ray.)
+\end{example}
+
+\begin{example}[A limit that exists]
+Let $g(x,y)=\dfrac{x^2y}{x^2+y^2}$. Since $x^2\le x^2+y^2$, we have $\abs{g(x,y)}\le\abs{y}\le\norm{(x,y)}$. Given $\eps>0$, take $\delta=\eps$: then $\norm{(x,y)}<\delta$ implies $\abs{g(x,y)}<\eps$. So $\lim_{(x,y)\to(0,0)}g=0$.
+\end{example}
+
+\begin{pitfall}
+Checking many lines through the origin is \emph{not} a proof that a limit exists. Take $h(x,y)=\dfrac{x^2y}{x^4+y^2}$. Along every line $y=mx$ the limit is $0$, but along the parabola $y=x^2$ we get $h=\tfrac12$. Only an $\eps$--$\delta$ argument (or a squeeze) proves that a limit exists.
+\end{pitfall}
+
+%====================================================================
+\section{Partial derivatives}
+%====================================================================
+
+\begin{definition}[Partial derivative]
+The \emph{partial derivative} of $f:U\to\R$ with respect to $x_j$ at $\vec a$ is
+\[
+\pd{f}{x_j}(\vec a)=\lim_{h\to0}\frac{f(\vec a+h\,\vec e_j)-f(\vec a)}{h},
+\]
+if the limit exists. Here $\vec e_j$ is the $j$-th standard basis vector.
+\end{definition}
+
+To compute $\partial f/\partial x_j$, differentiate as in one variable and treat all other variables as constants. Partial derivatives are slopes of the surface along the coordinate directions (Figure~\ref{fig:partials}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=8cm,view={130}{25},ticks=none,xlabel={$x$},ylabel={$y$},zlabel={$z$},
+  colormap={b}{color=(softblue) color=(accent!70)},z buffer=sort,axis lines=box]
+\addplot3[surf,domain=-1.5:1.5,y domain=-1.5:1.5,samples=24,shader=faceted interp,faceted color=ink!30,opacity=0.9]{2-(x^2+y^2)/2};
+% slice y = 0.5
+\addplot3[accent2,very thick,domain=-1.5:1.5,samples=40,samples y=0]({x},{0.5},{2-(x^2+0.25)/2});
+% slice x = 1
+\addplot3[accent3,very thick,domain=-1.5:1.5,samples=40,samples y=0]({1},{x},{2-(1+x^2)/2});
+\addplot3[only marks,mark=*,mark size=2pt,ink] coordinates {(1,0.5,1.375)};
+\end{axis}
+\end{tikzpicture}
+\caption{The partial derivative $f_x$ at $(1,\tfrac12)$ is the slope of the orange curve (slice $y=\tfrac12$). The partial derivative $f_y$ is the slope of the green curve (slice $x=1$). Here $f(x,y)=2-\tfrac12(x^2+y^2)$.}
+\label{fig:partials}
+\end{figure}
+
+\subsection{Equality of mixed partial derivatives}
+
+Higher partial derivatives are written $f_{xy}=\partial_y(\partial_xf)$ and so on. Does the order matter? Usually not, but there are counterexamples.
+
+\begin{theorem}[Clairaut--Schwarz]\label{thm:clairaut}
+Let $f:U\to\R$ with $U\subseteq\R^2$ open. Suppose $f_x$, $f_y$, $f_{xy}$ and $f_{yx}$ exist on $U$ and are continuous at the point $(a,b)\in U$. Then $f_{xy}(a,b)=f_{yx}(a,b)$.
+\end{theorem}
+
+\begin{proof}
+For small $h,k\neq0$ consider the ``second difference''
+\[
+\Delta(h,k)=f(a+h,b+k)-f(a+h,b)-f(a,b+k)+f(a,b).
+\]
+\emph{First way.} Let $\varphi(x)=f(x,b+k)-f(x,b)$. Then $\Delta=\varphi(a+h)-\varphi(a)$. By the one-variable mean value theorem there is $\xi$ between $a$ and $a+h$ with
+\[
+\Delta=h\,\varphi'(\xi)=h\bigl[f_x(\xi,b+k)-f_x(\xi,b)\bigr].
+\]
+Apply the mean value theorem again, to $y\mapsto f_x(\xi,y)$: there is $\eta$ between $b$ and $b+k$ with $\Delta=hk\,f_{xy}(\xi,\eta)$.
+
+\emph{Second way.} Let $\psi(y)=f(a+h,y)-f(a,y)$. Then $\Delta=\psi(b+k)-\psi(b)=k\,\psi'(\eta')=k\bigl[f_y(a+h,\eta')-f_y(a,\eta')\bigr]=hk\,f_{yx}(\xi',\eta')$, with $\xi'$ between $a$ and $a+h$ and $\eta'$ between $b$ and $b+k$.
+
+Comparing, $f_{xy}(\xi,\eta)=f_{yx}(\xi',\eta')$ for all small $h,k$. Let $(h,k)\to(0,0)$. Both points $(\xi,\eta)$ and $(\xi',\eta')$ tend to $(a,b)$, and $f_{xy},f_{yx}$ are continuous at $(a,b)$. Therefore $f_{xy}(a,b)=f_{yx}(a,b)$.
+\end{proof}
+
+\begin{example}[Mixed partials that differ]
+Define $f(x,y)=\dfrac{xy(x^2-y^2)}{x^2+y^2}$ for $(x,y)\ne(0,0)$ and $f(0,0)=0$. Then
+\[
+f_x(0,y)=\lim_{h\to0}\frac{f(h,y)}{h}=\lim_{h\to0}\frac{y(h^2-y^2)}{h^2+y^2}=-y,\qquad
+f_y(x,0)=\lim_{k\to0}\frac{f(x,k)}{k}=x .
+\]
+So $f_{xy}(0,0)=\partial_y(-y)=-1$, while $f_{yx}(0,0)=\partial_x(x)=+1$. They differ. By Theorem~\ref{thm:clairaut} the second partials must be discontinuous at the origin.
+\end{example}
+
+%====================================================================
+\section{Differentiability and the total derivative}
+%====================================================================
+
+Partial derivatives alone are not enough: a function can have all partials at a point and still be badly behaved (not even continuous). The right notion is the following.
+
+\begin{definition}[Differentiable function, total derivative]
+Let $\vec f:U\to\R^m$ with $U\subseteq\R^n$ open. We say $\vec f$ is \emph{differentiable at $\vec a$} if there is a linear map $L:\R^n\to\R^m$ such that
+\[
+\lim_{\vec h\to\vec 0}\frac{\norm{\vec f(\vec a+\vec h)-\vec f(\vec a)-L\vec h}}{\norm{\vec h}}=0 .
+\]
+Then $L=\mathrm{D}\vec f(\vec a)$ is the \emph{total derivative} (or differential) of $\vec f$ at $\vec a$. Equivalently, $\vec f(\vec a+\vec h)=\vec f(\vec a)+L\vec h+o(\norm{\vec h})$.
+\end{definition}
+
+The statement says: near $\vec a$, the function looks like the affine map $\vec h\mapsto\vec f(\vec a)+L\vec h$, and the error is smaller than linear in $\norm{\vec h}$.
+
+\begin{theorem}[Differentiable implies continuous, with partials and Jacobian]\label{thm:diffprops}
+If $\vec f$ is differentiable at $\vec a$, then
+\begin{enumerate}[label=(\alph*)]
+  \item $\vec f$ is continuous at $\vec a$;
+  \item all partial derivatives $\partial f_i/\partial x_j$ exist at $\vec a$, and the matrix of $L$ is the \emph{Jacobian matrix}
+  \[
+  \Jac\vec f(\vec a)=\Bigl(\pd{f_i}{x_j}(\vec a)\Bigr)_{i=1..m,\ j=1..n}.
+  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $\norm{\vec f(\vec a+\vec h)-\vec f(\vec a)}\le\norm{L\vec h}+o(\norm{\vec h})\to0$ as $\vec h\to\vec 0$, since the linear map $L$ is bounded.
+
+(b) Put $\vec h=t\vec e_j$ in the definition:
+\[
+\frac{\vec f(\vec a+t\vec e_j)-\vec f(\vec a)}{t}-L\vec e_j=\frac{o(\abs t)}{t}\to0 .
+\]
+Hence $\partial\vec f/\partial x_j(\vec a)=L\vec e_j$, the $j$-th column of the matrix of $L$.
+\end{proof}
+
+The converse of (b) is false, but there is a very useful partial converse.
+
+\begin{theorem}[$C^1$ implies differentiable]\label{thm:c1diff}
+Let $f:U\to\R$, $U\subseteq\R^n$ open. If all partial derivatives of $f$ exist in a neighbourhood of $\vec a$ and are continuous at $\vec a$, then $f$ is differentiable at $\vec a$.
+\end{theorem}
+
+\begin{proof}
+We write the proof for $n=2$; the general case is the same with a longer telescoping sum. Let $\vec a=(a,b)$ and $\vec h=(h,k)$. Write
+\[
+f(a+h,b+k)-f(a,b)=\bigl[f(a+h,b+k)-f(a,b+k)\bigr]+\bigl[f(a,b+k)-f(a,b)\bigr].
+\]
+By the one-variable mean value theorem, there exist $\theta_1,\theta_2\in(0,1)$ with
+\[
+f(a+h,b+k)-f(a,b)=h\,f_x(a+\theta_1h,\,b+k)+k\,f_y(a,\,b+\theta_2k).
+\]
+Since $f_x,f_y$ are continuous at $(a,b)$, we can write $f_x(a+\theta_1h,b+k)=f_x(a,b)+\eps_1$ and $f_y(a,b+\theta_2k)=f_y(a,b)+\eps_2$, where $\eps_1,\eps_2\to0$ as $(h,k)\to(0,0)$. Then
+\[
+f(a+h,b+k)-f(a,b)-\bigl[f_x(a,b)h+f_y(a,b)k\bigr]=\eps_1h+\eps_2k,
+\]
+and $\abs{\eps_1h+\eps_2k}\le(\abs{\eps_1}+\abs{\eps_2})\norm{(h,k)}=o(\norm{(h,k)})$. So $f$ is differentiable with $L(h,k)=f_xh+f_yk$.
+\end{proof}
+
+A function whose partial derivatives all exist and are continuous on $U$ is called \emph{continuously differentiable}, or of class $C^1$. We say $f$ is of class $C^k$ if all partial derivatives up to order $k$ exist and are continuous.
+
+\begin{example}[Partials exist, but not differentiable]
+Let $f(x,y)=\dfrac{xy}{x^2+y^2}$ with $f(0,0)=0$. Since $f(x,0)=0=f(0,y)$, both partials at $(0,0)$ are $0$. But $f$ is not even continuous at the origin (Example above), so by Theorem~\ref{thm:diffprops}(a) it cannot be differentiable. The partials are discontinuous there, so Theorem~\ref{thm:c1diff} does not apply.
+\end{example}
+
+\subsection{The tangent plane}
+
+For $f:\R^2\to\R$ differentiable at $(a,b)$, the best affine approximation is
+\[
+z=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b).
+\]
+This plane is the \emph{tangent plane} to the graph. Its normal vector is $(-f_x,-f_y,1)$: indeed the graph is the level set $F(x,y,z)=z-f(x,y)=0$, and $\nabla F=(-f_x,-f_y,1)$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9.5cm,view={125}{24},ticks=none,xlabel={$x$},ylabel={$y$},zlabel={$z$},
+  z buffer=sort,axis lines=box,zmin=-0.5,zmax=2.3]
+\addplot3[surf,domain=-1.6:1.6,y domain=-1.6:1.6,samples=24,colormap={b}{color=(softblue) color=(accent!55)},shader=faceted interp,faceted color=ink!25,opacity=0.85]{2-(x^2+y^2)/2};
+\addplot3[surf,domain=0.2:1.8,y domain=-0.3:1.3,samples=2,colormap={o}{color=(softorange) color=(accent2!50)},shader=flat,opacity=0.8]{1.375-(x-1)-0.5*(y-0.5)};
+\addplot3[only marks,mark=*,mark size=2.2pt,ink] coordinates {(1,0.5,1.375)};
+\end{axis}
+\end{tikzpicture}
+\caption{The tangent plane (orange) to the graph of $f(x,y)=2-\frac12(x^2+y^2)$ at the point $(1,\frac12)$. Near the point, the plane and the surface are very close: the difference is $o(\norm{\vec h})$.}
+\label{fig:tangentplane}
+\end{figure}
+
+%====================================================================
+\section{The chain rule}
+%====================================================================
+
+\begin{theorem}[Chain rule]\label{thm:chain}
+Let $\vec f:U\to\R^m$ be differentiable at $\vec a\in U\subseteq\R^n$, and let $\vec g:V\to\R^p$ be differentiable at $\vec b=\vec f(\vec a)\in V\subseteq\R^m$. Then $\vec g\circ\vec f$ is differentiable at $\vec a$ and
+\[
+\mathrm{D}(\vec g\circ\vec f)(\vec a)=\mathrm{D}\vec g(\vec f(\vec a))\;\mathrm{D}\vec f(\vec a).
+\]
+In terms of Jacobian matrices this is a matrix product: $\Jac(\vec g\circ\vec f)=\Jac\vec g\cdot\Jac\vec f$.
+\end{theorem}
+
+\begin{proof}
+Write $A=\mathrm{D}\vec f(\vec a)$ and $B=\mathrm{D}\vec g(\vec b)$. By differentiability,
+\[
+\vec f(\vec a+\vec h)=\vec f(\vec a)+A\vec h+\vec\rho(\vec h)\quad\text{with }\norm{\vec\rho(\vec h)}/\norm{\vec h}\to0,
+\]
+\[
+\vec g(\vec b+\vec k)=\vec g(\vec b)+B\vec k+\vec\sigma(\vec k)\quad\text{with }\norm{\vec\sigma(\vec k)}/\norm{\vec k}\to0 \text{ (and }\vec\sigma(\vec 0)=\vec 0).
+\]
+Put $\vec k=\vec k(\vec h)=\vec f(\vec a+\vec h)-\vec f(\vec a)=A\vec h+\vec\rho(\vec h)$. Then $\vec k\to\vec0$ as $\vec h\to\vec 0$ and $\norm{\vec k}\le(\norm{A}+\norm{\vec\rho}/\norm{\vec h})\norm{\vec h}\le C\norm{\vec h}$ for small $\vec h$, for some constant $C$. Now
+\begin{align*}
+\vec g(\vec f(\vec a+\vec h))-\vec g(\vec f(\vec a))&=\vec g(\vec b+\vec k)-\vec g(\vec b)=B\vec k+\vec\sigma(\vec k)\\
+&=BA\vec h+B\vec\rho(\vec h)+\vec\sigma(\vec k).
+\end{align*}
+We must show that the last two terms are $o(\norm{\vec h})$. First, $\norm{B\vec\rho(\vec h)}\le\norm B\,\norm{\vec\rho(\vec h)}=o(\norm{\vec h})$. Second, $\norm{\vec\sigma(\vec k)}=\bigl(\norm{\vec\sigma(\vec k)}/\norm{\vec k}\bigr)\norm{\vec k}\le C\,\bigl(\norm{\vec\sigma(\vec k)}/\norm{\vec k}\bigr)\norm{\vec h}$, and the bracket tends to $0$ because $\vec k\to\vec0$. (If $\vec k=\vec0$, then $\vec\sigma(\vec k)=\vec 0$.) So the remainder is $o(\norm{\vec h})$, and $\mathrm{D}(\vec g\circ\vec f)(\vec a)=BA$.
+\end{proof}
+
+\begin{corollary}[Common special cases]\label{cor:chaincases}
+\begin{enumerate}[label=(\alph*)]
+  \item If $f:\R^n\to\R$ is differentiable and $\vec r:\R\to\R^n$ is differentiable, then
+  \[
+  \frac{\dd}{\dd t}f(\vec r(t))=\sum_{j=1}^n\pd{f}{x_j}\frac{\dd x_j}{\dd t}=\nabla f(\vec r(t))\cdot\vec r\,'(t).
+  \]
+  \item If $z=f(u,v)$ with $u=u(x,y)$ and $v=v(x,y)$, then $\displaystyle\pd zx=\pd zu\pd ux+\pd zv\pd vx$, and similarly for $y$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Both are the matrix product in the theorem. In (a), $\Jac f$ is the row $(f_{x_1},\dots,f_{x_n})$ and $\Jac\vec r$ is the column $\vec r\,'$; their product is the number $\nabla f\cdot\vec r\,'$. In (b), the entry in row $1$, column $x$ of $\Jac(z)\cdot\Jac(u,v)$ is $z_uu_x+z_vv_x$.
+\end{proof}
+
+\begin{example}[A chain-rule computation]
+Let $f(x,y)=x^2y$ and $\vec r(t)=(\cos t,\sin t)$. Then $\nabla f=(2xy,x^2)$ and $\vec r\,'=(-\sin t,\cos t)$, so
+\[
+\frac{\dd}{\dd t}f(\vec r(t))=2\cos t\sin t\cdot(-\sin t)+\cos^2t\cdot\cos t=-2\cos t\sin^2t+\cos^3t.
+\]
+Check: $f(\vec r(t))=\cos^2t\,\sin t$, whose derivative is $-2\cos t\sin^2t+\cos^3t$. \checkmark
+\end{example}
+
+\begin{intuition}
+The chain rule says: \emph{linear approximations compose}. If $\vec f$ stretches a small region by the matrix $A$ and $\vec g$ then stretches by $B$, the combined map stretches by $BA$.
+\end{intuition}
+
+\subsection{The Jacobian determinant and area scaling}
+
+When $m=n$, the Jacobian matrix is square and its determinant $\det\Jac\vec f$ has a clear meaning.
+
+\begin{proposition}[Linear maps scale area by $\abs{\det A}$]\label{prop:detarea}
+Let $A$ be a $2\times2$ matrix with columns $\vec p=(a,c)$ and $\vec q=(b,d)$. The image of the unit square under $A$ is the parallelogram spanned by $\vec p,\vec q$, and its area is $\abs{\det A}=\abs{ad-bc}$. For a $3\times3$ matrix, the image of the unit cube has volume $\abs{\det A}$.
+\end{proposition}
+
+\begin{proof}
+The unit square is spanned by $\vec e_1,\vec e_2$, and $A\vec e_1=\vec p$, $A\vec e_2=\vec q$. By Theorem~\ref{thm:crossprops}(c), applied to $(a,c,0)$ and $(b,d,0)$, the area is $\norm{(0,0,ad-bc)}=\abs{ad-bc}$. For $3\times3$ the statement is Theorem~\ref{thm:triple} applied to the columns (the determinant of $A$ equals the determinant of $A^{\mathsf T}$).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.25]
+  % left: unit square
+  \draw[axisline,mid] (-0.3,0)--(1.9,0) node[right]{$u$};
+  \draw[axisline,mid] (0,-0.3)--(0,1.9) node[above]{$v$};
+  \filldraw[fill=accent!15,draw=accent,thick] (0,0)--(1,0)--(1,1)--(0,1)--cycle;
+  \node[accent] at (0.5,0.5) {$1$};
+  \draw[vecstyle,accent2] (0,0)--(1,0) node[below]{$\vec e_1$};
+  \draw[vecstyle,accent3] (0,0)--(0,1) node[left]{$\vec e_2$};
+  % arrow
+  \draw[-{Stealth[length=3mm]},very thick,mid] (2.1,0.9)--(3.4,0.9) node[midway,above]{$A$};
+  % right: parallelogram, A=[[2,1],[0.5,1.5]]
+  \begin{scope}[xshift=4cm]
+    \draw[axisline,mid] (-0.3,0)--(3.6,0) node[right]{$x$};
+    \draw[axisline,mid] (0,-0.3)--(0,2.4) node[above]{$y$};
+    \filldraw[fill=accent!15,draw=accent,thick] (0,0)--(2,0.5)--(3,2)--(1,1.5)--cycle;
+    \node[accent] at (1.5,1.0) {$\abs{\det A}$};
+    \draw[vecstyle,accent2] (0,0)--(2,0.5) node[below right]{$A\vec e_1$};
+    \draw[vecstyle,accent3] (0,0)--(1,1.5) node[left]{$A\vec e_2$};
+  \end{scope}
+\end{tikzpicture}
+\caption{A linear map $A$ sends the unit square to a parallelogram of area $\abs{\det A}$. For a differentiable map, the Jacobian matrix plays the role of $A$ on small regions. Here $A=\begin{psmallmatrix}2&1\\0.5&1.5\end{psmallmatrix}$ and $\abs{\det A}=2.5$.}
+\label{fig:jacobian}
+\end{figure}
+
+\begin{example}[Polar coordinates]
+The map $(r,\theta)\mapsto(x,y)=(r\cos\theta,r\sin\theta)$ has
+\[
+\Jac=\begin{pmatrix}\cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta\end{pmatrix},\qquad\det\Jac=r\cos^2\theta+r\sin^2\theta=r .
+\]
+So a small rectangle $\dd r\times\dd\theta$ is mapped to a region of area about $r\,\dd r\,\dd\theta$. This explains the factor $r$ in polar integrals (Chapter~\ref{ch:multint}).
+\end{example}
+
+%====================================================================
+\section{The gradient and directional derivatives}
+%====================================================================
+
+\begin{definition}[Gradient]
+For a scalar function $f:\R^n\to\R$ with partial derivatives, the \emph{gradient} is the vector
+\[
+\nabla f=\Bigl(\pd f{x_1},\dots,\pd f{x_n}\Bigr).
+\]
+\end{definition}
+
+If $f$ is differentiable, $\mathrm{D}f(\vec a)\vec h=\nabla f(\vec a)\cdot\vec h$. The gradient is the vector that represents the linear map $\mathrm{D}f$ through the dot product.
+
+\begin{definition}[Directional derivative]
+For a unit vector $\vec u$, the \emph{directional derivative} of $f$ at $\vec a$ in direction $\vec u$ is
+\[
+D_{\vec u}f(\vec a)=\lim_{t\to0}\frac{f(\vec a+t\vec u)-f(\vec a)}{t}=\frac{\dd}{\dd t}\Big|_{t=0}f(\vec a+t\vec u).
+\]
+It is the rate of change of $f$ per unit distance when we move from $\vec a$ in direction $\vec u$.
+\end{definition}
+
+\begin{theorem}[Properties of the gradient]\label{thm:gradprops}
+Let $f$ be differentiable at $\vec a$ and $\nabla f(\vec a)\neq\vec 0$.
+\begin{enumerate}[label=(\alph*)]
+  \item $D_{\vec u}f(\vec a)=\nabla f(\vec a)\cdot\vec u$ for every unit vector $\vec u$.
+  \item The largest value of $D_{\vec u}f(\vec a)$ is $\norm{\nabla f(\vec a)}$, attained for $\vec u=\nabla f(\vec a)/\norm{\nabla f(\vec a)}$. The smallest value is $-\norm{\nabla f(\vec a)}$, attained in the opposite direction. The directional derivative is $0$ for $\vec u\perp\nabla f(\vec a)$.
+  \item If $\vec r(t)$ is a differentiable curve lying in the level set $\{f=c\}$ and $\vec r(0)=\vec a$, then $\nabla f(\vec a)\cdot\vec r\,'(0)=0$. That is, $\nabla f(\vec a)$ is perpendicular to the level set at $\vec a$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Apply the chain rule (Corollary~\ref{cor:chaincases}(a)) to $t\mapsto f(\vec a+t\vec u)$, whose velocity vector is $\vec u$.
+
+(b) By (a) and Theorem~\ref{thm:dotgeom}, $D_{\vec u}f=\norm{\nabla f}\cos\theta$, where $\theta$ is the angle between $\nabla f$ and $\vec u$. This is largest for $\theta=0$, smallest for $\theta=\pi$, and $0$ for $\theta=\pi/2$. (Alternatively, Cauchy--Schwarz gives $\abs{\nabla f\cdot\vec u}\le\norm{\nabla f}$ with equality iff the vectors are parallel.)
+
+(c) The function $t\mapsto f(\vec r(t))$ is constant, equal to $c$. Differentiating with the chain rule, $0=\nabla f(\vec r(t))\cdot\vec r\,'(t)$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.35]
+  \draw[axisline,mid] (-2.9,0)--(2.9,0) node[right]{$x$};
+  \draw[axisline,mid] (0,-1.7)--(0,1.8) node[above]{$y$};
+  % f = x^2/4 + y^2 ; level curves ellipses with semi axes 2 sqrt(c), sqrt(c)
+  \foreach \lvl in {0.25,0.64,1.0,1.69}{
+    \pgfmathsetmacro{\aa}{2*sqrt(\lvl)}
+    \pgfmathsetmacro{\bb}{sqrt(\lvl)}
+    \draw[accent,thick] (0,0) ellipse ({\aa} and {\bb});
+  }
+  \node[accent,font=\small] at (2.55,0.25) {$f=1.69$};
+  \node[accent,font=\small] at (1.35,0.38) {$f=1$};
+  % gradients on c=1: point (2cos t, sin t), gradient (cos t, 2 sin t)
+  \foreach \t in {25,80,135,200,250,320}{
+    \pgfmathsetmacro{\px}{2*cos(\t)}
+    \pgfmathsetmacro{\py}{sin(\t)}
+    \pgfmathsetmacro{\gx}{0.42*cos(\t)}
+    \pgfmathsetmacro{\gy}{0.42*2*sin(\t)}
+    \node[pt] at (\px,\py) {};
+    \draw[vecstyle,accent2] (\px,\py)--++(\gx,\gy);
+  }
+  \node[accent2,font=\small] at (1.35,1.15) {$\nabla f$};
+\end{tikzpicture}
+\caption{Level curves of $f(x,y)=\frac14x^2+y^2$ (blue) and the gradient vectors (orange) on the level $f=1$. Each gradient is perpendicular to its level curve and points towards higher values of $f$. The arrows are longer where $f$ changes faster (where the level curves are closer together).}
+\label{fig:gradient}
+\end{figure}
+
+\begin{intuition}
+Standing on a hillside with height $f$, the gradient is the arrow that points straight uphill, and its length is the steepness. If you walk along a contour line, your height does not change: that is why the gradient is perpendicular to the contour. Gradient \emph{descent} walks in the direction $-\nabla f$.
+\end{intuition}
+
+\begin{pitfall}
+The gradient lives in the \emph{domain} of $f$ (the $xy$-plane), not in the graph. It is not a tangent vector to the surface $z=f(x,y)$; the tangent vector to the surface in the steepest direction is $(\nabla f,\norm{\nabla f}^2)$ (horizontal part $\nabla f$, rise $\norm{\nabla f}^2$).
+\end{pitfall}
+
+%====================================================================
+\section{Higher derivatives, the Hessian and Taylor's theorem}
+%====================================================================
+
+For $f\in C^2$, the matrix of second partial derivatives is the \emph{Hessian},
+\[
+\Hess f=\Bigl(\pdx f{x_i}{x_j}\Bigr)_{i,j}.
+\]
+By Theorem~\ref{thm:clairaut}, it is a \emph{symmetric} matrix. We write $\vec h^{\mathsf T}H\vec h=\sum_{i,j}f_{x_ix_j}h_ih_j$.
+
+\begin{theorem}[Taylor's theorem, second order]\label{thm:taylor}
+Let $f:U\to\R$ be of class $C^2$ on an open set $U$, and suppose the segment from $\vec a$ to $\vec a+\vec h$ lies in $U$. Then there is $\theta\in(0,1)$ with
+\[
+f(\vec a+\vec h)=f(\vec a)+\nabla f(\vec a)\cdot\vec h+\tfrac12\,\vec h^{\mathsf T}\,\Hess f(\vec a+\theta\vec h)\,\vec h .
+\]
+Consequently
+\[
+f(\vec a+\vec h)=f(\vec a)+\nabla f(\vec a)\cdot\vec h+\tfrac12\,\vec h^{\mathsf T}\,\Hess f(\vec a)\,\vec h+o(\norm{\vec h}^2).
+\]
+\end{theorem}
+
+\begin{proof}
+Define $g(t)=f(\vec a+t\vec h)$ for $t\in[0,1]$. By the chain rule, $g'(t)=\nabla f(\vec a+t\vec h)\cdot\vec h=\sum_if_{x_i}(\vec a+t\vec h)\,h_i$. Apply the chain rule again to each term: $g''(t)=\sum_{i,j}f_{x_ix_j}(\vec a+t\vec h)\,h_ih_j=\vec h^{\mathsf T}\Hess f(\vec a+t\vec h)\vec h$. The one-variable Taylor theorem with Lagrange remainder gives $g(1)=g(0)+g'(0)+\tfrac12g''(\theta)$ for some $\theta\in(0,1)$; this is the first formula.
+
+For the second formula, since the second partials are continuous at $\vec a$, $\Hess f(\vec a+\theta\vec h)=\Hess f(\vec a)+E(\vec h)$ with every entry of $E(\vec h)$ tending to $0$ as $\vec h\to\vec 0$. Then $\abs{\vec h^{\mathsf T}E(\vec h)\vec h}\le\norm{E(\vec h)}\,\norm{\vec h}^2=o(\norm{\vec h}^2)$.
+\end{proof}
+
+\begin{intuition}
+A function near a point looks like: \emph{constant} + \emph{linear} (gradient) + \emph{quadratic} (Hessian) + smaller terms. The gradient says which way is up. The Hessian says how the surface curves: like a bowl, a dome, or a saddle.
+\end{intuition}
+
+%====================================================================
+\section{Local extrema and the second-derivative test}
+%====================================================================
+
+\begin{definition}
+A point $\vec a$ is a \emph{local minimum} of $f$ if $f(\vec x)\ge f(\vec a)$ for all $\vec x$ near $\vec a$; a \emph{local maximum} if $f(\vec x)\le f(\vec a)$ near $\vec a$. A \emph{critical point} is a point where $\nabla f(\vec a)=\vec0$. A critical point that is neither a local minimum nor a local maximum is a \emph{saddle point}.
+\end{definition}
+
+\begin{theorem}[Necessary condition]\label{thm:critical}
+If $f$ is differentiable at $\vec a$ and $\vec a$ is a local extremum, then $\nabla f(\vec a)=\vec 0$.
+\end{theorem}
+
+\begin{proof}
+For each $j$, the one-variable function $t\mapsto f(\vec a+t\vec e_j)$ has a local extremum at $t=0$, so its derivative there, $\partial f/\partial x_j(\vec a)$, is zero by Fermat's theorem.
+\end{proof}
+
+Recall that a symmetric matrix $H$ is \emph{positive definite} if $\vec h^{\mathsf T}H\vec h>0$ for all $\vec h\ne\vec 0$, \emph{negative definite} if $<0$, and \emph{indefinite} if it takes both signs. Equivalently, all eigenvalues are positive, all negative, or of both signs.
+
+\begin{theorem}[Second-derivative test]\label{thm:secondtest}
+Let $f$ be $C^2$ near $\vec a$, with $\nabla f(\vec a)=\vec0$, and let $H=\Hess f(\vec a)$.
+\begin{enumerate}[label=(\alph*)]
+  \item If $H$ is positive definite, $\vec a$ is a strict local minimum.
+  \item If $H$ is negative definite, $\vec a$ is a strict local maximum.
+  \item If $H$ is indefinite, $\vec a$ is a saddle point.
+\end{enumerate}
+If $H$ is only semidefinite, the test gives no information.
+\end{theorem}
+
+\begin{proof}
+(a) The symmetric matrix $H$ has a smallest eigenvalue $\lambda>0$, and $\vec h^{\mathsf T}H\vec h\ge\lambda\norm{\vec h}^2$ for every $\vec h$ (expand $\vec h$ in an orthonormal basis of eigenvectors). By Theorem~\ref{thm:taylor} with $\nabla f(\vec a)=\vec0$,
+\[
+f(\vec a+\vec h)-f(\vec a)=\tfrac12\vec h^{\mathsf T}H\vec h+o(\norm{\vec h}^2)\ \ge\ \norm{\vec h}^2\Bigl(\tfrac\lambda2-\frac{o(\norm{\vec h}^2)}{\norm{\vec h}^2}\Bigr).
+\]
+For $\norm{\vec h}$ small and $\vec h\ne\vec 0$ the bracket is positive, so $f(\vec a+\vec h)>f(\vec a)$.
+
+(b) Apply (a) to $-f$.
+
+(c) Choose $\vec u,\vec w$ with $\vec u^{\mathsf T}H\vec u>0$ and $\vec w^{\mathsf T}H\vec w<0$. By Taylor, $f(\vec a+t\vec u)-f(\vec a)=\tfrac12t^2\,\vec u^{\mathsf T}H\vec u+o(t^2)>0$ for small $t\ne0$, and similarly $f(\vec a+t\vec w)-f(\vec a)<0$. So $\vec a$ is neither a minimum nor a maximum.
+
+For the last claim: $f=x^4+y^4$, $f=-(x^4+y^4)$ and $f=x^4-y^4$ all have $H=0$ at the origin, but a minimum, a maximum and a saddle.
+\end{proof}
+
+\begin{corollary}[The $2\times2$ test]\label{cor:test2d}
+Let $f(x,y)$ be $C^2$ with a critical point at $(a,b)$. Put $A=f_{xx}$, $B=f_{xy}$, $C=f_{yy}$ at $(a,b)$ and $D=AC-B^2$.
+\begin{itemize}
+  \item If $D>0$ and $A>0$: local minimum. If $D>0$ and $A<0$: local maximum.
+  \item If $D<0$: saddle point. If $D=0$: no conclusion.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+Let $H=\begin{psmallmatrix}A&B\\B&C\end{psmallmatrix}$. If $A\ne0$, complete the square:
+\[
+\vec h^{\mathsf T}H\vec h=Ah_1^2+2Bh_1h_2+Ch_2^2=A\Bigl(h_1+\frac BAh_2\Bigr)^2+\frac{AC-B^2}{A}\,h_2^2 .
+\]
+If $D>0$ and $A>0$, both terms are $\ge0$ and the sum vanishes only for $\vec h=\vec 0$: $H$ is positive definite. If $D>0$ and $A<0$, both terms are $\le0$: negative definite. If $D<0$, the two terms have opposite signs (for $A\ne0$) and we can make the form positive or negative by choosing $\vec h$: indefinite. If $A=0$ and $D<0$ then $B\neq0$ and $\vec h^{\mathsf T}H\vec h=2Bh_1h_2+Ch_2^2$, which takes both signs. Now apply Theorem~\ref{thm:secondtest}.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.32\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.2cm,view={125}{30},hide axis,colormap={b}{color=(softblue) color=(accent)},z buffer=sort]
+\addplot3[surf,domain=-1:1,y domain=-1:1,samples=16,shader=faceted interp,faceted color=ink!30]{x^2+y^2};
+\end{axis}
+\end{tikzpicture}\\[-2pt]{\small minimum\\ $H$ positive definite}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.2cm,view={125}{30},hide axis,colormap={b}{color=(softorange) color=(accent2)},z buffer=sort]
+\addplot3[surf,domain=-1:1,y domain=-1:1,samples=16,shader=faceted interp,faceted color=ink!30]{-(x^2+y^2)};
+\end{axis}
+\end{tikzpicture}\\[-2pt]{\small maximum\\ $H$ negative definite}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=5.2cm,view={125}{30},hide axis,colormap={b}{color=(softgreen) color=(accent3)},z buffer=sort]
+\addplot3[surf,domain=-1:1,y domain=-1:1,samples=16,shader=faceted interp,faceted color=ink!30]{x^2-y^2};
+\end{axis}
+\end{tikzpicture}\\[-2pt]{\small saddle\\ $H$ indefinite}
+\end{minipage}
+\caption{The three non-degenerate types of critical point in two variables.}
+\label{fig:critical}
+\end{figure}
+
+\begin{example}
+Let $f(x,y)=x^3-3x+y^2$. Then $\nabla f=(3x^2-3,\,2y)$, with critical points $(1,0)$ and $(-1,0)$. The Hessian is $\begin{psmallmatrix}6x&0\\0&2\end{psmallmatrix}$. At $(1,0)$: $A=6>0$, $D=12>0$, so a local minimum. At $(-1,0)$: $D=-12<0$, so a saddle point.
+\end{example}
+
+%====================================================================
+\section{Constrained optimization: Lagrange multipliers}
+%====================================================================
+
+Often we want the extreme values of $f$ \emph{subject to a constraint} $g(\vec x)=c$. For example: the largest value of $x+y$ on the circle $x^2+y^2=1$.
+
+\begin{theorem}[Lagrange multipliers]\label{thm:lagrange}
+Let $f,g:U\to\R$ be $C^1$ on an open set $U\subseteq\R^n$. Suppose $\vec a$ is a local extremum of $f$ on the constraint set $S=\{g=c\}$, and $\nabla g(\vec a)\neq\vec 0$. Then there is a number $\lambda$ (the \emph{Lagrange multiplier}) such that
+\[
+\nabla f(\vec a)=\lambda\,\nabla g(\vec a).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\vec v$ be any vector with $\vec v\perp\nabla g(\vec a)$. We claim there is a $C^1$ curve $\vec r(t)$, $t\in(-\eps,\eps)$, lying in $S$ with $\vec r(0)=\vec a$ and $\vec r\,'(0)=\vec v$. (We construct it with the implicit function theorem, Theorem~\ref{thm:implicit} below. After renaming the coordinates we may assume $\partial g/\partial x_n(\vec a)\ne0$. Then near $\vec a$ the set $S$ is the graph $x_n=\varphi(x_1,\dots,x_{n-1})$ of a $C^1$ function with $\nabla'\varphi=-\nabla'g/g_{x_n}$, where $\nabla'$ means the gradient in the first $n-1$ variables. Write $\vec a=(\vec a',a_n)$ and $\vec v=(\vec v',v_n)$ and let $\vec r(t)=\bigl(\vec a'+t\vec v',\ \varphi(\vec a'+t\vec v')\bigr)$. This curve lies in $S$, and its last velocity component is $\nabla'\varphi\cdot\vec v'=-\nabla'g\cdot\vec v'/g_{x_n}=v_n$, because $\nabla g\cdot\vec v=0$ means $\nabla'g\cdot\vec v'+g_{x_n}v_n=0$. So $\vec r\,'(0)=\vec v$.)
+
+The function $t\mapsto f(\vec r(t))$ has a local extremum at $t=0$, so its derivative vanishes there. By the chain rule, $\nabla f(\vec a)\cdot\vec v=0$. Hence $\nabla f(\vec a)$ is perpendicular to every vector perpendicular to $\nabla g(\vec a)$, that is $\nabla f(\vec a)\in\bigl(\nabla g(\vec a)^\perp\bigr)^\perp=\mathrm{span}\{\nabla g(\vec a)\}$. So $\nabla f(\vec a)=\lambda\nabla g(\vec a)$.
+\end{proof}
+
+\begin{intuition}
+Walk along the constraint curve. As long as the level lines of $f$ \emph{cross} the curve, you can keep climbing along it. You are at a maximum exactly when a level line of $f$ just \emph{touches} the constraint curve. Touching means the two curves have the same tangent line, hence the same normal direction: $\nabla f\parallel\nabla g$.
+\end{intuition}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.4]
+  \draw[axisline,mid] (-2.4,0)--(2.6,0) node[right]{$x$};
+  \draw[axisline,mid] (0,-2.0)--(0,2.5) node[above]{$y$};
+  % constraint circle R=1.6
+  \draw[ink,very thick] (0,0) circle (1.6);
+  \node[ink,font=\small] at (-1.55,1.5) {$g=c$};
+  % level lines x+y = c
+  \foreach \cc in {-1.0,1.0}{
+    \draw[accent,thick] ({\cc-2.0},2.0)--({\cc+2.0},-2.0);
+  }
+  % tangent level line: x+y = 1.6*sqrt2 = 2.2627
+  \draw[accent,very thick] (0.263,2.0)--(2.5,-0.237);
+  \node[accent,font=\small,rotate=-45,above right] at (1.75,0.5) {$f=\max$};
+  \node[accent,font=\small,rotate=-45,above right] at (-0.9,1.9) {$f=1$};
+  \node[pt] at (1.131,1.131) {};
+  % gradients at P=(1.131,1.131)
+  \draw[vecstyle,accent2] (1.131,1.131)--++(0.62,0.62) node[above right]{$\nabla f$};
+  \draw[vecstyle,accent3] (1.131+0.1,1.131-0.1)--++(0.8,0.8) node[below right]{$\nabla g$};
+\end{tikzpicture}
+\caption{Maximize $f(x,y)=x+y$ on the circle $x^2+y^2=1.6^2$. The level lines of $f$ are diagonal lines. The largest value is at the point where a level line touches the circle. There, $\nabla f$ and $\nabla g$ point in the same direction.}
+\label{fig:lagrange}
+\end{figure}
+
+\begin{example}
+Maximize $f(x,y)=x+y$ subject to $g(x,y)=x^2+y^2=1$. The condition $\nabla f=\lambda\nabla g$ gives $1=2\lambda x$ and $1=2\lambda y$, so $x=y=1/(2\lambda)$, and the constraint gives $2x^2=1$. The candidates are $\pm(1/\sqrt2,1/\sqrt2)$ with values $\pm\sqrt2$. The circle is compact and $f$ is continuous, so a maximum and a minimum exist; hence the maximum is $\sqrt2$ and the minimum is $-\sqrt2$.
+\end{example}
+
+\begin{pitfall}
+Lagrange's condition is \emph{necessary}, not sufficient: it only finds candidates. You must compare candidate values (and also check any points where $\nabla g=\vec 0$, which the theorem excludes). Existence of an extremum usually comes from compactness of the constraint set.
+\end{pitfall}
+
+%====================================================================
+\section{The inverse and implicit function theorems}
+%====================================================================
+
+These two theorems tell us when a system of equations can be solved locally. They are the foundation for change of variables in integrals, for level sets being surfaces, and for the Lagrange theorem above.
+
+\begin{theorem}[Inverse function theorem]\label{thm:inverse}
+Let $\vec f:U\to\R^n$ be $C^1$ on an open set $U\subseteq\R^n$, and suppose $\Jac\vec f(\vec a)$ is invertible. Then there are open sets $V\ni\vec a$ and $W\ni\vec f(\vec a)$ such that $\vec f:V\to W$ is a bijection whose inverse $\vec h:W\to V$ is $C^1$, with
+\[
+\Jac\vec h(\vec f(\vec x))=\bigl(\Jac\vec f(\vec x)\bigr)^{-1}\qquad(\vec x\in V).
+\]
+\end{theorem}
+
+We need two small tools.
+
+\begin{lemma}[Mean value inequality]\label{lem:mvi}
+Let $B$ be a convex set and $\vec g:B\to\R^n$ a $C^1$ map with $\norm{\mathrm{D}\vec g(\vec x)}\le M$ on $B$ (operator norm). Then $\norm{\vec g(\vec x)-\vec g(\vec y)}\le M\norm{\vec x-\vec y}$ for $\vec x,\vec y\in B$.
+\end{lemma}
+
+\begin{proof}
+By the chain rule and the fundamental theorem of calculus, $\vec g(\vec x)-\vec g(\vec y)=\int_0^1\mathrm{D}\vec g(\vec y+t(\vec x-\vec y))(\vec x-\vec y)\,\dd t$. Take norms and use $\norm{\int\vec f}\le\int\norm{\vec f}$ (proved in Theorem~\ref{thm:arclength}).
+\end{proof}
+
+\begin{lemma}[Contraction principle]\label{lem:contraction}
+Let $B\subset\R^n$ be a closed ball and $T:B\to B$ a map with $\norm{T(\vec x)-T(\vec y)}\le\tfrac12\norm{\vec x-\vec y}$. Then $T$ has exactly one fixed point in $B$.
+\end{lemma}
+
+\begin{proof}
+Pick $\vec x_0\in B$ and put $\vec x_{k+1}=T(\vec x_k)$. Then $\norm{\vec x_{k+1}-\vec x_k}\le2^{-k}\norm{\vec x_1-\vec x_0}$, so $\sum\norm{\vec x_{k+1}-\vec x_k}$ converges and $(\vec x_k)$ is a Cauchy sequence. It converges to some $\vec x^*\in B$ (closed), and $T(\vec x^*)=\lim T(\vec x_k)=\lim\vec x_{k+1}=\vec x^*$ because $T$ is continuous. If $\vec x,\vec y$ are both fixed, $\norm{\vec x-\vec y}=\norm{T\vec x-T\vec y}\le\tfrac12\norm{\vec x-\vec y}$, so $\vec x=\vec y$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:inverse}]
+\emph{Reduction.} Let $A=\Jac\vec f(\vec a)$ and define $\tilde{\vec f}(\vec x)=A^{-1}\bigl(\vec f(\vec a+\vec x)-\vec f(\vec a)\bigr)$. Then $\tilde{\vec f}(\vec 0)=\vec 0$ and $\Jac\tilde{\vec f}(\vec 0)=I$, and $\vec f$ is a bijection near $\vec a$ with $C^1$ inverse if and only if $\tilde{\vec f}$ is near $\vec 0$. So assume $\vec a=\vec0$, $\vec f(\vec 0)=\vec0$, $\Jac\vec f(\vec 0)=I$.
+
+\emph{Setup.} Let $\vec g(\vec x)=\vec x-\vec f(\vec x)$. Then $\mathrm{D}\vec g(\vec 0)=0$. By continuity of $\mathrm{D}\vec g$ choose $r>0$ such that the closed ball $B=\bar B_r(\vec 0)\subseteq U$ and $\norm{\mathrm{D}\vec g(\vec x)}\le\tfrac12$ on $B$. By Lemma~\ref{lem:mvi}, $\norm{\vec g(\vec x)-\vec g(\vec y)}\le\tfrac12\norm{\vec x-\vec y}$ on $B$; with $\vec g(\vec 0)=\vec 0$ this also gives $\norm{\vec g(\vec x)}\le\frac12\norm{\vec x}$.
+
+\emph{Existence and uniqueness of preimages.} Fix $\vec y$ with $\norm{\vec y}<r/2$ and define $T_{\vec y}(\vec x)=\vec y+\vec g(\vec x)$. Then $\vec x$ is a fixed point of $T_{\vec y}$ if and only if $\vec f(\vec x)=\vec y$. For $\vec x\in B$, $\norm{T_{\vec y}(\vec x)}\le\norm{\vec y}+\tfrac12\norm{\vec x}<\tfrac r2+\tfrac r2=r$, so $T_{\vec y}$ maps $B$ into $B$, and it is a contraction with constant $\tfrac12$. By Lemma~\ref{lem:contraction} there is exactly one $\vec x\in B$ with $\vec f(\vec x)=\vec y$. This solution satisfies $\norm{\vec x}\le\norm{\vec y}+\tfrac12\norm{\vec x}$, i.e.\ $\norm{\vec x}\le2\norm{\vec y}<r$, so it lies in the open ball.
+
+Let $W=\{\norm{\vec y}<r/2\}$ and $V=\{\vec x:\norm{\vec x}<r,\ \norm{\vec f(\vec x)}<r/2\}$. The set $V$ is open (as $\vec f$ is continuous), and $\vec f:V\to W$ is a bijection. Let $\vec h:W\to V$ be its inverse.
+
+\emph{Continuity of $\vec h$.} For $\vec x,\vec x'\in B$: $\vec f(\vec x)-\vec f(\vec x')=(\vec x-\vec x')-(\vec g(\vec x)-\vec g(\vec x'))$, so
+\[
+\norm{\vec f(\vec x)-\vec f(\vec x')}\ge\norm{\vec x-\vec x'}-\tfrac12\norm{\vec x-\vec x'}=\tfrac12\norm{\vec x-\vec x'} .
+\]
+Hence $\norm{\vec h(\vec y)-\vec h(\vec y')}\le2\norm{\vec y-\vec y'}$: $\vec h$ is Lipschitz, so continuous.
+
+\emph{Differentiability of $\vec h$.} For $\vec x\in B$, the matrix $\Jac\vec f(\vec x)=I-\mathrm{D}\vec g(\vec x)$ is invertible: if $(I-\mathrm{D}\vec g)\vec v=\vec 0$ then $\norm{\vec v}=\norm{\mathrm{D}\vec g\,\vec v}\le\tfrac12\norm{\vec v}$, so $\vec v=\vec 0$. Let $\vec y\in W$, $\vec x=\vec h(\vec y)$, and let $\vec k$ be small. Put $\vec j=\vec h(\vec y+\vec k)-\vec x$, so $\vec f(\vec x+\vec j)=\vec y+\vec k$. Then
+\[
+\vec k=\vec f(\vec x+\vec j)-\vec f(\vec x)=\Jac\vec f(\vec x)\,\vec j+\vec\rho(\vec j),\qquad\norm{\vec\rho(\vec j)}=o(\norm{\vec j}).
+\]
+By the Lipschitz bound, $\norm{\vec j}\le2\norm{\vec k}$ and $\vec j\to\vec0$ as $\vec k\to\vec0$. Solving, $\vec j=(\Jac\vec f(\vec x))^{-1}\vec k-(\Jac\vec f(\vec x))^{-1}\vec\rho(\vec j)$, and the last term is $o(\norm{\vec j})=o(\norm{\vec k})$. So $\vec h$ is differentiable at $\vec y$ with $\Jac\vec h(\vec y)=(\Jac\vec f(\vec h(\vec y)))^{-1}$. This is continuous in $\vec y$ (since $\vec h$ and $\Jac\vec f$ are continuous and matrix inversion is continuous), so $\vec h$ is $C^1$.
+\end{proof}
+
+\begin{theorem}[Implicit function theorem]\label{thm:implicit}
+Let $F:U\to\R^m$ be $C^1$ on an open set $U\subseteq\R^n\times\R^m$, with points written $(\vec x,\vec y)$. Suppose $F(\vec a,\vec b)=\vec 0$ and the $m\times m$ matrix $\mathrm{D}_{\vec y}F(\vec a,\vec b)$ (the partial derivatives with respect to the $\vec y$ variables) is invertible. Then there are open sets $A\ni\vec a$ and $Y\ni\vec b$ and a unique $C^1$ function $\vec g:A\to Y$ such that for $(\vec x,\vec y)\in A\times Y$:
+\[
+F(\vec x,\vec y)=\vec 0\iff\vec y=\vec g(\vec x).
+\]
+Moreover $\mathrm{D}\vec g(\vec x)=-\bigl(\mathrm{D}_{\vec y}F\bigr)^{-1}\mathrm{D}_{\vec x}F$ evaluated at $(\vec x,\vec g(\vec x))$.
+\end{theorem}
+
+\begin{proof}
+Define $\Phi(\vec x,\vec y)=(\vec x,F(\vec x,\vec y))$, a $C^1$ map from $U\subseteq\R^{n+m}$ to $\R^{n+m}$. Its Jacobian is the block matrix $\begin{psmallmatrix}I&0\\\mathrm{D}_{\vec x}F&\mathrm{D}_{\vec y}F\end{psmallmatrix}$ with determinant $\det\mathrm{D}_{\vec y}F\neq0$ at $(\vec a,\vec b)$. By Theorem~\ref{thm:inverse}, $\Phi$ has a $C^1$ local inverse $\Psi$ defined near $\Phi(\vec a,\vec b)=(\vec a,\vec 0)$. Since $\Phi$ does not change the first component, $\Psi(\vec x,\vec w)=(\vec x,G(\vec x,\vec w))$ for some $C^1$ function $G$. Put $\vec g(\vec x)=G(\vec x,\vec 0)$. Then $\Phi(\vec x,\vec g(\vec x))=(\vec x,\vec 0)$, that is, $F(\vec x,\vec g(\vec x))=\vec 0$. Conversely, if $F(\vec x,\vec y)=\vec 0$ with $(\vec x,\vec y)$ near $(\vec a,\vec b)$, then $\Phi(\vec x,\vec y)=(\vec x,\vec 0)$, and since $\Phi$ is injective near $(\vec a,\vec b)$, $(\vec x,\vec y)=\Psi(\vec x,\vec 0)=(\vec x,\vec g(\vec x))$: this gives uniqueness.
+
+Finally, differentiate $F(\vec x,\vec g(\vec x))=\vec 0$ with the chain rule: $\mathrm{D}_{\vec x}F+\mathrm{D}_{\vec y}F\,\mathrm{D}\vec g=0$, which gives the formula for $\mathrm{D}\vec g$.
+\end{proof}
+
+\begin{example}[Implicit differentiation]
+For $F(x,y)=x^2+y^2-1=0$ near a point with $y\ne0$, the theorem gives $y=g(x)$ with
+\[
+g'(x)=-\frac{F_x}{F_y}=-\frac{2x}{2y}=-\frac xy .
+\]
+Near $(1,0)$ we have $F_y=0$ and the circle cannot be written as $y=g(x)$ (the tangent is vertical); but there $F_x\neq0$, so we can write $x=h(y)$ instead.
+\end{example}
+
+\begin{intuition}
+The implicit function theorem says: if a surface $F=0$ has a non-zero gradient at a point, then near that point it \emph{is} the graph of a function in some variable. It is why level sets of $f$ with $\nabla f\neq\vec0$ are smooth surfaces. The inverse function theorem says: if the linear approximation of a map is invertible, then the map itself is invertible near that point.
+\end{intuition}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item Limits in $\R^n$ must agree along \emph{all} paths. Different path limits $\Rightarrow$ no limit.
+  \item Differentiable at $\vec a$: $f(\vec a+\vec h)=f(\vec a)+\mathrm{D}f(\vec a)\vec h+o(\norm{\vec h})$. Differentiable $\Rightarrow$ continuous and partials exist; continuous partials $\Rightarrow$ differentiable.
+  \item Chain rule: $\Jac(\vec g\circ\vec f)=\Jac\vec g\cdot\Jac\vec f$. In particular $\frac{\dd}{\dd t}f(\vec r(t))=\nabla f\cdot\vec r\,'$.
+  \item $D_{\vec u}f=\nabla f\cdot\vec u$; $\nabla f$ points to steepest ascent, has length equal to the maximal rate, and is perpendicular to level sets.
+  \item Taylor: $f(\vec a+\vec h)\approx f+\nabla f\cdot\vec h+\tfrac12\vec h^{\mathsf T}H\vec h$. Second-derivative test: $H$ positive/negative definite or indefinite.
+  \item Lagrange: at a constrained extremum, $\nabla f=\lambda\nabla g$.
+  \item Inverse/implicit function theorems: invertible Jacobian $\Rightarrow$ local invertibility; $\det\Jac$ is the local area/volume scale factor.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{Why does the gradient point in the direction of steepest ascent?} Because $D_{\vec u}f=\nabla f\cdot\vec u=\norm{\nabla f}\cos\theta$ is largest when $\vec u\parallel\nabla f$.
+  \item \emph{Why is the gradient perpendicular to level curves?} Along a curve in a level set $f$ is constant, so $\nabla f\cdot\vec r\,'=0$.
+  \item \emph{Do continuous partials imply differentiability? Does differentiability imply partials?} Yes to both (Theorems~\ref{thm:c1diff} and~\ref{thm:diffprops}); the converse of the second fails.
+  \item \emph{Can mixed partials differ?} Yes, if they are not continuous (Example above). Continuity gives equality (Clairaut).
+  \item \emph{How do you classify a critical point?} Look at the eigenvalues (or signs) of the Hessian. For $2\times2$: $D=f_{xx}f_{yy}-f_{xy}^2$.
+  \item \emph{Why does the Lagrange condition hold?} At the optimum, $\nabla f$ must be perpendicular to the tangent space of the constraint, and that space is $\nabla g^\perp$.
+  \item \emph{What does the Jacobian determinant mean?} The local factor by which the map scales area or volume (with sign for orientation).
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Show that $\lim_{(x,y)\to(0,0)}\dfrac{x^3-y^3}{x^2+y^2}=0$, using the bound $\abs{x}^3\le\norm{(x,y)}\,x^2$.
+\end{exercise}
+\begin{exercise}
+Let $f(x,y)=\sqrt{\abs{xy}}$. Show that $f_x(0,0)$ and $f_y(0,0)$ exist but $f$ is not differentiable at the origin. (Hint: if $f$ were differentiable, $L=0$ and the remainder would be $f$ itself; test along $y=x$.)
+\end{exercise}
+\begin{exercise}
+Prove that $D_{\vec u}f(\vec a)$ is a \emph{linear} function of $\vec u$ when $f$ is differentiable. Give an example of a non-differentiable $f$ for which $\vec u\mapsto D_{\vec u}f(\vec 0)$ is not linear (take $f=x^2y/(x^2+y^2)$).
+\end{exercise}
+\begin{exercise}
+Find the point on the plane $x+2y+3z=6$ closest to the origin (a) by Lagrange multipliers and (b) by Theorem~\ref{thm:dist}. Compare.
+\end{exercise}
+\begin{exercise}
+Prove that for $f(x,y)=ax^2+2bxy+cy^2$, the Hessian is constant and equals $2\begin{psmallmatrix}a&b\\b&c\end{psmallmatrix}$. Classify the origin for $(a,b,c)=(1,2,1)$ and $(1,0,1)$.
+\end{exercise}
+\begin{exercise}
+Using the implicit function theorem, show that near $(1,1,1)$ the surface $xyz+x+y+z=4$ can be written as $z=g(x,y)$, and find $g_x(1,1)$ and $g_y(1,1)$. (Answer: both are $-1$.) Then show that for $x^3+y^3+z^3-3xyz=0$ the theorem does \emph{not} apply at $(1,1,1)$: all three partial derivatives vanish there.
+\end{exercise}

@@ -1,0 +1,472 @@
+{
+ "id": "vector-calculus",
+ "title": "Vector Calculus",
+ "subtitle": "A Complete Interview-Level Guide with Full Proofs",
+ "chapters": [
+  {
+   "book": "vector-calculus",
+   "num": 1,
+   "label": "1",
+   "slug": "01-geometry-and-curves",
+   "title": "Geometry and Curves",
+   "tag": "Foundations",
+   "summary": "Vector calculus starts with the geometry of space. In this chapter we build the tools that all later chapters use: dot and cross products, lines and planes, surfaces, and curves with their curvature. Every formula here has a picture; keep the pictures in mind.",
+   "wordCount": 4744,
+   "readingTimeMin": 24,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "1.1",
+     "title": "Vectors and the dot product"
+    },
+    {
+     "id": "1.2",
+     "title": "The cross product"
+    },
+    {
+     "id": "1.3",
+     "title": "Triple products"
+    },
+    {
+     "id": "1.4",
+     "title": "Lines and planes"
+    },
+    {
+     "id": "1.5",
+     "title": "Surfaces: implicit and parametric descriptions"
+    },
+    {
+     "id": "1.6",
+     "title": "Parametric curves"
+    },
+    {
+     "id": "1.7",
+     "title": "Curvature, normal and binormal; the Frenet–Serret equations"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 2,
+   "label": "2",
+   "slug": "02-multivariable-differentiation",
+   "title": "Multivariable Differentiation",
+   "tag": "Foundations",
+   "summary": "In one variable, the derivative is the slope of a tangent line. In several variables, the derivative is a linear map that is the best linear approximation to the function. This chapter builds the theory step by step: limits, partial derivatives, the total…",
+   "wordCount": 6894,
+   "readingTimeMin": 34,
+   "sectionCount": 10,
+   "sections": [
+    {
+     "id": "2.1",
+     "title": "Functions of several variables"
+    },
+    {
+     "id": "2.2",
+     "title": "Limits and continuity"
+    },
+    {
+     "id": "2.3",
+     "title": "Partial derivatives"
+    },
+    {
+     "id": "2.4",
+     "title": "Differentiability and the total derivative"
+    },
+    {
+     "id": "2.5",
+     "title": "The chain rule"
+    },
+    {
+     "id": "2.6",
+     "title": "The gradient and directional derivatives"
+    },
+    {
+     "id": "2.7",
+     "title": "Higher derivatives, the Hessian and Taylor’s theorem"
+    },
+    {
+     "id": "2.8",
+     "title": "Local extrema and the second-derivative test"
+    },
+    {
+     "id": "2.9",
+     "title": "Constrained optimization: Lagrange multipliers"
+    },
+    {
+     "id": "2.10",
+     "title": "The inverse and implicit function theorems"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 3,
+   "label": "3",
+   "slug": "03-vector-fields-and-differential-operators",
+   "title": "Vector Fields and Differential Operators",
+   "tag": "Foundations",
+   "summary": "A vector field assigns a vector to every point of a region. Wind velocity, water flow, gravity and the electric field are all vector fields. In this chapter we learn to describe how a vector field spreads out (divergence) and how it rotates (curl), and we…",
+   "wordCount": 3601,
+   "readingTimeMin": 18,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "3.1",
+     "title": "Vector fields"
+    },
+    {
+     "id": "3.2",
+     "title": "Divergence"
+    },
+    {
+     "id": "3.3",
+     "title": "Curl"
+    },
+    {
+     "id": "3.4",
+     "title": "The Laplacian"
+    },
+    {
+     "id": "3.5",
+     "title": "Index notation and a toolbox of identities"
+    },
+    {
+     "id": "3.6",
+     "title": "Irrotational and conservative fields; the Poincar'e lemma"
+    },
+    {
+     "id": "3.7",
+     "title": "Divergence-free fields: preview"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 4,
+   "label": "4",
+   "slug": "04-multiple-integrals",
+   "title": "Multiple Integrals",
+   "tag": "Integration",
+   "summary": "A single integral adds up values along a line. A multiple integral adds up values over a plane region or a solid. In this chapter we define double and triple integrals, prove that they can be computed one variable at a time (Fubini’s theorem), and prove…",
+   "wordCount": 3730,
+   "readingTimeMin": 19,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "4.1",
+     "title": "The double integral"
+    },
+    {
+     "id": "4.2",
+     "title": "Fubini’s theorem: iterated integrals"
+    },
+    {
+     "id": "4.3",
+     "title": "Triple integrals"
+    },
+    {
+     "id": "4.4",
+     "title": "Change of variables"
+    },
+    {
+     "id": "4.5",
+     "title": "Improper integrals and the Gaussian integral"
+    },
+    {
+     "id": "4.6",
+     "title": "Differentiation under the integral sign"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 5,
+   "label": "5",
+   "slug": "05-curvilinear-coordinates",
+   "title": "Curvilinear Coordinates",
+   "tag": "Integration",
+   "summary": "Many problems have a natural shape: a circle, a cylinder, a sphere. In such problems Cartesian coordinates make the formulas ugly. In this chapter we derive the gradient, divergence, curl and Laplacian in any orthogonal coordinate system, and then read off…",
+   "wordCount": 2228,
+   "readingTimeMin": 11,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "5.1",
+     "title": "Orthogonal coordinates and scale factors"
+    },
+    {
+     "id": "5.2",
+     "title": "Line, area and volume elements"
+    },
+    {
+     "id": "5.3",
+     "title": "Gradient, divergence, curl, Laplacian"
+    },
+    {
+     "id": "5.4",
+     "title": "Why the basis vectors vary"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 6,
+   "label": "6",
+   "slug": "06-line-and-surface-integrals",
+   "title": "Line and Surface Integrals",
+   "tag": "Integration",
+   "summary": "So far we have integrated over flat regions. Many quantities, however, are defined along curves (work, circulation) or across surfaces (flux, surface charge). In this chapter we define line integrals and surface integrals, prove that they do not depend on…",
+   "wordCount": 3510,
+   "readingTimeMin": 18,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "6.1",
+     "title": "Line integrals of scalar fields"
+    },
+    {
+     "id": "6.2",
+     "title": "Line integrals of vector fields: work and circulation"
+    },
+    {
+     "id": "6.3",
+     "title": "The fundamental theorem for line integrals"
+    },
+    {
+     "id": "6.4",
+     "title": "The vortex field and the winding number"
+    },
+    {
+     "id": "6.5",
+     "title": "Parametrized surfaces and surface area"
+    },
+    {
+     "id": "6.6",
+     "title": "Surface integrals and flux"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 7,
+   "label": "7",
+   "slug": "07-green-stokes-and-gauss",
+   "title": "Green, Stokes and Gauss",
+   "tag": "Big Theorems",
+   "summary": "This chapter contains the three great integral theorems of vector calculus. Each one says the same thing in a different dimension: \\text{(integral of a derivative over a region)}=\\text{(integral of the function over the boundary of the region)} . This is…",
+   "wordCount": 3772,
+   "readingTimeMin": 19,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "7.1",
+     "title": "Green’s theorem in the plane"
+    },
+    {
+     "id": "7.2",
+     "title": "The divergence theorem (Gauss)"
+    },
+    {
+     "id": "7.3",
+     "title": "Stokes’ theorem"
+    },
+    {
+     "id": "7.4",
+     "title": "The unifying picture"
+    },
+    {
+     "id": "7.5",
+     "title": "Green’s identities"
+    },
+    {
+     "id": "7.6",
+     "title": "More consequences"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 8,
+   "label": "8",
+   "slug": "08-fields-in-physics",
+   "title": "Fields in Physics",
+   "tag": "Big Theorems",
+   "summary": "The integral theorems turn physical laws that are stated over regions (“what flows in minus what flows out equals what accumulates”) into local equations (partial differential equations). In this chapter we derive the continuity equation, Gauss’s law,…",
+   "wordCount": 3404,
+   "readingTimeMin": 17,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "8.1",
+     "title": "Conservation laws and the continuity equation"
+    },
+    {
+     "id": "8.2",
+     "title": "Gauss’s law and the point charge"
+    },
+    {
+     "id": "8.3",
+     "title": "Harmonic functions"
+    },
+    {
+     "id": "8.4",
+     "title": "Maxwell’s equations"
+    },
+    {
+     "id": "8.5",
+     "title": "Transport theorem"
+    },
+    {
+     "id": "8.6",
+     "title": "The heat equation and the wave equation"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 9,
+   "label": "9",
+   "slug": "09-potentials-and-the-helmholtz-decomposition",
+   "title": "Potentials and the Helmholtz Decomposition",
+   "tag": "Big Theorems",
+   "summary": "Divergence and curl measure two different local features of a field: sources and swirls. A natural question: do the divergence and the curl together determine the field? The Helmholtz theorem answers yes, under mild decay conditions, and gives an explicit…",
+   "wordCount": 2283,
+   "readingTimeMin": 11,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "9.1",
+     "title": "Scalar and vector potentials"
+    },
+    {
+     "id": "9.2",
+     "title": "The Helmholtz theorem"
+    },
+    {
+     "id": "9.3",
+     "title": "Uniqueness"
+    },
+    {
+     "id": "9.4",
+     "title": "Applications"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 10,
+   "label": "10",
+   "slug": "10-differential-forms-and-the-generalized-stokes-th",
+   "title": "Differential Forms and the Generalized Stokes Theorem",
+   "tag": "Big Theorems",
+   "summary": "In Chapter 7 we met five theorems that look alike: the fundamental theorem of calculus, the fundamental theorem for line integrals, Green, Stokes and Gauss. Differential forms give the language in which they are one theorem. They also explain the…",
+   "wordCount": 4394,
+   "readingTimeMin": 22,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "10.1",
+     "title": "Forms and the wedge product"
+    },
+    {
+     "id": "10.2",
+     "title": "The exterior derivative"
+    },
+    {
+     "id": "10.3",
+     "title": "Pullback and integration"
+    },
+    {
+     "id": "10.4",
+     "title": "The generalized Stokes theorem"
+    },
+    {
+     "id": "10.5",
+     "title": "Closed and exact forms; a glimpse of de Rham cohomology"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 11,
+   "label": "11",
+   "slug": "11-vector-calculus-in-machine-learning-and-numerics",
+   "title": "Vector Calculus in Machine Learning and Numerics",
+   "tag": "Big Theorems",
+   "summary": "Much of modern machine learning is multivariable calculus executed by a computer. Training a model means minimizing a function $f:\\R^n\\to\\R$ of millions of parameters; this requires the gradient, which is computed by the chain rule applied to a composition…",
+   "wordCount": 3613,
+   "readingTimeMin": 18,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "11.1",
+     "title": "Gradient descent"
+    },
+    {
+     "id": "11.2",
+     "title": "The chain rule at scale: backpropagation"
+    },
+    {
+     "id": "11.3",
+     "title": "Newton’s method"
+    },
+    {
+     "id": "11.4",
+     "title": "Finite differences and numerical differentiation"
+    },
+    {
+     "id": "11.5",
+     "title": "Divergence, determinants and probability"
+    }
+   ]
+  },
+  {
+   "book": "vector-calculus",
+   "num": 12,
+   "label": "A",
+   "slug": "a-formula-sheets-and-background",
+   "title": "Formula Sheets and Background",
+   "tag": "Appendix",
+   "summary": "Let $f,g$ be scalar fields and $\\vec F,\\vec G$ vector fields (smooth enough). Proofs are in Chapter 3 (Theorem 3.15). <b>Identity</b> <b>Name / note</b> $\\curl(\\nabla f)=\\vec0$ gradients have no curl $\\divg(\\curl\\vec F)=0$ curls have no divergence…",
+   "wordCount": 1042,
+   "readingTimeMin": 5,
+   "sectionCount": 8,
+   "sections": [
+    {
+     "id": "A.1",
+     "title": "Vector identities"
+    },
+    {
+     "id": "A.2",
+     "title": "Products of vectors"
+    },
+    {
+     "id": "A.3",
+     "title": "Operators in orthogonal coordinates"
+    },
+    {
+     "id": "A.4",
+     "title": "Integral theorems"
+    },
+    {
+     "id": "A.5",
+     "title": "Standard parametrizations and elements"
+    },
+    {
+     "id": "A.6",
+     "title": "Background facts used in the book"
+    },
+    {
+     "id": "A.7",
+     "title": "Greek alphabet and symbols"
+    },
+    {
+     "id": "A.8",
+     "title": "Where to go next"
+    }
+   ]
+  }
+ ],
+ "figureCount": 43
+}

@@ -1,0 +1,174 @@
+\chapter{Matrix Norms, Conditioning and Perturbation}
+
+Real computations use approximate numbers: measurements are noisy and floating-point arithmetic rounds. How much can the answer to a linear algebra problem change when the data change slightly? Whether a problem is \emph{well-conditioned} (small data errors cause small answer errors) is a property of the problem, independent of the algorithm; whether an algorithm is \emph{stable} is a property of the method. This chapter develops the tools, matrix norms and the condition number, and applies them to linear systems, eigenvalues and least squares. These ideas decide whether a numerical result can be trusted.
+
+\section{Matrix norms}
+
+Chapter~1 defined vector norms. For matrices we want a size function $\norm{A}$ that behaves well under products.
+
+\begin{definition}[Matrix norm]
+A \emph{matrix norm} assigns to each matrix a nonnegative number $\norm{A}$ with $\norm{A}=0$ iff $A=0$, $\norm{cA}=\abs{c}\norm{A}$, $\norm{A+B}\le\norm{A}+\norm{B}$, and (for square matrices) is \emph{submultiplicative}: $\norm{AB}\le\norm{A}\norm{B}$.
+\end{definition}
+
+\begin{definition}[Induced (operator) norm]
+Given a vector norm $\norm{\cdot}$ on $\R^n$ and $\R^m$, the \emph{induced matrix norm} is
+\[ \norm{A}=\max_{\mathbf{x}\ne\mathbf{0}}\frac{\norm{A\mathbf{x}}}{\norm{\mathbf{x}}}=\max_{\norm{\mathbf{x}}=1}\norm{A\mathbf{x}}. \]
+\end{definition}
+
+Induced norms satisfy $\norm{A\mathbf{x}}\le\norm{A}\norm{\mathbf{x}}$ and $\norm{AB}\le\norm{A}\norm{B}$ (apply the first twice), and $\norm{I}=1$. The three standard cases have explicit formulas.
+
+\begin{theorem}[Explicit induced norms]\label{thm:indnorms}
+For $A\in\R^{m\times n}$:
+\begin{enumerate}[label=(\roman*)]
+  \item $\norm{A}_1=\max_j\sum_i\abs{a_{ij}}$ (maximum absolute column sum);
+  \item $\norm{A}_\infty=\max_i\sum_j\abs{a_{ij}}$ (maximum absolute row sum);
+  \item $\norm{A}_2=\sigma_{\max}(A)=\sqrt{\lambda_{\max}(A\T A)}$ (spectral norm).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $\norm{\mathbf{x}}_1=1$: $\norm{A\mathbf{x}}_1=\sum_i\abs{\sum_ja_{ij}x_j}\le\sum_j\abs{x_j}\sum_i\abs{a_{ij}}\le\max_j\sum_i\abs{a_{ij}}$, with equality for $\mathbf{x}=\mathbf{e}_{j^*}$ at the best column $j^*$. (ii) is similar: $\max_i\abs{\sum_ja_{ij}x_j}\le\max_i\sum_j\abs{a_{ij}}$ when $\norm{\mathbf{x}}_\infty=1$, with equality for $x_j=\sgn(a_{i^*j})$. (iii) is Theorem~\ref{thm:svdnorms}.
+\end{proof}
+
+\begin{example}
+For $A=\begin{pmatrix}1&-2\\3&4\end{pmatrix}$: $\norm{A}_1=\max(4,6)=6$, $\norm{A}_\infty=\max(3,7)=7$, $\norm{A}_F=\sqrt{30}\approx5.48$, $\norm{A}_2\approx5.12$ (the largest singular value; the eigenvalues of $A\T A=\begin{pmatrix}10&10\\10&20\end{pmatrix}$ are $15\pm\sqrt{125}$).
+\end{example}
+
+\begin{theorem}[Spectral radius]\label{thm:specrad}
+The \emph{spectral radius} $\rho(A)=\max\abs{\lambda_i}$ satisfies $\rho(A)\le\norm{A}$ for every induced norm. Moreover $\norm{A^k}^{1/k}\to\rho(A)$ as $k\to\infty$ (Gelfand's formula), so $A^k\to0$ iff $\rho(A)<1$.
+\end{theorem}
+
+\begin{proof}[Proof of the inequality]
+If $A\mathbf{v}=\lambda\mathbf{v}$ with $\mathbf{v}\ne\mathbf{0}$, then $\abs{\lambda}\norm{\mathbf{v}}=\norm{A\mathbf{v}}\le\norm{A}\norm{\mathbf{v}}$. The limit statement follows from the Jordan form (Theorem~\ref{thm:jordanpow}): the entries of $A^k$ behave like $k^j\lambda^k$.
+\end{proof}
+
+\begin{pitfall}{spectral radius is not a norm}
+$\rho(A)$ can be much smaller than $\norm{A}_2$ for non-symmetric matrices: $\begin{pmatrix}0&1000\\0&0\end{pmatrix}$ has $\rho=0$ but $\norm{A}_2=1000$. Thus $\norm{A}<1$ is sufficient for $A^k\to0$ but $\rho(A)<1$ is the exact criterion, and transient growth before decay can be enormous when $A$ is far from normal.
+\end{pitfall}
+
+\subsection*{The Neumann series and perturbation of the inverse}
+
+\begin{theorem}[Neumann series]\label{thm:neumann}
+If $\norm{E}<1$ in some induced norm, then $I-E$ is invertible,
+\[ (I-E)^{-1}=\sum_{k=0}^\infty E^k,\qquad\norm{(I-E)^{-1}}\le\frac1{1-\norm{E}}. \]
+\end{theorem}
+
+\begin{proof}
+The series converges absolutely since $\norm{E^k}\le\norm{E}^k$. Telescoping, $(I-E)\sum_{k=0}^NE^k=I-E^{N+1}\to I$. The bound follows from the geometric series.
+\end{proof}
+
+\begin{corollary}[Perturbation of the inverse]\label{cor:perturbinv}
+If $A$ is invertible and $\norm{A^{-1}E}<1$, then $A+E$ is invertible and
+\[ \frac{\norm{(A+E)^{-1}-A^{-1}}}{\norm{A^{-1}}}\le\frac{\kappa(A)\,\norm{E}/\norm{A}}{1-\kappa(A)\norm{E}/\norm{A}}. \]
+\end{corollary}
+
+\begin{proof}
+Write $A+E=A(I+A^{-1}E)$ and apply the Neumann series to $-A^{-1}E$: $(A+E)^{-1}=(I+A^{-1}E)^{-1}A^{-1}$, so $(A+E)^{-1}-A^{-1}=\big((I+A^{-1}E)^{-1}-I\big)A^{-1}$. Bound $\norm{(I+A^{-1}E)^{-1}-I}\le\frac{\norm{A^{-1}E}}{1-\norm{A^{-1}E}}$ and use $\norm{A^{-1}E}\le\kappa(A)\norm{E}/\norm{A}$.
+\end{proof}
+
+A further consequence: the distance from an invertible $A$ to the nearest singular matrix is $\sigma_n(A)=1/\norm{A^{-1}}_2$ (Eckart--Young), so $1/\kappa(A)$ measures the relative distance to singularity.
+
+\section{Condition numbers}
+
+\begin{definition}[Condition number]
+For invertible $A$ and an induced norm, $\kappa(A)=\norm{A}\norm{A^{-1}}\ge\norm{AA^{-1}}=1$. In the 2-norm $\kappa_2(A)=\sigma_1/\sigma_n$.
+\end{definition}
+
+Theorem~\ref{thm:cond} showed that relative errors in $\mathbf{b}$ are magnified by at most $\kappa(A)$. The same factor controls errors in $A$.
+
+\begin{theorem}[Sensitivity of $A\mathbf{x}=\mathbf{b}$]\label{thm:perturbsys}
+Let $A\mathbf{x}=\mathbf{b}$ and $(A+E)(\mathbf{x}+\delta\mathbf{x})=\mathbf{b}+\delta\mathbf{b}$ with $\kappa(A)\norm{E}/\norm{A}<1$. Then
+\[ \frac{\norm{\delta\mathbf{x}}}{\norm{\mathbf{x}}}\le\frac{\kappa(A)}{1-\kappa(A)\norm{E}/\norm{A}}\left(\frac{\norm{E}}{\norm{A}}+\frac{\norm{\delta\mathbf{b}}}{\norm{\mathbf{b}}}\right). \]
+\end{theorem}
+
+\begin{example}[The Hilbert matrix]
+The $n\times n$ Hilbert matrix $H_{ij}=1/(i+j-1)$ is symmetric positive definite and spectacularly ill-conditioned: $\kappa_2(H_5)\approx4.8\times10^5$, $\kappa_2(H_{10})\approx1.6\times10^{13}$, and $\kappa_2(H_n)$ grows like $e^{3.5n}$. In double precision ($\varepsilon\approx10^{-16}$) one cannot solve $H_{12}\mathbf{x}=\mathbf{b}$ with any accuracy, no matter how clever the algorithm: the \emph{problem} is ill-conditioned.
+\end{example}
+
+\begin{nuance}{conditioning belongs to the problem, stability to the algorithm}
+A backward stable algorithm returns the exact answer for a slightly perturbed input $A+E$ with $\norm{E}/\norm{A}=O(\varepsilon)$. Combining this with Theorem~\ref{thm:perturbsys}, the forward relative error is $O(\kappa(A)\varepsilon)$. So a good algorithm cannot beat the conditioning of the problem, and a stable algorithm gives nearly optimal accuracy. $LU$ with partial pivoting, QR with Householder reflections and the SVD are backward stable; the normal equations are \emph{not} backward stable for least squares because $\kappa(A\T A)=\kappa(A)^2$.
+\end{nuance}
+
+\begin{theorem}[Conditioning of least squares]\label{thm:lscond}
+For full-column-rank $A$, the squared condition number appears in sensitivity: the relative error in $\hat{\mathbf{x}}$ is bounded roughly by $\kappa(A)\epsilon_{rel}+\kappa(A)^2\tan\theta\,\epsilon_{rel}$, where $\theta$ is the angle between $\mathbf{b}$ and $\Col A$. For consistent systems ($\theta=0$) the conditioning is $\kappa(A)$; for large residuals it is $\kappa(A)^2$.
+\end{theorem}
+
+\section{Eigenvalue conditioning}
+
+\begin{theorem}[Bauer--Fike]\label{thm:bauerfike}
+Let $A=V\Lambda V^{-1}$ be diagonalisable. For every eigenvalue $\mu$ of $A+E$ there is an eigenvalue $\lambda$ of $A$ with
+\[ \abs{\mu-\lambda}\le\kappa(V)\,\norm{E}. \]
+\end{theorem}
+
+\begin{proof}
+If $\mu$ is an eigenvalue of $A$ the claim is trivial. Otherwise $A-\mu I$ is invertible and $(A+E)\mathbf{w}=\mu\mathbf{w}$ gives $(\mu I-A)\mathbf{w}=E\mathbf{w}$, so $\mathbf{w}=(\mu I-A)^{-1}E\mathbf{w}$ and thus $1\le\norm{(\mu I-A)^{-1}E}\le\norm{V}\norm{(\mu I-\Lambda)^{-1}}\norm{V^{-1}}\norm{E}=\kappa(V)\norm{E}/\min_i\abs{\mu-\lambda_i}$.
+\end{proof}
+
+For normal matrices $V$ can be chosen unitary with $\kappa(V)=1$, so perturbing a normal (in particular a symmetric) matrix by $\varepsilon$ moves eigenvalues by at most $\varepsilon$ (Weyl, Theorem~\ref{thm:weyl}). For non-normal matrices $\kappa(V)$ can be huge, so eigenvalues can be very sensitive; defective matrices ($V$ singular) are the extreme case.
+
+\begin{example}
+Let $A=\begin{pmatrix}1&1000\\0&1+10^{-6}\end{pmatrix}$, nearly defective. Eigenvalues $1$ and $1+10^{-6}$; the matrix of eigenvectors is $\begin{pmatrix}1&1\\0&10^{-9}\end{pmatrix}$ with condition number about $10^9$. Changing the $(2,1)$ entry from $0$ to $\delta=10^{-10}$ replaces the eigenvalue equation by $(\lambda-1)(\lambda-1-10^{-6})=1000\delta$, whose roots now differ by about $6\times10^{-4}$: the eigenvalues move by roughly $3\times10^{-4}$, millions of times more than the perturbation.
+\end{example}
+
+\begin{interview}{why are symmetric eigenproblems ``easy''?}
+Because (i) their eigenvalues are real, (ii) there is an orthogonal eigenbasis with $\kappa=1$, so by Bauer--Fike / Weyl eigenvalue errors are bounded by the data error, and (iii) algorithms such as Jacobi, QR iteration and divide-and-conquer are backward stable and accurate. Non-symmetric eigenproblems are genuinely harder, and defective cases are ill-posed.
+\end{interview}
+
+\section{Floating-point arithmetic in one page}
+
+Double precision stores a number with about $16$ decimal digits; the \emph{unit roundoff} is $u\approx1.1\times10^{-16}$. Each elementary operation returns $\mathrm{fl}(a\circ b)=(a\circ b)(1+\delta)$ with $\abs{\delta}\le u$. Rounding errors have three practical consequences for linear algebra.
+
+\begin{itemize}
+  \item \textbf{Subtracting nearly equal numbers destroys relative accuracy} (cancellation). Computing $b^2-4ac$ when $b^2\approx4ac$, or $\mathbf{x}\T\mathbf{y}$ for nearly orthogonal vectors, loses digits.
+  \item \textbf{Dividing by small pivots amplifies earlier errors}, motivating pivoting (Chapter~4).
+  \item \textbf{Algebraically equivalent formulas are not numerically equivalent.} Solving $(A\T A)\mathbf{x}=A\T\mathbf{b}$ and using QR agree in exact arithmetic but differ by a factor $\kappa(A)$ in accuracy.
+\end{itemize}
+
+\begin{example}[Cancellation in the normal equations]
+Take $A=\begin{pmatrix}1&1\\\varepsilon&0\\0&\varepsilon\end{pmatrix}$ with $\varepsilon=10^{-9}$. In exact arithmetic $A$ has independent columns, but $A\T A=\begin{pmatrix}1+\varepsilon^2&1\\1&1+\varepsilon^2\end{pmatrix}$ rounds to $\begin{pmatrix}1&1\\1&1\end{pmatrix}$ in double precision (because $\varepsilon^2=10^{-18}<u$), which is singular. QR sees the two columns as distinct and succeeds.
+\end{example}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Induced norms: $\norm{A}_1$ (max column sum), $\norm{A}_\infty$ (max row sum), $\norm{A}_2=\sigma_1$; all are submultiplicative. $\rho(A)\le\norm{A}$ and $A^k\to0$ iff $\rho(A)<1$.
+  \item If $\norm{E}<1$ then $(I-E)^{-1}=\sum E^k$; this controls perturbations of inverses.
+  \item $\kappa(A)=\norm{A}\norm{A^{-1}}=\sigma_1/\sigma_n$ bounds the relative error amplification in $A\mathbf{x}=\mathbf{b}$, and $1/\kappa$ is the relative distance to singularity.
+  \item Conditioning is a property of the problem, stability of the algorithm; stable algorithms achieve error $O(\kappa u)$.
+  \item Least squares is controlled by $\kappa$ or $\kappa^2$; normal equations square the condition number.
+  \item Eigenvalues of normal (symmetric) matrices are perfectly conditioned; for non-normal matrices Bauer--Fike involves $\kappa(V)$.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Compute $\norm{A}_1$, $\norm{A}_\infty$, $\norm{A}_F$ and $\norm{A}_2$ for $A=\begin{pmatrix}2&0\\1&2\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\norm{A}_2\le\sqrt{\norm{A}_1\norm{A}_\infty}$. (Hint: $\rho(A\T A)\le\norm{A\T A}_1$.)
+\end{exercise}
+
+\begin{exercise}
+Show that $\kappa(A)\ge1$, $\kappa(cA)=\kappa(A)$, and $\kappa_2(Q)=1$ for orthogonal $Q$.
+\end{exercise}
+
+\begin{exercise}
+Find $\kappa_2\begin{pmatrix}1&1\\1&1.0001\end{pmatrix}$ approximately. How many digits might be lost in solving a system with this matrix?
+\end{exercise}
+
+\begin{exercise}
+Prove that if $\norm{A}<1$ then $\norm{(I-A)^{-1}-I}\le\norm{A}/(1-\norm{A})$.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\kappa_2(A\T A)=\kappa_2(A)^2$ for invertible $A$.
+\end{exercise}
+
+\begin{exercise}
+Show that the distance (in the 2-norm) from an invertible $A$ to the nearest singular matrix is $\sigma_n(A)$ and describe the nearest singular matrix.
+\end{exercise}
+
+\begin{exercise}
+For which $\varepsilon$ is $\begin{pmatrix}1&1\\1&1+\varepsilon\end{pmatrix}$ computationally singular in double precision? Relate your answer to $\kappa$.
+\end{exercise}

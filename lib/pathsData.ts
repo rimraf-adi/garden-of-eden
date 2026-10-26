@@ -1,3 +1,5 @@
+import { BOOK_INDEX } from '@/lib/books';
+
 export interface LearningPath {
   id: string;
   slug: string;
@@ -20,6 +22,8 @@ export interface LearningPath {
   };
   href: string;
   description: string;
+  /** Incomplete syllabi stay in the data but are not listed or routable. */
+  hidden?: boolean;
   modules: {
     id: string;
     num: number;
@@ -29,70 +33,118 @@ export interface LearningPath {
   }[];
 }
 
-export const GARDEN_PATHS: LearningPath[] = [
-  // 1. MATHEMATICS FOR AI (FIRST)
+function bookModules(id: string) {
+  return BOOK_INDEX[id].chapters.map((c) => ({
+    id: `${id}-${c.slug}`,
+    num: c.num,
+    title: c.title,
+    summary: c.summary,
+    keyConcepts: c.sections.slice(0, 4).map((x) => x.title),
+  }));
+}
+
+const ALL_PATHS: LearningPath[] = [
   {
-    id: 'mathematics',
+    id: 'linear-algebra',
     slug: 'linear-algebra',
-    title: 'Mathematics for Machine Learning',
-    folderTitle: 'Mathematics for Machine learning',
-    folderSubtitle: 'Spaces, Gradients & Manifolds',
+    title: 'Linear Algebra',
+    folderTitle: 'Linear Algebra',
+    folderSubtitle: 'LINEAR_ALGEBRA',
+    folderGraphic: 'matrix-lattice',
+    accentColor: {
+      folderBg: '#b8cde4',
+      folderBorder: '#99b6d8',
+      folderText: '#1c3e66',
+      tagBg: '#e6f0fa',
+      chipBg: '#c8dcfa',
+    },
+    bullets: [
+      'Elimination, LU, determinants & vector spaces',
+      'Linear maps, change of basis, eigenvalues & Jordan form',
+      'Spectral theorem, SVD, least squares & PCA',
+    ],
+    stats: { modules: BOOK_INDEX['linear-algebra'].chapters.length, lessons: BOOK_INDEX['linear-algebra'].chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/linear-algebra',
+    description: 'A complete course from linear systems to the singular value decomposition: every theorem proved, with worked examples, diagrams, interview boxes and exercises.',
+    modules: bookModules('linear-algebra'),
+  },
+  {
+    id: 'vector-calculus',
+    slug: 'vector-calculus',
+    title: 'Vector Calculus',
+    folderTitle: 'Vector Calculus',
+    folderSubtitle: 'VECTOR_CALCULUS',
     folderGraphic: 'math-torus',
     accentColor: {
-      folderBg: '#f8df8e', // Warm Ochre Tuscan yellow (Fanout book 3)
+      folderBg: '#f8df8e',
       folderBorder: '#e8c96c',
       folderText: '#684d07',
       tagBg: '#fef5d0',
       chipBg: '#fce9a5',
     },
     bullets: [
-      'Sets and logic to high-dimensional inference',
-      'Linear algebra, SVD & spectral theorems',
-      'Multivariable calculus, Hessians & KKT duality',
+      'Gradients, Jacobians, Hessians & fields',
+      'Line, surface & volume integrals with full proofs',
+      'Green, Stokes, divergence & differential forms',
     ],
-    stats: {
-      modules: 12,
-      lessons: 95,
-      interactiveCount: 8,
-    },
-    href: '/paths/linear-algebra',
-    description: 'First-principles mathematical foundations: vector spaces, singular value decomposition (SVD), multivariable gradients, Hessians, and constrained optimization.',
-    modules: [
-      {
-        id: 'math-01',
-        num: 1,
-        title: 'Vector Spaces & Orthogonal Projections',
-        summary: 'Subspaces, null spaces, Gram-Schmidt orthogonalization, and projection matrices.',
-        keyConcepts: ['Orthogonal Projection', 'Four Fundamental Subspaces', 'Gram-Schmidt']
-      },
-      {
-        id: 'math-02',
-        num: 2,
-        title: 'Eigenvalues & Spectral Decomposition',
-        summary: 'Symmetric matrices, orthogonal diagonalization, Rayleigh quotients, and quadratic forms.',
-        keyConcepts: ['Spectral Theorem', 'Positive Semi-Definite Cones', 'Rayleigh Quotient']
-      },
-      {
-        id: 'math-03',
-        num: 3,
-        title: 'Singular Value Decomposition (SVD)',
-        summary: 'Compact SVD, pseudoinverses, condition numbers, and low-rank Eckart-Young theorem.',
-        keyConcepts: ['SVD Decomposition', 'Pseudoinverse', 'Eckart-Young Theorem']
-      },
-      {
-        id: 'math-04',
-        num: 4,
-        title: 'Gradients, Jacobians & Hessian Curvature',
-        summary: 'Multivariable chain rule, second-order Taylor series, and constrained Lagrangian duality.',
-        keyConcepts: ['Jacobian Matrix', 'Hessian Matrix', 'KKT Conditions']
-      }
-    ]
+    stats: { modules: BOOK_INDEX['vector-calculus'].chapters.length, lessons: BOOK_INDEX['vector-calculus'].chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/vector-calculus',
+    description: 'An interview-level guide to multivariable and vector calculus, from curves and derivatives to the generalised Stokes theorem, with every theorem proved and every idea drawn.',
+    modules: bookModules('vector-calculus'),
   },
-
+  {
+    id: 'probability',
+    slug: 'probability',
+    title: 'Probability',
+    folderTitle: 'Probability',
+    folderSubtitle: 'PROBABILITY',
+    folderGraphic: 'network-graph',
+    accentColor: {
+      folderBg: '#f6d2cc',
+      folderBorder: '#e8b5ac',
+      folderText: '#6f2d24',
+      tagBg: '#feebe7',
+      chipBg: '#fad7d1',
+    },
+    bullets: [
+      'Counting, axioms, conditioning & independence',
+      'Random variables, moments, transforms & limit theorems',
+      'Markov chains, martingales & measure theory',
+    ],
+    stats: { modules: BOOK_INDEX.probability.chapters.length, lessons: BOOK_INDEX.probability.chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/probability',
+    description: 'A self-contained probability course from coin tosses to the measure-theoretic definition of a random variable, written for exams and technical interviews alike.',
+    modules: bookModules('probability'),
+  },
+  {
+    id: 'differential-equations',
+    slug: 'differential-equations',
+    title: 'Differential Equations',
+    folderTitle: 'Differential Equations',
+    folderSubtitle: 'DIFFERENTIAL_EQUATIONS',
+    folderGraphic: 'system-lines',
+    accentColor: {
+      folderBg: '#b8e3db',
+      folderBorder: '#9bd1c7',
+      folderText: '#135449',
+      tagBg: '#e4f7f4',
+      chipBg: '#caf0ea',
+    },
+    bullets: [
+      'First- and higher-order ODEs, systems & Laplace transforms',
+      'Boundary value problems, Fourier series & transforms',
+      'Wave, heat & Laplace equations, series solutions, stability',
+    ],
+    stats: { modules: BOOK_INDEX['differential-equations'].chapters.length, lessons: BOOK_INDEX['differential-equations'].chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/differential-equations',
+    description: 'A complete engineering course in ordinary and partial differential equations: methods, worked examples, derivations and practice with answers.',
+    modules: bookModules('differential-equations'),
+  },
   // 2. INFORMATION THEORY & PROBABILITY
   {
     id: 'information-theory',
     slug: 'information-theory',
+    hidden: true,
     title: 'Information Theory & Probability',
     folderTitle: 'Information Theory',
     folderSubtitle: 'Entropy & Uncertainty',
@@ -143,11 +195,11 @@ export const GARDEN_PATHS: LearningPath[] = [
 
   // 3. STATISTICAL LEARNING THEORY
   {
-    id: 'statistical-learning',
-    slug: 'statistical-learning',
-    title: 'Statistical Learning Theory',
-    folderTitle: 'Learning Theory',
-    folderSubtitle: 'Foundations & Bias',
+    id: 'introduction-to-ml',
+    slug: 'introduction-to-ml',
+    title: 'Introduction to ML',
+    folderTitle: 'Introduction to ML',
+    folderSubtitle: 'INTRO_TO_ML',
     folderGraphic: 'matrix-lattice',
     accentColor: {
       folderBg: '#d0e5cf', // Sage green
@@ -166,7 +218,7 @@ export const GARDEN_PATHS: LearningPath[] = [
       lessons: 108,
       interactiveCount: 11,
     },
-    href: '/chapter/01-introduction',
+    href: '/paths/introduction-to-ml',
     description: 'Foundational statistical learning theory: inductive bias, parametric/nonparametric estimation, dimensionality reduction, cross-entropy loss, and maximum-margin kernel machines.',
     modules: [
       {
@@ -193,69 +245,11 @@ export const GARDEN_PATHS: LearningPath[] = [
     ]
   },
 
-  // 4. DEEP LEARNING & FOUNDATION MODELS
-  {
-    id: 'deep-learning',
-    slug: 'deep-learning',
-    title: 'AI Research & Deep Architectures',
-    folderTitle: 'AI research',
-    folderSubtitle: 'Architectures & Scales',
-    folderGraphic: 'coral-brain',
-    accentColor: {
-      folderBg: '#f6d2cc', // Terracotta blush (Fanout book 1)
-      folderBorder: '#e8b5ac',
-      folderText: '#6f2d24',
-      tagBg: '#feebe7',
-      chipBg: '#fad7d1',
-    },
-    bullets: [
-      'Math foundations to LLMs & attention mechanics',
-      'Landmark papers, sequenced and derived',
-      'Modern optimizers, scaling laws & diffusion',
-    ],
-    stats: {
-      modules: 14,
-      lessons: 108,
-      interactiveCount: 12,
-    },
-    href: '/paths/deep-learning',
-    description: 'Modern deep representation learning: from scaled self-attention and rotary embeddings to mixture-of-experts (MoE), compute-optimal scaling, and diffusion models.',
-    modules: [
-      {
-        id: 'dl-01',
-        num: 1,
-        title: 'Modern Attention & Positional Embeddings',
-        summary: 'Multi-Head, Multi-Query, and Grouped-Query Attention (GQA), Rotary Position Embeddings (RoPE), and context scaling.',
-        keyConcepts: ['GQA / MQA', 'RoPE Geometry', 'Multi-Head Projections', 'Attention Masking']
-      },
-      {
-        id: 'dl-02',
-        num: 2,
-        title: 'Mixture of Experts (MoE) Routing',
-        summary: 'Sparse gated routing, top-k expert selection, auxiliary load balancing losses, and communication overhead.',
-        keyConcepts: ['Sparse Gating', 'Expert Capacity Factor', 'Auxiliary Loss', 'All-to-All Dispatch']
-      },
-      {
-        id: 'dl-03',
-        num: 3,
-        title: 'Compute-Optimal Scaling Laws',
-        summary: 'Kaplan vs Chinchilla empirical scaling equations, loss forecasting, and parameter-to-token compute optimality.',
-        keyConcepts: ['Chinchilla Optimal Ratio', 'Compute Budget C = 6ND', 'Power-Law Exponents']
-      },
-      {
-        id: 'dl-04',
-        num: 4,
-        title: 'Generative Diffusion & Flow Matching',
-        summary: 'Score-based continuous generative modeling, reverse stochastic differential equations, and continuous normalizing flows.',
-        keyConcepts: ['Denoising Score Matching', 'Probability Flow ODE', 'Vector Field Matching']
-      }
-    ]
-  },
-
   // 5. INFERENCE ENGINEERING
   {
     id: 'inference-engineering',
     slug: 'inference-engineering',
+    hidden: true,
     title: 'Inference Engineering',
     folderTitle: 'Inference engineering',
     folderSubtitle: 'Latency & Cost Budgets',
@@ -315,6 +309,7 @@ export const GARDEN_PATHS: LearningPath[] = [
   {
     id: 'system-design',
     slug: 'system-design',
+    hidden: true,
     title: 'System Design in Depth',
     folderTitle: 'SYSTEM design',
     folderSubtitle: 'Scale & Reliability',
@@ -370,58 +365,9 @@ export const GARDEN_PATHS: LearningPath[] = [
     ]
   },
 
-  // 7. AGENTIC SYSTEMS
-  {
-    id: 'agentic-systems',
-    slug: 'agentic-systems',
-    title: 'Agentic Systems & Production RAG',
-    folderTitle: 'Agentic Systems',
-    folderSubtitle: 'Orchestration & Tools',
-    folderGraphic: 'network-graph',
-    accentColor: {
-      folderBg: '#b8e3db', // Mint cyan
-      folderBorder: '#9bd1c7',
-      folderText: '#135449',
-      tagBg: '#e4f7f4',
-      chipBg: '#caf0ea',
-    },
-    bullets: [
-      'Tool-calling schemas & structured output decoding',
-      'ReAct loops, supervisor-worker topologies',
-      'Hierarchical retrieval & vector indexing',
-    ],
-    stats: {
-      modules: 14,
-      lessons: 96,
-      interactiveCount: 8,
-    },
-    href: '/paths/agentic-systems',
-    description: 'Production AI engineering for autonomous agents: planning loops, tool use schemas, stateful memory graphs, hierarchical RAG, and evaluation harnesses.',
-    modules: [
-      {
-        id: 'agt-01',
-        num: 1,
-        title: 'Tool Use & Grammar-Constrained Decoding',
-        summary: 'JSON schema enforcement, context-free grammar parsing (CFG), and reliable tool-calling contracts.',
-        keyConcepts: ['Grammar-Constrained Decoding', 'JSON Schema Enforcement', 'Function Calling Protocol']
-      },
-      {
-        id: 'agt-02',
-        num: 2,
-        title: 'ReAct, Reflexion & Multi-Agent Topologies',
-        summary: 'Self-correction cycles, dynamic tool dispatch, hierarchical supervisor-worker architectures, and conversation memory state.',
-        keyConcepts: ['ReAct Pattern', 'Reflexion Loop', 'Supervisor Topologies', 'State Graphs']
-      },
-      {
-        id: 'agt-03',
-        num: 3,
-        title: 'Advanced Retrieval-Augmented Generation',
-        summary: 'Dense vector search, hybrid BM25 fusion, reranking models, chunking strategies, and hypothetical document embeddings (HyDE).',
-        keyConcepts: ['Reciprocal Rank Fusion', 'Cross-Encoder Rerankers', 'Chunking Heuristics', 'Vector Indexes (HNSW)']
-      }
-    ]
-  }
 ];
+
+export const GARDEN_PATHS: LearningPath[] = ALL_PATHS.filter((p) => !p.hidden);
 
 export function getPathBySlug(slug: string): LearningPath | undefined {
   return GARDEN_PATHS.find((p) => p.slug === slug || p.id === slug);

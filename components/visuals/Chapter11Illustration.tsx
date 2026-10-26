@@ -195,8 +195,8 @@ export default function Chapter11Illustration() {
               const py = hid.y + (out.y - hid.y) * fProg2;
               ctx.beginPath();
               ctx.arc(px, py, 4, 0, Math.PI * 2);
-              ctx.fillStyle = '#818cf8';
-              ctx.shadowColor = '#818cf8';
+              ctx.fillStyle = '#fbbf24';
+              ctx.shadowColor = '#fbbf24';
               ctx.shadowBlur = 10;
               ctx.fill();
               ctx.shadowBlur = 0;
@@ -460,12 +460,12 @@ export default function Chapter11Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="w-full my-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
+    <div className="w-full my-8 bg-white/70 dark:bg-zinc-900/50 border border-white/80 dark:border-white/10 rounded-3xl overflow-hidden shadow-lg shadow-zinc-950/5">
       {/* Header Bar */}
       <div className="px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-            <span className="flex h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
+            <span className="flex h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
             Chapter 11: Multilayer Perceptrons
           </h3>
           <p className="text-xs text-zinc-500 dark:text-zinc-400">
@@ -479,7 +479,7 @@ export default function Chapter11Illustration() {
             onClick={() => setMode('propagation')}
             className={`px-3 py-1 rounded-lg transition flex items-center gap-1.5 ${
               mode === 'propagation'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
@@ -490,7 +490,7 @@ export default function Chapter11Illustration() {
             onClick={() => setMode('ridges')}
             className={`px-3 py-1 rounded-lg transition flex items-center gap-1.5 ${
               mode === 'ridges'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
@@ -501,7 +501,7 @@ export default function Chapter11Illustration() {
             onClick={() => setMode('surface')}
             className={`px-3 py-1 rounded-lg transition flex items-center gap-1.5 ${
               mode === 'surface'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
             }`}
           >
@@ -543,7 +543,7 @@ export default function Chapter11Illustration() {
           <em>(x → z → y)</em> followed by reverse error signal backpropagation <em>(δ = r − y)</em> updating synaptic weights.
           Right side shows the 4 hidden unit sigmoidal hyperplanes combining to construct a closed, non-linear convex decision region.
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-purple-500 font-semibold shrink-0">
+        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-amber-500 font-semibold shrink-0">
           <Sparkles className="h-3 w-3" />
           60 FPS Seamless Loop
         </span>

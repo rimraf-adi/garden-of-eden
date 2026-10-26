@@ -32,7 +32,7 @@ export function LiveInspector({ status, metrics, equationHint, logs }: LiveInspe
     <div className="space-y-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-4 font-mono text-xs">
       <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Activity className="h-4 w-4 text-indigo-500" />
+          <Activity className="h-4 w-4 text-amber-500" />
           <span className="font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
             TELEMETRY_ENGINE
           </span>
@@ -62,8 +62,8 @@ export function LiveInspector({ status, metrics, equationHint, logs }: LiveInspe
 
       {/* Active Governing Equation Reference */}
       {equationHint && (
-        <div className="p-2.5 rounded-lg border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/40 dark:bg-indigo-950/20 text-[11px] text-indigo-900 dark:text-indigo-300">
-          <span className="font-bold block text-[10px] text-indigo-500 uppercase tracking-wider mb-1">
+        <div className="p-2.5 rounded-lg border border-amber-100 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/20 text-[11px] text-amber-900 dark:text-amber-300">
+          <span className="font-bold block text-[10px] text-amber-500 uppercase tracking-wider mb-1">
             Governing Equation:
           </span>
           <code className="text-zinc-800 dark:text-zinc-200">{equationHint}</code>

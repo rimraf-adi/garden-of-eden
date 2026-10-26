@@ -1,0 +1,152 @@
+\chapter{First-Order PDEs}
+
+A first-order PDE has the unknown $z(x,y)$ and its first derivatives only. We use the common shorthand
+\[ p = \frac{\partial z}{\partial x}, \qquad q = \frac{\partial z}{\partial y}. \]
+
+\section{Forming a PDE}
+
+A family of surfaces with two arbitrary constants, or with one arbitrary function, satisfies a first-order PDE.
+
+\begin{examplebox}{Eliminate constants}
+$z = ax + by + ab$. Differentiate: $p = a$ and $q = b$. Substitute back:
+\[ z = px + qy + pq. \]
+\end{examplebox}
+
+\begin{examplebox}{Eliminate an arbitrary function}
+$z = f(x^2 + y^2)$. Differentiate: $p = 2x f'$ and $q = 2y f'$. Divide: $p/q = x/y$, so
+\[ y\,p - x\,q = 0. \]
+\end{examplebox}
+
+\section{Lagrange's linear equation}
+
+\begin{methodbox}{Lagrange's method for $P\,p + Q\,q = R$}
+$P$, $Q$, $R$ may depend on $x,y,z$.
+\begin{enumerate}
+  \item Write the \textbf{auxiliary (characteristic) equations}
+  \[ \frac{\dd x}{P} = \frac{\dd y}{Q} = \frac{\dd z}{R}. \]
+  \item Find two independent solutions $u(x,y,z) = c_1$ and $v(x,y,z) = c_2$.
+  \item The general solution is $F(u,v) = 0$, where $F$ is an arbitrary function. (Equivalently $v = \varphi(u)$.)
+\end{enumerate}
+A useful trick: if $\ell\,\dd x + m\,\dd y + n\,\dd z$ is zero for suitable multipliers $\ell,m,n$ (so that $\ell P + mQ + nR=0$), then $\ell\,\dd x + m\,\dd y + n\,\dd z = 0$ can be integrated.
+\end{methodbox}
+
+\begin{derivbox}{Why Lagrange's method works}
+Let $u(x,y,z) = c_1$ and $v(x,y,z) = c_2$ be two independent solutions of $\dfrac{\dd x}{P} = \dfrac{\dd y}{Q} = \dfrac{\dd z}{R}$. Along these curves $\dd u = u_x\dd x + u_y\dd y + u_z\dd z = 0$ and $(\dd x,\dd y,\dd z)$ is proportional to $(P,Q,R)$. Therefore
+\[ Pu_x + Qu_y + Ru_z = 0,\qquad Pv_x + Qv_y + Rv_z = 0. \tag{$*$} \]
+Now suppose $F(u,v) = 0$ defines a surface $z = z(x,y)$. Differentiate with respect to $x$ and to $y$ (remember $z$ depends on $x,y$, with $z_x = p$ and $z_y = q$):
+\[ F_u(u_x + u_zp) + F_v(v_x + v_zp) = 0,\qquad F_u(u_y + u_zq) + F_v(v_y + v_zq) = 0. \]
+This is a linear system for $(F_u,F_v)$ with a non-zero solution, so its determinant is zero:
+\[ (u_x + u_zp)(v_y + v_zq) - (u_y + u_zq)(v_x + v_zp) = 0. \]
+Expand and collect $p$ and $q$:
+\[ p\,(u_yv_z - u_zv_y) + q\,(u_zv_x - u_xv_z) = u_xv_y - u_yv_x. \]
+The three brackets are the components of the cross product $\nabla u\times\nabla v$. By $(*)$ the vector $(P,Q,R)$ is perpendicular to both $\nabla u$ and $\nabla v$, so it is parallel to $\nabla u\times\nabla v$. Hence the coefficients above are proportional to $P,Q,R$, and dividing by the common factor gives $Pp + Qq = R$. So every surface $F(u,v)=0$ solves the equation. Geometrically, the surface is built from the characteristic curves $u = c_1$, $v = c_2$, and $(P,Q,R)$ is tangent to the surface.
+\end{derivbox}
+
+\begin{examplebox}{$x\,p + y\,q = z$}
+$\dfrac{\dd x}{x} = \dfrac{\dd y}{y} = \dfrac{\dd z}{z}$. From the first two: $\ln y = \ln x + \ln c_1$, so $y/x = c_1$. From the first and third: $z/x = c_2$. The general solution is
+\[ F\Big(\frac yx,\ \frac zx\Big) = 0, \quad\text{or}\quad z = x\,\varphi\Big(\frac yx\Big). \]
+\textit{Check:} $p = \varphi - \frac yx\varphi'$ and $q = \varphi'$, so $xp + yq = x\varphi = z$. \checkmark
+\end{examplebox}
+
+\begin{examplebox}{$(y-z)\,p + (z-x)\,q = x-y$}
+$\dfrac{\dd x}{y-z} = \dfrac{\dd y}{z-x} = \dfrac{\dd z}{x-y}$.
+
+Multipliers $1,1,1$: the numerators add to $(y-z)+(z-x)+(x-y)=0$, so $\dd x + \dd y + \dd z = 0$ and $x+y+z = c_1$.
+
+Multipliers $x,y,z$: $x(y-z) + y(z-x) + z(x-y) = 0$, so $x\,\dd x + y\,\dd y + z\,\dd z=0$ and $x^2+y^2+z^2 = c_2$.
+
+General solution: $F\big(x+y+z,\ x^2+y^2+z^2\big) = 0$.
+\end{examplebox}
+
+\begin{derivbox}{The transport equation by characteristics}
+Follow a point that moves with speed $c$: $x(t) = x_0 + ct$. By the chain rule, the value of $u$ along this path changes at the rate
+\[ \frac{\dd}{\dd t}u\big(x_0 + ct,\,t\big) = c\,u_x + u_t = 0. \]
+So $u$ is constant along each line $x - ct = x_0$. Hence $u(x,t) = u(x_0,0) = f(x_0) = f(x-ct)$. Direct check: $u_t = -cf'(x-ct)$ and $u_x = f'(x-ct)$, so $u_t + cu_x = 0$.
+\end{derivbox}
+
+\begin{examplebox}{Engineering use: the transport equation}
+A pollutant or signal moves with speed $c$: $u_t + c\,u_x = 0$, $u(x,0)=f(x)$. Here $\dd x/c = \dd t/1 = \dd u/0$, so $u$ is constant along $x - ct = \text{const}$:
+\[ u(x,t) = f(x-ct). \]
+The initial shape moves to the right at speed $c$ without changing. This is half of d'Alembert's solution (Chapter 10).
+\end{examplebox}
+
+\section{Non-linear equations: standard forms and Charpit's method}
+
+A complete integral $z = \phi(x,y,a,b)$ has two arbitrary constants. We list four standard forms with easy complete integrals.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Form & Equation & Complete integral \\
+\midrule
+I & $f(p,q)=0$ & $z = ax + by + c$ with $f(a,b)=0$ \\
+II (Clairaut) & $z = px + qy + f(p,q)$ & $z = ax + by + f(a,b)$ \\
+III & $f(z,p,q)=0$ & put $u=x+ay$, $z=z(u)$, solve the ODE \\
+IV & $f_1(x,p) = f_2(y,q)$ & set both sides $=a$, solve for $p$ and $q$, integrate \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{derivbox}{Why the four standard forms have these complete integrals}
+\textbf{Form I, $f(p,q) = 0$.} The equation does not contain $x,y,z$. Try a plane $z = ax + by + c$. Then $p = a$ and $q = b$ are constants, so the equation holds if $f(a,b) = 0$. Solving this for $b$ in terms of $a$ leaves two free constants, $a$ and $c$.
+
+\textbf{Form II, $z = px + qy + f(p,q)$.} Try $z = ax + by + f(a,b)$. Then $p = a$, $q = b$, and the right side is $ax + by + f(a,b) = z$. \checkmark
+
+\textbf{Form III, $f(z,p,q) = 0$.} There is no explicit $x,y$, so look for solutions that depend on the combination $u = x + ay$ only: $z = \varphi(u)$. Then $p = \varphi'$ and $q = a\varphi'$, so the PDE becomes the ordinary differential equation $f(\varphi,\varphi',a\varphi') = 0$, which we solve by separation.
+
+\textbf{Form IV, $f_1(x,p) = f_2(y,q)$.} The two sides depend on different variables, so each side is a constant $a$. Solve $f_1(x,p) = a$ for $p = P(x,a)$ and $f_2(y,q) = a$ for $q = Q(y,a)$. Then $p_y = 0 = q_x$, so $\dd z = p\,\dd x + q\,\dd y$ is exact, and $z = \int P\,\dd x + \int Q\,\dd y + b$.
+\end{derivbox}
+
+\begin{examplebox}{One example for each form}
+\textbf{I.} $p^2+q^2 = 4$: take $p=a$, $q = \sqrt{4-a^2}$. Then $z = ax + \sqrt{4-a^2}\,y + b$.
+
+\textbf{II.} $z = px + qy + pq$: $z = ax + by + ab$ (it is the PDE from our first example above).
+
+\textbf{III.} $p^2 + q^2 = z$: let $u = x+ay$, so $p = z'$ and $q = az'$. Then $(1+a^2)z'^2 = z$, so $\dfrac{\dd z}{\sqrt z} = \dfrac{\dd u}{\sqrt{1+a^2}}$ and $2\sqrt z = \dfrac{x+ay}{\sqrt{1+a^2}} + b$.
+
+\textbf{IV.} $p^2 + q^2 = x + y$: write $p^2 - x = y - q^2 = a$. Then $p = \sqrt{x+a}$, $q = \sqrt{y-a}$ and
+\[ z = \tfrac23(x+a)^{3/2} + \tfrac23(y-a)^{3/2} + b. \]
+\end{examplebox}
+
+\begin{methodbox}{Charpit's method for $f(x,y,z,p,q)=0$}
+When the equation has no standard form:
+\begin{enumerate}
+  \item Write the Charpit equations
+  \[ \frac{\dd p}{f_x + pf_z} = \frac{\dd q}{f_y + qf_z} = \frac{\dd z}{pf_p + qf_q} = \frac{\dd x}{-f_p} = \frac{\dd y}{-f_q}. \]
+  \item Choose the simplest pairs to get one relation between $p$ and $q$ that contains an arbitrary constant $a$, such as $p = aq$.
+  \item Solve this relation together with $f=0$ for $p$ and $q$.
+  \item Integrate $\dd z = p\,\dd x + q\,\dd y$. The result has two constants ($a$ and $b$): a complete integral.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{The idea behind Charpit's method (sketch)}
+We look for a second relation $g(x,y,z,p,q) = a$ such that $f = 0$ and $g = a$ together give $p$ and $q$, with $\dd z = p\,\dd x + q\,\dd y$ exact. Since $z_{xy} = z_{yx}$ and $z$ depends on $x,y$, exactness requires
+\[ p_y + q\,p_z = q_x + p\,q_z . \]
+Differentiate $f = 0$ and $g = a$ with respect to $x$, $y$ and $z$ (a lengthy but straightforward elimination, using $p_y,q_x,p_z,q_z$ as unknowns) and impose this condition. The result is a \emph{linear first-order PDE for $g$}:
+\[ f_p\,g_x + f_q\,g_y + (pf_p + qf_q)\,g_z - (f_x + pf_z)\,g_p - (f_y + qf_z)\,g_q = 0. \]
+Its characteristic equations, found by Lagrange's method (see above), are exactly Charpit's equations:
+\[ \frac{\dd x}{f_p} = \frac{\dd y}{f_q} = \frac{\dd z}{pf_p + qf_q} = -\frac{\dd p}{f_x + pf_z} = -\frac{\dd q}{f_y + qf_z}. \]
+Any independent integral of these equations (we take the simplest one) can be used as $g = a$. Together with $f=0$ it gives $p,q$, and we integrate $\dd z = p\,\dd x + q\,\dd y$. Compared with the form in the method box, the denominators are written here with $f_p$ and $f_q$ (and not $-f_p$, $-f_q$) and the minus signs moved to the $p$ and $q$ terms. The two forms are equal.
+\end{derivbox}
+
+\begin{examplebox}{Charpit: $z = pq$}
+$f = pq - z$, so $f_x=f_y=0$, $f_z=-1$, $f_p=q$, $f_q=p$. Use $\dfrac{\dd p}{-p} = \dfrac{\dd q}{-q}$. This gives $p = aq$. Substitute into $pq=z$: $aq^2 = z$, so $q = \sqrt{z/a}$ and $p = \sqrt{az}$. Then $\dd z = \sqrt{az}\,\dd x + \sqrt{z/a}\,\dd y$, or $\dfrac{\dd z}{\sqrt z} = \sqrt a\,\dd x + \dfrac{\dd y}{\sqrt a}$. Integrate:
+\[ 2\sqrt z = \sqrt a\,x + \frac{y}{\sqrt a} + b. \]
+\textit{Check:} $p = \sqrt{az}$ and $q = \sqrt{z/a}$, so $pq = z$. \checkmark
+\end{examplebox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Form the PDE by eliminating $a$ and $b$ from $z = ax + by + a^2 + b^2$.
+  \item Form the PDE by eliminating $f$ from $z = f(x^2 - y^2)$.
+  \item Solve $x^2p + y^2q = z^2$.
+  \item Solve $u_t + 2u_x = 0$, $u(x,0) = e^{-x^2}$.
+  \item Find a complete integral of $p^2+q^2 = 4$.
+  \item Find a complete integral of $p - x^2 = q + y^2$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $p=a$, $q=b$: $z = px + qy + p^2 + q^2$. \quad (2) $p = 2xf'$, $q = -2yf'$, so $yp + xq = 0$. \quad (3) $\dfrac{\dd x}{x^2} = \dfrac{\dd y}{y^2} = \dfrac{\dd z}{z^2}$ gives $\dfrac1y - \dfrac1x = c_1$ and $\dfrac1z - \dfrac1y = c_2$. So $F\Big(\dfrac1y - \dfrac1x,\ \dfrac1z - \dfrac1y\Big)=0$. \quad (4) $u = e^{-(x-2t)^2}$. \quad (5) $z = ax + \sqrt{4-a^2}\,y + b$. \quad (6) Set both sides $=a$: $p = a + x^2$, $q = a - y^2$. So $z = a(x+y) + \dfrac{x^3 - y^3}{3} + b$.
+\end{answerbox}

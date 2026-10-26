@@ -1,0 +1,208 @@
+\chapter{Independence, Basis and Dimension}
+
+A subspace such as a plane in $\R^3$ contains infinitely many vectors, yet two well-chosen vectors describe all of it. This chapter makes that precise. We call a list of vectors \emph{independent} when none is redundant, a \emph{basis} when it is independent and spans, and we prove the fundamental fact that every basis of a space has the same number of vectors: the \emph{dimension}. Dimension is the one number that classifies finite-dimensional vector spaces.
+
+\section{Linear independence}
+
+\begin{definition}[Linear independence]
+Vectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ in a vector space $V$ are \emph{linearly independent} if the only solution of
+\[ c_1\mathbf{v}_1+\dots+c_k\mathbf{v}_k=\mathbf{0} \]
+is $c_1=\dots=c_k=0$. They are \emph{linearly dependent} if some nontrivial choice of scalars gives $\mathbf{0}$.
+\end{definition}
+
+\begin{proposition}[Dependence means redundancy]\label{prop:dep}
+Vectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ are dependent if and only if at least one of them is a linear combination of the others. In that case removing it does not change the span.
+\end{proposition}
+
+\begin{proof}
+If $\sum c_i\mathbf{v}_i=\mathbf{0}$ with some $c_j\ne0$, solve for $\mathbf{v}_j=-\sum_{i\ne j}(c_i/c_j)\mathbf{v}_i$. Conversely, if $\mathbf{v}_j=\sum_{i\ne j}a_i\mathbf{v}_i$ then $\mathbf{v}_j-\sum a_i\mathbf{v}_i=\mathbf{0}$ is a nontrivial relation. Any combination using $\mathbf{v}_j$ can be rewritten without it, so the span is unchanged.
+\end{proof}
+
+\subsection*{Testing independence in $\R^m$}
+
+Put the vectors as columns of $A=[\mathbf{v}_1\cdots\mathbf{v}_k]$. The relation $\sum c_i\mathbf{v}_i=\mathbf{0}$ is $A\mathbf{c}=\mathbf{0}$. Hence:
+
+\begin{theorem}[Independence test]\label{thm:indtest}
+The columns of $A$ are independent iff $\Null A=\{\mathbf{0}\}$, iff $A$ has a pivot in every column (no free variables). In particular any $k>m$ vectors in $\R^m$ are dependent.
+\end{theorem}
+
+\begin{example}
+Are $(1,2,1)$, $(2,1,0)$, $(4,5,2)$ independent? Row reduce $\begin{pmatrix}1&2&4\\2&1&5\\1&0&2\end{pmatrix}$:
+\[ \to\begin{pmatrix}1&2&4\\0&-3&-3\\0&-2&-2\end{pmatrix}\to\begin{pmatrix}1&2&4\\0&1&1\\0&0&0\end{pmatrix}. \]
+The third column is not a pivot column, so the vectors are dependent; indeed $(4,5,2)=2(1,2,1)+(2,1,0)$.
+\end{example}
+
+\begin{example}[Independence of functions]
+The functions $1,t,t^2$ are independent in $C[0,1]$: if $c_0+c_1t+c_2t^2=0$ for all $t$, a nonzero polynomial of degree at most $2$ would have infinitely many roots. By contrast $\sin^2t$, $\cos^2t$ and $1$ are dependent, since $\sin^2t+\cos^2t-1=0$.
+\end{example}
+
+\begin{theorem}[Properties of independent lists]\label{thm:indprops}
+\begin{enumerate}[label=(\roman*)]
+  \item A list containing $\mathbf{0}$ is dependent; a single vector $\mathbf{v}$ is independent iff $\mathbf{v}\neq\mathbf{0}$.
+  \item Any sublist of an independent list is independent.
+  \item If $\mathbf{v}_1,\dots,\mathbf{v}_k$ are independent and $\mathbf{w}\notin\Span\{\mathbf{v}_1,\dots,\mathbf{v}_k\}$, then $\mathbf{v}_1,\dots,\mathbf{v}_k,\mathbf{w}$ are independent.
+  \item Nonzero eigenvectors for distinct eigenvalues are independent (Chapter~13); pairwise orthogonal nonzero vectors are independent (Chapter~1, Exercise~1.8).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $1\cdot\mathbf{0}=\mathbf{0}$ is a nontrivial relation; for a single nonzero vector $c\mathbf{v}=\mathbf{0}$ forces $c=0$. (ii) A relation among the sublist is a relation among the full list with zeros elsewhere. (iii) If $\sum c_i\mathbf{v}_i+d\mathbf{w}=\mathbf{0}$ with $d\ne0$ then $\mathbf{w}\in\Span\{\mathbf{v}_i\}$, a contradiction; so $d=0$ and then all $c_i=0$ by independence.
+\end{proof}
+
+\section{Basis}
+
+\begin{definition}[Basis]
+A list $\mathcal{B}=(\mathbf{b}_1,\dots,\mathbf{b}_n)$ is a \emph{basis} of $V$ if it is linearly independent and spans $V$.
+\end{definition}
+
+The key property of a basis is unique coordinates.
+
+\begin{theorem}[Unique representation]\label{thm:uniquerep}
+$(\mathbf{b}_1,\dots,\mathbf{b}_n)$ is a basis of $V$ if and only if every $\mathbf{v}\in V$ can be written in exactly one way as $\mathbf{v}=x_1\mathbf{b}_1+\dots+x_n\mathbf{b}_n$. The scalars $(x_1,\dots,x_n)$ are the \emph{coordinates} of $\mathbf{v}$ relative to the basis, written $[\mathbf{v}]_{\mathcal{B}}\in\R^n$.
+\end{theorem}
+
+\begin{proof}
+Existence of the representation is exactly ``spans''. If $\sum x_i\mathbf{b}_i=\sum y_i\mathbf{b}_i$ then $\sum(x_i-y_i)\mathbf{b}_i=\mathbf{0}$, so $x_i=y_i$ for all $i$ if and only if the list is independent.
+\end{proof}
+
+\begin{example}[Standard bases]
+$\mathbf{e}_1,\dots,\mathbf{e}_n$ is the \emph{standard basis} of $\R^n$; $1,t,\dots,t^n$ is a basis of $\mathcal{P}_n$, so $\mathcal{P}_n$ has $n+1$ coordinates; the matrices $E_{ij}$ with a single $1$ in position $(i,j)$ form a basis of $\R^{m\times n}$, which has $mn$ elements.
+\end{example}
+
+\begin{example}[A non-standard basis]
+In $\R^2$, $\mathcal{B}=((1,1),(1,-1))$ is a basis, because the matrix with these columns has determinant $-2\ne0$. To find the coordinates of $\mathbf{v}=(5,1)$, solve $x_1(1,1)+x_2(1,-1)=(5,1)$: $x_1+x_2=5$, $x_1-x_2=1$, so $[\mathbf{v}]_{\mathcal{B}}=(3,2)$.
+\end{example}
+
+\begin{theorem}[Bases of $\R^n$]\label{thm:basisRn}
+$n$ vectors in $\R^n$ form a basis iff the square matrix having them as columns is invertible, iff its determinant is nonzero.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:imt1} the columns are independent iff $A\mathbf{x}=\mathbf{0}$ has only the zero solution iff $A$ is invertible, and then $A\mathbf{x}=\mathbf{b}$ is solvable for all $\mathbf{b}$, so the columns also span.
+\end{proof}
+
+\section{Dimension}
+
+How many vectors can a basis have? The following lemma is the engine of the whole theory.
+
+\begin{lemma}[Steinitz exchange lemma]\label{lem:exchange}
+If $V$ is spanned by $m$ vectors, then any independent list in $V$ has at most $m$ vectors.
+\end{lemma}
+
+\begin{proof}
+Let $\mathbf{w}_1,\dots,\mathbf{w}_m$ span $V$ and let $\mathbf{u}_1,\dots,\mathbf{u}_k$ be independent; suppose $k>m$. Write each $\mathbf{u}_j=\sum_{i=1}^ma_{ij}\mathbf{w}_i$. The $m\times k$ system $A\mathbf{c}=\mathbf{0}$ with $A=(a_{ij})$ has more unknowns than equations, so it has a nontrivial solution $\mathbf{c}$ (Corollary~\ref{cor:underdet}). Then
+\[ \sum_jc_j\mathbf{u}_j=\sum_i\Big(\sum_ja_{ij}c_j\Big)\mathbf{w}_i=\mathbf{0} \]
+is a nontrivial relation, contradicting independence.
+\end{proof}
+
+\begin{theorem}[Invariance of dimension]\label{thm:dim}
+If $V$ has a finite basis, then every basis of $V$ has the same number of elements. This number is the \emph{dimension} $\dim V$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathcal{B}$ and $\mathcal{C}$ be bases with $n$ and $m$ elements. $\mathcal{B}$ is independent and $\mathcal{C}$ spans, so $n\le m$ by the lemma. Exchanging the roles gives $m\le n$.
+\end{proof}
+
+By convention $\dim\{\mathbf{0}\}=0$ (the empty list is its basis). A space with no finite spanning list is \emph{infinite-dimensional} ($\mathcal{P}$, $C[a,b]$, $\R^\infty$).
+
+\begin{example}
+$\dim\R^n=n$; $\dim\mathcal{P}_n=n+1$; $\dim\R^{m\times n}=mn$; the space of symmetric $n\times n$ matrices has dimension $\tfrac12n(n+1)$; the solution space of $y''-3y'+2y=0$ has dimension $2$.
+\end{example}
+
+\begin{theorem}[Counting theorem for dimension $n$]\label{thm:count}
+Let $\dim V=n$. Then
+\begin{enumerate}[label=(\roman*)]
+  \item every independent list has at most $n$ vectors, and every spanning list at least $n$;
+  \item any $n$ independent vectors form a basis;
+  \item any $n$ spanning vectors form a basis;
+  \item every independent list can be extended to a basis, and every spanning list contains a basis.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is the exchange lemma applied to a basis. For (iv), extend an independent list by adding vectors outside its span one at a time (Theorem~\ref{thm:indprops}(iii)); the process stops after at most $n$ steps, when the span is all of $V$. To shrink a spanning list, delete any vector that is a combination of the others (Proposition~\ref{prop:dep}) until the list is independent. For (ii): extend the $n$ independent vectors to a basis; a basis has $n$ elements, so nothing was added. For (iii): shrink to a basis; it has $n$ elements, so nothing was removed.
+\end{proof}
+
+\begin{interview}{the ``n in dimension n'' shortcut}
+To prove that $n$ given vectors form a basis of an $n$-dimensional space, you need only check \emph{one} of independence or spanning, not both. In $\R^n$, checking $\det\ne0$ is the quickest. This halves the work in many proofs and exam problems.
+\end{interview}
+
+\begin{theorem}[Dimension of subspaces]\label{thm:subdim}
+If $W$ is a subspace of a finite-dimensional $V$, then $\dim W\le\dim V$, with equality if and only if $W=V$.
+\end{theorem}
+
+\begin{proof}
+A basis of $W$ is an independent list in $V$, so has at most $\dim V$ vectors. If $\dim W=\dim V=n$, a basis of $W$ is $n$ independent vectors in $V$, hence a basis of $V$ by the counting theorem, so $W=V$.
+\end{proof}
+
+Consequently the subspaces of $\R^3$ are $\{\mathbf{0}\}$ (dimension $0$), lines through $\mathbf{0}$ (dimension $1$), planes through $\mathbf{0}$ (dimension $2$) and $\R^3$, as claimed in Chapter~6.
+
+\begin{theorem}[Dimension formula for sums]\label{thm:dimsum}
+For subspaces $U,W$ of a finite-dimensional space,
+\[ \dim(U+W)=\dim U+\dim W-\dim(U\cap W). \]
+\end{theorem}
+
+\begin{proof}
+Take a basis $\mathbf{c}_1,\dots,\mathbf{c}_r$ of $U\cap W$ and extend it to a basis $\mathbf{c}_1,\dots,\mathbf{c}_r,\mathbf{u}_1,\dots,\mathbf{u}_s$ of $U$ and a basis $\mathbf{c}_1,\dots,\mathbf{c}_r,\mathbf{w}_1,\dots,\mathbf{w}_t$ of $W$. Then the $r+s+t$ vectors $\mathbf{c}_i,\mathbf{u}_j,\mathbf{w}_k$ span $U+W$. They are independent: if $\sum a_i\mathbf{c}_i+\sum b_j\mathbf{u}_j+\sum d_k\mathbf{w}_k=\mathbf{0}$ then $\sum d_k\mathbf{w}_k=-\sum a_i\mathbf{c}_i-\sum b_j\mathbf{u}_j\in U\cap W$, so it is a combination of the $\mathbf{c}_i$, and independence of the basis of $W$ forces all $d_k=0$; then independence of the basis of $U$ gives $a_i=b_j=0$. So $\dim(U+W)=r+s+t=(r+s)+(r+t)-r$.
+\end{proof}
+
+\begin{example}
+Two distinct planes $U,W$ through the origin in $\R^3$ satisfy $\dim(U+W)=3$ and $\dim U+\dim W=4$, so $\dim(U\cap W)=1$: they meet in a line.
+\end{example}
+
+\section{Coordinates make every space look like $\R^n$}
+
+If $\mathcal{B}$ is a basis of an $n$-dimensional space $V$, the map $\mathbf{v}\mapsto[\mathbf{v}]_{\mathcal{B}}$ is a bijection $V\to\R^n$ that preserves sums and scalar multiples. Every question about $V$ (independence, span, dimension) can therefore be translated into a question about columns of numbers, answerable by elimination. This is why the abstract theory is no harder in practice than the concrete one.
+
+\begin{example}
+In $\mathcal{P}_2$ with basis $(1,t,t^2)$, the polynomials $p_1=1+t$, $p_2=t+t^2$, $p_3=1-t^2$ have coordinate vectors $(1,1,0)$, $(0,1,1)$, $(1,0,-1)$. Row reduction of these columns gives $\det=\begin{vmatrix}1&0&1\\1&1&0\\0&1&-1\end{vmatrix}=1\cdot(-1)-0+1\cdot1=0$, so $p_1,p_2,p_3$ are dependent: indeed $p_1-p_2=1-t^2=p_3$.
+\end{example}
+
+\begin{pitfall}{coordinates depend on the basis and its order}
+The vector $(3,2)$ in the previous example is not the point $(5,1)$; it is the recipe ``$3$ copies of $(1,1)$ and $2$ of $(1,-1)$''. Changing the basis or even reordering it changes the coordinate vector. Chapter~10 studies exactly how coordinates transform.
+\end{pitfall}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Vectors are independent when the only relation among them is the trivial one; dependence means one is redundant.
+  \item A basis is an independent spanning list; it gives each vector a unique coordinate vector.
+  \item The exchange lemma shows all bases have the same size, the dimension.
+  \item In dimension $n$: any $n$ independent or any $n$ spanning vectors form a basis; independent lists extend, spanning lists shrink to bases.
+  \item $\dim(U+W)=\dim U+\dim W-\dim(U\cap W)$.
+  \item Coordinates identify every $n$-dimensional space with $\R^n$.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Decide whether $(1,0,1,2)$, $(0,1,1,1)$, $(2,1,3,5)$ are independent, and find a basis of their span.
+\end{exercise}
+
+\begin{exercise}
+Show that $(1,1,0)$, $(0,1,1)$, $(1,0,1)$ is a basis of $\R^3$ and find the coordinates of $(2,3,5)$.
+\end{exercise}
+
+\begin{exercise}
+Prove that $\sin t$, $\cos t$, $\sin 2t$ are independent in $C[0,2\pi]$. (Hint: evaluate at several points, or integrate against each.)
+\end{exercise}
+
+\begin{exercise}
+Let $V$ be a $5$-dimensional space and $U,W$ subspaces of dimensions $3$ and $4$. What are the possible values of $\dim(U\cap W)$?
+\end{exercise}
+
+\begin{exercise}
+Find a basis and the dimension of $\{A\in\R^{3\times3}: A\T=-A\}$ (skew-symmetric) and of $\{A\in\R^{3\times3}:\tr A=0\}$.
+\end{exercise}
+
+\begin{exercise}
+Extend $(1,2,0)$, $(0,1,1)$ to a basis of $\R^3$, and shrink $\{(1,0),(2,0),(0,3),(1,1)\}$ to a basis of $\R^2$.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $\mathbf{v}_1,\dots,\mathbf{v}_k$ are independent and $A$ is an invertible $n\times n$ matrix then $A\mathbf{v}_1,\dots,A\mathbf{v}_k$ are independent. Is the invertibility needed?
+\end{exercise}
+
+\begin{exercise}
+Show that $\dim\R^\infty=\infty$ by exhibiting, for each $n$, $n$ independent sequences.
+\end{exercise}

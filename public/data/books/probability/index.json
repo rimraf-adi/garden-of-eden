@@ -1,0 +1,718 @@
+{
+ "id": "probability",
+ "title": "Probability",
+ "subtitle": "From Counting to Random Variables and Rigorous Foundations",
+ "chapters": [
+  {
+   "book": "probability",
+   "num": 1,
+   "label": "1",
+   "slug": "01-experiments-sample-spaces-and-counting",
+   "title": "Experiments, Sample Spaces and Counting",
+   "tag": "Classical",
+   "summary": "Probability is a language for describing uncertain outcomes. Before we can assign a number to “how likely”, we must say precisely what can happen. This chapter builds that vocabulary (sample spaces and events), states the classical rule for equally likely…",
+   "wordCount": 3037,
+   "readingTimeMin": 15,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "1.1",
+     "title": "Random experiments and sample spaces"
+    },
+    {
+     "id": "1.2",
+     "title": "Events and the language of sets"
+    },
+    {
+     "id": "1.3",
+     "title": "The classical definition of probability"
+    },
+    {
+     "id": "1.4",
+     "title": "Counting"
+    },
+    {
+     "id": "1.5",
+     "title": "Worked examples"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 2,
+   "label": "2",
+   "slug": "02-the-axioms-of-probability",
+   "title": "The Axioms of Probability",
+   "tag": "Classical",
+   "summary": "The classical rule $\\abs{A}/\\abs{\\Omega}$ works only for finite, symmetric situations. In 1933 Kolmogorov showed that all of probability can be built on a short list of axioms. This chapter states them, derives their consequences, and proves the two most…",
+   "wordCount": 2301,
+   "readingTimeMin": 12,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "2.1",
+     "title": "Events as a $\\sigma$-algebra"
+    },
+    {
+     "id": "2.2",
+     "title": "Kolmogorov’s axioms"
+    },
+    {
+     "id": "2.3",
+     "title": "Elementary consequences"
+    },
+    {
+     "id": "2.4",
+     "title": "Inclusion–exclusion"
+    },
+    {
+     "id": "2.5",
+     "title": "Continuity of probability"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 3,
+   "label": "3",
+   "slug": "03-conditional-probability-independence-and-bayes-r",
+   "title": "Conditional Probability, Independence and Bayes’ Rule",
+   "tag": "Classical",
+   "summary": "Probabilities change when we learn something. The probability that a card is the ace of spades is $1/52$; once we are told that it is black, it is $1/26$. This chapter makes that idea precise, and develops the three tools that follow from it: the…",
+   "wordCount": 2798,
+   "readingTimeMin": 14,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "3.1",
+     "title": "Conditional probability"
+    },
+    {
+     "id": "3.2",
+     "title": "The multiplication rule and total probability"
+    },
+    {
+     "id": "3.3",
+     "title": "Bayes’ rule"
+    },
+    {
+     "id": "3.4",
+     "title": "Independence"
+    },
+    {
+     "id": "3.5",
+     "title": "Conditional independence"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 4,
+   "label": "4",
+   "slug": "04-discrete-random-variables-and-expectation",
+   "title": "Discrete Random Variables and Expectation",
+   "tag": "Discrete",
+   "summary": "Outcomes of experiments are often not numbers (a card, a sequence of tosses), but we usually care about a numerical summary: the number of heads, the sum of two dice, the waiting time for the first success. A random variable is the bridge between outcomes…",
+   "wordCount": 2758,
+   "readingTimeMin": 14,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "4.1",
+     "title": "Random variables"
+    },
+    {
+     "id": "4.2",
+     "title": "Distribution: the mass function and the CDF"
+    },
+    {
+     "id": "4.3",
+     "title": "Expectation"
+    },
+    {
+     "id": "4.4",
+     "title": "Variance"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 5,
+   "label": "5",
+   "slug": "05-the-standard-discrete-distributions",
+   "title": "The Standard Discrete Distributions",
+   "tag": "Discrete",
+   "summary": "A small family of distributions accounts for most discrete models. For each we state the model, derive the PMF, and compute the mean and variance. We use only tools developed so far; where independence of random variables would give a shorter derivation,…",
+   "wordCount": 2234,
+   "readingTimeMin": 11,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "5.1",
+     "title": "Bernoulli and binomial"
+    },
+    {
+     "id": "5.2",
+     "title": "Geometric and negative binomial"
+    },
+    {
+     "id": "5.3",
+     "title": "The Poisson distribution"
+    },
+    {
+     "id": "5.4",
+     "title": "The hypergeometric distribution"
+    },
+    {
+     "id": "5.5",
+     "title": "Summary"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 6,
+   "label": "6",
+   "slug": "06-joint-distributions-independence-and-covariance",
+   "title": "Joint Distributions, Independence and Covariance",
+   "tag": "Discrete",
+   "summary": "Real problems involve several random quantities at once: the two dice, the height and weight of a person, the numbers of successes in two groups of trials. This chapter studies how random variables are related. We define joint and marginal PMFs,…",
+   "wordCount": 2015,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "6.1",
+     "title": "Joint and marginal distributions"
+    },
+    {
+     "id": "6.2",
+     "title": "Independence of random variables"
+    },
+    {
+     "id": "6.3",
+     "title": "Covariance and correlation"
+    },
+    {
+     "id": "6.4",
+     "title": "Sums of independent random variables"
+    },
+    {
+     "id": "6.5",
+     "title": "Worked examples"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 7,
+   "label": "7",
+   "slug": "07-continuous-random-variables",
+   "title": "Continuous Random Variables",
+   "tag": "Continuous",
+   "summary": "A waiting time, a height, a measurement error: these take values in an interval of the real line, not in a countable set. Probability must now be spread over a continuum, so that individual points get mass zero and intervals get positive mass. The tool is…",
+   "wordCount": 2471,
+   "readingTimeMin": 12,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "7.1",
+     "title": "Densities"
+    },
+    {
+     "id": "7.2",
+     "title": "Expectation"
+    },
+    {
+     "id": "7.3",
+     "title": "The standard continuous distributions"
+    },
+    {
+     "id": "7.4",
+     "title": "Functions of a continuous random variable"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 8,
+   "label": "8",
+   "slug": "08-joint-densities-transformations-and-order-statis",
+   "title": "Joint Densities, Transformations and Order Statistics",
+   "tag": "Continuous",
+   "summary": "We now treat several continuous random variables together. The key ideas are the joint density, the change-of-variables formula in several dimensions (the Jacobian), and the resulting formulas for sums, ratios and order statistics. We finish with the…",
+   "wordCount": 2718,
+   "readingTimeMin": 14,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "8.1",
+     "title": "Joint densities"
+    },
+    {
+     "id": "8.2",
+     "title": "Sums and convolution"
+    },
+    {
+     "id": "8.3",
+     "title": "Change of variables in several dimensions"
+    },
+    {
+     "id": "8.4",
+     "title": "Order statistics"
+    },
+    {
+     "id": "8.5",
+     "title": "The multivariate normal distribution"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 9,
+   "label": "9",
+   "slug": "09-moments-and-transforms",
+   "title": "Moments and Transforms",
+   "tag": "Continuous",
+   "summary": "A distribution can be encoded in a function whose algebra matches the algebra of sums of independent variables. Three such encodings are used throughout probability: the moment generating function, the probability generating function (for integer-valued…",
+   "wordCount": 2392,
+   "readingTimeMin": 12,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "9.1",
+     "title": "Moments"
+    },
+    {
+     "id": "9.2",
+     "title": "The moment generating function"
+    },
+    {
+     "id": "9.3",
+     "title": "Probability generating functions"
+    },
+    {
+     "id": "9.4",
+     "title": "Characteristic functions"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 10,
+   "label": "10",
+   "slug": "10-conditional-expectation-and-inequalities",
+   "title": "Conditional Expectation and Inequalities",
+   "tag": "Limits",
+   "summary": "Conditioning is the central operation of probability: it is how information changes our estimates. This chapter extends conditional probability to random variables, proves the tower property and the law of total variance, shows that conditional expectation…",
+   "wordCount": 3131,
+   "readingTimeMin": 16,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "10.1",
+     "title": "Conditional distributions and expectation: the discrete case"
+    },
+    {
+     "id": "10.2",
+     "title": "The continuous case"
+    },
+    {
+     "id": "10.3",
+     "title": "First-step analysis"
+    },
+    {
+     "id": "10.4",
+     "title": "Basic inequalities"
+    },
+    {
+     "id": "10.5",
+     "title": "Exponential bounds: Chernoff and Hoeffding"
+    },
+    {
+     "id": "10.6",
+     "title": "Symmetry and exchangeability"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 11,
+   "label": "11",
+   "slug": "11-limit-theorems",
+   "title": "Limit Theorems",
+   "tag": "Limits",
+   "summary": "Probability is most useful when many random contributions are combined. Two facts then emerge: averages settle down to a constant (the law of large numbers), and the fluctuations around that constant take a universal bell shape (the central limit theorem).…",
+   "wordCount": 3434,
+   "readingTimeMin": 17,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "11.1",
+     "title": "Modes of convergence"
+    },
+    {
+     "id": "11.2",
+     "title": "The Borel–Cantelli lemmas"
+    },
+    {
+     "id": "11.3",
+     "title": "Laws of large numbers"
+    },
+    {
+     "id": "11.4",
+     "title": "The central limit theorem"
+    },
+    {
+     "id": "11.5",
+     "title": "Slutsky’s theorem and the delta method"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 12,
+   "label": "12",
+   "slug": "12-random-walks-and-markov-chains",
+   "title": "Random Walks and Markov Chains",
+   "tag": "Processes",
+   "summary": "Many random systems evolve step by step, with the next step depending only on the present state. This chapter starts with the simplest example, the random walk, and solves the gambler’s ruin problem completely. It then develops the general theory of Markov…",
+   "wordCount": 3557,
+   "readingTimeMin": 18,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "12.1",
+     "title": "The simple random walk"
+    },
+    {
+     "id": "12.2",
+     "title": "Markov chains"
+    },
+    {
+     "id": "12.3",
+     "title": "Stationary distributions and convergence"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 13,
+   "label": "13",
+   "slug": "13-the-poisson-process",
+   "title": "The Poisson Process",
+   "tag": "Processes",
+   "summary": "The Poisson process models events that occur at random moments in continuous time: customer arrivals, radioactive decays, insurance claims, packets at a router. It combines two earlier ideas, the Poisson distribution (counts) and the exponential…",
+   "wordCount": 2131,
+   "readingTimeMin": 11,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "13.1",
+     "title": "Definition and equivalent descriptions"
+    },
+    {
+     "id": "13.2",
+     "title": "Arrival times are uniform given the count"
+    },
+    {
+     "id": "13.3",
+     "title": "Superposition and thinning"
+    },
+    {
+     "id": "13.4",
+     "title": "The inspection paradox"
+    },
+    {
+     "id": "13.5",
+     "title": "Related processes"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 14,
+   "label": "14",
+   "slug": "14-martingales-and-optimal-stopping",
+   "title": "Martingales and Optimal Stopping",
+   "tag": "Processes",
+   "summary": "A martingale is the mathematical model of a fair game: whatever has happened so far, the expected future fortune equals the present fortune. The concept is simple, but it is one of the most powerful tools in probability. It gives short solutions to…",
+   "wordCount": 3746,
+   "readingTimeMin": 19,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "14.1",
+     "title": "Martingales"
+    },
+    {
+     "id": "14.2",
+     "title": "Stopping times and the optional stopping theorem"
+    },
+    {
+     "id": "14.3",
+     "title": "Maximal and concentration inequalities"
+    },
+    {
+     "id": "14.4",
+     "title": "Convergence of martingales"
+    },
+    {
+     "id": "14.5",
+     "title": "Optimal stopping"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 15,
+   "label": "15",
+   "slug": "15-measure-theoretic-foundations",
+   "title": "Measure-Theoretic Foundations",
+   "tag": "Foundations",
+   "summary": "Up to now we have used probability spaces $(\\Omega,\\F,\\Prob)$, random variables, expectations and conditional expectations, and we have occasionally deferred a technical point to this chapter. Here we collect and prove those points: why $\\sigma$-algebras…",
+   "wordCount": 5521,
+   "readingTimeMin": 28,
+   "sectionCount": 9,
+   "sections": [
+    {
+     "id": "15.1",
+     "title": "$\\sigma$-algebras and measurable functions"
+    },
+    {
+     "id": "15.2",
+     "title": "Measures, the $\\pi$–$\\lambda$ theorem, and the Vitali set"
+    },
+    {
+     "id": "15.3",
+     "title": "The Lebesgue integral and expectation"
+    },
+    {
+     "id": "15.4",
+     "title": "Independence and the zero–one law"
+    },
+    {
+     "id": "15.5",
+     "title": "Absolutely continuous laws, Radon–Nikodym and the structure of distributions"
+    },
+    {
+     "id": "15.6",
+     "title": "Characteristic functions: inversion, uniqueness, continuity"
+    },
+    {
+     "id": "15.7",
+     "title": "Conditional expectation, rigorously"
+    },
+    {
+     "id": "15.8",
+     "title": "Summary of the foundations"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 16,
+   "label": "16",
+   "slug": "16-brownian-motion-and-stochastic-calculus",
+   "title": "Brownian Motion and Stochastic Calculus",
+   "tag": "Applications",
+   "summary": "Brownian motion is the continuous-time, continuous-space limit of the simple random walk of Chapter 12, and the basic building block of continuous-time models. In this chapter we construct it as a scaling limit, derive its key properties, and build the…",
+   "wordCount": 2475,
+   "readingTimeMin": 12,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "16.1",
+     "title": "From random walks to Brownian motion"
+    },
+    {
+     "id": "16.2",
+     "title": "Path properties"
+    },
+    {
+     "id": "16.3",
+     "title": "The reflection principle and hitting times"
+    },
+    {
+     "id": "16.4",
+     "title": "The It^o integral"
+    },
+    {
+     "id": "16.5",
+     "title": "It^o’s lemma"
+    },
+    {
+     "id": "16.6",
+     "title": "Black–Scholes: pricing by a no-arbitrage argument"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 17,
+   "label": "17",
+   "slug": "17-simulation-and-monte-carlo-methods",
+   "title": "Simulation and Monte Carlo Methods",
+   "tag": "Applications",
+   "summary": "Simulation turns probability theory into an experimental tool. Given a source of independent uniform random variables (Theorem 15.22), we can generate any distribution, estimate expectations, and measure the error of the estimate. This chapter shows the…",
+   "wordCount": 1560,
+   "readingTimeMin": 8,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "17.1",
+     "title": "Generating random variables"
+    },
+    {
+     "id": "17.2",
+     "title": "Monte Carlo estimation"
+    },
+    {
+     "id": "17.3",
+     "title": "Variance reduction"
+    },
+    {
+     "id": "17.4",
+     "title": "Markov chain Monte Carlo"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 18,
+   "label": "18",
+   "slug": "18-bridges-statistics-and-information-theory",
+   "title": "Bridges: Statistics and Information Theory",
+   "tag": "Applications",
+   "summary": "Probability theory is the foundation of two large neighbouring fields. Statistics runs the logic backwards: given data, infer the law. Information theory measures uncertainty and compresses it. This chapter derives the core concepts from the tools already…",
+   "wordCount": 2009,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "18.1",
+     "title": "Estimation"
+    },
+    {
+     "id": "18.2",
+     "title": "Sufficiency"
+    },
+    {
+     "id": "18.3",
+     "title": "Bayesian inference"
+    },
+    {
+     "id": "18.4",
+     "title": "Entropy and information"
+    },
+    {
+     "id": "18.5",
+     "title": "Heavy tails and copulas"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "probability",
+   "num": 19,
+   "label": "19",
+   "slug": "19-problem-solving-patterns-and-classical-paradoxes",
+   "title": "Problem-Solving Patterns and Classical Paradoxes",
+   "tag": "Applications",
+   "summary": "This closing chapter collects the recurring techniques for solving probability problems and the famous paradoxes that test them. Each paradox is resolved by identifying exactly which assumption was mishandled, which is the most reliable way to build intuition.",
+   "wordCount": 1749,
+   "readingTimeMin": 9,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "19.1",
+     "title": "A toolkit of patterns"
+    },
+    {
+     "id": "19.2",
+     "title": "Classical paradoxes"
+    },
+    {
+     "id": "19.3",
+     "title": "Practice list for interviews"
+    },
+    {
+     "id": "",
+     "title": "Exercises"
+    }
+   ]
+  }
+ ],
+ "figureCount": 0
+}

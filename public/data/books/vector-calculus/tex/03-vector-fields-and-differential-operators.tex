@@ -1,0 +1,406 @@
+\chapter{Vector Fields and Differential Operators}
+\label{ch:fields}
+
+A \emph{vector field} assigns a vector to every point of a region. Wind velocity, water flow, gravity and the electric field are all vector fields. In this chapter we learn to describe how a vector field \emph{spreads out} (divergence) and how it \emph{rotates} (curl), and we prove the identities that connect these operators with the gradient.
+
+%====================================================================
+\section{Vector fields}
+%====================================================================
+
+\begin{definition}[Vector field]
+A \emph{vector field} on a set $U\subseteq\R^n$ is a map $\vec F:U\to\R^n$. In $\R^3$ we write $\vec F=(F_1,F_2,F_3)=(P,Q,R)$, where each component is a scalar function of $(x,y,z)$.
+\end{definition}
+
+We draw a field by placing, at many points, an arrow in the direction of $\vec F$ with length proportional to $\norm{\vec F}$.
+
+\begin{figure}[ht]
+\centering
+\newcommand{\fieldplot}[2]{%
+\begin{tikzpicture}[scale=0.95]
+  \foreach \x in {-1.5,-1,...,1.5}{
+    \foreach \y in {-1.5,-1,...,1.5}{
+      \pgfmathsetmacro{\fx}{#1}
+      \pgfmathsetmacro{\fy}{#2}
+      \draw[fieldarrow] (\x,\y)--++({0.26*\fx},{0.26*\fy});
+    }
+  }
+\end{tikzpicture}}
+\begin{minipage}{0.24\textwidth}\centering
+\fieldplot{\x}{\y}\\[-2pt]{\small $\vec F=(x,y)$\\radial (source)}
+\end{minipage}
+\begin{minipage}{0.24\textwidth}\centering
+\fieldplot{-\y}{\x}\\[-2pt]{\small $\vec F=(-y,x)$\\rotation (vortex)}
+\end{minipage}
+\begin{minipage}{0.24\textwidth}\centering
+\fieldplot{\x}{-\y}\\[-2pt]{\small $\vec F=(x,-y)$\\saddle flow}
+\end{minipage}
+\begin{minipage}{0.24\textwidth}\centering
+\fieldplot{\y}{0}\\[-2pt]{\small $\vec F=(y,0)$\\shear}
+\end{minipage}
+\caption{Four basic planar vector fields. The radial field has divergence $2$ and curl $0$. The rotation field has divergence $0$ and curl $2\khat$. The saddle flow has divergence $0$ and curl $0$. The shear has divergence $0$ and curl $-\khat$.}
+\label{fig:fields}
+\end{figure}
+
+A \emph{flow line} (or integral curve) of $\vec F$ is a curve $\vec r(t)$ with $\vec r\,'(t)=\vec F(\vec r(t))$: a particle that moves with the field. For $\vec F=(-y,x)$ the flow lines are circles, because $\vec r=(\cos t,\sin t)$ satisfies $\vec r\,'=(-\sin t,\cos t)=(-y,x)$.
+
+\begin{example}[Important fields]
+These fields appear again and again:
+\begin{itemize}
+  \item \emph{Gradient field:} $\vec F=\nabla f$, for example $\nabla(\tfrac12\norm{\vec r}^2)=\vec r$.
+  \item \emph{Position field:} $\vec F(\vec r)=\vec r=(x,y,z)$.
+  \item \emph{Rigid rotation:} $\vec F(\vec r)=\vec\omega\times\vec r$ (velocity of a body that rotates with angular velocity $\vec\omega$).
+  \item \emph{Inverse-square field:} $\vec F(\vec r)=\vec r/\norm{\vec r}^3=\rhat/r^2$ (gravity or the electric field of a point charge).
+\end{itemize}
+\end{example}
+
+%====================================================================
+\section{Divergence}
+%====================================================================
+
+\begin{definition}[Divergence]
+For a differentiable vector field $\vec F=(F_1,F_2,F_3)$ the \emph{divergence} is the scalar function
+\[
+\divg\vec F=\pd{F_1}x+\pd{F_2}y+\pd{F_3}z .
+\]
+\end{definition}
+
+The symbol $\nabla=(\partial_x,\partial_y,\partial_z)$ is a ``vector of operators'', and $\divg\vec F$ is read as the formal dot product $\nabla\cdot\vec F$. Divergence has a clear physical meaning, which we now prove.
+
+\begin{theorem}[Divergence = flux per unit volume]\label{thm:divmeaning}
+Let $\vec F$ be $C^1$ near $\vec a$. Let $Q_\eps$ be the cube of side $\eps$ centred at $\vec a$, with faces parallel to the coordinate planes, and let $\Phi_\eps$ be the outward flux of $\vec F$ through the boundary of $Q_\eps$ (the integral over the six faces of $\vec F\cdot\hat{\vec n}$, with $\hat{\vec n}$ the outward unit normal). Then
+\[
+\divg\vec F(\vec a)=\lim_{\eps\to0}\frac{\Phi_\eps}{\eps^3}.
+\]
+\end{theorem}
+
+\begin{proof}
+Write $\vec a=(a_1,a_2,a_3)$ and $h=\eps/2$. The two faces perpendicular to the $x$-axis are at $x=a_1\pm h$ with outward normals $\pm\ihat$. Their combined flux is
+\[
+\int_{a_2-h}^{a_2+h}\!\int_{a_3-h}^{a_3+h}\Bigl[F_1(a_1+h,y,z)-F_1(a_1-h,y,z)\Bigr]\dd z\,\dd y .
+\]
+By the mean value theorem, the bracket equals $2h\,\partial_xF_1(\xi,y,z)=\eps\,\partial_xF_1(\xi,y,z)$ for some $\xi=\xi(y,z)\in(a_1-h,a_1+h)$. Since $\partial_xF_1$ is continuous at $\vec a$, for every $\delta>0$ and small enough $\eps$ we have $\abs{\partial_xF_1(\xi,y,z)-\partial_xF_1(\vec a)}<\delta$ on the face. Hence this flux equals $\eps\cdot\eps^2\bigl(\partial_xF_1(\vec a)+\text{error}\bigr)$ with $\abs{\text{error}}<\delta$. The same argument works for the faces perpendicular to $y$ and $z$. Adding the three pairs,
+\[
+\Phi_\eps=\eps^3\bigl(\partial_xF_1+\partial_yF_2+\partial_zF_3\bigr)(\vec a)+\eps^3\cdot(\text{error}\to0),
+\]
+and dividing by $\eps^3$ gives the claim.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.5]
+  \filldraw[fill=accent!10,draw=accent,thick] (-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle;
+  % flux arrows through left and right faces
+  \foreach \y in {-0.6,0,0.6}{
+    \draw[vecstyle,accent2] (-1.0,\y)--++(0.55,0);
+    \draw[vecstyle,accent2] (1.0,\y)--++(0.95,0);
+  }
+  \foreach \x in {-0.6,0,0.6}{
+    \draw[vecstyle,accent3,opacity=0.0] (\x,-1)--++(0,-0.3);
+  }
+  \node[font=\small,accent2] at (-1.45,1.25) {small inflow};
+  \node[font=\small,accent2] at (1.95,1.25) {large outflow};
+  \node[accent] at (0,0) {$\Phi_\eps>0$};
+  \draw[<->,mid] (-1,-1.35)--(1,-1.35) node[midway,below]{$\eps$};
+\end{tikzpicture}
+\caption{A small box in a field that grows in the $x$-direction. More flux leaves through the right face than enters through the left face, so the net outflow is positive: the divergence is positive.}
+\label{fig:divbox}
+\end{figure}
+
+\begin{intuition}
+Think of $\vec F$ as the velocity of a fluid. Then $\divg\vec F$ is the rate at which fluid is created (a \emph{source}) per unit volume at that point. If $\divg\vec F>0$ the point is a source, if $\divg\vec F<0$ it is a sink, and if $\divg\vec F=0$ the fluid is \emph{incompressible} there: whatever flows into a tiny box also flows out.
+\end{intuition}
+
+\begin{example}
+Three computations of divergence:
+\begin{enumerate}[label=(\alph*)]
+  \item $\vec F=\vec r=(x,y,z)$: $\divg\vec F=1+1+1=3$.
+  \item $\vec F=\vec\omega\times\vec r$ with $\vec\omega=(0,0,\omega)$, so $\vec F=\omega(-y,x,0)$: $\divg\vec F=0+0+0=0$.
+  \item The inverse-square field $\vec F=\vec r/r^3$, $r=\norm{\vec r}$, for $\vec r\ne\vec 0$. Using $\partial_xr=x/r$, $\partial_x(x\,r^{-3})=r^{-3}-3x^2r^{-5}$, and similarly for $y,z$. Summing, $\divg\vec F=3r^{-3}-3(x^2+y^2+z^2)r^{-5}=3r^{-3}-3r^{-3}=0$.
+\end{enumerate}
+The last example is important: away from the origin the inverse-square field has no sources. All the ``source'' sits at the origin (Chapter~\ref{ch:physics}).
+\end{example}
+
+%====================================================================
+\section{Curl}
+%====================================================================
+
+\begin{definition}[Curl]
+For a differentiable field $\vec F=(F_1,F_2,F_3)$ the \emph{curl} is the vector field
+\[
+\curl\vec F=\det\begin{pmatrix}\ihat&\jhat&\khat\\\partial_x&\partial_y&\partial_z\\F_1&F_2&F_3\end{pmatrix}
+=\Bigl(\pd{F_3}y-\pd{F_2}z,\ \pd{F_1}z-\pd{F_3}x,\ \pd{F_2}x-\pd{F_1}y\Bigr).
+\]
+\end{definition}
+
+For a planar field $\vec F=(P,Q)$ (with no $z$-dependence and $F_3=0$) only the third component remains: $\curl\vec F=(Q_x-P_y)\,\khat$.
+
+\begin{theorem}[Curl = circulation per unit area]\label{thm:curlmeaning}
+Let $\vec F=(P,Q)$ be a $C^1$ planar field, and let $S_\eps$ be the square of side $\eps$ centred at $\vec a=(a,b)$ with sides parallel to the axes. Let $\Gamma_\eps=\oint_{\partial S_\eps}\vec F\cdot\dd\vec r$ be the circulation of $\vec F$ around $\partial S_\eps$, counterclockwise. Then
+\[
+\pd Qx(\vec a)-\pd Py(\vec a)=\lim_{\eps\to0}\frac{\Gamma_\eps}{\eps^2}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $h=\eps/2$. Going counterclockwise: along the bottom side ($y=b-h$) the direction is $+\ihat$, along the right side ($x=a+h$) it is $+\jhat$, along the top ($y=b+h$) it is $-\ihat$, and along the left side ($x=a-h$) it is $-\jhat$. So
+\[
+\Gamma_\eps=\int_{a-h}^{a+h}\!\bigl[P(x,b-h)-P(x,b+h)\bigr]\dd x+\int_{b-h}^{b+h}\!\bigl[Q(a+h,y)-Q(a-h,y)\bigr]\dd y .
+\]
+By the mean value theorem, $P(x,b-h)-P(x,b+h)=-\eps\,P_y(x,\eta(x))$ and $Q(a+h,y)-Q(a-h,y)=\eps\,Q_x(\xi(y),y)$. Both $P_y$ and $Q_x$ are continuous at $\vec a$, so each integral equals $\eps\cdot\eps\,(\mp P_y(\vec a)\text{ resp. }Q_x(\vec a))+o(\eps^2)$. Thus $\Gamma_\eps=\eps^2(Q_x-P_y)(\vec a)+o(\eps^2)$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.5]
+  \filldraw[fill=accent!10,draw=accent,thick] (-1,-1)--(1,-1)--(1,1)--(-1,1)--cycle;
+  % bottom arrow short, top arrow long (opposite direction)
+  \draw[vecstyle,accent2] (-0.5,-1)--++(0.7,0);
+  \draw[vecstyle,accent2] (0.5,1)--++(-1.2,0);
+  \draw[vecstyle,accent2] (1,-0.5)--++(0,0.7);
+  \draw[vecstyle,accent2] (-1,0.5)--++(0,-1.2);
+  \draw[-{Stealth[length=3mm]},very thick,accent3] (0.45,-0.1) arc (0:300:0.45);
+  \node[accent3,font=\small] at (0,0) {$\curl$};
+  \node[font=\small,accent2] at (0,1.25) {strong};
+  \node[font=\small,accent2] at (0,-1.25) {weak};
+\end{tikzpicture}
+\caption{Circulation around a small square. Counterclockwise flow along the top is not cancelled by the weaker clockwise flow along the bottom, so the net circulation is positive: a small paddle wheel placed here would spin counterclockwise.}
+\label{fig:curlbox}
+\end{figure}
+
+\begin{intuition}
+Imagine a tiny paddle wheel placed in a flowing fluid. Its axis points along $\curl\vec F$, it spins at angular speed $\tfrac12\norm{\curl\vec F}$ (see the next theorem), and the direction of rotation is given by the right-hand rule. If the curl is $\vec0$ the field is called \emph{irrotational}.
+\end{intuition}
+
+\begin{theorem}[Curl of a rigid rotation]\label{thm:rigid}
+For a constant vector $\vec\omega$ and $\vec F(\vec r)=\vec\omega\times\vec r$, we have $\curl\vec F=2\vec\omega$ and $\divg\vec F=0$.
+\end{theorem}
+
+The proof is short using index notation, which we introduce next. So the curl of the velocity field of a rotating body is twice its angular velocity; this is the exact meaning of ``curl measures local rotation''.
+
+\begin{example}
+Three computations of curl:
+\begin{enumerate}[label=(\alph*)]
+  \item $\vec F=\vec r$: $\curl\vec F=\vec 0$ (each component $\partial_yz-\partial_zy=0$).
+  \item $\vec F=(-y,x,0)$: $\curl\vec F=(0,0,\partial_x x-\partial_y(-y))=(0,0,2)$.
+  \item The field $\vec G=\dfrac{(-y,x)}{x^2+y^2}$ on $\R^2\setminus\{0\}$. With $P=-y/\rho^2$, $Q=x/\rho^2$, $\rho^2=x^2+y^2$: $Q_x=(y^2-x^2)/\rho^4$ and $P_y=-(x^2-y^2)/\rho^4=(y^2-x^2)/\rho^4$. So $\curl\vec G=\vec 0$ everywhere it is defined. We will see in Chapter~\ref{ch:linesurface} that $\vec G$ is nevertheless \emph{not} a gradient. This is the standard example of the role of topology.
+\end{enumerate}
+\end{example}
+
+%====================================================================
+\section{The Laplacian}
+%====================================================================
+
+\begin{definition}[Laplacian]
+For a $C^2$ scalar function $f$, the \emph{Laplacian} is
+\[
+\lap f=\divg(\nabla f)=\pdd fx+\pdd fy+\pdd fz .
+\]
+For a vector field, $\lap\vec F$ means the Laplacian of each component. A function with $\lap f=0$ is called \emph{harmonic}.
+\end{definition}
+
+\begin{theorem}[Meaning of the Laplacian]\label{thm:laplacemeaning}
+Let $f$ be $C^2$ near $\vec a\in\R^n$ and let $M_\eps$ denote the average value of $f$ over the sphere of radius $\eps$ centred at $\vec a$. Then
+\[
+M_\eps=f(\vec a)+\frac{\eps^2}{2n}\,\lap f(\vec a)+o(\eps^2).
+\]
+\end{theorem}
+
+\begin{proof}
+By Taylor's theorem (Theorem~\ref{thm:taylor}), for $\norm{\vec h}=\eps$,
+\[
+f(\vec a+\vec h)=f(\vec a)+\nabla f(\vec a)\cdot\vec h+\tfrac12\vec h^{\mathsf T}\Hess f(\vec a)\vec h+o(\eps^2).
+\]
+Average over the sphere. The average of $\vec h$ is $\vec0$ by symmetry ($\vec h\to-\vec h$). For the quadratic term we need the averages of $h_ih_j$: by the symmetry $h_i\to-h_i$, the average of $h_ih_j$ is $0$ for $i\ne j$; by the symmetry that exchanges coordinates, all $\langle h_i^2\rangle$ are equal; and $\sum_i\langle h_i^2\rangle=\langle\norm{\vec h}^2\rangle=\eps^2$, so $\langle h_i^2\rangle=\eps^2/n$. Hence the average of the quadratic term is $\tfrac12\sum_if_{x_ix_i}\,\eps^2/n=\frac{\eps^2}{2n}\lap f(\vec a)$.
+\end{proof}
+
+\begin{intuition}
+The Laplacian compares the value of $f$ at a point with the average of its neighbours. If $\lap f>0$, $f$ at the point is \emph{below} the neighbourhood average (like the bottom of a bowl). If $\lap f<0$, it is above (a hill top). If $\lap f=0$, the value equals the average: the mean value property of harmonic functions. This is why heat flows towards lower neighbour-averages and why $\lap$ appears in the heat and wave equations (Chapter~\ref{ch:physics}).
+\end{intuition}
+
+\begin{example}
+Three harmonic-function computations:
+\begin{itemize}
+  \item $f=x^2+y^2+z^2=r^2$: $\lap f=6$.
+  \item $f=1/r$ in $\R^3$ (for $r\ne0$): $\partial_x(r^{-1})=-x\,r^{-3}$, $\partial_x^2(r^{-1})=-r^{-3}+3x^2r^{-5}$. Summing over $x,y,z$: $\lap(1/r)=-3r^{-3}+3r^{-3}=0$. So $1/r$ is harmonic away from the origin. (It is the potential of the inverse-square field: $\nabla(1/r)=-\vec r/r^3$.)
+  \item $f=\ln\sqrt{x^2+y^2}$ in $\R^2$ is harmonic away from the origin; check: with $\rho^2=x^2+y^2$ we have $f_x=x/\rho^2$ and $f_{xx}=(y^2-x^2)/\rho^4$, $f_{yy}=(x^2-y^2)/\rho^4$, which sum to $0$.
+\end{itemize}
+\end{example}
+
+%====================================================================
+\section{Index notation and a toolbox of identities}
+%====================================================================
+
+Vector identities can be proved by writing everything in components. To avoid long expansions we use two symbols.
+
+\begin{definition}[Kronecker delta and Levi-Civita symbol]
+$\delta_{ij}=1$ if $i=j$ and $0$ otherwise. The \emph{Levi-Civita symbol} $\eps_{ijk}$ ($i,j,k\in\{1,2,3\}$) is $+1$ if $(i,j,k)$ is an even permutation of $(1,2,3)$ (that is $123$, $231$, $312$), $-1$ if it is odd ($132$, $213$, $321$), and $0$ if two indices are equal.
+\end{definition}
+
+We use the \emph{summation convention}: a repeated index is summed over $1,2,3$. For example, $a_ib_i=\vec a\cdot\vec b$ and $\partial_iF_i=\divg\vec F$ (where $\partial_i=\partial/\partial x_i$). Directly from the definitions,
+\[
+(\vec a\times\vec b)_i=\eps_{ijk}a_jb_k,\qquad(\curl\vec F)_i=\eps_{ijk}\,\partial_jF_k,\qquad\vec a\cdot(\vec b\times\vec c)=\eps_{ijk}a_ib_jc_k .
+\]
+The Levi-Civita symbol is \emph{antisymmetric}: swapping two indices changes the sign, and it is invariant under cyclic permutation, $\eps_{ijk}=\eps_{jki}=\eps_{kij}$.
+
+\begin{lemma}[The $\eps\eps$ identity]\label{lem:epseps}
+$\eps_{kij}\,\eps_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$ (sum over $k$).
+\end{lemma}
+
+\begin{proof}
+For fixed $i,j,l,m$ the sum over $k$ has at most one non-zero term, since $k$ must differ from $i$ and $j$ (for $\eps_{kij}\ne0$ we need $i\ne j$ and then $k$ is the third index). So the left side is $0$ unless $i\ne j$, and similarly unless $l\ne m$; and it needs $\{l,m\}=\{i,j\}$ for the same $k$. If $(l,m)=(i,j)$ both symbols are equal, the product is $+1$, and the right side is $\delta_{ii}\delta_{jj}-\delta_{ij}\delta_{ji}=1-0=1$. If $(l,m)=(j,i)$, the second symbol is $\eps_{kji}=-\eps_{kij}$, the product is $-1$, and the right side is $\delta_{ij}\delta_{ji}-\delta_{ii}\delta_{jj}=-1$. In all other cases both sides are $0$.
+\end{proof}
+
+\begin{theorem}[Fundamental identities]\label{thm:identities}
+For $C^2$ scalar fields $f,g$ and $C^2$ vector fields $\vec F,\vec G$:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\curl(\nabla f)=\vec 0$.
+  \item $\divg(\curl\vec F)=0$.
+  \item $\nabla(fg)=f\nabla g+g\nabla f$.
+  \item $\divg(f\vec F)=\nabla f\cdot\vec F+f\,\divg\vec F$.
+  \item $\curl(f\vec F)=\nabla f\times\vec F+f\,\curl\vec F$.
+  \item $\divg(\vec F\times\vec G)=\vec G\cdot(\curl\vec F)-\vec F\cdot(\curl\vec G)$.
+  \item $\curl(\curl\vec F)=\nabla(\divg\vec F)-\lap\vec F$.
+  \item $\lap(fg)=f\lap g+2\nabla f\cdot\nabla g+g\lap f$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $[\curl\nabla f]_i=\eps_{ijk}\partial_j\partial_kf$. The symbol $\eps_{ijk}$ is antisymmetric in $(j,k)$, while $\partial_j\partial_kf$ is symmetric in $(j,k)$ by Clairaut's theorem (Theorem~\ref{thm:clairaut}). A sum of an antisymmetric quantity times a symmetric one is $0$: indeed $S=\eps_{ijk}s_{jk}=\eps_{ikj}s_{kj}=-\eps_{ijk}s_{jk}=-S$ (rename the dummy indices $j\leftrightarrow k$), so $S=0$.
+
+(2) $\divg\curl\vec F=\partial_i(\eps_{ijk}\partial_jF_k)=\eps_{ijk}\partial_i\partial_jF_k=0$, because $\eps_{ijk}$ is antisymmetric in $(i,j)$ and $\partial_i\partial_j$ is symmetric.
+
+(3) This is the one-variable product rule applied to each component.
+
+(4) $\partial_i(fF_i)=(\partial_if)F_i+f\,\partial_iF_i$.
+
+(5) $[\curl(f\vec F)]_i=\eps_{ijk}\partial_j(fF_k)=\eps_{ijk}(\partial_jf)F_k+f\,\eps_{ijk}\partial_jF_k=[\nabla f\times\vec F]_i+f[\curl\vec F]_i$.
+
+(6) $\divg(\vec F\times\vec G)=\partial_i(\eps_{ijk}F_jG_k)=\eps_{ijk}(\partial_iF_j)G_k+\eps_{ijk}F_j(\partial_iG_k)$. In the first term $\eps_{ijk}=\eps_{kij}$, so it equals $G_k\,\eps_{kij}\partial_iF_j=\vec G\cdot\curl\vec F$. In the second term $\eps_{ijk}=-\eps_{jik}$, so it equals $-F_j\,\eps_{jik}\partial_iG_k=-\vec F\cdot\curl\vec G$.
+
+(7) Using $\eps_{ijk}=\eps_{kij}$ and Lemma~\ref{lem:epseps},
+\begin{align*}
+[\curl\curl\vec F]_i&=\eps_{ijk}\partial_j(\eps_{klm}\partial_lF_m)=\eps_{kij}\eps_{klm}\,\partial_j\partial_lF_m\\
+&=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})\partial_j\partial_lF_m=\partial_j\partial_iF_j-\partial_j\partial_jF_i\\
+&=\partial_i(\partial_jF_j)-\lap F_i=[\nabla(\divg\vec F)]_i-[\lap\vec F]_i .
+\end{align*}
+
+(8) $\lap(fg)=\partial_i\partial_i(fg)=\partial_i(g\,\partial_if+f\,\partial_ig)=g\lap f+2\,\partial_if\,\partial_ig+f\lap g$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:rigid} (curl of a rigid rotation)]
+Here $F_k=\eps_{klm}\omega_lx_m$ and $\partial_jx_m=\delta_{jm}$. So
+\begin{align*}
+[\curl\vec F]_i&=\eps_{ijk}\partial_j(\eps_{klm}\omega_lx_m)=\eps_{kij}\eps_{klm}\,\omega_l\,\delta_{jm}\\
+&=(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})\,\omega_l\,\delta_{jm}=\omega_i\,\delta_{jj}-\omega_i=3\omega_i-\omega_i=2\omega_i .
+\end{align*}
+Also $\divg\vec F=\partial_k(\eps_{klm}\omega_lx_m)=\eps_{klm}\omega_l\,\delta_{km}=\eps_{kl k}\omega_l=0$.
+\end{proof}
+
+\begin{pitfall}
+$\nabla$ behaves like a vector only partly. It does \emph{not} commute: $\nabla\cdot\vec F\ne\vec F\cdot\nabla$ ($\divg\vec F$ is a scalar, while $\vec F\cdot\nabla$ is an operator). Also $\nabla\times\nabla f=\vec0$ is not ``because a vector crossed with itself is zero''; it is true because mixed partials commute. The identity can fail if $f$ is not $C^2$.
+\end{pitfall}
+
+%====================================================================
+\section{Irrotational and conservative fields; the Poincar\'e lemma}
+%====================================================================
+
+By identity~(1), every gradient field has zero curl. Is the converse true? Locally, yes.
+
+\begin{definition}
+A field $\vec F$ is \emph{conservative} if $\vec F=\nabla f$ for some scalar function $f$ (the \emph{potential}; by convention in physics the potential energy is $-f$). It is \emph{irrotational} if $\curl\vec F=\vec 0$. A set $U\subseteq\R^3$ is \emph{star-shaped} with respect to $\vec 0$ if for every $\vec x\in U$ the whole segment from $\vec 0$ to $\vec x$ lies in $U$ (balls and boxes are star-shaped).
+\end{definition}
+
+\begin{theorem}[Poincar\'e lemma for curl]\label{thm:poincare}
+Let $U\subseteq\R^3$ be open and star-shaped with respect to $\vec 0$, and let $\vec F$ be $C^1$ on $U$ with $\curl\vec F=\vec 0$. Then $\vec F=\nabla f$, where
+\[
+f(\vec x)=\int_0^1\vec F(t\vec x)\cdot\vec x\,\dd t .
+\]
+\end{theorem}
+
+\begin{proof}
+The function $f$ is well defined because $t\vec x\in U$ for $t\in[0,1]$. Since $\vec F$ is $C^1$, we may differentiate under the integral sign (justified in Chapter~\ref{ch:multint}, Theorem~\ref{thm:leibniz}). With $f(\vec x)=\int_0^1F_i(t\vec x)\,x_i\,\dd t$,
+\[
+\partial_jf=\int_0^1\Bigl[F_j(t\vec x)+t\,x_i\,(\partial_jF_i)(t\vec x)\Bigr]\dd t .
+\]
+The condition $\curl\vec F=\vec 0$ means $\partial_jF_i=\partial_iF_j$ for all $i,j$. Therefore
+\[
+\partial_jf=\int_0^1\Bigl[F_j(t\vec x)+t\,x_i\,(\partial_iF_j)(t\vec x)\Bigr]\dd t=\int_0^1\frac{\dd}{\dd t}\Bigl[t\,F_j(t\vec x)\Bigr]\dd t=F_j(\vec x),
+\]
+because by the chain rule $\frac{\dd}{\dd t}F_j(t\vec x)=x_i(\partial_iF_j)(t\vec x)$.
+\end{proof}
+
+\begin{intuition}
+The formula for $f$ is a line integral of $\vec F$ along the straight segment from the origin to $\vec x$. The theorem says: in a ``hole-free'' region, an irrotational field has a potential, found by integrating along any path from a base point. In a region with a hole (like the plane minus the origin) the argument breaks, because the region is not star-shaped; and indeed the field $\vec G=(-y,x)/(x^2+y^2)$ is irrotational but has no potential on $\R^2\setminus\{\vec 0\}$ (Chapter~\ref{ch:linesurface}).
+\end{intuition}
+
+\begin{example}
+Find a potential of $\vec F=(2xy+z^2,\ x^2,\ 2xz)$. First check $\curl\vec F=(0-0,\ 2z-2z,\ 2x-2x)=\vec 0$. Integrate $f_x=2xy+z^2$: $f=x^2y+xz^2+c(y,z)$. Then $f_y=x^2+c_y$ must equal $x^2$, so $c_y=0$; and $f_z=2xz+c_z$ must equal $2xz$, so $c_z=0$. Hence $f=x^2y+xz^2$ (plus a constant).
+\end{example}
+
+%====================================================================
+\section{Divergence-free fields: preview}
+%====================================================================
+
+By identity~(2), every curl is divergence-free. The converse is also true on suitable regions: if $\divg\vec F=0$ on a ball, then $\vec F=\curl\vec A$ for some \emph{vector potential} $\vec A$ (Chapter~\ref{ch:helmholtz}). On a region with a cavity this can fail: the inverse-square field $\vec r/r^3$ is divergence-free on $\R^3\setminus\{\vec 0\}$ but is not the curl of any field there, because its flux through a sphere around the origin is $4\pi\ne0$ (Chapter~\ref{ch:theorems}). The pattern is clear:
+
+\begin{center}
+\begin{tikzpicture}[
+  box/.style={draw=accent,fill=softblue,rounded corners=2pt,minimum width=26mm,minimum height=9mm,align=center,font=\small},
+  arr/.style={-{Stealth[length=2.2mm]},thick,accent2}]
+  \node[box] (f) {scalar field\\$f$};
+  \node[box,right=18mm of f] (g) {vector field\\$\nabla f$};
+  \node[box,right=18mm of g] (c) {vector field\\$\curl\vec F$};
+  \node[box,right=18mm of c] (d) {scalar field\\$\divg\vec G$};
+  \draw[arr] (f)--(g) node[midway,above,font=\scriptsize]{grad};
+  \draw[arr] (g)--(c) node[midway,above,font=\scriptsize]{curl};
+  \draw[arr] (c)--(d) node[midway,above,font=\scriptsize]{div};
+  \node[font=\scriptsize,mid,below=1mm of $(g)!0.5!(c)$] {$\curl\nabla=0$};
+  \node[font=\scriptsize,mid,below=1mm of $(c)!0.5!(d)$] {$\divg\curl=0$};
+\end{tikzpicture}
+\end{center}
+
+Each arrow followed by the next gives zero. This chain is the three-dimensional vector-calculus version of the \emph{de~Rham complex}, treated in Chapter~\ref{ch:forms}.
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item $\divg\vec F=\partial_xF_1+\partial_yF_2+\partial_zF_3$: net outflow (source strength) per unit volume.
+  \item $\curl\vec F$: local rotation. Circulation per unit area $=(\curl\vec F)\cdot\hat{\vec n}$. For a rigid rotation, $\curl(\vec\omega\times\vec r)=2\vec\omega$.
+  \item $\lap f=\divg\nabla f$: value minus neighbourhood average (up to a factor). Harmonic: $\lap f=0$.
+  \item $\curl\nabla f=\vec 0$, $\divg\curl\vec F=0$, $\curl\curl\vec F=\nabla\divg\vec F-\lap\vec F$.
+  \item Proofs by index notation: $(\vec a\times\vec b)_i=\eps_{ijk}a_jb_k$, and $\eps_{kij}\eps_{klm}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}$.
+  \item On star-shaped regions, $\curl\vec F=\vec 0$ implies $\vec F=\nabla f$. Holes can break this.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{What does the divergence tell you?} Net outflow per unit volume: positive for sources, negative for sinks, zero for incompressible flow.
+  \item \emph{What does the curl tell you?} Local rotation; direction by the right-hand rule; magnitude = twice the angular speed of a paddle wheel.
+  \item \emph{Why is $\curl\nabla f=\vec 0$?} Mixed partial derivatives commute (Clairaut). In components $\eps_{ijk}\partial_j\partial_kf=0$.
+  \item \emph{Why is $\divg\curl\vec F=0$?} The same reason: $\eps_{ijk}\partial_i\partial_jF_k=0$.
+  \item \emph{Is a curl-free field always a gradient?} On star-shaped (more generally simply connected) regions, yes. Not in general: $(-y,x)/(x^2+y^2)$ is the counterexample.
+  \item \emph{What does $\lap f=0$ mean?} The value at every point equals the average of nearby values (mean value property). Examples: $1/r$ in $\R^3$, $\ln r$ in $\R^2$.
+  \item \emph{Compute $\divg(\vec r/r^3)$.} Zero for $\vec r\ne\vec0$, since $3r^{-3}-3r^{-3}=0$.
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Compute $\divg$ and $\curl$ of $\vec F=(xy,\,yz,\,zx)$. Is it conservative?
+\end{exercise}
+\begin{exercise}
+Show that for $f(r)$ depending only on $r=\norm{\vec r}$, $\nabla f=f'(r)\,\rhat$ and $\lap f=f''+\dfrac2rf'$ in $\R^3$. Find all solutions of $\lap f=0$ of this form. (Answer: $f=A+B/r$.)
+\end{exercise}
+\begin{exercise}
+Prove $\nabla(\vec F\cdot\vec G)=(\vec F\cdot\nabla)\vec G+(\vec G\cdot\nabla)\vec F+\vec F\times(\curl\vec G)+\vec G\times(\curl\vec F)$ using index notation.
+\end{exercise}
+\begin{exercise}
+For $\vec F=\vec\omega\times\vec r$ find the flow lines. For $\vec F=(x,-y)$ find the flow lines (hint: $xy=\text{const}$).
+\end{exercise}
+\begin{exercise}
+Let $\vec F=g(r)\,\vec r$. Show $\curl\vec F=\vec 0$ and find $g$ such that $\divg\vec F=0$ for $\vec r\ne\vec0$. (Answer: $g=c/r^3$.)
+\end{exercise}
+\begin{exercise}
+Let $f$ be harmonic and $\vec F=\nabla f$. Show that $\vec F$ is both irrotational and incompressible. Why do such fields describe ideal fluid flow?
+\end{exercise}

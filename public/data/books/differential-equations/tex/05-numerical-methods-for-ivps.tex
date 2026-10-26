@@ -1,0 +1,140 @@
+\chapter{Numerical Methods for IVPs}
+
+Most real ODEs have no formula for the solution. We then compute the solution step by step on a computer. All methods in this chapter solve an IVP
+\[ y' = f(x,y), \qquad y(x_0) = y_0 . \]
+We choose a step size $h$ and compute approximations $y_n \approx y(x_n)$ at $x_n = x_0 + nh$.
+
+\section{Three standard methods}
+
+\begin{methodbox}{Euler's method}
+\[ y_{n+1} = y_n + h\,f(x_n, y_n). \]
+Follow the tangent line for one step. Simple, but not accurate. The error at one step is of order $h^2$ and the total error (global error) is of order $h$. Halving $h$ halves the error.
+\end{methodbox}
+
+\begin{methodbox}{Improved Euler (Heun's method)}
+\begin{align*}
+k_1 &= f(x_n, y_n), \\
+k_2 &= f(x_n + h,\ y_n + h\,k_1), \\
+y_{n+1} &= y_n + \tfrac{h}{2}(k_1 + k_2).
+\end{align*}
+It averages the slope at the start and the predicted slope at the end. Global error is of order $h^2$: halving $h$ cuts the error by about 4.
+\end{methodbox}
+
+\begin{methodbox}{Classical Runge--Kutta (RK4)}
+\begin{align*}
+k_1 &= f(x_n, y_n), \\
+k_2 &= f\big(x_n + \tfrac h2,\ y_n + \tfrac h2k_1\big), \\
+k_3 &= f\big(x_n + \tfrac h2,\ y_n + \tfrac h2k_2\big), \\
+k_4 &= f\big(x_n + h,\ y_n + h\,k_3\big), \\
+y_{n+1} &= y_n + \tfrac{h}{6}\big(k_1 + 2k_2 + 2k_3 + k_4\big).
+\end{align*}
+Global error is of order $h^4$: halving $h$ cuts the error by about 16. This is the standard choice for hand-written code.
+\end{methodbox}
+
+\begin{derivbox}{Where the three methods and their errors come from}
+\textbf{Euler.} Taylor expansion of the exact solution:
+\[ y(x_n + h) = y(x_n) + h\,y'(x_n) + \tfrac{h^2}{2}y''(\xi). \]
+Since $y' = f(x,y)$, dropping the last term gives $y_{n+1} = y_n + hf(x_n,y_n)$. The dropped term is the \textbf{local error}, of order $h^2$. To cover an interval of length $b-a$ we take $N = (b-a)/h$ steps, so the errors add up to about $N\cdot O(h^2) = O(h)$. This is the \textbf{global error}.
+
+\textbf{Heun.} Integrate $y' = f(x,y)$ from $x_n$ to $x_{n+1}$:
+\[ y(x_{n+1}) = y(x_n) + \int_{x_n}^{x_{n+1}}f\big(x,y(x)\big)\,\dd x . \]
+Euler uses the left-end value of the integrand (rectangle rule). The \textbf{trapezoid rule} uses both ends: $\frac h2\big(f_n + f_{n+1}\big)$. The value $f_{n+1} = f(x_{n+1}, y_{n+1})$ needs the unknown $y_{n+1}$, so we predict it with an Euler step: $y^* = y_n + hk_1$. This gives $k_2 = f(x_{n+1}, y^*)$ and $y_{n+1} = y_n + \frac h2(k_1+k_2)$. The trapezoid rule has local error $O(h^3)$, so the global error is $O(h^2)$.
+
+\textbf{RK4.} Use Simpson's rule on the same integral:
+\[ \int_{x_n}^{x_{n+1}}f\,\dd x \approx \frac h6\big(f_n + 4f_{n+1/2} + f_{n+1}\big). \]
+The midpoint slope $f_{n+1/2}$ is estimated twice ($k_2$ from an Euler half-step, $k_3$ from a corrected half-step), so $4f_{n+1/2}\approx 2k_2 + 2k_3$. The end slope $f_{n+1}$ is estimated by $k_4$. This gives $y_{n+1} = y_n + \frac h6(k_1 + 2k_2 + 2k_3 + k_4)$. Matching the Taylor series shows the local error is $O(h^5)$, so the global error is $O(h^4)$.
+\end{derivbox}
+
+\begin{examplebox}{Compare the three methods}
+Take $y' = x + y$, $y(0)=1$, $h = 0.1$. The exact solution is $y = 2e^{x} - x - 1$, so $y(0.2) = 1.2428055$.
+
+\textbf{Euler.} $y_1 = 1 + 0.1(0 + 1) = 1.1$. $y_2 = 1.1 + 0.1(0.1 + 1.1) = 1.22$.
+
+\textbf{Heun.} Step 1: $k_1 = 1$, $k_2 = f(0.1, 1.1) = 1.2$, $y_1 = 1 + 0.05(2.2) = 1.11$. Step 2: $k_1 = f(0.1, 1.11) = 1.21$, $k_2 = f(0.2, 1.231) = 1.431$, $y_2 = 1.11 + 0.05(2.641) = 1.24205$.
+
+\textbf{RK4.} Step 1: $k_1 = 1$, $k_2 = 1.1$, $k_3 = 1.105$, $k_4 = 1.2105$, so $y_1 = 1.1103417$. Step 2 gives $k_1 = 1.2103417$, $k_2 = 1.3208588$, $k_3 = 1.3263846$, $k_4 = 1.4429802$, so $y_2 = 1.2428052$.
+
+\begin{center}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Method & $y(0.2)$ & Error \\
+\midrule
+Euler & 1.22000 & $2.3\times10^{-2}$ \\
+Heun & 1.24205 & $7.6\times10^{-4}$ \\
+RK4 & 1.2428052 & $3\times10^{-7}$ \\
+Exact & 1.2428055 & --- \\
+\bottomrule
+\end{tabular}
+\end{center}
+Two steps are enough to see a large difference: RK4 costs four function evaluations per step, but it is far more accurate.
+\end{examplebox}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.78\textwidth,height=5.6cm,xlabel={$x$},ylabel={$y$},
+  xmin=0,xmax=1,ymin=0.8,ymax=3.6,grid=both,grid style={gray!20},legend pos=north west,
+  legend style={font=\small}]
+\addplot[accent,thick,domain=0:1,samples=60]{2*exp(x)-x-1};
+\addlegendentry{exact}
+\addplot[notec,thick,mark=*,mark size=2pt] coordinates {(0,1) (0.2,1.2) (0.4,1.48) (0.6,1.856) (0.8,2.3472) (1.0,2.97664)};
+\addlegendentry{Euler, $h=0.2$}
+\end{axis}
+\end{tikzpicture}
+
+{\small Figure: Euler's method with $h=0.2$ for $y'=x+y$. At $x=1$ it gives 2.977 and the exact value is 3.437. The error grows because each step follows the tangent line of a convex curve.}
+\end{center}
+
+\section{Stability and step size}
+
+Smaller $h$ gives more accuracy but more work. There is also a \textbf{stability limit}. Take $y' = -\lambda y$ with $\lambda>0$ (the exact solution decays). Euler gives $y_{n+1} = (1 - h\lambda)\,y_n$. The numbers decay only if $|1 - h\lambda| < 1$, that is
+\[ h < \frac{2}{\lambda}. \]
+
+\begin{notebox}
+For $y' = -10y$, step $h=0.3$ gives $y_{n+1} = -2y_n$. The numerical solution grows and flips sign, but the real solution decays. A system with very fast and very slow parts is called \textbf{stiff}. Stiff systems need very small steps with these methods, or special implicit methods.
+\end{notebox}
+
+\section{Higher-order ODEs and systems}
+
+The same formulas work for systems if $y$ and $f$ are vectors. For a second-order ODE, first convert it to a system (Chapter 3).
+
+\begin{examplebox}{Euler for a second-order ODE}
+$y'' + y = 0$, $y(0)=1$, $y'(0)=0$. Let $u = y$ and $v = y'$. Then $u' = v$ and $v' = -u$. With $h=0.1$, one Euler step gives
+\[ u_1 = 1 + 0.1(0) = 1, \qquad v_1 = 0 + 0.1(-1) = -0.1 . \]
+(The exact solution is $y=\cos x$, and $\cos 0.1 = 0.995$.)
+\end{examplebox}
+
+\section{A short program}
+
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\small
+\begin{verbatim}
+def rk4(f, x0, y0, h, n):
+    x, y = x0, y0
+    for _ in range(n):
+        k1 = f(x, y)
+        k2 = f(x + h/2, y + h/2*k1)
+        k3 = f(x + h/2, y + h/2*k2)
+        k4 = f(x + h,   y + h*k3)
+        y += h/6*(k1 + 2*k2 + 2*k3 + k4)
+        x += h
+    return y
+
+print(rk4(lambda x, y: x + y, 0, 1, 0.1, 2))   # about 1.242805
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Use Euler's method with $h=0.5$ to estimate $y(1)$ for $y'=y$, $y(0)=1$. Compare with $e$.
+  \item Use Euler's method with $h = 0.1$ to find $y(0.2)$ for $y' = x - y$, $y(0)=1$.
+  \item Use one Heun step with $h=0.2$ for the same problem. The exact value is $y(0.2) = 0.837462$.
+  \item What is the largest step for which Euler's method is stable for $y' = -20y$?
+  \item Write one RK4 step setup for $y'=x+y$, $y(0)=1$, $h=0.2$ (only $k_1,\dots,k_4$ are needed).
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $y_1 = 1.5$, $y_2 = 2.25$; the exact value is $e = 2.718$ (error about $0.47$). \quad (2) $y_1 = 0.9$, $y_2 = 0.9 + 0.1(0.1 - 0.9) = 0.82$. \quad (3) $k_1 = -1$, $k_2 = f(0.2, 0.8) = -0.6$, $y_1 = 1 + 0.1(-1.6) = 0.84$. \quad (4) $h < 2/20 = 0.1$. \quad (5) $k_1 = 1$, $k_2 = f(0.1, 1.1) = 1.2$, $k_3 = f(0.1, 1.12) = 1.22$, $k_4 = f(0.2, 1.244) = 1.444$, and $y_1 = 1 + \frac{0.2}{6}(1 + 2.4 + 2.44 + 1.444) = 1.2428$ (exact: $1.2428055$).
+\end{answerbox}

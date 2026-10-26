@@ -1,0 +1,208 @@
+\chapter{Linear Transformations and Their Matrices}
+
+A matrix multiplies vectors; but a matrix is also a \emph{function}. The map $\mathbf{x}\mapsto A\mathbf{x}$ rotates, stretches, projects or reflects space, and linear algebra is, at heart, the study of such maps. This chapter defines linear transformations on arbitrary vector spaces, proves that every one is represented by a matrix once bases are fixed, and shows that composition of maps corresponds to matrix multiplication. That explains why matrix multiplication is defined the way it is.
+
+\section{Linear maps}
+
+\begin{definition}[Linear transformation]
+Let $V,W$ be vector spaces over $\R$. A function $T:V\to W$ is \emph{linear} if for all $\mathbf{u},\mathbf{v}\in V$ and $c\in\R$
+\[ T(\mathbf{u}+\mathbf{v})=T\mathbf{u}+T\mathbf{v},\qquad T(c\mathbf{v})=cT\mathbf{v}. \]
+Equivalently $T(a\mathbf{u}+b\mathbf{v})=aT\mathbf{u}+bT\mathbf{v}$: $T$ respects linear combinations. A linear map $V\to V$ is a \emph{linear operator}; a linear map $V\to\R$ is a \emph{linear functional}.
+\end{definition}
+
+\begin{proposition}\label{prop:lin0}
+If $T$ is linear then $T\mathbf{0}=\mathbf{0}$, and $T(\sum c_i\mathbf{v}_i)=\sum c_iT\mathbf{v}_i$ for every finite combination.
+\end{proposition}
+
+\begin{proof}
+$T\mathbf{0}=T(0\cdot\mathbf{0})=0\cdot T\mathbf{0}=\mathbf{0}$. The second claim follows by induction from the definition.
+\end{proof}
+
+\begin{example}[Examples of linear maps]\label{ex:linmaps}
+\begin{enumerate}[label=(\alph*)]
+  \item $T_A:\R^n\to\R^m$, $T_A\mathbf{x}=A\mathbf{x}$ for any matrix $A$ (Chapter~3).
+  \item Differentiation $D:\mathcal{P}_n\to\mathcal{P}_{n-1}$, $Dp=p'$, and integration $p\mapsto\int_0^tp(s)\,ds$.
+  \item Evaluation at a point: $f\mapsto f(a)$ is a linear functional on $C[0,1]$.
+  \item The transpose $A\mapsto A\T$ on $\R^{n\times n}$, and the trace $A\mapsto\tr A$.
+  \item Multiplication by a fixed matrix $B$: $X\mapsto BX$ on $\R^{n\times n}$.
+  \item Rotation of the plane by an angle $\theta$, and reflection across a line through the origin.
+\end{enumerate}
+\end{example}
+
+\begin{example}[Non-examples]
+$T(x)=x+1$ on $\R$ is not linear ($T0\ne0$); $T(x)=x^2$ is not linear; $T(x,y)=(xy,y)$ is not linear. A \emph{translation} is not a linear map, but it is an \emph{affine} map: linear plus a constant. This is why machine-learning layers $\mathbf{x}\mapsto W\mathbf{x}+\mathbf{b}$ are called affine, and why homogeneous coordinates (appending a $1$) turn them into linear maps in one dimension higher.
+\end{example}
+
+\section{Every linear map is a matrix}
+
+\begin{theorem}[A linear map is determined by a basis]\label{thm:linbasis}
+Let $(\mathbf{b}_1,\dots,\mathbf{b}_n)$ be a basis of $V$ and $\mathbf{w}_1,\dots,\mathbf{w}_n$ arbitrary vectors in $W$. Then there is exactly one linear map $T:V\to W$ with $T\mathbf{b}_i=\mathbf{w}_i$ for all $i$.
+\end{theorem}
+
+\begin{proof}
+Every $\mathbf{v}$ has unique coordinates $\mathbf{v}=\sum x_i\mathbf{b}_i$ (Theorem~\ref{thm:uniquerep}); define $T\mathbf{v}=\sum x_i\mathbf{w}_i$. This is linear because the coordinates of $a\mathbf{u}+b\mathbf{v}$ are $a$ times those of $\mathbf{u}$ plus $b$ times those of $\mathbf{v}$. Any linear $T'$ with the same values on the basis agrees with $T$ on all combinations, hence everywhere.
+\end{proof}
+
+So it suffices to know what a linear map does to a basis. For maps between coordinate spaces this gives a matrix.
+
+\begin{definition}[Matrix of a linear map]
+Let $T:V\to W$ be linear, $\mathcal{B}=(\mathbf{b}_1,\dots,\mathbf{b}_n)$ a basis of $V$ and $\mathcal{C}=(\mathbf{c}_1,\dots,\mathbf{c}_m)$ a basis of $W$. The \emph{matrix of $T$ with respect to $\mathcal{B}$ and $\mathcal{C}$} is the $m\times n$ matrix $[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ whose $j$-th column is the coordinate vector $[T\mathbf{b}_j]_{\mathcal{C}}$.
+\end{definition}
+
+\begin{theorem}[The matrix represents the map]\label{thm:matrixrep}
+For every $\mathbf{v}\in V$,
+\[ [T\mathbf{v}]_{\mathcal{C}}=[T]_{\mathcal{C}\leftarrow\mathcal{B}}\,[\mathbf{v}]_{\mathcal{B}}. \]
+\end{theorem}
+
+\begin{proof}
+Write $\mathbf{v}=\sum x_j\mathbf{b}_j$. Then $T\mathbf{v}=\sum x_jT\mathbf{b}_j$, and taking coordinates (a linear operation) gives $[T\mathbf{v}]_{\mathcal{C}}=\sum x_j[T\mathbf{b}_j]_{\mathcal{C}}$, which is the combination of the columns of $[T]$ with weights $x_j$.
+\end{proof}
+
+In particular, for $T:\R^n\to\R^m$ and the standard bases, the $j$-th column of the matrix is $T\mathbf{e}_j$.
+
+\begin{example}[Rotation]\label{ex:rotation}
+Rotation by $\theta$ counterclockwise sends $\mathbf{e}_1\mapsto(\cos\theta,\sin\theta)$ and $\mathbf{e}_2\mapsto(-\sin\theta,\cos\theta)$, so
+\[ R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}. \]
+\end{example}
+
+\begin{example}[Reflection and projection in the plane]
+Reflection across the $x$-axis sends $\mathbf{e}_1\mapsto\mathbf{e}_1$, $\mathbf{e}_2\mapsto-\mathbf{e}_2$: $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$. Projection onto the line through the unit vector $\mathbf{u}$ is $\mathbf{x}\mapsto\mathbf{u}(\mathbf{u}\T\mathbf{x})$, with matrix $\mathbf{u}\mathbf{u}\T$ (Chapter~12). A shear $\mathbf{x}\mapsto\begin{pmatrix}1&k\\0&1\end{pmatrix}\mathbf{x}$ slides each horizontal line proportionally to its height.
+\end{example}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.9]
+  \begin{scope}
+    \draw[axis] (-0.3,0)--(2.6,0); \draw[axis] (0,-0.3)--(0,2.6);
+    \fill[accent!15] (0,0)--(1.6,0)--(1.6,1.6)--(0,1.6)--cycle;
+    \draw[thick,accent] (0,0)--(1.6,0)--(1.6,1.6)--(0,1.6)--cycle;
+    \node[lab] at (0.8,-0.7){identity};
+  \end{scope}
+  \begin{scope}[xshift=4cm]
+    \draw[axis] (-0.3,0)--(3.6,0); \draw[axis] (0,-0.3)--(0,2.6);
+    \fill[accent!15] (0,0)--(1.6,0)--(2.9,1.6)--(1.3,1.6)--cycle;
+    \draw[thick,accent] (0,0)--(1.6,0)--(2.9,1.6)--(1.3,1.6)--cycle;
+    \node[lab] at (1.5,-0.7){shear};
+  \end{scope}
+  \begin{scope}[xshift=9.2cm]
+    \draw[axis] (-1.4,0)--(2.6,0); \draw[axis] (0,-0.3)--(0,2.6);
+    \fill[accent!15] (0,0)--(1.13,1.13)--(0,2.26)--(-1.13,1.13)--cycle;
+    \draw[thick,accent] (0,0)--(1.13,1.13)--(0,2.26)--(-1.13,1.13)--cycle;
+    \node[lab] at (0.6,-0.7){rotation by $45^\circ$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The unit square and its images under the identity, a shear and a rotation. The image of the square is the parallelogram spanned by the columns of the matrix; its area is $\abs{\det}$.}
+\end{figure}
+
+\section{Kernel, image and rank--nullity for maps}
+
+\begin{definition}[Kernel and image]
+$\ker T=\{\mathbf{v}\in V:T\mathbf{v}=\mathbf{0}\}$ and $\im T=\{T\mathbf{v}:\mathbf{v}\in V\}$. These are subspaces of $V$ and $W$ respectively. The \emph{rank} of $T$ is $\dim\im T$ and its \emph{nullity} is $\dim\ker T$.
+\end{definition}
+
+\begin{theorem}[Rank--nullity for linear maps]\label{thm:ranknullmap}
+If $V$ is finite-dimensional, $\dim V=\dim\ker T+\dim\im T$.
+\end{theorem}
+
+\begin{proof}
+Choose a basis $\mathbf{k}_1,\dots,\mathbf{k}_p$ of $\ker T$ and extend to a basis $\mathbf{k}_1,\dots,\mathbf{k}_p,\mathbf{v}_1,\dots,\mathbf{v}_q$ of $V$. We claim $T\mathbf{v}_1,\dots,T\mathbf{v}_q$ is a basis of $\im T$. They span: $T$ of any vector is $T(\sum a_i\mathbf{k}_i+\sum b_j\mathbf{v}_j)=\sum b_jT\mathbf{v}_j$. They are independent: if $\sum b_jT\mathbf{v}_j=\mathbf{0}$ then $\sum b_j\mathbf{v}_j\in\ker T$, so it is a combination of the $\mathbf{k}_i$, and independence of the whole basis forces all $b_j=0$. Hence $\dim V=p+q=\dim\ker T+\dim\im T$.
+\end{proof}
+
+\begin{theorem}[Injective, surjective, bijective]\label{thm:injsurj}
+$T$ is injective (one-to-one) iff $\ker T=\{\mathbf{0}\}$; surjective (onto) iff $\im T=W$. If $\dim V=\dim W<\infty$, then $T$ is injective iff it is surjective iff it is bijective.
+\end{theorem}
+
+\begin{proof}
+$T\mathbf{u}=T\mathbf{v}\iff T(\mathbf{u}-\mathbf{v})=\mathbf{0}$, which gives the injectivity criterion. For equal finite dimensions, rank--nullity shows $\ker T=\{\mathbf{0}\}$ iff $\dim\im T=\dim V=\dim W$ iff $\im T=W$.
+\end{proof}
+
+A bijective linear map is an \emph{isomorphism}; its inverse is automatically linear. Two spaces are isomorphic iff they have the same dimension: choose bases and send one to the other (Theorem~\ref{thm:linbasis}). Thus $\mathcal{P}_2$, $\R^3$ and the space of $3\times1$ matrices are all ``the same'' vector space.
+
+\begin{example}
+Differentiation $D:\mathcal{P}_3\to\mathcal{P}_3$ has $\ker D=$ constants (dimension $1$) and image $\mathcal{P}_2$ (dimension $3$), consistent with $4=1+3$. It is neither injective nor surjective, even though domain and codomain have the same dimension. With respect to the basis $(1,t,t^2,t^3)$, its matrix is
+\[ [D]=\begin{pmatrix}0&1&0&0\\0&0&2&0\\0&0&0&3\\0&0&0&0\end{pmatrix}, \]
+whose $j$-th column holds the coordinates of $(t^{j-1})'=(j-1)t^{j-2}$.
+\end{example}
+
+\section{Composition is matrix multiplication}
+
+\begin{theorem}[Composition]\label{thm:composition}
+If $S:U\to V$ and $T:V\to W$ are linear with bases $\mathcal{A},\mathcal{B},\mathcal{C}$ of $U,V,W$, then $T\circ S$ is linear and
+\[ [T\circ S]_{\mathcal{C}\leftarrow\mathcal{A}}=[T]_{\mathcal{C}\leftarrow\mathcal{B}}\,[S]_{\mathcal{B}\leftarrow\mathcal{A}}. \]
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:matrixrep}, $[T(S\mathbf{u})]_{\mathcal{C}}=[T]_{\mathcal{C}\leftarrow\mathcal{B}}[S\mathbf{u}]_{\mathcal{B}}=[T]_{\mathcal{C}\leftarrow\mathcal{B}}[S]_{\mathcal{B}\leftarrow\mathcal{A}}[\mathbf{u}]_{\mathcal{A}}$. The unique matrix that maps $[\mathbf{u}]_{\mathcal{A}}$ to $[T\circ S\,\mathbf{u}]_{\mathcal{C}}$ for all $\mathbf{u}$ is the product.
+\end{proof}
+
+\begin{intuition}
+This is the reason matrix multiplication looks strange: it is defined so that the matrix of ``do $S$, then do $T$'' is the product of matrices. Associativity of matrix multiplication is then obvious, since composition of functions is associative; non-commutativity is also obvious, since rotating then reflecting differs from reflecting then rotating.
+\end{intuition}
+
+\begin{example}
+Rotate by $90^\circ$ and then reflect across the $x$-axis: $\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0&-1\\1&0\end{pmatrix}=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}$, while the opposite order gives $\begin{pmatrix}0&1\\1&0\end{pmatrix}$. One is a reflection across the line $y=-x$, the other across $y=x$.
+\end{example}
+
+\begin{theorem}[Inverse maps]\label{thm:invmap}
+A linear map is invertible (bijective) iff its matrix with respect to any bases is invertible, and $[T^{-1}]_{\mathcal{B}\leftarrow\mathcal{C}}=\big([T]_{\mathcal{C}\leftarrow\mathcal{B}}\big)^{-1}$.
+\end{theorem}
+
+\begin{proof}
+Apply Theorem~\ref{thm:composition} to $T^{-1}\circ T=\id_V$ and $T\circ T^{-1}=\id_W$, and use that the matrix of the identity map with respect to one basis on both sides is $I$.
+\end{proof}
+
+\begin{nuance}{isomorphic is not equal}
+$\mathcal{P}_2$ and $\R^3$ are isomorphic, but the isomorphism depends on a choice of basis; there is no canonical identification. This is why abstract vector spaces are not merely ``$\R^n$ in disguise'': properties that depend on a basis (such as ``the third coordinate'') are meaningless on $\mathcal{P}_2$ until a basis is chosen. Chapter~10 studies how the matrix of one map changes when the basis does.
+\end{nuance}
+
+\section{Dual space and the transpose as a map}
+
+A linear functional $f:V\to\R$ is represented, relative to a basis, by a row vector. The set $V^*$ of all linear functionals is itself a vector space of dimension $\dim V$, the \emph{dual space}. Given $T:V\to W$ the \emph{transpose map} $T^*:W^*\to V^*$ sends $g$ to $g\circ T$; its matrix is the transpose $[T]\T$ with respect to dual bases. This is why $A$ and $A\T$ appear together, and it explains Theorem~\ref{thm:ftla2}: $\Null A\T$ consists of the functionals that vanish on $\Col A$.
+
+\begin{interview}{rank of a composition and counting arguments}
+Questions such as ``if $T:\R^5\to\R^3$ is onto, what is $\dim\ker T$?'' are one-line applications of rank--nullity: $\dim\ker T=5-3=2$. Likewise ``can a linear map from $\R^3$ onto $\R^4$ exist?'' is no, because $\dim\im T\le3$. Always check these dimension counts first.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item A linear map respects addition and scaling; a map is fixed by its values on a basis.
+  \item With bases chosen, a map $V\to W$ becomes a matrix whose columns are the coordinates of the images of basis vectors, and $[T\mathbf{v}]=[T][\mathbf{v}]$.
+  \item $\dim V=\dim\ker T+\dim\im T$.
+  \item Composition corresponds to matrix multiplication, and inverse maps to inverse matrices.
+  \item Spaces of the same dimension are isomorphic, but not canonically.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Decide which are linear: (a) $T(x,y)=(x+y,2x)$; (b) $T(x,y)=(x,y+1)$; (c) $T(p)=p(2)$ on $\mathcal{P}_3$; (d) $T(A)=\det A$ on $\R^{2\times2}$; (e) $T(A)=A+A\T$.
+\end{exercise}
+
+\begin{exercise}
+Find the matrix of the linear map $T:\R^3\to\R^2$ with $T\mathbf{e}_1=(1,2)$, $T\mathbf{e}_2=(0,1)$, $T\mathbf{e}_3=(3,-1)$, and compute $T(2,1,-1)$.
+\end{exercise}
+
+\begin{exercise}
+Find the matrix of $D:\mathcal{P}_2\to\mathcal{P}_1$ and of $S:\mathcal{P}_1\to\mathcal{P}_2$, $Sp(t)=\int_0^tp$, in the monomial bases; compute $[D][S]$ and $[S][D]$ and interpret the results.
+\end{exercise}
+
+\begin{exercise}
+Show that rotation by $\alpha$ followed by rotation by $\beta$ is rotation by $\alpha+\beta$, and deduce the angle addition formulas from $R_\alpha R_\beta=R_{\alpha+\beta}$.
+\end{exercise}
+
+\begin{exercise}
+Let $T:\R^4\to\R^3$ have matrix $\begin{pmatrix}1&2&0&1\\0&1&1&1\\1&3&1&2\end{pmatrix}$. Find bases of $\ker T$ and $\im T$ and verify rank--nullity.
+\end{exercise}
+
+\begin{exercise}
+Prove that a linear map $T:V\to W$ with $\dim V>\dim W$ cannot be injective, and one with $\dim V<\dim W$ cannot be surjective.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $T:V\to V$ satisfies $T^2=T$ (a projection) then $V=\ker T\oplus\im T$. (Hint: $\mathbf{v}=(\mathbf{v}-T\mathbf{v})+T\mathbf{v}$.)
+\end{exercise}
+
+\begin{exercise}
+The \emph{shift} operator $S(x_1,x_2,\dots)=(0,x_1,x_2,\dots)$ on $\R^\infty$ is injective but not surjective. Does this contradict Theorem~\ref{thm:injsurj}?
+\end{exercise}

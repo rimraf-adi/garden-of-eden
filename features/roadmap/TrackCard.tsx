@@ -17,7 +17,7 @@ export default function TrackCard({ track, isActive, onSelect }: TrackCardProps)
       onClick={onSelect}
       className={`group relative rounded-xl border p-5 transition-all cursor-pointer ${
         isActive
-          ? 'border-indigo-500 bg-indigo-500/5 dark:bg-indigo-500/10 shadow-lg shadow-indigo-500/10'
+          ? 'border-amber-500 bg-amber-500/5 dark:bg-amber-500/10 shadow-lg shadow-amber-500/10'
           : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/50 hover:border-zinc-300 dark:hover:border-zinc-700'
       }`}
     >
@@ -37,7 +37,7 @@ export default function TrackCard({ track, isActive, onSelect }: TrackCardProps)
         </div>
       </div>
 
-      <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+      <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
         {track.name}
       </h3>
       <p className="mt-1.5 text-xs text-zinc-600 dark:text-zinc-400 line-clamp-2 leading-relaxed">
@@ -50,7 +50,7 @@ export default function TrackCard({ track, isActive, onSelect }: TrackCardProps)
             key={ch.id}
             href={`/chapter/${ch.slug}`}
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-950 dark:hover:text-indigo-300 transition-colors"
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-amber-50 hover:text-amber-600 dark:hover:bg-amber-950 dark:hover:text-amber-300 transition-colors"
           >
             <span>Ch.{ch.chapterNum}</span>
           </Link>

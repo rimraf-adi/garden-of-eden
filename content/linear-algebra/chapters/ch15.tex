@@ -1,0 +1,165 @@
+\chapter{Symmetric and Hermitian Matrices: the Spectral Theorem}
+
+General matrices can have complex eigenvalues, missing eigenvectors and badly conditioned eigenvector bases. Symmetric matrices have none of these problems. Their eigenvalues are real, their eigenvectors can be chosen orthonormal, and they are always diagonalisable by an orthogonal change of basis. This is the \emph{spectral theorem}, arguably the most important theorem in applied linear algebra: it underlies principal component analysis, vibration modes, the second-derivative test, covariance estimation, and the SVD of the next chapters.
+
+\section{Real eigenvalues and orthogonal eigenvectors}
+
+Throughout, a real matrix is \emph{symmetric} if $A\T=A$. The complex analogue is a \emph{Hermitian} matrix, $A\herm=A$, where $A\herm=\overline{A}\T$ is the conjugate transpose. A real symmetric matrix is Hermitian, so we prove statements for Hermitian matrices and obtain the real case as a special case. Recall that on $\C^n$ the inner product is $\ip{\mathbf{x}}{\mathbf{y}}=\mathbf{y}\herm\mathbf{x}$.
+
+\begin{theorem}[Eigenvalues of Hermitian matrices are real]\label{thm:realeig}
+If $A=A\herm$ and $A\mathbf{v}=\lambda\mathbf{v}$ with $\mathbf{v}\ne\mathbf{0}$, then $\lambda\in\R$.
+\end{theorem}
+
+\begin{proof}
+Compute $\mathbf{v}\herm A\mathbf{v}$ in two ways. It equals $\lambda\mathbf{v}\herm\mathbf{v}=\lambda\norm{\mathbf{v}}^2$. Its conjugate is $(\mathbf{v}\herm A\mathbf{v})\herm=\mathbf{v}\herm A\herm\mathbf{v}=\mathbf{v}\herm A\mathbf{v}$, so $\mathbf{v}\herm A\mathbf{v}$ is real. Hence $\lambda=\mathbf{v}\herm A\mathbf{v}/\norm{\mathbf{v}}^2$ is real.
+\end{proof}
+
+\begin{theorem}[Eigenvectors for distinct eigenvalues are orthogonal]\label{thm:orthoeig}
+If $A=A\herm$, $A\mathbf{u}=\lambda\mathbf{u}$, $A\mathbf{v}=\mu\mathbf{v}$ and $\lambda\ne\mu$, then $\mathbf{u}\perp\mathbf{v}$.
+\end{theorem}
+
+\begin{proof}
+$\lambda\ip{\mathbf{u}}{\mathbf{v}}=\ip{A\mathbf{u}}{\mathbf{v}}=\ip{\mathbf{u}}{A\mathbf{v}}=\mu\ip{\mathbf{u}}{\mathbf{v}}$ (using $A=A\herm$ and that $\mu$ is real). So $(\lambda-\mu)\ip{\mathbf{u}}{\mathbf{v}}=0$, giving $\ip{\mathbf{u}}{\mathbf{v}}=0$.
+\end{proof}
+
+This already shows that eigenspaces of a symmetric matrix for different eigenvalues are mutually perpendicular, which is stronger than the mere independence guaranteed for general matrices.
+
+\section{The spectral theorem}
+
+\begin{theorem}[Spectral theorem for real symmetric matrices]\label{thm:spectral}
+If $A\in\R^{n\times n}$ is symmetric, there is an orthogonal matrix $Q$ and a real diagonal matrix $\Lambda=\diag(\lambda_1,\dots,\lambda_n)$ with
+\[ A=Q\Lambda Q\T. \]
+The columns $\mathbf{q}_1,\dots,\mathbf{q}_n$ of $Q$ form an orthonormal basis of $\R^n$ consisting of eigenvectors, $A\mathbf{q}_i=\lambda_i\mathbf{q}_i$. Conversely, every matrix of the form $Q\Lambda Q\T$ with $Q$ orthogonal and $\Lambda$ real diagonal is symmetric.
+\end{theorem}
+
+\begin{proof}
+Induction on $n$. For $n=1$ there is nothing to prove. For $n>1$: the characteristic polynomial has a root $\lambda_1$ over $\C$, which is real by Theorem~\ref{thm:realeig}, and the real matrix $A-\lambda_1I$ is singular, so there is a real unit vector $\mathbf{q}_1$ with $A\mathbf{q}_1=\lambda_1\mathbf{q}_1$. Let $W=\mathbf{q}_1^\perp$, an $(n-1)$-dimensional subspace. It is $A$-invariant: if $\mathbf{x}\perp\mathbf{q}_1$ then $\ip{A\mathbf{x}}{\mathbf{q}_1}=\ip{\mathbf{x}}{A\mathbf{q}_1}=\lambda_1\ip{\mathbf{x}}{\mathbf{q}_1}=0$. Choose an orthonormal basis of $W$ and let $U$ be the $n\times(n-1)$ matrix with these columns; then $B=U\T AU$ is a symmetric $(n-1)\times(n-1)$ matrix representing $A|_W$. By induction $B=Q'\Lambda'Q'{}\T$ with $Q'$ orthogonal. Setting $Q=[\mathbf{q}_1\ \ UQ']$, which has orthonormal columns, gives $Q\T AQ=\diag(\lambda_1,\Lambda')$. The converse: $(Q\Lambda Q\T)\T=Q\Lambda\T Q\T=Q\Lambda Q\T$.
+\end{proof}
+
+The same proof (with $Q$ unitary and the conjugate transpose) shows that every Hermitian matrix is $A=Q\Lambda Q\herm$ with $Q$ unitary and $\Lambda$ real. There is an even more general version.
+
+\begin{theorem}[Spectral theorem for normal matrices]\label{thm:spectralnormal}
+A complex matrix $A$ is \emph{normal} ($AA\herm=A\herm A$) if and only if it is unitarily diagonalisable: $A=Q\Lambda Q\herm$ with $Q$ unitary and $\Lambda$ diagonal (possibly complex). Normal matrices include Hermitian ($A\herm=A$), skew-Hermitian ($A\herm=-A$) and unitary ($A\herm A=I$) matrices, and real symmetric, skew-symmetric and orthogonal matrices.
+\end{theorem}
+
+\begin{proof}[Sketch]
+Every matrix has a Schur form $A=UTU\herm$ with $U$ unitary and $T$ upper triangular. If $A$ is normal then so is $T$; comparing the $(1,1)$ entries of $TT\herm$ and $T\herm T$ forces the first row of $T$ to vanish off the diagonal, and inductively $T$ is diagonal. The converse is immediate since diagonal matrices commute with their adjoints.
+\end{proof}
+
+\begin{example}[Computing a spectral decomposition]\label{ex:spectral}
+Let $A=\begin{pmatrix}2&-1&0\\-1&2&-1\\0&-1&2\end{pmatrix}$. The characteristic polynomial factors as $(\lambda-2)(\lambda^2-4\lambda+2)$ with roots $2,\ 2\pm\sqrt2$. Unit eigenvectors:
+\[ \lambda=2:\ \tfrac1{\sqrt2}(1,0,-1);\quad\lambda=2+\sqrt2:\ \tfrac12(1,-\sqrt2,1);\quad\lambda=2-\sqrt2:\ \tfrac12(1,\sqrt2,1). \]
+They are mutually orthogonal (the eigenvalues are distinct), so $Q$ built from them is orthogonal and $A=Q\diag(2,2+\sqrt2,2-\sqrt2)Q\T$. A check: $\tr A=6=2+(2+\sqrt2)+(2-\sqrt2)$.
+\end{example}
+
+\begin{nuance}{repeated eigenvalues}
+When an eigenvalue is repeated, its eigenspace has dimension equal to the multiplicity (symmetric matrices are never defective), but \emph{any} orthonormal basis of that eigenspace is valid; the orthogonal matrix $Q$ is not unique. Gram--Schmidt (Chapter~11) within the eigenspace produces an orthonormal basis. Orthogonality between \emph{different} eigenspaces is automatic by Theorem~\ref{thm:orthoeig}.
+\end{nuance}
+
+\subsection*{The spectral decomposition as a sum of projections}
+
+Multiplying out $Q\Lambda Q\T$ using the outer-product view gives
+\[ A=\sum_{i=1}^n\lambda_i\,\mathbf{q}_i\mathbf{q}_i\T. \]
+Each $\mathbf{q}_i\mathbf{q}_i\T$ is the orthogonal projection onto the line through $\mathbf{q}_i$ (Chapter~12). Grouping equal eigenvalues, $A=\sum_\mu\mu P_\mu$ where $P_\mu$ is the orthogonal projection onto the eigenspace for $\mu$, and the $P_\mu$ satisfy $P_\mu P_\nu=0$ for $\mu\ne\nu$ and $\sum P_\mu=I$. This is the form that generalises to self-adjoint operators on infinite-dimensional spaces.
+
+\begin{corollary}[Functions of symmetric matrices]\label{cor:symfunc}
+For any function $f$ defined on the eigenvalues, $f(A)=Q\,f(\Lambda)\,Q\T=\sum f(\lambda_i)\mathbf{q}_i\mathbf{q}_i\T$. In particular $A^k=Q\Lambda^kQ\T$, $A^{-1}=Q\Lambda^{-1}Q\T$ if all $\lambda_i\ne0$, $e^A=Qe^\Lambda Q\T$, and if all $\lambda_i\ge0$ then $A^{1/2}=Q\Lambda^{1/2}Q\T$ is a symmetric square root.
+\end{corollary}
+
+\section{Geometry: principal axes}
+
+Let $A$ be symmetric positive definite and consider the ellipse $\{\mathbf{x}\in\R^2:\mathbf{x}\T A\mathbf{x}=1\}$. Changing to the eigenbasis, $\mathbf{x}=Q\mathbf{y}$, gives $\mathbf{x}\T A\mathbf{x}=\lambda_1y_1^2+\lambda_2y_2^2$ (the orthogonal change preserves lengths). So the ellipse has its axes along the eigenvectors, with semi-axis lengths $1/\sqrt{\lambda_i}$.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[axis] (-2.8,0)--(2.8,0); \draw[axis] (0,-2.2)--(0,2.2);
+  \begin{scope}[rotate=45]
+    \draw[thick,accent] (0,0) ellipse (2.2cm and 1.1cm);
+    \draw[vec,accent2] (0,0)--(2.2,0) node[above right,lab]{$\mathbf{q}_1$, $1/\sqrt{\lambda_1}$};
+    \draw[vec,accent3] (0,0)--(0,1.1) node[above left,lab]{$\mathbf{q}_2$, $1/\sqrt{\lambda_2}$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The level set $\mathbf{x}\T A\mathbf{x}=1$ of a positive definite quadratic form is an ellipse whose principal axes are the eigenvectors; the longest axis belongs to the smallest eigenvalue.}
+\end{figure}
+
+\section{The Rayleigh quotient and extremal eigenvalues}
+
+\begin{definition}[Rayleigh quotient]
+For symmetric $A$ and $\mathbf{x}\ne\mathbf{0}$, $R_A(\mathbf{x})=\dfrac{\mathbf{x}\T A\mathbf{x}}{\mathbf{x}\T\mathbf{x}}$.
+\end{definition}
+
+\begin{theorem}[Rayleigh--Ritz]\label{thm:rayleigh}
+Let $\lambda_{1}\ge\lambda_2\ge\dots\ge\lambda_n$ be the eigenvalues of symmetric $A$ with orthonormal eigenvectors $\mathbf{q}_i$. Then
+\[ \lambda_1=\max_{\mathbf{x}\ne\mathbf{0}}R_A(\mathbf{x}),\qquad\lambda_n=\min_{\mathbf{x}\ne\mathbf{0}}R_A(\mathbf{x}), \]
+the maximum and minimum being attained exactly at eigenvectors for $\lambda_1,\lambda_n$. More generally $\lambda_k=\max\{R_A(\mathbf{x}):\mathbf{x}\perp\mathbf{q}_1,\dots,\mathbf{q}_{k-1}\}$.
+\end{theorem}
+
+\begin{proof}
+Write $\mathbf{x}=\sum y_i\mathbf{q}_i$; then $\mathbf{x}\T A\mathbf{x}=\sum\lambda_iy_i^2$ and $\mathbf{x}\T\mathbf{x}=\sum y_i^2$. So $R_A(\mathbf{x})$ is a weighted average of the $\lambda_i$ with weights $y_i^2/\sum y_j^2\ge0$ summing to $1$; it therefore lies between $\lambda_n$ and $\lambda_1$, and equals $\lambda_1$ only if all weight sits on the eigenvectors of $\lambda_1$. Restricting to $\mathbf{x}\perp\mathbf{q}_1,\dots,\mathbf{q}_{k-1}$ sets $y_1=\dots=y_{k-1}=0$, and the same argument gives $\lambda_k$.
+\end{proof}
+
+\begin{interview}{PCA is the Rayleigh quotient}
+The direction of maximum variance of centred data with covariance matrix $\Sigma$ is $\arg\max\mathbf{u}\T\Sigma\mathbf{u}/\mathbf{u}\T\mathbf{u}$, the top eigenvector of $\Sigma$; the variance along it is $\lambda_1$. The second principal component maximises the quotient subject to orthogonality to the first, and so on: the eigenvectors of $\Sigma$ in decreasing order of eigenvalue. This is Theorem~\ref{thm:rayleigh} verbatim, and it is why PCA reduces to an eigendecomposition (or SVD) of the covariance.
+\end{interview}
+
+\begin{theorem}[Weyl's inequality]\label{thm:weyl}
+For symmetric $A,B$ with eigenvalues ordered decreasingly, $\lambda_k(A)+\lambda_n(B)\le\lambda_k(A+B)\le\lambda_k(A)+\lambda_1(B)$. In particular eigenvalues of symmetric matrices move by at most $\norm{E}_2$ under a perturbation $E$: $\abs{\lambda_k(A+E)-\lambda_k(A)}\le\norm{E}_2$.
+\end{theorem}
+
+This is the quantitative statement that eigenvalues of symmetric matrices are perfectly well-conditioned, in contrast to the non-normal case (Chapter~13).
+
+\section{Commuting symmetric matrices}
+
+\begin{theorem}[Simultaneous diagonalisation]\label{thm:simdiag}
+Two symmetric matrices $A,B$ commute ($AB=BA$) if and only if they have a common orthonormal eigenbasis, i.e.\ $A=Q\Lambda_AQ\T$ and $B=Q\Lambda_BQ\T$ for one orthogonal $Q$.
+\end{theorem}
+
+\begin{proof}
+If $A,B$ share $Q$, they commute because diagonal matrices do. Conversely let $E$ be an eigenspace of $A$ for $\lambda$. For $\mathbf{x}\in E$, $A(B\mathbf{x})=BA\mathbf{x}=\lambda B\mathbf{x}$, so $B$ maps $E$ into itself, and $B|_E$ is symmetric; apply the spectral theorem to it to pick an orthonormal basis of $E$ of eigenvectors of $B$. Eigenspaces of $A$ for different eigenvalues are orthogonal, so the union of the bases is an orthonormal eigenbasis of both.
+\end{proof}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Symmetric (Hermitian) matrices have real eigenvalues and orthogonal eigenvectors for distinct eigenvalues.
+  \item Spectral theorem: $A=Q\Lambda Q\T=\sum\lambda_i\mathbf{q}_i\mathbf{q}_i\T$ with $Q$ orthogonal; no defective matrices; the proof is induction using the invariant subspace $\mathbf{q}_1^\perp$.
+  \item Normal matrices are exactly the unitarily diagonalisable ones.
+  \item Functions of symmetric matrices act on the eigenvalues: $f(A)=Qf(\Lambda)Q\T$.
+  \item $\lambda_{\max}=\max R_A(\mathbf{x})$, $\lambda_{\min}=\min R_A(\mathbf{x})$ (Rayleigh--Ritz), the basis of PCA.
+  \item Commuting symmetric matrices share an orthonormal eigenbasis.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Orthogonally diagonalise $\begin{pmatrix}5&2\\2&2\end{pmatrix}$ and write it as $\sum\lambda_i\mathbf{q}_i\mathbf{q}_i\T$.
+\end{exercise}
+
+\begin{exercise}
+Prove that the eigenvalues of a real skew-symmetric matrix are purely imaginary (or $0$), and that those of a real orthogonal matrix have modulus $1$.
+\end{exercise}
+
+\begin{exercise}
+Show that a real symmetric matrix with $A^2=A$ is an orthogonal projection, and describe its spectral decomposition.
+\end{exercise}
+
+\begin{exercise}
+Find a symmetric square root of $\begin{pmatrix}5&4\\4&5\end{pmatrix}$ using Corollary~\ref{cor:symfunc}.
+\end{exercise}
+
+\begin{exercise}
+Let $A$ be symmetric with eigenvalues in $[a,b]$. Prove $\norm{A}_2=\max\abs{\lambda_i}$ and that $\mathbf{x}\T A\mathbf{x}\in[a\norm{\mathbf{x}}^2,b\norm{\mathbf{x}}^2]$.
+\end{exercise}
+
+\begin{exercise}
+Prove that two diagonalisable matrices commute iff they are simultaneously diagonalisable (the non-orthogonal analogue of Theorem~\ref{thm:simdiag}).
+\end{exercise}
+
+\begin{exercise}
+Maximise $x^2+4xy+y^2$ on the unit circle $x^2+y^2=1$ using Theorem~\ref{thm:rayleigh}, and find the maximising points.
+\end{exercise}
+
+\begin{exercise}
+Show that if $A$ is symmetric then $\rank A$ equals the number of nonzero eigenvalues (counting multiplicity). Does this hold for non-symmetric matrices?
+\end{exercise}

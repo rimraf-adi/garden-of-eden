@@ -12,12 +12,12 @@ export default function BookFigure({ figureId, caption }: BookFigureProps) {
   const [activeTab, setActiveTab] = useState<'diagram' | 'caption'>('diagram');
 
   return (
-    <figure className="my-10 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-md overflow-hidden">
+    <figure className="my-10 rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 shadow-md overflow-hidden">
       {/* Figure Top Bar */}
       <div className="flex items-center justify-between px-6 py-3 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
-          <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300">
+          <span className="flex h-2.5 w-2.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+          <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300">
             Figure {figureId} · Technical Illustration
           </span>
         </div>
@@ -26,7 +26,7 @@ export default function BookFigure({ figureId, caption }: BookFigureProps) {
             onClick={() => setActiveTab('diagram')}
             className={`px-2.5 py-1 rounded-md font-medium transition ${
               activeTab === 'diagram'
-                ? 'bg-white dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-500 hover:text-zinc-900'
             }`}
           >
@@ -36,7 +36,7 @@ export default function BookFigure({ figureId, caption }: BookFigureProps) {
             onClick={() => setActiveTab('caption')}
             className={`px-2.5 py-1 rounded-md font-medium transition ${
               activeTab === 'caption'
-                ? 'bg-white dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-800 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-500 hover:text-zinc-900'
             }`}
           >
@@ -147,15 +147,15 @@ function Fig1_1() {
       <rect width="560" height="320" fill="url(#grid1_1)" />
 
       {/* Shaded Regions */}
-      <rect x="250" y="40" width="260" height="150" fill="rgba(99, 102, 241, 0.12)" rx="8" />
-      <text x="380" y="70" fill="#818cf8" fontSize="13" fontWeight="bold" textAnchor="middle">Low-Risk (Accepted)</text>
+      <rect x="250" y="40" width="260" height="150" fill="rgba(217, 119, 6, 0.12)" rx="8" />
+      <text x="380" y="70" fill="#fbbf24" fontSize="13" fontWeight="bold" textAnchor="middle">Low-Risk (Accepted)</text>
 
       <rect x="80" y="190" width="170" height="90" fill="rgba(239, 68, 68, 0.08)" rx="8" />
       <text x="160" y="240" fill="#f87171" fontSize="13" fontWeight="bold" textAnchor="middle">High-Risk (Default)</text>
 
       {/* Decision Boundaries */}
-      <line x1="250" y1="40" x2="250" y2="190" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="5,4" />
-      <line x1="250" y1="190" x2="510" y2="190" stroke="#6366f1" strokeWidth="2.5" strokeDasharray="5,4" />
+      <line x1="250" y1="40" x2="250" y2="190" stroke="#d97706" strokeWidth="2.5" strokeDasharray="5,4" />
+      <line x1="250" y1="190" x2="510" y2="190" stroke="#d97706" strokeWidth="2.5" strokeDasharray="5,4" />
 
       {/* Axes */}
       <line x1="80" y1="280" x2="520" y2="280" stroke="var(--diagram-axis)" strokeWidth="2" markerEnd="url(#arrow)" />
@@ -164,20 +164,20 @@ function Fig1_1() {
       <text x="40" y="45" fill="var(--diagram-text-muted)" fontSize="12" fontWeight="600">Savings (x₂)</text>
 
       {/* Threshold Ticks */}
-      <line x1="250" y1="275" x2="250" y2="285" stroke="#6366f1" strokeWidth="2" />
-      <text x="250" y="302" fill="#818cf8" fontSize="12" fontWeight="bold" textAnchor="middle">θ₁</text>
+      <line x1="250" y1="275" x2="250" y2="285" stroke="#d97706" strokeWidth="2" />
+      <text x="250" y="302" fill="#fbbf24" fontSize="12" fontWeight="bold" textAnchor="middle">θ₁</text>
 
-      <line x1="75" y1="190" x2="85" y2="190" stroke="#6366f1" strokeWidth="2" />
-      <text x="60" y="195" fill="#818cf8" fontSize="12" fontWeight="bold" textAnchor="middle">θ₂</text>
+      <line x1="75" y1="190" x2="85" y2="190" stroke="#d97706" strokeWidth="2" />
+      <text x="60" y="195" fill="#fbbf24" fontSize="12" fontWeight="bold" textAnchor="middle">θ₂</text>
 
       {/* Low Risk Points (+) */}
       {[
         [280, 150], [330, 110], [370, 160], [420, 80], [450, 130], [390, 120]
       ].map(([cx, cy], i) => (
         <g key={i}>
-          <circle cx={cx} cy={cy} r="10" fill="none" stroke="#6366f1" strokeWidth="1.5" />
-          <line x1={cx - 5} y1={cy} x2={cx + 5} y2={cy} stroke="#6366f1" strokeWidth="1.5" />
-          <line x1={cx} y1={cy - 5} x2={cx} y2={cy + 5} stroke="#6366f1" strokeWidth="1.5" />
+          <circle cx={cx} cy={cy} r="10" fill="none" stroke="#d97706" strokeWidth="1.5" />
+          <line x1={cx - 5} y1={cy} x2={cx + 5} y2={cy} stroke="#d97706" strokeWidth="1.5" />
+          <line x1={cx} y1={cy - 5} x2={cx} y2={cy + 5} stroke="#d97706" strokeWidth="1.5" />
         </g>
       ))}
 
@@ -279,9 +279,9 @@ function Fig2_1() {
         [220, 140], [250, 160], [280, 130], [300, 150], [260, 120], [320, 140]
       ].map(([x, y], i) => (
         <g key={i}>
-          <circle cx={x} y={y} r="9" fill="none" stroke="#6366f1" strokeWidth="1.5" />
-          <line x1={x - 4} y1={y} x2={x + 4} y2={y} stroke="#6366f1" strokeWidth="1.5" />
-          <line x1={x} y1={y - 4} x2={x} y2={y + 4} stroke="#6366f1" strokeWidth="1.5" />
+          <circle cx={x} y={y} r="9" fill="none" stroke="#d97706" strokeWidth="1.5" />
+          <line x1={x - 4} y1={y} x2={x + 4} y2={y} stroke="#d97706" strokeWidth="1.5" />
+          <line x1={x} y1={y - 4} x2={x} y2={y + 4} stroke="#d97706" strokeWidth="1.5" />
         </g>
       ))}
 
@@ -295,7 +295,7 @@ function Fig2_1() {
         </g>
       ))}
 
-      <text x="270" y="185" fill="#818cf8" fontSize="12" fontWeight="bold" textAnchor="middle">+ Family Car</text>
+      <text x="270" y="185" fill="#fbbf24" fontSize="12" fontWeight="bold" textAnchor="middle">+ Family Car</text>
       <text x="420" y="130" fill="var(--diagram-text-muted)" fontSize="11" textAnchor="middle">− Other</text>
     </svg>
   );
@@ -310,19 +310,19 @@ function Fig2_2() {
       <line x1="70" y1="280" x2="70" y2="30" stroke="var(--diagram-axis)" strokeWidth="2" />
 
       {/* Rectangle Hypothesis C */}
-      <rect x="180" y="80" width="220" height="140" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" strokeWidth="2.5" />
-      <text x="390" y="70" fill="#a5b4fc" fontSize="14" fontWeight="bold">Class C</text>
+      <rect x="180" y="80" width="220" height="140" fill="rgba(217, 119, 6, 0.2)" stroke="#d97706" strokeWidth="2.5" />
+      <text x="390" y="70" fill="#fcd34d" fontSize="14" fontWeight="bold">Class C</text>
 
       {/* Parameter lines */}
-      <line x1="180" y1="280" x2="180" y2="220" stroke="#6366f1" strokeDasharray="3,3" />
-      <line x1="400" y1="280" x2="400" y2="220" stroke="#6366f1" strokeDasharray="3,3" />
-      <text x="180" y="300" fill="#818cf8" fontSize="12" fontWeight="bold" textAnchor="middle">p₁</text>
-      <text x="400" y="300" fill="#818cf8" fontSize="12" fontWeight="bold" textAnchor="middle">p₂</text>
+      <line x1="180" y1="280" x2="180" y2="220" stroke="#d97706" strokeDasharray="3,3" />
+      <line x1="400" y1="280" x2="400" y2="220" stroke="#d97706" strokeDasharray="3,3" />
+      <text x="180" y="300" fill="#fbbf24" fontSize="12" fontWeight="bold" textAnchor="middle">p₁</text>
+      <text x="400" y="300" fill="#fbbf24" fontSize="12" fontWeight="bold" textAnchor="middle">p₂</text>
 
-      <line x1="70" y1="220" x2="180" y2="220" stroke="#6366f1" strokeDasharray="3,3" />
-      <line x1="70" y1="80" x2="180" y2="80" stroke="#6366f1" strokeDasharray="3,3" />
-      <text x="50" y="225" fill="#818cf8" fontSize="12" fontWeight="bold">e₁</text>
-      <text x="50" y="85" fill="#818cf8" fontSize="12" fontWeight="bold">e₂</text>
+      <line x1="70" y1="220" x2="180" y2="220" stroke="#d97706" strokeDasharray="3,3" />
+      <line x1="70" y1="80" x2="180" y2="80" stroke="#d97706" strokeDasharray="3,3" />
+      <text x="50" y="225" fill="#fbbf24" fontSize="12" fontWeight="bold">e₁</text>
+      <text x="50" y="85" fill="#fbbf24" fontSize="12" fontWeight="bold">e₂</text>
 
       <text x="290" y="155" fill="var(--diagram-text)" fontSize="13" fontWeight="bold" textAnchor="middle">
         (p₁ ≤ price ≤ p₂) ∧ (e₁ ≤ engine ≤ e₂)
@@ -364,8 +364,8 @@ function Fig2_4() {
     <svg viewBox="0 0 560 320" className="w-full max-w-lg select-none">
       <rect width="560" height="320" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       {/* General Hypothesis G */}
-      <rect x="120" y="50" width="320" height="210" fill="rgba(99, 102, 241, 0.08)" stroke="#6366f1" strokeWidth="2" strokeDasharray="4,4" rx="6" />
-      <text x="420" y="45" fill="#818cf8" fontSize="12" fontWeight="bold">G: Most General</text>
+      <rect x="120" y="50" width="320" height="210" fill="rgba(217, 119, 6, 0.08)" stroke="#d97706" strokeWidth="2" strokeDasharray="4,4" rx="6" />
+      <text x="420" y="45" fill="#fbbf24" fontSize="12" fontWeight="bold">G: Most General</text>
 
       {/* Specific Hypothesis S */}
       <rect x="200" y="100" width="160" height="110" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" strokeWidth="2" rx="4" />
@@ -393,11 +393,11 @@ function Fig2_5() {
     <svg viewBox="0 0 560 320" className="w-full max-w-lg select-none">
       <rect width="560" height="320" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       {/* S and G bounds */}
-      <rect x="150" y="70" width="260" height="170" fill="none" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="3,3" />
+      <rect x="150" y="70" width="260" height="170" fill="none" stroke="#d97706" strokeWidth="1.5" strokeDasharray="3,3" />
       <rect x="190" y="100" width="180" height="110" fill="none" stroke="#10b981" strokeWidth="1.5" strokeDasharray="3,3" />
 
       {/* Maximum margin h halfway */}
-      <rect x="170" y="85" width="220" height="140" fill="rgba(99, 102, 241, 0.15)" stroke="#6366f1" strokeWidth="3" rx="4" />
+      <rect x="170" y="85" width="220" height="140" fill="rgba(217, 119, 6, 0.15)" stroke="#d97706" strokeWidth="3" rx="4" />
       <text x="280" y="160" fill="var(--diagram-text)" fontSize="13" fontWeight="bold" textAnchor="middle">
         Max Margin Hypothesis h
       </text>
@@ -447,9 +447,9 @@ function Fig3_1() {
       <text x="400" y="250" fill="#fbbf24" fontSize="14" fontWeight="bold">Region R₃ (C₃)</text>
 
       {/* Decision Boundaries */}
-      <path d="M 60 40 Q 200 120 220 280" fill="none" stroke="#6366f1" strokeWidth="2.5" />
-      <path d="M 220 280 Q 360 200 500 180" fill="none" stroke="#6366f1" strokeWidth="2.5" />
-      <path d="M 200 120 Q 280 80 380 40" fill="none" stroke="#6366f1" strokeWidth="2.5" />
+      <path d="M 60 40 Q 200 120 220 280" fill="none" stroke="#d97706" strokeWidth="2.5" />
+      <path d="M 220 280 Q 360 200 500 180" fill="none" stroke="#d97706" strokeWidth="2.5" />
+      <path d="M 200 120 Q 280 80 380 40" fill="none" stroke="#d97706" strokeWidth="2.5" />
     </svg>
   );
 }
@@ -525,8 +525,8 @@ function Fig4_4() {
 
       {/* Vertical cross-section bell curve at x* */}
       <line x1="300" y1="40" x2="300" y2="230" stroke="var(--diagram-axis)" strokeDasharray="3,3" />
-      <path d="M 300 135 C 360 135 360 105 300 105" fill="rgba(99,102,241,0.2)" stroke="#6366f1" strokeWidth="2" />
-      <text x="350" y="125" fill="#818cf8" fontSize="11" fontWeight="bold">p(r|x*) ~ N(g(x*), σ²)</text>
+      <path d="M 300 135 C 360 135 360 105 300 105" fill="rgba(217, 119, 6,0.2)" stroke="#d97706" strokeWidth="2" />
+      <text x="350" y="125" fill="#fbbf24" fontSize="11" fontWeight="bold">p(r|x*) ~ N(g(x*), σ²)</text>
     </svg>
   );
 }
@@ -583,7 +583,7 @@ function Fig6_1() {
       <text x="105" y="50" fill="var(--diagram-text-muted)" fontSize="11">x₂</text>
 
       {/* Ellipse */}
-      <ellipse cx="210" cy="130" rx="70" ry="30" fill="rgba(99,102,241,0.15)" stroke="#6366f1" strokeWidth="2" transform="rotate(-30 210 130)" />
+      <ellipse cx="210" cy="130" rx="70" ry="30" fill="rgba(217, 119, 6,0.15)" stroke="#d97706" strokeWidth="2" transform="rotate(-30 210 130)" />
 
       {/* Principal Component Vector z1 */}
       <line x1="150" y1="165" x2="270" y2="95" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrow)" />
@@ -600,8 +600,8 @@ function Fig6_7() {
       <rect width="560" height="260" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       <line x1="80" y1="220" x2="480" y2="220" stroke="var(--diagram-axis)" strokeWidth="2" />
       {/* Projection Vector w */}
-      <line x1="120" y1="210" x2="420" y2="70" stroke="#6366f1" strokeWidth="3" />
-      <text x="430" y="70" fill="#818cf8" fontSize="13" fontWeight="bold">w (LDA Projection)</text>
+      <line x1="120" y1="210" x2="420" y2="70" stroke="#d97706" strokeWidth="3" />
+      <text x="430" y="70" fill="#fbbf24" fontSize="13" fontWeight="bold">w (LDA Projection)</text>
 
       {/* Class 1 & 2 projected */}
       <circle cx="200" cy="172" r="8" fill="#3b82f6" />
@@ -622,18 +622,18 @@ function Fig7_1() {
     <svg viewBox="0 0 560 200" className="w-full max-w-lg select-none">
       <rect width="560" height="200" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       {/* Encoder Box */}
-      <rect x="80" y="50" width="120" height="100" fill="#18181b" stroke="#6366f1" strokeWidth="2" rx="10" />
+      <rect x="80" y="50" width="120" height="100" fill="#18181b" stroke="#d97706" strokeWidth="2" rx="10" />
       <text x="140" y="85" fill="var(--diagram-text)" fontSize="12" fontWeight="bold" textAnchor="middle">Encoder</text>
-      <text x="140" y="110" fill="#818cf8" fontSize="11" textAnchor="middle">Find closest m_i</text>
+      <text x="140" y="110" fill="#fbbf24" fontSize="11" textAnchor="middle">Find closest m_i</text>
 
       {/* Channel */}
       <line x1="200" y1="100" x2="360" y2="100" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrow)" />
       <text x="280" y="90" fill="#34d399" fontSize="12" fontWeight="bold" textAnchor="middle">Index i (k bits)</text>
 
       {/* Decoder Box */}
-      <rect x="360" y="50" width="120" height="100" fill="#18181b" stroke="#6366f1" strokeWidth="2" rx="10" />
+      <rect x="360" y="50" width="120" height="100" fill="#18181b" stroke="#d97706" strokeWidth="2" rx="10" />
       <text x="420" y="85" fill="var(--diagram-text)" fontSize="12" fontWeight="bold" textAnchor="middle">Decoder</text>
-      <text x="420" y="110" fill="#818cf8" fontSize="11" textAnchor="middle">Lookup x&apos; = m_i</text>
+      <text x="420" y="110" fill="#fbbf24" fontSize="11" textAnchor="middle">Lookup x&apos; = m_i</text>
     </svg>
   );
 }
@@ -665,20 +665,20 @@ function Fig9_1() {
       <rect width="560" height="260" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       {/* 2D Space partitioned */}
       <rect x="50" y="50" width="200" height="170" fill="none" stroke="var(--diagram-axis)" strokeWidth="1.5" />
-      <line x1="150" y1="50" x2="150" y2="220" stroke="#6366f1" strokeWidth="2.5" />
+      <line x1="150" y1="50" x2="150" y2="220" stroke="#d97706" strokeWidth="2.5" />
       <line x1="150" y1="130" x2="250" y2="130" stroke="#10b981" strokeWidth="2.5" />
-      <text x="100" y="140" fill="#818cf8" fontSize="12" fontWeight="bold">Class C₁</text>
+      <text x="100" y="140" fill="#fbbf24" fontSize="12" fontWeight="bold">Class C₁</text>
       <text x="200" y="90" fill="#34d399" fontSize="12" fontWeight="bold">Class C₂</text>
-      <text x="200" y="180" fill="#818cf8" fontSize="12" fontWeight="bold">Class C₁</text>
+      <text x="200" y="180" fill="#fbbf24" fontSize="12" fontWeight="bold">Class C₁</text>
 
       {/* Tree Node Structure */}
-      <circle cx="380" cy="80" r="16" fill="#18181b" stroke="#6366f1" strokeWidth="2" />
+      <circle cx="380" cy="80" r="16" fill="#18181b" stroke="#d97706" strokeWidth="2" />
       <text x="380" y="84" fill="var(--diagram-text)" fontSize="10" textAnchor="middle">x₁ &gt; w₁₀</text>
 
       <line x1="370" y1="96" x2="330" y2="150" stroke="var(--diagram-axis)" strokeWidth="1.5" />
       <line x1="390" y1="96" x2="430" y2="150" stroke="var(--diagram-axis)" strokeWidth="1.5" />
 
-      <rect x="310" y="150" width="40" height="24" fill="#6366f1" rx="4" />
+      <rect x="310" y="150" width="40" height="24" fill="#d97706" rx="4" />
       <text x="330" y="166" fill="var(--diagram-text)" fontSize="11" fontWeight="bold" textAnchor="middle">C₁</text>
 
       <circle cx="430" cy="162" r="16" fill="#18181b" stroke="#10b981" strokeWidth="2" />
@@ -695,8 +695,8 @@ function Fig10_1() {
       <line x1="80" y1="220" x2="480" y2="220" stroke="var(--diagram-axis)" strokeWidth="2" />
       <line x1="80" y1="220" x2="80" y2="40" stroke="var(--diagram-axis)" strokeWidth="2" />
       {/* Hyperplane Line */}
-      <line x1="140" y1="220" x2="380" y2="40" stroke="#6366f1" strokeWidth="3" />
-      <text x="410" y="55" fill="#818cf8" fontSize="13" fontWeight="bold">wᵀx + w₀ = 0</text>
+      <line x1="140" y1="220" x2="380" y2="40" stroke="#d97706" strokeWidth="3" />
+      <text x="410" y="55" fill="#fbbf24" fontSize="13" fontWeight="bold">wᵀx + w₀ = 0</text>
       <text x="180" y="100" fill="#60a5fa" fontSize="12" fontWeight="bold">g(x) &gt; 0 (Class 1)</text>
       <text x="350" y="180" fill="#f87171" fontSize="12" fontWeight="bold">g(x) &lt; 0 (Class 2)</text>
     </svg>
@@ -727,7 +727,7 @@ function Fig11_1() {
       {/* Input nodes */}
       {[120, 200, 280, 360].map((x, i) => (
         <g key={i}>
-          <circle cx={x} cy={180} r="18" fill="#18181b" stroke="#6366f1" strokeWidth="2" />
+          <circle cx={x} cy={180} r="18" fill="#18181b" stroke="#d97706" strokeWidth="2" />
           <text x={x} y={185} fill="var(--diagram-text)" fontSize="11" textAnchor="middle">
             {i === 0 ? 'x₀=+1' : `x_${i}`}
           </text>
@@ -736,9 +736,9 @@ function Fig11_1() {
         </g>
       ))}
       {/* Output node */}
-      <circle cx={240} cy={60} r="22" fill="#4f46e5" stroke="#818cf8" strokeWidth="2.5" />
+      <circle cx={240} cy={60} r="22" fill="#b45309" stroke="#fbbf24" strokeWidth="2.5" />
       <text x={240} y={65} fill="var(--diagram-text)" fontSize="14" fontWeight="bold" textAnchor="middle">y</text>
-      <text x="380" y="65" fill="#a5b4fc" fontSize="12" fontWeight="bold">y = wᵀx + w₀</text>
+      <text x="380" y="65" fill="#fcd34d" fontSize="12" fontWeight="bold">y = wᵀx + w₀</text>
     </svg>
   );
 }
@@ -763,8 +763,8 @@ function Fig11_4() {
       <text x="235" y="95" fill="#34d399" fontSize="12" fontWeight="bold">(1, 1) = True</text>
 
       {/* Separating line x1 + x2 = 1.5 */}
-      <line x1="100" y1="70" x2="250" y2="220" stroke="#6366f1" strokeWidth="2.5" />
-      <text x="220" y="60" fill="#818cf8" fontSize="11" fontWeight="bold">x₁ + x₂ − 1.5 = 0</text>
+      <line x1="100" y1="70" x2="250" y2="220" stroke="#d97706" strokeWidth="2.5" />
+      <text x="220" y="60" fill="#fbbf24" fontSize="11" fontWeight="bold">x₁ + x₂ − 1.5 = 0</text>
     </svg>
   );
 }
@@ -809,9 +809,9 @@ function Fig11_6() {
 
       {/* 4 Hidden nodes */}
       {[80, 130, 180, 230].map((y, i) => (
-        <circle key={i} cx="280" cy={y} r="16" fill="#18181b" stroke="#6366f1" strokeWidth="2" />
+        <circle key={i} cx="280" cy={y} r="16" fill="#18181b" stroke="#d97706" strokeWidth="2" />
       ))}
-      <text x="280" y="26" fill="#818cf8" fontSize="11" textAnchor="middle">Hidden z_h</text>
+      <text x="280" y="26" fill="#fbbf24" fontSize="11" textAnchor="middle">Hidden z_h</text>
 
       {/* 2 Output nodes */}
       {[130, 180].map((y, i) => (
@@ -827,7 +827,7 @@ function Fig11_6() {
       )}
       {[80, 130, 180, 230].map((y1) =>
         [130, 180].map((y2, j) => (
-          <line key={`h-${y1}-${j}`} x1="296" y1={y1} x2="444" y2={y2} stroke="rgba(99,102,241,0.25)" strokeWidth="1" />
+          <line key={`h-${y1}-${j}`} x1="296" y1={y1} x2="444" y2={y2} stroke="rgba(217, 119, 6,0.25)" strokeWidth="1" />
         ))
       )}
     </svg>
@@ -844,15 +844,15 @@ function Fig13_1() {
       <text x="430" y="50" fill="var(--diagram-text)" fontSize="12" fontWeight="bold">wᵀx + w₀ = 0</text>
 
       {/* Margins */}
-      <line x1="80" y1="180" x2="380" y2="20" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,4" />
-      <line x1="160" y1="240" x2="460" y2="80" stroke="#6366f1" strokeWidth="1.5" strokeDasharray="4,4" />
+      <line x1="80" y1="180" x2="380" y2="20" stroke="#d97706" strokeWidth="1.5" strokeDasharray="4,4" />
+      <line x1="160" y1="240" x2="460" y2="80" stroke="#d97706" strokeWidth="1.5" strokeDasharray="4,4" />
 
       {/* Support Vectors (Circled) */}
-      <circle cx="230" cy="100" r="12" fill="none" stroke="#6366f1" strokeWidth="2.5" />
+      <circle cx="230" cy="100" r="12" fill="none" stroke="#d97706" strokeWidth="2.5" />
       <circle cx="230" cy="100" r="5" fill="#3b82f6" />
-      <text x="180" y="90" fill="#818cf8" fontSize="11" fontWeight="bold">Support Vector</text>
+      <text x="180" y="90" fill="#fbbf24" fontSize="11" fontWeight="bold">Support Vector</text>
 
-      <circle cx="310" cy="160" r="12" fill="none" stroke="#6366f1" strokeWidth="2.5" />
+      <circle cx="310" cy="160" r="12" fill="none" stroke="#d97706" strokeWidth="2.5" />
       <circle cx="310" cy="160" r="5" fill="#ef4444" />
 
       {/* Margin Distance indicator */}
@@ -868,8 +868,8 @@ function Fig13_2() {
     <svg viewBox="0 0 560 260" className="w-full max-w-lg select-none">
       <rect width="560" height="260" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       <line x1="120" y1="220" x2="420" y2="40" stroke="#ffffff" strokeWidth="2.5" />
-      <line x1="80" y1="180" x2="380" y2="0" stroke="#6366f1" strokeDasharray="4,4" />
-      <line x1="160" y1="260" x2="460" y2="80" stroke="#6366f1" strokeDasharray="4,4" />
+      <line x1="80" y1="180" x2="380" y2="0" stroke="#d97706" strokeDasharray="4,4" />
+      <line x1="160" y1="260" x2="460" y2="80" stroke="#d97706" strokeDasharray="4,4" />
 
       {/* Outlier with slack */}
       <circle cx="340" cy="130" r="7" fill="#ef4444" />
@@ -888,8 +888,8 @@ function Fig13_6() {
       <line x1="280" y1="220" x2="280" y2="20" stroke="var(--diagram-axis)" strokeWidth="2" />
 
       {/* Hinge loss */}
-      <path d="M 100 20 L 280 200 L 480 200" fill="none" stroke="#6366f1" strokeWidth="3" />
-      <text x="140" y="40" fill="#818cf8" fontSize="12" fontWeight="bold">Hinge Loss: max(0, 1 - y*r)</text>
+      <path d="M 100 20 L 280 200 L 480 200" fill="none" stroke="#d97706" strokeWidth="3" />
+      <text x="140" y="40" fill="#fbbf24" fontSize="12" fontWeight="bold">Hinge Loss: max(0, 1 - y*r)</text>
 
       {/* 0/1 loss */}
       <path d="M 100 80 L 280 80 L 280 200 L 480 200" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="3,3" />
@@ -913,7 +913,7 @@ function Fig16_1() {
       <text x="360" y="55" fill="var(--diagram-text-muted)" fontSize="11">P(R) = 0.4</text>
 
       {/* Directed Arc */}
-      <line x1="280" y1="78" x2="280" y2="130" stroke="#6366f1" strokeWidth="2.5" markerEnd="url(#arrow)" />
+      <line x1="280" y1="78" x2="280" y2="130" stroke="#d97706" strokeWidth="2.5" markerEnd="url(#arrow)" />
 
       {/* Node Wet Grass */}
       <circle cx="280" cy="155" r="28" fill="#18181b" stroke="#10b981" strokeWidth="2.5" />
@@ -930,8 +930,8 @@ function Fig18_1() {
     <svg viewBox="0 0 560 220" className="w-full max-w-lg select-none">
       <rect width="560" height="220" rx="16" fill="var(--diagram-bg)" stroke="var(--diagram-border)" strokeWidth="1" />
       {/* Environment Box */}
-      <rect x="200" y="20" width="160" height="50" fill="#18181b" stroke="#6366f1" strokeWidth="2" rx="8" />
-      <text x="280" y="50" fill="#818cf8" fontSize="13" fontWeight="bold" textAnchor="middle">ENVIRONMENT</text>
+      <rect x="200" y="20" width="160" height="50" fill="#18181b" stroke="#d97706" strokeWidth="2" rx="8" />
+      <text x="280" y="50" fill="#fbbf24" fontSize="13" fontWeight="bold" textAnchor="middle">ENVIRONMENT</text>
 
       {/* Agent Box */}
       <rect x="200" y="150" width="160" height="50" fill="#18181b" stroke="#10b981" strokeWidth="2" rx="8" />
@@ -961,8 +961,8 @@ function Fig19_3() {
       <text x="240" y="140" fill="var(--diagram-text-muted)" fontSize="10">Random (AUC=0.5)</text>
 
       {/* Convex ROC curve */}
-      <path d="M 100 200 Q 110 50 300 30" fill="rgba(99,102,241,0.2)" stroke="#6366f1" strokeWidth="3" />
-      <text x="140" y="70" fill="#818cf8" fontSize="13" fontWeight="bold">Classifier ROC (AUC = 0.92)</text>
+      <path d="M 100 200 Q 110 50 300 30" fill="rgba(217, 119, 6,0.2)" stroke="#d97706" strokeWidth="3" />
+      <text x="140" y="70" fill="#fbbf24" fontSize="13" fontWeight="bold">Classifier ROC (AUC = 0.92)</text>
 
       {/* Axis labels */}
       <text x="200" y="225" fill="var(--diagram-text-muted)" fontSize="11" textAnchor="middle">False Positive Rate (fp-rate)</text>
@@ -1001,7 +1001,7 @@ function Fig19_4() {
 function GenericSchematic({ id }: { id: string }) {
   return (
     <div className="w-full max-w-md p-8 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-center space-y-4 shadow-sm">
-      <div className="inline-flex p-3 rounded-2xl bg-indigo-950/60 border border-indigo-900 text-indigo-400">
+      <div className="inline-flex p-3 rounded-2xl bg-amber-950/60 border border-amber-900 text-amber-400">
         <Sparkles className="h-6 w-6" />
       </div>
       <div>

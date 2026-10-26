@@ -22,9 +22,9 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: 'Garden of Eden — Primordial Knowledge of Computation & Learning',
+  title: 'Garden of Eden — Mathematics for Machine Learning',
   description:
-    'A living computational knowledge arboretum. Featuring complete online editions of foundational mathematics, statistical learning theory, deep representations, and distributed systems.',
+    'Free, rigorous syllabi in linear algebra, calculus, probability, differential equations and machine learning, written from first principles with every theorem proved.',
 };
 
 export default function RootLayout({
@@ -38,6 +38,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.add(d?'dark':'light')}catch(e){}`,
+          }}
+        />
+      </head>
       <body
         suppressHydrationWarning
         className="min-h-full flex flex-col bg-[#fafafc] text-zinc-900 dark:bg-[#08090d] dark:text-zinc-100 selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-200 transition-colors"

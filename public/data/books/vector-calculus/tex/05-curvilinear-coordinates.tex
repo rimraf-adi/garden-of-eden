@@ -1,0 +1,261 @@
+\chapter{Curvilinear Coordinates}
+\label{ch:curvilinear}
+
+Many problems have a natural shape: a circle, a cylinder, a sphere. In such problems Cartesian coordinates make the formulas ugly. In this chapter we derive the gradient, divergence, curl and Laplacian in \emph{any} orthogonal coordinate system, and then read off the formulas for cylindrical and spherical coordinates. The proofs use only the identities of Chapter~\ref{ch:fields}.
+
+%====================================================================
+\section{Orthogonal coordinates and scale factors}
+%====================================================================
+
+Let $(u_1,u_2,u_3)\mapsto\vec r(u_1,u_2,u_3)$ be a $C^2$ map with invertible Jacobian, so that each point of space (in a region) has coordinates $(u_1,u_2,u_3)$. The curves obtained by changing one $u_i$ and keeping the others fixed are the \emph{coordinate curves}; the surfaces $u_i=\text{const}$ are the \emph{coordinate surfaces}.
+
+\begin{definition}[Scale factors and basis vectors]
+The vector $\partial\vec r/\partial u_i$ is tangent to the $u_i$-coordinate curve. Its length is the \emph{scale factor}
+\[
+h_i=\Bigl\lVert\pd{\vec r}{u_i}\Bigr\rVert,\qquad\text{and}\qquad\ehat_i=\frac1{h_i}\pd{\vec r}{u_i}
+\]
+is the unit \emph{basis vector}. The coordinate system is \emph{orthogonal} if $\ehat_1,\ehat_2,\ehat_3$ are perpendicular at every point; we also assume they are \emph{right-handed}, so that $\ehat_1\times\ehat_2=\ehat_3$ (and cyclically).
+\end{definition}
+
+The scale factor $h_i$ answers the question: if $u_i$ changes by $\dd u_i$, how far do we move? The answer is $h_i\,\dd u_i$.
+
+\begin{example}[The standard systems]
+\begin{center}
+\small\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}llll@{}}
+\toprule
+System & Coordinates $(u_1,u_2,u_3)$ & Scale factors $(h_1,h_2,h_3)$ & Basis \\
+\midrule
+Cartesian & $(x,y,z)$ & $(1,1,1)$ & $\ihat,\jhat,\khat$ \\
+Cylindrical & $(r,\theta,z)$ & $(1,\ r,\ 1)$ & $\ehat_r,\ehat_\theta,\ehat_z$ \\
+Spherical & $(\rho,\varphi,\theta)$ & $(1,\ \rho,\ \rho\sin\varphi)$ & $\ehat_\rho,\ehat_\varphi,\ehat_\theta$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+For cylindrical coordinates, $\vec r=(r\cos\theta,r\sin\theta,z)$, so $\partial_r\vec r=(\cos\theta,\sin\theta,0)$ (length $1$), $\partial_\theta\vec r=(-r\sin\theta,r\cos\theta,0)$ (length $r$), and $\partial_z\vec r=\khat$. The spherical case was computed in Theorem~\ref{thm:elements}.
+\end{example}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.35]
+  \draw[axisline,mid] (-0.3,0)--(4.0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,-0.3)--(0,3.8) node[above]{$y$};
+  % coordinate curves
+  \foreach \r in {0.8,1.6,2.4,3.2}{ \draw[accent!45,thin] (0,0) ++(0:\r) arc (0:90:\r); }
+  \foreach \a in {0,15,...,90}{ \draw[accent2!45,thin] (0,0)--(\a:3.4); }
+  % basis at two points
+  \coordinate (A) at (35:2.4);
+  \coordinate (B) at (75:1.6);
+  \foreach \P/\ang in {A/35,B/75}{
+    \node[pt] at (\P) {};
+    \draw[vecstyle,accent2] (\P)--++(\ang:0.85) node[above right,font=\small]{$\ehat_r$};
+    \draw[vecstyle,accent4] (\P)--++({\ang+90}:0.85) node[above left,font=\small]{$\ehat_\theta$};
+  }
+  \draw[accent] (0.9,0) arc (0:35:0.9);
+  \node[font=\small,accent] at (1.15,0.35) {$\theta$};
+  \node[font=\small,accent] at (1.3,1.3) {$r$};
+\end{tikzpicture}
+\caption{Polar coordinates. Blue circles are curves of constant $r$; orange rays are curves of constant $\theta$. The basis vectors $\ehat_r$ (radially outward) and $\ehat_\theta$ (counterclockwise) are perpendicular but \emph{point in different directions at different places}. This is the main difference from Cartesian coordinates.}
+\label{fig:polarbasis}
+\end{figure}
+
+%====================================================================
+\section{Line, area and volume elements}
+%====================================================================
+
+By the chain rule, a small change $(\dd u_1,\dd u_2,\dd u_3)$ moves the point by
+\[
+\dd\vec r=\sum_i\pd{\vec r}{u_i}\dd u_i=h_1\dd u_1\,\ehat_1+h_2\dd u_2\,\ehat_2+h_3\dd u_3\,\ehat_3 .
+\]
+Because the $\ehat_i$ are orthonormal, we read off:
+\begin{itemize}
+  \item \textbf{Arc length:} $\dd s^2=h_1^2\dd u_1^2+h_2^2\dd u_2^2+h_3^2\dd u_3^2$.
+  \item \textbf{Surface element} on the surface $u_3=\text{const}$: $\dd S=h_1h_2\,\dd u_1\dd u_2$ (and similarly for the others).
+  \item \textbf{Volume element:} $\dd V=h_1h_2h_3\,\dd u_1\dd u_2\dd u_3$.
+\end{itemize}
+The volume element agrees with Theorem~\ref{thm:cov}: the Jacobian matrix has orthogonal rows $h_i\ehat_i$, so $\abs{\det}=h_1h_2h_3$.
+
+\begin{example}
+On the sphere $\rho=R$, the surface element is $\dd S=h_\varphi h_\theta\,\dd\varphi\,\dd\theta=R\cdot R\sin\varphi\,\dd\varphi\,\dd\theta=R^2\sin\varphi\,\dd\varphi\,\dd\theta$. Total area $=\int_0^{2\pi}\!\int_0^\pi R^2\sin\varphi\,\dd\varphi\,\dd\theta=4\pi R^2$. On the cylinder $r=R$: $\dd S=R\,\dd\theta\,\dd z$.
+\end{example}
+
+%====================================================================
+\section{Gradient, divergence, curl, Laplacian}
+%====================================================================
+
+\begin{theorem}[Vector calculus in orthogonal coordinates]\label{thm:curvilinear}
+Let $(u_1,u_2,u_3)$ be a right-handed orthogonal coordinate system of class $C^2$ with scale factors $h_i$. Write $\partial_i=\partial/\partial u_i$, let $f$ be a $C^2$ scalar field and let $\vec F=F_1\ehat_1+F_2\ehat_2+F_3\ehat_3$ be a $C^1$ vector field. Then
+\begin{align*}
+\nabla f&=\frac1{h_1}\partial_1f\,\ehat_1+\frac1{h_2}\partial_2f\,\ehat_2+\frac1{h_3}\partial_3f\,\ehat_3,\\[4pt]
+\divg\vec F&=\frac1{h_1h_2h_3}\Bigl[\partial_1(h_2h_3F_1)+\partial_2(h_3h_1F_2)+\partial_3(h_1h_2F_3)\Bigr],\\[4pt]
+\curl\vec F&=\frac1{h_1h_2h_3}\det\begin{pmatrix}h_1\ehat_1&h_2\ehat_2&h_3\ehat_3\\\partial_1&\partial_2&\partial_3\\h_1F_1&h_2F_2&h_3F_3\end{pmatrix},\\[4pt]
+\lap f&=\frac1{h_1h_2h_3}\Bigl[\partial_1\Bigl(\frac{h_2h_3}{h_1}\partial_1f\Bigr)+\partial_2\Bigl(\frac{h_3h_1}{h_2}\partial_2f\Bigr)+\partial_3\Bigl(\frac{h_1h_2}{h_3}\partial_3f\Bigr)\Bigr].
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+\emph{Gradient.} By the chain rule, $\partial_if=\nabla f\cdot\partial_i\vec r=h_i\,\nabla f\cdot\ehat_i$. Hence $\nabla f\cdot\ehat_i=\partial_if/h_i$. Since $(\ehat_i)$ is an orthonormal basis, $\nabla f=\sum_i(\nabla f\cdot\ehat_i)\ehat_i$, which is the formula. Applying it to the coordinate function $f=u_i$ (so $\partial_ju_i=\delta_{ij}$) gives
+\[
+\nabla u_i=\frac1{h_i}\ehat_i,\qquad\text{i.e.}\qquad\ehat_i=h_i\nabla u_i .\tag{$\dagger$}
+\]
+
+\emph{Divergence.} Consider the term $F_1\ehat_1$. Since $\ehat_1=\ehat_2\times\ehat_3$, ($\dagger$) gives $\ehat_1=h_2h_3\,\nabla u_2\times\nabla u_3$, so
+\[
+F_1\ehat_1=g\,\nabla u_2\times\nabla u_3\qquad\text{with }g=h_2h_3F_1 .
+\]
+By Theorem~\ref{thm:identities}(4) and (6),
+\[
+\divg\bigl(g\,\nabla u_2\times\nabla u_3\bigr)=\nabla g\cdot(\nabla u_2\times\nabla u_3)+g\,\divg(\nabla u_2\times\nabla u_3),
+\]
+and the last divergence is $\nabla u_3\cdot\curl\nabla u_2-\nabla u_2\cdot\curl\nabla u_3=0$, because the curl of a gradient vanishes (Theorem~\ref{thm:identities}(1)). In the first term, $\nabla u_2\times\nabla u_3=\ehat_1/(h_2h_3)$ and $\nabla g\cdot\ehat_1=\partial_1g/h_1$. Therefore
+\[
+\divg(F_1\ehat_1)=\frac1{h_1h_2h_3}\,\partial_1(h_2h_3F_1).
+\]
+The terms $F_2\ehat_2$ and $F_3\ehat_3$ are handled in the same way (cyclic permutation of the indices), and divergence is linear.
+
+\emph{Curl.} By ($\dagger$), $F_1\ehat_1=(h_1F_1)\,\nabla u_1$. With $g=h_1F_1$, Theorem~\ref{thm:identities}(5) and (1) give
+\[
+\curl(g\,\nabla u_1)=\nabla g\times\nabla u_1+g\,\curl\nabla u_1=\nabla g\times\nabla u_1=\frac1{h_1}\Bigl(\frac{\partial_2g}{h_2}\ehat_2+\frac{\partial_3g}{h_3}\ehat_3\Bigr)\times\ehat_1+\frac{\partial_1g}{h_1h_1}\ehat_1\times\ehat_1 .
+\]
+Using $\ehat_2\times\ehat_1=-\ehat_3$ and $\ehat_3\times\ehat_1=\ehat_2$,
+\[
+\curl(F_1\ehat_1)=\frac1{h_1h_3}\partial_3(h_1F_1)\,\ehat_2-\frac1{h_1h_2}\partial_2(h_1F_1)\,\ehat_3 .
+\]
+Adding the two cyclic analogues, the coefficient of $\ehat_1$ is $\frac1{h_2h_3}\bigl[\partial_2(h_3F_3)-\partial_3(h_2F_2)\bigr]$, and similarly for $\ehat_2,\ehat_3$. This is exactly the expansion of the determinant in the statement.
+
+\emph{Laplacian.} $\lap f=\divg\nabla f$. Apply the divergence formula to the field with components $F_i=\partial_if/h_i$:
+\[
+\lap f=\frac1{h_1h_2h_3}\sum_i\partial_i\Bigl(\frac{h_jh_k}{h_i}\,\partial_if\Bigr),
+\]
+where $(i,j,k)$ runs over cyclic permutations of $(1,2,3)$.
+\end{proof}
+
+\begin{corollary}[Cylindrical and spherical formulas]\label{cor:cylsph}
+\emph{Cylindrical} $(r,\theta,z)$, with $\vec F=F_r\ehat_r+F_\theta\ehat_\theta+F_z\ehat_z$:
+\begin{align*}
+\nabla f&=\pd fr\,\ehat_r+\frac1r\pd f\theta\,\ehat_\theta+\pd fz\,\ehat_z,\\
+\divg\vec F&=\frac1r\pd{(rF_r)}r+\frac1r\pd{F_\theta}\theta+\pd{F_z}z,\\
+\curl\vec F&=\Bigl(\frac1r\pd{F_z}\theta-\pd{F_\theta}z\Bigr)\ehat_r+\Bigl(\pd{F_r}z-\pd{F_z}r\Bigr)\ehat_\theta+\frac1r\Bigl(\pd{(rF_\theta)}r-\pd{F_r}\theta\Bigr)\ehat_z,\\
+\lap f&=\frac1r\pd{}r\Bigl(r\pd fr\Bigr)+\frac1{r^2}\pdd f\theta+\pdd fz.
+\end{align*}
+\emph{Spherical} $(\rho,\varphi,\theta)$, with $\vec F=F_\rho\ehat_\rho+F_\varphi\ehat_\varphi+F_\theta\ehat_\theta$:
+\begin{align*}
+\nabla f&=\pd f\rho\,\ehat_\rho+\frac1\rho\pd f\varphi\,\ehat_\varphi+\frac1{\rho\sin\varphi}\pd f\theta\,\ehat_\theta,\\
+\divg\vec F&=\frac1{\rho^2}\pd{(\rho^2F_\rho)}\rho+\frac1{\rho\sin\varphi}\pd{(\sin\varphi\,F_\varphi)}\varphi+\frac1{\rho\sin\varphi}\pd{F_\theta}\theta,\\
+\lap f&=\frac1{\rho^2}\pd{}\rho\Bigl(\rho^2\pd f\rho\Bigr)+\frac1{\rho^2\sin\varphi}\pd{}\varphi\Bigl(\sin\varphi\pd f\varphi\Bigr)+\frac1{\rho^2\sin^2\varphi}\pdd f\theta .
+\end{align*}
+\end{corollary}
+
+\begin{proof}
+Insert $(h_1,h_2,h_3)=(1,r,1)$, respectively $(1,\rho,\rho\sin\varphi)$, into Theorem~\ref{thm:curvilinear}. For example, for the spherical divergence: $h_2h_3=\rho^2\sin\varphi$, $h_3h_1=\rho\sin\varphi$, $h_1h_2=\rho$, $h_1h_2h_3=\rho^2\sin\varphi$, so
+\[
+\divg\vec F=\frac1{\rho^2\sin\varphi}\Bigl[\partial_\rho(\rho^2\sin\varphi\,F_\rho)+\partial_\varphi(\rho\sin\varphi\,F_\varphi)+\partial_\theta(\rho F_\theta)\Bigr],
+\]
+and dividing through (the factors $\sin\varphi$, $\rho$ do not depend on the variable of differentiation in the first and third terms) gives the stated form.
+\end{proof}
+
+\begin{example}[Checks and applications]
+\begin{enumerate}[label=(\alph*)]
+  \item \emph{Inverse-square field.} $\vec F=\rho^{-2}\ehat_\rho$: $\rho^2F_\rho=1$ is constant, so $\divg\vec F=0$ for $\rho>0$.
+  \item \emph{Radial Laplacian.} If $f=f(\rho)$, then $\lap f=\rho^{-2}(\rho^2f')'=f''+\tfrac2\rho f'$. The solutions of $\lap f=0$ are $f=A+B/\rho$, in agreement with Chapter~\ref{ch:fields}. In the plane, $f=f(r)$: $\lap f=\frac1r(rf')'$ with solutions $A+B\ln r$.
+  \item \emph{Rigid rotation.} $\vec F=\omega r\,\ehat_\theta$ (in cylindrical coordinates): $\curl\vec F=\frac1r\partial_r(r\cdot\omega r)\ehat_z=2\omega\,\ehat_z$, as in Theorem~\ref{thm:rigid}.
+  \item \emph{The vortex} $\vec G=\dfrac1r\ehat_\theta$ $(=(-y,x)/(x^2+y^2))$: $\curl\vec G=\frac1r\partial_r(r\cdot\frac1r)\ehat_z=0$ and $\divg\vec G=\frac1r\partial_\theta(\frac1r)=0$.
+\end{enumerate}
+\end{example}
+
+\begin{pitfall}
+In curvilinear coordinates, $\lap\vec F\ne(\lap F_1)\ehat_1+(\lap F_2)\ehat_2+(\lap F_3)\ehat_3$. The basis vectors depend on position, so they must be differentiated too. The component-wise rule holds only in Cartesian coordinates. For a vector field, use $\lap\vec F=\nabla(\divg\vec F)-\curl\curl\vec F$ (Theorem~\ref{thm:identities}(7)). Likewise, $\divg$ of $\vec F$ is \emph{not} $\sum\partial_iF_i$ in these coordinates: the scale factors enter.
+\end{pitfall}
+
+%====================================================================
+\section{Why the basis vectors vary}
+%====================================================================
+
+In Cartesian coordinates, $\ihat,\jhat,\khat$ are constant, so differentiating a vector field means differentiating its components. In polar coordinates, $\ehat_r=(\cos\theta,\sin\theta)$ and $\ehat_\theta=(-\sin\theta,\cos\theta)$, so
+\[
+\pd{\ehat_r}\theta=\ehat_\theta,\qquad\pd{\ehat_\theta}\theta=-\ehat_r,\qquad\pd{\ehat_r}r=\pd{\ehat_\theta}r=\vec 0 .
+\]
+These formulas are the source of the extra terms in curvilinear derivatives.
+
+\begin{theorem}[Velocity and acceleration in polar coordinates]\label{thm:polaracc}
+For a particle with position $\vec r(t)=r(t)\,\ehat_r$ (with $r=r(t)$, $\theta=\theta(t)$),
+\begin{align*}
+\vec v&=\dot r\,\ehat_r+r\dot\theta\,\ehat_\theta,\\
+\vec a&=\bigl(\ddot r-r\dot\theta^2\bigr)\ehat_r+\bigl(r\ddot\theta+2\dot r\dot\theta\bigr)\ehat_\theta .
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+By the chain rule $\dot{\ehat}_r=\dot\theta\,\ehat_\theta$ and $\dot{\ehat}_\theta=-\dot\theta\,\ehat_r$. Then $\vec v=\frac{\dd}{\dd t}(r\ehat_r)=\dot r\ehat_r+r\dot\theta\ehat_\theta$. Differentiating again,
+\[
+\vec a=\ddot r\ehat_r+\dot r\dot\theta\ehat_\theta+(\dot r\dot\theta+r\ddot\theta)\ehat_\theta+r\dot\theta(-\dot\theta\ehat_r)=(\ddot r-r\dot\theta^2)\ehat_r+(r\ddot\theta+2\dot r\dot\theta)\ehat_\theta .\qedhere
+\]
+\end{proof}
+
+\begin{intuition}
+The term $-r\dot\theta^2\,\ehat_r$ is the \emph{centripetal acceleration}: a particle moving on a circle ($r$ constant) at angular speed $\dot\theta$ accelerates towards the centre with magnitude $r\dot\theta^2=v^2/r$. The term $2\dot r\dot\theta\,\ehat_\theta$ is the \emph{Coriolis} term. If the central force is $F(r)\ehat_r$, the $\ehat_\theta$-equation is $\frac{\dd}{\dd t}(r^2\dot\theta)=0$: angular momentum is conserved (Kepler's second law).
+\end{intuition}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{66}{118}
+\begin{tikzpicture}[tdplot_main_coords,scale=2.2]
+  \def\Px{1.327}\def\Py{1.113}\def\Pz{1.0}
+  \def\erx{0.6634}\def\ery{0.5567}\def\erz{0.5}
+  \def\efx{0.383}\def\efy{0.3214}\def\efz{-0.866}
+  \def\etx{-0.643}\def\ety{0.766}\def\etz{0}
+  \draw[axisline,mid] (0,0,0)--(2.4,0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,0,0)--(0,2.4,0) node[right]{$y$};
+  \draw[axisline,mid] (0,0,0)--(0,0,2.4) node[above]{$z$};
+  % sphere of radius 2 through P: latitude and longitude arcs
+  \draw[accent!50,thin] plot[domain=0:360,samples=80,variable=\t]({1.732*cos(\t)},{1.732*sin(\t)},{1.0});
+  \draw[accent2!50,thin] plot[domain=0:180,samples=80,variable=\t]({2*sin(\t)*cos(40)},{2*sin(\t)*sin(40)},{2*cos(\t)});
+  \draw[guide] (0,0,0)--(\Px,\Py,\Pz);
+  \draw[guide] (\Px,\Py,\Pz)--(\Px,\Py,0)--(0,0,0);
+  \node[pt] at (\Px,\Py,\Pz) {};
+  \draw[vecstyle,accent2] (\Px,\Py,\Pz)--++({0.8*\erx},{0.8*\ery},{0.8*\erz}) node[above right,font=\small]{$\ehat_\rho$};
+  \draw[vecstyle,accent3] (\Px,\Py,\Pz)--++({0.8*\efx},{0.8*\efy},{0.8*\efz}) node[below,font=\small]{$\ehat_\varphi$};
+  \draw[vecstyle,accent4] (\Px,\Py,\Pz)--++({0.8*\etx},{0.8*\ety},{0.8*\etz}) node[left,font=\small]{$\ehat_\theta$};
+\end{tikzpicture}
+\caption{The local frame $(\ehat_\rho,\ehat_\varphi,\ehat_\theta)$ of spherical coordinates at a point $P$. $\ehat_\rho$ points away from the origin, $\ehat_\varphi$ points ``south'' (increasing polar angle) and $\ehat_\theta$ points ``east'' (increasing azimuth). The three are mutually perpendicular and right-handed. At a different point, the frame points in different directions.}
+\label{fig:sphericalframe}
+\end{figure}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item Scale factors $h_i=\norm{\partial\vec r/\partial u_i}$; $\dd\vec r=\sum h_i\dd u_i\ehat_i$; $\dd V=h_1h_2h_3\,\dd u_1\dd u_2\dd u_3$.
+  \item Cylindrical $(1,r,1)$; spherical $(1,\rho,\rho\sin\varphi)$.
+  \item $\nabla f=\sum\frac1{h_i}\partial_if\,\ehat_i$; $\divg\vec F=\frac1{h_1h_2h_3}\sum\partial_i(h_jh_kF_i)$; $\lap f=\frac1{h_1h_2h_3}\sum\partial_i\bigl(\frac{h_jh_k}{h_i}\partial_if\bigr)$.
+  \item Proof idea: $\ehat_i=h_i\nabla u_i$, and then $\curl\nabla=0$, $\divg\curl=0$ and the product rules do the work.
+  \item Basis vectors change from point to point: $\partial_\theta\ehat_r=\ehat_\theta$, $\partial_\theta\ehat_\theta=-\ehat_r$. This gives centripetal and Coriolis terms.
+  \item Never apply $\lap$ component-wise to a vector field outside Cartesian coordinates.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{What is a scale factor?} The length change per unit change of a coordinate: $h_i=\norm{\partial\vec r/\partial u_i}$. For $\theta$ in polar coordinates, $h=r$.
+  \item \emph{Write the Laplacian in polar coordinates.} $\lap f=\frac1r\partial_r(r\partial_rf)+\frac1{r^2}\partial_\theta^2f$.
+  \item \emph{Why does $\divg\vec F$ in spherical coordinates contain $\rho^2F_\rho$ and not $F_\rho$?} Flux through a sphere of radius $\rho$ is $F_\rho\cdot4\pi\rho^2$: the area grows like $\rho^2$.
+  \item \emph{Derive the acceleration in polar coordinates.} Differentiate $r\ehat_r$ using $\dot{\ehat}_r=\dot\theta\ehat_\theta$, $\dot{\ehat}_\theta=-\dot\theta\ehat_r$.
+  \item \emph{Why is $\lap\vec F\ne\lap$ of its components in cylindrical coordinates?} The basis vectors $\ehat_r,\ehat_\theta$ depend on $\theta$.
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Compute the scale factors of \emph{parabolic cylindrical} coordinates $\vec r=\bigl(\tfrac12(u^2-v^2),\,uv,\,z\bigr)$, check orthogonality, and write the Laplacian. (Answer: $h_u=h_v=\sqrt{u^2+v^2}$, $h_z=1$.)
+\end{exercise}
+\begin{exercise}
+Derive the spherical curl formula's $\ehat_\rho$-component, $\dfrac1{\rho\sin\varphi}\Bigl[\partial_\varphi(\sin\varphi\,F_\theta)-\partial_\theta F_\varphi\Bigr]$, from Theorem~\ref{thm:curvilinear}.
+\end{exercise}
+\begin{exercise}
+Show that $f=\ln r$ in $\R^2$ and $f=1/\rho$ in $\R^3$ are the only radial harmonic functions (up to $A+B f$), by solving the radial ODEs.
+\end{exercise}
+\begin{exercise}
+Using Theorem~\ref{thm:polaracc}, show that if the force on a particle is central ($\vec F\parallel\ehat_r$) then $r^2\dot\theta$ is constant. Interpret $\tfrac12r^2\dot\theta$ as the area swept per unit time.
+\end{exercise}
+\begin{exercise}
+Compute the surface area of the cone $z=\sqrt{x^2+y^2}$ for $0\le z\le h$ using the scale factors of cylindrical coordinates (area element on the surface $z=r$: the surface is parametrized by $(r,\theta)$ with $\partial_r\vec r=(\cos\theta,\sin\theta,1)$ of length $\sqrt2$). (Answer: $\sqrt2\,\pi h^2$.)
+\end{exercise}

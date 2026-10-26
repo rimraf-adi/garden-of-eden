@@ -54,10 +54,10 @@ export default function FormattedContent({ content }: Props) {
           return (
             <div
               key={idx}
-              className="my-8 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-6 dark:border-indigo-950/60 dark:bg-indigo-950/20 shadow-sm"
+              className="my-8 rounded-2xl border border-amber-100 bg-amber-50/50 p-6 dark:border-amber-950/60 dark:bg-amber-950/20 shadow-sm"
             >
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400"></span>
                 Book Table Reference
               </div>
               <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200 italic">
@@ -71,7 +71,7 @@ export default function FormattedContent({ content }: Props) {
         if (trimmed.startsWith('•') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
           const items = trimmed.split(/\n(?=[•\-\*]\s*)/);
           return (
-            <ul key={idx} className="my-4 space-y-2.5 pl-6 list-disc marker:text-indigo-500">
+            <ul key={idx} className="my-4 space-y-2.5 pl-6 list-disc marker:text-amber-500">
               {items.map((item, itemIdx) => (
                 <li key={itemIdx} className="text-zinc-700 dark:text-zinc-300 pl-1">
                   {renderInlineMath(item.replace(/^[•\-\*]\s*/, ''))}

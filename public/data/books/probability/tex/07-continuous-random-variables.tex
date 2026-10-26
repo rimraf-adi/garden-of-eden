@@ -1,0 +1,348 @@
+\chapter{Continuous Random Variables}
+\label{ch:cont}
+
+A waiting time, a height, a measurement error: these take values in an interval
+of the real line, not in a countable set. Probability must now be spread over a
+continuum, so that individual points get mass zero and intervals get positive
+mass. The tool is the \emph{density}, and sums are replaced by integrals. This
+chapter develops the theory and the standard continuous distributions, with
+proofs.
+
+\section{Densities}
+
+\begin{definition}[Continuous random variable and density]
+A random variable $X$ is \emph{continuous} (more precisely, \emph{absolutely
+continuous}) if there is a function $f=f_X:\R\to[0,\infty)$, called its
+\emph{probability density function} (PDF), such that
+\[
+F_X(x)=\Prob(X\le x)=\int_{-\infty}^xf(t)\,dt\qquad\text{for all }x\in\R.
+\]
+Necessarily $\int_{-\infty}^\infty f(t)\,dt=1$.
+\end{definition}
+
+\begin{proposition}\label{prop:density}
+Let $X$ have density $f$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $\Prob(a<X\le b)=\int_a^bf(t)\,dt$, and $\Prob(X\in B)=\int_Bf(t)\,dt$ for
+every ``reasonable'' set $B$ (finite unions of intervals, and their limits);
+\item $\Prob(X=x)=0$ for every $x$; hence $\Prob(a\le X\le b)=\Prob(a<X<b)$;
+\item $F$ is continuous, and $F'(x)=f(x)$ at every point $x$ where $f$ is
+continuous.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) $\Prob(a<X\le b)=F(b)-F(a)$ by Theorem~\ref{thm:cdf}(iv). (ii) By
+Theorem~\ref{thm:cdf}(v) the mass at $x$ equals the jump of $F$, which is zero
+since an integral over an interval of shrinking length $\to0$ tends to $0$ (the
+integrand is integrable). (iii) The fundamental theorem of calculus.
+\end{proof}
+
+\begin{nuance}{a density is not a probability}
+The value $f(x)$ is \emph{not} $\Prob(X=x)$ (that is $0$), and $f$ can exceed $1$:
+the uniform density on $[0,\tfrac12]$ equals $2$. The correct interpretation is
+\[
+\Prob(x<X\le x+h)=\int_x^{x+h}f(t)\,dt\approx f(x)\,h\quad(h\to0),
+\]
+so $f(x)$ is ``probability per unit length'' near $x$. Changing $f$ at a single
+point (or on a set of length zero) does not change any probability, so a density
+is determined only up to such changes.
+\end{nuance}
+
+\begin{nuance}{not every distribution without atoms has a density}
+``Continuous CDF'' and ``has a density'' are different. The \emph{Cantor
+distribution} (the law of $\sum_{k\ge1}2\epsilon_k3^{-k}$ with $\epsilon_k$ fair
+Bernoulli) has a continuous CDF, no atoms, but is concentrated on the Cantor set
+(length zero), so no density exists. Moreover, a distribution can be \emph{mixed},
+having both atoms and a density part: for example $\Prob(X=0)=\tfrac12$ and
+otherwise exponential. The CDF handles all cases uniformly, and
+Chapter~\ref{ch:measure} gives the complete classification (Lebesgue
+decomposition). In this chapter ``continuous'' always means ``has a density''.
+\end{nuance}
+
+\section{Expectation}
+
+\begin{definition}[Expectation]
+If $X$ has density $f$ and $\int\abs xf(x)\,dx<\infty$, then
+$\Exp[X]=\int_{-\infty}^\infty xf(x)\,dx$. Variance, covariance and moments are
+defined exactly as before: $\Var(X)=\Exp[(X-\mu)^2]$.
+\end{definition}
+
+\begin{theorem}[Tail-integral formula]\label{thm:tailint}
+If $X\ge0$ has a density, then $\Exp[X]=\int_0^\infty\Prob(X>t)\,dt$.
+\end{theorem}
+\begin{proof}
+Write $x=\int_0^x1\,dt=\int_0^\infty\indic_{\{t<x\}}\,dt$. Then
+\[
+\Exp[X]=\int_0^\infty x f(x)\,dx=\int_0^\infty\!\!\int_0^\infty\indic_{\{t<x\}}f(x)\,dt\,dx
+=\int_0^\infty\!\!\int_t^\infty f(x)\,dx\,dt=\int_0^\infty\Prob(X>t)\,dt.
+\]
+The interchange of the order of integration is legitimate because the integrand
+is non-negative (Tonelli's theorem, Chapter~\ref{ch:measure}).
+\end{proof}
+
+\begin{theorem}[LOTUS, continuous case]\label{thm:lotuscont}
+If $X$ has density $f$ and $g\ge0$ (or $\int\abs{g}f<\infty$), then
+$\Exp[g(X)]=\int g(x)f(x)\,dx$.
+\end{theorem}
+\begin{proof}
+For $g\ge0$, apply Theorem~\ref{thm:tailint} to the non-negative variable
+$g(X)$ and interchange integrals again:
+\[
+\Exp[g(X)]=\int_0^\infty\Prob(g(X)>t)\,dt=\int_0^\infty\!\!\int\indic_{\{g(x)>t\}}f(x)\,dx\,dt
+=\int f(x)\int_0^{g(x)}dt\,dx=\int g(x)f(x)\,dx.
+\]
+(The tail formula for $g(X)$ holds for any non-negative random variable, by the
+same computation applied to its distribution.) For general $g$ split
+$g=g^+-g^-$ and use linearity.
+\end{proof}
+
+Linearity of expectation, monotonicity and the variance identities
+$\Var(X)=\Exp[X^2]-\mu^2$, $\Var(aX+b)=a^2\Var(X)$ all hold as in the discrete case
+(proved in Chapter~\ref{ch:measure} for all random variables simultaneously).
+
+\begin{example}[A distribution with no mean: the Cauchy]\label{ex:cauchy}
+The \emph{standard Cauchy} density is $f(x)=\dfrac1{\pi(1+x^2)}$. It integrates to
+$1$ (since $\int\frac{dx}{1+x^2}=\arctan x\big|_{-\infty}^\infty=\pi$), but
+\[
+\int_{-\infty}^\infty\abs x\,f(x)\,dx=\frac2\pi\int_0^\infty\frac x{1+x^2}\,dx
+=\frac1\pi\ln(1+x^2)\Big|_0^\infty=\infty .
+\]
+So $\Exp[X]$ does not exist. The principal-value limit
+$\lim_{R\to\infty}\int_{-R}^{R}xf(x)\,dx=0$ exists by symmetry, but this is not an
+expectation (it depends on how the two infinite tails are balanced). The Cauchy
+law is the standard example of a heavy-tailed distribution; the law of large
+numbers fails for it (Chapter~\ref{ch:transforms}).
+\end{example}
+
+\section{The standard continuous distributions}
+
+\subsection{Uniform}
+
+$X\sim U(a,b)$ has density $\frac1{b-a}$ on $(a,b)$ and $0$ elsewhere. Then
+\[
+\Exp[X]=\frac1{b-a}\int_a^bx\,dx=\frac{a+b}2,\qquad
+\Exp[X^2]=\frac{b^3-a^3}{3(b-a)}=\frac{a^2+ab+b^2}3,
+\]
+\[
+\Var(X)=\frac{a^2+ab+b^2}3-\frac{(a+b)^2}4=\frac{(b-a)^2}{12}.
+\]
+Probabilities are proportional to length: $\Prob(X\in(c,d))=(d-c)/(b-a)$.
+
+\subsection{Exponential}
+
+$X\sim\mathrm{Exp}(\lambda)$, $\lambda>0$, has density $\lambda e^{-\lambda x}$ for
+$x\ge0$. Then $\Prob(X>x)=e^{-\lambda x}$ and $F(x)=1-e^{-\lambda x}$. By the tail
+integral,
+\[
+\Exp[X]=\int_0^\infty e^{-\lambda t}\,dt=\frac1\lambda,
+\]
+and integrating by parts, $\Exp[X^2]=\int_0^\infty x^2\lambda e^{-\lambda x}\,dx
+=\frac2\lambda\Exp[X]=\frac2{\lambda^2}$, so $\Var(X)=1/\lambda^2$.
+
+\begin{theorem}[Memorylessness of the exponential]\label{thm:expmemoryless}
+If $X\sim\mathrm{Exp}(\lambda)$ then $\Prob(X>s+t\given X>s)=\Prob(X>t)$ for all
+$s,t\ge0$. Conversely, a positive random variable with a right-continuous
+survival function $G(t)=\Prob(X>t)$ that is not identically $0$ or $1$ on
+$(0,\infty)$ and satisfies this identity is exponential.
+\end{theorem}
+\begin{proof}
+Forward direction: $e^{-\lambda(s+t)}/e^{-\lambda s}=e^{-\lambda t}$.
+Conversely, the identity gives $G(s+t)=G(s)G(t)$. Put $c=G(1)$. By induction
+$G(n)=c^n$ and $G(1/m)^m=G(1)$, so $G(n/m)=c^{n/m}$ for all positive rationals. We
+have $0<c<1$ (if $c=0$ then $G(1/m)^m=0$ forces $G\equiv0$ on the positive
+rationals and, by monotonicity, on $(0,\infty)$; if $c=1$ then $G\equiv1$).
+Writing $c=e^{-\lambda}$, $G(r)=e^{-\lambda r}$ for rational $r>0$. Since $G$ is
+non-increasing and right-continuous, approximating any real $t$ from the right
+by rationals gives $G(t)=e^{-\lambda t}$.
+\end{proof}
+
+\begin{proposition}[Exponential and geometric]
+If $X\sim\mathrm{Exp}(\lambda)$ then $\lceil X\rceil\sim\mathrm{Geom}(1-e^{-\lambda})$.
+\end{proposition}
+\begin{proof}
+$\Prob(\lceil X\rceil=k)=\Prob(k-1<X\le k)=e^{-\lambda(k-1)}-e^{-\lambda k}=
+(e^{-\lambda})^{k-1}(1-e^{-\lambda})$.
+\end{proof}
+
+So the exponential is the continuous-time analogue of the geometric distribution:
+waiting for a ``memoryless'' event.
+
+\begin{interview}{hazard rate}
+The \emph{hazard rate} $h(t)=f(t)/\Prob(X>t)$ is the instantaneous failure rate
+given survival to $t$. For the exponential, $h(t)=\lambda$ is constant. A constant
+hazard is equivalent to memorylessness; increasing hazard models wear-out, and
+decreasing hazard models early failures.
+\end{interview}
+
+\subsection{Gamma}
+
+The \emph{gamma function} is $\Gamma(\alpha)=\int_0^\infty x^{\alpha-1}e^{-x}\,dx$
+for $\alpha>0$. Integration by parts gives
+\[
+\Gamma(\alpha+1)=\int_0^\infty x^\alpha e^{-x}\,dx=\bigl[-x^\alpha e^{-x}\bigr]_0^\infty
++\alpha\int_0^\infty x^{\alpha-1}e^{-x}\,dx=\alpha\,\Gamma(\alpha),
+\]
+and $\Gamma(1)=1$, so $\Gamma(n)=(n-1)!$ for positive integers $n$. Also
+$\Gamma(\tfrac12)=\sqrt\pi$ (shown in Section~\ref{sec:normal}).
+
+$X\sim\mathrm{Gamma}(\alpha,\lambda)$ has density
+\[
+f(x)=\frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x},\qquad x>0 .
+\]
+It integrates to $1$ by the substitution $u=\lambda x$ in the definition of
+$\Gamma(\alpha)$. The same substitution gives the moments:
+\[
+\Exp[X^k]=\frac{\lambda^\alpha}{\Gamma(\alpha)}\int_0^\infty x^{\alpha+k-1}e^{-\lambda x}\,dx
+=\frac{\Gamma(\alpha+k)}{\Gamma(\alpha)\lambda^k}.
+\]
+Thus $\Exp[X]=\alpha/\lambda$, $\Exp[X^2]=\alpha(\alpha+1)/\lambda^2$ and
+$\Var(X)=\alpha/\lambda^2$. For $\alpha=1$ we recover the exponential. For
+integer $\alpha=n$ the gamma distribution (the \emph{Erlang} distribution) is the
+sum of $n$ independent exponentials, as we prove in
+Chapter~\ref{ch:jointcont}.
+
+\subsection{Beta}
+
+$X\sim\mathrm{Beta}(a,b)$, $a,b>0$, has density
+\[
+f(x)=\frac{x^{a-1}(1-x)^{b-1}}{B(a,b)},\qquad0<x<1,
+\]
+where $B(a,b)=\int_0^1x^{a-1}(1-x)^{b-1}dx$. In Chapter~\ref{ch:jointcont} we show
+$B(a,b)=\Gamma(a)\Gamma(b)/\Gamma(a+b)$, and then
+$\Exp[X]=B(a+1,b)/B(a,b)=a/(a+b)$ and $\Var(X)=\dfrac{ab}{(a+b)^2(a+b+1)}$.
+The beta family models unknown probabilities, and $\mathrm{Beta}(1,1)=U(0,1)$.
+
+\subsection{The normal distribution}\label{sec:normal}
+
+\begin{theorem}[The Gaussian integral]\label{thm:gauss}
+$\displaystyle\int_{-\infty}^\infty e^{-x^2/2}\,dx=\sqrt{2\pi}$.
+\end{theorem}
+\begin{proof}
+Let $I$ be the integral. Since the integrand is non-negative, Tonelli's theorem lets us write
+\[
+I^2=\int\!\!\int e^{-(x^2+y^2)/2}\,dx\,dy=\int_0^{2\pi}\!\!\int_0^\infty e^{-r^2/2}\,r\,dr\,d\theta
+=2\pi\bigl[-e^{-r^2/2}\bigr]_0^\infty=2\pi,
+\]
+using polar coordinates $(x,y)=(r\cos\theta,r\sin\theta)$ with area element
+$r\,dr\,d\theta$. Since $I>0$, $I=\sqrt{2\pi}$.
+\end{proof}
+
+Hence $\varphi(x)=\dfrac1{\sqrt{2\pi}}e^{-x^2/2}$ is a density, the \emph{standard
+normal} density. We write $Z\sim N(0,1)$, $\Phi(x)=\int_{-\infty}^x\varphi$ for its
+CDF (which has no closed form).
+
+\begin{proposition}\label{prop:normalmoments}
+If $Z\sim N(0,1)$ then $\Exp[Z]=0$ and $\Var(Z)=1$.
+\end{proposition}
+\begin{proof}
+$x\varphi(x)$ is an odd integrable function, so $\Exp[Z]=0$. By parts, using
+$\varphi'(x)=-x\varphi(x)$:
+$\Exp[Z^2]=\int x\cdot x\varphi(x)\,dx=\bigl[-x\varphi(x)\bigr]_{-\infty}^\infty
++\int\varphi(x)\,dx=0+1=1$.
+\end{proof}
+
+For $\mu\in\R$, $\sigma>0$, the random variable $X=\mu+\sigma Z$ is said to be
+$N(\mu,\sigma^2)$. Its density follows from the change of variables rule below:
+\[
+f_X(x)=\frac1{\sigma\sqrt{2\pi}}\exp\Bigl(-\frac{(x-\mu)^2}{2\sigma^2}\Bigr),
+\]
+with $\Exp[X]=\mu$ and $\Var(X)=\sigma^2$. Two facts: the family is closed under
+affine maps, and standardising $Z=(X-\mu)/\sigma$ reduces every normal
+probability to $\Phi$.
+
+\begin{theorem}[Tail bounds for the normal]\label{thm:mills}
+For $x>0$,
+\[
+\Bigl(\frac1x-\frac1{x^3}\Bigr)\varphi(x)\ \le\ \Prob(Z>x)\ \le\ \frac{\varphi(x)}x.
+\]
+\end{theorem}
+\begin{proof}
+Upper bound: for $t\ge x$, $1\le t/x$, so
+$\Prob(Z>x)=\int_x^\infty\varphi(t)\,dt\le\int_x^\infty\frac tx\varphi(t)\,dt
+=\frac{\varphi(x)}x$, since $\frac d{dt}(-\varphi(t))=t\varphi(t)$.
+Lower bound: a direct differentiation gives
+$\frac d{dt}\bigl[(\tfrac1t-\tfrac1{t^3})\varphi(t)\bigr]=-(1-3t^{-4})\varphi(t)$, hence
+$\int_x^\infty(1-3t^{-4})\varphi(t)\,dt=(\tfrac1x-\tfrac1{x^3})\varphi(x)$. As
+$(1-3t^{-4})\varphi(t)\le\varphi(t)$, the lower bound follows.
+\end{proof}
+
+The bounds show that the normal tail decays like $e^{-x^2/2}$, much faster than
+any exponential; this ``thin tail'' is why the normal is so well-behaved and so
+dangerous when real data have fat tails.
+
+\section{Functions of a continuous random variable}
+
+\begin{theorem}[Change of variables]\label{thm:changevar}
+Let $X$ have density $f_X$, and let $g$ be strictly monotone and differentiable on
+an open interval $I$ containing the support of $X$, with inverse $h=g^{-1}$. Then
+$Y=g(X)$ has density
+\[
+f_Y(y)=f_X\bigl(h(y)\bigr)\,\abs{h'(y)}.
+\]
+\end{theorem}
+\begin{proof}
+If $g$ is increasing, $F_Y(y)=\Prob(g(X)\le y)=\Prob(X\le h(y))=F_X(h(y))$. Differentiate
+by the chain rule: $f_Y(y)=f_X(h(y))h'(y)$ with $h'>0$. If $g$ is decreasing,
+$F_Y(y)=\Prob(X\ge h(y))=1-F_X(h(y))$, so $f_Y(y)=-f_X(h(y))h'(y)=f_X(h(y))\abs{h'(y)}$
+as $h'<0$.
+\end{proof}
+
+When $g$ is not monotone, use the CDF method directly: express $\{g(X)\le y\}$ as
+an event about $X$.
+
+\begin{example}[The square of a normal]
+Let $Y=Z^2$. For $y>0$, $F_Y(y)=\Prob(-\sqrt y\le Z\le\sqrt y)=2\Phi(\sqrt y)-1$. Differentiating,
+\[
+f_Y(y)=2\varphi(\sqrt y)\cdot\frac1{2\sqrt y}=\frac1{\sqrt{2\pi}}\,y^{-1/2}e^{-y/2},
+\]
+which is the Gamma$(\tfrac12,\tfrac12)$ density (the \emph{chi-squared} law with one
+degree of freedom). Comparing normalising constants,
+$\Gamma(\tfrac12)=\sqrt\pi$.
+\end{example}
+
+\begin{theorem}[Probability integral transform]\label{thm:pit}
+Let $X$ have a continuous, strictly increasing CDF $F$ on its support. Then
+\begin{enumerate}[label=(\roman*)]
+\item $F(X)\sim U(0,1)$;
+\item if $U\sim U(0,1)$ then $F^{-1}(U)$ has CDF $F$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i) For $u\in(0,1)$, $\Prob(F(X)\le u)=\Prob(X\le F^{-1}(u))=F(F^{-1}(u))=u$, which is
+the $U(0,1)$ CDF. (ii) $\Prob(F^{-1}(U)\le x)=\Prob(U\le F(x))=F(x)$.
+\end{proof}
+
+Part (ii) is the \emph{inverse transform method} for simulation
+(Chapter~\ref{ch:sim}): any distribution can be generated from uniform random
+numbers. For example if $U\sim U(0,1)$ then $-\frac1\lambda\ln U\sim\mathrm{Exp}(\lambda)$,
+because $F^{-1}(u)=-\frac1\lambda\ln(1-u)$ and $1-U\overset d=U$.
+
+\begin{nuance}{quantiles when the CDF is not strictly increasing}
+For general $F$ define the quantile function $F^{-1}(u)=\inf\{x:F(x)\ge u\}$. Then
+$F^{-1}(U)$ still has CDF $F$ (because $F^{-1}(u)\le x\iff u\le F(x)$), but
+$F(X)$ is uniform only if $F$ is continuous. For discrete $X$, $F(X)$ takes only
+finitely or countably many values.
+\end{nuance}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Find $c$ so that $f(x)=cx^2(1-x)$ on $[0,1]$ is a density; compute the mean and
+variance.
+\item Let $X\sim\mathrm{Exp}(\lambda)$. Find the density of $Y=X^2$ and of
+$Y=e^{-X}$ (the latter is uniform).
+\item A bus arrives with $\mathrm{Exp}(1/10)$ waiting time (mean 10 minutes). You
+have already waited $10$ minutes. What is the expected additional wait?
+\item Show that for any random variable with $\Exp[X^2]<\infty$,
+$\Exp[X]=\int_0^\infty\Prob(X>t)\,dt-\int_0^\infty\Prob(X<-t)\,dt$.
+\item Prove $\Exp[X^n]=\int_0^\infty nt^{n-1}\Prob(X>t)\,dt$ for $X\ge0$.
+\item Compute $\Prob(\abs Z>3)$ for $Z\sim N(0,1)$ and compare with the bounds of
+Theorem~\ref{thm:mills}. Compute $\Prob(\abs Z>x)$ for the Cauchy.
+\item Let $U\sim U(0,1)$. Show that $\min(U,1-U)\sim U(0,\tfrac12)$.
+\item Prove that the Cauchy distribution is closed under reciprocals:
+if $X$ is standard Cauchy then so is $1/X$.
+\item (Challenge) Show that if $X$ has density and $\Exp[X]$ exists then
+$\Exp\abs{X-c}$ is minimised at the median, $c=\mathrm{med}(X)$ with
+$F(c)=\tfrac12$. (Differentiate $\int\abs{x-c}f(x)\,dx$ in $c$.)
+\end{enumerate}

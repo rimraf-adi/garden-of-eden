@@ -1,0 +1,144 @@
+\chapter{PDE Basics and Separation of Variables}
+
+\section{What is a PDE?}
+
+A \textbf{partial differential equation} has an unknown function of two or more variables, and partial derivatives of it. For example $u(x,t)$ could be the temperature at position $x$ and time $t$. We write $u_t = \partial u/\partial t$, $u_{xx} = \partial^2u/\partial x^2$, and so on.
+
+The \textbf{order} is the highest derivative. The PDE is \textbf{linear} if $u$ and its derivatives appear only to the first power and are not multiplied together. It is \textbf{homogeneous} if every term contains $u$.
+
+\begin{defbox}{The three classical PDEs}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Name & Equation & Describes \\
+\midrule
+Wave equation & $u_{tt} = c^2u_{xx}$ & vibrating string, sound, waves in cables \\
+Heat equation & $u_t = k\,u_{xx}$ & heat conduction, diffusion \\
+Laplace equation & $u_{xx} + u_{yy} = 0$ & steady temperature, electric potential \\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $c$ is the wave speed and $k$ is the thermal diffusivity (units m$^2$/s).
+\end{defbox}
+
+\textbf{Where they come from.} \emph{Heat:} the rate of change of heat in a small piece of rod equals the heat flowing in minus the heat flowing out. With Fourier's law (flux proportional to $-u_x$) this gives $u_t = ku_{xx}$. \emph{Wave:} Newton's second law for a small piece of a string with tension $T$ and density $\rho$ gives $u_{tt} = (T/\rho)\,u_{xx}$, so $c^2 = T/\rho$. \emph{Laplace:} the steady state of the heat equation has $u_t = 0$.
+
+\begin{derivbox}{The heat equation}
+Take a rod with cross-section area $A$, density $\rho$, specific heat $c_p$ and thermal conductivity $\kappa$. Let $u(x,t)$ be the temperature. Consider the piece between $x$ and $x+\Delta x$.
+
+\emph{Heat content:} $\int_x^{x+\Delta x}\rho c_pu\,A\,\dd s$. \emph{Fourier's law:} heat flows from hot to cold, with flux (heat per area per time) $q = -\kappa u_x$. The heat entering through the left face per unit time is $Aq(x)$, and the heat leaving through the right face is $Aq(x+\Delta x)$. Energy balance:
+\[ \frac{\partial}{\partial t}\int_x^{x+\Delta x}\rho c_pu\,A\,\dd s = A\big[q(x) - q(x+\Delta x)\big] = A\kappa\big[u_x(x+\Delta x) - u_x(x)\big]. \]
+Divide by $A\Delta x$ and let $\Delta x\to0$. The left side tends to $\rho c_pu_t$ and the right side tends to $\kappa u_{xx}$:
+\[ u_t = k\,u_{xx},\qquad k = \frac{\kappa}{\rho c_p}. \]
+An \textbf{insulated end} has no heat flux, $q = -\kappa u_x = 0$, so $u_x = 0$ there.
+\end{derivbox}
+
+\begin{derivbox}{The wave equation}
+Take a string with tension $T$ and mass $\rho$ per unit length. Let $u(x,t)$ be the small vertical displacement. On the piece between $x$ and $x+\Delta x$, the tension pulls at both ends along the string. At a point where the string makes angle $\theta$ with the horizontal, the vertical component of the tension is $T\sin\theta\approx T\tan\theta = T\,u_x$ (for small slopes). The net vertical force on the piece is
+\[ T\big[u_x(x+\Delta x) - u_x(x)\big]. \]
+The mass of the piece is $\rho\Delta x$ and its acceleration is $u_{tt}$. By Newton's second law,
+\[ \rho\,\Delta x\,u_{tt} = T\big[u_x(x+\Delta x) - u_x(x)\big]. \]
+Divide by $\Delta x$ and let $\Delta x\to0$: $\rho u_{tt} = Tu_{xx}$, that is
+\[ u_{tt} = c^2u_{xx},\qquad c^2 = \frac T\rho . \]
+(The horizontal components $T\cos\theta\approx T$ cancel, so there is no horizontal motion at this order.)
+\end{derivbox}
+
+\section{Classification}
+
+\begin{defbox}{Classification of second-order PDEs}
+For $A\,u_{xx} + B\,u_{xy} + C\,u_{yy} + (\text{lower-order terms}) = 0$, look at the sign of $B^2 - 4AC$:
+\begin{itemize}
+  \item $B^2 - 4AC < 0$: \textbf{elliptic}. Example: Laplace equation. Describes steady states.
+  \item $B^2 - 4AC = 0$: \textbf{parabolic}. Example: heat equation. Describes diffusion in time.
+  \item $B^2 - 4AC > 0$: \textbf{hyperbolic}. Example: wave equation. Describes waves with finite speed.
+\end{itemize}
+\end{defbox}
+
+\begin{derivbox}{Where the three types come from}
+Try new variables $\xi = \xi(x,y)$ in $Au_{xx} + Bu_{xy} + Cu_{yy} + \cdots = 0$. By the chain rule the coefficient of $u_{\xi\xi}$ in the new equation is $A\xi_x^2 + B\xi_x\xi_y + C\xi_y^2$. We would like to choose curves $\xi = \text{const}$ that make it zero, which simplifies the equation. Dividing by $\xi_y^2$ and writing $\lambda = \xi_x/\xi_y$:
+\[ A\lambda^2 + B\lambda + C = 0, \qquad \lambda = \frac{-B\pm\sqrt{B^2-4AC}}{2A}. \]
+\begin{itemize}
+  \item $B^2 - 4AC>0$: two real families of curves. We can remove both $u_{\xi\xi}$ and $u_{\eta\eta}$, leaving $u_{\xi\eta} + \cdots=0$. This is the form of the wave equation (see the d'Alembert derivation in Chapter 10). \textbf{Hyperbolic.}
+  \item $B^2 - 4AC = 0$: only one family. One second-derivative term remains, like $u_{\eta\eta} = \cdots$. This is the form of the heat equation. \textbf{Parabolic.}
+  \item $B^2 - 4AC<0$: no real curves. The best form is $u_{\xi\xi} + u_{\eta\eta}+\cdots=0$, the Laplace form. \textbf{Elliptic.}
+\end{itemize}
+The three types have different physical behaviour (waves with finite speed, diffusion, steady states), which is why we need different methods.
+\end{derivbox}
+
+\begin{examplebox}{Classification}
+\begin{itemize}
+  \item Wave $c^2u_{xx} - u_{tt} = 0$: $A = c^2$, $B=0$, $C=-1$, so $B^2 - 4AC = 4c^2>0$. Hyperbolic.
+  \item Heat $k\,u_{xx} - u_t = 0$: $A=k$, $B=C=0$, so $B^2-4AC=0$. Parabolic.
+  \item Laplace: $A=C=1$, $B=0$, so $-4<0$. Elliptic.
+  \item $x\,u_{xx} + u_{yy} = 0$: $B^2-4AC = -4x$. Elliptic for $x>0$, hyperbolic for $x<0$.
+\end{itemize}
+\end{examplebox}
+
+\section{Conditions that make the solution unique}
+
+A PDE alone has infinitely many solutions. We add conditions.
+
+\begin{itemize}
+  \item \textbf{Boundary conditions (BC)} on the edges of the region:
+  \begin{itemize}
+    \item \textbf{Dirichlet:} the value of $u$ is given, e.g. $u(0,t)=0$ (end held at fixed temperature, or string fixed).
+    \item \textbf{Neumann:} the normal derivative is given, e.g. $u_x(0,t)=0$ (insulated end).
+    \item \textbf{Robin:} a mix of $u$ and $u_x$ (convective cooling at the end).
+  \end{itemize}
+  \item \textbf{Initial conditions (IC)} at $t=0$:
+  \begin{itemize}
+    \item Heat equation: one condition, $u(x,0)=f(x)$.
+    \item Wave equation: two conditions, $u(x,0)=f(x)$ and $u_t(x,0)=g(x)$ (initial shape and initial velocity).
+  \end{itemize}
+  \item The Laplace equation has no time. It needs a boundary condition on the \emph{whole} boundary.
+\end{itemize}
+
+\begin{defbox}{Superposition principle}
+If $u_1$ and $u_2$ solve a \textbf{linear homogeneous} PDE with linear homogeneous BCs, then so does $c_1u_1 + c_2u_2$, and so does an infinite sum $\sum c_nu_n$ (when it converges). We use this to build a solution from simple pieces.
+\end{defbox}
+
+\section{Separation of variables}
+
+\begin{methodbox}{The standard recipe (for a rod or string on $0<x<L$)}
+\begin{enumerate}
+  \item Assume a product: $u(x,t) = X(x)\,T(t)$.
+  \item Put it in the PDE and divide so that all $x$ terms are on one side and all $t$ terms on the other. Both sides must equal a constant, which we call $-\lambda$.
+  \item This gives two ODEs: one for $X$ and one for $T$.
+  \item The homogeneous BCs on $X$ give an \textbf{eigenvalue problem} (Chapter 6). Solve it to get $\lambda_n$ and $X_n(x)$.
+  \item Solve the $T$ equation for each $\lambda_n$.
+  \item Superpose: $u = \sum_n X_n(x)T_n(t)$.
+  \item Fit the initial condition using a Fourier series (Chapter 7). This fixes the constants.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{Why the separation constant is a constant}
+After dividing by $kXT$ we have $\dfrac{T'(t)}{kT(t)} = \dfrac{X''(x)}{X(x)}$. The left side depends on $t$ only and the right side depends on $x$ only. Fix $t$ and vary $x$: the left side does not change, so the right side cannot change either. Hence both sides equal one constant, which we call $-\lambda$. (The minus sign is only a convenient notation. The boundary conditions will decide which values of $\lambda$ give non-zero solutions; see Chapter 6.) A product $X(x)T(t)$ is a very special type of solution, but sums of such products can fit any reasonable initial condition. That is the content of the Fourier series (Chapter 7).
+\end{derivbox}
+
+\begin{examplebox}{Separation for the heat equation}
+$u_t = ku_{xx}$. Put $u = XT$: $XT' = kX''T$. Divide by $kXT$:
+\[ \frac{T'}{kT} = \frac{X''}{X} = -\lambda . \]
+So we get two ODEs:
+\[ X'' + \lambda X = 0, \qquad T' + k\lambda\,T = 0 . \]
+For the wave equation $u_{tt} = c^2u_{xx}$ the same steps give $X'' + \lambda X = 0$ and $T'' + c^2\lambda\,T = 0$.
+\end{examplebox}
+
+\begin{notebox}
+Separation of variables works only if the PDE is linear and homogeneous, and the BCs are homogeneous ($u=0$ or $u_x=0$) on the sides where we build the eigenvalue problem. If the BCs are not homogeneous we first subtract a simple steady solution (see Chapter 11).
+\end{notebox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Classify $u_{xx} + 4u_{xy} + u_{yy} = 0$.
+  \item Classify $u_{xx} + 4u_{xy} + 4u_{yy} = 0$.
+  \item Classify $u_{xx} + 2u_{yy} = 0$.
+  \item Show that $u = \sin(\pi x)\,e^{-\pi^2kt}$ solves $u_t = ku_{xx}$.
+  \item Show that $u = \sin x\cos ct$ solves $u_{tt} = c^2u_{xx}$.
+  \item Apply separation of variables to $u_t = ku_{xx} - u$ and write the two ODEs.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $B^2 - 4AC = 16 - 4 = 12 > 0$: hyperbolic. \quad (2) $16 - 16 = 0$: parabolic. \quad (3) $0 - 8 < 0$: elliptic. \quad (4) $u_t = -\pi^2k\,u$ and $u_{xx} = -\pi^2u$, so $ku_{xx} = -\pi^2k\,u$. \checkmark \quad (5) $u_{tt} = -c^2\sin x\cos ct$ and $c^2u_{xx} = -c^2\sin x\cos ct$. \checkmark \quad (6) $XT' = kX''T - XT$. Divide by $XT$: $T'/T + 1 = kX''/X = -k\lambda$, so $X'' + \lambda X = 0$ and $T' + (k\lambda + 1)T = 0$.
+\end{answerbox}

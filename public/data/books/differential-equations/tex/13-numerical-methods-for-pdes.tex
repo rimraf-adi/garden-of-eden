@@ -1,0 +1,132 @@
+\chapter{Numerical Methods for PDEs}
+
+When the region is irregular or the equation has variable coefficients, we solve PDEs on a computer. The standard tool is the \textbf{finite difference method}: replace derivatives by differences on a grid.
+
+\section{Difference formulas}
+
+\begin{defbox}{Central differences}
+With grid spacing $h$:
+\[ u_{xx}(x_i) \approx \frac{u_{i+1} - 2u_i + u_{i-1}}{h^2}, \qquad u_x(x_i)\approx\frac{u_{i+1}-u_{i-1}}{2h}. \]
+Both have error of order $h^2$. For the heat equation use a time step $\Delta t$ and write $u_i^n \approx u(x_i, t_n)$.
+\end{defbox}
+
+\section{Laplace equation}
+
+For the grid in $x$ and $y$ with equal spacing $h$, replacing $u_{xx}+u_{yy}=0$ gives the \textbf{five-point formula}:
+\[ u_{i,j} = \tfrac14\big(u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1}\big). \]
+Each value is the average of its four neighbours. This is the discrete form of the mean value property. Write this equation for every interior node and solve the linear system (by hand, by Gauss elimination, or by repeated averaging).
+
+\begin{derivbox}{The five-point formula}
+By the derivation in Chapter 6, $u_{xx}\approx\dfrac{u_{i+1,j} - 2u_{i,j} + u_{i-1,j}}{h^2}$, and in the same way $u_{yy}\approx\dfrac{u_{i,j+1} - 2u_{i,j} + u_{i,j-1}}{h^2}$. Add them and set the sum to zero:
+\[ u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1} - 4u_{i,j} = 0, \]
+which is $u_{i,j} = \frac14\big(u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1}\big)$. The error is $O(h^2)$.
+\end{derivbox}
+
+\begin{examplebox}{Square plate, $h=1/3$}
+Unit square. Top side at $100$, the other three sides at $0$. The grid has four interior nodes: $a_1$ (top left), $a_2$ (top right), $b_1$ (bottom left), $b_2$ (bottom right).
+\begin{align*}
+a_1 &= \tfrac14(100 + 0 + a_2 + b_1), & a_2 &= \tfrac14(100 + 0 + a_1 + b_2),\\
+b_1 &= \tfrac14(0 + 0 + a_1 + b_2), & b_2 &= \tfrac14(0 + 0 + a_2 + b_1).
+\end{align*}
+The problem is symmetric left to right, so $a_1=a_2=a$ and $b_1=b_2=b$. Then $4a = 100 + a + b$ and $4b = a + b$. The second gives $a = 3b$. Then $12b = 100 + 4b$, so $b = 12.5$ and $a=37.5$.
+\[ a_1=a_2=37.5, \qquad b_1=b_2=12.5. \]
+The average of the four nodes is $25$, which agrees with the symmetry argument in Chapter 12.
+\end{examplebox}
+
+\section{Heat equation: explicit method}
+
+\begin{methodbox}{Explicit (forward-time) scheme for $u_t = ku_{xx}$}
+Replace $u_t$ by $(u_i^{n+1}-u_i^n)/\Delta t$ and $u_{xx}$ by the central difference at time $n$:
+\[ u_i^{n+1} = u_i^n + r\big(u_{i+1}^n - 2u_i^n + u_{i-1}^n\big),\qquad r = \frac{k\,\Delta t}{h^2}. \]
+Each new value is computed directly from known values, so there is nothing to solve. But the scheme is \textbf{stable only if $r\le\frac12$}. For larger $r$ the numbers blow up.
+\end{methodbox}
+
+\begin{derivbox}{The explicit scheme and its stability limit}
+\textbf{Scheme.} A Taylor series in time gives $u_t\approx\dfrac{u_i^{n+1} - u_i^n}{\Delta t}$ with error $O(\Delta t)$. Put this and the central difference for $u_{xx}$ into $u_t = ku_{xx}$ and solve for $u_i^{n+1}$:
+\[ u_i^{n+1} = u_i^n + r\big(u_{i+1}^n - 2u_i^n + u_{i-1}^n\big),\qquad r = \frac{k\Delta t}{h^2}. \]
+
+\textbf{Stability (von Neumann analysis).} Test the scheme on one Fourier mode, $u_i^n = \xi^n e^{i\beta x_i}$ with $x_i = ih$. Then $u_{i\pm1}^n = \xi^ne^{i\beta x_i}e^{\pm i\beta h}$, and the scheme gives
+\[ \xi = 1 + r\big(e^{i\beta h} - 2 + e^{-i\beta h}\big) = 1 - 2r(1-\cos\beta h) = 1 - 4r\sin^2\frac{\beta h}{2}. \]
+Each step multiplies the mode by $\xi$, so we need $|\xi|\le1$ for every $\beta$. The factor $\sin^2(\beta h/2)$ takes all values in $[0,1]$, so $\xi$ ranges from $1$ down to $1-4r$. The condition $1 - 4r\ge-1$ gives
+\[ r\le\tfrac12 . \]
+For larger $r$ the highest-frequency modes grow at every step, and the numerical solution blows up.
+\end{derivbox}
+
+\begin{examplebox}{Explicit scheme}
+Rod $L=1$, $k=1$, ends at $0$, initial $u(x,0) = 100\sin\pi x$. Take $h=0.25$ and $\Delta t = 0.015625$, so $r = 0.25$. The nodes are $x=0.25,\,0.5,\,0.75$. Initial values: $70.71,\ 100,\ 70.71$.
+
+Step 1: $u_1 = 70.71 + 0.25(0 + 100 - 141.42) = 60.36$, \quad $u_2 = 100 + 0.25(141.42 - 200) = 85.36$, \quad $u_3=60.36$.
+
+Step 2: $u_1 = 60.36 + 0.25(0 + 85.36 - 120.71) = 51.52$, \quad $u_2 = 85.36 + 0.25(120.71 - 170.71) = 72.86$.
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$t$ & $u(0.25)$ & $u(0.5)$ & exact $u(0.5)$ \\
+\midrule
+0 & 70.71 & 100 & 100 \\
+0.015625 & 60.36 & 85.36 & 85.7 \\
+0.03125 & 51.52 & 72.86 & 73.5 \\
+\bottomrule
+\end{tabular}
+\end{center}
+The exact solution is $100e^{-\pi^2t}\sin\pi x$. The error is below 1\% even with this coarse grid.
+\end{examplebox}
+
+\begin{notebox}
+For $k=1$, $h=0.25$, the largest stable time step is $\Delta t = 0.5h^2/k = 0.03125$. Halving $h$ makes the largest step four times smaller. This is why explicit schemes get expensive when we refine the grid.
+\end{notebox}
+
+\section{Crank--Nicolson method}
+
+\begin{methodbox}{Crank--Nicolson scheme}
+Average the space difference at the old and the new time level:
+\[ u_i^{n+1} - u_i^n = \frac r2\Big[\big(u_{i+1}^{n+1} - 2u_i^{n+1} + u_{i-1}^{n+1}\big) + \big(u_{i+1}^{n} - 2u_i^{n} + u_{i-1}^{n}\big)\Big]. \]
+Move the unknowns to the left:
+\[ -\frac r2u_{i-1}^{n+1} + (1+r)u_i^{n+1} - \frac r2u_{i+1}^{n+1} = \frac r2u_{i-1}^n + (1-r)u_i^n + \frac r2u_{i+1}^n. \]
+This is a \textbf{tridiagonal linear system} at every time step. It is \textbf{stable for every $r$}, and it is second-order accurate in both $x$ and $t$.
+\end{methodbox}
+
+\begin{derivbox}{Crank--Nicolson and why it is stable for every $r$}
+Write the heat equation as $u_t = ku_{xx}$ and integrate in time from $t_n$ to $t_{n+1}$ with the \textbf{trapezoid rule}, which uses the right side at both time levels:
+\[ u^{n+1} - u^n \approx \frac{\Delta t}{2}\Big[ku_{xx}^{n} + ku_{xx}^{n+1}\Big]. \]
+Replace $u_{xx}$ by the central difference $\delta^2u/h^2$, where $\delta^2u_i = u_{i+1} - 2u_i + u_{i-1}$. This gives $u_i^{n+1} - u_i^n = \frac r2\big(\delta^2u_i^n + \delta^2u_i^{n+1}\big)$, the scheme in the method box.
+
+\textbf{Stability.} For a mode $e^{i\beta x_i}$ we have $\delta^2e^{i\beta x_i} = -4\sin^2\!\frac{\beta h}{2}\,e^{i\beta x_i}$. With $s = \sin^2\frac{\beta h}{2}\in[0,1]$ the scheme gives $\xi - 1 = -2rs\,(\xi + 1)$, so
+\[ \xi = \frac{1 - 2rs}{1 + 2rs}. \]
+For every $r>0$ and every $s\ge0$, the numerator is smaller in size than the denominator, so $|\xi|<1$. There is no condition on $r$. The price is that we solve a tridiagonal system at every step.
+\end{derivbox}
+
+\begin{examplebox}{One Crank--Nicolson step with $r=1$}
+Same rod and initial data, with $h=0.25$ and $\Delta t = 0.0625$, so $r=1$. (The explicit scheme would be unstable here.) The system is
+\[ 2u_1 - 0.5u_2 = 50,\qquad -0.5u_1 + 2u_2 - 0.5u_3 = 70.71,\qquad -0.5u_2 + 2u_3 = 50. \]
+By symmetry $u_1=u_3=a$ and $u_2=b$: $2a - 0.5b = 50$ and $-a + 2b = 70.71$. Then $a = 25 + 0.25b$ and $1.75b = 95.71$, so $b = 54.69$ and $a = 38.67$. The exact values at $t=0.0625$ are $53.96$ and $38.16$. The step is twice the explicit limit ($0.03125$) and the result is still good.
+\end{examplebox}
+
+\section{Wave equation}
+
+For $u_{tt} = c^2u_{xx}$ the standard explicit scheme is
+\[ u_i^{n+1} = 2(1-s)\,u_i^n + s\,\big(u_{i+1}^n + u_{i-1}^n\big) - u_i^{n-1},\qquad s = \Big(\frac{c\,\Delta t}{h}\Big)^2 . \]
+It is stable if $s\le1$, that is $\Delta t\le h/c$ (the CFL condition). The first step uses the initial velocity: $u_i^1 = u_i^0 + \Delta t\,g_i + \tfrac12 s\,(u_{i+1}^0 - 2u_i^0 + u_{i-1}^0)$.
+
+\begin{derivbox}{The wave scheme and the CFL condition}
+Use the central difference in time and in space: $\dfrac{u_i^{n+1} - 2u_i^n + u_i^{n-1}}{\Delta t^2} = c^2\dfrac{u_{i+1}^n - 2u_i^n + u_{i-1}^n}{h^2}$. Solving for $u_i^{n+1}$ with $s = (c\Delta t/h)^2$ gives $u_i^{n+1} = 2(1-s)u_i^n + s(u_{i+1}^n + u_{i-1}^n) - u_i^{n-1}$.
+
+\textbf{First step.} The scheme needs two time levels. Taylor: $u(x,\Delta t) = u + \Delta t\,u_t + \tfrac12\Delta t^2u_{tt}$ with $u_t = g$ and $u_{tt} = c^2u_{xx}$, so $u_i^1 = u_i^0 + \Delta t\,g_i + \tfrac s2\big(u_{i+1}^0 - 2u_i^0 + u_{i-1}^0\big)$.
+
+\textbf{Stability.} Put $u_i^n = \xi^ne^{i\beta x_i}$. With $\sigma = \sin^2\frac{\beta h}{2}$: $\xi - 2 + \xi^{-1} = -4s\sigma$, that is $\xi^2 - 2(1 - 2s\sigma)\xi + 1 = 0$. The two roots have product $1$. If $|1 - 2s\sigma|\le1$ the roots are complex with $|\xi|=1$ (no growth). If $|1-2s\sigma|>1$ the roots are real, and one of them has $|\xi|>1$. Since $\sigma$ reaches $1$, we need $|1 - 2s|\le1$, that is $s\le1$, or $\Delta t\le h/c$. In words: in one time step the numerical wave must not move farther than one grid cell.
+\end{derivbox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Repeat the plate example, but with the \emph{left} side at $100$ and the other three at $0$.
+  \item For $h=0.1$ and $k=0.5$, what is the largest stable $\Delta t$ for the explicit heat scheme?
+  \item A rod has node values $[0,\ 40,\ 80,\ 40,\ 0]$ (ends included). Do one explicit step with $r=0.5$.
+  \item What is the main advantage of Crank--Nicolson over the explicit scheme?
+  \item For the wave equation with $c=2$ and $h=0.1$, what is the largest stable $\Delta t$?
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) The nodes next to the left side are $37.5$ and the nodes next to the right side are $12.5$ (rotate the earlier answer). \quad (2) $\Delta t\le \dfrac{0.5h^2}{k} = \dfrac{0.5(0.01)}{0.5} = 0.01$. \quad (3) With $r=0.5$: $u_i' = \tfrac12(u_{i-1} + u_{i+1})$, which gives $[0,\ 40,\ 40,\ 40,\ 0]$. \quad (4) It is stable for any $r$, so the time step is limited by accuracy, not stability. \quad (5) $\Delta t\le h/c = 0.05$.
+\end{answerbox}

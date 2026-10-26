@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #0c0d10;
-  --foreground: #f4f4f5;
-  --diagram-bg: #121318;
-  --diagram-card: #181920;
-  --diagram-grid: #232530;
-  --diagram-axis: #52525b;
-  --diagram-text: #f1f5f9;
-  --diagram-text-muted: #a1a1aa;
-  --diagram-border: #232530;
+  --background: #fafafc;
+  --foreground: #111215;
+  --diagram-bg: #ffffff;
+  --diagram-card: #f8fafc;
+  --diagram-grid: #e2e8f0;
+  --diagram-axis: #94a3b8;
+  --diagram-text: #0f172a;
+  --diagram-text-muted: #64748b;
+  --diagram-border: #e2e8f0;
 }
 
 @theme inline {
@@ -18,20 +20,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-serif);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #090a0c;
-    --foreground: #f4f4f5;
-    --diagram-bg: #0e1014;
-    --diagram-card: #12141a;
-    --diagram-grid: #1e222b;
-    --diagram-axis: #4b5563;
-    --diagram-text: #f3f4f6;
-    --diagram-text-muted: #9ca3af;
-    --diagram-border: #1e222b;
-  }
 }
 
 .dark {
@@ -71,3 +59,55 @@ body {
 .eden-card-glow {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
 }
+
+/* Hero tree animation */
+@keyframes tree-sway {
+  0%   { transform: rotate(-0.45deg) scale(1.004) translateX(-3px); }
+  50%  { transform: rotate(0.35deg) scale(1.012) translateX(3px); }
+  100% { transform: rotate(-0.45deg) scale(1.004) translateX(-3px); }
+}
+@keyframes tree-shimmer {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.08); }
+}
+@keyframes mote-rise {
+  0%   { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  15%  { opacity: 0.9; }
+  100% { transform: translate3d(var(--drift, 30px), -42vh, 0) scale(1); opacity: 0; }
+}
+@keyframes mist-drift {
+  0%   { transform: translateX(-6%); }
+  100% { transform: translateX(6%); }
+}
+.tree-sway {
+  transform-origin: 50% 72%;
+  animation: tree-sway 9s ease-in-out infinite;
+  will-change: transform;
+  -webkit-mask-image: radial-gradient(ellipse 34% 46% at 50% 30%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 34% 46% at 50% 30%, #000 40%, transparent 100%);
+}
+.tree-shimmer { animation: tree-shimmer 6s ease-in-out infinite; }
+.mote { animation: mote-rise var(--dur, 12s) linear var(--delay, 0s) infinite; }
+.mist-drift { animation: mist-drift 28s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) {
+  .tree-sway, .tree-shimmer, .mote, .mist-drift { animation: none; }
+}
+
+/* Calmer hero ambience: slow camera drift, light rays, falling leaves */
+@keyframes hero-drift {
+  0%   { transform: scale(1.03) translate3d(-0.6%, 0.3%, 0); }
+  100% { transform: scale(1.09) translate3d(0.6%, -0.5%, 0); }
+}
+@keyframes ray-sway {
+  0%, 100% { opacity: 0.35; transform: rotate(-3deg); }
+  50%      { opacity: 0.7;  transform: rotate(2deg); }
+}
+@keyframes leaf-fall {
+  0%   { transform: translate3d(0, -4vh, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.85; }
+  100% { transform: translate3d(var(--sway, 80px), 70vh, 0) rotate(var(--spin, 360deg)); opacity: 0; }
+}
+.hero-drift { animation: hero-drift 40s ease-in-out infinite alternate; will-change: transform; }
+.ray-sway { transform-origin: 50% 0; animation: ray-sway 14s ease-in-out infinite; }
+.leaf { animation: leaf-fall var(--dur, 18s) ease-in-out var(--delay, 0s) infinite; }
+@media (prefers-reduced-motion: reduce) { .hero-drift, .ray-sway, .leaf { animation: none; } }

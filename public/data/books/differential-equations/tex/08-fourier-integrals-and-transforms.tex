@@ -1,0 +1,117 @@
+\chapter{Fourier Integrals and Transforms}
+
+A Fourier series needs a periodic function on a finite interval. For a function on an infinite or half-infinite domain (a very long rod, a semi-infinite string) we use the Fourier \emph{transform}. It is the limit of the Fourier series when the period goes to infinity.
+
+\begin{notebox}
+Books use different constants in front of the integrals ($1$, $1/2\pi$, $1/\sqrt{2\pi}$). The ideas are the same. This book uses the forms below. Check the convention of your own textbook before using a formula from it.
+\end{notebox}
+
+\section{Fourier transform}
+
+\begin{defbox}{Fourier transform pair}
+\[ F(w) = \int_{-\infty}^{\infty}f(x)\,e^{-iwx}\,\dd x, \qquad f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}F(w)\,e^{iwx}\,\dd w. \]
+$F(w)$ tells how much of the frequency $w$ is inside $f$. It exists for functions with $\int|f|\,\dd x<\infty$.
+\end{defbox}
+
+\begin{derivbox}{From the Fourier series to the Fourier transform}
+\textbf{Complex form.} Put $\cos\theta = \frac12(e^{i\theta}+e^{-i\theta})$ and $\sin\theta = \frac1{2i}(e^{i\theta}-e^{-i\theta})$ in the series. Then $a_n\cos\theta + b_n\sin\theta = \frac{a_n - ib_n}{2}e^{i\theta} + \frac{a_n+ib_n}{2}e^{-i\theta}$, and the series becomes
+\[ f(x) = \sum_{n=-\infty}^{\infty}c_n\,e^{in\pi x/L},\qquad c_n = \frac1{2L}\int_{-L}^{L}f(\xi)\,e^{-in\pi\xi/L}\,\dd\xi . \]
+(For $n\ge0$, $c_n = \frac{a_n - ib_n}{2}$, since $\cos - i\sin = e^{-i\theta}$.)
+
+\textbf{The limit $L\to\infty$.} Let $w_n = n\pi/L$ and $\Delta w = \pi/L$, so $\frac1{2L} = \frac{\Delta w}{2\pi}$. Define $F_L(w) = \int_{-L}^{L}f(\xi)e^{-iw\xi}\,\dd\xi$. Then
+\[ f(x) = \frac1{2\pi}\sum_{n}F_L(w_n)\,e^{iw_nx}\,\Delta w . \]
+As $L\to\infty$ we have $\Delta w\to0$, $F_L\to F$, and the sum becomes an integral (a Riemann sum):
+\[ f(x) = \frac1{2\pi}\int_{-\infty}^{\infty}F(w)\,e^{iwx}\,\dd w,\qquad F(w) = \int_{-\infty}^{\infty}f(\xi)\,e^{-iw\xi}\,\dd\xi . \]
+So the transform is the Fourier series of a function whose period has become infinite, and the discrete frequencies $n\pi/L$ become a continuous variable $w$.
+\end{derivbox}
+
+\begin{examplebox}{Rectangular pulse}
+$f(x)=1$ for $|x|<a$ and $0$ otherwise. Then
+\[ F(w) = \int_{-a}^{a}e^{-iwx}\,\dd x = \Big[\frac{e^{-iwx}}{-iw}\Big]_{-a}^{a} = \frac{e^{iaw} - e^{-iaw}}{iw} = \frac{2\sin aw}{w}. \]
+At $w=0$ the value is $2a$, the area of the pulse. A narrow pulse (small $a$) has a wide spectrum, and a wide pulse has a narrow spectrum.
+\end{examplebox}
+
+\begin{examplebox}{Two standard transforms}
+\begin{itemize}
+  \item $f(x) = e^{-|x|}$: $F(w) = \displaystyle\int_{-\infty}^{\infty}e^{-|x|}e^{-iwx}\,\dd x = \frac{2}{1+w^2}$.
+  \item $f(x)=e^{-x^2}$: $F(w) = \sqrt\pi\,e^{-w^2/4}$. A Gaussian transforms into a Gaussian. We use this in Chapter 11.
+\end{itemize}
+\end{examplebox}
+
+\begin{defbox}{Properties}
+\begin{itemize}
+  \item \textbf{Linearity:} $af+bg \leftrightarrow aF+bG$.
+  \item \textbf{Shift in $x$:} $f(x-a)\leftrightarrow e^{-iaw}F(w)$.
+  \item \textbf{Derivative:} $f'(x)\leftrightarrow iw\,F(w)$, and $f''(x)\leftrightarrow -w^2F(w)$. A derivative becomes a multiplication, so a PDE becomes an ODE.
+  \item \textbf{Convolution:} $(f*g)(x) = \displaystyle\int_{-\infty}^{\infty}f(\xi)g(x-\xi)\,\dd\xi\ \leftrightarrow\ F(w)\,G(w)$.
+\end{itemize}
+\end{defbox}
+
+\begin{derivbox}{Properties, and two standard transforms}
+\textbf{Derivative.} Integrate by parts, assuming $f(x)\to0$ as $x\to\pm\infty$:
+\[ \int_{-\infty}^{\infty}f'(x)e^{-iwx}\,\dd x = \Big[f e^{-iwx}\Big]_{-\infty}^{\infty} + iw\int_{-\infty}^{\infty}f e^{-iwx}\,\dd x = iw\,F(w). \]
+Applying it twice gives $f''\leftrightarrow(iw)^2F = -w^2F$.
+
+\textbf{Shift.} With $u = x - a$: $\displaystyle\int f(x-a)e^{-iwx}\,\dd x = e^{-iwa}\int f(u)e^{-iwu}\,\dd u = e^{-iaw}F(w)$.
+
+\textbf{Convolution.} $\displaystyle\int\Big[\int f(\xi)g(x-\xi)\,\dd\xi\Big]e^{-iwx}\,\dd x$. Swap the integrals and put $u = x-\xi$, so $e^{-iwx} = e^{-iw\xi}e^{-iwu}$:
+$= \displaystyle\int f(\xi)e^{-iw\xi}\,\dd\xi\int g(u)e^{-iwu}\,\dd u = F(w)G(w)$.
+
+\textbf{The transform of $e^{-|x|}$.}
+\[ \int_0^\infty e^{-x(1+iw)}\,\dd x + \int_{-\infty}^0e^{x(1-iw)}\,\dd x = \frac{1}{1+iw} + \frac{1}{1-iw} = \frac{2}{1+w^2}. \]
+
+\textbf{The transform of $e^{-x^2}$.} Let $F(w) = \int e^{-x^2}e^{-iwx}\,\dd x$. Differentiate under the integral: $F'(w) = \int(-ix)e^{-x^2}e^{-iwx}\,\dd x$. Since $-2xe^{-x^2} = (e^{-x^2})'$, we have $-ix\,e^{-x^2} = \frac i2(e^{-x^2})'$, and integration by parts gives
+\[ F'(w) = \frac i2\int(e^{-x^2})'e^{-iwx}\,\dd x = \frac i2\,(iw)F(w) = -\frac w2F(w). \]
+This is separable: $F = F(0)e^{-w^2/4}$ with $F(0) = \int e^{-x^2}\dd x = \sqrt\pi$. So $F(w) = \sqrt\pi\,e^{-w^2/4}$.
+\end{derivbox}
+
+\section{Fourier cosine and sine transforms}
+
+For a function defined only for $x>0$, we use the cosine or the sine transform. They are the half-line versions of the cosine and sine series.
+
+\begin{defbox}{Cosine and sine transforms}
+\[ F_c(w) = \int_0^\infty f(x)\cos wx\,\dd x,\qquad f(x) = \frac2\pi\int_0^\infty F_c(w)\cos wx\,\dd w, \]
+\[ F_s(w) = \int_0^\infty f(x)\sin wx\,\dd x,\qquad f(x) = \frac2\pi\int_0^\infty F_s(w)\sin wx\,\dd w. \]
+\end{defbox}
+
+\begin{examplebox}{Transforms of $e^{-ax}$ ($a>0$)}
+\[ F_c = \int_0^\infty e^{-ax}\cos wx\,\dd x = \frac{a}{a^2+w^2},\qquad F_s = \int_0^\infty e^{-ax}\sin wx\,\dd x = \frac{w}{a^2+w^2}. \]
+Put $F_c$ into the inversion formula: $e^{-ax} = \dfrac2\pi\displaystyle\int_0^\infty\frac{a\cos wx}{a^2+w^2}\,\dd w$. So we get an integral that is hard to compute directly:
+\[ \int_0^\infty\frac{\cos wx}{a^2+w^2}\,\dd w = \frac{\pi}{2a}e^{-ax}. \]
+\end{examplebox}
+
+\begin{defbox}{Transforms of derivatives (the key rules for PDEs)}
+Integrate by parts, and assume $f$ and $f'$ go to 0 as $x\to\infty$:
+\[ F_c\{f''\} = -f'(0) - w^2F_c\{f\}, \qquad F_s\{f''\} = w\,f(0) - w^2F_s\{f\}. \]
+\textbf{Which to use?} If the condition at $x=0$ gives the \emph{value} $f(0)$ (Dirichlet), use the sine transform. If it gives the \emph{slope} $f'(0)$ (Neumann), use the cosine transform.
+\end{defbox}
+
+\begin{derivbox}{Transforms of $e^{-ax}$ and of derivatives}
+\textbf{Transforms of $e^{-ax}$.} Compute $\int_0^\infty e^{-ax}e^{iwx}\,\dd x = \int_0^\infty e^{-(a-iw)x}\,\dd x = \dfrac{1}{a-iw} = \dfrac{a+iw}{a^2+w^2}$. The real part is $\int_0^\infty e^{-ax}\cos wx\,\dd x = \dfrac{a}{a^2+w^2}$ and the imaginary part is $\int_0^\infty e^{-ax}\sin wx\,\dd x = \dfrac{w}{a^2+w^2}$.
+
+\textbf{Derivative rules.} Integrate by parts and assume $f,f'\to0$ at infinity:
+\begin{align*}
+F_c\{f'\} &= \int_0^\infty f'\cos wx\,\dd x = \Big[f\cos wx\Big]_0^\infty + w\int_0^\infty f\sin wx\,\dd x = -f(0) + wF_s\{f\},\\
+F_s\{f'\} &= \int_0^\infty f'\sin wx\,\dd x = \Big[f\sin wx\Big]_0^\infty - w\int_0^\infty f\cos wx\,\dd x = -wF_c\{f\}.
+\end{align*}
+Apply these to $f'$ in place of $f$:
+\begin{align*}
+F_c\{f''\} &= -f'(0) + wF_s\{f'\} = -f'(0) - w^2F_c\{f\},\\
+F_s\{f''\} &= -wF_c\{f'\} = -w\big(-f(0) + wF_s\{f\}\big) = wf(0) - w^2F_s\{f\}.
+\end{align*}
+The boundary terms show which transform to use: $F_s\{f''\}$ contains $f(0)$ and $F_c\{f''\}$ contains $f'(0)$.
+\end{derivbox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Find $F_c$ and $F_s$ of $f(x) = e^{-3x}$.
+  \item Find the Fourier transform of $f(x) = e^{-|x|}$ by direct integration.
+  \item Find the Fourier transform of the pulse $f(x) = 1$ for $|x|<2$, and $0$ otherwise.
+  \item Use the inversion formula for $F_c\{e^{-x}\}$ at $x=0$ to evaluate $\displaystyle\int_0^\infty\dfrac{\dd w}{1+w^2}$.
+  \item If $f(0)=2$ and $F_s\{f\}=G(w)$, find $F_s\{f''\}$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $F_c = \dfrac{3}{9+w^2}$, $F_s = \dfrac{w}{9+w^2}$. \quad (2) $\displaystyle\int_0^\infty e^{-x}e^{-iwx}\,\dd x + \int_{-\infty}^0 e^{x}e^{-iwx}\,\dd x = \dfrac1{1+iw} + \dfrac1{1-iw} = \dfrac{2}{1+w^2}$. \quad (3) $F(w) = \dfrac{2\sin 2w}{w}$. \quad (4) $F_c = \frac1{1+w^2}$. At $x=0$: $1 = \frac2\pi\int_0^\infty\frac{\dd w}{1+w^2}$, so the integral is $\dfrac\pi2$. \quad (5) $F_s\{f''\} = 2w - w^2G(w)$.
+\end{answerbox}

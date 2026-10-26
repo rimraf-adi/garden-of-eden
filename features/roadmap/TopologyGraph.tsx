@@ -40,7 +40,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
       case 'Advanced':
         return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
       case 'Mastery':
-        return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20';
+        return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
       default:
         return 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20';
     }
@@ -53,7 +53,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
         {/* Controls Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 font-mono text-xs">
           <div className="flex items-center gap-2">
-            <Layers className="h-4 w-4 text-indigo-500" />
+            <Layers className="h-4 w-4 text-amber-500" />
             <span className="font-semibold text-zinc-700 dark:text-zinc-300">DIFFICULTY FILTER:</span>
             <div className="flex items-center gap-1">
               {['ALL', 'Foundational', 'Core', 'Advanced', 'Mastery'].map((lvl) => (
@@ -112,7 +112,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
                         onClick={() => setActiveNode(node)}
                         className={`group relative p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between ${
                           isSelected
-                            ? 'border-indigo-600 bg-indigo-50/60 dark:border-indigo-500 dark:bg-indigo-950/40 ring-1 ring-indigo-500 shadow-md'
+                            ? 'border-amber-600 bg-amber-50/60 dark:border-amber-500 dark:bg-amber-950/40 ring-1 ring-amber-500 shadow-md'
                             : 'border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/60 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50'
                         }`}
                       >
@@ -130,7 +130,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
                             </span>
                           </div>
 
-                          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 line-clamp-1">
+                          <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 line-clamp-1">
                             {node.title}
                           </h4>
                           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed">
@@ -141,7 +141,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
                         <div className="mt-3 pt-2.5 border-t border-zinc-200/60 dark:border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
                           <span>{node.estimatedHours}h est.</span>
                           {node.workbenchAvailable && (
-                            <span className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 font-semibold">
+                            <span className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-semibold">
                               <Beaker className="h-3 w-3" /> Lab
                             </span>
                           )}
@@ -158,13 +158,13 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
 
       {/* Right Concept Node Deep Inspector */}
       <div className="lg:col-span-4 sticky top-24 space-y-4">
-        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-xl shadow-zinc-900/5">
+        <div className="rounded-2xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md p-6 shadow-xl shadow-zinc-900/5">
           {/* Header pill */}
           <div className="flex items-center justify-between pb-3 border-b border-zinc-100 dark:border-zinc-800">
             <div className="flex items-center gap-2">
               <span
                 className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: activeTrack?.color || '#6366f1' }}
+                style={{ backgroundColor: activeTrack?.color || '#d97706' }}
               />
               <span className="font-mono text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 {activeTrack?.code} · {activeTrack?.name}
@@ -181,7 +181,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
 
           {/* Title and Summary */}
           <div className="mt-4">
-            <span className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+            <span className="font-mono text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
               Chapter {activeNode.chapterNum}
             </span>
             <h3 className="mt-1 text-xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
@@ -195,7 +195,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
           {/* Prerequisite Flow */}
           <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800">
             <div className="flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
-              <GitBranch className="h-3.5 w-3.5 text-indigo-500" />
+              <GitBranch className="h-3.5 w-3.5 text-amber-500" />
               <span>Prerequisites & Precedents</span>
             </div>
             {activeNode.prerequisites.length === 0 ? (
@@ -208,7 +208,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
                     <button
                       key={prereqId}
                       onClick={() => prereq && setActiveNode(prereq)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-indigo-100 hover:text-indigo-700 dark:hover:bg-indigo-900/50 dark:hover:text-indigo-300 transition-colors"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-amber-100 hover:text-amber-700 dark:hover:bg-amber-900/50 dark:hover:text-amber-300 transition-colors"
                     >
                       <span>Ch.{prereq ? prereq.chapterNum : prereqId}</span>
                       <ArrowRight className="h-3 w-3 opacity-60" />
@@ -260,7 +260,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
           <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800 space-y-2">
             <Link
               href={`/chapter/${activeNode.slug}`}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-md shadow-indigo-600/20"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-medium text-sm transition-all shadow-md shadow-amber-600/20"
             >
               <BookOpen className="h-4 w-4" />
               <span>Read Full Chapter</span>
@@ -270,7 +270,7 @@ export default function TopologyGraph({ selectedTrackId }: TopologyGraphProps) {
               href={`/workbench`}
               className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 text-zinc-800 dark:text-zinc-200 font-medium text-xs transition-colors"
             >
-              <Beaker className="h-3.5 w-3.5 text-indigo-500" />
+              <Beaker className="h-3.5 w-3.5 text-amber-500" />
               <span>Launch Interactive Workbench</span>
             </Link>
           </div>

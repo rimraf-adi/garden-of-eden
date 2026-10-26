@@ -119,14 +119,14 @@ export default function Chapter1Illustration() {
         const thresholdY = 30 + (height - 80) * (0.50 + 0.08 * Math.cos(t * 1.5));
 
         // Shaded decision regions
-        ctx.fillStyle = 'rgba(99, 102, 241, 0.08)'; // Low Risk
+        ctx.fillStyle = 'rgba(217, 119, 6, 0.08)'; // Low Risk
         ctx.fillRect(thresholdX, 30, width - 30 - thresholdX, thresholdY - 30);
 
         ctx.fillStyle = 'rgba(239, 68, 68, 0.06)'; // High Risk
         ctx.fillRect(50, thresholdY, thresholdX - 50, height - 30 - thresholdY);
 
         // Discriminant lines (Alpaydın Fig 1.1)
-        ctx.strokeStyle = '#6366f1';
+        ctx.strokeStyle = '#d97706';
         ctx.lineWidth = 2.5;
         ctx.setLineDash([6, 4]);
         ctx.beginPath();
@@ -137,7 +137,7 @@ export default function Chapter1Illustration() {
         ctx.setLineDash([]);
 
         // Region labels
-        ctx.fillStyle = '#4f46e5';
+        ctx.fillStyle = '#b45309';
         ctx.font = 'bold 12px sans-serif';
         ctx.fillText('Low-Risk (Accepted)', thresholdX + 15, 60);
 
@@ -145,7 +145,7 @@ export default function Chapter1Illustration() {
         ctx.fillText('High-Risk (Default)', 65, height - 50);
 
         // Threshold markers
-        ctx.fillStyle = '#6366f1';
+        ctx.fillStyle = '#d97706';
         ctx.font = 'bold 11px monospace';
         ctx.fillText(`θ₁`, thresholdX - 6, height - 12);
         ctx.fillText(`θ₂`, 30, thresholdY + 4);
@@ -154,7 +154,7 @@ export default function Chapter1Illustration() {
         classPos.forEach((p) => {
           const px = 50 + (width - 100) * p.x;
           const py = 30 + (height - 80) * p.y;
-          ctx.strokeStyle = '#4f46e5';
+          ctx.strokeStyle = '#b45309';
           ctx.lineWidth = 2.5;
           ctx.beginPath();
           ctx.moveTo(px - 6, py);
@@ -166,7 +166,7 @@ export default function Chapter1Illustration() {
           // Subtle pulse ring
           ctx.beginPath();
           ctx.arc(px, py, 10 + 2 * Math.sin(t * 2), 0, Math.PI * 2);
-          ctx.strokeStyle = 'rgba(99, 102, 241, 0.2)';
+          ctx.strokeStyle = 'rgba(217, 119, 6, 0.2)';
           ctx.stroke();
         });
 
@@ -321,13 +321,13 @@ export default function Chapter1Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
           <span className="flex h-3 w-3 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
           </span>
           <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
             Loopable Interactive Visual · Chapter 1: The Three ML Paradigms
@@ -340,7 +340,7 @@ export default function Chapter1Illustration() {
             onClick={() => setMode('classification')}
             className={`px-3 py-1 rounded-lg transition ${
               mode === 'classification'
-                ? 'bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >
@@ -360,7 +360,7 @@ export default function Chapter1Illustration() {
             onClick={() => setMode('clustering')}
             className={`px-3 py-1 rounded-lg transition ${
               mode === 'clustering'
-                ? 'bg-white dark:bg-zinc-900 text-purple-600 dark:text-purple-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >
@@ -413,7 +413,7 @@ export default function Chapter1Illustration() {
             </>
           )}
         </p>
-        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-indigo-500 font-semibold shrink-0">
+        <span className="inline-flex items-center gap-1 font-mono text-[11px] text-amber-500 font-semibold shrink-0">
           <Sparkles className="h-3 w-3" />
           60 FPS Seamless Loop
         </span>

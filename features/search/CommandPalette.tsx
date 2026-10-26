@@ -6,6 +6,7 @@ import { chaptersIndex } from '@/lib/bookData';
 import { LEARNING_TRACKS, CONCEPT_NODES } from '@/lib/curriculum';
 import { PRACTICE_EXERCISES } from '@/lib/practiceData';
 import { GARDEN_PATHS } from '@/lib/pathsData';
+import { BOOK_INDEX, texToPlain } from '@/lib/books';
 import {
   Search,
   BookOpen,
@@ -124,6 +125,17 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
       href: `/chapter/${ch.slug}`,
       badge: ch.tag,
     })),
+    // Book chapters (vector calculus, probability, ODE/PDE)
+    ...Object.values(BOOK_INDEX).flatMap((bk) =>
+      bk.chapters.map((ch) => ({
+        id: `bk-${bk.id}-${ch.slug}`,
+        category: 'Chapter' as const,
+        title: `${bk.title} · ${/^[A-Z]$/.test(ch.label) ? 'App. ' : 'Ch.'}${ch.label}: ${texToPlain(ch.title)}`,
+        subtitle: texToPlain(ch.summary),
+        href: `/books/${bk.id}/${ch.slug}`,
+        badge: ch.tag || bk.title,
+      }))
+    ),
     // Learning Tracks
     ...LEARNING_TRACKS.map((t) => ({
       id: `trk-${t.id}`,
@@ -163,7 +175,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 bg-zinc-950/70 backdrop-blur-md p-4 animate-in fade-in duration-150">
       <div
-        className="w-full max-w-2xl rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden flex flex-col"
+        className="w-full max-w-2xl rounded-2xl bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
@@ -202,7 +214,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                 className="flex items-center justify-between p-3 rounded-xl hover:bg-zinc-100 dark:hover:bg-zinc-800/80 cursor-pointer transition-colors group"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     {item.category === 'Chapter' && <BookOpen className="h-4 w-4" />}
                     {item.category === 'Track' && <Compass className="h-4 w-4" />}
                     {item.category === 'Workbench' && <Beaker className="h-4 w-4" />}
@@ -211,7 +223,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate">
+                      <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 truncate">
                         {item.title}
                       </span>
                       {item.badge && (

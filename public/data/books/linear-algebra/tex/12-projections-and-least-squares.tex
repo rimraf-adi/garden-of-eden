@@ -1,0 +1,186 @@
+\chapter{Projections and Least Squares}
+
+A system $A\mathbf{x}=\mathbf{b}$ with more equations than unknowns usually has no solution: noisy measurements do not agree exactly. The right response is not to give up but to find the $\mathbf{x}$ that comes closest. ``Closest'' means a shortest distance, and the shortest distance from a point to a subspace is along the perpendicular. This chapter develops orthogonal projection onto a subspace, derives the normal equations, and establishes least squares as the foundation of regression, curve fitting and a great deal of machine learning.
+
+\section{Projection onto a subspace}
+
+Chapter~1 projected onto a line. Replace the line by an arbitrary subspace $W$.
+
+\begin{theorem}[Best approximation]\label{thm:bestapprox}
+Let $W$ be a finite-dimensional subspace of an inner-product space $V$ and $\mathbf{v}\in V$. There is a unique vector $\mathbf{p}\in W$ such that $\mathbf{v}-\mathbf{p}\perp W$. It is the closest point of $W$ to $\mathbf{v}$:
+\[ \norm{\mathbf{v}-\mathbf{p}}<\norm{\mathbf{v}-\mathbf{w}}\quad\text{for every }\mathbf{w}\in W,\ \mathbf{w}\ne\mathbf{p}. \]
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:perp}, $V=W\oplus W^\perp$ so $\mathbf{v}=\mathbf{p}+\mathbf{r}$ uniquely with $\mathbf{p}\in W$, $\mathbf{r}\in W^\perp$. For any $\mathbf{w}\in W$ we have $\mathbf{p}-\mathbf{w}\in W$, hence $\mathbf{r}\perp(\mathbf{p}-\mathbf{w})$, and Pythagoras gives
+\[ \norm{\mathbf{v}-\mathbf{w}}^2=\norm{\mathbf{r}+(\mathbf{p}-\mathbf{w})}^2=\norm{\mathbf{r}}^2+\norm{\mathbf{p}-\mathbf{w}}^2\ge\norm{\mathbf{r}}^2, \]
+with equality iff $\mathbf{w}=\mathbf{p}$.
+\end{proof}
+
+The vector $\mathbf{p}=\proj_W\mathbf{v}$ is the \emph{orthogonal projection} of $\mathbf{v}$ onto $W$, and $\mathbf{r}=\mathbf{v}-\mathbf{p}$ is the \emph{residual}. If $\mathbf{q}_1,\dots,\mathbf{q}_k$ is an orthonormal basis of $W$ then $\proj_W\mathbf{v}=\sum\ip{\mathbf{v}}{\mathbf{q}_i}\mathbf{q}_i$ (proof of Theorem~\ref{thm:perp}).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.2]
+  \fill[accent2!12] (-0.6,-0.4)--(4.2,-0.4)--(5.2,1.2)--(0.4,1.2)--cycle;
+  \node[lab,accent2] at (4.5,0.0){plane $W$};
+  \coordinate (O) at (1.8,0.4);
+  \draw[vec,accent] (O)--(2.4,2.5) node[above,lab]{$\mathbf{b}$};
+  \draw[guide] (2.4,2.5)--(2.4,0.62);
+  \draw[vec,accent3] (O)--(2.4,0.62) node[below right,lab]{$\mathbf{p}=\proj_W\mathbf{b}$};
+  \draw[vec,mid] (2.4,0.62)--(2.4,2.5) node[midway,right,lab]{$\mathbf{r}\perp W$};
+  \node[pt] at (O){};
+\end{tikzpicture}
+\caption{The projection $\mathbf{p}$ of $\mathbf{b}$ onto the plane $W$ is the closest point of the plane; the error $\mathbf{r}$ is perpendicular to it.}
+\end{figure}
+
+\subsection*{The normal equations}
+
+Let $W=\Col A$ for $A\in\R^{m\times n}$ with independent columns. We seek $\mathbf{p}=A\hat{\mathbf{x}}\in\Col A$ with $\mathbf{b}-A\hat{\mathbf{x}}\perp\Col A$, that is, orthogonal to every column of $A$:
+\[ A\T(\mathbf{b}-A\hat{\mathbf{x}})=\mathbf{0}\quad\Longleftrightarrow\quad A\T A\,\hat{\mathbf{x}}=A\T\mathbf{b}. \]
+
+\begin{theorem}[Normal equations]\label{thm:normal}
+If $A$ has linearly independent columns, $A\T A$ is invertible and the unique minimiser of $\norm{A\mathbf{x}-\mathbf{b}}$ is
+\[ \hat{\mathbf{x}}=(A\T A)^{-1}A\T\mathbf{b}. \]
+The projection of $\mathbf{b}$ onto $\Col A$ is $\mathbf{p}=A(A\T A)^{-1}A\T\mathbf{b}=P\mathbf{b}$ with $P=A(A\T A)^{-1}A\T$.
+\end{theorem}
+
+\begin{proof}
+$A\T A$ is invertible because its nullspace is $\Null A=\{\mathbf{0}\}$ (Proposition~\ref{prop:rankineq}(v)). By Theorem~\ref{thm:bestapprox}, minimising $\norm{\mathbf{b}-A\mathbf{x}}$ means choosing $A\mathbf{x}$ to be the projection, characterised by the orthogonality condition above, which is the normal equations. The minimiser $\hat{\mathbf{x}}$ is unique since $A$ has independent columns.
+\end{proof}
+
+\begin{theorem}[Properties of projection matrices]\label{thm:projmat}
+The matrix $P=A(A\T A)^{-1}A\T$ satisfies $P^2=P$, $P\T=P$, $\Col P=\Col A$, $\rank P=\tr P=n$, and $I-P$ is the projection onto $(\Col A)^\perp=\Null A\T$. Conversely every symmetric idempotent matrix is an orthogonal projection onto its column space. If $Q$ has orthonormal columns spanning $W$ then $P=QQ\T$.
+\end{theorem}
+
+\begin{proof}
+$P^2=A(A\T A)^{-1}(A\T A)(A\T A)^{-1}A\T=P$ and $P\T=P$ by symmetry of $A\T A$. $P\mathbf{b}\in\Col A$ for every $\mathbf{b}$, and $P\mathbf{x}=\mathbf{x}$ for $\mathbf{x}\in\Col A$, so $\Col P=\Col A$. The trace of an idempotent equals its rank because its eigenvalues are $0$ or $1$ (Chapter~13); concretely $\tr P=\tr\big((A\T A)^{-1}A\T A\big)=\tr I_n=n$ by Proposition~\ref{prop:trace}. For $Q$, $Q\T Q=I$ gives $P=Q(Q\T Q)^{-1}Q\T=QQ\T$. The statement about $I-P$ follows because $\mathbf{r}=\mathbf{b}-\mathbf{p}$ lies in $\Null A\T$ and every vector of it is its own residual.
+\end{proof}
+
+\begin{pitfall}{projection matrices are not invertible (except $I$)}
+If $P\ne I$ is a projection then $P$ has a nonzero vector in its nullspace and cannot be inverted: projection destroys information. Applying it twice changes nothing ($P^2=P$), so a projection can never be undone. In regression, $P$ is the ``hat matrix'' $H$ with $\hat{\mathbf{y}}=H\mathbf{y}$.
+\end{pitfall}
+
+\begin{example}[Projection onto a plane in $\R^3$]
+Project $\mathbf{b}=(1,2,6)\T$ onto the plane spanned by $\mathbf{a}_1=(1,0,1)$ and $\mathbf{a}_2=(0,1,1)$. Here $A\T A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ and $A\T\mathbf{b}=(7,8)\T$. Solving $A\T A\hat{\mathbf{x}}=A\T\mathbf{b}$ gives $\hat{\mathbf{x}}=(2,3)\T$, so $\mathbf{p}=2\mathbf{a}_1+3\mathbf{a}_2=(2,3,5)$ and the residual is $\mathbf{r}=(-1,-1,1)$, which is orthogonal to both $\mathbf{a}_1$ and $\mathbf{a}_2$, as it must be.
+\end{example}
+
+\section{Least squares problems}
+
+\begin{definition}[Least squares solution]
+A \emph{least squares solution} of $A\mathbf{x}=\mathbf{b}$ is a vector $\hat{\mathbf{x}}$ minimising the sum of squared residuals $\norm{\mathbf{b}-A\mathbf{x}}^2=\sum_i(b_i-(A\mathbf{x})_i)^2$.
+\end{definition}
+
+If the columns of $A$ are dependent, the minimiser is not unique: any solution of the normal equations $A\T A\hat{\mathbf{x}}=A\T\mathbf{b}$ works (these are always consistent, since $A\T\mathbf{b}\in\Row A=\Col A\T A$), and the solutions form a translate of $\Null A$. Among them the one of smallest norm is selected by the pseudo-inverse (Chapter~17).
+
+\subsection*{Fitting a line}
+
+Given data points $(t_i,y_i)$, $i=1,\dots,m$, fit a line $y=c+dt$. The model is linear in the unknowns $(c,d)$:
+\[ \underbrace{\begin{pmatrix}1&t_1\\\vdots&\vdots\\1&t_m\end{pmatrix}}_{A}\begin{pmatrix}c\\d\end{pmatrix}\approx\begin{pmatrix}y_1\\\vdots\\y_m\end{pmatrix}. \]
+The normal equations $A\T A\hat{\mathbf{x}}=A\T\mathbf{y}$ read
+\[ \begin{pmatrix}m&\sum t_i\\\sum t_i&\sum t_i^2\end{pmatrix}\begin{pmatrix}c\\d\end{pmatrix}=\begin{pmatrix}\sum y_i\\\sum t_iy_i\end{pmatrix}. \]
+
+\begin{example}
+Fit a line through $(0,1),(1,2),(2,2),(3,5)$. Here $m=4$, $\sum t=6$, $\sum t^2=14$, $\sum y=10$, $\sum ty=1\cdot0+2\cdot1+2\cdot2+5\cdot3=21$. Solve $\begin{pmatrix}4&6\\6&14\end{pmatrix}\begin{pmatrix}c\\d\end{pmatrix}=\begin{pmatrix}10\\21\end{pmatrix}$: determinant $56-36=20$, so $c=\frac{14\cdot10-6\cdot21}{20}=0.7$ and $d=\frac{4\cdot21-6\cdot10}{20}=1.2$. The best line is $y=0.7+1.2t$, with residuals $(0.3,0.1,-1.1,0.7)$, which sum to $0$ and are orthogonal to the columns $(1,1,1,1)$ and $(0,1,2,3)$.
+\end{example}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[axis] (-0.3,0)--(4.4,0) node[right,lab]{$t$}; \draw[axis] (0,-0.3)--(0,5.4) node[above,lab]{$y$};
+  \draw[thick,accent2] (-0.2,0.46)--(3.8,5.26);
+  \foreach \t/\y in {0/1,1/2,2/2,3/5}{\node[pt] at (\t,\y){}; \draw[guide] (\t,\y)--(\t,{0.7+1.2*\t});}
+\end{tikzpicture}
+\caption{The least squares line minimises the sum of squared vertical distances (dashed) to the data points.}
+\end{figure}
+
+\begin{interview}{what is regression, geometrically?}
+Ordinary least squares regression is orthogonal projection of the response vector $\mathbf{y}\in\R^m$ onto the column space of the design matrix. The fitted values $\hat{\mathbf{y}}=P\mathbf{y}$ are the projection, the residuals $\mathbf{y}-\hat{\mathbf{y}}$ are orthogonal to every feature column, and in particular to the constant column, which is why residuals sum to zero when an intercept is included. The coefficient of determination $R^2=\norm{\hat{\mathbf{y}}-\bar{y}\mathbf{1}}^2/\norm{\mathbf{y}-\bar{y}\mathbf{1}}^2$ is a squared cosine, by Pythagoras.
+\end{interview}
+
+\section{Polynomial and general basis fitting}
+
+The unknowns need only enter \emph{linearly}. To fit $y\approx c_0+c_1t+c_2t^2$ use the Vandermonde-type matrix with columns $1,t,t^2$. To fit $y\approx c_1\sin t+c_2\cos t+c_3e^t$ use those three functions as columns. Nonlinear parameters (as in $y=e^{kt}$) require iterative methods, or a transformation ($\log y=kt$).
+
+\begin{nuance}{high-degree polynomial fits are ill-conditioned}
+With monomials $1,t,t^2,\dots,t^{d}$ on $[0,1]$ the columns of $A$ become nearly parallel as $d$ grows, and $A\T A$ is a Hilbert-like matrix with enormous condition number: $\kappa(A\T A)$ grows like $e^{3.5d}$. Solving the normal equations in double precision fails for $d$ around $12$. Cures are an orthogonal polynomial basis (Legendre, Chebyshev), QR factorisation, or regularisation.
+\end{nuance}
+
+\section{Computing least squares}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Method & Cost & Stability \\
+\midrule
+Normal equations (Cholesky of $A\T A$) & $mn^2+\tfrac13n^3$ & squares $\kappa(A)$ \\
+QR (Householder) & $2mn^2-\tfrac23n^3$ & stable, standard \\
+SVD & $\approx4mn^2+8n^3$ & most robust, handles rank deficiency \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+With $A=QR$ (Theorem~\ref{thm:qr}) the normal equations simplify: $A\T A=R\T Q\T QR=R\T R$ and $A\T\mathbf{b}=R\T Q\T\mathbf{b}$, so $R\hat{\mathbf{x}}=Q\T\mathbf{b}$, a triangular system. The projection matrix is $P=QQ\T$.
+
+\section{Weighted and regularised least squares}
+
+If some measurements are more reliable, minimise $\sum w_i(b_i-(A\mathbf{x})_i)^2=(\mathbf{b}-A\mathbf{x})\T W(\mathbf{b}-A\mathbf{x})$ with $W=\diag(w_i)$; the normal equations become $A\T WA\hat{\mathbf{x}}=A\T W\mathbf{b}$. In statistics, $W=\Sigma^{-1}$ (inverse noise covariance) gives the best linear unbiased estimator.
+
+When $A\T A$ is singular or nearly so, add a penalty. \emph{Ridge regression} minimises $\norm{\mathbf{b}-A\mathbf{x}}^2+\lambda\norm{\mathbf{x}}^2$:
+
+\begin{theorem}[Ridge regression]\label{thm:ridge}
+For $\lambda>0$ the minimiser of $\norm{\mathbf{b}-A\mathbf{x}}^2+\lambda\norm{\mathbf{x}}^2$ exists, is unique for every $A$, and is
+\[ \hat{\mathbf{x}}_\lambda=(A\T A+\lambda I)^{-1}A\T\mathbf{b}. \]
+\end{theorem}
+
+\begin{proof}
+Setting the gradient to zero gives $-2A\T(\mathbf{b}-A\mathbf{x})+2\lambda\mathbf{x}=\mathbf{0}$, i.e.\ $(A\T A+\lambda I)\mathbf{x}=A\T\mathbf{b}$. The matrix $A\T A+\lambda I$ is positive definite, since $\mathbf{x}\T(A\T A+\lambda I)\mathbf{x}=\norm{A\mathbf{x}}^2+\lambda\norm{\mathbf{x}}^2>0$ for $\mathbf{x}\ne\mathbf{0}$, hence invertible. The objective is strictly convex, so this stationary point is the unique minimiser.
+\end{proof}
+
+\begin{interview}{why does ridge stabilise?}
+Adding $\lambda I$ lifts every eigenvalue of $A\T A$ by $\lambda$, so the smallest eigenvalue is at least $\lambda$ and the condition number is at most $(\sigma_{\max}^2+\lambda)/\lambda$. Chapter~17 shows ridge shrinks each singular direction by the factor $\sigma_i^2/(\sigma_i^2+\lambda)$, damping directions with small singular values the most.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item The closest point of a subspace $W$ to $\mathbf{b}$ is the orthogonal projection $\mathbf{p}$; the residual $\mathbf{b}-\mathbf{p}$ is perpendicular to $W$.
+  \item For $W=\Col A$ with independent columns, $\hat{\mathbf{x}}=(A\T A)^{-1}A\T\mathbf{b}$ and $P=A(A\T A)^{-1}A\T$; $P$ is symmetric and idempotent.
+  \item Least squares is projection: $A\hat{\mathbf{x}}=P\mathbf{b}$ and the residual lies in $\Null A\T$.
+  \item Any model linear in its parameters (polynomials, sinusoids, features) is fitted this way.
+  \item Prefer QR or SVD over normal equations; weights give GLS, a penalty $\lambda\norm{\mathbf{x}}^2$ gives ridge.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Project $\mathbf{b}=(1,2,3)$ onto the line through $(1,1,1)$ and onto the plane $x+y+z=0$; verify that the two projections sum to $\mathbf{b}$.
+\end{exercise}
+
+\begin{exercise}
+Find the least squares line for the data $(1,1),(2,3),(3,4),(4,3)$ and verify that the residual is orthogonal to $(1,1,1,1)$ and $(1,2,3,4)$.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $P$ is symmetric and $P^2=P$, then $P$ is the orthogonal projection onto $\Col P$.
+\end{exercise}
+
+\begin{exercise}
+Show that the projection matrix onto the line through a unit vector $\mathbf{u}$ is $\mathbf{u}\mathbf{u}\T$, and compute it for $\mathbf{u}=(2,1,2)/3$.
+\end{exercise}
+
+\begin{exercise}
+Fit $y=c_0+c_1t+c_2t^2$ exactly through $(0,1),(1,0),(2,3)$ (here $m=n$, so the residual is zero), and explain why.
+\end{exercise}
+
+\begin{exercise}
+Show that for ridge regression $\hat{\mathbf{x}}_\lambda\to\hat{\mathbf{x}}$ (the least squares solution) as $\lambda\to0$ when $A$ has independent columns, and $\hat{\mathbf{x}}_\lambda\to\mathbf{0}$ as $\lambda\to\infty$.
+\end{exercise}
+
+\begin{exercise}
+Let $H=A(A\T A)^{-1}A\T$ be the hat matrix. Prove $0\le h_{ii}\le1$ and $\sum_ih_{ii}=n$. (The $h_{ii}$ are the \emph{leverages} of the data points.)
+\end{exercise}
+
+\begin{exercise}
+Prove that the residual sum of squares of a least squares fit equals $\norm{\mathbf{b}}^2-\norm{\mathbf{p}}^2$ (Pythagoras), and that adding a column to $A$ can never increase it.
+\end{exercise}

@@ -1,0 +1,790 @@
+{
+ "id": "linear-algebra",
+ "title": "Linear Algebra",
+ "subtitle": "From Linear Systems to the Singular Value Decomposition",
+ "chapters": [
+  {
+   "book": "linear-algebra",
+   "num": 1,
+   "label": "1",
+   "slug": "01-vectors-geometry-and-norms",
+   "title": "Vectors, Geometry and Norms",
+   "tag": "Systems & Matrices",
+   "summary": "Linear algebra begins with a simple idea: some quantities need several numbers at once, and these numbers can be added and scaled. A point in the plane, a force, a colour, a row of a data table and the pixel values of an image all behave this way. This…",
+   "wordCount": 2799,
+   "readingTimeMin": 14,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "1.1",
+     "title": "Vectors in $\\R^n$"
+    },
+    {
+     "id": "1.2",
+     "title": "Length, distance and the dot product"
+    },
+    {
+     "id": "1.3",
+     "title": "Other norms"
+    },
+    {
+     "id": "1.4",
+     "title": "The cross product in $\\R^3$"
+    },
+    {
+     "id": "1.5",
+     "title": "Lines and planes"
+    },
+    {
+     "id": "1.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 2,
+   "label": "2",
+   "slug": "02-linear-systems-and-gaussian-elimination",
+   "title": "Linear Systems and Gaussian Elimination",
+   "tag": "Systems & Matrices",
+   "summary": "The oldest problem in linear algebra is to solve several linear equations at once. Everything else in the subject, from determinants to eigenvalues, was invented to understand when such systems have solutions, how many, and how to find them quickly. This…",
+   "wordCount": 2095,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "2.1",
+     "title": "Systems of linear equations"
+    },
+    {
+     "id": "2.2",
+     "title": "Matrix notation and elementary operations"
+    },
+    {
+     "id": "2.3",
+     "title": "Echelon forms and Gaussian elimination"
+    },
+    {
+     "id": "2.4",
+     "title": "Reading the solution set"
+    },
+    {
+     "id": "2.5",
+     "title": "Computation, cost and numerical care"
+    },
+    {
+     "id": "2.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 3,
+   "label": "3",
+   "slug": "03-matrix-algebra-and-inverses",
+   "title": "Matrix Algebra and Inverses",
+   "tag": "Systems & Matrices",
+   "summary": "A matrix began in Chapter 2 as bookkeeping for a linear system. This chapter treats matrices as objects of their own: they can be added, scaled and, most importantly, multiplied. Matrix multiplication is the operation that makes the rest of the subject…",
+   "wordCount": 2394,
+   "readingTimeMin": 12,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "3.1",
+     "title": "Matrices and their operations"
+    },
+    {
+     "id": "3.2",
+     "title": "Block matrices"
+    },
+    {
+     "id": "3.3",
+     "title": "Inverse matrices"
+    },
+    {
+     "id": "3.4",
+     "title": "Elementary matrices and the inverse algorithm"
+    },
+    {
+     "id": "3.5",
+     "title": "Special families of matrices"
+    },
+    {
+     "id": "3.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 4,
+   "label": "4",
+   "slug": "04-lu-and-plu-factorisation",
+   "title": "LU and PLU Factorisation",
+   "tag": "Systems & Matrices",
+   "summary": "Gaussian elimination is a sequence of row operations. Chapter 3 showed that each row operation is a multiplication by an elementary matrix, so elimination is a matrix factorisation in disguise. Recording the factorisation, instead of discarding the…",
+   "wordCount": 1818,
+   "readingTimeMin": 9,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "4.1",
+     "title": "Elimination as a product of matrices"
+    },
+    {
+     "id": "4.2",
+     "title": "When pivots vanish: $PA=LU$"
+    },
+    {
+     "id": "4.3",
+     "title": "The cost of factorisations"
+    },
+    {
+     "id": "4.4",
+     "title": "Symmetric positive definite matrices: Cholesky"
+    },
+    {
+     "id": "4.5",
+     "title": "Other factorisations at a glance"
+    },
+    {
+     "id": "4.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 5,
+   "label": "5",
+   "slug": "05-determinants",
+   "title": "Determinants",
+   "tag": "Systems & Matrices",
+   "summary": "A square matrix is invertible exactly when its elimination produces $n$ nonzero pivots. The determinant packages this fact into a single number, $\\det A$, that is nonzero precisely for invertible matrices. But it does much more: its absolute value is the…",
+   "wordCount": 2293,
+   "readingTimeMin": 11,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "5.1",
+     "title": "Why a determinant? Two and three dimensions"
+    },
+    {
+     "id": "5.2",
+     "title": "Definition by properties"
+    },
+    {
+     "id": "5.3",
+     "title": "Computing: the three formulas"
+    },
+    {
+     "id": "5.4",
+     "title": "The central theorems"
+    },
+    {
+     "id": "5.5",
+     "title": "Inverses, Cramer’s rule and volume"
+    },
+    {
+     "id": "5.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 6,
+   "label": "6",
+   "slug": "06-vector-spaces-and-subspaces",
+   "title": "Vector Spaces and Subspaces",
+   "tag": "Vector Spaces & Maps",
+   "summary": "Chapters 1–5 worked with $\\R^n$ and matrices. But the rules that made the computations work, namely that vectors can be added and scaled, are shared by many other objects: polynomials, continuous functions, sequences, matrices themselves, solutions of…",
+   "wordCount": 2084,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "6.1",
+     "title": "The definition"
+    },
+    {
+     "id": "6.2",
+     "title": "A zoo of examples"
+    },
+    {
+     "id": "6.3",
+     "title": "Subspaces"
+    },
+    {
+     "id": "6.4",
+     "title": "Span, column space and nullspace"
+    },
+    {
+     "id": "6.5",
+     "title": "Linear maps and the idea of structure"
+    },
+    {
+     "id": "6.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 7,
+   "label": "7",
+   "slug": "07-independence-basis-and-dimension",
+   "title": "Independence, Basis and Dimension",
+   "tag": "Vector Spaces & Maps",
+   "summary": "A subspace such as a plane in $\\R^3$ contains infinitely many vectors, yet two well-chosen vectors describe all of it. This chapter makes that precise. We call a list of vectors independent when none is redundant, a basis when it is independent and spans,…",
+   "wordCount": 2142,
+   "readingTimeMin": 11,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "7.1",
+     "title": "Linear independence"
+    },
+    {
+     "id": "7.2",
+     "title": "Basis"
+    },
+    {
+     "id": "7.3",
+     "title": "Dimension"
+    },
+    {
+     "id": "7.4",
+     "title": "Coordinates make every space look like $\\R^n$"
+    },
+    {
+     "id": "7.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 8,
+   "label": "8",
+   "slug": "08-rank-and-the-four-fundamental-subspaces",
+   "title": "Rank and the Four Fundamental Subspaces",
+   "tag": "Vector Spaces & Maps",
+   "summary": "Every matrix carries four subspaces: the column space and nullspace introduced in Chapter 6, and their counterparts for the transpose, the row space and the left nullspace. Together they describe completely what the matrix does. The dimensions of these…",
+   "wordCount": 1985,
+   "readingTimeMin": 10,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "8.1",
+     "title": "Row space and rank"
+    },
+    {
+     "id": "8.2",
+     "title": "The rank-nullity theorem"
+    },
+    {
+     "id": "8.3",
+     "title": "The four fundamental subspaces"
+    },
+    {
+     "id": "8.4",
+     "title": "Rank inequalities and rank-one matrices"
+    },
+    {
+     "id": "8.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 9,
+   "label": "9",
+   "slug": "09-linear-transformations-and-their-matrices",
+   "title": "Linear Transformations and Their Matrices",
+   "tag": "Vector Spaces & Maps",
+   "summary": "A matrix multiplies vectors; but a matrix is also a function. The map $\\mathbf{x}\\mapsto A\\mathbf{x}$ rotates, stretches, projects or reflects space, and linear algebra is, at heart, the study of such maps. This chapter defines linear transformations on…",
+   "wordCount": 2100,
+   "readingTimeMin": 10,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "9.1",
+     "title": "Linear maps"
+    },
+    {
+     "id": "9.2",
+     "title": "Every linear map is a matrix"
+    },
+    {
+     "id": "9.3",
+     "title": "Kernel, image and rank–nullity for maps"
+    },
+    {
+     "id": "9.4",
+     "title": "Composition is matrix multiplication"
+    },
+    {
+     "id": "9.5",
+     "title": "Dual space and the transpose as a map"
+    },
+    {
+     "id": "9.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 10,
+   "label": "10",
+   "slug": "10-change-of-basis-and-similarity",
+   "title": "Change of Basis and Similarity",
+   "tag": "Vector Spaces & Maps",
+   "summary": "A vector is a geometric object; its coordinates are a description of it relative to a chosen basis. Change the basis and the same vector gets different coordinates, and the same linear map gets a different matrix. This chapter works out exactly how. The…",
+   "wordCount": 1830,
+   "readingTimeMin": 9,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "10.1",
+     "title": "Changing coordinates of vectors"
+    },
+    {
+     "id": "10.2",
+     "title": "Changing the matrix of a map"
+    },
+    {
+     "id": "10.3",
+     "title": "What similarity preserves"
+    },
+    {
+     "id": "10.4",
+     "title": "Computing in a better basis"
+    },
+    {
+     "id": "10.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 11,
+   "label": "11",
+   "slug": "11-inner-product-spaces-orthogonality-and-qr",
+   "title": "Inner-Product Spaces, Orthogonality and QR",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "Chapter 1 gave $\\R^n$ a geometry through the dot product. Many other spaces need one too: functions have lengths and angles (a Fourier series is an expansion in orthogonal functions), and so do random variables (covariance is an inner product). This…",
+   "wordCount": 2525,
+   "readingTimeMin": 13,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "11.1",
+     "title": "Inner products"
+    },
+    {
+     "id": "11.2",
+     "title": "Orthogonal and orthonormal bases"
+    },
+    {
+     "id": "11.3",
+     "title": "Gram–Schmidt orthogonalisation"
+    },
+    {
+     "id": "11.4",
+     "title": "The QR factorisation"
+    },
+    {
+     "id": "11.5",
+     "title": "Orthogonal complements"
+    },
+    {
+     "id": "11.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 12,
+   "label": "12",
+   "slug": "12-projections-and-least-squares",
+   "title": "Projections and Least Squares",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "A system $A\\mathbf{x}=\\mathbf{b}$ with more equations than unknowns usually has no solution: noisy measurements do not agree exactly. The right response is not to give up but to find the $\\mathbf{x}$ that comes closest. “Closest” means a shortest distance,…",
+   "wordCount": 2113,
+   "readingTimeMin": 11,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "12.1",
+     "title": "Projection onto a subspace"
+    },
+    {
+     "id": "12.2",
+     "title": "Least squares problems"
+    },
+    {
+     "id": "12.3",
+     "title": "Polynomial and general basis fitting"
+    },
+    {
+     "id": "12.4",
+     "title": "Computing least squares"
+    },
+    {
+     "id": "12.5",
+     "title": "Weighted and regularised least squares"
+    },
+    {
+     "id": "12.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 13,
+   "label": "13",
+   "slug": "13-eigenvalues-and-eigenvectors",
+   "title": "Eigenvalues and Eigenvectors",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "Most vectors change direction when a matrix acts on them. A few special vectors do not: they are only stretched or shrunk. These are the eigenvectors, and the stretch factors are the eigenvalues. They are the directions in which a matrix is simplest, they…",
+   "wordCount": 1817,
+   "readingTimeMin": 9,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "13.1",
+     "title": "Definition"
+    },
+    {
+     "id": "13.2",
+     "title": "The characteristic polynomial"
+    },
+    {
+     "id": "13.3",
+     "title": "Multiplicities and eigenspaces"
+    },
+    {
+     "id": "13.4",
+     "title": "Eigenvalues of related matrices"
+    },
+    {
+     "id": "13.5",
+     "title": "Applications in one page"
+    },
+    {
+     "id": "13.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 14,
+   "label": "14",
+   "slug": "14-diagonalisation-cayley-hamilton-and-jordan-form",
+   "title": "Diagonalisation, Cayley–Hamilton and Jordan Form",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "Chapter 10 showed that a basis of eigenvectors turns a matrix into a diagonal one. This chapter makes that precise: when is a matrix diagonalisable, what can one compute once it is, and what is the best one can do when it is not? The answers are the…",
+   "wordCount": 2351,
+   "readingTimeMin": 12,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "14.1",
+     "title": "Diagonalisable matrices"
+    },
+    {
+     "id": "14.2",
+     "title": "Powers, recurrences and differential equations"
+    },
+    {
+     "id": "14.3",
+     "title": "The Cayley–Hamilton theorem"
+    },
+    {
+     "id": "14.4",
+     "title": "The minimal polynomial"
+    },
+    {
+     "id": "14.5",
+     "title": "Jordan canonical form"
+    },
+    {
+     "id": "14.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 15,
+   "label": "15",
+   "slug": "15-symmetric-and-hermitian-matrices-the-spectral-th",
+   "title": "Symmetric and Hermitian Matrices: the Spectral Theorem",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "General matrices can have complex eigenvalues, missing eigenvectors and badly conditioned eigenvector bases. Symmetric matrices have none of these problems. Their eigenvalues are real, their eigenvectors can be chosen orthonormal, and they are always…",
+   "wordCount": 1889,
+   "readingTimeMin": 9,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "15.1",
+     "title": "Real eigenvalues and orthogonal eigenvectors"
+    },
+    {
+     "id": "15.2",
+     "title": "The spectral theorem"
+    },
+    {
+     "id": "15.3",
+     "title": "Geometry: principal axes"
+    },
+    {
+     "id": "15.4",
+     "title": "The Rayleigh quotient and extremal eigenvalues"
+    },
+    {
+     "id": "15.5",
+     "title": "Commuting symmetric matrices"
+    },
+    {
+     "id": "15.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 16,
+   "label": "16",
+   "slug": "16-quadratic-forms-and-positive-definite-matrices",
+   "title": "Quadratic Forms and Positive Definite Matrices",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "A quadratic form is a polynomial in which every term has degree exactly two, such as $3x^2+4xy+5y^2$. Quadratic forms are the simplest nonlinear functions, and they appear everywhere: the energy of a spring system, the variance of a linear combination of…",
+   "wordCount": 2288,
+   "readingTimeMin": 11,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "16.1",
+     "title": "Quadratic forms"
+    },
+    {
+     "id": "16.2",
+     "title": "Definiteness"
+    },
+    {
+     "id": "16.3",
+     "title": "Congruence and Sylvester’s law of inertia"
+    },
+    {
+     "id": "16.4",
+     "title": "Positive semidefinite matrices"
+    },
+    {
+     "id": "16.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 17,
+   "label": "17",
+   "slug": "17-the-singular-value-decomposition",
+   "title": "The Singular Value Decomposition",
+   "tag": "Geometry & Spectral Theory",
+   "summary": "The spectral theorem diagonalises symmetric matrices. What about everything else: rectangular matrices, non-symmetric matrices, matrices with missing eigenvectors? The singular value decomposition (SVD) says that every matrix, no matter its shape or rank,…",
+   "wordCount": 2489,
+   "readingTimeMin": 12,
+   "sectionCount": 7,
+   "sections": [
+    {
+     "id": "17.1",
+     "title": "The theorem"
+    },
+    {
+     "id": "17.2",
+     "title": "Geometry: spheres become ellipsoids"
+    },
+    {
+     "id": "17.3",
+     "title": "Norms and the condition number"
+    },
+    {
+     "id": "17.4",
+     "title": "Low-rank approximation: Eckart–Young"
+    },
+    {
+     "id": "17.5",
+     "title": "The pseudo-inverse"
+    },
+    {
+     "id": "17.6",
+     "title": "Ridge regression, PCA and the polar decomposition"
+    },
+    {
+     "id": "17.7",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 18,
+   "label": "18",
+   "slug": "18-matrix-norms-conditioning-and-perturbation",
+   "title": "Matrix Norms, Conditioning and Perturbation",
+   "tag": "Applications",
+   "summary": "Real computations use approximate numbers: measurements are noisy and floating-point arithmetic rounds. How much can the answer to a linear algebra problem change when the data change slightly? Whether a problem is well-conditioned (small data errors cause…",
+   "wordCount": 1930,
+   "readingTimeMin": 10,
+   "sectionCount": 5,
+   "sections": [
+    {
+     "id": "18.1",
+     "title": "Matrix norms"
+    },
+    {
+     "id": "18.2",
+     "title": "Condition numbers"
+    },
+    {
+     "id": "18.3",
+     "title": "Eigenvalue conditioning"
+    },
+    {
+     "id": "18.4",
+     "title": "Floating-point arithmetic in one page"
+    },
+    {
+     "id": "18.5",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 19,
+   "label": "19",
+   "slug": "19-matrix-calculus-pca-and-whitening",
+   "title": "Matrix Calculus, PCA and Whitening",
+   "tag": "Applications",
+   "summary": "Machine learning writes its objectives in matrices: $\\norm{X\\mathbf{w}-\\mathbf{y}}^2$, $\\log\\det\\Sigma$, $\\tr(W\\T AW)$. To optimise them we need derivatives with respect to vectors and matrices. This chapter develops the small set of rules that cover…",
+   "wordCount": 2429,
+   "readingTimeMin": 12,
+   "sectionCount": 6,
+   "sections": [
+    {
+     "id": "19.1",
+     "title": "Gradients and Jacobians"
+    },
+    {
+     "id": "19.2",
+     "title": "Derivatives with respect to matrices"
+    },
+    {
+     "id": "19.3",
+     "title": "Principal component analysis as optimisation"
+    },
+    {
+     "id": "19.4",
+     "title": "Whitening and Mahalanobis distance"
+    },
+    {
+     "id": "19.5",
+     "title": "Kronecker products and vectorisation"
+    },
+    {
+     "id": "19.6",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 20,
+   "label": "20",
+   "slug": "20-markov-chains-pagerank-and-graph-laplacians",
+   "title": "Markov Chains, PageRank and Graph Laplacians",
+   "tag": "Applications",
+   "summary": "Matrices with nonnegative entries have their own beautiful theory: the Perron–Frobenius theorem says that the dominant eigenvalue is real and positive, with a positive eigenvector. This one fact explains why Markov chains settle down to a stationary…",
+   "wordCount": 2357,
+   "readingTimeMin": 12,
+   "sectionCount": 4,
+   "sections": [
+    {
+     "id": "20.1",
+     "title": "Stochastic matrices and Markov chains"
+    },
+    {
+     "id": "20.2",
+     "title": "PageRank"
+    },
+    {
+     "id": "20.3",
+     "title": "Graph Laplacians and spectral clustering"
+    },
+    {
+     "id": "20.4",
+     "title": "Exercises"
+    }
+   ]
+  },
+  {
+   "book": "linear-algebra",
+   "num": 21,
+   "label": "21",
+   "slug": "21-numerical-methods-and-interview-problems",
+   "title": "Numerical Methods and Interview Problems",
+   "tag": "Applications",
+   "summary": "Direct factorisations (Chapters 4, 11, 17) cost $O(n^3)$ and need the whole matrix in memory. For the huge sparse matrices of scientific computing and machine learning, one instead uses iterative methods that only need to multiply a vector by the matrix.…",
+   "wordCount": 3261,
+   "readingTimeMin": 16,
+   "sectionCount": 8,
+   "sections": [
+    {
+     "id": "21.1",
+     "title": "Power iteration and its relatives"
+    },
+    {
+     "id": "21.2",
+     "title": "The QR algorithm"
+    },
+    {
+     "id": "21.3",
+     "title": "Krylov subspaces"
+    },
+    {
+     "id": "21.4",
+     "title": "The conjugate gradient method"
+    },
+    {
+     "id": "21.5",
+     "title": "Randomised SVD"
+    },
+    {
+     "id": "21.6",
+     "title": "Worked interview problems"
+    },
+    {
+     "id": "21.7",
+     "title": "A map of the subject"
+    },
+    {
+     "id": "21.8",
+     "title": "Exercises"
+    }
+   ]
+  }
+ ],
+ "figureCount": 15
+}

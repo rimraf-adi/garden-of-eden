@@ -29,7 +29,7 @@ export function ParameterSlider({
         <div className="flex items-center gap-1.5">
           <span className="font-medium text-zinc-800 dark:text-zinc-200">{label}</span>
           {symbol && (
-            <span className="font-mono text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold">
+            <span className="font-mono text-[11px] text-amber-600 dark:text-amber-400 font-semibold">
               ({symbol})
             </span>
           )}
@@ -46,7 +46,7 @@ export function ParameterSlider({
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+        className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-amber-600"
       />
 
       {description && (

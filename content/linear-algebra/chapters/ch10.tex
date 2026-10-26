@@ -1,0 +1,175 @@
+\chapter{Change of Basis and Similarity}
+
+A vector is a geometric object; its coordinates are a description of it relative to a chosen basis. Change the basis and the same vector gets different coordinates, and the same linear map gets a different matrix. This chapter works out exactly how. The central idea of the rest of the book follows: choose the basis so that the matrix of a map is as simple as possible (diagonal, if we can). Matrices that represent the same map in different bases are called \emph{similar}, and the properties that all similar matrices share, such as determinant, trace and eigenvalues, are the true invariants of the map.
+
+\section{Changing coordinates of vectors}
+
+Let $\mathcal{B}=(\mathbf{b}_1,\dots,\mathbf{b}_n)$ and $\mathcal{C}=(\mathbf{c}_1,\dots,\mathbf{c}_n)$ be two bases of the same space $V$. A vector $\mathbf{v}$ has coordinates $[\mathbf{v}]_{\mathcal{B}}$ and $[\mathbf{v}]_{\mathcal{C}}$. How are they related?
+
+\begin{definition}[Change-of-basis matrix]
+The \emph{change-of-basis matrix} from $\mathcal{B}$ to $\mathcal{C}$ is $P_{\mathcal{C}\leftarrow\mathcal{B}}=[\id]_{\mathcal{C}\leftarrow\mathcal{B}}$, the matrix whose $j$-th column is $[\mathbf{b}_j]_{\mathcal{C}}$, the coordinates of the old basis vectors in the new basis.
+\end{definition}
+
+\begin{theorem}[Coordinate change]\label{thm:coordchange}
+For every $\mathbf{v}\in V$,
+\[ [\mathbf{v}]_{\mathcal{C}}=P_{\mathcal{C}\leftarrow\mathcal{B}}[\mathbf{v}]_{\mathcal{B}}. \]
+The matrix $P_{\mathcal{C}\leftarrow\mathcal{B}}$ is invertible and $P_{\mathcal{B}\leftarrow\mathcal{C}}=P_{\mathcal{C}\leftarrow\mathcal{B}}^{-1}$.
+\end{theorem}
+
+\begin{proof}
+This is Theorem~\ref{thm:matrixrep} for $T=\id$. The identity map is invertible, so by Theorem~\ref{thm:invmap} its matrix is invertible with the stated inverse.
+\end{proof}
+
+\begin{example}[Coordinates in $\R^2$]\label{ex:coordchange}
+Let $\mathcal{S}=(\mathbf{e}_1,\mathbf{e}_2)$ be the standard basis and $\mathcal{B}=((1,1),(1,-1))$. The matrix whose columns are the $\mathcal{B}$-vectors written in standard coordinates is
+\[ P_{\mathcal{S}\leftarrow\mathcal{B}}=\begin{pmatrix}1&1\\1&-1\end{pmatrix}. \]
+Hence $\mathbf{v}=(5,1)$ has $[\mathbf{v}]_{\mathcal{B}}=P_{\mathcal{S}\leftarrow\mathcal{B}}^{-1}(5,1)\T=\tfrac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}(5,1)\T=(3,2)\T$, as found by hand in Chapter~7.
+\end{example}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \foreach \i in {-2,...,3}{\draw[gray!25] (\i,-1.3)--(\i,3.3); }
+  \foreach \j in {-1,...,3}{\draw[gray!25] (-2.3,\j)--(3.3,\j); }
+  \draw[axis] (-2.4,0)--(3.4,0); \draw[axis] (0,-1.4)--(0,3.4);
+  \draw[vec,accent2] (0,0)--(1,1) node[above left,lab]{$\mathbf{b}_1$};
+  \draw[vec,accent3] (0,0)--(1,-1) node[below right,lab]{$\mathbf{b}_2$};
+  \draw[guide] (0,0)--(3,3); \draw[guide] (0,0)--(2.2,-2.2);
+  \draw[guide] (1,1)--(2,0); \draw[guide] (1,-1)--(2,0);
+  \draw[vec,accent] (0,0)--(2,0) node[midway,below,lab,yshift=-2pt]{};
+  \node[lab,anchor=west] at (2.05,0.25){$\mathbf{v}=\mathbf{b}_1+\mathbf{b}_2$};
+\end{tikzpicture}
+\caption{Two coordinate systems for the same plane: the grid of the standard basis and the skew axes of $\mathcal{B}=(\mathbf{b}_1,\mathbf{b}_2)$. The vector $\mathbf{v}=(2,0)$ is one object with two descriptions: $(2,0)$ in the standard basis and $(1,1)$ in $\mathcal{B}$.}
+\end{figure}
+
+\begin{pitfall}{which direction does the matrix go?}
+The columns of $P_{\mathcal{C}\leftarrow\mathcal{B}}$ express the \emph{old} basis in terms of the \emph{new} one, and the matrix converts old coordinates to new coordinates. When the new basis is the standard one, $P_{\mathcal{S}\leftarrow\mathcal{B}}$ is simply the matrix with the basis vectors as columns, and converting \emph{to} the nonstandard basis requires its inverse. Mixing these up is the most common error in this chapter; a good habit is to read the subscripts as arrows, ``$\mathcal{C}\leftarrow\mathcal{B}$ takes $\mathcal{B}$-coordinates in, gives $\mathcal{C}$-coordinates out''.
+\end{pitfall}
+
+\section{Changing the matrix of a map}
+
+Let $T:V\to V$ be a linear operator. With respect to the basis $\mathcal{B}$ it has a matrix $[T]_{\mathcal{B}}=[T]_{\mathcal{B}\leftarrow\mathcal{B}}$, and with respect to $\mathcal{C}$ another matrix $[T]_{\mathcal{C}}$.
+
+\begin{theorem}[Similarity transformation]\label{thm:similarity}
+Let $P=P_{\mathcal{B}\leftarrow\mathcal{C}}$ (the matrix whose columns are the new basis vectors $\mathcal{C}$ written in the old coordinates $\mathcal{B}$). Then
+\[ [T]_{\mathcal{C}}=P^{-1}[T]_{\mathcal{B}}\,P. \]
+\end{theorem}
+
+\begin{proof}
+Compose the three conversions: $\mathcal{C}$-coordinates $\xrightarrow{P}$ $\mathcal{B}$-coordinates $\xrightarrow{[T]_{\mathcal{B}}}$ $\mathcal{B}$-coordinates of the image $\xrightarrow{P^{-1}}$ $\mathcal{C}$-coordinates. By Theorem~\ref{thm:composition} the matrix of the composite is $P^{-1}[T]_{\mathcal{B}}P$, and it equals $[T]_{\mathcal{C}}$ since both send $[\mathbf{v}]_{\mathcal{C}}$ to $[T\mathbf{v}]_{\mathcal{C}}$.
+\end{proof}
+
+\begin{definition}[Similar matrices]
+Square matrices $A,B$ are \emph{similar}, written $A\sim B$, if $B=P^{-1}AP$ for some invertible $P$.
+\end{definition}
+
+Similarity is an equivalence relation ($A=I^{-1}AI$; $B=P^{-1}AP\Rightarrow A=(P^{-1})^{-1}BP^{-1}$; transitivity by multiplying). Theorem~\ref{thm:similarity} says: \emph{similar matrices are exactly the matrices of one operator in different bases}. Conversely, if $B=P^{-1}AP$ then the columns of $P$ form a basis in which the operator $\mathbf{x}\mapsto A\mathbf{x}$ has matrix $B$.
+
+\begin{example}[Making a matrix diagonal]\label{ex:diagbasis}
+Let $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$, the matrix of a map in the standard basis. It sends $(1,1)\mapsto(4,4)=4(1,1)$ and $(1,-1)\mapsto(2,-2)=2(1,-1)$. In the basis $\mathcal{B}=((1,1),(1,-1))$, with $P=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$, the matrix becomes
+\[ P^{-1}AP=\tfrac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}3&1\\1&3\end{pmatrix}\begin{pmatrix}1&1\\1&-1\end{pmatrix}=\begin{pmatrix}4&0\\0&2\end{pmatrix}. \]
+In the right basis the map is a pure stretch: by $4$ along $\mathbf{b}_1$ and by $2$ along $\mathbf{b}_2$. This is diagonalisation, the subject of Chapters~13--15.
+\end{example}
+
+\begin{intuition}
+The matrix of a map describes what the map does \emph{as seen through a particular set of coordinate axes}. Choosing axes well can turn a complicated-looking matrix into a transparent one. Finding such a basis is the search for \emph{eigenvectors}.
+\end{intuition}
+
+\begin{example}[Reflection across a line, computed by change of basis]
+Let $L$ be the line through the origin with direction $\mathbf{u}=(1,2)/\sqrt5$ and $\mathbf{u}^\perp=(-2,1)/\sqrt5$. Reflection across $L$ fixes $\mathbf{u}$ and negates $\mathbf{u}^\perp$, so in the basis $(\mathbf{u},\mathbf{u}^\perp)$ its matrix is $D=\diag(1,-1)$. With $P=[\mathbf{u}\ \mathbf{u}^\perp]=\frac1{\sqrt5}\begin{pmatrix}1&-2\\2&1\end{pmatrix}$, which satisfies $P^{-1}=P\T$,
+\[ [\text{refl}]_{\mathcal{S}}=PDP^{-1}=\tfrac15\begin{pmatrix}-3&4\\4&3\end{pmatrix}. \]
+No trigonometry is needed: work in the basis where the map is easy and convert back.
+\end{example}
+
+\section{What similarity preserves}
+
+A property of matrices that depends only on the underlying operator, not on the basis, must be unchanged under similarity.
+
+\begin{theorem}[Similarity invariants]\label{thm:simInv}
+If $B=P^{-1}AP$ then
+\begin{enumerate}[label=(\roman*)]
+  \item $\det B=\det A$;
+  \item $\tr B=\tr A$;
+  \item $\rank B=\rank A$;
+  \item $B-\lambda I=P^{-1}(A-\lambda I)P$, so $A$ and $B$ have the same characteristic polynomial and the same eigenvalues (Chapter~13);
+  \item $B^k=P^{-1}A^kP$ for every integer $k\ge0$, and $B$ is invertible iff $A$ is.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is Corollary~\ref{cor:detinv}. (iii) is Proposition~\ref{prop:rankineq}(iii). For (ii) we need the identity $\tr(XY)=\tr(YX)$, proved below; then $\tr(P^{-1}AP)=\tr(APP^{-1})=\tr A$. (iv): $P^{-1}(A-\lambda I)P=P^{-1}AP-\lambda I$. (v): $(P^{-1}AP)^k=P^{-1}A^kP$ because the inner factors $PP^{-1}$ cancel.
+\end{proof}
+
+\begin{proposition}[Trace identity]\label{prop:trace}
+$\tr(XY)=\tr(YX)$ whenever both products are defined, even if $X,Y$ are not square. The trace is linear, $\tr(A\T)=\tr A$, and $\tr(ABC)=\tr(BCA)=\tr(CAB)$ (cyclic, but not arbitrary, permutations).
+\end{proposition}
+
+\begin{proof}
+$\tr(XY)=\sum_i\sum_jx_{ij}y_{ji}=\sum_j\sum_iy_{ji}x_{ij}=\tr(YX)$.
+\end{proof}
+
+\begin{pitfall}{similar is stronger than ``same invariants''}
+Two matrices can share rank, determinant, trace and even characteristic polynomial without being similar: $\begin{pmatrix}1&0\\0&1\end{pmatrix}$ and $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ both have characteristic polynomial $(\lambda-1)^2$, but the first is $I$ (similar only to itself, since $P^{-1}IP=I$) while the second is not. The complete classification of matrices up to similarity is the Jordan form (Chapter~14).
+\end{pitfall}
+
+\begin{nuance}{similarity versus congruence}
+A change of basis acts on the matrix of an operator by $A\mapsto P^{-1}AP$ (similarity). But if the matrix represents a \emph{bilinear form} or quadratic form $\mathbf{x}\T A\mathbf{x}$, the change of variables $\mathbf{x}=P\mathbf{y}$ gives $A\mapsto P\T AP$ instead (\emph{congruence}). These agree only when $P$ is orthogonal ($P^{-1}=P\T$), which is why orthogonal changes of basis are so convenient; they are the subject of Chapters~11 and 15--16.
+\end{nuance}
+
+\section{Computing in a better basis}
+
+Suppose we need $A^{100}$ and we have a basis $\mathbf{p}_1,\dots,\mathbf{p}_n$ in which $A$ is diagonal: $A=PDP^{-1}$ with $D=\diag(d_1,\dots,d_n)$. Then $A^k=PD^kP^{-1}$ with $D^k=\diag(d_1^k,\dots,d_n^k)$, which is trivial to evaluate.
+
+\begin{example}
+For $A=\begin{pmatrix}3&1\\1&3\end{pmatrix}$ from Example~\ref{ex:diagbasis},
+\[ A^k=P\begin{pmatrix}4^k&0\\0&2^k\end{pmatrix}P^{-1}=\frac12\begin{pmatrix}4^k+2^k&4^k-2^k\\4^k-2^k&4^k+2^k\end{pmatrix}. \]
+Check $k=1$: $\frac12\begin{pmatrix}6&2\\2&6\end{pmatrix}=A$.
+\end{example}
+
+\begin{interview}{why do we care about diagonalisation?}
+Diagonal matrices are the only ones you can raise to powers, exponentiate, invert and solve with by inspection. Any question about repeated application of a linear map ($A^k$, Markov chain long-run behaviour, Fibonacci-type recursions, $e^{At}$ for differential equations, stability of iterations) reduces to understanding $A$ in an eigenbasis. Change of basis is the technique that makes this possible.
+\end{interview}
+
+\begin{summarybox}
+\begin{itemize}
+  \item The same vector has different coordinates in different bases: $[\mathbf{v}]_{\mathcal{C}}=P_{\mathcal{C}\leftarrow\mathcal{B}}[\mathbf{v}]_{\mathcal{B}}$, with columns of $P$ being old basis vectors in new coordinates.
+  \item The same operator has different matrices: $[T]_{\mathcal{C}}=P^{-1}[T]_{\mathcal{B}}P$; these are \emph{similar} matrices.
+  \item Rank, determinant, trace, characteristic polynomial and eigenvalues are similarity invariants; $\tr(XY)=\tr(YX)$.
+  \item A basis in which $T$ is diagonal makes powers and functions of $T$ easy; finding it is the eigenvector problem.
+  \item Quadratic forms change by congruence $P\T AP$, not similarity, unless $P$ is orthogonal.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Let $\mathcal{B}=((1,2),(3,5))$. Find $P_{\mathcal{S}\leftarrow\mathcal{B}}$, $P_{\mathcal{B}\leftarrow\mathcal{S}}$, and the $\mathcal{B}$-coordinates of $(4,7)$.
+\end{exercise}
+
+\begin{exercise}
+In $\mathcal{P}_2$ let $\mathcal{B}=(1,t,t^2)$ and $\mathcal{C}=(1,1+t,1+t+t^2)$. Find $P_{\mathcal{B}\leftarrow\mathcal{C}}$ and the $\mathcal{C}$-coordinates of $2+3t+t^2$.
+\end{exercise}
+
+\begin{exercise}
+The operator $T$ on $\R^2$ has standard matrix $\begin{pmatrix}2&1\\0&3\end{pmatrix}$. Find its matrix in the basis $((1,0),(1,1))$ and show that it is diagonal.
+\end{exercise}
+
+\begin{exercise}
+Prove that similar matrices have the same trace and determinant, and give a $2\times2$ pair of non-similar matrices with equal trace and determinant.
+\end{exercise}
+
+\begin{exercise}
+Show that $\tr(XY)=\tr(YX)$ implies that no matrices satisfy $XY-YX=I$ in finite dimensions.
+\end{exercise}
+
+\begin{exercise}
+Compute $A^{10}$ for $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ by finding a basis of eigenvectors; recognise the entries as Fibonacci numbers. (The eigenvalues are $\tfrac{1\pm\sqrt5}2$.)
+\end{exercise}
+
+\begin{exercise}
+The reflection across the line $y=x$ has standard matrix $\begin{pmatrix}0&1\\1&0\end{pmatrix}$. Find its matrix in the basis $((1,1),(1,-1))$.
+\end{exercise}
+
+\begin{exercise}
+Let $A$ be a $2\times2$ matrix with $A^2=A$. Show that $A$ is similar to a diagonal matrix with entries $0$ or $1$. (Hint: Chapter~9, Exercise 9.7.)
+\end{exercise}

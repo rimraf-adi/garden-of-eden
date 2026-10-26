@@ -182,7 +182,7 @@ export default function Chapter2Illustration() {
 
       // --- 1. Version Space Shading (Area between G and S) ---
       // Draw G filled with translucent indigo
-      ctx.fillStyle = 'rgba(99, 102, 241, 0.14)';
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.14)';
       ctx.fillRect(gLeft, gTop, gRight - gLeft, gBottom - gTop);
 
       // Clear the S inner area from version space
@@ -209,14 +209,14 @@ export default function Chapter2Illustration() {
       ctx.restore();
 
       // --- 2. Draw Most General Hypothesis G (Outer Rectangle) ---
-      ctx.strokeStyle = '#818cf8';
+      ctx.strokeStyle = '#fbbf24';
       ctx.lineWidth = 2.5;
       ctx.setLineDash([8, 5]);
       ctx.strokeRect(gLeft, gTop, gRight - gLeft, gBottom - gTop);
       ctx.setLineDash([]);
 
       // Label for G
-      ctx.fillStyle = '#818cf8';
+      ctx.fillStyle = '#fbbf24';
       ctx.font = 'bold 12px ui-monospace, monospace';
       ctx.fillText('G: Most General', gLeft + 10, gTop - 8);
 
@@ -374,9 +374,9 @@ export default function Chapter2Illustration() {
       ctx.stroke();
       ctx.fillText('Negative (−): Non-Family', legX + 16, legY + 23);
 
-      ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+      ctx.fillStyle = 'rgba(217, 119, 6, 0.5)';
       ctx.fillRect(legX, legY + 36, 10, 8);
-      ctx.strokeStyle = '#818cf8';
+      ctx.strokeStyle = '#fbbf24';
       ctx.lineWidth = 1;
       ctx.strokeRect(legX, legY + 36, 10, 8);
       ctx.fillStyle = '#e2e8f0';
@@ -396,7 +396,7 @@ export default function Chapter2Illustration() {
   }, [isPlaying, mode]);
 
   return (
-    <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl my-8">
+    <div className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 overflow-hidden shadow-xl my-8">
       {/* Header bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/50">
         <div className="flex items-center gap-2">
@@ -415,7 +415,7 @@ export default function Chapter2Illustration() {
             onClick={() => setMode('version-space')}
             className={`flex items-center gap-1 px-3 py-1 rounded-lg transition ${
               mode === 'version-space'
-                ? 'bg-white dark:bg-zinc-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                ? 'bg-white dark:bg-zinc-900 text-amber-600 dark:text-amber-400 shadow-sm'
                 : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900'
             }`}
           >

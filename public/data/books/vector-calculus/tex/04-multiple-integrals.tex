@@ -1,0 +1,419 @@
+\chapter{Multiple Integrals}
+\label{ch:multint}
+
+A single integral adds up values along a line. A multiple integral adds up values over a plane region or a solid. In this chapter we define double and triple integrals, prove that they can be computed one variable at a time (Fubini's theorem), and prove the change-of-variables formula, which explains the factors $r$ and $\rho^2\sin\varphi$ in polar and spherical coordinates. We finish with two techniques from analysis that every interview candidate should know: the Gaussian integral and differentiation under the integral sign.
+
+%====================================================================
+\section{The double integral}
+%====================================================================
+
+Let $R=[a,b]\times[c,d]$ be a rectangle and $f:R\to\R$ a bounded function. A \emph{partition} $P$ of $R$ splits $[a,b]$ into $a=x_0<\dots<x_m=b$ and $[c,d]$ into $c=y_0<\dots<y_n=d$. This gives $mn$ small rectangles $R_{ij}=[x_{i-1},x_i]\times[y_{j-1},y_j]$ with area $\Delta A_{ij}=\Delta x_i\Delta y_j$. Let
+\[
+m_{ij}=\inf_{R_{ij}}f,\qquad M_{ij}=\sup_{R_{ij}}f,\qquad L(P)=\sum m_{ij}\Delta A_{ij},\qquad U(P)=\sum M_{ij}\Delta A_{ij}.
+\]
+$L(P)$ and $U(P)$ are the \emph{lower} and \emph{upper sums}.
+
+\begin{definition}[Double integral]
+The function $f$ is \emph{integrable} on $R$ if $\sup_PL(P)=\inf_PU(P)$. The common value is the \emph{double integral} $\displaystyle\iint_Rf\,\dd A$.
+\end{definition}
+
+If $f\ge0$, the double integral is the volume of the solid under the graph of $f$ and above $R$: the lower and upper sums are the volumes of columns that fit inside and outside the solid (Figure~\ref{fig:riemann}).
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{62}{128}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.35]
+  \def\n{4}
+  \foreach \i in {0,1,2,3}{
+    \foreach \j in {0,1,2,3}{
+      \pgfmathsetmacro{\xc}{\i+0.5}
+      \pgfmathsetmacro{\yc}{\j+0.5}
+      \pgfmathsetmacro{\hh}{0.35+0.12*(\xc)+0.1*(\yc)}
+      \pgfmathsetmacro{\xnext}{\i+1}
+      \pgfmathsetmacro{\ynext}{\j+1}
+      \fill[accent!18] (\i,\j,\hh)--(\xnext,\j,\hh)--(\xnext,\ynext,\hh)--(\i,\ynext,\hh)--cycle;
+      \fill[accent!35] (\xnext,\j,0)--(\xnext,\ynext,0)--(\xnext,\ynext,\hh)--(\xnext,\j,\hh)--cycle;
+      \fill[accent!28] (\i,\ynext,0)--(\xnext,\ynext,0)--(\xnext,\ynext,\hh)--(\i,\ynext,\hh)--cycle;
+      \draw[accent!70!ink,thin] (\i,\j,\hh)--(\xnext,\j,\hh)--(\xnext,\ynext,\hh)--(\i,\ynext,\hh)--cycle;
+      \draw[accent!70!ink,thin] (\xnext,\j,0)--(\xnext,\j,\hh) (\xnext,\ynext,0)--(\xnext,\ynext,\hh) (\i,\ynext,0)--(\i,\ynext,\hh);
+    }
+  }
+  \draw[axisline,mid] (0,0,0)--(4.8,0,0) node[below right]{$x$};
+  \draw[axisline,mid] (0,0,0)--(0,4.8,0) node[right]{$y$};
+  \draw[axisline,mid] (0,0,0)--(0,0,2.4) node[above]{$z$};
+\end{tikzpicture}
+\caption{A Riemann sum for $\iint_Rf\,\dd A$: the solid under the surface $z=f(x,y)$ is approximated by columns over small rectangles. The sum of the column volumes converges to the double integral as the rectangles shrink.}
+\label{fig:riemann}
+\end{figure}
+
+\begin{theorem}[Continuous functions are integrable]\label{thm:contint}
+If $f$ is continuous on $R$, then $f$ is integrable, and $U(P)-L(P)\to0$ as the mesh of $P$ (the largest side of its rectangles) tends to $0$.
+\end{theorem}
+
+\begin{proof}
+A continuous function on the compact set $R$ is uniformly continuous: for each $\eps>0$ there is $\delta>0$ such that $\abs{f(\vec p)-f(\vec q)}<\eps$ whenever $\norm{\vec p-\vec q}<\delta$. If the mesh of $P$ is smaller than $\delta/2$, each small rectangle has diameter less than $\delta$, so $M_{ij}-m_{ij}\le\eps$. Then $U(P)-L(P)=\sum(M_{ij}-m_{ij})\Delta A_{ij}\le\eps\sum\Delta A_{ij}=\eps\,\Area(R)$. Since $L(P)\le\sup L\le\inf U\le U(P)$, we get $0\le\inf U-\sup L\le\eps\Area(R)$ for every $\eps$; hence $\sup L=\inf U$.
+\end{proof}
+
+The double integral is \emph{linear} ($\iint(\alpha f+\beta g)=\alpha\iint f+\beta\iint g$), \emph{monotone} ($f\le g\Rightarrow\iint f\le\iint g$) and \emph{additive} over regions that overlap only along boundaries. For a general bounded region $D$ whose boundary has zero area, define $\iint_Df\,\dd A=\iint_Rf\chi_D\,\dd A$, where $R\supseteq D$ is a rectangle and $\chi_D$ equals $1$ on $D$ and $0$ outside. In particular $\Area(D)=\iint_D1\,\dd A$.
+
+%====================================================================
+\section{Fubini's theorem: iterated integrals}
+%====================================================================
+
+\begin{theorem}[Fubini for continuous functions]\label{thm:fubini}
+If $f$ is continuous on $R=[a,b]\times[c,d]$, then
+\[
+\iint_Rf\,\dd A=\int_a^b\Bigl(\int_c^df(x,y)\,\dd y\Bigr)\dd x=\int_c^d\Bigl(\int_a^bf(x,y)\,\dd x\Bigr)\dd y .
+\]
+\end{theorem}
+
+\begin{proof}
+Let $F(x)=\int_c^df(x,y)\,\dd y$. This function is continuous in $x$ (by uniform continuity of $f$: $\abs{F(x)-F(x')}\le(d-c)\sup_y\abs{f(x,y)-f(x',y)}$). Take a partition $P$ and fix $i$. For $x\in[x_{i-1},x_i]$ and each $j$, we have $m_{ij}\le f(x,y)\le M_{ij}$ for $y\in[y_{j-1},y_j]$. Integrating over this $y$-interval and summing over $j$,
+\[
+\sum_jm_{ij}\Delta y_j\ \le\ F(x)\ \le\ \sum_jM_{ij}\Delta y_j .
+\]
+Now integrate over $x\in[x_{i-1},x_i]$ and sum over $i$:
+\[
+L(P)\ \le\ \int_a^bF(x)\,\dd x\ \le\ U(P).
+\]
+By definition, $L(P)\le\iint_Rf\le U(P)$ too. By Theorem~\ref{thm:contint}, $U(P)-L(P)\to0$ as the mesh tends to $0$. So the two numbers $\int_aF$ and $\iint_Rf$, which both lie between $L(P)$ and $U(P)$, differ by less than any $\eps$; they are equal. Exchanging the roles of $x$ and $y$ gives the second equality.
+\end{proof}
+
+\begin{intuition}
+This is Cavalieri's principle: to find a volume, cut the solid into thin slices, find the area of each slice (an ordinary integral), and add the slices (another ordinary integral).
+\end{intuition}
+
+For non-rectangular regions, Fubini's theorem still holds. A region is of \emph{type I} if $D=\{(x,y):a\le x\le b,\ g_1(x)\le y\le g_2(x)\}$ with $g_1\le g_2$ continuous, and of \emph{type II} if $D=\{(x,y):c\le y\le d,\ h_1(y)\le x\le h_2(y)\}$. Then, for $f$ continuous on $D$,
+\[
+\iint_Df\,\dd A=\int_a^b\!\int_{g_1(x)}^{g_2(x)}f(x,y)\,\dd y\,\dd x\quad\text{(type I)},\qquad
+\iint_Df\,\dd A=\int_c^d\!\int_{h_1(y)}^{h_2(y)}f(x,y)\,\dd x\,\dd y\quad\text{(type II)}.
+\]
+(To prove this, extend $f$ by $0$ outside $D$ to a rectangle; the extended function is discontinuous only along the graphs of $g_1,g_2$, which have zero area, and the proof above goes through with the same estimates because $U(P)-L(P)\to0$ still holds. We omit this routine modification.)
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[x=3.1cm,y=3.1cm]
+  % left: type I strip
+  \begin{scope}
+    \draw[axisline,mid] (-0.05,0)--(1.15,0) node[right]{$x$};
+    \draw[axisline,mid] (0,-0.05)--(0,1.15) node[above]{$y$};
+    \path[regionfill] plot[domain=0:1,samples=40](\x,{sqrt(\x)}) -- plot[domain=1:0,samples=40](\x,{\x*\x}) -- cycle;
+    \fill[accent2!25] (0.44,0.1936) rectangle (0.48,0.6928);
+    \draw[accent2,very thick] (0.46,0.2116)--(0.46,0.6782);
+    \node[accent2,font=\small] at (0.46,0.80) {$y$ from $x^2$ to $\sqrt x$};
+    \node[accent,font=\small] at (0.3,0.35) {$D$};
+    \node[font=\small] at (0.55,-0.1) {type I: vertical strips};
+  \end{scope}
+  % right: type II strip
+  \begin{scope}[xshift=5.6cm]
+    \draw[axisline,mid] (-0.05,0)--(1.15,0) node[right]{$x$};
+    \draw[axisline,mid] (0,-0.05)--(0,1.15) node[above]{$y$};
+    \path[regionfill] plot[domain=0:1,samples=40](\x,{sqrt(\x)}) -- plot[domain=1:0,samples=40](\x,{\x*\x}) -- cycle;
+    \fill[accent3!25] (0.2025,0.44) rectangle (0.6708,0.48);
+    \draw[accent3,very thick] (0.2025,0.46)--(0.6708,0.46);
+    \node[accent3,font=\small] at (0.95,0.46) {$x$ from $y^2$ to $\sqrt y$};
+    \node[font=\small] at (0.55,-0.1) {type II: horizontal strips};
+  \end{scope}
+\end{tikzpicture}
+\caption{The region between $y=x^2$ and $y=\sqrt x$ can be described in two ways. Left: for fixed $x$, $y$ runs from $x^2$ to $\sqrt x$. Right: for fixed $y$, $x$ runs from $y^2$ to $\sqrt y$. Both give the same integral, but one order is often much easier.}
+\label{fig:regions}
+\end{figure}
+
+\begin{example}[Swapping the order of integration]
+Compute $\displaystyle\int_0^1\!\!\int_x^1e^{y^2}\,\dd y\,\dd x$. The inner integral has no elementary form. The region is $0\le x\le y\le1$ (a triangle), which is also $\{0\le y\le1,\ 0\le x\le y\}$. So
+\[
+\int_0^1\!\!\int_0^ye^{y^2}\,\dd x\,\dd y=\int_0^1ye^{y^2}\,\dd y=\tfrac12\bigl(e-1\bigr).
+\]
+\end{example}
+
+\begin{example}[Area between curves]
+The area of the region of Figure~\ref{fig:regions} is $\int_0^1\!\int_{x^2}^{\sqrt x}1\,\dd y\,\dd x=\int_0^1(\sqrt x-x^2)\,\dd x=\tfrac23-\tfrac13=\tfrac13$.
+\end{example}
+
+\begin{pitfall}
+Fubini's theorem can fail when $f$ is not continuous (or not absolutely integrable). Example: $f(x,y)=\dfrac{x^2-y^2}{(x^2+y^2)^2}$ on $(0,1]^2$ gives $\int_0^1\!\int_0^1f\,\dd y\,\dd x=\frac\pi4$ but $\int_0^1\!\int_0^1f\,\dd x\,\dd y=-\frac\pi4$. The function is unbounded near the origin, so it is not covered by Theorem~\ref{thm:fubini}.
+\end{pitfall}
+
+%====================================================================
+\section{Triple integrals}
+%====================================================================
+
+The definition and theorems carry over to $\R^3$: for a box $B=[a,b]\times[c,d]\times[e,f]$ and continuous $F$, the triple integral $\iiint_BF\,\dd V$ is the limit of sums $\sum F(\vec p_k)\Delta V_k$, and it equals any iterated integral in any order (the proof of Theorem~\ref{thm:fubini} applies to each pair of variables in turn). For a solid $E$ between two surfaces, $E=\{(x,y)\in D,\ g_1(x,y)\le z\le g_2(x,y)\}$,
+\[
+\iiint_EF\,\dd V=\iint_D\Bigl(\int_{g_1(x,y)}^{g_2(x,y)}F(x,y,z)\,\dd z\Bigr)\dd A .
+\]
+The volume of $E$ is $\iiint_E1\,\dd V$.
+
+\begin{example}[Volume of a tetrahedron]
+Let $E$ be the tetrahedron $x,y,z\ge0$, $x+y+z\le1$. Then
+\[
+\Vol(E)=\int_0^1\!\!\int_0^{1-x}\!\!\int_0^{1-x-y}\dd z\,\dd y\,\dd x=\int_0^1\!\!\int_0^{1-x}(1-x-y)\,\dd y\,\dd x=\int_0^1\tfrac12(1-x)^2\dd x=\tfrac16 .
+\]
+\end{example}
+
+\begin{example}[Mass and centre of mass]
+If a solid $E$ has density $\rho(\vec x)$, its mass is $m=\iiint_E\rho\,\dd V$ and its centre of mass is $\bar{\vec x}=\frac1m\iiint_E\vec x\,\rho\,\dd V$. Its moment of inertia about the $z$-axis is $I_z=\iiint_E(x^2+y^2)\rho\,\dd V$.
+\end{example}
+
+%====================================================================
+\section{Change of variables}
+%====================================================================
+
+A difficult region or integrand often becomes simple after a change of variables. The substitution rule $\int f(x)\,\dd x=\int f(g(u))g'(u)\,\dd u$ has this generalization.
+
+\begin{theorem}[Change of variables in a double integral]\label{thm:cov}
+Let $D\subset\R^2$ be a closed bounded region whose boundary has zero area. Let $\vec\varphi:W\to\R^2$ be a $C^1$ map, defined on an open set $W\supseteq D$, that is injective on $D$ and has $\det\Jac\vec\varphi\ne0$ on $W$. Put $D'=\vec\varphi(D)$. For every continuous $f:D'\to\R$,
+\[
+\iint_{D'}f(x,y)\,\dd x\,\dd y=\iint_Df\bigl(\vec\varphi(u,v)\bigr)\,\bigl\lvert\det\Jac\vec\varphi(u,v)\bigr\rvert\,\dd u\,\dd v .
+\]
+The same statement holds in $\R^n$, with $\abs{\det\Jac\vec\varphi}$ the absolute value of the $n\times n$ Jacobian determinant.
+\end{theorem}
+
+The idea (Figure~\ref{fig:cov}): a tiny square of side $s$ in the $(u,v)$-plane is mapped almost to a parallelogram, with area $\abs{\det\Jac\vec\varphi}\,s^2$. Adding the contributions gives the formula. Here is the proof in the case $n=2$.
+
+\begin{proof}
+Write $J(\vec u)=\abs{\det\Jac\vec\varphi(\vec u)}$.
+
+\emph{Step 1 (area of a small image).} We claim: for every $\eta>0$ there is $\delta>0$ such that every closed square $Q\subset W$ with centre $\vec u$ and side $s<\delta$ satisfies
+\[
+\Area\bigl(\vec\varphi(Q)\bigr)\le(1+\eta)\,J(\vec u)\,s^2 .
+\]
+Proof of the claim. The sets $D$ and the closure of a small neighbourhood of $D$ are compact, so $\Jac\vec\varphi$ is uniformly continuous there, and $\norm{(\Jac\vec\varphi(\vec u))^{-1}}\le K$ for some constant $K$. Let $A=\Jac\vec\varphi(\vec u)$ and $\vec g(\vec h)=\vec\varphi(\vec u+\vec h)-\vec\varphi(\vec u)-A\vec h$. Then $\mathrm{D}\vec g(\vec h)=\Jac\vec\varphi(\vec u+\vec h)-A$, whose norm is smaller than any given $\eps'$ if $\norm{\vec h}$ is small enough (uniform continuity). By the mean value inequality (Lemma~\ref{lem:mvi}), $\norm{\vec g(\vec h)}\le\eps'\norm{\vec h}$. Hence
+\[
+\vec\varphi(\vec u+\vec h)=\vec\varphi(\vec u)+A\bigl(\vec h+\vec e(\vec h)\bigr),\qquad\vec e(\vec h)=A^{-1}\vec g(\vec h),\quad\norm{\vec e(\vec h)}\le K\eps'\norm{\vec h}.
+\]
+For $\vec h$ in the square $Q-\vec u=[-s/2,s/2]^2$ we have $\norm{\vec h}\le s/\sqrt2$, so $\norm{\vec e(\vec h)}\le K\eps's/\sqrt2$: the point $\vec h+\vec e(\vec h)$ is at distance at most $K\eps's/\sqrt2$ from the square $[-s/2,s/2]^2$. Hence it lies in the square of side $s(1+\eta')$ centred at $\vec 0$, where $\eta'=\sqrt2\,K\eps'$ can be made as small as we like by choosing $\eps'$ small. Therefore $\vec\varphi(Q)$ is contained in $\vec\varphi(\vec u)+A(Q')$, where $Q'$ is a square of side $s(1+\eta')$. By Proposition~\ref{prop:detarea}, $\Area(A(Q'))=\abs{\det A}\,s^2(1+\eta')^2$. Choose $\eps'$ so small that $(1+\eta')^2\le1+\eta$. This proves the claim.
+
+\emph{Step 2 (one inequality).} Let $f\ge0$ be continuous. Cover $D$ by a grid of closed squares $Q_k$ of side $s<\delta$ with centres $\vec u_k$ (those that meet $D$). The images $\vec\varphi(Q_k)$ cover $D'$, so
+\[
+\iint_{D'}f\le\sum_k\iint_{\vec\varphi(Q_k)}f\le\sum_k\Bigl(\max_{\vec\varphi(Q_k)}f\Bigr)\Area\bigl(\vec\varphi(Q_k)\bigr)\le(1+\eta)\sum_k\Bigl(\max_{\vec\varphi(Q_k)}f\Bigr)J(\vec u_k)\,s^2 .
+\]
+As $s\to0$, the right-hand sum tends to $(1+\eta)\iint_Df(\vec\varphi)\,J$ (it is a Riemann sum for the continuous function $(f\circ\vec\varphi)J$; squares that stick out of $D$ contribute an amount that tends to $0$ because the boundary of $D$ has zero area). Since $\eta$ is arbitrary,
+\[
+\iint_{D'}f\,\dd A\le\iint_D(f\circ\vec\varphi)\,J\,\dd A\qquad(f\ge0).\tag{$*$}
+\]
+
+\emph{Step 3 (the reverse inequality).} The inverse map $\vec\psi=\vec\varphi^{-1}$ is $C^1$ by the inverse function theorem (Theorem~\ref{thm:inverse}), and by the chain rule $J_{\vec\varphi}(\vec\psi(\vec x))\cdot J_{\vec\psi}(\vec x)=1$. Apply $(*)$ to $\vec\psi$ and to the function $g=(f\circ\vec\varphi)J_{\vec\varphi}\ge0$ on $D$:
+\[
+\iint_D(f\circ\vec\varphi)J_{\vec\varphi}\,\dd A\le\iint_{D'}g(\vec\psi(\vec x))\,J_{\vec\psi}(\vec x)\,\dd A=\iint_{D'}f(\vec x)\,J_{\vec\varphi}(\vec\psi(\vec x))J_{\vec\psi}(\vec x)\,\dd A=\iint_{D'}f\,\dd A.
+\]
+Together with $(*)$ this proves equality for $f\ge0$. For a general continuous $f$ write $f=f^+-f^-$ with $f^\pm\ge0$ continuous.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.3]
+  % left: uv-plane with small square
+  \draw[axisline,mid] (-0.2,0)--(3.3,0) node[right]{$u$};
+  \draw[axisline,mid] (0,-0.2)--(0,2.8) node[above]{$v$};
+  \foreach \i in {0,0.5,...,3}{ \draw[mid!40,thin] (\i,0)--(\i,2.5); }
+  \foreach \j in {0,0.5,...,2.5}{ \draw[mid!40,thin] (0,\j)--(3,\j); }
+  \filldraw[fill=accent2!40,draw=accent2,thick] (1.5,1.0) rectangle (2.0,1.5);
+  \node[accent2,font=\small] at (2.55,1.9) {area $s^2$};
+  \draw[-{Stealth[length=3mm]},very thick,mid] (3.6,1.4)--(4.9,1.4) node[midway,above]{$\vec\varphi$};
+  % right: curved image (polar-like map u->r in [1,3], v-> angle)
+  \begin{scope}[xshift=5.2cm,yshift=-0.2cm]
+    \draw[axisline,mid] (-0.2,0)--(3.6,0) node[right]{$x$};
+    \draw[axisline,mid] (0,-0.2)--(0,3.4) node[above]{$y$};
+    \foreach \r in {0.5,1,...,3}{ \draw[mid!40,thin] (0,\r) arc (90:0:\r); }
+    \foreach \a in {0,15,...,90}{ \draw[mid!40,thin] (\a:0.5)--(\a:3); }
+    \filldraw[fill=accent2!40,draw=accent2,thick] (30:1.5) arc (30:45:1.5) -- (45:2.0) arc (45:30:2.0) -- cycle;
+    \node[accent2,font=\small] at (1.2,2.9) {area $\approx J\,s^2$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The map $\vec\varphi$ sends a small square (left) to a slightly curved quadrilateral (right). Because $\vec\varphi$ is almost linear on small scales, the image has area close to $\abs{\det\Jac\vec\varphi}$ times the area of the square. Here $\vec\varphi$ is the polar-coordinate map.}
+\label{fig:cov}
+\end{figure}
+
+\subsection{The standard coordinate systems}
+
+\begin{theorem}[Area and volume elements]\label{thm:elements}
+\begin{enumerate}[label=(\alph*)]
+  \item Polar: $x=r\cos\theta$, $y=r\sin\theta$ gives $\dd A=r\,\dd r\,\dd\theta$.
+  \item Cylindrical: $x=r\cos\theta$, $y=r\sin\theta$, $z=z$ gives $\dd V=r\,\dd r\,\dd\theta\,\dd z$.
+  \item Spherical: $x=\rho\sin\varphi\cos\theta$, $y=\rho\sin\varphi\sin\theta$, $z=\rho\cos\varphi$ ($\rho\ge0$, $0\le\varphi\le\pi$) gives $\dd V=\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) was computed in Chapter~\ref{ch:diff}: $\det\Jac=r$. (b) The Jacobian is block-triangular with the polar block and a $1$ for $z$, so $\det=r$.
+
+(c) The rows of the Jacobian matrix (derivatives with respect to $\rho,\varphi,\theta$) are
+\begin{align*}
+\vec r_\rho&=(\sin\varphi\cos\theta,\ \sin\varphi\sin\theta,\ \cos\varphi),\\
+\vec r_\varphi&=\rho\,(\cos\varphi\cos\theta,\ \cos\varphi\sin\theta,\ -\sin\varphi),\\
+\vec r_\theta&=\rho\sin\varphi\,(-\sin\theta,\ \cos\theta,\ 0).
+\end{align*}
+A direct computation shows that they are pairwise perpendicular: for example $\vec r_\rho\cdot\vec r_\varphi=\rho(\sin\varphi\cos\varphi\cos^2\theta+\sin\varphi\cos\varphi\sin^2\theta-\cos\varphi\sin\varphi)=0$, $\vec r_\rho\cdot\vec r_\theta=\rho\sin^2\varphi(-\cos\theta\sin\theta+\sin\theta\cos\theta)=0$, and $\vec r_\varphi\cdot\vec r_\theta=\rho^2\sin\varphi\cos\varphi(-\cos\theta\sin\theta+\sin\theta\cos\theta)=0$. Their lengths are $\norm{\vec r_\rho}=1$, $\norm{\vec r_\varphi}=\rho$, $\norm{\vec r_\theta}=\rho\sin\varphi$. The volume of the box spanned by three perpendicular vectors is the product of the lengths (Theorem~\ref{thm:triple}), so $\abs{\det\Jac}=\rho^2\sin\varphi$ (with $\sin\varphi\ge0$ on $[0,\pi]$).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.5]
+  \draw[axisline,mid] (-0.2,0)--(3.0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,-0.2)--(0,3.0) node[above]{$y$};
+  \draw[regionfill] (25:1.6) arc (25:55:1.6) -- (55:2.4) arc (55:25:2.4) -- cycle;
+  \draw[guide] (0,0)--(25:2.6);
+  \draw[guide] (0,0)--(55:2.6);
+  \draw[accent2,very thick] (25:1.6)--(25:2.4);
+  \node[accent2,font=\small] at (25:2.0) [below right] {$\dd r$};
+  \draw[accent3,very thick] (25:2.4) arc (25:55:2.4);
+  \node[accent3,font=\small] at (40:2.6) [above right] {$r\,\dd\theta$};
+  \draw[accent] (0.6,0) arc (0:25:0.6);
+  \node[font=\scriptsize] at (0.9,0.12) {$\theta$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\centering
+\tdplotsetmaincoords{66}{118}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.7]
+  % local frame at P (rho=2, phi=60, theta=40)
+  \def\Px{1.327}\def\Py{1.113}\def\Pz{1.0}
+  \def\erx{0.6634}\def\ery{0.5567}\def\erz{0.5}
+  \def\efx{0.383}\def\efy{0.3214}\def\efz{-0.866}
+  \def\etx{-0.643}\def\ety{0.766}\def\etz{0}
+  \def\L{0.8}
+  \newcommand{\C}[3]{({\Px+#1*\L*\erx+#2*\L*\efx+#3*\L*\etx},{\Py+#1*\L*\ery+#2*\L*\efy+#3*\L*\ety},{\Pz+#1*\L*\erz+#2*\L*\efz+#3*\L*\etz})}
+  \draw[axisline,mid] (0,0,0)--(2.4,0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,0,0)--(0,2.4,0) node[right]{$y$};
+  \draw[axisline,mid] (0,0,0)--(0,0,2.4) node[above]{$z$};
+  \draw[guide] (0,0,0)--(\Px,\Py,\Pz);
+  \foreach \ib in {0,1}{\foreach \ic in {0,1}{
+    \draw[accent2,very thick] \C{0}{\ib}{\ic}--\C{1}{\ib}{\ic};
+    \draw[accent3,very thick] \C{\ib}{0}{\ic}--\C{\ib}{1}{\ic};
+    \draw[accent4,very thick] \C{\ib}{\ic}{0}--\C{\ib}{\ic}{1};
+  }}
+  \node[accent2,font=\scriptsize] at \C{0.5}{0}{1.35} {$\dd\rho$};
+  \node[accent3,font=\scriptsize] at \C{1.3}{0.5}{0} {$\rho\,\dd\varphi$};
+  \node[accent4,font=\scriptsize] at \C{0}{1.3}{0.5} {$\rho\sin\varphi\,\dd\theta$};
+\end{tikzpicture}
+\end{minipage}
+\caption{Volume elements. Left: in polar coordinates a small ``rectangle'' has sides $\dd r$ and $r\,\dd\theta$, so its area is $r\,\dd r\,\dd\theta$. Right: in spherical coordinates a small ``box'' has perpendicular edges $\dd\rho$, $\rho\,\dd\varphi$ and $\rho\sin\varphi\,\dd\theta$ (the radius of the circle of latitude is $\rho\sin\varphi$), so its volume is $\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta$.}
+\label{fig:elements}
+\end{figure}
+
+\begin{example}[Volume of a ball]
+For the ball of radius $R$,
+\[
+\Vol=\int_0^{2\pi}\!\!\int_0^\pi\!\!\int_0^R\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta=\frac{R^3}3\cdot\bigl[-\cos\varphi\bigr]_0^\pi\cdot2\pi=\frac{R^3}3\cdot2\cdot2\pi=\frac43\pi R^3 .
+\]
+\end{example}
+
+\begin{example}[Area of an ellipse]
+The ellipse $x^2/a^2+y^2/b^2\le1$ is the image of the unit disc under $(x,y)=(au,bv)$, with $\abs{\det\Jac}=ab$. So $\Area=ab\cdot\pi\cdot1^2=\pi ab$.
+\end{example}
+
+\begin{example}[Moment of inertia of a disc]
+For a disc of radius $R$ and constant density $\sigma$ about its axis: $I=\iint\sigma r^2\,\dd A=\sigma\int_0^{2\pi}\!\!\int_0^Rr^2\cdot r\,\dd r\,\dd\theta=\sigma\cdot2\pi\cdot\frac{R^4}4=\frac12(\sigma\pi R^2)R^2=\frac12mR^2$.
+\end{example}
+
+%====================================================================
+\section{Improper integrals and the Gaussian integral}
+%====================================================================
+
+\begin{theorem}[Gaussian integral]\label{thm:gaussint}
+$\displaystyle\int_{-\infty}^\infty e^{-x^2}\,\dd x=\sqrt\pi$.
+\end{theorem}
+
+\begin{proof}
+Let $I_R=\int_{-R}^Re^{-x^2}\dd x$; we will show $I_R^2\to\pi$, which also proves that the improper integral $I=\lim_{R\to\infty}I_R$ exists (the numbers $I_R$ increase with $R$). We bound $I_R^2$ using discs and squares. Let $S_R=[-R,R]^2$, $D_R$ the disc of radius $R$. Since $D_R\subseteq S_R\subseteq D_{\sqrt2R}$ and the integrand $e^{-(x^2+y^2)}$ is positive,
+\[
+\iint_{D_R}e^{-(x^2+y^2)}\dd A\le\iint_{S_R}e^{-(x^2+y^2)}\dd A=I_R^2\le\iint_{D_{\sqrt2R}}e^{-(x^2+y^2)}\dd A .
+\]
+The middle equality is Fubini: $\iint_{S_R}e^{-x^2}e^{-y^2}=\bigl(\int_{-R}^Re^{-x^2}\bigr)^2$. In polar coordinates,
+\[
+\iint_{D_R}e^{-(x^2+y^2)}\dd A=\int_0^{2\pi}\!\!\int_0^Re^{-r^2}\,r\,\dd r\,\dd\theta=2\pi\cdot\tfrac12\bigl(1-e^{-R^2}\bigr)=\pi\bigl(1-e^{-R^2}\bigr).
+\]
+Both bounds tend to $\pi$ as $R\to\infty$, so $I^2=\lim I_R^2=\pi$. Since $I>0$, $I=\sqrt\pi$.
+\end{proof}
+
+\begin{intuition}
+The function $e^{-x^2}$ has no elementary antiderivative, yet its total area is exactly $\sqrt\pi$. The trick: the \emph{square} of the integral is a \emph{two-dimensional} integral, and in polar coordinates the extra factor $r$ makes the integrand integrable by hand. This is a typical interview question.
+\end{intuition}
+
+%====================================================================
+\section{Differentiation under the integral sign}
+%====================================================================
+
+\begin{theorem}[Leibniz rule]\label{thm:leibniz}
+Let $f(x,t)$ and $\partial f/\partial t$ be continuous on $[a,b]\times[c,d]$, and put $F(t)=\int_a^bf(x,t)\,\dd x$. Then $F$ is $C^1$ on $[c,d]$ and
+\[
+F'(t)=\int_a^b\pd ft(x,t)\,\dd x .
+\]
+\end{theorem}
+
+\begin{proof}
+For $t$ and $t+h$ in $[c,d]$, the mean value theorem gives, for each $x$, a number $\theta=\theta(x,h)\in(0,1)$ with $f(x,t+h)-f(x,t)=h\,f_t(x,t+\theta h)$. Then
+\[
+\frac{F(t+h)-F(t)}h-\int_a^bf_t(x,t)\,\dd x=\int_a^b\bigl[f_t(x,t+\theta h)-f_t(x,t)\bigr]\dd x .
+\]
+Since $f_t$ is uniformly continuous on the compact rectangle, for any $\eps>0$ there is $\delta>0$ such that the bracket is smaller than $\eps$ in absolute value whenever $\abs h<\delta$. So the left side is at most $\eps(b-a)$ in absolute value, proving $F'(t)=\int f_t$. The function $t\mapsto\int f_t(x,t)\,\dd x$ is continuous by the same uniform continuity, so $F$ is $C^1$.
+\end{proof}
+
+\begin{corollary}[Variable limits]\label{cor:leibnizvar}
+If moreover $\alpha,\beta:[c,d]\to[a,b]$ are $C^1$, then for $G(t)=\int_{\alpha(t)}^{\beta(t)}f(x,t)\,\dd x$,
+\[
+G'(t)=f(\beta(t),t)\,\beta'(t)-f(\alpha(t),t)\,\alpha'(t)+\int_{\alpha(t)}^{\beta(t)}\pd ft(x,t)\,\dd x .
+\]
+\end{corollary}
+
+\begin{proof}
+Let $H(u,v,t)=\int_u^vf(x,t)\,\dd x$. By the fundamental theorem of calculus $H_v=f(v,t)$ and $H_u=-f(u,t)$, and by Theorem~\ref{thm:leibniz} $H_t=\int_u^vf_t(x,t)\,\dd x$. All three partial derivatives are continuous, so $H$ is $C^1$ (Theorem~\ref{thm:c1diff}). Since $G(t)=H(\alpha(t),\beta(t),t)$, the chain rule gives $G'=H_u\alpha'+H_v\beta'+H_t$.
+\end{proof}
+
+\begin{example}[A classical trick]
+Let $I(t)=\displaystyle\int_0^1\frac{x^t-1}{\ln x}\,\dd x$ for $t\ge0$. The integrand extends continuously to $x=0$ and $x=1$, and $\partial_t\frac{x^t-1}{\ln x}=x^t$ is continuous. By the Leibniz rule
+\[
+I'(t)=\int_0^1x^t\,\dd x=\frac1{t+1}.
+\]
+Since $I(0)=0$, we get $I(t)=\ln(1+t)$. A direct computation of this integral would be very hard.
+\end{example}
+
+\begin{pitfall}
+The theorem needs hypotheses. If the limits are infinite, or $f_t$ is not continuous, exchanging $\frac{\dd}{\dd t}$ and $\int$ can be wrong. (In the infinite case one needs a dominating integrable function: this is the ``dominated convergence'' condition.)
+\end{pitfall}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item $\iint_Rf\,\dd A$ is the limit of Riemann sums; continuous functions are integrable.
+  \item Fubini: for continuous $f$, double and triple integrals equal iterated integrals in any order (proof by squeezing between lower and upper sums). Choose the order that makes the inner integral easy.
+  \item Change of variables: $\dd x\,\dd y=\abs{\det\Jac\vec\varphi}\,\dd u\,\dd v$. Proof: small squares map to near-parallelograms; apply the inequality to $\vec\varphi$ and to $\vec\varphi^{-1}$.
+  \item Polar $r\,\dd r\,\dd\theta$; cylindrical $r\,\dd r\,\dd\theta\,\dd z$; spherical $\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta$.
+  \item $\int_{-\infty}^{\infty}e^{-x^2}\dd x=\sqrt\pi$ via polar coordinates in the plane.
+  \item $\frac{\dd}{\dd t}\int_a^bf(x,t)\dd x=\int_a^b f_t\,\dd x$ when $f,f_t$ are continuous; with variable limits add the boundary terms.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{Why is there an extra factor $r$ in polar coordinates?} The Jacobian determinant is $r$: a small coordinate rectangle $\dd r\times\dd\theta$ becomes a patch with sides $\dd r$ and $r\,\dd\theta$.
+  \item \emph{Compute $\int_{-\infty}^\infty e^{-x^2}\dd x$.} Square it, use Fubini, switch to polar coordinates, get $\pi$.
+  \item \emph{When can you swap the order of integration?} For continuous (or non-negative, or absolutely integrable) integrands. Show the counterexample with $(x^2-y^2)/(x^2+y^2)^2$.
+  \item \emph{What is the volume element in spherical coordinates and why?} $\rho^2\sin\varphi\,\dd\rho\,\dd\varphi\,\dd\theta$: three perpendicular edges of lengths $\dd\rho$, $\rho\,\dd\varphi$, $\rho\sin\varphi\,\dd\theta$.
+  \item \emph{What does $\det\Jac$ mean when it is negative?} The map reverses orientation; the integral uses $\abs{\det\Jac}$.
+  \item \emph{Differentiate $\int_0^{t}f(x,t)\dd x$ with respect to $t$.} $f(t,t)+\int_0^tf_t\,\dd x$.
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Compute $\displaystyle\int_0^2\!\!\int_{y/2}^1\cos(x^2)\,\dd x\,\dd y$ by swapping the order. (The region is $0\le x\le1$, $0\le y\le2x$. Answer: $\sin1$.)
+\end{exercise}
+\begin{exercise}
+Find the volume of the region inside both $x^2+y^2+z^2\le4$ and $x^2+y^2\le1$, using cylindrical coordinates. (Answer: $\tfrac{4\pi}3(8-3\sqrt3)$.)
+\end{exercise}
+\begin{exercise}
+Use $u=x+y$, $v=x-y$ to compute $\iint_D(x+y)^2\dd A$ over the square $\abs x+\abs y\le1$. (Hint: $\abs x+\abs y=\max(\abs u,\abs v)$, so the region becomes $\abs u\le1,\abs v\le1$, and $\dd x\,\dd y=\tfrac12\dd u\,\dd v$. Answer: $\tfrac23$.)
+\end{exercise}
+\begin{exercise}
+Show that $\int_0^\infty e^{-x^2}\dd x=\frac{\sqrt\pi}2$ and deduce $\Gamma(\tfrac12)=\sqrt\pi$, where $\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}\dd x$ (substitute $x=u^2$).
+\end{exercise}
+\begin{exercise}
+Compute the volume of the $n$-dimensional unit ball for $n=2,3$ by Fubini, and find a recursion $V_n=V_{n-1}\int_{-1}^1(1-t^2)^{(n-1)/2}\dd t$.
+\end{exercise}
+\begin{exercise}
+Using Corollary~\ref{cor:leibnizvar}, compute $\dfrac{\dd}{\dd t}\displaystyle\int_t^{t^2}\frac{\sin(tx)}x\,\dd x$. (Answer: $\bigl(3\sin t^3-2\sin t^2\bigr)/t$.)
+\end{exercise}

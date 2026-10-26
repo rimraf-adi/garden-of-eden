@@ -1,0 +1,192 @@
+\chapter{Simulation and Monte Carlo Methods}
+\label{ch:sim}
+
+Simulation turns probability theory into an experimental tool. Given a source of
+independent uniform random variables (Theorem~\ref{thm:iidexist}), we can generate any
+distribution, estimate expectations, and measure the error of the estimate. This chapter
+shows the standard methods and \emph{why} they work.
+
+\section{Generating random variables}
+
+\subsection{Inverse transform}
+
+\begin{theorem}[Inverse transform sampling]\label{thm:invtransform}
+Let $F$ be any CDF and define the generalised inverse
+$F^{-1}(u)=\inf\{x:F(x)\ge u\}$ for $u\in(0,1)$. If $U\sim U(0,1)$ then $X=F^{-1}(U)$ has CDF $F$.
+\end{theorem}
+\begin{proof}
+By right-continuity of $F$, $F^{-1}(u)\le x\iff u\le F(x)$. (If $u\le F(x)$ then $x$ belongs to
+the set whose infimum is $F^{-1}(u)$. Conversely if $F^{-1}(u)\le x$ then by
+right-continuity the infimum is attained, $F(F^{-1}(u))\ge u$, and $F$ is non-decreasing.)
+Hence $\Prob(X\le x)=\Prob(U\le F(x))=F(x)$.
+\end{proof}
+
+\begin{example}
+\emph{Exponential}: $F(x)=1-e^{-\lambda x}$, $F^{-1}(u)=-\ln(1-u)/\lambda$; since $1-U\sim U$, use
+$X=-\ln U/\lambda$. \emph{Discrete}: with $p_1,\dots,p_m$, return the smallest $k$ with
+$U\le p_1+\dots+p_k$. \emph{Geometric}: $X=\lceil\ln U/\ln(1-p)\rceil$.
+\end{example}
+
+\subsection{Rejection sampling}
+
+Suppose the target has density $f$ that is hard to invert, but there is a proposal
+density $g$ we can sample and a constant $M$ with $f(x)\le Mg(x)$ for all $x$.
+
+\begin{theorem}[Rejection sampling]\label{thm:reject}
+Repeat: draw $Y\sim g$ and $U\sim U(0,1)$ independently; accept $Y$ if $U\le f(Y)/(Mg(Y))$.
+The accepted value has density $f$, and the number of trials until acceptance is
+geometric with mean $M$.
+\end{theorem}
+\begin{proof}
+One trial accepts with probability
+$\int g(y)\frac{f(y)}{Mg(y)}dy=\frac1M$. For a set $A$,
+$\Prob(Y\in A,\text{accept})=\int_Ag(y)\frac{f(y)}{Mg(y)}dy=\frac1M\int_Af$. Dividing,
+$\Prob(Y\in A\given\text{accept})=\int_Af$. Trials are independent, so the number of trials is
+geometric$(1/M)$.
+\end{proof}
+
+\begin{nuance}{why the constant matters}
+The expected cost is $M$ proposals per sample, and $M\ge1$ with equality iff $f=g$. In
+dimension $d$, natural proposals have $M$ growing exponentially in $d$ (e.g.\ sampling a
+ball by rejection from its bounding cube: acceptance probability $\to0$ super-exponentially),
+the ``curse of dimensionality''.
+\end{nuance}
+
+\subsection{Special methods}
+
+\begin{itemize}
+\item \textbf{Normal}: Box--Muller (Chapter~\ref{ch:jointcont}), $Z_1=\sqrt{-2\ln U_1}\cos2\pi U_2$,
+$Z_2=\sqrt{-2\ln U_1}\sin2\pi U_2$.
+\item \textbf{Multivariate normal}: if $\Sigma=LL^\top$ (Cholesky) and $Z$ has i.i.d.\ $N(0,1)$ entries then
+$\mu+LZ\sim N(\mu,\Sigma)$ since $\Cov(LZ)=LL^\top$.
+\item \textbf{Poisson process}: cumulate i.i.d.\ exponential gaps (Chapter~\ref{ch:poisson}).
+\item \textbf{Non-homogeneous Poisson process by thinning}: to simulate rate $\lambda(t)\le\bar\lambda$,
+generate a homogeneous process at rate $\bar\lambda$ and keep each point at time $t$
+independently with probability $\lambda(t)/\bar\lambda$. This is correct by the thinning
+theorem (Chapter~\ref{ch:poisson}), extended to time-dependent retention.
+\item \textbf{Random permutation} (Fisher--Yates): for $i=n,\dots,2$ swap position $i$ with a uniform
+position in $\{1,\dots,i\}$. It yields every permutation with probability $1/n!$ since there are
+$n\cdot(n-1)\cdots2=n!$ equally likely choice sequences, each giving a distinct result.
+\item \textbf{Markov chains}: apply the transition row with inverse transform at each step.
+\end{itemize}
+
+\section{Monte Carlo estimation}
+
+To estimate $\theta=\Exp[h(X)]$, draw $X_1,\dots,X_n$ i.i.d.\ and use
+$\hat\theta_n=\frac1n\sum h(X_i)$.
+
+\begin{theorem}[Properties of the Monte Carlo estimator]
+Assume $\sigma^2=\Var(h(X))<\infty$. Then
+\begin{enumerate}[label=(\roman*)]
+\item $\Exp\hat\theta_n=\theta$ (unbiased) and $\Var\hat\theta_n=\sigma^2/n$;
+\item $\hat\theta_n\to\theta$ almost surely (strong law);
+\item $\sqrt n(\hat\theta_n-\theta)\xrightarrow{d}N(0,\sigma^2)$ (CLT), so an approximate
+$95\%$ confidence interval is $\hat\theta_n\pm1.96\,s_n/\sqrt n$, where $s_n$ is the sample standard
+deviation.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Linearity and independence give (i); (ii) and (iii) are the SLLN and CLT of
+Chapter~\ref{ch:limits}; $s_n\to\sigma$ a.s.\ and Slutsky's theorem justify the studentised interval.
+\end{proof}
+
+\begin{nuance}{the $1/\sqrt n$ rate is dimension free}
+The error is of order $\sigma/\sqrt n$ whatever the dimension of $X$---the main advantage over grid
+quadrature, whose error degrades with dimension. To gain one extra digit of accuracy requires
+$100$ times more samples, so the practical lever is reducing $\sigma$.
+\end{nuance}
+
+\begin{example}[Estimating $\pi$]
+With $(X,Y)$ uniform on $[-1,1]^2$, $h=\indic_{X^2+Y^2\le1}$ has mean $\pi/4$ and variance
+$\tfrac\pi4(1-\tfrac\pi4)\approx0.169$. The estimator $4\hat\theta_n$ has standard error
+$4\sqrt{0.169/n}\approx1.64/\sqrt n$; with $n=10^6$ expect about $3$ correct decimal places
+($\approx0.0016$).
+\end{example}
+
+\section{Variance reduction}
+
+\paragraph{Antithetic variables.} Use $U$ and $1-U$ in pairs: $\hat\theta=\frac12(h(U)+h(1-U))$. Then
+$\Var\hat\theta=\tfrac14\bigl(2\sigma^2+2\Cov(h(U),h(1-U))\bigr)=\tfrac12\sigma^2(1+\rho)$ where $\rho$ is
+the correlation. For monotone $h$, $h(U)$ and $h(1-U)$ are negatively correlated
+(a consequence of the Chebyshev association inequality, cited), so $\rho\le0$ and the variance of
+a pair is at most $\sigma^2/2$---no worse than two independent draws.
+
+\paragraph{Control variates.} Suppose $W$ has known mean $\Exp W=w$ and is correlated with $h(X)$. For any
+$c$, $h(X)-c(W-w)$ is unbiased with variance
+$\sigma^2-2c\Cov(h,W)+c^2\Var W$, minimised at $c^*=\Cov(h,W)/\Var W$, with minimum
+$\sigma^2(1-\rho^2)$ (the same algebra as linear regression, Chapter~\ref{ch:condexp}).
+
+\paragraph{Importance sampling.} To estimate $\Exp_f[h(X)]=\int hf$, sample from a different density $g$
+(positive wherever $hf\ne0$) and weight:
+\[
+\Exp_f[h(X)]=\int h(x)\frac{f(x)}{g(x)}g(x)\,dx=\Exp_g\Bigl[h(Y)\frac{f(Y)}{g(Y)}\Bigr].
+\]
+The variance under $g$ is $\Exp_g[h^2f^2/g^2]-\theta^2$. By Cauchy--Schwarz / Jensen, it is
+minimised by $g^*\propto\abs hf$, where it equals $(\Exp_f\abs h)^2-\theta^2$ (zero for $h\ge0$,
+though $g^*$ requires knowing $\theta$). In practice importance sampling is essential for rare events.
+
+\begin{example}[Rare event]
+Estimate $p=\Prob(Z>5)\approx2.87\times10^{-7}$ for $Z\sim N(0,1)$. Naive Monte Carlo needs $\sim10^{9}$
+samples to see a few hits. Sample $Y=5+E$ with $E\sim\mathrm{Exp}(1)$, density $g(y)=e^{-(y-5)}$ on $y>5$.
+The weight is $f(y)/g(y)=\phi(y)e^{y-5}$, and $p=\Exp_g[\phi(Y)e^{Y-5}]$, with the integrand bounded
+by $\phi(5)\approx1.5\times10^{-6}$ and varying slowly over the region, giving a relative
+error of order $1/\sqrt n$ with a modest constant.
+\end{example}
+
+\paragraph{Stratified sampling.} Partition the space into strata of known probability and sample
+within each; the variance equals the \emph{within-stratum} variance only (by the law of total
+variance, Chapter~\ref{ch:condexp}), never more than naive sampling with proportional allocation.
+
+\section{Markov chain Monte Carlo}
+
+Often we cannot sample from the target $\pi$ directly (e.g.\ the normalising constant is
+unknown). MCMC constructs a Markov chain whose stationary distribution is $\pi$ and whose
+long-run averages converge to $\Exp_\pi[h]$ (ergodic theorem, Chapter~\ref{ch:markov}).
+
+\begin{theorem}[Metropolis--Hastings]\label{thm:mh}
+Let $q(x,y)$ be a proposal kernel. From state $x$, propose $y\sim q(x,\cdot)$ and accept with
+probability
+\[
+\alpha(x,y)=\min\Bigl(1,\frac{\pi(y)q(y,x)}{\pi(x)q(x,y)}\Bigr),
+\]
+otherwise stay at $x$. Then the resulting chain satisfies detailed balance with respect to $\pi$,
+hence $\pi$ is stationary.
+\end{theorem}
+\begin{proof}
+For $x\ne y$ the transition density is $P(x,y)=q(x,y)\alpha(x,y)$. Then
+\[
+\pi(x)q(x,y)\alpha(x,y)=\min\bigl(\pi(x)q(x,y),\ \pi(y)q(y,x)\bigr),
+\]
+which is symmetric in $(x,y)$, so $\pi(x)P(x,y)=\pi(y)P(y,x)$. Summing (integrating) over $x$ gives
+$\pi P=\pi$ as in Chapter~\ref{ch:markov}. Only the \emph{ratio} $\pi(y)/\pi(x)$ is needed, so
+$\pi$ need be known only up to a constant.
+\end{proof}
+
+\begin{nuance}{what MCMC does and does not guarantee}
+Stationarity is not enough: the chain must be irreducible and aperiodic for convergence, and
+mixing speed (how long until the chain forgets its start) can be exceedingly slow if the target
+is multimodal. Samples are correlated, so the effective sample size is $n/(1+2\sum_k\rho_k)$,
+where $\rho_k$ is the lag-$k$ autocorrelation. Initial ``burn-in'' samples are discarded in practice.
+\end{nuance}
+
+The \emph{Gibbs sampler} updates one coordinate at a time from its full conditional; it is a special case
+of Metropolis--Hastings with acceptance probability $1$.
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item Give an inverse-transform sampler for the Pareto law $F(x)=1-x^{-a}$, $x\ge1$, and for the
+Cauchy law.
+\item Show how to sample the standard normal by rejection from the double-exponential density
+$g(x)=\tfrac12e^{-\abs x}$ and find the optimal $M$ ($M=\sqrt{2e/\pi}\approx1.32$).
+\item Verify the Fisher--Yates claim by induction on $n$.
+\item Prove the thinning algorithm for non-homogeneous Poisson processes by computing the number of
+points in $[0,t]$.
+\item Estimate $\int_0^1e^{x}dx$ with antithetic variates and compute the variance reduction factor
+exactly (target $e-1$).
+\item Design an importance sampler for $\Prob(S_{100}>60)$ for the sum of 100 fair-coin $\pm1$ steps
+using an exponentially tilted Bernoulli.
+\item Show that Gibbs sampling for the bivariate normal with correlation $\rho$ is a Markov chain with
+autoregressive coefficient $\rho^2$ for each coordinate, and hence the mixing slows as $\abs\rho\to1$.
+\end{enumerate}

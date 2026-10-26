@@ -1,0 +1,231 @@
+\chapter{First-Order ODEs}
+
+\section{Basic words}
+
+A \textbf{differential equation} (DE) is an equation that contains a function and its derivatives. If the function depends on one variable only, the equation is an \textbf{ordinary} differential equation (ODE). If it depends on two or more variables, the equation is a \textbf{partial} differential equation (PDE). We start with ODEs.
+
+\begin{defbox}{Order, solution, IVP}
+\begin{itemize}
+  \item The \textbf{order} of an ODE is the highest derivative in it. The equation $y' + 2y = x$ is first order. The equation $y'' + y = 0$ is second order.
+  \item A \textbf{solution} is a function that makes the equation true. A \textbf{general solution} has arbitrary constants. A \textbf{particular solution} has numbers in place of the constants.
+  \item An \textbf{initial value problem} (IVP) is an ODE plus values of the unknown function (and its derivatives) at one starting point. For a first-order ODE:
+  \[ y' = f(x,y), \qquad y(x_0) = y_0 . \]
+  The initial condition picks one curve from the family of all solution curves.
+\end{itemize}
+\end{defbox}
+
+\textbf{Why we solve IVPs.} In engineering the starting state is almost always known: the initial charge on a capacitor, the starting temperature of a part, the initial position of a mass. The IVP gives the future behaviour from that start.
+
+\begin{defbox}{Existence and uniqueness (stated, not proved)}
+Take the IVP $y' = f(x,y)$, $y(x_0)=y_0$. If $f$ and $\partial f/\partial y$ are continuous near the point $(x_0,y_0)$, then the IVP has \textbf{one and only one} solution on some interval around $x_0$.
+\end{defbox}
+
+\begin{notebox}
+If the conditions fail, the IVP can have more than one solution. For $y' = 3y^{2/3}$ with $y(0)=0$, both $y=0$ and $y=x^3$ are solutions. Here $\partial f/\partial y = 2y^{-1/3}$ is not continuous at $y=0$.
+\end{notebox}
+
+\section{Separable equations}
+
+\begin{methodbox}{Separable ODE}
+An equation of the form $\dfrac{\dd y}{\dd x} = g(x)\,h(y)$ is \textbf{separable}.
+\begin{enumerate}
+  \item Move all $y$ terms to one side and all $x$ terms to the other: $\dfrac{\dd y}{h(y)} = g(x)\,\dd x$.
+  \item Integrate both sides. Add one constant $C$.
+  \item Solve for $y$ if possible. Use the initial condition to find $C$.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{Why separation of variables works}
+Start with $y' = g(x)h(y)$ and assume $h(y)\neq0$. Divide by $h(y)$:
+\[ \frac{y'}{h(y)} = g(x). \]
+Let $H(y) = \int \dfrac{\dd y}{h(y)}$, so $H'(y) = 1/h(y)$. By the chain rule,
+\[ \frac{\dd}{\dd x}H\big(y(x)\big) = H'(y)\,y' = \frac{y'}{h(y)} = g(x). \]
+Integrate both sides with respect to $x$: $H\big(y(x)\big) = \int g(x)\,\dd x + C$. This is exactly the rule ``integrate $\dd y/h(y)$ on the left and $g(x)\,\dd x$ on the right''. \emph{Careful:} dividing by $h(y)$ loses the constant solutions $y=y_0$ where $h(y_0)=0$. Check them separately.
+\end{derivbox}
+
+\begin{examplebox}{Separable IVP}
+Solve $\dfrac{\dd y}{\dd x} = 2xy$, \quad $y(0)=3$.
+
+Separate: $\dfrac{\dd y}{y} = 2x\,\dd x$. Integrate: $\ln|y| = x^2 + C$. So $y = Ae^{x^2}$, where $A = \pm e^{C}$.
+
+Use $y(0)=3$: $3 = Ae^{0} = A$. The solution is
+\[ y = 3e^{x^2}. \]
+\end{examplebox}
+
+\section{Linear first-order equations}
+
+\begin{methodbox}{Integrating factor}
+A first-order \textbf{linear} ODE can be written as
+\[ y' + P(x)\,y = Q(x). \]
+\begin{enumerate}
+  \item Compute the integrating factor $\mu(x) = e^{\int P(x)\,\dd x}$.
+  \item Multiply the whole equation by $\mu$. The left side becomes $(\mu y)'$.
+  \item Integrate: $\mu y = \int \mu Q\,\dd x + C$.
+  \item Divide by $\mu$. Apply the initial condition.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{The integrating factor}
+We want a function $\mu(x)$ such that multiplying $y' + Py = Q$ by $\mu$ makes the left side a single derivative. By the product rule,
+\[ (\mu y)' = \mu y' + \mu' y . \]
+The left side of $\mu y' + \mu P y = \mu Q$ has this form if $\mu' = P\mu$. This is a separable equation for $\mu$:
+\[ \frac{\dd\mu}{\mu} = P\,\dd x \ \Longrightarrow\ \ln\mu = \int P\,\dd x \ \Longrightarrow\ \mu = e^{\int P\,\dd x}. \]
+(We do not need a constant of integration: any one $\mu$ works.) Then the equation reads $(\mu y)' = \mu Q$. Integrate: $\mu y = \int\mu Q\,\dd x + C$, and divide by $\mu$.
+\end{derivbox}
+
+\begin{examplebox}{Linear IVP}
+Solve $y' + 2y = 4x$, \quad $y(0)=1$.
+
+Here $P=2$, so $\mu = e^{2x}$. Then $(e^{2x}y)' = 4xe^{2x}$. Integrate by parts:
+\[ \int 4xe^{2x}\,\dd x = 2xe^{2x} - e^{2x} + C. \]
+Divide by $e^{2x}$: $y = 2x - 1 + Ce^{-2x}$.
+
+Use $y(0)=1$: $1 = -1 + C$, so $C=2$. The solution is
+\[ y = 2x - 1 + 2e^{-2x}. \]
+\textit{Check:} $y' = 2 - 4e^{-2x}$, and $y' + 2y = 2 - 4e^{-2x} + 4x - 2 + 4e^{-2x} = 4x$. \checkmark
+\end{examplebox}
+
+\section{Exact equations}
+
+\begin{defbox}{Exact equation}
+The equation $M(x,y)\,\dd x + N(x,y)\,\dd y = 0$ is \textbf{exact} if
+\[ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}. \]
+Then there is a function $F(x,y)$ with $F_x = M$ and $F_y = N$, and the solution is $F(x,y) = C$.
+\end{defbox}
+
+\begin{methodbox}{Solving an exact equation}
+\begin{enumerate}
+  \item Check $M_y = N_x$.
+  \item Integrate $M$ with respect to $x$: $F = \int M\,\dd x + g(y)$.
+  \item Differentiate $F$ with respect to $y$ and set it equal to $N$. This gives $g'(y)$.
+  \item Integrate to find $g(y)$. The solution is $F(x,y)=C$.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{The exactness test and the method}
+Suppose a function $F(x,y)$ exists with $F_x = M$ and $F_y = N$. Along a solution curve $y = y(x)$, the chain rule gives
+\[ \frac{\dd}{\dd x}F\big(x,y(x)\big) = F_x + F_y\,y' = M + N\,y' = 0, \]
+because $M\,\dd x + N\,\dd y = 0$ means $M + Ny' = 0$. So $F$ is constant along solutions: $F(x,y)=C$.
+
+\emph{Test.} If such an $F$ exists, then $M_y = F_{xy}$ and $N_x = F_{yx}$. Mixed partial derivatives of a smooth function are equal, so $M_y = N_x$ is \textbf{necessary}. (On a region without holes it is also sufficient.)
+
+\emph{Finding $F$.} From $F_x = M$, integrate in $x$. The ``constant'' of integration may depend on $y$, so $F = \int M\,\dd x + g(y)$. Then $F_y = N$ gives an equation for $g'(y)$, which we integrate.
+\end{derivbox}
+
+\begin{examplebox}{Exact IVP}
+Solve $(2xy+3)\,\dd x + (x^2+4y)\,\dd y = 0$, \quad $y(1)=1$.
+
+$M_y = 2x$ and $N_x = 2x$, so the equation is exact. Integrate $M$ with respect to $x$:
+$F = x^2y + 3x + g(y)$. Then $F_y = x^2 + g'(y)$, which must equal $x^2 + 4y$. So $g' = 4y$ and $g = 2y^2$.
+
+The general solution is $x^2y + 3x + 2y^2 = C$. With $y(1)=1$: $1+3+2 = 6$, so
+\[ x^2y + 3x + 2y^2 = 6. \]
+\end{examplebox}
+
+\subsection*{Integrating factors for non-exact equations}
+
+If $M_y \neq N_x$, we can sometimes multiply by a factor $\mu$ to make the equation exact.
+\begin{itemize}
+  \item If $\dfrac{M_y - N_x}{N}$ depends on $x$ only, use $\mu(x) = \exp\!\Big(\displaystyle\int \dfrac{M_y-N_x}{N}\,\dd x\Big)$.
+  \item If $\dfrac{N_x - M_y}{M}$ depends on $y$ only, use $\mu(y) = \exp\!\Big(\displaystyle\int \dfrac{N_x-M_y}{M}\,\dd y\Big)$.
+\end{itemize}
+
+\begin{derivbox}{The two integrating-factor rules}
+We look for $\mu$ so that $\mu M\,\dd x + \mu N\,\dd y = 0$ is exact: $(\mu M)_y = (\mu N)_x$. Expand with the product rule:
+\[ \mu_yM + \mu M_y = \mu_xN + \mu N_x. \]
+If $\mu = \mu(x)$ only, then $\mu_y = 0$ and $\mu_x = \mu'$, so $\mu M_y = \mu'N + \mu N_x$, that is
+\[ \frac{\mu'}{\mu} = \frac{M_y - N_x}{N}. \]
+This is solvable (the right side must depend on $x$ only), and $\mu = \exp\int\frac{M_y-N_x}{N}\,\dd x$. If $\mu=\mu(y)$ only, the same steps give $\dfrac{\mu'}{\mu} = \dfrac{N_x - M_y}{M}$.
+\end{derivbox}
+
+\begin{examplebox}{Integrating factor}
+Solve $(x^2+y^2+x)\,\dd x + xy\,\dd y = 0$.
+
+$M_y = 2y$, $N_x = y$. Not exact. Compute $\dfrac{M_y-N_x}{N} = \dfrac{y}{xy} = \dfrac1x$. So $\mu = e^{\int 1/x\,\dd x} = x$.
+
+Multiply: $(x^3 + xy^2 + x^2)\,\dd x + x^2y\,\dd y = 0$. Now $M_y = 2xy = N_x$. Integrate $M$:
+$F = \dfrac{x^4}{4} + \dfrac{x^2y^2}{2} + \dfrac{x^3}{3} + g(y)$. Then $F_y = x^2y + g'(y) = x^2y$, so $g'=0$. The solution is
+\[ 3x^4 + 4x^3 + 6x^2y^2 = C. \]
+\end{examplebox}
+
+\section{Bernoulli equations}
+
+\begin{methodbox}{Bernoulli equation}
+The equation $y' + P(x)y = Q(x)y^{n}$ (with $n \neq 0,1$) is a \textbf{Bernoulli equation}.
+\begin{enumerate}
+  \item Substitute $v = y^{1-n}$. Then $v' = (1-n)y^{-n}y'$.
+  \item The equation for $v$ is linear: $v' + (1-n)P\,v = (1-n)Q$.
+  \item Solve for $v$ with an integrating factor. Then $y = v^{1/(1-n)}$.
+\end{enumerate}
+\end{methodbox}
+
+\begin{derivbox}{The Bernoulli substitution}
+Divide $y' + Py = Qy^n$ by $y^n$:
+\[ y^{-n}y' + P\,y^{1-n} = Q. \]
+Let $v = y^{1-n}$. Then $v' = (1-n)y^{-n}y'$, so $y^{-n}y' = \dfrac{v'}{1-n}$. Substitute:
+\[ \frac{v'}{1-n} + Pv = Q \ \Longrightarrow\ v' + (1-n)P\,v = (1-n)Q . \]
+This is a linear equation for $v$. Solve it with the integrating factor, then return to $y = v^{1/(1-n)}$.
+\end{derivbox}
+
+\begin{examplebox}{Bernoulli equation}
+Solve $y' + y = xy^2$.
+
+Here $n=2$. Let $v = y^{-1}$, so $v' = -y^{-2}y'$. Divide the equation by $y^2$: $y^{-2}y' + y^{-1} = x$, which becomes $-v' + v = x$, or
+\[ v' - v = -x. \]
+Integrating factor $e^{-x}$: $(ve^{-x})' = -xe^{-x}$, so $ve^{-x} = xe^{-x} + e^{-x} + C$. Then $v = x + 1 + Ce^{x}$ and
+\[ y = \frac{1}{x + 1 + Ce^{x}}. \]
+(Also $y=0$ is a solution that the substitution misses.)
+\end{examplebox}
+
+\section{Modelling with first-order ODEs}
+
+\textbf{Newton's law of cooling.} The rate of change of temperature $T$ of a body is proportional to the difference between $T$ and the surrounding temperature $T_a$:
+\[ \frac{\dd T}{\dd t} = -k\,(T - T_a), \qquad T(0)=T_0 . \]
+The solution is $T = T_a + (T_0 - T_a)e^{-kt}$.
+
+\begin{examplebox}{Cooling of a metal part}
+A part at $90^\circ$C is placed in air at $20^\circ$C. After 5 minutes it is at $60^\circ$C. When will it reach $30^\circ$C?
+
+$T = 20 + 70e^{-kt}$. At $t=5$: $60 = 20 + 70e^{-5k}$, so $e^{-5k} = \tfrac47$ and $k = \tfrac15\ln\tfrac74 \approx 0.1119\ \text{min}^{-1}$.
+
+For $T=30$: $10 = 70e^{-kt}$, so $e^{-kt} = \tfrac17$ and $t = \dfrac{\ln 7}{k} = \dfrac{5\ln 7}{\ln(7/4)} \approx 17.4$ minutes.
+\end{examplebox}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.78\textwidth,height=5.2cm,xlabel={time $t$ (min)},ylabel={$T$ ($^\circ$C)},
+  xmin=0,xmax=40,ymin=0,ymax=100,grid=both,grid style={gray!20},
+  every axis plot/.append style={thick}]
+\addplot[accent,domain=0:40,samples=60]{20+70*exp(-0.1119*x)};
+\addplot[only marks,mark=*,mark size=2pt,notec] coordinates {(0,90) (5,60) (17.4,30)};
+\node[anchor=south west,font=\small] at (axis cs:17.6,32) {$T=30$ at 17.4 min};
+\end{axis}
+\end{tikzpicture}
+
+{\small Figure: cooling curve. The temperature falls fast at first and then slowly approaches $20^\circ$C.}
+\end{center}
+
+\begin{examplebox}{Mixing problem}
+A tank holds 100 litres of pure water. Salt water with $0.5$ kg of salt per litre flows in at 4 L/min. The well-mixed solution flows out at 4 L/min. Find the salt mass $S(t)$ in the tank.
+
+Rate in $= 0.5 \times 4 = 2$ kg/min. Rate out $= \dfrac{S}{100}\times 4 = \dfrac{S}{25}$. So
+\[ \frac{\dd S}{\dd t} = 2 - \frac{S}{25}, \qquad S(0)=0. \]
+This is linear and separable. Write $S' + S/25 = 2$, integrating factor $e^{t/25}$:
+$S = 50 + Ce^{-t/25}$. With $S(0)=0$: $C=-50$, so
+\[ S(t) = 50\,(1 - e^{-t/25}) \ \text{kg}. \]
+As $t\to\infty$, $S\to 50$ kg, which is the concentration $0.5$ kg/L times 100 L.
+\end{examplebox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Solve $\dfrac{\dd y}{\dd x} = \dfrac{x}{y}$, \; $y(0)=2$.
+  \item Solve $y' + \dfrac{1}{x}y = x^2$ for $x>0$, \; $y(1)=0$.
+  \item Solve $(3x^2y + 2x)\,\dd x + (x^3 + 2y)\,\dd y = 0$.
+  \item Solve the Bernoulli equation $y' - y = -y^2$.
+  \item A tank has 200 L of water with 10 kg of salt. Pure water flows in at 5 L/min and the mixture flows out at 5 L/min. How much salt is left after 40 minutes?
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $y = \sqrt{x^2+4}$. \quad (2) $y = \dfrac{x^3}{4} - \dfrac{1}{4x}$. \quad (3) $x^3y + x^2 + y^2 = C$. \quad (4) $y = \dfrac{1}{1 + Ce^{-x}}$ (and $y=0$). \quad (5) $S' = -S/40$, so $S = 10e^{-t/40}$ and $S(40) = 10/e \approx 3.68$ kg.
+\end{answerbox}

@@ -1,0 +1,146 @@
+\chapter{Laplace Transforms}
+
+The Laplace transform turns an ODE into an algebra problem. It is the best tool for IVPs with discontinuous or impulsive forcing, which are common in circuits and control.
+
+\section{Definition and basic table}
+
+\begin{defbox}{Laplace transform}
+For a function $f(t)$ defined for $t \ge 0$,
+\[ F(s) = \LT\{f(t)\} = \int_0^{\infty} e^{-st}f(t)\,\dd t . \]
+The inverse transform is written $f(t) = \LT^{-1}\{F(s)\}$. The transform is \textbf{linear}: $\LT\{af + bg\} = aF + bG$.
+\end{defbox}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}cc@{\hspace{2.5cm}}cc@{}}
+\toprule
+$f(t)$ & $F(s)$ & $f(t)$ & $F(s)$ \\
+\midrule
+$1$ & $\dfrac1s$ & $\sin\omega t$ & $\dfrac{\omega}{s^2+\omega^2}$ \\
+$t^n$ & $\dfrac{n!}{s^{n+1}}$ & $\cos\omega t$ & $\dfrac{s}{s^2+\omega^2}$ \\
+$e^{at}$ & $\dfrac1{s-a}$ & $\sinh\omega t$ & $\dfrac{\omega}{s^2-\omega^2}$ \\
+$u(t-a)$ & $\dfrac{e^{-as}}{s}$ & $\cosh\omega t$ & $\dfrac{s}{s^2-\omega^2}$ \\
+$\delta(t-a)$ & $e^{-as}$ & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Here $u(t-a)$ is the \textbf{unit step} (0 before $t=a$, 1 after) and $\delta(t-a)$ is the \textbf{Dirac delta} (an ideal short impulse at $t=a$).
+
+\begin{derivbox}{The basic transforms}
+\textbf{$\LT\{1\}$ and $\LT\{e^{at}\}$.} For $s>a$,
+\[ \LT\{e^{at}\} = \int_0^\infty e^{-(s-a)t}\,\dd t = \Big[\frac{e^{-(s-a)t}}{-(s-a)}\Big]_0^\infty = \frac{1}{s-a}. \]
+With $a=0$ we get $\LT\{1\} = 1/s$.
+
+\textbf{$\LT\{t^n\}$.} Integrate by parts with $u = t^n$, $\dd v = e^{-st}\dd t$:
+\[ \int_0^\infty t^ne^{-st}\,\dd t = \Big[-\frac{t^ne^{-st}}{s}\Big]_0^\infty + \frac ns\int_0^\infty t^{n-1}e^{-st}\,\dd t = \frac ns\,\LT\{t^{n-1}\}. \]
+Repeating $n$ times gives $\LT\{t^n\} = \dfrac{n!}{s^{n+1}}$.
+
+\textbf{Sine and cosine.} Use $e^{i\omega t} = \cos\omega t + i\sin\omega t$ and $a = i\omega$ above:
+\[ \LT\{e^{i\omega t}\} = \frac{1}{s - i\omega} = \frac{s + i\omega}{s^2+\omega^2}. \]
+The real part is $\LT\{\cos\omega t\} = \dfrac{s}{s^2+\omega^2}$ and the imaginary part is $\LT\{\sin\omega t\} = \dfrac{\omega}{s^2+\omega^2}$.
+
+\textbf{Hyperbolic functions.} $\cosh\omega t = \frac12(e^{\omega t} + e^{-\omega t})$, so $\LT\{\cosh\omega t\} = \frac12\Big(\frac1{s-\omega} + \frac1{s+\omega}\Big) = \dfrac{s}{s^2-\omega^2}$. Similarly $\LT\{\sinh\omega t\} = \dfrac{\omega}{s^2-\omega^2}$.
+
+\textbf{Step and delta.} $\LT\{u(t-a)\} = \int_a^\infty e^{-st}\,\dd t = \dfrac{e^{-as}}{s}$. For the delta function the ``sifting property'' $\int g(t)\delta(t-a)\,\dd t = g(a)$ gives $\LT\{\delta(t-a)\} = e^{-as}$.
+\end{derivbox}
+
+\section{Rules}
+
+\begin{defbox}{Rules you need}
+\begin{itemize}
+  \item \textbf{Derivatives:} $\LT\{y'\} = sY - y(0)$ \quad and \quad $\LT\{y''\} = s^2Y - s\,y(0) - y'(0)$.
+  \item \textbf{First shifting:} $\LT\{e^{at}f(t)\} = F(s-a)$.
+  \item \textbf{Second shifting:} $\LT\{u(t-a)\,f(t-a)\} = e^{-as}F(s)$.
+  \item \textbf{Multiplication by $t$:} $\LT\{t f(t)\} = -F'(s)$.
+  \item \textbf{Convolution:} if $(f*g)(t) = \displaystyle\int_0^t f(\tau)\,g(t-\tau)\,\dd\tau$ then $\LT\{f*g\} = F(s)\,G(s)$.
+\end{itemize}
+\end{defbox}
+
+Notice that the derivative rule \textbf{puts the initial conditions into the equation automatically}. This is why Laplace transforms fit IVPs so well.
+
+\begin{derivbox}{The rules}
+\textbf{Derivative rule.} Integrate by parts ($u = e^{-st}$, $\dd v = y'\,\dd t$), and assume $e^{-st}y\to0$ as $t\to\infty$:
+\[ \LT\{y'\} = \int_0^\infty e^{-st}y'\,\dd t = \Big[e^{-st}y\Big]_0^\infty + s\int_0^\infty e^{-st}y\,\dd t = -y(0) + sY. \]
+Apply it to $y'$ in place of $y$: $\LT\{y''\} = s\LT\{y'\} - y'(0) = s\big(sY - y(0)\big) - y'(0) = s^2Y - sy(0) - y'(0)$.
+
+\textbf{First shifting.} $\LT\{e^{at}f(t)\} = \displaystyle\int_0^\infty e^{-st}e^{at}f(t)\,\dd t = \int_0^\infty e^{-(s-a)t}f(t)\,\dd t = F(s-a)$.
+
+\textbf{Second shifting.} $\LT\{u(t-a)f(t-a)\} = \displaystyle\int_a^\infty e^{-st}f(t-a)\,\dd t$. Put $\tau = t-a$:
+$= e^{-as}\displaystyle\int_0^\infty e^{-s\tau}f(\tau)\,\dd\tau = e^{-as}F(s)$.
+
+\textbf{Multiplication by $t$.} Differentiate $F(s) = \int_0^\infty e^{-st}f\,\dd t$ with respect to $s$: $F'(s) = \int_0^\infty(-t)e^{-st}f\,\dd t = -\LT\{tf\}$.
+
+\textbf{Convolution.} $\LT\{f*g\} = \displaystyle\int_0^\infty e^{-st}\int_0^tf(\tau)g(t-\tau)\,\dd\tau\,\dd t$. The region is $0\le\tau\le t<\infty$. Swap the order of integration:
+\[ = \int_0^\infty f(\tau)\Big[\int_\tau^\infty e^{-st}g(t-\tau)\,\dd t\Big]\dd\tau = \int_0^\infty f(\tau)e^{-s\tau}G(s)\,\dd\tau = F(s)\,G(s), \]
+where we put $\sigma = t - \tau$ in the inner integral.
+\end{derivbox}
+
+\begin{methodbox}{Solving an IVP with Laplace transforms}
+\begin{enumerate}
+  \item Take the Laplace transform of every term. Use the derivative rule and the given initial values.
+  \item Solve the algebraic equation for $Y(s)$.
+  \item Break $Y(s)$ into simple pieces (partial fractions, completing the square).
+  \item Invert each piece using the table and the shifting rules.
+\end{enumerate}
+\end{methodbox}
+
+\section{Examples}
+
+\begin{examplebox}{Constant forcing}
+Solve $y'' + 3y' + 2y = 6$, \; $y(0)=0$, \; $y'(0)=0$.
+
+Transform: $s^2Y + 3sY + 2Y = \dfrac6s$, so $Y = \dfrac{6}{s(s+1)(s+2)}$. Partial fractions: $Y = \dfrac{A}{s} + \dfrac{B}{s+1} + \dfrac{C}{s+2}$ with $A = \dfrac{6}{(1)(2)} = 3$, $B = \dfrac{6}{(-1)(1)} = -6$, $C = \dfrac{6}{(-2)(-1)} = 3$. Invert:
+\[ y(t) = 3 - 6e^{-t} + 3e^{-2t}. \]
+\end{examplebox}
+
+\begin{examplebox}{Complete the square (first shifting)}
+Solve $y'' + 2y' + 5y = 0$, \; $y(0) = 0$, \; $y'(0)=2$.
+
+$(s^2 + 2s + 5)Y - 2 = 0$ gives $Y = \dfrac{2}{(s+1)^2 + 4}$. The table gives $\LT^{-1}\{\frac{2}{s^2+4}\} = \sin 2t$. The shift $s\to s+1$ multiplies by $e^{-t}$:
+\[ y(t) = e^{-t}\sin 2t. \]
+\end{examplebox}
+
+\begin{examplebox}{Switching on an input (step function)}
+Solve $y' + y = u(t-2)$, \; $y(0)=0$. (Input switches on at $t=2$.)
+
+$(s+1)Y = \dfrac{e^{-2s}}{s}$, so $Y = e^{-2s}\Big(\dfrac1s - \dfrac1{s+1}\Big)$. By the second shifting rule,
+\[ y(t) = u(t-2)\,\big(1 - e^{-(t-2)}\big). \]
+The output is zero until $t=2$ and then rises smoothly toward 1.
+\end{examplebox}
+
+\begin{examplebox}{Impulse input}
+Solve $y'' + 4y = \delta(t - \pi)$, \; $y(0)=0$, \; $y'(0)=0$.
+
+$(s^2+4)Y = e^{-\pi s}$, so $Y = e^{-\pi s}\dfrac{1}{s^2+4}$, and $\LT^{-1}\{\frac{1}{s^2+4}\} = \tfrac12\sin 2t$. Then
+\[ y(t) = \tfrac12\,u(t-\pi)\sin 2(t-\pi) = \tfrac12\,u(t-\pi)\sin 2t . \]
+The mass is at rest until the hammer blow at $t=\pi$, and then it oscillates.
+\end{examplebox}
+
+\begin{examplebox}{Convolution}
+Find $\LT^{-1}\Big\{\dfrac{1}{s(s^2+1)}\Big\}$.
+
+Here $\dfrac1s\cdot\dfrac1{s^2+1}$ is $\LT\{1\}\cdot\LT\{\sin t\}$, so the inverse is $\displaystyle\int_0^t \sin\tau\,\dd\tau = 1 - \cos t$. (Partial fractions give the same: $\frac1s - \frac{s}{s^2+1}$.)
+\end{examplebox}
+
+\begin{examplebox}{A system}
+Solve $x' = x + 2y$, \; $y' = 2x + y$, \; $x(0)=2$, \; $y(0)=0$ (the system from Chapter 3).
+
+Transform: $sX - 2 = X + 2Y$ and $sY = 2X + Y$. From the second, $Y = \dfrac{2X}{s-1}$. Put it in the first: $(s-1)X - \dfrac{4X}{s-1} = 2$, so $X = \dfrac{2(s-1)}{(s-3)(s+1)} = \dfrac{1}{s-3} + \dfrac{1}{s+1}$. Then $Y = \dfrac{4}{(s-3)(s+1)} = \dfrac{1}{s-3} - \dfrac{1}{s+1}$. Invert:
+\[ x = e^{3t} + e^{-t}, \qquad y = e^{3t} - e^{-t}, \]
+the same answer as the eigenvalue method.
+\end{examplebox}
+
+\begin{practicebox}
+\begin{enumerate}
+  \item Find $\LT\{3t^2 - 2e^{-t} + 5\cos 2t\}$.
+  \item Find $\LT^{-1}\Big\{\dfrac{1}{(s+1)(s+3)}\Big\}$.
+  \item Solve $y' - y = e^{2t}$, \; $y(0) = 1$.
+  \item Solve $y'' + y = \delta(t-\pi)$, \; $y(0)=0$, \; $y'(0)=1$.
+  \item Find $\LT^{-1}\Big\{\dfrac{1}{s^2(s+1)}\Big\}$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{answerbox}
+(1) $\dfrac{6}{s^3} - \dfrac{2}{s+1} + \dfrac{5s}{s^2+4}$. \quad (2) $\tfrac12\big(e^{-t} - e^{-3t}\big)$. \quad (3) $(s-1)Y = 1 + \frac1{s-2}$ gives $Y = \frac1{s-2}$, so $y = e^{2t}$. \quad (4) $Y = \dfrac{1 + e^{-\pi s}}{s^2+1}$, so $y = \sin t + u(t-\pi)\sin(t-\pi) = \sin t - u(t-\pi)\sin t$. This is $\sin t$ for $t<\pi$ and $0$ for $t\ge\pi$. \quad (5) $\frac{1}{s^2(s+1)} = \frac1{s^2} - \frac1s + \frac1{s+1}$, so $t - 1 + e^{-t}$.
+\end{answerbox}

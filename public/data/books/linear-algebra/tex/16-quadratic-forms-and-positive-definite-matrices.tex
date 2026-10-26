@@ -1,0 +1,200 @@
+\chapter{Quadratic Forms and Positive Definite Matrices}
+
+A quadratic form is a polynomial in which every term has degree exactly two, such as $3x^2+4xy+5y^2$. Quadratic forms are the simplest nonlinear functions, and they appear everywhere: the energy of a spring system, the variance of a linear combination of random variables, the second-order Taylor expansion of any smooth function, and the objective of least squares. Whether such a function has a minimum is a question about the signs of the eigenvalues of a symmetric matrix. This chapter classifies quadratic forms, proves the standard tests for positive definiteness (eigenvalues, pivots, Sylvester's criterion), and develops the theory of positive semidefinite matrices that supports covariance matrices, kernels and convex optimisation.
+
+\section{Quadratic forms}
+
+\begin{definition}[Quadratic form]
+A \emph{quadratic form} on $\R^n$ is a function $q(\mathbf{x})=\mathbf{x}\T A\mathbf{x}=\sum_{i,j}a_{ij}x_ix_j$ with $A\in\R^{n\times n}$.
+\end{definition}
+
+Only the symmetric part of $A$ matters: $\mathbf{x}\T A\mathbf{x}=\mathbf{x}\T\tfrac12(A+A\T)\mathbf{x}$, because $\mathbf{x}\T A\mathbf{x}$ is a number and so equals its own transpose $\mathbf{x}\T A\T\mathbf{x}$. We may therefore assume $A$ is symmetric, and then $A$ is uniquely determined by $q$: the diagonal entries are the coefficients of $x_i^2$ and $a_{ij}=a_{ji}$ is half the coefficient of $x_ix_j$.
+
+\begin{example}
+$q(x,y)=3x^2+4xy+5y^2$ has $A=\begin{pmatrix}3&2\\2&5\end{pmatrix}$, since $\begin{pmatrix}x&y\end{pmatrix}A\begin{pmatrix}x\\y\end{pmatrix}=3x^2+4xy+5y^2$.
+\end{example}
+
+\begin{theorem}[Principal axes theorem]\label{thm:principalaxes}
+If $A$ is symmetric with $A=Q\Lambda Q\T$, then the substitution $\mathbf{x}=Q\mathbf{y}$ removes all cross terms:
+\[ \mathbf{x}\T A\mathbf{x}=\lambda_1y_1^2+\lambda_2y_2^2+\dots+\lambda_ny_n^2. \]
+\end{theorem}
+
+\begin{proof}
+$\mathbf{x}\T A\mathbf{x}=(Q\mathbf{y})\T Q\Lambda Q\T(Q\mathbf{y})=\mathbf{y}\T Q\T Q\Lambda Q\T Q\mathbf{y}=\mathbf{y}\T\Lambda\mathbf{y}$.
+\end{proof}
+
+This is the spectral theorem restated: a quadratic form is a sum of squares of coordinates along the orthonormal eigenvector axes, each weighted by its eigenvalue. The sign of each $\lambda_i$ determines the form's behaviour along its axis.
+
+\section{Definiteness}
+
+\begin{definition}[Definiteness]
+A symmetric matrix $A$ (and its form $q$) is
+\begin{itemize}
+  \item \emph{positive definite} if $\mathbf{x}\T A\mathbf{x}>0$ for all $\mathbf{x}\ne\mathbf{0}$;
+  \item \emph{positive semidefinite} if $\mathbf{x}\T A\mathbf{x}\ge0$ for all $\mathbf{x}$;
+  \item \emph{negative definite / semidefinite} if $-A$ is positive definite / semidefinite;
+  \item \emph{indefinite} if it takes both positive and negative values.
+\end{itemize}
+We write $A\succ0$ and $A\succeq0$.
+\end{definition}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=0.85]
+  \foreach \x/\t in {0/{positive definite: bowl},4.6/{negative definite: cap},9.2/{indefinite: saddle}}{
+    \begin{scope}[xshift=\x cm]
+      \draw[axis] (-1.5,0)--(1.5,0); \draw[axis] (0,-1.1)--(0,1.7);
+      \node[lab] at (0,-1.5){\t};
+    \end{scope}}
+  \begin{scope}[xshift=0cm] \draw[thick,accent,domain=-1.2:1.2,samples=30] plot (\x,{0.9*\x*\x}); \end{scope}
+  \begin{scope}[xshift=4.6cm] \draw[thick,accent,domain=-1.2:1.2,samples=30] plot (\x,{1.4-0.9*\x*\x}); \end{scope}
+  \begin{scope}[xshift=9.2cm] \draw[thick,accent,domain=-1.2:1.2,samples=30] plot (\x,{0.7*\x*\x*\x-0.2*\x}); \end{scope}
+\end{tikzpicture}
+\caption{One-dimensional cross-sections of the three main shapes. A positive definite form has a unique minimum at the origin; an indefinite form has a saddle.}
+\end{figure}
+
+\begin{theorem}[Eigenvalue test]\label{thm:eigdef}
+A symmetric matrix $A$ is positive definite iff all its eigenvalues are positive; positive semidefinite iff all are nonnegative; indefinite iff it has both a positive and a negative eigenvalue.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:principalaxes}, $\mathbf{x}\T A\mathbf{x}=\sum\lambda_iy_i^2$ where $\mathbf{y}=Q\T\mathbf{x}\ne\mathbf{0}$ iff $\mathbf{x}\ne\mathbf{0}$. If all $\lambda_i>0$ the sum is positive for $\mathbf{y}\ne\mathbf{0}$. Conversely taking $\mathbf{x}=\mathbf{q}_i$ gives $\mathbf{q}_i\T A\mathbf{q}_i=\lambda_i$, which must be positive. The other cases are identical.
+\end{proof}
+
+\begin{theorem}[Equivalent characterisations of positive definiteness]\label{thm:pdequiv}
+For symmetric $A\in\R^{n\times n}$ the following are equivalent.
+\begin{enumerate}[label=(\alph*)]
+  \item $A\succ0$.
+  \item All eigenvalues of $A$ are positive.
+  \item All pivots of $A$ (in elimination without row exchanges) are positive.
+  \item (\textbf{Sylvester's criterion}) All leading principal minors are positive: $\det A_k>0$ for $k=1,\dots,n$, where $A_k$ is the upper-left $k\times k$ block.
+  \item $A=R\T R$ for some matrix $R$ with independent columns (e.g.\ the Cholesky factor, Theorem~\ref{thm:chol}).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a)$\Leftrightarrow$(b) is Theorem~\ref{thm:eigdef}. (a)$\Rightarrow$(d): every $A_k$ is positive definite (restrict the form to vectors supported in the first $k$ coordinates), so its eigenvalues are positive and $\det A_k$, their product, is positive. (d)$\Rightarrow$(c): the $k$-th pivot equals $\det A_k/\det A_{k-1}>0$ (with $\det A_0=1$), since elimination without exchanges preserves leading principal minors. (c)$\Rightarrow$(e): with positive pivots $A=LU=LDL\T$ ($D$ the pivot matrix, by symmetry as in the proof of Theorem~\ref{thm:chol}), so $A=(D^{1/2}L\T)\T(D^{1/2}L\T)$, and $R=D^{1/2}L\T$ is invertible. (e)$\Rightarrow$(a): $\mathbf{x}\T R\T R\mathbf{x}=\norm{R\mathbf{x}}^2>0$ for $\mathbf{x}\ne\mathbf{0}$ because $R$ has independent columns.
+\end{proof}
+
+\begin{pitfall}{Sylvester's criterion for semidefinite matrices}
+For positive \emph{semi}definiteness it is \emph{not} enough that the leading principal minors are nonnegative: $A=\begin{pmatrix}0&0\\0&-1\end{pmatrix}$ has leading minors $0$ and $0$, yet is negative semidefinite. The correct statement for $A\succeq0$ requires \emph{all} principal minors (not only leading ones) to be nonnegative. Also, positivity of the diagonal entries and of the determinant does not suffice for $n\ge3$.
+\end{pitfall}
+
+\begin{example}
+Is $A=\begin{pmatrix}2&-1&0\\-1&2&-1\\0&-1&2\end{pmatrix}$ positive definite? Leading minors: $2$, $\det\begin{pmatrix}2&-1\\-1&2\end{pmatrix}=3$, $\det A=4$, all positive. Alternatively its eigenvalues are $2,2\pm\sqrt2$ (Example~\ref{ex:spectral}), all positive. And the form is $2x^2+2y^2+2z^2-2xy-2yz=x^2+(x-y)^2+(y-z)^2+z^2$, visibly positive for $\mathbf{x}\ne\mathbf{0}$.
+\end{example}
+
+\begin{example}[Hessian and critical points]
+For a smooth $f:\R^n\to\R$ with $\nabla f(\mathbf{a})=\mathbf{0}$, the second-order Taylor formula gives $f(\mathbf{a}+\mathbf{h})\approx f(\mathbf{a})+\tfrac12\mathbf{h}\T H\mathbf{h}$ with Hessian $H$. If $H\succ0$ the point is a strict local minimum, if $H\prec0$ a local maximum, and if $H$ is indefinite a saddle. For $f(x,y)=x^2+xy+y^2-3x$: $\nabla f=(2x+y-3,\ x+2y)=\mathbf{0}$ at $(2,-1)$, and $H=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ has eigenvalues $1,3>0$, so it is a minimum.
+\end{example}
+
+\begin{interview}{quick tests for $2\times2$}
+For $A=\begin{pmatrix}a&b\\b&c\end{pmatrix}$: $A\succ0\iff a>0$ and $ac-b^2>0$. Indefinite $\iff ac-b^2<0$. Equivalent: $\tr A>0$ and $\det A>0$ (both eigenvalues positive). Remember that $a>0,c>0$ alone is not enough: $\begin{pmatrix}1&2\\2&1\end{pmatrix}$ has determinant $-3$ and is indefinite.
+\end{interview}
+
+\section{Congruence and Sylvester's law of inertia}
+
+A change of variables $\mathbf{x}=S\mathbf{y}$ with $S$ invertible turns the form with matrix $A$ into the form with matrix $S\T AS$. We call $A$ and $S\T AS$ \emph{congruent}. Unlike similarity, congruence need not preserve eigenvalues, but it preserves the \emph{signs}.
+
+\begin{theorem}[Sylvester's law of inertia]\label{thm:inertia}
+If $A$ and $B=S\T AS$ are congruent symmetric matrices, they have the same number of positive eigenvalues, the same number of negative eigenvalues and the same number of zero eigenvalues. The triple (positive, negative, zero), called the \emph{inertia}, is the complete invariant of a quadratic form over $\R$.
+\end{theorem}
+
+\begin{proof}[Idea of proof]
+Let $p(A)$ be the maximal dimension of a subspace on which $\mathbf{x}\T A\mathbf{x}>0$ for all nonzero $\mathbf{x}$; this equals the number of positive eigenvalues, by Rayleigh--Ritz, and is clearly invariant under the invertible substitution $\mathbf{x}=S\mathbf{y}$, which carries such subspaces to such subspaces of the same dimension. The same argument works for negative and zero.
+\end{proof}
+
+Consequently every real quadratic form can be written, after an invertible (not necessarily orthogonal) substitution, as $y_1^2+\dots+y_p^2-y_{p+1}^2-\dots-y_{p+m}^2$. Completing the square, or symmetric elimination $A=LDL\T$, finds the inertia without computing eigenvalues: it is the sign pattern of the pivots in $D$.
+
+\begin{example}
+$q=x^2+4xy+3y^2=(x+2y)^2-y^2$. With $u=x+2y$, $v=y$: $q=u^2-v^2$, inertia $(1,1,0)$: indefinite. Elimination agrees: pivots $1$ and $3-4=-1$.
+\end{example}
+
+\section{Positive semidefinite matrices}
+
+Positive semidefinite matrices are the matrix analogues of nonnegative numbers.
+
+\begin{theorem}[Properties of PSD matrices]\label{thm:psd}
+Let $A,B\succeq0$ be symmetric.
+\begin{enumerate}[label=(\roman*)]
+  \item $A+B\succeq0$ and $cA\succeq0$ for $c\ge0$ (the PSD matrices form a convex cone); $S\T AS\succeq0$ for any $S$.
+  \item $A\succeq0$ iff $A=R\T R$ for some $R$ (a \emph{Gram matrix}: $a_{ij}=\ip{\mathbf{r}_i}{\mathbf{r}_j}$ for the columns $\mathbf{r}_i$ of $R$); every Gram matrix is PSD.
+  \item $A\succeq0$ has a unique PSD square root $A^{1/2}$ with $(A^{1/2})^2=A$.
+  \item $\tr(AB)\ge0$, and $\tr(AB)=0$ iff $AB=0$.
+  \item If $A\succeq0$ and $a_{ii}=0$ then row and column $i$ vanish.
+  \item The Hadamard (entrywise) product $A\circ B$ is again PSD (Schur product theorem).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $\mathbf{x}\T(A+B)\mathbf{x}=\mathbf{x}\T A\mathbf{x}+\mathbf{x}\T B\mathbf{x}\ge0$ and $\mathbf{x}\T S\T AS\mathbf{x}=(S\mathbf{x})\T A(S\mathbf{x})\ge0$. (ii) With $A=Q\Lambda Q\T$, take $R=\Lambda^{1/2}Q\T$ (possible since $\lambda_i\ge0$); conversely $\mathbf{x}\T R\T R\mathbf{x}=\norm{R\mathbf{x}}^2\ge0$. (iii) Existence: $A^{1/2}=Q\Lambda^{1/2}Q\T$; uniqueness is outlined in the exercises. (iv) $\tr(AB)=\tr(A^{1/2}BA^{1/2})\ge0$ since $A^{1/2}BA^{1/2}\succeq0$ has nonnegative diagonal. (v) $0=a_{ii}=\norm{R\mathbf{e}_i}^2$ forces $R\mathbf{e}_i=\mathbf{0}$, so the $i$-th column of $R$, and hence the $i$-th row and column of $A=R\T R$, vanish. (vi) Write $B=\sum_k\mathbf{b}_k\mathbf{b}_k\T$; then $A\circ B=\sum_k D_{\mathbf{b}_k}AD_{\mathbf{b}_k}$ with $D_{\mathbf{b}}=\diag(\mathbf{b})$, a sum of congruences of $A$.
+\end{proof}
+
+\begin{interview}{covariance matrices and kernels are PSD}
+The covariance matrix $\Sigma=\mathbb{E}[(X-\mu)(X-\mu)\T]$ is PSD because $\mathbf{u}\T\Sigma\mathbf{u}=\operatorname{Var}(\mathbf{u}\T X)\ge0$; it is positive definite iff no nonzero linear combination of the variables is constant. A \emph{kernel} (Mercer) $k(\mathbf{x},\mathbf{y})$ is valid iff every Gram matrix $[k(\mathbf{x}_i,\mathbf{x}_j)]$ is PSD, and part (vi) explains why products of kernels are kernels. In Gaussian processes, any covariance function must produce PSD matrices.
+\end{interview}
+
+\subsection*{The Schur complement}
+
+Let $M=\begin{pmatrix}A&B\\B\T&C\end{pmatrix}$ be symmetric with $A$ invertible. Block elimination gives
+\[ M=\begin{pmatrix}I&0\\B\T A^{-1}&I\end{pmatrix}\begin{pmatrix}A&0\\0&S\end{pmatrix}\begin{pmatrix}I&A^{-1}B\\0&I\end{pmatrix},\qquad S=C-B\T A^{-1}B, \]
+the \emph{Schur complement} of $A$ in $M$. The outer factors are invertible and transpose to each other, so $M$ is congruent to $\diag(A,S)$ and by Sylvester's law:
+
+\begin{theorem}[Schur complement test]\label{thm:schur}
+If $A\succ0$, then $M\succ0\iff S\succ0$, and $M\succeq0\iff S\succeq0$. Moreover $\det M=\det A\cdot\det S$.
+\end{theorem}
+
+This gives the conditional covariance of a Gaussian: if $(X,Y)$ has joint covariance $M$, then $\operatorname{Cov}(Y\mid X)=S$.
+
+\begin{theorem}[Loewner order]\label{thm:loewner}
+Write $A\succeq B$ if $A-B\succeq0$. This is a partial order on symmetric matrices. If $A\succeq B\succ0$ then $B^{-1}\succeq A^{-1}$ and $\det A\ge\det B$.
+\end{theorem}
+
+\begin{proof}
+Reflexive, antisymmetric and transitive: use Theorem~\ref{thm:psd}(i) and the fact that a matrix both $\succeq0$ and $\preceq0$ is zero. For inversion, $A\succeq B\succ0$ implies $B^{-1/2}AB^{-1/2}\succeq I$, so its eigenvalues are $\ge1$, hence those of its inverse $B^{1/2}A^{-1}B^{1/2}$ are $\le1$, i.e.\ $B^{1/2}A^{-1}B^{1/2}\preceq I$, giving $A^{-1}\preceq B^{-1}$. For determinants, $\det(B^{-1/2}AB^{-1/2})$ is the product of eigenvalues $\ge1$.
+\end{proof}
+
+\begin{summarybox}
+\begin{itemize}
+  \item A quadratic form $\mathbf{x}\T A\mathbf{x}$ has a unique symmetric matrix; the principal axes theorem gives $\sum\lambda_iy_i^2$ in the eigenbasis.
+  \item $A\succ0\iff$ all eigenvalues $>0\iff$ all pivots $>0\iff$ all leading minors $>0\iff A=R\T R$ with $R$ of full column rank.
+  \item Congruence preserves inertia (counts of positive, negative, zero eigenvalues): Sylvester's law.
+  \item PSD matrices form a convex cone, are exactly the Gram matrices, have unique PSD square roots, and include covariance matrices and kernel matrices.
+  \item The Schur complement $S=C-B\T A^{-1}B$ tests definiteness of block matrices and gives conditional covariances.
+  \item The Hessian's definiteness classifies critical points.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Classify $q=x^2+4xy+4y^2$, $q=x^2+6xy+y^2$ and $q=2x^2-2xy+3y^2+2yz+z^2$ as positive definite, semidefinite or indefinite.
+\end{exercise}
+
+\begin{exercise}
+For which values of $c$ is $\begin{pmatrix}1&c&0\\c&1&c\\0&c&1\end{pmatrix}$ positive definite?
+\end{exercise}
+
+\begin{exercise}
+Prove that if $A$ is positive definite then so are $A^{-1}$, $A^k$ and $S\T AS$ for invertible $S$.
+\end{exercise}
+
+\begin{exercise}
+Show that if $A\succeq0$ and $\mathbf{x}\T A\mathbf{x}=0$ then $A\mathbf{x}=\mathbf{0}$. (Hint: use $A=R\T R$.)
+\end{exercise}
+
+\begin{exercise}
+Prove uniqueness of the PSD square root: if $B\succeq0$ and $B^2=A$ then $B$ commutes with $A$, hence is simultaneously diagonalisable with it, so $B=A^{1/2}$.
+\end{exercise}
+
+\begin{exercise}
+Verify the Schur complement identity $\det M=\det A\det S$ for $M=\begin{pmatrix}2&1&1\\1&2&0\\1&0&3\end{pmatrix}$ with $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+Find and classify the critical points of $f(x,y)=x^3-3x+y^2$ and of $g(x,y)=x^2-y^2+xy$.
+\end{exercise}
+
+\begin{exercise}
+Prove Theorem~\ref{thm:psd}(vi) in detail for $2\times 2$ matrices, and deduce that $(\mathbf{x}\T\mathbf{y}+1)^2$ is a valid kernel.
+\end{exercise}

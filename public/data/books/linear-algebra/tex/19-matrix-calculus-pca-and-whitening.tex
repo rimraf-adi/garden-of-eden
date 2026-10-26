@@ -1,0 +1,169 @@
+\chapter{Matrix Calculus, PCA and Whitening}
+
+Machine learning writes its objectives in matrices: $\norm{X\mathbf{w}-\mathbf{y}}^2$, $\log\det\Sigma$, $\tr(W\T AW)$. To optimise them we need derivatives with respect to vectors and matrices. This chapter develops the small set of rules that cover almost every case, derives least squares and the Gaussian maximum likelihood estimate by differentiation, re-derives principal component analysis as a constrained optimisation problem, and introduces whitening and the Kronecker product. The rules are not mysterious: each follows from the one-dimensional rule applied componentwise, and the main difficulty is bookkeeping, which these tools make routine.
+
+\section{Gradients and Jacobians}
+
+\begin{definition}[Gradient]
+For a scalar function $f:\R^n\to\R$ the \emph{gradient} $\nabla f(\mathbf{x})\in\R^n$ is the vector of partial derivatives $(\nabla f)_i=\partial f/\partial x_i$. It satisfies, to first order,
+\[ f(\mathbf{x}+\mathbf{h})=f(\mathbf{x})+\nabla f(\mathbf{x})\T\mathbf{h}+o(\norm{\mathbf{h}}). \]
+\end{definition}
+
+For a vector function $\mathbf{F}:\R^n\to\R^m$ the \emph{Jacobian} $J_{\mathbf{F}}\in\R^{m\times n}$ has entries $\partial F_i/\partial x_j$, and $\mathbf{F}(\mathbf{x}+\mathbf{h})\approx\mathbf{F}(\mathbf{x})+J_{\mathbf{F}}\mathbf{h}$. The Hessian of a scalar $f$ is the symmetric matrix $H_{ij}=\partial^2f/\partial x_i\partial x_j$, the Jacobian of $\nabla f$.
+
+\begin{intuition}
+The most reliable way to differentiate matrix expressions is the \emph{differential} method: expand $f(\mathbf{x}+\mathbf{h})$ to first order, collect the terms linear in $\mathbf{h}$ and read off the gradient from the form $\nabla f\T\mathbf{h}$. It avoids index gymnastics and catches transposition mistakes.
+\end{intuition}
+
+\begin{theorem}[Basic gradient rules]\label{thm:gradrules}
+For constant $\mathbf{a}\in\R^n$, $A\in\R^{n\times n}$ and $B\in\R^{m\times n}$:
+\begin{enumerate}[label=(\roman*)]
+  \item $\nabla(\mathbf{a}\T\mathbf{x})=\mathbf{a}$;
+  \item $\nabla(\mathbf{x}\T A\mathbf{x})=(A+A\T)\mathbf{x}$, which is $2A\mathbf{x}$ for symmetric $A$, and the Hessian is $A+A\T$;
+  \item $\nabla\norm{\mathbf{x}}^2=2\mathbf{x}$ and $\nabla\norm{B\mathbf{x}-\mathbf{b}}^2=2B\T(B\mathbf{x}-\mathbf{b})$;
+  \item $\nabla\norm{\mathbf{x}}=\mathbf{x}/\norm{\mathbf{x}}$ for $\mathbf{x}\ne\mathbf{0}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is $\sum a_ix_i$. (ii) $(\mathbf{x}+\mathbf{h})\T A(\mathbf{x}+\mathbf{h})=\mathbf{x}\T A\mathbf{x}+\mathbf{h}\T A\mathbf{x}+\mathbf{x}\T A\mathbf{h}+\mathbf{h}\T A\mathbf{h}$; the middle terms are $\mathbf{h}\T A\mathbf{x}+\mathbf{h}\T A\T\mathbf{x}=\mathbf{h}\T(A+A\T)\mathbf{x}$ and the last is $O(\norm{\mathbf{h}}^2)$. (iii) For $\norm{B\mathbf{x}-\mathbf{b}}^2$ set $\mathbf{r}=B\mathbf{x}-\mathbf{b}$: $\norm{\mathbf{r}+B\mathbf{h}}^2=\norm{\mathbf{r}}^2+2\mathbf{r}\T B\mathbf{h}+O(\norm{\mathbf{h}}^2)$, so the gradient is $2B\T\mathbf{r}$. (iv) chain rule: $\norm{\mathbf{x}}=(\mathbf{x}\T\mathbf{x})^{1/2}$.
+\end{proof}
+
+\begin{theorem}[Chain rule]\label{thm:chainrule}
+If $\mathbf{G}:\R^k\to\R^n$ and $\mathbf{F}:\R^n\to\R^m$ are differentiable, then $J_{\mathbf{F}\circ\mathbf{G}}=J_{\mathbf{F}}(\mathbf{G})\,J_{\mathbf{G}}$. For a scalar $f=\phi\circ\mathbf{G}$, $\nabla f=J_{\mathbf{G}}\T\nabla\phi(\mathbf{G})$.
+\end{theorem}
+
+The chain rule is composition of linear maps (Chapter~9): Jacobians multiply. Reverse-mode automatic differentiation (backpropagation) evaluates the product $J_{\mathbf{G}}\T\nabla\phi$ from the output backwards, which is cheap when the output is a scalar.
+
+\begin{example}[Least squares by calculus]\label{ex:lscalc}
+Minimise $f(\mathbf{w})=\norm{X\mathbf{w}-\mathbf{y}}^2$. By Theorem~\ref{thm:gradrules}(iii), $\nabla f=2X\T(X\mathbf{w}-\mathbf{y})=\mathbf{0}$ gives the normal equations $X\T X\mathbf{w}=X\T\mathbf{y}$ of Chapter~12. The Hessian is $2X\T X\succeq0$, so $f$ is convex and every stationary point is a global minimiser; it is unique when $X\T X\succ0$. Gradient descent $\mathbf{w}\leftarrow\mathbf{w}-\eta\nabla f$ converges for $\eta<2/\lambda_{\max}(2X\T X)$, at a rate governed by the condition number $\kappa(X\T X)$.
+\end{example}
+
+\begin{interview}{why gradient descent is slow on ill-conditioned problems}
+For a quadratic $\tfrac12\mathbf{x}\T A\mathbf{x}$ with $A\succ0$, gradient descent with the best step size contracts the error by $\frac{\kappa-1}{\kappa+1}$ per step, where $\kappa=\lambda_{\max}/\lambda_{\min}$. If $\kappa=10^4$ the contraction is $0.9998$ and thousands of steps are needed: the level sets are long thin ellipses and the iterates zigzag across the valley. This is the reason for preconditioning, momentum, conjugate gradients (Chapter~21) and normalisation layers.
+\end{interview}
+
+\section{Derivatives with respect to matrices}
+
+For a scalar function $f(X)$ of a matrix $X\in\R^{m\times n}$, the gradient $\nabla_Xf\in\R^{m\times n}$ is defined by $f(X+H)=f(X)+\tr\big((\nabla_Xf)\T H\big)+o(\norm{H})$, i.e.\ $(\nabla_Xf)_{ij}=\partial f/\partial x_{ij}$. Here the trace inner product $\ip{A}{B}=\tr(A\T B)$ of Chapter~11 plays the role of the dot product.
+
+\begin{theorem}[Matrix gradient table]\label{thm:matgrad}
+For constant matrices of compatible sizes:
+\begin{enumerate}[label=(\roman*)]
+  \item $\nabla_X\tr(A\T X)=A$, $\nabla_X\tr(AX)=A\T$;
+  \item $\nabla_X\tr(X\T AX)=(A+A\T)X$;
+  \item $\nabla_X\tr(AXB)=A\T B\T$;
+  \item $\nabla_X\log\det X=X^{-\mathsf T}=(X^{-1})\T$ for invertible $X$ with $\det X>0$;
+  \item $\nabla_X\det X=\det(X)\,X^{-\mathsf T}$;
+  \item the differential of the inverse: $d(X^{-1})=-X^{-1}(dX)X^{-1}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i)--(iii) expand $f(X+H)$ and read off the linear term, using $\tr(AB)=\tr(BA)$ (Proposition~\ref{prop:trace}). For (iv): $\det(X+H)=\det X\det(I+X^{-1}H)=\det X\,(1+\tr(X^{-1}H)+O(\norm{H}^2))$, using that $\det(I+E)=1+\tr E+O(\norm{E}^2)$ (from the Leibniz formula). Hence $d\log\det X=\tr(X^{-1}dX)=\tr\big((X^{-\mathsf T})\T dX\big)$. (v) follows from (iv). (vi): differentiate $XX^{-1}=I$.
+\end{proof}
+
+\begin{example}[Maximum likelihood for a Gaussian]
+For samples $\mathbf{x}_1,\dots,\mathbf{x}_N\sim\mathcal{N}(\boldsymbol{\mu},\Sigma)$ the log-likelihood is
+\[ \ell=-\tfrac N2\log\det\Sigma-\tfrac12\sum_i(\mathbf{x}_i-\boldsymbol{\mu})\T\Sigma^{-1}(\mathbf{x}_i-\boldsymbol{\mu})+\text{const}. \]
+Setting $\nabla_{\boldsymbol\mu}\ell=\Sigma^{-1}\sum(\mathbf{x}_i-\boldsymbol\mu)=\mathbf{0}$ gives $\hat{\boldsymbol\mu}=\bar{\mathbf{x}}$. For $\Sigma$, write $P=\Sigma^{-1}$: $\ell=\tfrac N2\log\det P-\tfrac12\tr(PS)$ with $S=\sum(\mathbf{x}_i-\boldsymbol\mu)(\mathbf{x}_i-\boldsymbol\mu)\T$, using $\mathbf{v}\T P\mathbf{v}=\tr(P\mathbf{v}\mathbf{v}\T)$. Then $\nabla_P\ell=\tfrac N2P^{-1}-\tfrac12S=0$ gives $\hat\Sigma=S/N$, the sample covariance.
+\end{example}
+
+\section{Principal component analysis as optimisation}
+
+Let the rows of $X\in\R^{N\times d}$ be centred data points with sample covariance $C=X\T X/N\succeq0$. We want a unit direction $\mathbf{u}$ such that the projections $X\mathbf{u}$ have maximal variance.
+
+\begin{theorem}[PCA]\label{thm:pcaopt}
+The problem $\max_{\norm{\mathbf{u}}=1}\mathbf{u}\T C\mathbf{u}$ is solved by the eigenvector $\mathbf{q}_1$ of $C$ for its largest eigenvalue $\lambda_1$, with optimal value $\lambda_1$. More generally the $k$-dimensional subspace maximising the retained variance $\tr(U\T CU)$ over $U\in\R^{d\times k}$ with $U\T U=I$ is $\Span\{\mathbf{q}_1,\dots,\mathbf{q}_k\}$, and the maximum is $\lambda_1+\dots+\lambda_k$.
+\end{theorem}
+
+\begin{proof}
+Via Lagrange multipliers: the Lagrangian $\mathbf{u}\T C\mathbf{u}-\mu(\mathbf{u}\T\mathbf{u}-1)$ has gradient $2C\mathbf{u}-2\mu\mathbf{u}=\mathbf{0}$, so $\mathbf{u}$ is an eigenvector with $\mu$ its eigenvalue, and the objective equals $\mu$; so the best is the top eigenvector. This is also the Rayleigh--Ritz theorem (Theorem~\ref{thm:rayleigh}). For $k$ directions, write $U$ in the eigenbasis: $\tr(U\T CU)=\sum_i\lambda_i\norm{\mathbf{q}_i\T U}^2$ where the weights $w_i=\norm{\mathbf{q}_i\T U}^2\in[0,1]$ satisfy $\sum_iw_i=k$ (since $U\T U=I$ gives $\sum_i\norm{\mathbf{q}_i\T U}^2=\tr(U\T QQ\T U)=k$). Maximising a linear function of the $w_i$ with these constraints puts weight $1$ on the $k$ largest eigenvalues.
+\end{proof}
+
+\begin{theorem}[PCA is also best reconstruction]\label{thm:pcarecon}
+Among all rank-$k$ orthogonal projections $UU\T$, the one minimising the mean squared reconstruction error $\frac1N\sum_i\norm{\mathbf{x}_i-UU\T\mathbf{x}_i}^2$ is the PCA projection, with error $\lambda_{k+1}+\dots+\lambda_d$.
+\end{theorem}
+
+\begin{proof}
+$\norm{\mathbf{x}-UU\T\mathbf{x}}^2=\norm{\mathbf{x}}^2-\norm{U\T\mathbf{x}}^2$ by Pythagoras, so minimising the reconstruction error is the same as maximising the retained variance $\tr(U\T CU)$. Apply Theorem~\ref{thm:pcaopt}; the total variance is $\tr C=\sum\lambda_i$. This is also the Eckart--Young theorem (Theorem~\ref{thm:eckart}) applied to $X$.
+\end{proof}
+
+\begin{interview}{two views of PCA, one answer}
+\emph{Maximum variance}: directions along which the data spread most. \emph{Minimum reconstruction error}: the subspace that best preserves the data. They coincide because the total variance is fixed and splits, by Pythagoras, into the part kept and the part lost. The fraction of variance explained by $k$ components is $\sum_{i\le k}\lambda_i/\sum_i\lambda_i$. In practice compute PCA by the SVD of $X$ (Theorem~\ref{thm:pca}), not by forming $C$.
+\end{interview}
+
+\begin{pitfall}{PCA assumptions}
+PCA is not scale-invariant: a feature measured in millimetres dominates one in metres. Standardise features (unit variance) first unless the scales are meaningful. PCA also captures only second-order (linear) structure, and large variance does not imply relevance to the prediction target: a high-variance direction can be pure noise, while a predictive direction can have small variance.
+\end{pitfall}
+
+\section{Whitening and Mahalanobis distance}
+
+If $C=Q\Lambda Q\T\succ0$, the matrix $W=\Lambda^{-1/2}Q\T$ satisfies $WCW\T=I$. The transformed data $\mathbf{z}=W\mathbf{x}$ has identity covariance: it is \emph{whitened} (decorrelated and scaled). Another valid choice is the symmetric $W=C^{-1/2}$ (ZCA whitening). Whitening is Gram--Schmidt of the random variables, with respect to the covariance inner product.
+
+\begin{definition}[Mahalanobis distance]
+$d_M(\mathbf{x},\mathbf{y})=\sqrt{(\mathbf{x}-\mathbf{y})\T C^{-1}(\mathbf{x}-\mathbf{y})}$ is the Euclidean distance after whitening, since $\norm{W\mathbf{x}-W\mathbf{y}}^2=(\mathbf{x}-\mathbf{y})\T W\T W(\mathbf{x}-\mathbf{y})=(\mathbf{x}-\mathbf{y})\T C^{-1}(\mathbf{x}-\mathbf{y})$.
+\end{definition}
+
+The level sets of the Gaussian density $\propto\exp(-\tfrac12d_M^2)$ are the ellipsoids of Chapter~15 with axes along the eigenvectors of $C$ and lengths proportional to $\sqrt{\lambda_i}$.
+
+\section{Kronecker products and vectorisation}
+
+\begin{definition}[Kronecker product, vec]
+For $A\in\R^{m\times n}$ and $B\in\R^{p\times q}$ the \emph{Kronecker product} $A\otimes B\in\R^{mp\times nq}$ is the block matrix $(a_{ij}B)$. The \emph{vectorisation} $\mathrm{vec}(X)$ stacks the columns of $X$ into one long vector.
+\end{definition}
+
+\begin{theorem}[Rules]\label{thm:kron}
+(i) $(A\otimes B)(C\otimes D)=(AC)\otimes(BD)$; (ii) $(A\otimes B)^{-1}=A^{-1}\otimes B^{-1}$ and $(A\otimes B)\T=A\T\otimes B\T$; (iii) $\mathrm{vec}(AXB)=(B\T\otimes A)\mathrm{vec}(X)$; (iv) if $A,B$ have eigenvalues $\lambda_i,\mu_j$, then $A\otimes B$ has eigenvalues $\lambda_i\mu_j$, and $\det(A\otimes B)=\det(A)^p\det(B)^m$ for $A\in\R^{m\times m}$, $B\in\R^{p\times p}$.
+\end{theorem}
+
+Property (iii) turns matrix equations into ordinary linear systems: the Sylvester equation $AX+XB=C$ becomes $(I\otimes A+B\T\otimes I)\mathrm{vec}(X)=\mathrm{vec}(C)$, and the Lyapunov equation $AX+XA\T=Q$ is the special case from stability theory. In machine learning, the Fisher information of a layer is approximated by a Kronecker product (K-FAC), and tensor products underlie multi-head attention in the einsum notation.
+
+\begin{example}
+For $A=\begin{pmatrix}1&2\\0&1\end{pmatrix}$ and $B=\begin{pmatrix}0&1\\1&0\end{pmatrix}$, $A\otimes B=\begin{pmatrix}0&1&0&2\\1&0&2&0\\0&0&0&1\\0&0&1&0\end{pmatrix}$. Its eigenvalues are $\{1,1\}\times\{1,-1\}=\{1,1,-1,-1\}$, matching Theorem~\ref{thm:kron}(iv).
+\end{example}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Gradients: $\nabla(\mathbf{a}\T\mathbf{x})=\mathbf{a}$, $\nabla(\mathbf{x}\T A\mathbf{x})=(A+A\T)\mathbf{x}$, $\nabla\norm{B\mathbf{x}-\mathbf{b}}^2=2B\T(B\mathbf{x}-\mathbf{b})$; Jacobians multiply under composition.
+  \item Matrix gradients use the trace inner product: $\nabla_X\tr(AXB)=A\T B\T$, $\nabla_X\log\det X=X^{-\mathsf T}$, $d(X^{-1})=-X^{-1}dX\,X^{-1}$.
+  \item Gaussian MLE gives $\hat{\boldsymbol\mu}=\bar{\mathbf{x}}$ and $\hat\Sigma=$ sample covariance by matrix calculus.
+  \item PCA maximises $\mathbf{u}\T C\mathbf{u}$ and minimises reconstruction error; the solution is the top-$k$ eigenvectors of the covariance (the top-$k$ right singular vectors of the centred data).
+  \item Whitening $W=\Lambda^{-1/2}Q\T$ makes covariance the identity; the Mahalanobis distance is the Euclidean distance after whitening.
+  \item The Kronecker product and $\mathrm{vec}$ convert matrix equations to linear systems.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Compute $\nabla f$ and the Hessian for $f(\mathbf{x})=\tfrac12\mathbf{x}\T A\mathbf{x}-\mathbf{b}\T\mathbf{x}$ with $A\succ0$ and show the unique minimiser solves $A\mathbf{x}=\mathbf{b}$.
+\end{exercise}
+
+\begin{exercise}
+Derive the ridge regression solution (Theorem~\ref{thm:ridge}) by setting the gradient of $\norm{X\mathbf{w}-\mathbf{y}}^2+\lambda\norm{\mathbf{w}}^2$ to zero.
+\end{exercise}
+
+\begin{exercise}
+Find $\nabla_X\tr(X\T X)$, $\nabla_X\norm{X}_F^2$ and $\nabla_X\tr(X^{-1}A)$.
+\end{exercise}
+
+\begin{exercise}
+For the logistic loss $\ell(\mathbf{w})=\sum_i\log(1+e^{-y_i\mathbf{w}\T\mathbf{x}_i})$, show that $\nabla\ell=-\sum_iy_i\sigma(-y_i\mathbf{w}\T\mathbf{x}_i)\mathbf{x}_i$ and that the Hessian is $X\T DX\succeq0$ with $D$ diagonal, so $\ell$ is convex.
+\end{exercise}
+
+\begin{exercise}
+Compute the principal components of the data points $(2,0),(0,2),(-2,0),(0,-2),(1,1),(-1,-1)$: centre, find $C$, eigenvalues and eigenvectors, and the fraction of variance explained by the first component.
+\end{exercise}
+
+\begin{exercise}
+Prove that whitening is not unique: if $WCW\T=I$ then $W'=RW$ also whitens for every orthogonal $R$. Why is PCA whitening ($R=I$ with $W=\Lambda^{-1/2}Q\T$) different from ZCA ($W=C^{-1/2}$)?
+\end{exercise}
+
+\begin{exercise}
+Verify $\mathrm{vec}(AXB)=(B\T\otimes A)\mathrm{vec}(X)$ for $2\times 2$ matrices, and use it to solve $AX+XA=I$ for $A=\diag(1,2)$.
+\end{exercise}
+
+\begin{exercise}
+Show that $\det(I+\mathbf{u}\mathbf{v}\T)=1+\mathbf{v}\T\mathbf{u}$ (the matrix determinant lemma) and use it to compute $\nabla_{\mathbf{u}}\log\det(A+\mathbf{u}\mathbf{u}\T)$.
+\end{exercise}

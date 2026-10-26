@@ -46,11 +46,11 @@ export default function ExerciseDrill({
   const getCategoryBadge = (cat: PracticeExercise['category']) => {
     switch (cat) {
       case 'Derivation':
-        return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20';
+        return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
       case 'Numerical':
         return 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20';
       case 'Algorithmic':
-        return 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20';
+        return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20';
       case 'Conceptual':
         return 'bg-zinc-500/10 text-zinc-600 dark:text-zinc-400 border-zinc-500/20';
     }
@@ -61,7 +61,7 @@ export default function ExerciseDrill({
       className={`rounded-2xl border transition-all p-6 ${
         isMastered
           ? 'border-emerald-500/40 bg-emerald-500/[0.02] dark:bg-emerald-950/[0.05] shadow-sm'
-          : 'border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700'
+          : 'border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md shadow-sm hover:border-zinc-300 dark:hover:border-zinc-700'
       }`}
     >
       {/* Top Header Strip */}
@@ -69,7 +69,7 @@ export default function ExerciseDrill({
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href={`/chapter/0${exercise.chapterNum}`}
-            className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider hover:underline"
+            className="font-mono text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider hover:underline"
           >
             Ch.{exercise.chapterNum.toString().padStart(2, '0')} · {exercise.chapterTitle}
           </Link>
@@ -133,7 +133,7 @@ export default function ExerciseDrill({
           {revealedHints < exercise.hints.length && (
             <button
               onClick={() => setRevealedHints((prev) => prev + 1)}
-              className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
             >
               <HelpCircle className="h-3.5 w-3.5" />
               <span>
@@ -150,14 +150,14 @@ export default function ExerciseDrill({
           onClick={() => setShowSolution(!showSolution)}
           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/80 text-xs font-mono font-medium text-zinc-800 dark:text-zinc-200 transition-colors"
         >
-          {showSolution ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5 text-indigo-500" />}
+          {showSolution ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5 text-amber-500" />}
           <span>{showSolution ? 'Hide Complete Derivation' : 'Reveal Step-by-Step Derivation'}</span>
         </button>
 
         {showSolution && (
-          <div className="mt-4 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50/20 dark:bg-indigo-950/20 space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-indigo-100 dark:border-indigo-900/50">
-              <span className="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-1.5">
+          <div className="mt-4 p-5 rounded-2xl border border-amber-100 dark:border-amber-900/50 bg-amber-50/20 dark:bg-amber-950/20 space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-amber-100 dark:border-amber-900/50">
+              <span className="font-mono text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="h-3.5 w-3.5" />
                 <span>Rigorous Analytical Solution</span>
               </span>

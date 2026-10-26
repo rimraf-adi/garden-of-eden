@@ -1,0 +1,419 @@
+\chapter{Random Walks and Markov Chains}
+\label{ch:markov}
+
+Many random systems evolve step by step, with the next step depending only on the
+present state. This chapter starts with the simplest example, the random walk, and
+solves the gambler's ruin problem completely. It then develops the general theory of
+Markov chains: transition matrices, classification of states, hitting times, stationary
+distributions, and convergence to equilibrium.
+
+\section{The simple random walk}
+
+Let $X_1,X_2,\dots$ be independent with $\Prob(X_i=+1)=p$ and $\Prob(X_i=-1)=q=1-p$.
+The \emph{simple random walk} started at $S_0=k$ is $S_n=k+X_1+\dots+X_n$. It moves up or
+down one unit per step. For $p=\tfrac12$ the walk is \emph{symmetric}.
+
+\subsection{Gambler's ruin}
+
+A gambler starts with $k$ units ($0\le k\le N$) and bets one unit per round, winning
+with probability $p$. Play stops at $0$ (ruin) or $N$ (target). Let $h_k$ be the
+probability of reaching $N$ before $0$.
+
+\begin{theorem}[Gambler's ruin]\label{thm:ruin}
+With $r=q/p$,
+\[
+h_k=\begin{cases}\dfrac kN,&p=\tfrac12,\\[1em]\dfrac{1-r^k}{1-r^N},&p\ne\tfrac12.\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+Conditioning on the first step (law of total probability) gives, for $1\le k\le N-1$,
+\[
+h_k=p\,h_{k+1}+q\,h_{k-1},\qquad h_0=0,\ h_N=1 .
+\]
+Writing $1=p+q$ and rearranging, $p(h_{k+1}-h_k)=q(h_k-h_{k-1})$, so with
+$d_k=h_k-h_{k-1}$ we have $d_{k+1}=r\,d_k$ and hence $d_k=r^{k-1}d_1$. Summing
+the differences, $h_k=\sum_{j=1}^kd_j=d_1\sum_{j=0}^{k-1}r^j$. If $r=1$ this is
+$kd_1$, and $h_N=1$ gives $d_1=1/N$. If $r\ne1$ it is $d_1(1-r^k)/(1-r)$, and
+$h_N=1$ gives $d_1=(1-r)/(1-r^N)$.
+\end{proof}
+
+\begin{example}
+A gambler with $\$90$ aims for $\$100$ in a fair game, one dollar per bet:
+$h_{90}=0.9$. In a casino roulette game with $p=18/38$ ($r=10/9$) the probability of
+success is $\dfrac{1-(10/9)^{90}}{1-(10/9)^{100}}\approx(9/10)^{10}\approx0.35$,
+far smaller, although the game is only mildly unfavourable: the long run of bets
+amplifies the small negative drift.
+\end{example}
+
+\begin{corollary}[Ruin with an infinitely rich opponent]
+Starting at $k\ge1$, the probability that the walk ever reaches $0$ is $(q/p)^k$ if
+$p>\tfrac12$, and $1$ if $p\le\tfrac12$.
+\end{corollary}
+\begin{proof}
+The walk reaches $0$ before $N$ with probability $1-h_k$. As $N\to\infty$ the events
+``reach $0$ before $N$'' increase to ``ever reach $0$'', so by continuity of
+probability the limit of $1-h_k$ is the answer. For $p>\tfrac12$, $r<1$ and
+$1-h_k\to1-(1-r^k)=r^k$. For $p<\tfrac12$, $r>1$ and
+$1-h_k=\frac{r^N-r^k}{r^N-1}\to1$. For $p=\tfrac12$, $1-h_k=1-k/N\to1$.
+\end{proof}
+
+\begin{theorem}[Expected duration of the game]\label{thm:duration}
+Let $D_k$ be the expected number of rounds until play stops. Then
+\[
+D_k=k(N-k)\ \ (p=\tfrac12),\qquad
+D_k=\frac k{q-p}-\frac N{q-p}\cdot\frac{1-r^k}{1-r^N}\ \ (p\ne\tfrac12).
+\]
+\end{theorem}
+\begin{proof}
+First-step analysis gives $D_k=1+pD_{k+1}+qD_{k-1}$ with $D_0=D_N=0$ (finiteness of
+$D_k$ is shown in Chapter~\ref{ch:mart}). For $p=\tfrac12$ try $D_k=k(N-k)$:
+$1+\frac12(k+1)(N-k-1)+\frac12(k-1)(N-k+1)=1+k(N-k)-1=k(N-k)$. The solution of the
+recurrence with the boundary conditions is unique (the difference of two solutions
+satisfies the homogeneous equation with zero boundary values, hence is $0$ by the
+maximum principle), so this is it. For $p\ne\tfrac12$, a particular solution is
+$k/(q-p)$ (check: $1+\frac{p(k+1)+q(k-1)}{q-p}=1+\frac{k-(q-p)}{q-p}=\frac k{q-p}$), and the
+homogeneous solutions are $A+Br^k$. The boundary conditions give
+$D_k=\frac k{q-p}-\frac N{q-p}\cdot\frac{1-r^k}{1-r^N}$.
+\end{proof}
+
+For the fair game, $D_k=k(N-k)$: a fair game between a gambler with $1$ unit and a
+casino with $N-1$ units lasts on average $N-1$ rounds, yet the gambler is ruined with
+probability $1-1/N$.
+
+\subsection{Reflection principle and the maximum}
+
+Visualise the walk as a path $(0,S_0),(1,S_1),\dots,(n,S_n)$ in the plane.
+
+\begin{theorem}[Reflection principle]\label{thm:reflection}
+Let $x,y>0$. The number of paths from $(0,x)$ to $(n,y)$ that touch or cross the level $0$
+equals the number of paths from $(0,-x)$ to $(n,y)$.
+\end{theorem}
+\begin{proof}
+Given a path from $(0,x)$ to $(n,y)$ that touches $0$, let $t$ be the first time it
+does so, and reflect the portion before $t$ in the horizontal axis (replace $S_j$ by
+$-S_j$ for $j\le t$). This yields a path from $(0,-x)$ that reaches $0$ at time $t$ and
+then continues to $(n,y)$. The map is a bijection onto paths from $(0,-x)$ to $(n,y)$,
+since any such path must cross $0$ (it starts below and ends above), and reflecting its
+initial segment up to the first touch gives the inverse.
+\end{proof}
+
+\begin{theorem}[Distribution of the maximum]\label{thm:maxwalk}
+For the symmetric simple random walk from $0$ and an integer $a\ge1$,
+\[
+\Prob\Bigl(\max_{0\le k\le n}S_k\ge a\Bigr)=\Prob(S_n\ge a)+\Prob(S_n>a)
+=2\,\Prob(S_n>a)+\Prob(S_n=a).
+\]
+\end{theorem}
+\begin{proof}
+Split according to the final value. If $S_n\ge a$ the maximum is at least $a$ (the path
+ends above or at $a$). If $S_n=b<a$ and the maximum is at least $a$, the path touches the
+level $a$; by the reflection principle (reflecting across $a$, shifting the origin) the
+number of such paths equals the number of paths ending at $2a-b>a$. Since all paths
+have probability $2^{-n}$, $\Prob(\max\ge a,S_n=b)=\Prob(S_n=2a-b)$ for $b<a$.
+Summing over $b<a$ gives $\Prob(S_n>a)$. Adding $\Prob(S_n\ge a)$ gives the claim.
+\end{proof}
+
+\begin{theorem}[Returns to the origin]\label{thm:returns}
+For the symmetric walk, $\Prob(S_{2n}=0)=\binom{2n}n4^{-n}\sim1/\sqrt{\pi n}$, and the walk
+returns to $0$ with probability $1$ (\emph{recurrence}).
+\end{theorem}
+\begin{proof}
+The first claim: among the $2^{2n}$ paths, those with $n$ ups and $n$ downs number
+$\binom{2n}n$; the asymptotics follow from Stirling's formula
+$n!\sim\sqrt{2\pi n}(n/e)^n$ (cited). For recurrence let $u_{2n}=\Prob(S_{2n}=0)$ and
+let $f_{2m}$ be the probability that the first return is at time $2m$. Decomposing on the
+time of the first return, $u_{2n}=\sum_{m=1}^nf_{2m}u_{2n-2m}$ for $n\ge1$, with
+$u_0=1$. In generating functions $U(s)=\sum_{n\ge0}u_{2n}s^{2n}$ and
+$F(s)=\sum_{m\ge1}f_{2m}s^{2m}$ this reads $U=1+FU$, i.e.\ $F=1-1/U$. By the binomial
+series, $\binom{2n}n4^{-n}=(-1)^n\binom{-1/2}n$, so $U(s)=(1-s^2)^{-1/2}$ for $\abs s<1$.
+Hence $F(s)=1-\sqrt{1-s^2}\to1$ as $s\uparrow1$, i.e.\ $\sum_mf_{2m}=1$: the walk
+returns with probability $1$.
+\end{proof}
+
+\begin{nuance}{recurrent but with infinite expected return time}
+$F(s)=1-\sqrt{1-s^2}$ has an infinite derivative at $s=1$, so the expected time to
+return to $0$ is $\infty$. The symmetric walk returns for sure, but typically after a
+very long time ($\Prob(\text{first return}>2n)=\Prob(S_{2n}=0)\sim1/\sqrt{\pi n}$,
+which is not summable). Such a state is called \emph{null recurrent}.
+\end{nuance}
+
+\section{Markov chains}
+
+\begin{definition}[Markov chain]
+A sequence $X_0,X_1,\dots$ of random variables taking values in a finite or countable
+\emph{state space} $\mathcal S$ is a \emph{(time-homogeneous) Markov chain} if for all
+$n$ and all states,
+\[
+\Prob(X_{n+1}=j\given X_n=i,X_{n-1}=i_{n-1},\dots,X_0=i_0)=\Prob(X_{n+1}=j\given X_n=i)=p_{ij}.
+\]
+The matrix $P=(p_{ij})$ is the \emph{transition matrix}: $p_{ij}\ge0$ and
+$\sum_jp_{ij}=1$ for every $i$.
+\end{definition}
+
+The defining property, the \emph{Markov property}, says that given the present state,
+the past is irrelevant to the future.
+
+\begin{proposition}[Joint law and Chapman--Kolmogorov]\label{prop:ck}
+With initial distribution $\mu_i=\Prob(X_0=i)$,
+\[
+\Prob(X_0=i_0,X_1=i_1,\dots,X_n=i_n)=\mu_{i_0}p_{i_0i_1}\cdots p_{i_{n-1}i_n}.
+\]
+Consequently the $n$-step transition probabilities
+$p_{ij}^{(n)}=\Prob(X_n=j\given X_0=i)$ are the entries of the matrix power $P^n$, and
+$p^{(m+n)}_{ij}=\sum_kp^{(m)}_{ik}p^{(n)}_{kj}$. The law of $X_n$ is the row vector
+$\mu P^n$.
+\end{proposition}
+\begin{proof}
+The product formula follows from the chain rule (Theorem~\ref{thm:chain}) and the
+Markov property. Summing it over $i_1,\dots,i_{n-1}$ gives $p_{ij}^{(n)}$ as the $(i,j)$
+entry of the product of $n$ copies of $P$ (matrix multiplication is exactly this sum).
+The identity $P^{m+n}=P^mP^n$ is the Chapman--Kolmogorov equation. The last claim is
+total probability: $\Prob(X_n=j)=\sum_i\mu_ip^{(n)}_{ij}$.
+\end{proof}
+
+\begin{example}[Two-state chain]\label{ex:twostate}
+States $\{1,2\}$, $P=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix}$ with $a,b\in(0,1)$.
+Solving $p^{(n+1)}_{11}=p^{(n)}_{11}(1-a)+p^{(n)}_{12}b=p^{(n)}_{11}(1-a-b)+b$ gives
+\[
+p^{(n)}_{11}=\frac b{a+b}+\frac a{a+b}(1-a-b)^n,
+\]
+which tends to $b/(a+b)$ geometrically fast. The vector $\pi=(\frac b{a+b},\frac a{a+b})$
+satisfies $\pi P=\pi$.
+\end{example}
+
+\begin{example}[Further chains]
+\begin{itemize}
+\item \emph{Random walk on a graph}: from vertex $i$ move to a uniformly chosen
+neighbour: $p_{ij}=1/\deg(i)$ if $i\sim j$.
+\item \emph{Gambler's ruin chain}: states $0,\dots,N$; $0$ and $N$ absorbing.
+\item \emph{Ehrenfest urn}: $N$ balls in two urns; each step a uniformly random ball is
+moved to the other urn; the state is the number of balls in urn~1.
+\item \emph{Card shuffling}: the state is a permutation of the deck; each shuffle
+applies a random permutation.
+\end{itemize}
+\end{example}
+
+\subsection{Classification of states}
+
+\begin{definition}
+State $j$ is \emph{accessible} from $i$ ($i\to j$) if $p^{(n)}_{ij}>0$ for some
+$n\ge0$; $i$ and $j$ \emph{communicate} ($i\leftrightarrow j$) if each is accessible
+from the other. Communication is an equivalence relation; its classes are the
+\emph{communicating classes}. The chain is \emph{irreducible} if there is one class.
+The \emph{period} of $i$ is $\gcd\{n\ge1:p^{(n)}_{ii}>0\}$; $i$ is \emph{aperiodic}
+if the period is $1$. (Period is constant on a class.)
+\end{definition}
+
+Let $T_i=\min\{n\ge1:X_n=i\}$ be the first return time to $i$, and
+$f_i=\Prob_i(T_i<\infty)$ (subscript $i$: the chain starts at $i$).
+
+\begin{definition}[Recurrence]
+State $i$ is \emph{recurrent} if $f_i=1$ and \emph{transient} if $f_i<1$. A recurrent
+state is \emph{positive recurrent} if $\Exp_i[T_i]<\infty$ and \emph{null recurrent}
+otherwise.
+\end{definition}
+
+\begin{theorem}[Recurrence criterion]\label{thm:reccrit}
+Let $V_i$ be the total number of visits to $i$ (counting time $0$) when starting at
+$i$. Then $V_i$ is geometric: $\Prob_i(V_i=m)=f_i^{m-1}(1-f_i)$. Hence
+\[
+i\text{ is recurrent}\iff\Prob_i(V_i=\infty)=1\iff\sum_{n=0}^\infty p^{(n)}_{ii}=\infty,
+\]
+and $i$ is transient iff $\sum_np^{(n)}_{ii}<\infty$.
+\end{theorem}
+\begin{proof}
+By the Markov property, each time the chain is at $i$ it returns with probability
+$f_i$, independently of the past. So $\Prob_i(V_i\ge m)=f_i^{m-1}$. If $f_i<1$ then
+$V_i$ is a.s.\ finite with mean $\Exp_i[V_i]=1/(1-f_i)<\infty$; if $f_i=1$ then
+$V_i=\infty$ a.s. Finally $\Exp_i[V_i]=\sum_n\Exp_i[\indic_{\{X_n=i\}}]=\sum_np^{(n)}_{ii}$.
+\end{proof}
+
+\begin{corollary}
+Recurrence is a class property: if $i\leftrightarrow j$ and $i$ is recurrent, so is $j$.
+In a finite chain every recurrent class is positive recurrent, and every state in a class
+that is not closed (can be left) is transient. A finite irreducible chain is positive
+recurrent.
+\end{corollary}
+\begin{proof}[Proof of the first assertion]
+Choose $r,s$ with $p^{(r)}_{ij}>0$, $p^{(s)}_{ji}>0$. Then
+$p^{(r+n+s)}_{jj}\ge p^{(s)}_{ji}p^{(n)}_{ii}p^{(r)}_{ij}$, and summing over $n$ shows
+$\sum_np^{(n)}_{jj}=\infty$. (The other assertions follow from the criterion and the
+geometric trials argument; see the exercises.)
+\end{proof}
+
+\begin{example}[Random walks in higher dimensions]
+The symmetric simple random walk on $\Z^d$ is recurrent for $d=1,2$ and transient for
+$d\ge3$ (P\'olya). For $d=1$ we showed this directly. For $d=3$, $\Prob(S_{2n}=0)\asymp
+n^{-3/2}$, which is summable, so by Theorem~\ref{thm:reccrit} the origin is transient.
+In the memorable phrase, ``a drunk man will find his way home, but a drunk bird may
+get lost forever''.
+\end{example}
+
+\subsection{Hitting probabilities and times}
+
+Let $A\subseteq\mathcal S$ and define $h_i=\Prob_i(\text{chain ever hits }A)$ and
+$k_i=\Exp_i[\text{time to hit }A]$.
+
+\begin{theorem}[Linear equations for hitting]\label{thm:hitting}
+The vector $h$ satisfies $h_i=1$ for $i\in A$ and $h_i=\sum_jp_{ij}h_j$ for $i\notin A$;
+it is the \emph{minimal non-negative} solution of these equations. The vector $k$ is
+the minimal non-negative solution of $k_i=0$ for $i\in A$, $k_i=1+\sum_jp_{ij}k_j$ for
+$i\notin A$.
+\end{theorem}
+\begin{proof}
+That $h$ solves the equations is first-step analysis. For minimality, let $x$ be any
+non-negative solution and let $h_i^{(n)}=\Prob_i(\text{hit }A\text{ within }n\text{ steps})$.
+Then $h^{(0)}_i=\indic_{A}(i)\le x_i$, and if $h^{(n)}\le x$ then
+$h^{(n+1)}_i=\sum_jp_{ij}h^{(n)}_j\le\sum_jp_{ij}x_j=x_i$ for $i\notin A$. So $h^{(n)}\le x$
+for all $n$, and $h^{(n)}\uparrow h$. The argument for $k$ is the same.
+\end{proof}
+
+\begin{nuance}{minimality matters on infinite state spaces}
+For gambler's ruin on $\{0,1,2,\dots\}$ with $p>\tfrac12$, both $h_k\equiv1$ and
+$h_k=(q/p)^k$ solve the equations for hitting $0$, but the true probability is the
+smaller one. In finite chains where $A$ is reached with probability $1$ from every state,
+the solution is unique.
+\end{nuance}
+
+\begin{theorem}[Absorbing chains]\label{thm:absorbing}
+Suppose the states are split into transient states $\mathcal T$ and absorbing states
+$\mathcal A$, with $P=\begin{pmatrix}Q&R\\0&I\end{pmatrix}$ ($Q$ for transitions among
+transient states, $R$ for transient$\to$absorbing). Then $I-Q$ is invertible, the matrix
+$N=(I-Q)^{-1}=\sum_{n\ge0}Q^n$ has entries $N_{ij}=\Exp_i[\text{visits to }j]$, the expected
+time to absorption from $i$ is $\sum_jN_{ij}$, and the absorption probabilities are
+$B=NR$.
+\end{theorem}
+\begin{proof}
+$Q^n_{ij}=\Prob_i(X_n=j)$ for transient $j$, so $\sum_nQ^n_{ij}$ is the expected number
+of visits to $j$. Absorption occurs eventually with probability one (finite chain, every
+transient state leads to absorption), so $Q^n\to0$, which implies the Neumann series
+$\sum Q^n$ converges and equals $(I-Q)^{-1}$ (multiply $(I-Q)\sum_{m\le n}Q^m=I-Q^{n+1}$
+and let $n\to\infty$). The probability of absorbing at $a$ from $i$ is
+$\sum_n\sum_jQ^n_{ij}R_{ja}=(NR)_{ia}$, summing over the time of the last transient step.
+\end{proof}
+
+\section{Stationary distributions and convergence}
+
+\begin{definition}[Stationary distribution]
+A probability vector $\pi$ (row, non-negative, $\sum\pi_i=1$) is \emph{stationary} (or
+invariant) if $\pi P=\pi$. If $X_0\sim\pi$ then $X_n\sim\pi$ for all $n$.
+\end{definition}
+
+\begin{theorem}[Existence and formula]\label{thm:stationary}
+Let the chain be irreducible and recurrent, fix a state $i$, and define
+$\gamma_j=\Exp_i\Bigl[\sum_{n=0}^{T_i-1}\indic_{\{X_n=j\}}\Bigr]$, the expected number of
+visits to $j$ in one excursion from $i$. Then $\gamma P=\gamma$, $\gamma_i=1$, and
+$\sum_j\gamma_j=\Exp_i[T_i]$. Consequently, if the chain is positive recurrent,
+$\pi_j=\gamma_j/\Exp_i[T_i]$ is a stationary distribution and in particular
+$\pi_i=1/\Exp_i[T_i]$.
+\end{theorem}
+\begin{proof}
+Write $\gamma_j=\sum_{n\ge0}\Prob_i(X_n=j,T_i>n)$. Then
+\[
+(\gamma P)_k=\sum_{n\ge0}\sum_j\Prob_i(X_n=j,T_i>n)p_{jk}=\sum_{n\ge0}\Prob_i(X_{n+1}=k,T_i>n),
+\]
+by the Markov property (the event $\{T_i>n\}$ depends on $X_0,\dots,X_n$ only). If
+$k\ne i$, then on $\{X_{n+1}=k\}$ we have $T_i>n\iff T_i>n+1$, so
+$(\gamma P)_k=\sum_{n\ge0}\Prob_i(X_{n+1}=k,T_i>n+1)=\sum_{m\ge1}\Prob_i(X_m=k,T_i>m)=\gamma_k$
+(the term $m=0$ is $0$ since $X_0=i\ne k$). If $k=i$,
+$(\gamma P)_i=\sum_{n\ge0}\Prob_i(X_{n+1}=i,T_i>n)=\sum_{n\ge0}\Prob_i(T_i=n+1)=1=\gamma_i$,
+using recurrence. Finally $\sum_j\gamma_j=\Exp_i\sum_{n<T_i}1=\Exp_i[T_i]$.
+\end{proof}
+
+\begin{theorem}[Convergence to equilibrium]\label{thm:convergence}
+Let the chain be finite, irreducible and aperiodic. Then it has a unique stationary
+distribution $\pi$, all $\pi_j>0$, and for some $C<\infty$ and $\rho\in(0,1)$,
+\[
+\max_{i}\sum_j\bigl\lvert p^{(n)}_{ij}-\pi_j\bigr\rvert\le C\rho^n\qquad\text{for all }n.
+\]
+\end{theorem}
+\begin{proof}
+\emph{Positivity of a power.} For a finite, irreducible, aperiodic chain there is $m$ such
+that $p^{(m)}_{ij}>0$ for \emph{all} $i,j$. (Aperiodicity makes the set of return times
+to $i$ closed under addition with gcd $1$, hence containing all large integers, a
+standard number-theoretic fact; irreducibility then connects different states.) Let
+$\epsilon=\min_{i,j}p^{(m)}_{ij}>0$. A stationary $\pi$ exists by Theorem~\ref{thm:stationary}
+(a finite irreducible chain is positive recurrent).
+
+\emph{Coupling.} Let $(X_n)$ start at $i$ and $(Y_n)$ start from $\pi$, independent, both
+with transition matrix $P$. Let $\tau=\min\{n:X_n=Y_n\}$. In each block of $m$ steps, whatever
+the states $x,y$ at the start of the block, $\Prob(X_{(k+1)m}=Y_{(k+1)m}\given\text{past})
+\ge\sum_jp^{(m)}_{xj}p^{(m)}_{yj}\ge\epsilon\sum_jp^{(m)}_{xj}=\epsilon$. Hence
+$\Prob(\tau>km)\le(1-\epsilon)^k$. Define $\tilde X_n=X_n$ for $n<\tau$ and $\tilde X_n=Y_n$
+for $n\ge\tau$; by the strong Markov property $(\tilde X_n)$ is also a Markov chain with
+matrix $P$ started at $i$ (we use this without detailed proof). Since $Y_n\sim\pi$ and $\tilde X_n$ has the same law as $X_n$,
+\[
+\bigl\lvert p^{(n)}_{ij}-\pi_j\bigr\rvert=\bigl\lvert\Prob(\tilde X_n=j)-\Prob(Y_n=j)\bigr\rvert
+\le\Prob(\tilde X_n=j,Y_n\ne j)+\Prob(Y_n=j,\tilde X_n\ne j).
+\]
+Summing over $j$, each outcome with $\tilde X_n\ne Y_n$ is counted at most twice, and
+$\{\tilde X_n\ne Y_n\}=\{\tau>n\}$, so
+$\sum_j\abs{p^{(n)}_{ij}-\pi_j}\le2\Prob(\tau>n)\le2(1-\epsilon)^{\lfloor n/m\rfloor}$. This gives the bound with
+$\rho=(1-\epsilon)^{1/m}$. The same argument applied to a second stationary $\pi'$ shows
+$\pi'=\pi$ (it is stationary, so the distribution stays $\pi'$ while converging to $\pi$).
+Positivity of $\pi$: $\pi_j=\sum_i\pi_ip^{(m)}_{ij}\ge\epsilon>0$.
+\end{proof}
+
+\begin{nuance}{aperiodicity is needed for convergence of $P^n$, not for existence of $\pi$}
+Take $P=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ (period $2$). Then $\pi=(\frac12,\frac12)$ is
+stationary, but $P^n$ alternates between $P$ and $I$ and does not converge. For periodic
+chains one has convergence of time averages (the ergodic theorem: the fraction of time spent
+in state $j$ tends to $\pi_j$ almost surely, cited) but not of the distribution.
+\end{nuance}
+
+\begin{theorem}[Detailed balance]\label{thm:detailed}
+If a probability vector $\pi$ satisfies $\pi_ip_{ij}=\pi_jp_{ji}$ for all $i,j$, then $\pi$
+is stationary.
+\end{theorem}
+\begin{proof}
+$(\pi P)_j=\sum_i\pi_ip_{ij}=\sum_i\pi_jp_{ji}=\pi_j\sum_ip_{ji}=\pi_j$.
+\end{proof}
+
+\begin{example}[Random walk on a graph]
+For the walk on a finite connected graph, take $\pi_i=\deg(i)/(2\abs E)$. Detailed balance
+holds: for adjacent $i,j$, $\pi_ip_{ij}=\frac{\deg i}{2\abs E}\cdot\frac1{\deg i}
+=\frac1{2\abs E}=\pi_jp_{ji}$. So the stationary probability is proportional to
+degree; and $\Exp_i[T_i]=2\abs E/\deg(i)$.
+\end{example}
+
+\begin{example}[Ehrenfest urn]
+With $N$ balls, the stationary distribution is $\mathrm{Bin}(N,\tfrac12)$: check detailed
+balance with $\pi_k=\binom Nk2^{-N}$ and $p_{k,k+1}=(N-k)/N$, $p_{k+1,k}=(k+1)/N$:
+$\binom Nk\frac{N-k}N=\binom N{k+1}\frac{k+1}N$ (both equal $\frac{N!}{k!(N-k-1)!\,N}$).
+\end{example}
+
+\begin{interview}{what to do with a Markov chain problem}
+(1) Define the state space so that the future depends only on the state. (2) For
+expected times or probabilities of events, solve the first-step equations
+(Theorem~\ref{thm:hitting}). (3) For long-run behaviour, solve $\pi P=\pi$, trying
+detailed balance first. (4) For absorbing problems, compute $N=(I-Q)^{-1}$.
+Typical interview examples: expected time to see a pattern, expected rolls to see all faces,
+random walk on a cube, ``drunkard on a circle''.
+\end{interview}
+
+\section*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{enumerate}
+\item A random walk on $\{0,1,2,3,4\}$ with absorbing ends $0,4$ and
+fair steps. Find the absorption probabilities and expected duration from each state,
+using Theorem~\ref{thm:absorbing}.
+\item For the symmetric walk, show the probability that it never returns to $0$ in
+the first $2n$ steps is $\Prob(S_{2n}=0)$.
+\item A rat walks on the corners of a cube, moving to a uniformly random adjacent
+corner each step. Find the expected time to return to the starting corner, and the expected
+time to reach the opposite corner.
+\item Show that for a finite irreducible chain $\Exp_j[T_i]<\infty$ for all $i,j$
+(hint: from every state $i$ reachable within $m$ steps with probability $\ge\epsilon$;
+geometric trials).
+\item Prove that in a finite chain every closed communicating class is positive recurrent,
+and every communicating class that is not closed consists of transient states.
+\item Draw the transition graph and find the stationary distribution of the chain
+on $\{1,2,3\}$ with $P=\begin{pmatrix}\frac12&\frac12&0\\ \frac13&\frac13&\frac13\\0&\frac12&\frac12\end{pmatrix}$.
+\item Show that if $\pi$ is stationary for an irreducible chain then $\pi_i>0$ for all $i$.
+\item Show that a time-reversed stationary Markov chain, $Y_n=X_{N-n}$, is Markov with
+$\hat p_{ij}=\pi_jp_{ji}/\pi_i$, and that the chain is reversible iff $\hat P=P$.
+\item (Challenge) Derive the expected number of rolls of a fair die to see all six faces via
+the Markov chain on the number of faces seen, and compare with the coupon collector answer
+$6H_6=14.7$.
+\end{enumerate}

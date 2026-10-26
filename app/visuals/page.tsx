@@ -23,21 +23,21 @@ const VISUAL_CHAPTERS = [
 
 export default function VisualsGalleryPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#fafafc] dark:bg-[#08090d] bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.12),transparent_55%)] py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl space-y-12">
         <div>
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 mb-6 transition"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-amber-600 dark:hover:text-amber-400 mb-6 transition"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Book Contents
           </Link>
           <div className="flex items-center gap-3 mb-2">
-            <span className="p-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
+            <span className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400">
               <Sparkles className="h-6 w-6" />
             </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-3xl sm:text-4xl font-serif font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
               Visual Concept Animations
             </h1>
           </div>
@@ -51,11 +51,11 @@ export default function VisualsGalleryPage() {
           {VISUAL_CHAPTERS.map((item) => (
             <div
               key={item.num}
-              className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 sm:p-8 shadow-sm space-y-4"
+              className="rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md p-6 sm:p-8 shadow-sm space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-zinc-100 dark:border-zinc-800 pb-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
                     Interactive Demonstration
                   </span>
                   <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-1">

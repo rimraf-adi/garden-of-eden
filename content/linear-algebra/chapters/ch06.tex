@@ -1,0 +1,193 @@
+\chapter{Vector Spaces and Subspaces}
+
+Chapters 1--5 worked with $\R^n$ and matrices. But the rules that made the computations work, namely that vectors can be added and scaled, are shared by many other objects: polynomials, continuous functions, sequences, matrices themselves, solutions of linear differential equations. A vector space is the abstract setting that captures exactly those rules. Working abstractly is not a luxury: it lets one proof cover all these examples at once, and it is the language in which the theory of Chapters 7--17 is stated.
+
+\section{The definition}
+
+\begin{definition}[Vector space]
+A \emph{vector space over $\R$} is a set $V$ with two operations, \emph{addition} $V\times V\to V$ and \emph{scalar multiplication} $\R\times V\to V$, such that for all $\mathbf{u},\mathbf{v},\mathbf{w}\in V$ and $a,b\in\R$:
+\begin{enumerate}[label=(V\arabic*)]
+  \item $\mathbf{u}+\mathbf{v}=\mathbf{v}+\mathbf{u}$;
+  \item $(\mathbf{u}+\mathbf{v})+\mathbf{w}=\mathbf{u}+(\mathbf{v}+\mathbf{w})$;
+  \item there is a \emph{zero vector} $\mathbf{0}\in V$ with $\mathbf{v}+\mathbf{0}=\mathbf{v}$;
+  \item each $\mathbf{v}$ has an \emph{additive inverse} $-\mathbf{v}$ with $\mathbf{v}+(-\mathbf{v})=\mathbf{0}$;
+  \item $a(\mathbf{u}+\mathbf{v})=a\mathbf{u}+a\mathbf{v}$;
+  \item $(a+b)\mathbf{v}=a\mathbf{v}+b\mathbf{v}$;
+  \item $(ab)\mathbf{v}=a(b\mathbf{v})$;
+  \item $1\mathbf{v}=\mathbf{v}$.
+\end{enumerate}
+Elements of $V$ are called \emph{vectors}. If the scalars come from $\C$ instead of $\R$ we speak of a \emph{complex vector space}; the theory is identical until Chapter~11.
+\end{definition}
+
+These are exactly the eight rules of Theorem~\ref{thm:rules} for $\R^n$. Some immediate consequences, which follow from the axioms alone, are worth proving once.
+
+\begin{proposition}[Elementary consequences]\label{prop:vsbasic}
+In every vector space: (i) $\mathbf{0}$ is unique and each $-\mathbf{v}$ is unique; (ii) $0\mathbf{v}=\mathbf{0}$ and $a\mathbf{0}=\mathbf{0}$; (iii) $(-1)\mathbf{v}=-\mathbf{v}$; (iv) if $a\mathbf{v}=\mathbf{0}$ then $a=0$ or $\mathbf{v}=\mathbf{0}$.
+\end{proposition}
+
+\begin{proof}
+(ii) $0\mathbf{v}=(0+0)\mathbf{v}=0\mathbf{v}+0\mathbf{v}$; add $-(0\mathbf{v})$ to both sides to get $\mathbf{0}=0\mathbf{v}$. Similarly $a\mathbf{0}=a(\mathbf{0}+\mathbf{0})=a\mathbf{0}+a\mathbf{0}$. (iii) $\mathbf{v}+(-1)\mathbf{v}=(1+(-1))\mathbf{v}=0\mathbf{v}=\mathbf{0}$, so $(-1)\mathbf{v}$ is an additive inverse, and inverses are unique: if $\mathbf{w},\mathbf{w}'$ both invert $\mathbf{v}$ then $\mathbf{w}=\mathbf{w}+(\mathbf{v}+\mathbf{w}')=(\mathbf{w}+\mathbf{v})+\mathbf{w}'=\mathbf{w}'$. Uniqueness of $\mathbf{0}$ is similar. (iv) If $a\ne0$, multiply $a\mathbf{v}=\mathbf{0}$ by $a^{-1}$ to get $\mathbf{v}=\mathbf{0}$.
+\end{proof}
+
+\section{A zoo of examples}
+
+\begin{example}[Standard examples]\label{ex:spaces}
+\begin{enumerate}[label=(\alph*)]
+  \item $\R^n$ and $\C^n$ with componentwise operations.
+  \item $\R^{m\times n}$, the space of $m\times n$ matrices, with entrywise addition and scaling.
+  \item $\mathcal{P}_n$, the polynomials of degree at most $n$, and $\mathcal{P}$, all polynomials. (Degree \emph{exactly} $n$ does not give a vector space: the sum of $t^2$ and $-t^2+t$ has degree $1$.)
+  \item $C[a,b]$, the continuous real functions on $[a,b]$, with $(f+g)(t)=f(t)+g(t)$ and $(cf)(t)=cf(t)$.
+  \item The set $\R^\infty$ of real sequences $(x_1,x_2,\dots)$, with termwise operations.
+  \item The solutions of a homogeneous linear differential equation such as $y''+y=0$; this space is spanned by $\cos t$ and $\sin t$.
+  \item The trivial space $\{\mathbf{0}\}$.
+\end{enumerate}
+\end{example}
+
+\begin{example}[Not vector spaces]
+The set of vectors in $\R^2$ with both components nonnegative is not a vector space: the additive inverse of $(1,1)$ is not in it. The set $\{(x,y):x+y=1\}$ is not a vector space: it does not contain $\mathbf{0}$. The set $\{(x,y):xy=0\}$ (the two axes) is closed under scaling but not under addition: $(1,0)+(0,1)=(1,1)$ is outside.
+\end{example}
+
+\begin{intuition}
+Do not memorise the axioms as a list to check; internalise one principle: a vector space is a set where \emph{linear combinations make sense}. Any collection of objects that can be added and rescaled, with the sensible rules, is a vector space, and every theorem proved from the axioms applies to it.
+\end{intuition}
+
+\section{Subspaces}
+
+\begin{definition}[Subspace]
+A subset $W$ of a vector space $V$ is a \emph{subspace} if $W$ is itself a vector space under the operations of $V$.
+\end{definition}
+
+Verifying eight axioms each time would be tedious, but most hold automatically because they hold in $V$.
+
+\begin{theorem}[Subspace test]\label{thm:subtest}
+A subset $W\subseteq V$ is a subspace if and only if
+\begin{enumerate}[label=(S\arabic*)]
+  \item $\mathbf{0}\in W$;
+  \item $\mathbf{u},\mathbf{v}\in W\Rightarrow\mathbf{u}+\mathbf{v}\in W$ (closed under addition);
+  \item $\mathbf{v}\in W,\ c\in\R\Rightarrow c\mathbf{v}\in W$ (closed under scaling).
+\end{enumerate}
+Equivalently, $W$ is nonempty and closed under linear combinations.
+\end{theorem}
+
+\begin{proof}
+A subspace has these properties by definition. Conversely, (S2) and (S3) show that the operations restrict to $W$; axioms (V1), (V2), (V5)--(V8) hold in $W$ because they hold in $V$; (V3) is (S1); and (V4) holds because $-\mathbf{v}=(-1)\mathbf{v}\in W$ by (S3) and Proposition~\ref{prop:vsbasic}.
+\end{proof}
+
+\begin{example}
+In $\R^3$ the following are subspaces: $\{\mathbf{0}\}$; any line through the origin; any plane through the origin, for instance $\{x+2y-z=0\}$; and $\R^3$ itself. These are all the subspaces of $\R^3$, as Chapter~7 will prove. A line or plane \emph{not} through the origin is not a subspace.
+\end{example}
+
+\begin{example}[Subspaces of functions and matrices]
+Inside $\R^{n\times n}$ the symmetric matrices form a subspace (closed under sums and scalars), as do the diagonal, upper triangular and trace-zero matrices. The invertible matrices do \emph{not}: $I$ and $-I$ are invertible but $I+(-I)=0$ is not. Inside $C[0,1]$, the functions with $f(0)=0$ form a subspace but those with $f(0)=1$ do not.
+\end{example}
+
+\subsection*{Combining subspaces}
+
+\begin{proposition}[Intersection and sum]\label{prop:subops}
+If $U,W$ are subspaces of $V$ then $U\cap W$ is a subspace, and so is the \emph{sum} $U+W=\{\mathbf{u}+\mathbf{w}:\mathbf{u}\in U,\mathbf{w}\in W\}$. The union $U\cup W$ is a subspace only when one of $U,W$ contains the other.
+\end{proposition}
+
+\begin{proof}
+Both closure properties pass to the intersection. For the sum, $(\mathbf{u}_1+\mathbf{w}_1)+(\mathbf{u}_2+\mathbf{w}_2)=(\mathbf{u}_1+\mathbf{u}_2)+(\mathbf{w}_1+\mathbf{w}_2)\in U+W$ and similarly for scaling. If neither of $U,W$ contained the other, pick $\mathbf{u}\in U\setminus W$ and $\mathbf{w}\in W\setminus U$: then $\mathbf{u}+\mathbf{w}$ is in neither, since $\mathbf{u}+\mathbf{w}\in U$ would give $\mathbf{w}\in U$.
+\end{proof}
+
+\begin{definition}[Direct sum]
+The sum $U+W$ is \emph{direct}, written $U\oplus W$, if $U\cap W=\{\mathbf{0}\}$. Equivalently every vector of $U+W$ has a \emph{unique} expression $\mathbf{u}+\mathbf{w}$.
+\end{definition}
+
+For the equivalence: if $\mathbf{u}+\mathbf{w}=\mathbf{u}'+\mathbf{w}'$ then $\mathbf{u}-\mathbf{u}'=\mathbf{w}'-\mathbf{w}\in U\cap W$, so uniqueness holds iff this intersection is trivial. Orthogonal decompositions $\R^n=W\oplus W^\perp$ (Chapter~11) are the most important direct sums.
+
+\section{Span, column space and nullspace}
+
+\begin{theorem}[Span is a subspace]\label{thm:spansub}
+For any vectors $\mathbf{v}_1,\dots,\mathbf{v}_k\in V$, the set $\Span\{\mathbf{v}_1,\dots,\mathbf{v}_k\}$ is a subspace, and it is the smallest subspace containing them: every subspace containing all $\mathbf{v}_i$ contains the span.
+\end{theorem}
+
+\begin{proof}
+A sum of two linear combinations, or a scalar multiple of one, is again a linear combination, so the span is a subspace; it contains $\mathbf{0}$ (take all coefficients zero). Any subspace containing the $\mathbf{v}_i$ is closed under linear combinations, hence contains all of them.
+\end{proof}
+
+Two subspaces attached to every matrix are the central objects of linear algebra.
+
+\begin{definition}[Column space and nullspace]
+For $A\in\R^{m\times n}$ with columns $\mathbf{a}_1,\dots,\mathbf{a}_n$:
+\begin{itemize}
+  \item the \emph{column space} $\Col A=\Span\{\mathbf{a}_1,\dots,\mathbf{a}_n\}=\{A\mathbf{x}:\mathbf{x}\in\R^n\}\subseteq\R^m$;
+  \item the \emph{nullspace} (kernel) $\Null A=\{\mathbf{x}\in\R^n:A\mathbf{x}=\mathbf{0}\}\subseteq\R^n$.
+\end{itemize}
+\end{definition}
+
+The column space is a subspace by Theorem~\ref{thm:spansub}. For the nullspace: $A\mathbf{0}=\mathbf{0}$, and if $A\mathbf{x}=A\mathbf{y}=\mathbf{0}$ then $A(a\mathbf{x}+b\mathbf{y})=\mathbf{0}$. By Chapter~2, then:
+
+\begin{itemize}
+  \item $A\mathbf{x}=\mathbf{b}$ is solvable iff $\mathbf{b}\in\Col A$ (the \emph{existence} question);
+  \item the solution is unique iff $\Null A=\{\mathbf{0}\}$ (the \emph{uniqueness} question);
+  \item the full solution set is $\mathbf{x}_p+\Null A$, a translate of the nullspace (Theorem~\ref{thm:partplushom}).
+\end{itemize}
+
+\begin{example}
+For $A=\begin{pmatrix}1&2&0&1\\0&0&1&1\end{pmatrix}$ (already in RREF), the pivot columns are $1$ and $3$. The columns span $\R^2$, so $\Col A=\R^2$. Solving $A\mathbf{x}=\mathbf{0}$ with free variables $x_2=s$, $x_4=t$: $x_1=-2s-t$, $x_3=-t$, so
+\[ \Null A=\Span\left\{\begin{pmatrix}-2\\1\\0\\0\end{pmatrix},\begin{pmatrix}-1\\0\\-1\\1\end{pmatrix}\right\}. \]
+\end{example}
+
+\begin{nuance}{row operations change the column space}
+Row operations preserve the nullspace (Theorem~\ref{thm:rowops}) but \emph{not} the column space: swapping rows changes the vectors $A\mathbf{x}$. What they preserve is which columns are pivot columns, and therefore the linear relations among the columns. To describe $\Col A$, take the pivot columns of the \emph{original} matrix $A$, not of its echelon form. Chapter~8 develops this.
+\end{nuance}
+
+\begin{interview}{is this a subspace?}
+A standard check: to show a set is not a subspace, find a failing axiom, usually that it misses $\mathbf{0}$, or two members whose sum or scalar multiple leaves the set. To show it is one, express it as a nullspace $\{\mathbf{x}:A\mathbf{x}=\mathbf{0}\}$ or a span; both are automatically subspaces. Sets defined by homogeneous \emph{linear} conditions are subspaces; conditions like $x^2+y^2=1$, $xy=0$, $x\ge0$ or $x+y=1$ never are.
+\end{interview}
+
+\section{Linear maps and the idea of structure}
+
+The best way to compare vector spaces is by functions that respect the structure; this is developed in Chapter~9. For now we record the definition, since it explains why column space and nullspace are the natural subspaces.
+
+\begin{definition}[Linear map]
+A function $T:V\to W$ between vector spaces is \emph{linear} if $T(\mathbf{u}+\mathbf{v})=T\mathbf{u}+T\mathbf{v}$ and $T(c\mathbf{v})=cT\mathbf{v}$. Its \emph{kernel} is $\ker T=\{\mathbf{v}:T\mathbf{v}=\mathbf{0}\}$ and its \emph{image} is $\im T=\{T\mathbf{v}:\mathbf{v}\in V\}$.
+\end{definition}
+
+The map $\mathbf{x}\mapsto A\mathbf{x}$ has kernel $\Null A$ and image $\Col A$, and both are always subspaces.
+
+\begin{summarybox}
+\begin{itemize}
+  \item A vector space is any set with addition and scalar multiplication obeying eight axioms; $\R^n$, matrices, polynomials, functions, sequences and solution spaces of linear equations are examples.
+  \item A subset is a subspace iff it contains $\mathbf{0}$ and is closed under addition and scaling.
+  \item Intersections and sums of subspaces are subspaces; unions generally are not. A sum is direct when the intersection is $\{\mathbf{0}\}$.
+  \item The span of vectors is the smallest subspace containing them.
+  \item Every matrix has a column space (where $A\mathbf{x}$ lives) and a nullspace (the solutions of $A\mathbf{x}=\mathbf{0}$); existence and uniqueness of solutions are statements about them.
+\end{itemize}
+\end{summarybox}
+
+\section{Exercises}
+
+\begin{exercise}
+Decide which are subspaces of $\R^3$: (a) $\{x+y+z=0\}$; (b) $\{x+y+z=1\}$; (c) $\{x\ge0\}$; (d) $\{xy=0\}$; (e) $\{(t,2t,3t)\}$; (f) $\{x=z^2\}$.
+\end{exercise}
+
+\begin{exercise}
+Show that the set of $n\times n$ matrices with trace zero is a subspace of $\R^{n\times n}$, and that the set of matrices with determinant $1$ is not.
+\end{exercise}
+
+\begin{exercise}
+Prove that if $U$ and $W$ are subspaces of $V$ with $U\cup W$ a subspace, then $U\subseteq W$ or $W\subseteq U$.
+\end{exercise}
+
+\begin{exercise}
+Show that every function $f:\R\to\R$ is uniquely a sum $f=f_e+f_o$ of an even and an odd function, and conclude $\{\text{functions}\}=\{\text{even}\}\oplus\{\text{odd}\}$.
+\end{exercise}
+
+\begin{exercise}
+Find a spanning set of $\Null A$ and of $\Col A$ for $A=\begin{pmatrix}1&1&2\\2&2&4\\1&2&3\end{pmatrix}$.
+\end{exercise}
+
+\begin{exercise}
+In $\R^{2\times2}$ let $S$ be the symmetric and $K$ the skew-symmetric matrices. Show $\R^{2\times2}=S\oplus K$.
+\end{exercise}
+
+\begin{exercise}
+Let $V$ be the set of positive reals with the operations $x\oplus y=xy$ and $c\odot x=x^c$. Verify that $V$ is a vector space. What is its zero vector?
+\end{exercise}
+
+\begin{exercise}
+Prove that the set of solutions of $y''-3y'+2y=0$ is a vector space, and that $e^t$ and $e^{2t}$ lie in it. (We will see in Chapter~7 that these two functions span it.)
+\end{exercise}

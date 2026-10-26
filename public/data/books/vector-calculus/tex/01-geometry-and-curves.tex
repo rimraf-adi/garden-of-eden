@@ -1,0 +1,624 @@
+\chapter{Geometry and Curves}
+\label{ch:geometry}
+
+Vector calculus starts with the geometry of space. In this chapter we build the tools that all later chapters use: dot and cross products, lines and planes, surfaces, and curves with their curvature. Every formula here has a picture; keep the pictures in mind.
+
+%====================================================================
+\section{Vectors and the dot product}
+%====================================================================
+
+A \emph{vector} in $\R^3$ is an ordered triple $\vec a=(a_1,a_2,a_3)$. We add vectors and multiply them by numbers component by component. The \emph{length} (or norm) of $\vec a$ is
+\[
+\norm{\vec a}=\sqrt{a_1^2+a_2^2+a_3^2}.
+\]
+A vector of length $1$ is a \emph{unit vector}. If $\vec a\neq\vec 0$, then $\hat{\vec a}=\vec a/\norm{\vec a}$ is a unit vector with the same direction as $\vec a$.
+
+\begin{definition}[Dot product]
+For $\vec a,\vec b\in\R^3$ the \emph{dot product} is
+\[
+\vec a\cdot\vec b=a_1b_1+a_2b_2+a_3b_3 .
+\]
+\end{definition}
+
+The dot product is symmetric ($\vec a\cdot\vec b=\vec b\cdot\vec a$), linear in each argument, and $\vec a\cdot\vec a=\norm{\vec a}^2\ge 0$, with equality only for $\vec a=\vec 0$. These facts follow at once from the formula.
+
+\begin{theorem}[Cauchy--Schwarz inequality]\label{thm:cs}
+For all $\vec a,\vec b\in\R^3$,
+\[
+\abs{\vec a\cdot\vec b}\le\norm{\vec a}\,\norm{\vec b}.
+\]
+Equality holds if and only if one vector is a scalar multiple of the other.
+\end{theorem}
+
+\begin{proof}
+If $\vec b=\vec 0$ both sides are $0$. Assume $\vec b\ne\vec 0$ and define, for $t\in\R$,
+\[
+q(t)=\norm{\vec a-t\vec b}^2=\norm{\vec a}^2-2t\,(\vec a\cdot\vec b)+t^2\norm{\vec b}^2\ \ge 0 .
+\]
+This is a quadratic polynomial in $t$ that is never negative. Its minimum is at $t_0=(\vec a\cdot\vec b)/\norm{\vec b}^2$, and
+\[
+0\le q(t_0)=\norm{\vec a}^2-\frac{(\vec a\cdot\vec b)^2}{\norm{\vec b}^2}.
+\]
+Multiplying by $\norm{\vec b}^2$ gives $(\vec a\cdot\vec b)^2\le\norm{\vec a}^2\norm{\vec b}^2$. Take square roots. Equality means $q(t_0)=0$, that is $\vec a=t_0\vec b$.
+\end{proof}
+
+\begin{corollary}[Triangle inequality]
+$\norm{\vec a+\vec b}\le\norm{\vec a}+\norm{\vec b}$.
+\end{corollary}
+
+\begin{proof}
+Expand and use Cauchy--Schwarz:
+\[
+\norm{\vec a+\vec b}^2=\norm{\vec a}^2+2\,\vec a\cdot\vec b+\norm{\vec b}^2\le\norm{\vec a}^2+2\norm{\vec a}\norm{\vec b}+\norm{\vec b}^2=(\norm{\vec a}+\norm{\vec b})^2.
+\]
+\end{proof}
+
+Cauchy--Schwarz says that $\vec a\cdot\vec b/(\norm{\vec a}\norm{\vec b})$ lies in $[-1,1]$. This lets us define the angle $\theta\in[0,\pi]$ between two non-zero vectors by $\cos\theta=\vec a\cdot\vec b/(\norm{\vec a}\norm{\vec b})$. The next theorem shows that this agrees with the angle we see in a drawing.
+
+\begin{theorem}[Geometric form of the dot product]\label{thm:dotgeom}
+If $\theta$ is the geometric angle between $\vec a$ and $\vec b$ (placed at the same starting point), then
+\[
+\vec a\cdot\vec b=\norm{\vec a}\,\norm{\vec b}\cos\theta .
+\]
+\end{theorem}
+
+\begin{proof}
+The vectors $\vec a$, $\vec b$ and $\vec a-\vec b$ form the sides of a triangle. The law of cosines from plane geometry says
+\[
+\norm{\vec a-\vec b}^2=\norm{\vec a}^2+\norm{\vec b}^2-2\norm{\vec a}\norm{\vec b}\cos\theta .
+\]
+On the other hand, expanding the dot product,
+\[
+\norm{\vec a-\vec b}^2=(\vec a-\vec b)\cdot(\vec a-\vec b)=\norm{\vec a}^2-2\,\vec a\cdot\vec b+\norm{\vec b}^2 .
+\]
+Compare the two expressions.
+\end{proof}
+
+\begin{definition}[Projection]
+The \emph{projection of $\vec a$ onto $\vec b$} ($\vec b\neq\vec 0$) is the vector
+\[
+\proj_{\vec b}\vec a=\frac{\vec a\cdot\vec b}{\vec b\cdot\vec b}\,\vec b .
+\]
+\end{definition}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.15]
+  \draw[vecstyle,accent] (0,0)--(4.4,0) node[below right]{$\vec b$};
+  \draw[vecstyle,accent2] (0,0)--(2.7,2.2) node[above right]{$\vec a$};
+  \draw[guide] (2.7,2.2)--(2.7,0);
+  \draw[very thick,accent3] (0,-0.14)--(2.7,-0.14);
+  \node[accent3,below] at (1.35,-0.14) {$\proj_{\vec b}\vec a$};
+  \draw (2.7,0) ++(-0.2,0)--++(0,0.2)--++(0.2,0);
+  \draw (0.9,0) arc (0:39:0.9);
+  \node at (1.18,0.3) {$\theta$};
+  \draw[decorate,decoration={brace,mirror,amplitude=4pt},mid] (0,-0.65)--(2.7,-0.65) node[midway,below=5pt,font=\small]{length $\norm{\vec a}\cos\theta$};
+\end{tikzpicture}
+\caption{The projection of $\vec a$ onto $\vec b$ is the ``shadow'' of $\vec a$ on the line of $\vec b$. Its length is $\norm{\vec a}\cos\theta$, and the difference $\vec a-\proj_{\vec b}\vec a$ is perpendicular to $\vec b$.}
+\label{fig:proj}
+\end{figure}
+
+\begin{proposition}\label{prop:projperp}
+The vector $\vec a-\proj_{\vec b}\vec a$ is perpendicular to $\vec b$.
+\end{proposition}
+
+\begin{proof}
+$\bigl(\vec a-\tfrac{\vec a\cdot\vec b}{\vec b\cdot\vec b}\vec b\bigr)\cdot\vec b=\vec a\cdot\vec b-\tfrac{\vec a\cdot\vec b}{\vec b\cdot\vec b}(\vec b\cdot\vec b)=0$.
+\end{proof}
+
+\begin{intuition}
+The dot product measures \emph{how much two vectors point the same way}. It is positive when the angle is acute, zero when the vectors are perpendicular, and negative when the angle is obtuse. In physics, the work done by a force $\vec F$ along a displacement $\vec d$ is $\vec F\cdot\vec d$: only the part of the force along the motion counts.
+\end{intuition}
+
+%====================================================================
+\section{The cross product}
+%====================================================================
+
+\begin{definition}[Cross product]
+For $\vec a,\vec b\in\R^3$,
+\[
+\vec a\times\vec b=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)
+=\det\begin{pmatrix}\ihat&\jhat&\khat\\a_1&a_2&a_3\\b_1&b_2&b_3\end{pmatrix}.
+\]
+\end{definition}
+
+Directly from the formula: $\vec a\times\vec b=-\,\vec b\times\vec a$, the product is linear in each argument, and $\vec a\times\vec a=\vec 0$. The product is \emph{not} commutative and \emph{not} associative.
+
+\begin{theorem}[Properties of the cross product]\label{thm:crossprops}
+For all $\vec a,\vec b\in\R^3$:
+\begin{enumerate}[label=(\alph*)]
+  \item $\vec a\cdot(\vec a\times\vec b)=0$ and $\vec b\cdot(\vec a\times\vec b)=0$ (the cross product is perpendicular to both factors).
+  \item (Lagrange's identity) $\norm{\vec a\times\vec b}^2=\norm{\vec a}^2\norm{\vec b}^2-(\vec a\cdot\vec b)^2$.
+  \item $\norm{\vec a\times\vec b}=\norm{\vec a}\norm{\vec b}\sin\theta$, where $\theta\in[0,\pi]$ is the angle between $\vec a$ and $\vec b$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Write out the first product:
+\begin{align*}
+\vec a\cdot(\vec a\times\vec b)&=a_1(a_2b_3-a_3b_2)+a_2(a_3b_1-a_1b_3)+a_3(a_1b_2-a_2b_1)\\
+&=a_1a_2b_3-a_1a_3b_2+a_2a_3b_1-a_1a_2b_3+a_1a_3b_2-a_2a_3b_1=0 .
+\end{align*}
+The second claim follows the same way (or from antisymmetry: $\vec b\cdot(\vec a\times\vec b)=-\vec b\cdot(\vec b\times\vec a)=0$).
+
+(b) Expand both sides. The left side is
+\[
+(a_2b_3-a_3b_2)^2+(a_3b_1-a_1b_3)^2+(a_1b_2-a_2b_1)^2 .
+\]
+Squaring each bracket gives the six ``square'' terms $a_2^2b_3^2+a_3^2b_2^2+a_3^2b_1^2+a_1^2b_3^2+a_1^2b_2^2+a_2^2b_1^2$ and the three ``mixed'' terms $-2a_2a_3b_2b_3-2a_1a_3b_1b_3-2a_1a_2b_1b_2$. The right side is
+\[
+(a_1^2+a_2^2+a_3^2)(b_1^2+b_2^2+b_3^2)-(a_1b_1+a_2b_2+a_3b_3)^2 .
+\]
+The product contains the nine terms $a_i^2b_j^2$. Three of them ($i=j$) are cancelled by the squares $a_i^2b_i^2$ inside $(\vec a\cdot\vec b)^2$. The six terms with $i\neq j$ remain: these are exactly the six square terms above. The cross terms of $(\vec a\cdot\vec b)^2$ are $2a_ia_jb_ib_j$ for $i<j$, and they enter with a minus sign: these are the three mixed terms. So both sides are equal.
+
+(c) By Theorem~\ref{thm:dotgeom}, $(\vec a\cdot\vec b)^2=\norm{\vec a}^2\norm{\vec b}^2\cos^2\theta$. Hence (b) gives $\norm{\vec a\times\vec b}^2=\norm{\vec a}^2\norm{\vec b}^2(1-\cos^2\theta)=\norm{\vec a}^2\norm{\vec b}^2\sin^2\theta$. Take square roots; $\sin\theta\ge0$ on $[0,\pi]$.
+\end{proof}
+
+Part~(c) says that $\norm{\vec a\times\vec b}$ is the \emph{area of the parallelogram} spanned by $\vec a$ and $\vec b$: base $\norm{\vec a}$ times height $\norm{\vec b}\sin\theta$. Parts~(a) and~(c) together fix the cross product up to a sign. The sign is fixed by the \emph{right-hand rule}, which we now justify.
+
+\begin{proposition}[Right-handedness]\label{prop:righthand}
+If $\vec a$ and $\vec b$ are linearly independent, then
+\[
+\det\bigl[\vec a,\vec b,\vec a\times\vec b\bigr]=\norm{\vec a\times\vec b}^2>0 ,
+\]
+where the determinant has the three vectors as rows. So $(\vec a,\vec b,\vec a\times\vec b)$ is a right-handed triple, like $(\ihat,\jhat,\khat)$.
+\end{proposition}
+
+\begin{proof}
+Expand the determinant along the third row $\vec c=\vec a\times\vec b$ with entries $c_1,c_2,c_3$. The cofactors of the entries in the third row are exactly the components $c_1,c_2,c_3$ of $\vec a\times\vec b$ (compare with the definition). Therefore the determinant equals $c_1^2+c_2^2+c_3^2=\norm{\vec a\times\vec b}^2$, which is positive because $\vec a\times\vec b\neq\vec 0$ by Theorem~\ref{thm:crossprops}(c).
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{58}{32}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.6]
+  \filldraw[fill=accent!15,draw=accent,thick] (0,0,0)--(2.2,0,0)--(3.0,1.5,0)--(0.8,1.5,0)--cycle;
+  \draw[vecstyle,accent2] (0,0,0)--(2.2,0,0) node[below right]{$\vec a$};
+  \draw[vecstyle,accent3] (0,0,0)--(0.8,1.5,0) node[above left]{$\vec b$};
+  \draw[vecstyle,accent4] (0,0,0)--(0,0,2.0) node[above]{$\vec a\times\vec b$};
+  \node[accent,font=\small] at (1.7,0.75,0) {area};
+  \draw[accent,thick] (0.5,0,0) arc (0:62:0.5);
+  \node[font=\small] at (0.78,0.42,0) {$\theta$};
+  % small right-angle square between a x b and the plane
+  \draw[ink,thin] (0,0,0.22)--(0.22,0,0.22)--(0.22,0,0);
+\end{tikzpicture}
+\caption{The cross product $\vec a\times\vec b$ is perpendicular to the plane of $\vec a$ and $\vec b$. Its length is the area of the shaded parallelogram. Point the fingers of your right hand along $\vec a$, curl them towards $\vec b$: the thumb gives the direction of $\vec a\times\vec b$.}
+\label{fig:cross}
+\end{figure}
+
+\begin{pitfall}
+The cross product exists only in $\R^3$ (in the form used here). It is not associative: $\ihat\times(\ihat\times\jhat)=\ihat\times\khat=-\jhat$, but $(\ihat\times\ihat)\times\jhat=\vec 0$. Also, $\vec a\times\vec b=\vec a\times\vec c$ does \emph{not} imply $\vec b=\vec c$ (take $\vec c=\vec b+\vec a$).
+\end{pitfall}
+
+%====================================================================
+\section{Triple products}
+%====================================================================
+
+\begin{definition}[Scalar triple product]
+$[\vec a,\vec b,\vec c]=\vec a\cdot(\vec b\times\vec c)$.
+\end{definition}
+
+\begin{theorem}[Triple product as determinant and volume]\label{thm:triple}
+\[
+\vec a\cdot(\vec b\times\vec c)=\det\begin{pmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{pmatrix}.
+\]
+Consequently the scalar triple product is unchanged by a cyclic permutation, $\vec a\cdot(\vec b\times\vec c)=\vec b\cdot(\vec c\times\vec a)=\vec c\cdot(\vec a\times\vec b)$, and the volume of the parallelepiped spanned by $\vec a,\vec b,\vec c$ is $\abs{\vec a\cdot(\vec b\times\vec c)}$.
+\end{theorem}
+
+\begin{proof}
+Expand the determinant along its first row:
+\[
+a_1(b_2c_3-b_3c_2)-a_2(b_1c_3-b_3c_1)+a_3(b_1c_2-b_2c_1)=a_1(\vec b\times\vec c)_1+a_2(\vec b\times\vec c)_2+a_3(\vec b\times\vec c)_3,
+\]
+which is $\vec a\cdot(\vec b\times\vec c)$. A cyclic permutation of rows is an even permutation, so it does not change the determinant; this proves the cyclic property.
+
+For the volume, take $\vec b,\vec c$ as the base. The base area is $\norm{\vec b\times\vec c}$ by Theorem~\ref{thm:crossprops}(c). The vector $\vec b\times\vec c$ is perpendicular to the base, so the height of the parallelepiped is the length of the projection of $\vec a$ on the direction $\hat{\vec n}=(\vec b\times\vec c)/\norm{\vec b\times\vec c}$, that is $h=\abs{\vec a\cdot\hat{\vec n}}$. Therefore
+\[
+\Vol=\text{base}\times\text{height}=\norm{\vec b\times\vec c}\,\abs{\vec a\cdot\hat{\vec n}}=\abs{\vec a\cdot(\vec b\times\vec c)}. \qedhere
+\]
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{68}{115}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.4]
+  \def\ax{2}\def\ay{0}\def\az{0}
+  \def\bx{0.6}\def\by{1.8}\def\bz{0}
+  \def\cx{0.5}\def\cy{0.4}\def\cz{1.9}
+  % bottom face
+  \filldraw[fill=accent!15,draw=accent,thick] (0,0,0)--(\ax,\ay,\az)--({\ax+\bx},{\ay+\by},0)--(\bx,\by,0)--cycle;
+  % vertical edges and top face
+  \draw[accent,thick] (0,0,0)--(\cx,\cy,\cz);
+  \draw[accent,thick] (\ax,0,0)--({\ax+\cx},\cy,\cz);
+  \draw[accent,thick] ({\ax+\bx},\by,0)--({\ax+\bx+\cx},{\by+\cy},\cz);
+  \draw[accent,thick,dashed] (\bx,\by,0)--({\bx+\cx},{\by+\cy},\cz);
+  \draw[accent,thick] (\cx,\cy,\cz)--({\ax+\cx},\cy,\cz)--({\ax+\bx+\cx},{\by+\cy},\cz);
+  \draw[accent,thick,dashed] ({\bx+\cx},{\by+\cy},\cz)--(\cx,\cy,\cz);
+  \draw[accent,thick] ({\bx+\cx},{\by+\cy},\cz)--({\ax+\bx+\cx},{\by+\cy},\cz);
+  % vectors
+  \draw[vecstyle,accent2] (0,0,0)--(\ax,0,0) node[below right]{$\vec b$};
+  \draw[vecstyle,accent3] (0,0,0)--(\bx,\by,0) node[left]{$\vec c$};
+  \draw[vecstyle,accent4] (0,0,0)--(\cx,\cy,\cz) node[above left]{$\vec a$};
+  % height
+  \draw[guide] (\cx,\cy,\cz)--(\cx,\cy,0);
+  \node[font=\small] at (0.1,0.55,1.0) {$h$};
+\end{tikzpicture}
+\caption{The parallelepiped spanned by $\vec a,\vec b,\vec c$. The base is the parallelogram of $\vec b$ and $\vec c$ with area $\norm{\vec b\times\vec c}$; the height $h$ is the component of $\vec a$ along $\vec b\times\vec c$. So the volume is $\abs{\vec a\cdot(\vec b\times\vec c)}$.}
+\label{fig:parallelepiped}
+\end{figure}
+
+\begin{theorem}[Vector triple product, ``BAC--CAB'']\label{thm:bac}
+For all $\vec a,\vec b,\vec c\in\R^3$,
+\[
+\vec a\times(\vec b\times\vec c)=\vec b\,(\vec a\cdot\vec c)-\vec c\,(\vec a\cdot\vec b).
+\]
+\end{theorem}
+
+\begin{proof}
+We check the first component; the others follow by renaming the indices cyclically. We have $(\vec b\times\vec c)_2=b_3c_1-b_1c_3$ and $(\vec b\times\vec c)_3=b_1c_2-b_2c_1$. Then
+\begin{align*}
+\bigl[\vec a\times(\vec b\times\vec c)\bigr]_1&=a_2(\vec b\times\vec c)_3-a_3(\vec b\times\vec c)_2\\
+&=a_2(b_1c_2-b_2c_1)-a_3(b_3c_1-b_1c_3)\\
+&=b_1(a_2c_2+a_3c_3)-c_1(a_2b_2+a_3b_3).
+\end{align*}
+Add and subtract $a_1b_1c_1$:
+\[
+=b_1(a_1c_1+a_2c_2+a_3c_3)-c_1(a_1b_1+a_2b_2+a_3b_3)=b_1(\vec a\cdot\vec c)-c_1(\vec a\cdot\vec b),
+\]
+which is the first component of the right-hand side.
+\end{proof}
+
+%====================================================================
+\section{Lines and planes}
+%====================================================================
+
+A \emph{line} through the point $\vec r_0$ with direction $\vec d\ne\vec 0$ is the set
+\[
+\vec r(t)=\vec r_0+t\,\vec d,\qquad t\in\R .
+\]
+A \emph{plane} through $\vec r_0$ with \emph{normal vector} $\vec n\neq\vec0$ is the set of points $\vec r$ with
+\[
+\vec n\cdot(\vec r-\vec r_0)=0,\quad\text{that is}\quad n_1x+n_2y+n_3z=d\ \ (d=\vec n\cdot\vec r_0).
+\]
+The plane is the set of all points $\vec r$ such that the vector $\vec r-\vec r_0$ is perpendicular to $\vec n$. If the plane is given by two direction vectors $\vec u,\vec v$ (not parallel), then $\vec n=\vec u\times\vec v$ is a normal vector.
+
+\begin{theorem}[Distances]\label{thm:dist}
+Let $P$ be a point with position vector $\vec p$.
+\begin{enumerate}[label=(\alph*)]
+  \item The distance from $P$ to the plane $\vec n\cdot(\vec r-\vec r_0)=0$ is $\displaystyle\frac{\abs{\vec n\cdot(\vec p-\vec r_0)}}{\norm{\vec n}}$.
+  \item The distance from $P$ to the line $\vec r_0+t\vec d$ is $\displaystyle\frac{\norm{\vec d\times(\vec p-\vec r_0)}}{\norm{\vec d}}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Let $\vec w=\vec p-\vec r_0$ and let $\vec m=\vec n/\norm{\vec n}$ be the unit normal. Take any point $\vec q$ of the plane, so $\vec n\cdot(\vec q-\vec r_0)=0$. Then $\vec p-\vec q=\vec w-(\vec q-\vec r_0)$, and its component along $\vec m$ is
+\[
+(\vec p-\vec q)\cdot\vec m=\vec w\cdot\vec m-(\vec q-\vec r_0)\cdot\vec m=\vec w\cdot\vec m .
+\]
+For a unit vector $\vec m$, Cauchy--Schwarz gives $\norm{\vec p-\vec q}\ge\abs{(\vec p-\vec q)\cdot\vec m}=\abs{\vec w\cdot\vec m}$. So every point of the plane is at least $\abs{\vec w\cdot\vec m}$ away from $P$. This bound is reached: the point $\vec q_0=\vec p-(\vec w\cdot\vec m)\vec m$ lies in the plane, because $\vec n\cdot(\vec q_0-\vec r_0)=\vec n\cdot\vec w-(\vec w\cdot\vec m)\,\vec n\cdot\vec m=\vec n\cdot\vec w-(\vec w\cdot\vec n)=0$, and $\norm{\vec p-\vec q_0}=\abs{\vec w\cdot\vec m}$. Hence the distance is $\abs{\vec w\cdot\vec m}=\abs{\vec n\cdot\vec w}/\norm{\vec n}$.
+
+(b) Place $\vec w=\vec p-\vec r_0$ and $\vec d$ at the same point. They span a parallelogram of area $\norm{\vec d\times\vec w}$ (Theorem~\ref{thm:crossprops}(c)). Taking $\vec d$ as the base, the area also equals $\norm{\vec d}\cdot h$, where $h$ is the height, that is the distance from $P$ to the line through the base. Hence $h=\norm{\vec d\times\vec w}/\norm{\vec d}$.
+\end{proof}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{62}{28}
+\begin{tikzpicture}[tdplot_main_coords,scale=1.5]
+  \filldraw[fill=accent!12,draw=accent,thick] (-1.2,-1.2,0)--(3.6,-1.2,0)--(3.6,2.8,0)--(-1.2,2.8,0)--cycle;
+  \node[accent,font=\small] at (3.0,-0.8,0) {plane};
+  % points
+  \coordinate (R) at (0,0,0);
+  \coordinate (P) at (2.0,1.4,2.2);
+  \coordinate (F) at (2.0,1.4,0);
+  \draw[vecstyle,accent3] (R)--(0,0,1.4);
+  \node[accent3,left,font=\small] at (0,0,1.5) {$\vec n$};
+  \draw[dashed,accent2,very thick] (P)--(F);
+  \draw[guide] (R)--(F);
+  \draw[very thick,ink] (R)--(P);
+  \node[pt] at (R) {}; \node[pt] at (P) {}; \node[pt] at (F) {};
+  \node[font=\small,below left] at (R) {$\vec r_0$};
+  \node[font=\small,above] at (P) {$P$};
+  \node[font=\small,below right] at (F) {foot};
+  \node[font=\small,left] at (0.85,0.6,1.25) {$\vec w$};
+  \node[accent2,font=\small,right] at (2.0,1.4,1.1) {$d$};
+  \draw[ink,thin] (1.8,1.26,0)--(1.8,1.26,0.2)--(2.0,1.4,0.2);
+\end{tikzpicture}
+\caption{Distance from a point $P$ to a plane. The distance $d$ is the length of the projection of $\vec w=\vec p-\vec r_0$ onto the normal $\vec n$.}
+\label{fig:planedist}
+\end{figure}
+
+%====================================================================
+\section{Surfaces: implicit and parametric descriptions}
+%====================================================================
+
+A surface in $\R^3$ can be described in two main ways.
+
+\begin{itemize}
+  \item \textbf{Implicitly}, as a level set $\{(x,y,z):F(x,y,z)=c\}$. Example: the sphere $x^2+y^2+z^2=R^2$.
+  \item \textbf{Parametrically}, as the image of a map $\vec r(u,v)=(x(u,v),y(u,v),z(u,v))$ from a region of the $(u,v)$-plane. Example: the same sphere is $\vec r(\theta,\varphi)=R(\sin\varphi\cos\theta,\ \sin\varphi\sin\theta,\ \cos\varphi)$, with $0\le\theta<2\pi$, $0\le\varphi\le\pi$.
+\end{itemize}
+
+\begin{center}
+\small\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Surface & Implicit form & Parametric form \\
+\midrule
+Plane & $\vec n\cdot(\vec r-\vec r_0)=0$ & $\vec r_0+u\vec a+v\vec b$ \\
+Graph of $f$ & $z=f(x,y)$ & $(u,v,f(u,v))$ \\
+Sphere & $x^2+y^2+z^2=R^2$ & $R(\sin\varphi\cos\theta,\sin\varphi\sin\theta,\cos\varphi)$ \\
+Cylinder & $x^2+y^2=R^2$ & $(R\cos\theta,R\sin\theta,z)$ \\
+Cone & $z^2=x^2+y^2$ & $(z\cos\theta,z\sin\theta,z)$ \\
+Paraboloid & $z=x^2+y^2$ & $(\rho\cos\theta,\rho\sin\theta,\rho^2)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{65}{120}
+\begin{tikzpicture}[tdplot_main_coords,scale=2.5]
+  \draw[axisline,mid] (0,0,0)--(1.35,0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,0,0)--(0,1.35,0) node[right]{$y$};
+  \draw[axisline,mid] (0,0,0)--(0,0,1.35) node[above]{$z$};
+  % latitudes (constant phi)
+  \foreach \p in {30,60,90,120,150}{
+    \pgfmathsetmacro{\rr}{sin(\p)}
+    \pgfmathsetmacro{\zz}{cos(\p)}
+    \draw[accent!55,thin] plot[domain=0:360,samples=72,variable=\t]({\rr*cos(\t)},{\rr*sin(\t)},{\zz});
+  }
+  % longitudes (constant theta)
+  \foreach \th in {0,60,120}{
+    \draw[accent2!55,thin] plot[domain=0:360,samples=72,variable=\t]({sin(\t)*cos(\th)},{sin(\t)*sin(\th)},{cos(\t)});
+  }
+  % highlighted point: theta = 50, phi = 55
+  \coordinate (Q) at (0.5265,0.6275,0.5736);
+  \coordinate (Qxy) at (0.5265,0.6275,0);
+  \draw[vecstyle,ink] (0,0,0)--(Q);
+  \draw[guide] (Q)--(Qxy)--(0,0,0);
+  \node[pt] at (Q) {};
+  \node[font=\small,above right] at (Q) {$P$};
+  % angle theta in the xy-plane
+  \draw[accent2,very thick] plot[domain=0:50,samples=20,variable=\a]({0.45*cos(\a)},{0.45*sin(\a)},0);
+  \node[accent2,font=\small] at (0.62,0.22,0) {$\theta$};
+  % angle phi from the z-axis
+  \draw[accent,very thick] plot[domain=0:55,samples=20,variable=\a]({0.4*sin(\a)*cos(50)},{0.4*sin(\a)*sin(50)},{0.4*cos(\a)});
+  \node[accent,font=\small] at (0.08,0.2,0.55) {$\varphi$};
+\end{tikzpicture}
+\caption{The unit sphere. It is the level set $x^2+y^2+z^2=1$, and also the image of the parametrization $(\theta,\varphi)\mapsto(\sin\varphi\cos\theta,\sin\varphi\sin\theta,\cos\varphi)$. Blue curves have constant $\varphi$ (latitudes); orange curves have constant $\theta$ (longitudes).}
+\label{fig:sphere}
+\end{figure}
+
+\begin{intuition}
+The two descriptions answer different questions. An \emph{implicit} equation makes it easy to \emph{test} whether a point is on the surface (plug it in). A \emph{parametric} form makes it easy to \emph{generate} points and to integrate over the surface (we do this in Chapter~\ref{ch:linesurface}).
+\end{intuition}
+
+%====================================================================
+\section{Parametric curves}
+%====================================================================
+
+\begin{definition}[Parametric curve]
+A \emph{parametric curve} is a map $\vec r:[a,b]\to\R^3$, $\vec r(t)=(x(t),y(t),z(t))$. It is \emph{$C^1$} if $x,y,z$ have continuous derivatives. The vector $\vec r\,'(t)=(x',y',z')$ is the \emph{velocity}, and $\norm{\vec r\,'(t)}$ is the \emph{speed}. The curve is \emph{regular} (or smooth) if $\vec r\,'(t)\neq\vec 0$ for all $t$. For a regular curve, the \emph{unit tangent vector} is $\vec T(t)=\vec r\,'(t)/\norm{\vec r\,'(t)}$.
+\end{definition}
+
+\begin{example}[Circle and helix]
+The circle of radius $R$: $\vec r(t)=(R\cos t,R\sin t)$, with $\vec r\,'(t)=(-R\sin t,R\cos t)$ and constant speed $R$. The helix $\vec r(t)=(a\cos t,a\sin t,bt)$ has $\vec r\,'(t)=(-a\sin t,a\cos t,b)$ and constant speed $\sqrt{a^2+b^2}$.
+\end{example}
+
+\begin{figure}[ht]
+\centering
+\tdplotsetmaincoords{72}{125}
+\begin{tikzpicture}[tdplot_main_coords,scale=2.1]
+  \draw[axisline,mid] (0,0,0)--(1.5,0,0) node[right]{$x$};
+  \draw[axisline,mid] (0,0,0)--(0,1.5,0) node[right]{$y$};
+  \draw[axisline,mid] (0,0,0)--(0,0,2.5) node[above]{$z$};
+  \draw[curvestyle,domain=0:12.5,samples=140,smooth,variable=\t] plot ({cos(\t r)},{sin(\t r)},{0.15*\t});
+  % tangent at t0=2pi
+  \node[pt] at (1,0,0.942) {};
+  \draw[vecstyle,accent2] (1,0,0.942)--(1,0.8,1.062) node[right]{$\vec T$};
+  % shadow circle
+  \draw[guide] plot[domain=0:360,samples=60,variable=\t]({cos(\t)},{sin(\t)},0);
+\end{tikzpicture}
+\caption{A helix $\vec r(t)=(\cos t,\sin t,0.15t)$. The tangent vector $\vec T$ is always inclined at the same angle to the horizontal; the curve winds around the cylinder $x^2+y^2=1$.}
+\label{fig:helix}
+\end{figure}
+
+\subsection{Arc length}
+
+How long is a curve? We define length by approximating the curve with a polygon.
+
+\begin{definition}[Arc length]
+Let $P=\{a=t_0<t_1<\dots<t_n=b\}$ be a partition. The \emph{length of the inscribed polygon} is $L(P)=\sum_{i=1}^n\norm{\vec r(t_i)-\vec r(t_{i-1})}$. The \emph{arc length} of the curve is $L=\sup_P L(P)$.
+\end{definition}
+
+\begin{theorem}[Arc length formula]\label{thm:arclength}
+For a $C^1$ curve $\vec r:[a,b]\to\R^3$,
+\[
+L=\int_a^b\norm{\vec r\,'(t)}\,\dd t .
+\]
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: $L(P)\le\int_a^b\norm{\vec r\,'}$ for every partition.} By the fundamental theorem of calculus applied to each component, $\vec r(t_i)-\vec r(t_{i-1})=\int_{t_{i-1}}^{t_i}\vec r\,'(s)\,\dd s$. For a vector-valued integral, $\norm{\int\vec f}\le\int\norm{\vec f}$. (Proof: let $\vec v=\int\vec f$; then $\norm{\vec v}^2=\vec v\cdot\int\vec f=\int\vec v\cdot\vec f\le\int\norm{\vec v}\norm{\vec f}$ by Cauchy--Schwarz; divide by $\norm{\vec v}$ if $\vec v\ne\vec 0$.) So $\norm{\vec r(t_i)-\vec r(t_{i-1})}\le\int_{t_{i-1}}^{t_i}\norm{\vec r\,'}$. Summing over $i$ gives the claim. Taking the supremum, $L\le\int_a^b\norm{\vec r\,'}$.
+
+\emph{Step 2: the reverse inequality.} Let $\eps>0$. The function $\vec r\,'$ is continuous on the compact interval $[a,b]$, hence uniformly continuous: there is $\delta>0$ such that $\norm{\vec r\,'(s)-\vec r\,'(t)}<\eps$ whenever $\abs{s-t}<\delta$. Take a partition with mesh smaller than $\delta$. For each $i$,
+\[
+\vec r(t_i)-\vec r(t_{i-1})=\vec r\,'(t_i)\,\Delta t_i+\int_{t_{i-1}}^{t_i}\bigl(\vec r\,'(s)-\vec r\,'(t_i)\bigr)\dd s,
+\]
+and the last integral has norm at most $\eps\,\Delta t_i$. By the triangle inequality
+\[
+\norm{\vec r(t_i)-\vec r(t_{i-1})}\ge\norm{\vec r\,'(t_i)}\Delta t_i-\eps\,\Delta t_i .
+\]
+Summing, $L\ge L(P)\ge\sum_i\norm{\vec r\,'(t_i)}\Delta t_i-\eps(b-a)$. The sum is a Riemann sum of the continuous function $\norm{\vec r\,'}$; as the mesh goes to $0$ it tends to $\int_a^b\norm{\vec r\,'}$. Hence $L\ge\int_a^b\norm{\vec r\,'}-\eps(b-a)$ for every $\eps>0$, so $L\ge\int_a^b\norm{\vec r\,'}$.
+\end{proof}
+
+\begin{proposition}[Length does not depend on the parametrization]\label{prop:reparam}
+Let $\varphi:[c,d]\to[a,b]$ be a $C^1$ bijection with $\varphi'>0$, and let $\vec\rho(s)=\vec r(\varphi(s))$. Then $\vec\rho$ has the same arc length as $\vec r$.
+\end{proposition}
+
+\begin{proof}
+By the chain rule $\vec\rho\,'(s)=\vec r\,'(\varphi(s))\varphi'(s)$, so $\norm{\vec\rho\,'(s)}=\norm{\vec r\,'(\varphi(s))}\varphi'(s)$ because $\varphi'>0$. Substituting $t=\varphi(s)$, $\dd t=\varphi'(s)\dd s$:
+\[
+\int_c^d\norm{\vec\rho\,'(s)}\dd s=\int_c^d\norm{\vec r\,'(\varphi(s))}\varphi'(s)\dd s=\int_a^b\norm{\vec r\,'(t)}\dd t.\qedhere
+\]
+\end{proof}
+
+For a regular curve, define the \emph{arc-length function} $s(t)=\int_a^t\norm{\vec r\,'(u)}\dd u$. Since $s'(t)=\norm{\vec r\,'(t)}>0$, the function $s$ is strictly increasing and can be inverted. Using $s$ as the parameter, the curve has \emph{unit speed}: $\norm{\dd\vec r/\dd s}=1$. This is the \emph{arc-length parametrization}. It is the natural choice for studying shape, because it does not depend on how fast we travel.
+
+%====================================================================
+\section{Curvature, normal and binormal; the Frenet--Serret equations}
+%====================================================================
+
+From now on, let $\vec r(s)$ be a curve parametrized by arc length, and write a prime for $\dd/\dd s$. Then $\vec T=\vec r\,'$ is the unit tangent.
+
+\begin{lemma}\label{lem:perp}
+If $\vec u(s)$ is a differentiable vector with constant length, then $\vec u\cdot\vec u\,'=0$.
+\end{lemma}
+
+\begin{proof}
+Differentiate $\vec u\cdot\vec u=\text{const}$: $2\,\vec u\cdot\vec u\,'=0$.
+\end{proof}
+
+Since $\norm{\vec T}=1$, the lemma gives $\vec T\cdot\vec T\,'=0$: the derivative of $\vec T$ is perpendicular to $\vec T$. It measures how fast the \emph{direction} of the curve changes.
+
+\begin{definition}[Curvature, normal, binormal]
+The \emph{curvature} is $\kappa(s)=\norm{\vec T\,'(s)}$. Where $\kappa\ne0$, the \emph{principal normal} is $\vec N=\vec T\,'/\kappa$, and the \emph{binormal} is $\vec B=\vec T\times\vec N$. The \emph{radius of curvature} is $1/\kappa$.
+\end{definition}
+
+The three vectors $\vec T,\vec N,\vec B$ are mutually perpendicular unit vectors, and $(\vec T,\vec N,\vec B)$ is right-handed (Proposition~\ref{prop:righthand}). They form the \emph{Frenet frame}: a moving coordinate system that travels along the curve. The plane spanned by $\vec T$ and $\vec N$ is the \emph{osculating plane}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.9]
+  % curve y = x^2/2
+  \draw[curvestyle,domain=-1.7:2.0,samples=80] plot (\x,{0.5*\x*\x});
+  % point x=0.5: P=(0.5,0.125), T=(0.8944,0.4472), N=(-0.4472,0.8944), center (-0.125,1.375), R=1.3975
+  \coordinate (P) at (0.5,0.125);
+  \coordinate (C) at (-0.125,1.375);
+  \draw[accent2,thick,dashed] (C) circle (1.3975);
+  \node[pt] at (P) {};
+  \node[pt,fill=accent2] at (C) {};
+  \draw[vecstyle,accent3] (P)--++(0.8944*0.8,0.4472*0.8) node[right]{$\vec T$};
+  \draw[vecstyle,accent4] (P)--++(-0.4472*0.8,0.8944*0.8) node[above left]{$\vec N$};
+  \draw[guide] (P)--(C);
+  \node[accent2,font=\small] at (0.05,0.8) [right] {$R=1/\kappa$};
+  \node[accent2,font=\small] at (C) [above left] {center};
+  \draw (P) ++(0.8944*0.16,0.4472*0.16) -- ++(-0.4472*0.16,0.8944*0.16) -- ++(-0.8944*0.16,-0.4472*0.16);
+\end{tikzpicture}
+\caption{The osculating circle (dashed) touches the curve at $P$ and has the same tangent and the same curvature there. Its radius is $R=1/\kappa$, and its centre lies on the normal $\vec N$. The curve here is $y=x^2/2$ at $x=0.5$.}
+\label{fig:osculating}
+\end{figure}
+
+\begin{theorem}[Frenet--Serret equations]\label{thm:frenet}
+Let $\vec r(s)$ be a regular unit-speed curve with $\kappa>0$ and assume $\vec N$ is differentiable. There is a function $\tau(s)$, called the \emph{torsion}, such that
+\begin{align*}
+\vec T\,'&=\ \ \kappa\,\vec N,\\
+\vec N\,'&=-\kappa\,\vec T+\tau\,\vec B,\\
+\vec B\,'&=\ \ -\tau\,\vec N.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+The first equation is the definition of $\vec N$. The vectors $\vec T,\vec N,\vec B$ are orthonormal, so every vector can be written as a combination of them, and the coefficient of a vector $\vec w$ along $\vec e\in\{\vec T,\vec N,\vec B\}$ is $\vec w\cdot\vec e$. Differentiate the relations $\vec e_i\cdot\vec e_j=\delta_{ij}$ to get
+\[
+\vec e_i\,'\cdot\vec e_j+\vec e_i\cdot\vec e_j\,'=0 .
+\]
+So the matrix of coefficients $A_{ij}=\vec e_i\,'\cdot\vec e_j$ is \emph{antisymmetric}: $A_{ij}=-A_{ji}$ and $A_{ii}=0$. We know $A_{TN}=\vec T\,'\cdot\vec N=\kappa$ and $A_{TB}=\vec T\,'\cdot\vec B=\kappa\,\vec N\cdot\vec B=0$. By antisymmetry, $A_{NT}=-\kappa$ and $A_{BT}=0$. Define $\tau=A_{NB}=\vec N\,'\cdot\vec B$. Then $A_{BN}=-\tau$. Therefore
+\begin{align*}
+\vec N\,'&=A_{NT}\vec T+A_{NN}\vec N+A_{NB}\vec B=-\kappa\vec T+\tau\vec B,\\
+\vec B\,'&=A_{BT}\vec T+A_{BN}\vec N+A_{BB}\vec B=-\tau\vec N. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{intuition}
+Curvature $\kappa$ measures how fast the curve \emph{bends inside its osculating plane}. Torsion $\tau$ measures how fast the curve \emph{twists out of that plane}. A curve is planar if and only if $\tau\equiv0$. A straight line has $\kappa=0$. A circle has $\kappa=1/R$ and $\tau=0$. A helix has constant $\kappa$ and constant $\tau$.
+\end{intuition}
+
+Most curves are not given with arc length as a parameter. The next theorem gives $\kappa$ and $\tau$ for any regular parametrization.
+
+\begin{theorem}[Curvature and torsion for general parameters]\label{thm:kappageneral}
+For a regular curve $\vec r(t)$ with $\vec r\,'\times\vec r\,''\neq\vec 0$,
+\[
+\kappa=\frac{\norm{\vec r\,'\times\vec r\,''}}{\norm{\vec r\,'}^3},\qquad
+\tau=\frac{(\vec r\,'\times\vec r\,'')\cdot\vec r\,'''}{\norm{\vec r\,'\times\vec r\,''}^2}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $v=\norm{\vec r\,'}=\dd s/\dd t$, so that $\vec r\,'=v\vec T$. By the chain rule, for any function of $s$: $\dfrac{\dd}{\dd t}=v\dfrac{\dd}{\dd s}$. Using the Frenet equations,
+\begin{align*}
+\vec r\,'&=v\,\vec T,\\
+\vec r\,''&=v'\vec T+v\cdot v\,\vec T_s=v'\,\vec T+\kappa v^2\,\vec N,\\
+\vec r\,'''&=v''\vec T+v'v\kappa\vec N+(\kappa v^2)'\vec N+\kappa v^2\cdot v(-\kappa\vec T+\tau\vec B)\\
+&=(v''-\kappa^2v^3)\vec T+\bigl(3\kappa vv'+\kappa'v^2\bigr)\vec N+\kappa\tau v^3\,\vec B,
+\end{align*}
+where $\kappa'=\dd\kappa/\dd t$ in the last line. Now compute the cross product using $\vec T\times\vec T=\vec 0$ and $\vec T\times\vec N=\vec B$:
+\[
+\vec r\,'\times\vec r\,''=v\vec T\times(v'\vec T+\kappa v^2\vec N)=\kappa v^3\,\vec B .
+\]
+Taking norms, $\norm{\vec r\,'\times\vec r\,''}=\kappa v^3$, which gives the formula for $\kappa$. Next,
+\[
+(\vec r\,'\times\vec r\,'')\cdot\vec r\,'''=\kappa v^3\,\vec B\cdot\vec r\,'''=\kappa v^3\cdot\kappa\tau v^3=\kappa^2\tau v^6=\tau\,\norm{\vec r\,'\times\vec r\,''}^2,
+\]
+which gives the formula for $\tau$.
+\end{proof}
+
+\begin{example}[Curvature of the helix]
+For $\vec r(t)=(a\cos t,a\sin t,bt)$ we have $\vec r\,'=(-a\sin t,a\cos t,b)$, $\vec r\,''=(-a\cos t,-a\sin t,0)$, $\vec r\,'''=(a\sin t,-a\cos t,0)$. The cross product is
+\[
+\vec r\,'\times\vec r\,''=(ab\sin t,\,-ab\cos t,\,a^2),\qquad \norm{\vec r\,'\times\vec r\,''}=a\sqrt{a^2+b^2}.
+\]
+Since $\norm{\vec r\,'}=\sqrt{a^2+b^2}$,
+\[
+\kappa=\frac{a\sqrt{a^2+b^2}}{(a^2+b^2)^{3/2}}=\frac{a}{a^2+b^2}.
+\]
+For the torsion, $(\vec r\,'\times\vec r\,'')\cdot\vec r\,'''=a^2b\sin^2t+a^2b\cos^2t+0=a^2b$, so
+\[
+\tau=\frac{a^2b}{a^2(a^2+b^2)}=\frac{b}{a^2+b^2}.
+\]
+Both are constant. For $b=0$ (a circle) we get $\kappa=1/a$ and $\tau=0$, as expected.
+\end{example}
+
+\begin{pitfall}
+Curvature is defined with respect to arc length, not with respect to $t$. The quantity $\norm{\vec T\,'(t)}$ with a general parameter $t$ is $\kappa\cdot v$, not $\kappa$. Always divide by the speed: $\kappa=\norm{\vec T\,'(t)}/\norm{\vec r\,'(t)}$.
+\end{pitfall}
+
+%====================================================================
+\begin{summarybox}
+\begin{itemize}
+  \item $\vec a\cdot\vec b=\norm{\vec a}\norm{\vec b}\cos\theta$; projection $\proj_{\vec b}\vec a=\frac{\vec a\cdot\vec b}{\vec b\cdot\vec b}\vec b$; Cauchy--Schwarz.
+  \item $\norm{\vec a\times\vec b}=\norm{\vec a}\norm{\vec b}\sin\theta$ is a parallelogram area; the direction is given by the right-hand rule.
+  \item $\vec a\cdot(\vec b\times\vec c)=\det[\vec a,\vec b,\vec c]$ is a signed volume; $\vec a\times(\vec b\times\vec c)=\vec b(\vec a\cdot\vec c)-\vec c(\vec a\cdot\vec b)$.
+  \item Plane: $\vec n\cdot(\vec r-\vec r_0)=0$. Distance to a plane: $\abs{\vec n\cdot\vec w}/\norm{\vec n}$. Distance to a line: $\norm{\vec d\times\vec w}/\norm{\vec d}$.
+  \item Arc length $\int\norm{\vec r\,'}\dd t$, independent of the parametrization.
+  \item Frenet--Serret: $\vec T'=\kappa\vec N$, $\vec N'=-\kappa\vec T+\tau\vec B$, $\vec B'=-\tau\vec N$. General formulas: $\kappa=\norm{\vec r'\times\vec r''}/\norm{\vec r'}^3$.
+\end{itemize}
+\end{summarybox}
+
+\begin{interview}
+\begin{enumerate}
+  \item \emph{What does the cross product mean geometrically?} A vector perpendicular to both factors; length = area of the parallelogram; direction by the right-hand rule.
+  \item \emph{Why does $\vec a\cdot(\vec b\times\vec c)$ give a volume?} Base area $\norm{\vec b\times\vec c}$ times the height (component of $\vec a$ along the normal).
+  \item \emph{How do you find the distance from a point to a plane?} Project the vector from a plane point onto the unit normal.
+  \item \emph{What is curvature?} The rate of turning of the unit tangent per unit arc length; the inverse of the radius of the osculating circle.
+  \item \emph{Why is $\vec T'$ perpendicular to $\vec T$?} Because $\vec T$ has constant length (differentiate $\vec T\cdot\vec T=1$).
+  \item \emph{What does torsion measure?} How fast the curve leaves its osculating plane; $\tau=0$ for planar curves.
+\end{enumerate}
+\end{interview}
+
+\subsection*{Exercises}
+\begin{exercise}
+Prove the \emph{parallelogram law}: $\norm{\vec a+\vec b}^2+\norm{\vec a-\vec b}^2=2\norm{\vec a}^2+2\norm{\vec b}^2$.
+\end{exercise}
+\begin{exercise}
+Prove the \emph{Jacobi identity} $\vec a\times(\vec b\times\vec c)+\vec b\times(\vec c\times\vec a)+\vec c\times(\vec a\times\vec b)=\vec 0$. (Hint: use Theorem~\ref{thm:bac} three times.)
+\end{exercise}
+\begin{exercise}
+Find the distance between two skew lines $\vec r_1+t\vec d_1$ and $\vec r_2+s\vec d_2$. (Answer: $\abs{(\vec r_2-\vec r_1)\cdot(\vec d_1\times\vec d_2)}/\norm{\vec d_1\times\vec d_2}$. Explain why using Theorem~\ref{thm:triple}.)
+\end{exercise}
+\begin{exercise}
+Compute the arc length of $\vec r(t)=(t,\ t^2/2)$ for $0\le t\le 1$ and find its curvature at $t=1$.
+\end{exercise}
+\begin{exercise}
+Show that a regular curve with $\tau\equiv0$ and $\kappa>0$ lies in a plane. (Hint: Frenet--Serret gives $\vec B'=\vec 0$; consider $\vec r\cdot\vec B$.)
+\end{exercise}
