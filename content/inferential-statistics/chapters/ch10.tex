@@ -2,15 +2,29 @@
 
 \section{Quality Improvement and Statistics}
 
-\emph{Quality} means \emph{fitness for use}. It is determined by two things: \emph{quality of design} (the grade, performance and reliability deliberately built into the product) and \emph{quality of conformance} (how consistently units meet the design, i.e.\ the systematic reduction of variability and defects). Quality improvement is the systematic elimination of waste: scrap, rework, inspection, warranty cost and the time spent doing things over. Statistics supports quality improvement throughout: designed experiments in product and process development (Chapters~7--8), process-capability studies, process monitoring by control charts, and life testing for reliability.
+\emph{Quality} means \emph{fitness for use}. It has two parts:
+\begin{itemize}
+  \item \emph{Quality of design}: the grade, performance and reliability deliberately built into the product.
+  \item \emph{Quality of conformance}: how consistently units meet the design. This means steadily reducing variability and defects.
+\end{itemize}
+Quality improvement is the systematic removal of waste: scrap, rework, inspection, warranty cost and time spent doing things over.
+
+Statistics helps throughout: designed experiments in development (Chapters~7--8), process-capability studies, control charts for monitoring, and life testing for reliability.
 
 \section{Statistical Quality Control}
 
-Statistical quality control (SQC) is the collection of statistical and engineering methods for measuring, monitoring, controlling and improving quality. Its history begins with W.\,A.\ Shewhart of Bell Laboratories, who introduced the control chart in 1924; H.\,F.\ Dodge and H.\,G.\ Romig developed statistical sampling inspection; and W.\,E.\ Deming and J.\,M.\ Juran spread the methods widely after the Second World War.
+Statistical quality control (SQC) is the set of statistical and engineering methods for measuring, monitoring, controlling and improving quality.
+\begin{itemize}
+  \item W.\,A.\ Shewhart (Bell Laboratories) introduced the control chart in 1924.
+  \item H.\,F.\ Dodge and H.\,G.\ Romig developed statistical sampling inspection.
+  \item W.\,E.\ Deming and J.\,M.\ Juran spread the methods widely after the Second World War.
+\end{itemize}
 
 \section{Statistical Process Control}
 
-Quality cannot be inspected into a product; the process must be built right the first time. \emph{Statistical process control} (SPC) is the on-line use of statistics to achieve process stability and to improve capability by reducing variability. Its basic problem-solving tools are the \emph{seven tools}:
+Quality cannot be inspected into a product. The process must be right the first time. \emph{Statistical process control} (SPC) is the on-line use of statistics to make a process stable and to improve its capability by cutting variability.
+
+The basic problem-solving tools are the \emph{seven tools}:
 \begin{enumerate}[label=(\arabic*)]
   \item histogram (or stem-and-leaf plot);
   \item Pareto chart;
@@ -20,80 +34,131 @@ Quality cannot be inspected into a product; the process must be built right the 
   \item scatter diagram;
   \item check sheet.
 \end{enumerate}
-They are the technical side of SPC; the other essential element is attitude: a commitment at all levels to continuous improvement through reducing variability. The control chart is the most powerful of the tools.
+These are the technical side of SPC. The other essential part is attitude: a commitment at all levels to continuous improvement by reducing variability. The control chart is the most powerful tool.
 
 \section{Introduction to Control Charts}
 
 \subsection{Basic Principles}
 
-Every process has some inherent, natural variability caused by many small, unavoidable \emph{chance causes} (also called common causes). A process operating with only chance causes is \emph{in statistical control}. Other variability, from improperly adjusted machines, operator errors or defective raw material, is usually large compared with the background noise and signals an \emph{assignable cause} (special cause); a process operating in the presence of assignable causes is \emph{out of control}. A main objective of SPC is to detect assignable causes quickly, so that corrective action is taken before many nonconforming units are made.
+\begin{itemize}
+  \item Every process has natural variability from many small, unavoidable \emph{chance causes} (common causes). A process with only chance causes is \emph{in statistical control}.
+  \item Other variability comes from badly adjusted machines, operator errors or defective material. It is usually large compared with the background noise. It signals an \emph{assignable cause} (special cause). A process with assignable causes is \emph{out of control}.
+  \item A main aim of SPC is to find assignable causes quickly, so corrective action comes before many nonconforming units are made.
+\end{itemize}
 
-A \emph{control chart} plots a quality statistic from samples against sample number (or time). It has a \emph{center line} (CL), representing the average value of the statistic when only chance causes are present, and an \emph{upper} and \emph{lower control limit} (UCL, LCL) chosen so that nearly all the points fall between them while the process is in control. A point outside the limits, or a non-random pattern within them, is evidence of an assignable cause and calls for investigation.
+A \emph{control chart} plots a quality statistic from samples against sample number (or time).
+\begin{itemize}
+  \item The \emph{center line} (CL) is the average of the statistic when only chance causes act.
+  \item The \emph{upper} and \emph{lower control limits} (UCL, LCL) are set so nearly all points fall between them while the process is in control.
+  \item A point outside the limits, or a non-random pattern inside them, is evidence of an assignable cause. Investigate.
+\end{itemize}
 
 \begin{definition}[General model of a Shewhart control chart]
-Let $W$ be a sample statistic that measures a quality characteristic, with mean $\mu_W$ and standard deviation $\sigma_W$. Then
-\[ \mathrm{UCL}=\mu_W+k\sigma_W,\qquad\mathrm{CL}=\mu_W,\qquad\mathrm{LCL}=\mu_W-k\sigma_W, \]
-where $k$ is the distance of the limits from the center line in standard-deviation units; the standard choice is $k=3$ (\emph{three-sigma limits}).
+Let $W$ be a sample statistic measuring a quality characteristic, with mean $\mu_W$ and standard deviation $\sigma_W$. Then
+\[ \mathrm{UCL}=\mu_W+k\sigma_W,\qquad\mathrm{CL}=\mu_W,\qquad\mathrm{LCL}=\mu_W-k\sigma_W. \]
+$k$ is the distance of the limits from the center line, in standard deviations. The standard choice is $k=3$ (\emph{three-sigma limits}).
 \end{definition}
 
-A control chart is a repeated hypothesis test. For a normally distributed $W$, three-sigma limits correspond to a significance level $\alpha=0.0027$ for each plotted point: the probability that a point falls outside the limits when the process is in control is $0.0027$. A point inside the limits is like \emph{failing to reject} $H_0$ (the process is in control); a point outside is like rejecting it.
+\textbf{A control chart is a repeated hypothesis test.}
+\begin{itemize}
+  \item For normal $W$, three-sigma limits give $\alpha=0.0027$ per point. That is the chance a point falls outside when the process is in control.
+  \item A point inside the limits is like \emph{failing to reject} $H_0$ (process in control). A point outside is like rejecting it.
+\end{itemize}
 
-Control charts are of two types. \emph{Variables control charts} monitor quality characteristics measured on a continuous scale (a mean chart and a range or standard-deviation chart); \emph{attributes control charts} monitor counts of nonconforming units or of nonconformities (defects).
+Two types of chart:
+\begin{itemize}
+  \item \emph{Variables charts} monitor a continuous measurement (a mean chart plus a range or standard-deviation chart).
+  \item \emph{Attributes charts} monitor counts of nonconforming units or of nonconformities (defects).
+\end{itemize}
 
 \subsection{Design of a Control Chart}
 
 \begin{example}\label{ex:xbardesign}
-A process fills containers with a nominal mean of $\mu=250$ g and a known standard deviation $\sigma=3$ g. Samples of $n=4$ are taken hourly and the sample mean $\bar{x}$ is plotted. The standard deviation of $\bar{X}$ is $\sigma/\sqrt n=1.5$, so the three-sigma limits are $\mathrm{UCL}=250+3(1.5)=254.5$ and $\mathrm{LCL}=250-4.5=245.5$. This is a chart that tests $H_0:\mu=250$ at each time point.
+A process fills containers with nominal mean $\mu=250$ g and known $\sigma=3$ g. Samples of $n=4$ are taken hourly and $\bar{x}$ is plotted.
+\begin{itemize}
+  \item $\sigma_{\bar{X}}=\sigma/\sqrt n=1.5$.
+  \item $\mathrm{UCL}=250+3(1.5)=254.5$ and $\mathrm{LCL}=250-4.5=245.5$.
+\end{itemize}
+This chart tests $H_0:\mu=250$ at each time point.
 \end{example}
 
-The width of the limits is inversely related to $\sqrt n$ for a given multiple of sigma. The designer must choose the sample size and the sampling frequency. Larger samples detect smaller shifts, so if only large shifts matter small samples suffice; one cannot usually sample large and often, so the trade-off is between small frequent samples and larger samples taken less often (current practice favours small, frequent samples).
+For a given multiple of sigma, the limits narrow as $\sqrt n$ grows. The designer must choose sample size and sampling frequency.
+\begin{itemize}
+  \item Larger samples detect smaller shifts. If only large shifts matter, small samples are enough.
+  \item You usually cannot sample both large and often. Current practice favours small, frequent samples.
+\end{itemize}
 
-\begin{example}[Textbook example: piston rings]
-The inside diameter of piston rings has process mean $74$ mm and known $\sigma=0.01$ mm. Samples of $n=5$ rings are taken hourly. $\sigma_{\bar{X}}=0.01/\sqrt5=0.0045$, so the three-sigma limits are $\mathrm{UCL}=74+3(0.0045)=74.0135$ and $\mathrm{LCL}=73.9865$ ($\alpha=0.0027$). Choosing the limits is equivalent to the critical region for repeatedly testing $H_0:\mu=74$ against $H_1:\mu\ne74$ with $\sigma=0.01$ known.
+\begin{example}[Piston rings]
+Inside diameter has process mean $74$ mm and known $\sigma=0.01$ mm. Samples of $n=5$ are taken hourly.
+\begin{itemize}
+  \item $\sigma_{\bar{X}}=0.01/\sqrt5=0.0045$.
+  \item $\mathrm{UCL}=74+3(0.0045)=74.0135$ and $\mathrm{LCL}=73.9865$ ($\alpha=0.0027$).
+\end{itemize}
+Choosing these limits is the same as the critical region for repeatedly testing $H_0:\mu=74$ against $H_1:\mu\ne74$ with $\sigma=0.01$ known.
 \end{example}
 
 \subsection{Rational Subgroups}
 
-Samples (\emph{subgroups}) should be chosen so that variation within a subgroup reflects only chance causes and any assignable causes show up \emph{between} subgroups. Then the limits bound the chance variation and assignable causes tend to push points outside them. Two approaches are common: (i) each subgroup consists of units produced at the same time (a ``snapshot''), which maximises the chance of detecting shifts; (ii) each subgroup is a random sample of everything produced since the previous sample, which is used when decisions on accepting the product are the goal. Time order is a natural basis, but subgroups must not straddle assignable changes (for example the end of one shift and the start of another), and output from several machines or heads should be charted \emph{separately}, not pooled.
+Choose samples (\emph{subgroups}) so that variation \emph{within} a subgroup is only chance variation, and assignable causes show up \emph{between} subgroups. Then the limits bound the chance variation, and assignable causes push points outside.
+
+Two common approaches:
+\begin{itemize}
+  \item Each subgroup is units made at the same time (a ``snapshot''). This gives the best chance of detecting shifts.
+  \item Each subgroup is a random sample of everything made since the last sample. This is used when the aim is to decide whether to accept the product.
+\end{itemize}
+Rules:
+\begin{itemize}
+  \item Subgroups must not straddle assignable changes (for example the end of one shift and the start of the next).
+  \item Chart the output of several machines or heads \emph{separately}. Do not pool it.
+\end{itemize}
 
 \subsection{Analysis of Patterns on Control Charts}
 
-A chart can signal out-of-control behaviour even when all points lie within the limits, if the points show a non-random pattern: a long \emph{run} (a sequence of points of the same type, such as above the center line, or successive increases), a trend, cycles, or unusually many points near the limits. A run of eight or more points on one side of the center line, for example, is very unlikely in a random sequence. The \emph{Western Electric rules} formalise this. The process is judged out of control if any of the following occurs:
+A chart can signal trouble even when all points are inside the limits, if the points follow a non-random pattern: a long \emph{run} (for example all above the center line), a trend, cycles, or many points near the limits. Eight or more points on one side of the center line is very unlikely by chance.
+
+The \emph{Western Electric rules} formalise this. The process is out of control if any of these happens:
 \begin{enumerate}[label=\arabic*.]
-  \item one point plots outside the three-sigma limits;
-  \item two out of three consecutive points plot beyond a two-sigma limit (on the same side of the center line);
-  \item four out of five consecutive points plot at a distance of one sigma or more from the center line (on the same side);
-  \item eight consecutive points plot on one side of the center line.
+  \item One point is outside the three-sigma limits.
+  \item Two of three consecutive points are beyond a two-sigma limit (same side of the center line).
+  \item Four of five consecutive points are at least one sigma from the center line (same side).
+  \item Eight consecutive points are on one side of the center line.
 \end{enumerate}
-The one-, two- and three-sigma lines divide the chart into zones C, B and A on each side of the center line. Rules 2 and 3 apply to one side at a time: a point above the upper two-sigma limit followed by one below the lower two-sigma limit is not a signal. These rules increase sensitivity but also increase the false-alarm rate; interpreting patterns requires knowledge of the process.
+\begin{itemize}
+  \item The one-, two- and three-sigma lines divide each side of the chart into zones C, B and A.
+  \item Rules 2 and 3 apply to one side at a time. A point above the upper two-sigma line followed by one below the lower two-sigma line is not a signal.
+  \item These rules add sensitivity but also raise the false-alarm rate. Interpreting patterns needs knowledge of the process.
+\end{itemize}
 
 \section{$\bar{X}$ and $R$ or $S$ Control Charts}
 
-Control over the average of a measured quality characteristic is exercised by the $\bar{X}$ chart; control over variability by the range chart ($R$ chart) or the standard-deviation chart ($S$ chart). If $\mu$ and $\sigma$ are known, the $\bar{X}$ chart has
+The $\bar{X}$ chart controls the average. The range chart ($R$) or standard-deviation chart ($S$) controls the variability.
+
+If $\mu$ and $\sigma$ are known, the $\bar{X}$ chart has
 \[ \mathrm{UCL}=\mu+\frac{3\sigma}{\sqrt n},\qquad\mathrm{CL}=\mu,\qquad\mathrm{LCL}=\mu-\frac{3\sigma}{\sqrt n}. \]
-When they are unknown they are estimated from $m$ \emph{preliminary samples} of size $n$ taken while the process is thought to be in control (at least $20$ to $25$ samples, with $n$ typically $4$, $5$ or $6$). Let $\bar{x}_i$, $r_i$, $s_i$ be the mean, range and standard deviation of sample $i$, and define the \emph{grand mean} and the averages
+When they are unknown, estimate them from $m$ \emph{preliminary samples} of size $n$, taken while the process is believed to be in control. Use at least $20$ to $25$ samples, with $n$ typically $4$, $5$ or $6$. Let $\bar{x}_i$, $r_i$, $s_i$ be the mean, range and standard deviation of sample $i$. Define
 \[ \bar{\bar{x}}=\frac1m\sum_{i=1}^m\bar{x}_i,\qquad\bar{r}=\frac1m\sum_{i=1}^mr_i,\qquad\bar{s}=\frac1m\sum_{i=1}^ms_i. \]
 
 \subsubsection*{Estimating $\sigma$ from the range}
 
-The \emph{relative range} $W=R/\sigma$ of a sample from a normal population has a distribution that depends only on $n$, with mean $d_2$ and standard deviation $d_3$ (tabulated). Hence $\Exp[R]=d_2\sigma$ and $\sigma_R=d_3\sigma$, so $\hat\sigma=\bar{R}/d_2$ is an unbiased estimator of $\sigma$ and $\hat\sigma_R=d_3\bar{R}/d_2$.
+For a normal sample, the \emph{relative range} $W=R/\sigma$ has a distribution that depends only on $n$. Its mean is $d_2$ and its standard deviation is $d_3$ (tabulated). So $\Exp[R]=d_2\sigma$ and $\sigma_R=d_3\sigma$. Hence $\hat\sigma=\bar{R}/d_2$ is unbiased, and $\hat\sigma_R=d_3\bar{R}/d_2$.
 
 \begin{theorem}[$\bar{X}$ and $R$ charts]\label{thm:xbarR}
-The $\bar{X}$ chart (from $\bar{R}$) has
-\[ \mathrm{UCL}=\bar{\bar{x}}+A_2\bar{r},\qquad\mathrm{CL}=\bar{\bar{x}},\qquad\mathrm{LCL}=\bar{\bar{x}}-A_2\bar{r},\qquad A_2=\frac3{d_2\sqrt n}, \]
-and the $R$ chart has
+The $\bar{X}$ chart (from $\bar{R}$):
+\[ \mathrm{UCL}=\bar{\bar{x}}+A_2\bar{r},\qquad\mathrm{CL}=\bar{\bar{x}},\qquad\mathrm{LCL}=\bar{\bar{x}}-A_2\bar{r},\qquad A_2=\frac3{d_2\sqrt n}. \]
+The $R$ chart:
 \[ \mathrm{UCL}=D_4\bar{r},\qquad\mathrm{CL}=\bar{r},\qquad\mathrm{LCL}=D_3\bar{r},\qquad D_3=1-\frac{3d_3}{d_2},\quad D_4=1+\frac{3d_3}{d_2}. \]
-If $D_3$ (or the lower limit) is negative it is set to $0$.
+If $D_3$ (the lower limit) comes out negative, set it to $0$.
 \end{theorem}
 
 \subsubsection*{Estimating $\sigma$ from the standard deviation: $S$ chart}
 
-Since $S$ is a biased estimator, $\Exp[S]=c_4\sigma$ with $c_4$ close to (but below) $1$, and $\sigma_S=\sigma\sqrt{1-c_4^2}$. With $\bar{s}$ the average of the sample standard deviations, $\hat\sigma=\bar{s}/c_4$ is unbiased.
+$S$ is a biased estimator: $\Exp[S]=c_4\sigma$, with $c_4$ close to (but below) $1$. Also $\sigma_S=\sigma\sqrt{1-c_4^2}$. With $\bar{s}$ the average sample standard deviation, $\hat\sigma=\bar{s}/c_4$ is unbiased.
 
 \begin{theorem}[$\bar{X}$ and $S$ charts]\label{thm:xbarS}
-The $S$ chart has
-\[ \mathrm{UCL}=\bar{s}+\frac{3\bar{s}}{c_4}\sqrt{1-c_4^2},\qquad\mathrm{CL}=\bar{s},\qquad\mathrm{LCL}=\bar{s}-\frac{3\bar{s}}{c_4}\sqrt{1-c_4^2}\ (\text{set to }0\text{ if negative}), \]
-and the $\bar{X}$ chart (from $\bar{S}$) has $\mathrm{UCL}=\bar{\bar{x}}+\dfrac{3\bar{s}}{c_4\sqrt n}$, $\mathrm{CL}=\bar{\bar{x}}$, $\mathrm{LCL}=\bar{\bar{x}}-\dfrac{3\bar{s}}{c_4\sqrt n}$.
+The $S$ chart:
+\[ \mathrm{UCL}=\bar{s}+\frac{3\bar{s}}{c_4}\sqrt{1-c_4^2},\qquad\mathrm{CL}=\bar{s},\qquad\mathrm{LCL}=\bar{s}-\frac{3\bar{s}}{c_4}\sqrt{1-c_4^2}\ (\text{set to }0\text{ if negative}). \]
+The $\bar{X}$ chart (from $\bar{S}$):
+\[ \mathrm{UCL}=\bar{\bar{x}}+\frac{3\bar{s}}{c_4\sqrt n},\qquad\mathrm{CL}=\bar{\bar{x}},\qquad\mathrm{LCL}=\bar{\bar{x}}-\frac{3\bar{s}}{c_4\sqrt n}. \]
 \end{theorem}
 
 \subsubsection*{Factors for control charts}
@@ -118,117 +183,201 @@ $n$ & $A_2$ & $d_2$ & $D_3$ & $D_4$ & $c_4$ & $A=3/\sqrt n$\\
 \end{center}
 
 \begin{example}\label{ex:xbarR}
-Ten preliminary samples of size $n=4$ have means $50.1,\ 49.8,\ 50.6,\ 50.3,\ 49.5,\ 50.9,\ 50.0,\ 50.4,\ 49.9,\ 50.5$ and ranges $3.2,\ 2.8,\ 4.1,\ 3.5,\ 2.9,\ 3.8,\ 3.0,\ 3.3,\ 2.7,\ 3.7$. Then $\bar{\bar{x}}=502.0/10=50.20$ and $\bar{r}=33.0/10=3.30$. For $n=4$, $A_2=0.729$, $D_3=0$, $D_4=2.282$.
+Ten preliminary samples of size $n=4$.
 \begin{itemize}
+  \item Means: $50.1,\ 49.8,\ 50.6,\ 50.3,\ 49.5,\ 50.9,\ 50.0,\ 50.4,\ 49.9,\ 50.5$.
+  \item Ranges: $3.2,\ 2.8,\ 4.1,\ 3.5,\ 2.9,\ 3.8,\ 3.0,\ 3.3,\ 2.7,\ 3.7$.
+  \item $\bar{\bar{x}}=502.0/10=50.20$ and $\bar{r}=33.0/10=3.30$. For $n=4$: $A_2=0.729$, $D_3=0$, $D_4=2.282$.
   \item $\bar{X}$ chart: $\mathrm{CL}=50.20$, $\mathrm{UCL}=50.20+0.729(3.30)=52.61$, $\mathrm{LCL}=50.20-0.729(3.30)=47.79$.
   \item $R$ chart: $\mathrm{CL}=3.30$, $\mathrm{UCL}=2.282(3.30)=7.53$, $\mathrm{LCL}=0$.
 \end{itemize}
-All the means lie between $47.79$ and $52.61$ and all ranges below $7.53$, so the trial limits indicate that the process is in control, and they can be used to monitor future production. The estimate of the process standard deviation is $\hat\sigma=\bar{r}/d_2=3.30/2.059=1.60$.
+All means lie between $47.79$ and $52.61$, and all ranges are below $7.53$. The trial limits show the process is in control, so use them to monitor future production. The estimated process standard deviation is $\hat\sigma=\bar{r}/d_2=3.30/2.059=1.60$.
 \end{example}
 
-\begin{pitfall}{trial limits and what to do about points outside}
-Limits computed from preliminary data are \emph{trial limits}. Plot the $m$ preliminary means and ranges; any point outside the limits should be investigated. If an assignable cause is found and removed, discard those samples and \emph{recompute} the limits from the remaining ones. Study the $R$ (or $S$) chart first: if the variability is not stable, the limits on the $\bar{X}$ chart (which are based on $\bar{R}$) are misleading. Limits should be revised periodically and whenever the process is improved. Never place specification limits on a control chart: specification and control limits are unrelated.
+\begin{pitfall}{trial limits and points outside}
+Limits from preliminary data are \emph{trial limits}.
+\begin{itemize}
+  \item Plot the $m$ preliminary means and ranges. Investigate any point outside the limits.
+  \item If an assignable cause is found and removed, discard those samples and \emph{recompute} the limits from the rest.
+  \item Study the $R$ (or $S$) chart first. If the variability is not stable, the $\bar{X}$ limits (which use $\bar{R}$) are misleading.
+  \item Revise limits periodically, and whenever the process improves.
+  \item Never put specification limits on a control chart. Specification limits and control limits are unrelated.
+\end{itemize}
 \end{pitfall}
 
-\begin{example}[Textbook example: vane opening]
-Twenty samples of five parts each (coded data) give $\bar{\bar{x}}=33.3$ and $\bar{r}=5.8$. For $n=5$, $A_2=0.577$, so the trial $\bar{X}$-chart limits are $33.3\pm0.577(5.8)$, i.e.\ about $29.95$ and $36.65$, and the $R$ chart has $\mathrm{CL}=5.8$, $\mathrm{UCL}=D_4\bar{r}$ and $\mathrm{LCL}=0$ (set to zero because $D_3=0$ for $n=5$). Samples $6, 8, 11, 19$ are out of control on the $\bar{X}$ chart and sample $9$ on the $R$ chart (rule 1). All assignable causes traced to a defective tool in the wax-molding area, so these five samples are discarded and the limits recomputed. The limits from $\bar{s}$ are almost identical to those from $\bar{r}$ for such small subgroups. These first 20 samples are estimation data; the revised limits are then used to judge future production, and are revised periodically and whenever the process is improved. Examine the $R$ chart first, because if the variability is not stable the $\bar{X}$ limits can mislead.
+\begin{example}[Vane opening]
+Twenty samples of five parts each (coded data) give $\bar{\bar{x}}=33.3$ and $\bar{r}=5.8$. For $n=5$, $A_2=0.577$.
+\begin{itemize}
+  \item Trial $\bar{X}$ limits: $33.3\pm0.577(5.8)$, about $29.95$ and $36.65$.
+  \item $R$ chart: $\mathrm{CL}=5.8$, $\mathrm{UCL}=D_4\bar{r}$, $\mathrm{LCL}=0$ (since $D_3=0$ for $n=5$).
+  \item Samples $6,8,11,19$ are out of control on the $\bar{X}$ chart, and sample $9$ on the $R$ chart (rule 1).
+  \item All causes traced to a defective tool in the wax-molding area. Discard these five samples and recompute the limits.
+\end{itemize}
+Limits from $\bar{s}$ are almost the same as from $\bar{r}$ for such small subgroups. These first $20$ samples are estimation data. The revised limits are then used to judge future production.
 \end{example}
 
 \section{Control Charts for Individual Measurements}
 
-Sometimes the sample consists of a single unit ($n=1$): every unit is measured automatically, output is slow, or only one measurement is meaningful (the output of a batch process). The \emph{control chart for individuals} uses the \emph{moving range} of two successive observations, $MR_i=\abs{x_i-x_{i-1}}$, to estimate variability: $\hat\sigma=\overline{MR}/d_2=\overline{MR}/1.128$, since $d_2=1.128$ for $n=2$.
+Sometimes each sample is a single unit ($n=1$). Every unit may be measured automatically, output may be slow, or only one measurement exists (a batch process).
+
+The \emph{chart for individuals} estimates variability from the \emph{moving range} of two successive observations, $MR_i=\abs{x_i-x_{i-1}}$. Since $d_2=1.128$ for $n=2$, $\hat\sigma=\overline{MR}/1.128$.
 
 \begin{theorem}[Individuals and moving-range charts]\label{thm:individuals}
-\[ \mathrm{UCL}=\bar{x}+\frac{3\overline{mr}}{1.128},\quad\mathrm{CL}=\bar{x},\quad\mathrm{LCL}=\bar{x}-\frac{3\overline{mr}}{1.128}; \]
-for the moving range ($n=2$, $D_3=0$, $D_4=3.267$): $\mathrm{UCL}=3.267\,\overline{mr}$, $\mathrm{CL}=\overline{mr}$, $\mathrm{LCL}=0$.
+Individuals chart:
+\[ \mathrm{UCL}=\bar{x}+\frac{3\overline{mr}}{1.128},\qquad\mathrm{CL}=\bar{x},\qquad\mathrm{LCL}=\bar{x}-\frac{3\overline{mr}}{1.128}. \]
+Moving-range chart ($n=2$, $D_3=0$, $D_4=3.267$): $\mathrm{UCL}=3.267\,\overline{mr}$, $\mathrm{CL}=\overline{mr}$, $\mathrm{LCL}=0$.
 \end{theorem}
 
 \begin{example}
-Ten concentration readings are $98.2,\ 99.1,\ 97.8,\ 100.4,\ 99.5,\ 98.7,\ 101.0,\ 99.3,\ 98.0,\ 99.9$. Then $\bar{x}=99.19$; the nine moving ranges are $0.9,1.3,2.6,0.9,0.8,2.3,1.7,1.3,1.9$ with $\overline{mr}=13.7/9=1.52$. So $\hat\sigma=1.52/1.128=1.35$; individuals chart: $\mathrm{UCL}=99.19+3(1.35)=103.24$, $\mathrm{LCL}=95.14$; moving-range chart: $\mathrm{UCL}=3.267(1.52)=4.97$. All points are in control.
+Ten concentration readings: $98.2,\ 99.1,\ 97.8,\ 100.4,\ 99.5,\ 98.7,\ 101.0,\ 99.3,\ 98.0,\ 99.9$.
+\begin{itemize}
+  \item $\bar{x}=99.19$.
+  \item The nine moving ranges are $0.9,1.3,2.6,0.9,0.8,2.3,1.7,1.3,1.9$, so $\overline{mr}=13.7/9=1.52$.
+  \item $\hat\sigma=1.52/1.128=1.35$.
+  \item Individuals chart: $\mathrm{UCL}=99.19+3(1.35)=103.24$, $\mathrm{LCL}=95.14$.
+  \item Moving-range chart: $\mathrm{UCL}=3.267(1.52)=4.97$.
+\end{itemize}
+All points are in control.
 \end{example}
 
-The chart for individuals is read like an $\bar{X}$ chart, but cautions apply: the moving ranges are correlated, so apparent runs or cycles on the $MR$ chart need not be real; the individual observations are assumed uncorrelated and non-normality matters more; and the chart is insensitive to small shifts (a one-sigma shift takes about $43.9$ points to detect on average). Narrower limits are \emph{not} the answer, since they greatly increase false alarms; use a CUSUM or EWMA chart for small shifts (Section~\ref{sec:cusum}).
+Read the individuals chart like an $\bar{X}$ chart, with these cautions:
+\begin{itemize}
+  \item Moving ranges are correlated, so apparent runs or cycles on the $MR$ chart need not be real.
+  \item The observations are assumed uncorrelated, and non-normality matters more.
+  \item The chart is slow to detect small shifts. A one-sigma shift takes about $43.9$ points on average.
+  \item Narrower limits are \emph{not} the answer: they greatly increase false alarms. Use a CUSUM or EWMA chart for small shifts (Section~\ref{sec:cusum}).
+\end{itemize}
 
-\begin{example}[Textbook example: concentration]
-Twenty hourly concentration readings have $\bar{x}=99.1$ and average moving range $\overline{mr}=2.59$. For $n=2$, $D_3=0$, $D_4=3.267$, $d_2=1.128$: the moving-range chart has $\mathrm{CL}=2.59$, $\mathrm{LCL}=0$, $\mathrm{UCL}=3.267(2.59)=8.46$, and the individuals chart has limits $99.1\pm3(2.59)/1.128=99.1\pm6.89$. No point is outside, so the process is in control. Moving ranges are correlated, so patterns on the $MR$ chart need care; the chart is insensitive to small shifts (a $1\sigma$ shift takes $43.9$ points on average), and narrowing the limits below three sigma raises false alarms dramatically: use CUSUM or EWMA instead.
+\begin{example}[Concentration]
+Twenty hourly readings have $\bar{x}=99.1$ and average moving range $\overline{mr}=2.59$. With $D_3=0$, $D_4=3.267$, $d_2=1.128$:
+\begin{itemize}
+  \item Moving-range chart: $\mathrm{CL}=2.59$, $\mathrm{LCL}=0$, $\mathrm{UCL}=3.267(2.59)=8.46$.
+  \item Individuals chart: $99.1\pm3(2.59)/1.128=99.1\pm6.89$.
+  \item No point is outside, so the process is in control.
+\end{itemize}
 \end{example}
 
 \section{Process Capability}
 
-\emph{Process capability} is the performance of a process when it is operating in control: whether the natural variability is acceptable relative to the specifications. It is meaningful only for a \emph{stable} process. Two graphical tools help: the \emph{tolerance chart} (individual measurements plotted with the specification limits LSL and USL, which is the one chart on which specification limits are appropriate) and the \emph{histogram} (to judge centering and spread).
+\emph{Process capability} is how a process performs when it is in control. Is its natural variability acceptable relative to the specifications? It is meaningful only for a \emph{stable} process.
+
+Two graphical tools:
+\begin{itemize}
+  \item The \emph{tolerance chart}: individual measurements plotted with the specification limits LSL and USL. This is the only chart where specification limits belong.
+  \item The \emph{histogram}: shows centering and spread.
+\end{itemize}
 
 \begin{definition}[Process capability ratio]
-With upper and lower specification limits USL and LSL and process standard deviation $\sigma$, the \emph{process capability ratio} is
+With specification limits USL and LSL and process standard deviation $\sigma$,
 \[ \mathrm{PCR}=\frac{\mathrm{USL}-\mathrm{LSL}}{6\sigma}. \]
-$6\sigma$ is the \emph{width of the process}: the limits $\mu\pm3\sigma$ are the \emph{natural tolerance limits}. The percentage $(1/\mathrm{PCR})\times100$ is the percentage of the specification width used by the process.
+$6\sigma$ is the \emph{width of the process}. The limits $\mu\pm3\sigma$ are the \emph{natural tolerance limits}. The quantity $(1/\mathrm{PCR})\times100$ is the percentage of the specification width the process uses.
 \end{definition}
 
-If $\mathrm{PCR}>1$ the natural tolerance limits lie inside the specifications and few nonconforming units result; if $\mathrm{PCR}=1$ and the process is centered and normal, $0.27\%$ (2700 parts per million) fall outside; if $\mathrm{PCR}<1$ the process is very yield-sensitive and many nonconforming units are made. PCR assumes the process is centered at the nominal dimension, so it measures \emph{potential} capability. For an off-center process use the \emph{actual} capability:
+How to read PCR:
+\begin{itemize}
+  \item $\mathrm{PCR}>1$: the natural limits lie inside the specifications. Few nonconforming units.
+  \item $\mathrm{PCR}=1$, centered and normal: $0.27\%$ ($2700$ parts per million) fall outside.
+  \item $\mathrm{PCR}<1$: the process is very yield-sensitive. Many nonconforming units.
+\end{itemize}
+PCR assumes the process is centered at the nominal value, so it measures \emph{potential} capability. For an off-center process, use the \emph{actual} capability:
 
 \begin{definition}[PCR$_k$]
-\[ \mathrm{PCR}_k=\min\left[\frac{\mathrm{USL}-\mu}{3\sigma},\ \frac{\mu-\mathrm{LSL}}{3\sigma}\right], \]
-a one-sided ratio relative to the specification limit nearest the process mean. $\mathrm{PCR}_k=\mathrm{PCR}$ exactly when the process is centered; $\mathrm{PCR}_k<\mathrm{PCR}$ signals off-center operation.
+\[ \mathrm{PCR}_k=\min\left[\frac{\mathrm{USL}-\mu}{3\sigma},\ \frac{\mu-\mathrm{LSL}}{3\sigma}\right]. \]
+This is a one-sided ratio, using the specification limit nearest the process mean. $\mathrm{PCR}_k=\mathrm{PCR}$ exactly when the process is centered. $\mathrm{PCR}_k<\mathrm{PCR}$ signals off-center operation.
 \end{definition}
 
-For a normal process in control the fractions of nonconforming output are $\Prob(X<\mathrm{LSL})=\Phi\big((\mathrm{LSL}-\mu)/\sigma\big)$ and $\Prob(X>\mathrm{USL})=1-\Phi\big((\mathrm{USL}-\mu)/\sigma\big)$. These calculations assume normality and control and use estimated $\mu,\sigma$; treat them as approximate guidelines.
+For a normal process in control, the nonconforming fractions are $\Prob(X<\mathrm{LSL})=\Phi\big((\mathrm{LSL}-\mu)/\sigma\big)$ and $\Prob(X>\mathrm{USL})=1-\Phi\big((\mathrm{USL}-\mu)/\sigma\big)$. These assume normality and control, and use estimated $\mu,\sigma$. Treat them as approximate guidelines.
 
 \begin{example}
-For the process of Example~\ref{ex:xbarR} suppose the specification is $50\pm6$ ($\mathrm{LSL}=44$, $\mathrm{USL}=56$). With $\hat\sigma=1.603$ and $\bar{\bar{x}}=50.20$: $\mathrm{PCR}=12/(6\cdot1.603)=1.25$ and $\mathrm{PCR}_k=\min\big[(56-50.2)/(3\cdot1.603),\ (50.2-44)/(3\cdot1.603)\big]=\min(1.21,1.29)=1.21$. The estimated fallout is $\Prob(X<44)+\Prob(X>56)=\Phi(-3.87)+\big(1-\Phi(3.62)\big)=0.00005+0.00015=0.0002$, about $200$ parts per million.
+For the process of Example~\ref{ex:xbarR}, let the specification be $50\pm6$ ($\mathrm{LSL}=44$, $\mathrm{USL}=56$). With $\hat\sigma=1.603$ and $\bar{\bar{x}}=50.20$:
+\begin{itemize}
+  \item $\mathrm{PCR}=12/(6\cdot1.603)=1.25$.
+  \item $\mathrm{PCR}_k=\min\big[(56-50.2)/(3\cdot1.603),\ (50.2-44)/(3\cdot1.603)\big]=\min(1.21,1.29)=1.21$.
+  \item Fallout: $\Prob(X<44)+\Prob(X>56)=\Phi(-3.87)+\big(1-\Phi(3.62)\big)=0.00005+0.00015=0.0002$. About $200$ parts per million.
+\end{itemize}
 \end{example}
 
 \begin{example}
-A current has specifications $100\pm10$ mA and the process has $\mu=107.0$, $\sigma=1.5$. $\mathrm{PCR}=20/(6\cdot1.5)=2.22$ but $\mathrm{PCR}_k=(110-107)/(3\cdot1.5)=0.67$: the process is capable but badly off-center. $\Prob(X>110)=\Prob(Z>2)=0.023$, a $2.3\%$ fallout.
+A current has specifications $100\pm10$ mA. The process has $\mu=107.0$, $\sigma=1.5$.
+\begin{itemize}
+  \item $\mathrm{PCR}=20/(6\cdot1.5)=2.22$.
+  \item $\mathrm{PCR}_k=(110-107)/(3\cdot1.5)=0.67$.
+  \item The process is capable but badly off-center. $\Prob(X>110)=\Prob(Z>2)=0.023$: a $2.3\%$ fallout.
+\end{itemize}
 \end{example}
 
-\emph{Guidelines.} A common minimum target is $\mathrm{PCR}=1.33$ (up to $1.66$ for strength, safety or critical characteristics); some companies require $\mathrm{PCR}_k\ge2.0$. A process with $\mathrm{PCR}=\mathrm{PCR}_k=2$ is a \emph{six-sigma process} (the nearest specification is six standard deviations from the mean); if its mean shifts by $1.5\sigma$, $\mathrm{PCR}_k$ drops to $1.5$ and the fallout is only about $3.4$ parts per million. In the automotive industry the notation $C_p$ and $C_{pk}$ is used for PCR and PCR$_k$.
+\emph{Guidelines.}
+\begin{itemize}
+  \item A common minimum target is $\mathrm{PCR}=1.33$. Use up to $1.66$ for strength, safety or critical characteristics. Some companies require $\mathrm{PCR}_k\ge2.0$.
+  \item A process with $\mathrm{PCR}=\mathrm{PCR}_k=2$ is a \emph{six-sigma process}: the nearest specification is six standard deviations away. If its mean shifts by $1.5\sigma$, $\mathrm{PCR}_k$ falls to $1.5$ and fallout is only about $3.4$ parts per million.
+  \item In the automotive industry, $C_p$ and $C_{pk}$ mean PCR and PCR$_k$.
+\end{itemize}
 
 \section{Attribute Control Charts}
 
-When a unit is simply classified as conforming or nonconforming (defective), or the number of defects per unit is counted, attribute charts are used. They usually need larger samples than variables charts.
+When a unit is just classified as conforming or nonconforming (defective), or defects per unit are counted, use attribute charts. They usually need larger samples than variables charts.
 
 \subsection{$P$ Chart (Control Chart for Proportions)}
 
-Let $D$ be the number of nonconforming units in a random sample of $n$ units; $D$ is binomial$(n,p)$, and the sample fraction nonconforming $\hat{P}=D/n$ has $\mu_{\hat{P}}=p$ and $\sigma^2_{\hat{P}}=p(1-p)/n$. Estimate $p$ by $\bar{p}=\dfrac1{mn}\sum_{i=1}^mD_i$ from $m$ preliminary samples.
+Let $D$ be the number of nonconforming units in a random sample of $n$. $D$ is binomial$(n,p)$. The sample fraction nonconforming $\hat{P}=D/n$ has $\mu_{\hat{P}}=p$ and $\sigma^2_{\hat{P}}=p(1-p)/n$. Estimate $p$ by $\bar{p}=\dfrac1{mn}\sum_{i=1}^mD_i$ from $m$ preliminary samples.
 
 \begin{theorem}[$P$ chart]\label{thm:pchart}
 \[ \mathrm{UCL}=\bar{p}+3\sqrt{\frac{\bar{p}(1-\bar{p})}n},\qquad\mathrm{CL}=\bar{p},\qquad\mathrm{LCL}=\bar{p}-3\sqrt{\frac{\bar{p}(1-\bar{p})}n}\ (\text{set to }0\text{ if negative}). \]
 \end{theorem}
 
-The limits use the normal approximation to the binomial; for small $p$ the approximation is poor and limits can be taken from binomial probabilities. The \emph{$NP$ chart} plots the number nonconforming $n\hat{p}$ itself, with all quantities multiplied by $n$ (CL $=n\bar{p}$, limits $n\bar{p}\pm3\sqrt{n\bar{p}(1-\bar{p})}$).
+\begin{itemize}
+  \item The limits use the normal approximation to the binomial. For small $p$ it is poor; then take limits from binomial probabilities.
+  \item The \emph{$NP$ chart} plots the number nonconforming $n\hat{p}$ itself. Multiply everything by $n$: $\mathrm{CL}=n\bar{p}$, limits $n\bar{p}\pm3\sqrt{n\bar{p}(1-\bar{p})}$.
+\end{itemize}
 
 \begin{example}
-Twenty samples of $n=200$ units contain $160$ nonconforming units in total, so $\bar{p}=160/4000=0.04$. $\sqrt{0.04\cdot0.96/200}=0.01386$, so $\mathrm{UCL}=0.04+0.0416=0.0816$ and $\mathrm{LCL}=0.04-0.0416<0$, which is set to $0$. A sample with more than $16$ nonconforming units ($>0.0816\cdot200$) signals a problem.
+Twenty samples of $n=200$ contain $160$ nonconforming units in total.
+\begin{itemize}
+  \item $\bar{p}=160/4000=0.04$ and $\sqrt{0.04\cdot0.96/200}=0.01386$.
+  \item $\mathrm{UCL}=0.04+0.0416=0.0816$. $\mathrm{LCL}=0.04-0.0416<0$, so set it to $0$.
+  \item A sample with more than $16$ nonconforming units ($>0.0816\cdot200$) signals a problem.
+\end{itemize}
 \end{example}
 
 \subsection{$U$ Chart (Control Chart for Defects per Unit)}
 
-To monitor the number of \emph{defects} (nonconformities) per unit, such as flaws per yard of cloth, model the count as Poisson. If a sample of $n$ inspection units contains $C$ defects in total, $U=C/n$ is the average number of defects per unit, with mean $\lambda$ and variance $\lambda/n$. With $\bar{u}=\frac1m\sum U_i$:
+To monitor the number of \emph{defects} (nonconformities) per unit, such as flaws per yard of cloth, model the count as Poisson. If a sample of $n$ inspection units has $C$ defects in total, then $U=C/n$ is the average defects per unit, with mean $\lambda$ and variance $\lambda/n$. With $\bar{u}=\frac1m\sum U_i$:
 
 \begin{theorem}[$U$ chart]\label{thm:uchart}
 \[ \mathrm{UCL}=\bar{u}+3\sqrt{\frac{\bar{u}}n},\qquad\mathrm{CL}=\bar{u},\qquad\mathrm{LCL}=\bar{u}-3\sqrt{\frac{\bar{u}}n}\ (\text{set to }0\text{ if negative}). \]
 \end{theorem}
 
-The $C$ chart plots the total number of defects $C$ in a sample (CL $=n\bar{u}$, limits $n\bar{u}\pm3\sqrt{n\bar{u}}$). These limits rely on the normal approximation to the Poisson distribution and are poor when $\lambda$ is small.
+The $C$ chart plots the total defects $C$ in a sample: $\mathrm{CL}=n\bar{u}$, limits $n\bar{u}\pm3\sqrt{n\bar{u}}$. These limits use the normal approximation to the Poisson and are poor when $\lambda$ is small.
 
 \begin{example}
-Twenty samples, each of $5$ circuit boards, show $120$ defects in total: $\bar{u}=120/100=1.2$ defects per board, $\mathrm{UCL}=1.2+3\sqrt{1.2/5}=2.67$ and $\mathrm{LCL}<0$, so set to $0$. A control chart can show the process is in control while the defect level is still unacceptably high: 1.2 defects per board need process improvement through investigation of the defect types, often by designed experiments.
+Twenty samples of $5$ circuit boards each show $120$ defects in total.
+\begin{itemize}
+  \item $\bar{u}=120/100=1.2$ defects per board.
+  \item $\mathrm{UCL}=1.2+3\sqrt{1.2/5}=2.67$. $\mathrm{LCL}<0$, so set it to $0$.
+\end{itemize}
+A chart can show the process is in control while the defect level is still too high. $1.2$ defects per board needs process improvement: study the defect types, often with designed experiments.
 \end{example}
 
-\begin{example}[Textbook examples: $P$ chart and $U$ chart]
-\emph{$P$ chart.} Twenty samples of $100$ ceramic substrates contain $800$ defectives in total ($2000$ units), so $\bar{p}=0.40$ and the limits are $0.40\pm3\sqrt{0.40(0.60)/100}=0.40\pm0.147$, i.e.\ $0.253$ to $0.547$. All samples are in control, but a $40\%$ defective rate is very poor and the defects should be analysed by type. An $NP$ chart plots $D$ directly with limits that are $n$ times those of the $P$ chart.
-\emph{$U$ chart.} Printed circuit boards: five boards inspected per hour, $20$ samples, about $1.6$ defects per board on average. $\bar{u}$ is the average of the $u_i=c_i/n$, with $\mathrm{UCL},\mathrm{LCL}=\bar{u}\pm3\sqrt{\bar{u}/n}$ (negative $\mathrm{LCL}$ set to $0$); the process is in control, but $8$ defects per five boards is too many. A $C$ chart plots the total defects $c$ with limits $n$ times those of the $U$ chart.
+\begin{example}[$P$ chart and $U$ chart from the textbook]
+\emph{$P$ chart.} Twenty samples of $100$ ceramic substrates contain $800$ defectives ($2000$ units in total across samples), so $\bar{p}=0.40$. Limits: $0.40\pm3\sqrt{0.40(0.60)/100}=0.40\pm0.147$, that is, $0.253$ to $0.547$. All samples are in control, but a $40\%$ defective rate is very poor. Analyse the defects by type. An $NP$ chart plots $D$ directly, with limits $n$ times those of the $P$ chart.
+
+\emph{$U$ chart.} Printed circuit boards: five boards inspected per hour, $20$ samples, about $1.6$ defects per board on average. $\bar{u}$ is the average of the $u_i=c_i/n$. Limits: $\bar{u}\pm3\sqrt{\bar{u}/n}$ (a negative $\mathrm{LCL}$ becomes $0$). The process is in control, but $8$ defects per five boards is too many. A $C$ chart plots total defects $c$, with limits $n$ times those of the $U$ chart.
 \end{example}
 
 \section{Control Chart Performance}
 
-Placing the limits farther from the center line lowers the risk of a Type~I error (a false alarm: a point outside the limits when no assignable cause is present) but raises the risk of a Type~II error (failing to signal a real shift). A measure of performance is the \emph{average run length} (ARL): the average number of points plotted before a point signals an out-of-control condition. If $p$ is the probability that any single point exceeds the limits, the run length is geometric and
+Moving the limits farther from the center line lowers the Type~I risk (a false alarm: a point outside when no assignable cause is present). But it raises the Type~II risk (failing to signal a real shift).
+
+A measure of performance is the \emph{average run length} (ARL): the average number of points plotted before one signals. If $p$ is the probability that a single point exceeds the limits, the run length is geometric, and
 \[ \mathrm{ARL}=\frac1p. \]
 
 \begin{itemize}
-  \item \textbf{In control.} For a three-sigma $\bar{X}$ chart $p=0.0027$, so $\mathrm{ARL}_0=1/0.0027=370$: a false alarm occurs on average once every $370$ samples.
-  \item \textbf{Out of control.} If the mean shifts to a new value, $p=1-\beta$ with $\beta=\Prob(\mathrm{LCL}\le\bar{X}\le\mathrm{UCL}\mid\text{new mean})$. For example, if the mean shifts to the upper control limit exactly, $\beta=\Prob(-6\le Z\le0)=0.5$, so $p=0.5$ and $\mathrm{ARL}=2$: the shift is detected after two samples on average.
+  \item \textbf{In control.} For a three-sigma $\bar{X}$ chart $p=0.0027$, so $\mathrm{ARL}_0=1/0.0027=370$. A false alarm comes on average once every $370$ samples.
+  \item \textbf{Out of control.} If the mean shifts, $p=1-\beta$ with $\beta=\Prob(\mathrm{LCL}\le\bar{X}\le\mathrm{UCL}\mid\text{new mean})$. If the mean shifts exactly to the upper control limit, $\beta=\Prob(-6\le Z\le0)=0.5$. So $p=0.5$ and $\mathrm{ARL}=2$: detection after two samples on average.
 \end{itemize}
-The average time to signal is $\mathrm{ARL}\times$ (time between samples); one can shorten it by sampling more often or by increasing $n$. For a shift of $k$ standard deviations of the individual observations the ARL of a three-sigma $\bar{X}$ chart is:
+The average time to signal is $\mathrm{ARL}\times$ (time between samples). To shorten it, sample more often or increase $n$.
+
+For a shift of $k$ standard deviations of the individual observations, the ARL of a three-sigma $\bar{X}$ chart is:
 
 \begin{center}
 \begin{tabular}{c|cc}
@@ -245,28 +394,42 @@ Shift (multiple of $\sigma$) & ARL, $n=1$ & ARL, $n=4$\\
 \end{tabular}
 \end{center}
 
-A Shewhart chart is good at detecting large shifts quickly, but slow for small ones: with $n=1$, a $1\sigma$ shift takes $43.9$ points on average. This motivates charts with memory.
+A Shewhart chart detects large shifts quickly but small shifts slowly. With $n=1$, a $1\sigma$ shift takes $43.9$ points on average. This motivates charts with memory.
 
-\begin{example}[Textbook example: piston-ring ARL]
-With a shift of the mean to $74.0135$ mm and $n=5$ the probability that $\bar{X}$ falls between the limits is $0.50$, so $p=0.50$ and $\mathrm{ARL}=1/0.5=2$ samples: on average two hours elapse between the shift and its detection. To detect it faster, sample more often (every half hour gives one hour) or increase $n$: with $n=10$ the limits narrow to $73.9905$ and $74.0095$, the probability of falling between them is about $0.1$ so $p=0.9$ and $\mathrm{ARL}\approx1.11$, about twice as fast. Western Electric rules would lower the in-control ARL below $370$.
+\begin{example}[Piston-ring ARL]
+The mean shifts to $74.0135$ mm and $n=5$.
+\begin{itemize}
+  \item The chance that $\bar{X}$ falls between the limits is $0.50$, so $p=0.50$ and $\mathrm{ARL}=1/0.5=2$ samples. On average two hours pass between the shift and its detection.
+  \item To detect it faster, sample more often (every half hour gives one hour) or increase $n$. With $n=10$ the limits narrow to $73.9905$ and $74.0095$. The chance of falling between them is about $0.1$, so $p=0.9$ and $\mathrm{ARL}\approx1.11$. About twice as fast.
+\end{itemize}
+Western Electric rules would lower the in-control ARL below $370$.
 \end{example}
 
 \section{Cumulative Sum Control Chart}\label{sec:cusum}
 
-\emph{Cumulative sum} (CUSUM) charts are more effective than Shewhart charts at detecting \emph{small} shifts, and work well with $n=1$. If $\bar{x}_j$ is the mean of sample $j$ and $\mu_0$ the target, the cumulative sum is
+\emph{Cumulative sum} (CUSUM) charts detect \emph{small} shifts better than Shewhart charts, and work well with $n=1$. With $\bar{x}_j$ the mean of sample $j$ and $\mu_0$ the target,
 \[ S_i=\sum_{j=1}^i(\bar{x}_j-\mu_0). \]
-While the process is on target $S_i$ fluctuates about $0$; a persistent drift upward or downward indicates that the mean has shifted. The plot has no control limits by itself; the older approach adds a \emph{V-mask}, but the \emph{tabular} CUSUM is preferred.
+On target, $S_i$ wanders about $0$. A persistent drift up or down means the mean has shifted. The plain plot has no limits. The older fix is a \emph{V-mask}. The \emph{tabular} CUSUM is preferred.
 
 \begin{definition}[Tabular CUSUM]
-With target $\mu_0$, \emph{reference value} $K$ and starting values $S_H(0)=S_L(0)=0$,
+With target $\mu_0$, \emph{reference value} $K$, and $S_H(0)=S_L(0)=0$:
 \[ S_H(i)=\max\big[0,\ x_i-(\mu_0+K)+S_H(i-1)\big],\qquad S_L(i)=\max\big[0,\ (\mu_0-K)-x_i+S_L(i-1)\big]. \]
-$S_H$ and $S_L$ are the \emph{upper} and \emph{lower} one-sided CUSUMs; they accumulate deviations beyond $K$ from the target and reset to $0$ when they would go negative. The process is declared out of control if either exceeds the \emph{decision interval} $H$.
+\begin{itemize}
+  \item $S_H$ and $S_L$ are the \emph{upper} and \emph{lower} one-sided CUSUMs.
+  \item They add up deviations beyond $K$ from the target, and reset to $0$ when they would go negative.
+  \item The process is out of control if either exceeds the \emph{decision interval} $H$.
+\end{itemize}
 \end{definition}
 
-If $S_H(i)>H$, the new process mean can be estimated by $\hat\mu=\mu_0+K+S_H(i)/N_H$ (where $N_H$ is the number of consecutive periods in which $S_H$ has been nonzero); if $S_L(i)>H$, $\hat\mu=\mu_0-K-S_L(i)/N_L$. After a signal, the cause is sought and the CUSUM restarted at zero.
+After a signal:
+\begin{itemize}
+  \item If $S_H(i)>H$, estimate the new mean by $\hat\mu=\mu_0+K+S_H(i)/N_H$, where $N_H$ is the number of consecutive periods with $S_H$ nonzero.
+  \item If $S_L(i)>H$, use $\hat\mu=\mu_0-K-S_L(i)/N_L$.
+  \item Find the cause, then restart the CUSUM at zero.
+\end{itemize}
 
 \begin{theorem}[Design of the CUSUM]\label{thm:cusumdesign}
-Choose $K$ about half the shift to be detected: $K=\delta\sigma_X/2$ for a shift $\delta\sigma_X$, i.e.\ $K=k\sigma_X$ with $k=\tfrac12$ for a one-sigma shift; and $H=h\sigma_X$, with $h=4$ or $h=5$. Here $\sigma_X$ is the standard deviation of the plotted quantity ($\sigma_X=\sigma/\sqrt n$ for sample means). The performance for $k=\tfrac12$ is:
+Choose $K$ about half the shift to detect: $K=\delta\sigma_X/2$ for a shift $\delta\sigma_X$. So $K=k\sigma_X$ with $k=\tfrac12$ for a one-sigma shift. Choose $H=h\sigma_X$ with $h=4$ or $5$. Here $\sigma_X$ is the standard deviation of the plotted quantity ($\sigma/\sqrt n$ for sample means). Performance for $k=\tfrac12$:
 \begin{center}
 \begin{tabular}{c|cc}
 \toprule
@@ -287,49 +450,76 @@ Shift (multiple of $\sigma_X$) & ARL, $h=4$ & ARL, $h=5$\\
 \end{center}
 \end{theorem}
 
-For a one-sigma shift the CUSUM needs $8.38$ or $10.4$ samples on average against $43.9$ for the Shewhart chart. The in-control ARL is $168$ for $h=4$ and $465$ for $h=5$, so $h=5$ gives fewer false alarms. A standardized CUSUM uses $y_i=(x_i-\mu_0)/\sigma_X$ with $S_H(i)=\max[0,y_i-k+S_H(i-1)]$ and $S_L(i)=\max[0,-k-y_i+S_L(i-1)]$. The Western Electric rules should \emph{not} be applied to CUSUM values, because successive values are highly correlated and the rules would give many false alarms.
+\begin{itemize}
+  \item For a one-sigma shift the CUSUM needs $8.38$ or $10.4$ samples, against $43.9$ for the Shewhart chart.
+  \item The in-control ARL is $168$ for $h=4$ and $465$ for $h=5$. So $h=5$ gives fewer false alarms.
+  \item \emph{Standardised CUSUM}: use $y_i=(x_i-\mu_0)/\sigma_X$, with $S_H(i)=\max[0,y_i-k+S_H(i-1)]$ and $S_L(i)=\max[0,-k-y_i+S_L(i-1)]$.
+  \item Do \emph{not} apply the Western Electric rules to CUSUM values. Successive values are highly correlated and the rules would give many false alarms.
+\end{itemize}
 
 \begin{example}\label{ex:cusum}
-Target $\mu_0=50$ and standard deviation $\sigma=1$ for the individual readings. Design for a one-sigma shift with $k=\tfrac12$ and $h=5$: $K=0.5$ and $H=5$. The readings are $50.5,\ 49.0,\ 51.8,\ 52.4,\ 50.9,\ 53.1$. The upper CUSUM $S_H(i)=\max[0,\ x_i-50.5+S_H(i-1)]$ takes the values $0,\ 0,\ 1.3,\ 3.2,\ 3.6,\ 6.2$. The lower CUSUM $S_L(i)=\max[0,\ 49.5-x_i+S_L(i-1)]$ is $0,\ 0.5,\ 0,\ 0,\ 0,\ 0$. At $i=6$, $S_H=6.2>H=5$: signal an upward shift. $S_H$ has been nonzero for $N_H=4$ periods ($i=3,\dots,6$), so the estimated new mean is $\hat\mu=\mu_0+K+S_H/N_H=50+0.5+6.2/4=52.05$. Note that no single reading is outside three-sigma limits ($50\pm3$ would flag only $53.1$), yet the CUSUM has accumulated the evidence of a persistent shift.
+Target $\mu_0=50$, individual standard deviation $\sigma=1$. Design for a one-sigma shift with $k=\tfrac12$ and $h=5$: $K=0.5$, $H=5$. Readings: $50.5,\ 49.0,\ 51.8,\ 52.4,\ 50.9,\ 53.1$.
+\begin{itemize}
+  \item Upper CUSUM $S_H(i)=\max[0,\ x_i-50.5+S_H(i-1)]$: $0,\ 0,\ 1.3,\ 3.2,\ 3.6,\ 6.2$.
+  \item Lower CUSUM $S_L(i)=\max[0,\ 49.5-x_i+S_L(i-1)]$: $0,\ 0.5,\ 0,\ 0,\ 0,\ 0$.
+  \item At $i=6$, $S_H=6.2>H=5$. Signal an upward shift.
+  \item $S_H$ has been nonzero for $N_H=4$ periods ($i=3,\dots,6$). So $\hat\mu=\mu_0+K+S_H/N_H=50+0.5+6.2/4=52.05$.
+\end{itemize}
+No single reading is far outside three-sigma limits (only $53.1$ would be flagged by $50\pm3$), yet the CUSUM has gathered evidence of a persistent shift.
 \end{example}
 
-\begin{example}[Textbook example: tabular CUSUM]
-For the chemical concentration data, target $\mu_0=99$, $\sigma=2$, with $K=1$ ($=k\sigma$, $k=\tfrac12$) and $H=10$ ($=h\sigma$, $h=5$). Then $S_H(i)=\max[0,\,x_i-(\mu_0+K)+S_H(i-1)]$ and $S_L(i)=\max[0,\,(\mu_0-K)-x_i+S_L(i-1)]$, both starting at $0$. Neither ever exceeds $H=10$, so the process is in control. When a signal occurs, find the cause, correct it and restart the CUSUMs at zero. The older V-mask method is equivalent but less convenient. Supplementary rules such as Western Electric should not be applied to a CUSUM, because successive CUSUM values are correlated and would give too many false alarms. The textbook's recommendation $h=4$ or $5$, $k=\tfrac12$ detects a $1\sigma$ shift in $8.38$ or $10.4$ samples on average.
+\begin{example}[Tabular CUSUM from the textbook]
+Chemical concentration data: target $\mu_0=99$, $\sigma=2$, $K=1$ ($k=\tfrac12$), $H=10$ ($h=5$). Use $S_H(i)=\max[0,\,x_i-(\mu_0+K)+S_H(i-1)]$ and $S_L(i)=\max[0,\,(\mu_0-K)-x_i+S_L(i-1)]$, both starting at $0$. Neither ever exceeds $H=10$, so the process is in control.
+\begin{itemize}
+  \item On a signal, find the cause, correct it, and restart both CUSUMs at zero.
+  \item The V-mask method is equivalent but less convenient.
+  \item Do not apply Western Electric rules to a CUSUM.
+  \item The recommended $h=4$ or $5$, $k=\tfrac12$ detects a $1\sigma$ shift in $8.38$ or $10.4$ samples on average.
+\end{itemize}
 \end{example}
 
 \section{Other SPC Problem-Solving Tools}
 
-The control chart is one of seven basic tools. The others support problem-solving and team work.
+The control chart is one of seven basic tools. The others support problem-solving and teamwork.
 \begin{itemize}
-  \item \textbf{Pareto chart:} a bar chart of defect types in order of decreasing frequency (with a cumulative-percentage line). It reflects the ``vital few, trivial many'' principle and shows where improvement effort pays most.
-  \item \textbf{Cause-and-effect (fishbone, Ishikawa) diagram:} a systematic list of the possible causes of a problem, grouped by category (for example machines, methods, materials, measurement, people, environment), built by a team to identify factors worth investigating, often by a designed experiment.
-  \item \textbf{Defect-concentration diagram:} a sketch of the product on which the locations of defects are marked; clustering of marks shows where (and hence suggests why) defects occur.
-  \item \textbf{Histogram:} shows the shape, center and spread of the data and their relation to the specifications.
-  \item \textbf{Scatter diagram:} shows the relationship between two variables (correlation, Chapter~5).
-  \item \textbf{Check sheet:} a simple form for collecting data in an organised way at the point of origin.
+  \item \textbf{Pareto chart.} Bars of defect types in order of decreasing frequency, with a cumulative-percentage line. It shows the ``vital few, trivial many'' and where effort pays most.
+  \item \textbf{Cause-and-effect (fishbone, Ishikawa) diagram.} A team's list of possible causes of a problem, grouped by category (machines, methods, materials, measurement, people, environment). It points to factors worth investigating, often by a designed experiment.
+  \item \textbf{Defect-concentration diagram.} A sketch of the product with defect locations marked. Clusters show where, and hence suggest why, defects occur.
+  \item \textbf{Histogram.} Shows the shape, center and spread of the data, and how they relate to the specifications.
+  \item \textbf{Scatter diagram.} Shows the relationship between two variables (correlation, Chapter~5).
+  \item \textbf{Check sheet.} A simple form for collecting data in an organised way at the point of origin.
 \end{itemize}
-In a typical improvement project the defect types are ranked by Pareto analysis, a fishbone diagram generates candidate causes, a defect-concentration diagram locates a physical source, and a designed experiment (Chapters~7--8) determines the settings that remove the problem.
+A typical improvement project:
+\begin{enumerate}
+  \item Rank defect types by Pareto analysis.
+  \item Build a fishbone diagram of candidate causes.
+  \item Locate a physical source with a defect-concentration diagram.
+  \item Use a designed experiment (Chapters~7--8) to find the settings that remove the problem.
+\end{enumerate}
 
 \section{Implementing SPC}
 
-Statistical tools alone do not produce quality improvement. Successful implementations share these elements:
+Statistical tools alone do not give quality improvement. Successful programmes share these elements:
 \begin{enumerate}[label=(\arabic*)]
   \item management leadership and commitment (management is the role model);
-  \item a team approach (the basic tools help to build teams);
-  \item education and training of employees at all levels;
-  \item emphasis on continuous improvement (weekly, quarterly and annual), not a one-time program;
-  \item a mechanism for recognising success.
+  \item a team approach (the basic tools help build teams);
+  \item education and training at all levels;
+  \item continuous improvement (weekly, quarterly, annual), not a one-time programme;
+  \item a way to recognise success.
 \end{enumerate}
-Control charts should be introduced early, since processes do not naturally operate in control; their use eliminates assignable causes, reduces variability and stabilises the process, and managing with facts and data replaces managing by judgement alone. An action plan for responding to out-of-control signals (an \emph{out-of-control-action plan}) is essential: a control chart only detects assignable causes; operators and engineers must find and eliminate the root cause, not apply a cosmetic fix.
+\begin{itemize}
+  \item Introduce control charts early. Processes do not naturally run in control. Using the charts removes assignable causes, reduces variability and stabilises the process. Managing with facts replaces managing by judgement alone.
+  \item An \emph{out-of-control-action plan} is essential. A control chart only detects assignable causes. Operators and engineers must find and remove the root cause, not apply a cosmetic fix.
+\end{itemize}
 
 \begin{summarybox}
 \begin{itemize}
-  \item Chance causes are inherent (in control); assignable causes need action (out of control). A control chart has CL $=\mu_W$ and limits $\mu_W\pm3\sigma_W$ ($\alpha=0.0027$); it is a repeated hypothesis test.
+  \item Chance causes are inherent (in control). Assignable causes need action (out of control). A control chart has CL $=\mu_W$ and limits $\mu_W\pm3\sigma_W$ ($\alpha=0.0027$). It is a repeated hypothesis test.
   \item Western Electric rules: one point beyond $3\sigma$; two of three beyond $2\sigma$; four of five beyond $1\sigma$; eight in a row on one side.
-  \item $\bar{X}$--$R$: $\bar{\bar{x}}\pm A_2\bar{r}$; $R$: $D_3\bar{r},D_4\bar{r}$; $\hat\sigma=\bar{r}/d_2$. $\bar{X}$--$S$: $\bar{\bar{x}}\pm3\bar{s}/(c_4\sqrt n)$; $S$: $\bar{s}\pm3(\bar{s}/c_4)\sqrt{1-c_4^2}$. Individuals: $\bar{x}\pm3\overline{mr}/1.128$; $MR$: $3.267\overline{mr}$.
-  \item Process capability: $\mathrm{PCR}=(\mathrm{USL}-\mathrm{LSL})/6\sigma$, $\mathrm{PCR}_k=\min[(\mathrm{USL}-\mu)/3\sigma,(\mu-\mathrm{LSL})/3\sigma]$; targets $1.33$, $1.66$, $2.0$; never plot specifications on a control chart.
-  \item Attributes: $P$ chart $\bar{p}\pm3\sqrt{\bar{p}(1-\bar{p})/n}$; $U$ chart $\bar{u}\pm3\sqrt{\bar{u}/n}$ (and $NP$, $C$ versions).
-  \item $\mathrm{ARL}=1/p$; $\mathrm{ARL}_0=370$ for three-sigma limits. CUSUM: $S_H=\max[0,x-(\mu_0+K)+S_H]$, $S_L=\max[0,(\mu_0-K)-x+S_L]$, $K=k\sigma_X$, $H=h\sigma_X$ with $k=\frac12$, $h=4$ or $5$; far better than Shewhart for small shifts.
+  \item $\bar{X}$--$R$: $\bar{\bar{x}}\pm A_2\bar{r}$; $R$: $D_3\bar{r}$, $D_4\bar{r}$; $\hat\sigma=\bar{r}/d_2$. $\bar{X}$--$S$: $\bar{\bar{x}}\pm3\bar{s}/(c_4\sqrt n)$; $S$: $\bar{s}\pm3(\bar{s}/c_4)\sqrt{1-c_4^2}$. Individuals: $\bar{x}\pm3\overline{mr}/1.128$; $MR$: $3.267\overline{mr}$.
+  \item Capability: $\mathrm{PCR}=(\mathrm{USL}-\mathrm{LSL})/6\sigma$; $\mathrm{PCR}_k=\min[(\mathrm{USL}-\mu)/3\sigma,(\mu-\mathrm{LSL})/3\sigma]$. Targets $1.33$, $1.66$, $2.0$. Never plot specifications on a control chart.
+  \item Attributes: $P$ chart $\bar{p}\pm3\sqrt{\bar{p}(1-\bar{p})/n}$; $U$ chart $\bar{u}\pm3\sqrt{\bar{u}/n}$ (and the $NP$ and $C$ versions).
+  \item $\mathrm{ARL}=1/p$. $\mathrm{ARL}_0=370$ for three-sigma limits. CUSUM: $S_H=\max[0,x-(\mu_0+K)+S_H]$, $S_L=\max[0,(\mu_0-K)-x+S_L]$, with $K=k\sigma_X$, $H=h\sigma_X$, $k=\frac12$, $h=4$ or $5$. Much better than Shewhart for small shifts.
 \end{itemize}
 \end{summarybox}
 

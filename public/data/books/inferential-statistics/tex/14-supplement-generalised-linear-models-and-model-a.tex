@@ -1,19 +1,31 @@
 \chapter{Supplement: Generalised Linear Models and Model Assessment}
 
 \begin{nuance}{place in the course}
-This supplementary chapter extends the regression of Chapters~5--6 in two directions that the textbook does not cover. First, responses that are not normal and continuous (yes/no outcomes, counts) are handled by \emph{generalised linear models}, of which logistic regression is the most important. Second, we ask how well a fitted model will predict \emph{new} data, which leads to cross-validation, information criteria and regularisation (lasso and ridge).
+This supplementary chapter extends the regression of Chapters~5--6 in two directions the textbook does not cover.
+\begin{itemize}
+  \item Responses that are not normal and continuous (yes/no outcomes, counts) are handled by \emph{generalised linear models}. Logistic regression is the most important.
+  \item We ask how well a fitted model will predict \emph{new} data. This leads to cross-validation, information criteria and regularisation (lasso and ridge).
+\end{itemize}
 \end{nuance}
 
 \section{Why ordinary regression is not enough}
 
-Suppose the response is binary, $Y\in\{0,1\}$ (a customer converts or not). The linear model $\Exp[Y\mid x]=\beta_0+\beta_1x$ can predict probabilities outside $[0,1]$, has errors with non-constant variance ($\Var[Y]=p(1-p)$ depends on the mean), and is far from normal. Counts have the same problems (negative predictions, variance growing with the mean). The remedy is to model a \emph{transformation} of the mean as a linear function of the regressors and to use the correct distribution for the response.
+Suppose the response is binary, $Y\in\{0,1\}$ (a customer converts or not). The linear model $\Exp[Y\mid x]=\beta_0+\beta_1x$ has three problems:
+\begin{itemize}
+  \item it can predict probabilities outside $[0,1]$;
+  \item the errors have non-constant variance ($\Var[Y]=p(1-p)$ depends on the mean);
+  \item the errors are far from normal.
+\end{itemize}
+Counts have the same trouble: negative predictions, and variance that grows with the mean.
+
+The fix: model a \emph{transformation} of the mean as a linear function of the regressors, and use the correct distribution for the response.
 
 \section{Generalised linear models}
 
 \begin{definition}[Generalised linear model]
 A generalised linear model (GLM) has three parts:
 \begin{enumerate}[label=(\arabic*)]
-  \item a \emph{random component}: $Y_i$ independent with a distribution from the exponential family (normal, Bernoulli/binomial, Poisson, gamma, \dots) with mean $\mu_i=\Exp[Y_i]$;
+  \item a \emph{random component}: independent $Y_i$ from an exponential-family distribution (normal, Bernoulli/binomial, Poisson, gamma, \dots) with mean $\mu_i=\Exp[Y_i]$;
   \item a \emph{linear predictor} $\eta_i=\beta_0+\beta_1x_{i1}+\dots+\beta_kx_{ik}=\mathbf{x}_i\T\boldsymbol\beta$;
   \item a \emph{link function} $g$ with $g(\mu_i)=\eta_i$.
 \end{enumerate}
@@ -36,85 +48,119 @@ Ordinary multiple regression (Chapter~6) is the GLM with a normal response and i
 
 \section{Logistic regression}
 
-For $Y_i\sim\mathrm{Bernoulli}(p_i)$ the \emph{logistic regression} model is
-\[ \ln\frac{p_i}{1-p_i}=\mathbf{x}_i\T\boldsymbol\beta,\qquad\text{i.e.}\qquad p_i=\frac1{1+e^{-\mathbf{x}_i\T\boldsymbol\beta}}. \]
-The quantity $p/(1-p)$ is the \emph{odds} of success and $\ln\frac p{1-p}$ the \emph{log-odds} (logit).
+For $Y_i\sim\mathrm{Bernoulli}(p_i)$, the \emph{logistic regression} model is
+\[ \ln\frac{p_i}{1-p_i}=\mathbf{x}_i\T\boldsymbol\beta,\qquad\text{that is,}\qquad p_i=\frac1{1+e^{-\mathbf{x}_i\T\boldsymbol\beta}}. \]
+$p/(1-p)$ is the \emph{odds} of success. $\ln\frac p{1-p}$ is the \emph{log-odds} (logit).
 
 \begin{theorem}[Interpretation of the coefficients]\label{thm:logit-interp}
-A one-unit increase in $x_j$, other regressors fixed, adds $\beta_j$ to the log-odds and \emph{multiplies the odds by} $e^{\beta_j}$, the \emph{odds ratio}. For a binary regressor, $e^{\beta_j}$ is the ratio of the odds in the group with $x_j=1$ to the odds in the group with $x_j=0$.
+A one-unit increase in $x_j$, with the other regressors fixed, adds $\beta_j$ to the log-odds. It \emph{multiplies the odds by} $e^{\beta_j}$, the \emph{odds ratio}. For a binary regressor, $e^{\beta_j}$ is the odds in the group with $x_j=1$ divided by the odds in the group with $x_j=0$.
 \end{theorem}
 
 \begin{example}
-In a model for conversion, $\hat\beta_1=0.70$ for the indicator of ``saw the new design''. The odds ratio is $e^{0.70}=2.01$: the odds of converting are about twice as high with the new design. If the baseline conversion probability is $10\%$ (odds $1/9$), the new odds are $2/9$, so $p=2/11=18\%$. Note that the effect on the \emph{probability} depends on the baseline, whereas the effect on the odds is constant.
+In a conversion model, $\hat\beta_1=0.70$ for the indicator ``saw the new design''.
+\begin{itemize}
+  \item Odds ratio: $e^{0.70}=2.01$. The odds of converting are about twice as high.
+  \item If the baseline probability is $10\%$ (odds $1/9$), the new odds are $2/9$, so $p=2/11=18\%$.
+  \item The effect on the \emph{probability} depends on the baseline. The effect on the odds is constant.
+\end{itemize}
 \end{example}
 
 \subsection{Maximum likelihood estimation}
 
-The log-likelihood for independent Bernoulli observations is $\ell(\boldsymbol\beta)=\sum_i\big[y_i\eta_i-\ln(1+e^{\eta_i})\big]$ with $\eta_i=\mathbf{x}_i\T\boldsymbol\beta$.
+For independent Bernoulli observations, the log-likelihood is $\ell(\boldsymbol\beta)=\sum_i\big[y_i\eta_i-\ln(1+e^{\eta_i})\big]$ with $\eta_i=\mathbf{x}_i\T\boldsymbol\beta$.
 
 \begin{theorem}[Score and Hessian for logistic regression]\label{thm:logit-score}
 With $p_i=1/(1+e^{-\eta_i})$,
 \[ \nabla\ell(\boldsymbol\beta)=X\T(\mathbf{y}-\mathbf{p}),\qquad\nabla^2\ell(\boldsymbol\beta)=-X\T WX,\qquad W=\diag\big(p_i(1-p_i)\big). \]
-Since $X\T WX$ is positive semidefinite (and positive definite when $X$ has full column rank and $0<p_i<1$), $\ell$ is concave and the MLE, when it exists, is unique.
+$X\T WX$ is positive semidefinite (positive definite when $X$ has full column rank and $0<p_i<1$). So $\ell$ is concave, and the MLE, when it exists, is unique.
 \end{theorem}
 
 \begin{proof}
-$\partial\ell/\partial\beta_j=\sum_i(y_i-p_i)x_{ij}$ using $\partial\ln(1+e^{\eta})/\partial\eta=p$. Differentiating again, $\partial p_i/\partial\beta_k=p_i(1-p_i)x_{ik}$, giving the Hessian $-\sum_ip_i(1-p_i)\mathbf{x}_i\mathbf{x}_i\T=-X\T WX$. For any $\mathbf{v}$, $\mathbf{v}\T X\T WX\mathbf{v}=\sum_iw_i(\mathbf{x}_i\T\mathbf{v})^2\ge0$.
+$\partial\ell/\partial\beta_j=\sum_i(y_i-p_i)x_{ij}$, since $\partial\ln(1+e^{\eta})/\partial\eta=p$.
+
+Differentiate again: $\partial p_i/\partial\beta_k=p_i(1-p_i)x_{ik}$. This gives the Hessian $-\sum_ip_i(1-p_i)\mathbf{x}_i\mathbf{x}_i\T=-X\T WX$.
+
+For any $\mathbf{v}$: $\mathbf{v}\T X\T WX\mathbf{v}=\sum_iw_i(\mathbf{x}_i\T\mathbf{v})^2\ge0$.
 \end{proof}
 
-The likelihood equations $X\T(\mathbf{y}-\mathbf{p})=\mathbf{0}$ have no closed-form solution; they are solved by \emph{Newton's method}, which here is called \emph{iteratively reweighted least squares} (IRLS):
-\[ \boldsymbol\beta^{(t+1)}=\boldsymbol\beta^{(t)}+(X\T W^{(t)}X)^{-1}X\T(\mathbf{y}-\mathbf{p}^{(t)})=(X\T W^{(t)}X)^{-1}X\T W^{(t)}\mathbf{z}^{(t)}, \]
-where the \emph{working response} is $z_i=\eta_i+(y_i-p_i)/(p_i(1-p_i))$. Each iteration is a weighted least squares fit (Chapter~6) with weights $W^{(t)}$ updated from the current fit.
+The likelihood equations $X\T(\mathbf{y}-\mathbf{p})=\mathbf{0}$ have no closed form. Solve them by \emph{Newton's method}, which here is called \emph{iteratively reweighted least squares} (IRLS):
+\[ \boldsymbol\beta^{(t+1)}=\boldsymbol\beta^{(t)}+(X\T W^{(t)}X)^{-1}X\T(\mathbf{y}-\mathbf{p}^{(t)})=(X\T W^{(t)}X)^{-1}X\T W^{(t)}\mathbf{z}^{(t)}. \]
+The \emph{working response} is $z_i=\eta_i+(y_i-p_i)/(p_i(1-p_i))$. Each iteration is a weighted least squares fit (Chapter~6), with weights $W^{(t)}$ updated from the current fit.
 
 \begin{pitfall}{perfect separation}
-If some linear combination of the regressors separates the $0$'s from the $1$'s perfectly, the likelihood increases without bound as the coefficients grow: the MLE does not exist (some $\hat\beta_j\to\pm\infty$ and the software issues convergence warnings). Remedies are penalised (ridge-type) logistic regression, a prior (Bayesian logistic regression) or removing the offending regressor.
+Suppose some combination of the regressors separates the $0$'s from the $1$'s perfectly. Then the likelihood keeps increasing as the coefficients grow. The MLE does not exist: some $\hat\beta_j\to\pm\infty$, and software warns about convergence.
+
+Remedies: penalised (ridge-type) logistic regression, a prior (Bayesian logistic regression), or dropping the offending regressor.
 \end{pitfall}
 
 \subsection{Inference}
 
-By Theorem~\ref{thm:mle-asym}, in large samples $\hat{\boldsymbol\beta}\approx\Normal\big(\boldsymbol\beta,(X\T WX)^{-1}\big)$, with $W$ evaluated at $\hat{\boldsymbol\beta}$. Hence:
+By Theorem~\ref{thm:mle-asym}, in large samples $\hat{\boldsymbol\beta}\approx\Normal\big(\boldsymbol\beta,(X\T WX)^{-1}\big)$, with $W$ evaluated at $\hat{\boldsymbol\beta}$. So:
 \begin{itemize}
-  \item the \emph{Wald test} for $H_0:\beta_j=0$ is $z=\hat\beta_j/\se(\hat\beta_j)$ with $\se(\hat\beta_j)=\sqrt{[(X\T WX)^{-1}]_{jj}}$, compared with $\Normal(0,1)$; a $95\%$ confidence interval for the odds ratio is $\exp\big(\hat\beta_j\pm1.96\,\se(\hat\beta_j)\big)$;
-  \item the \emph{likelihood ratio test} compares nested models: $-2\big(\ell_{\mathrm{reduced}}-\ell_{\mathrm{full}}\big)\approx\chi^2_r$ under $H_0$, where $r$ is the number of coefficients set to zero (Wilks' theorem, Chapter~3). This is the GLM analogue of the extra-sum-of-squares $F$-test.
+  \item \textbf{Wald test} for $H_0:\beta_j=0$: $z=\hat\beta_j/\se(\hat\beta_j)$, with $\se(\hat\beta_j)=\sqrt{[(X\T WX)^{-1}]_{jj}}$, compared with $\Normal(0,1)$. A $95\%$ interval for the odds ratio is $\exp\big(\hat\beta_j\pm1.96\,\se(\hat\beta_j)\big)$.
+  \item \textbf{Likelihood ratio test} for nested models: $-2\big(\ell_{\mathrm{reduced}}-\ell_{\mathrm{full}}\big)\approx\chi^2_r$ under $H_0$, where $r$ is the number of coefficients set to zero (Wilks' theorem, Chapter~3). This is the GLM version of the extra-sum-of-squares $F$-test.
 \end{itemize}
 
 \begin{definition}[Deviance]
-The \emph{deviance} is $D=2\big(\ell_{\mathrm{saturated}}-\ell(\hat{\boldsymbol\beta})\big)$, twice the log-likelihood gap to a saturated model that fits each observation exactly. For Bernoulli data with ungrouped responses, $D=-2\ell(\hat{\boldsymbol\beta})$. It generalises the residual sum of squares: the change in deviance between nested models is the likelihood ratio statistic.
+The \emph{deviance} is $D=2\big(\ell_{\mathrm{saturated}}-\ell(\hat{\boldsymbol\beta})\big)$. It is twice the log-likelihood gap to a saturated model that fits each observation exactly. For ungrouped Bernoulli data, $D=-2\ell(\hat{\boldsymbol\beta})$. It generalises the residual sum of squares: the change in deviance between nested models is the likelihood ratio statistic.
 \end{definition}
 
 \begin{example}[Likelihood ratio test]
-Adding two regressors lowers the deviance from $412.6$ to $405.1$. The statistic $7.5$ is compared with $\chi^2_{0.05,2}=5.99$: the two regressors are jointly significant at $5\%$ ($P=0.023$).
+Adding two regressors lowers the deviance from $412.6$ to $405.1$. The statistic is $7.5$. Compare with $\chi^2_{0.05,2}=5.99$. The two regressors are jointly significant at $5\%$ ($P=0.023$).
 \end{example}
 
 \subsection{Classification and evaluation}
 
-A fitted logistic model gives probabilities $\hat{p}_i$; a decision rule classifies as positive if $\hat{p}_i>c$ (commonly $c=0.5$, but the threshold should reflect the costs of the two kinds of error). Performance is summarised by the confusion matrix (sensitivity $=$ true positive rate, specificity $=$ true negative rate), the \emph{ROC curve} (true positive rate against false positive rate as $c$ varies) and the area under it (\emph{AUC}), which equals the probability that a randomly chosen positive has a higher score than a randomly chosen negative. \emph{Calibration} asks whether, among cases with $\hat{p}\approx0.3$, about $30\%$ are positive.
+A fitted logistic model gives probabilities $\hat{p}_i$. A decision rule calls a case positive if $\hat{p}_i>c$. The usual choice is $c=0.5$, but the threshold should reflect the costs of the two kinds of error.
+
+Ways to measure performance:
+\begin{itemize}
+  \item The confusion matrix: sensitivity (true positive rate) and specificity (true negative rate).
+  \item The \emph{ROC curve}: true positive rate against false positive rate as $c$ varies.
+  \item The area under it (\emph{AUC}): the probability that a random positive has a higher score than a random negative.
+  \item \emph{Calibration}: among cases with $\hat{p}\approx0.3$, are about $30\%$ positive?
+\end{itemize}
 
 \section{Poisson regression}
 
-For count data $Y_i\sim\mathrm{Poisson}(\mu_i)$ with $\ln\mu_i=\mathbf{x}_i\T\boldsymbol\beta$ (possibly with an \emph{offset} $\ln t_i$ for exposure time or population size, modelling a \emph{rate}), the score is $X\T(\mathbf{y}-\boldsymbol\mu)$ and the information matrix $X\T WX$ with $W=\diag(\mu_i)$. A coefficient $\beta_j$ means that a unit increase in $x_j$ multiplies the expected count by $e^{\beta_j}$ (a \emph{rate ratio}). The Poisson model forces $\Var[Y]=\mu$; if the data have \emph{overdispersion} ($\Var[Y]>\mu$, estimated from Pearson's statistic divided by its degrees of freedom), use a quasi-Poisson or negative binomial model, otherwise standard errors are too small and tests too liberal.
+For counts $Y_i\sim\mathrm{Poisson}(\mu_i)$ with $\ln\mu_i=\mathbf{x}_i\T\boldsymbol\beta$:
+\begin{itemize}
+  \item An \emph{offset} $\ln t_i$ (exposure time or population size) models a \emph{rate}.
+  \item The score is $X\T(\mathbf{y}-\boldsymbol\mu)$. The information matrix is $X\T WX$ with $W=\diag(\mu_i)$.
+  \item $e^{\beta_j}$ is the factor by which the expected count is multiplied for a unit increase in $x_j$ (a \emph{rate ratio}).
+  \item The Poisson model forces $\Var[Y]=\mu$. If the data are \emph{overdispersed} ($\Var[Y]>\mu$, estimated by Pearson's statistic over its degrees of freedom), use a quasi-Poisson or negative binomial model. Otherwise standard errors are too small and tests too liberal.
+\end{itemize}
 
 \section{Model assessment: how well will the model predict?}
 
-A model fitted to data will fit those data better than it will fit new data, because it adapts to the noise.
+A model fitted to data fits those data better than it fits new data, because it adapts to the noise.
 
 \begin{definition}[Training error and test error]
-The \emph{training error} is the average loss on the data used to fit the model; the \emph{test (generalisation) error} is the expected loss on new observations from the same population. For squared error and a fitted function $\hat{f}$, $\mathrm{Err}=\Exp[(Y_0-\hat{f}(\mathbf{x}_0))^2]$ for a new point $(\mathbf{x}_0,Y_0)$.
+\begin{itemize}
+  \item The \emph{training error} is the average loss on the data used to fit the model.
+  \item The \emph{test (generalisation) error} is the expected loss on new observations from the same population.
+\end{itemize}
+For squared error and a fitted function $\hat{f}$, $\mathrm{Err}=\Exp[(Y_0-\hat{f}(\mathbf{x}_0))^2]$ for a new point $(\mathbf{x}_0,Y_0)$.
 \end{definition}
 
 \begin{theorem}[Bias--variance decomposition]\label{thm:biasvar-pred}
-If $Y_0=f(\mathbf{x}_0)+\varepsilon_0$ with $\Exp[\varepsilon_0]=0$, $\Var[\varepsilon_0]=\sigma^2$ independent of the training data, then
+Let $Y_0=f(\mathbf{x}_0)+\varepsilon_0$ with $\Exp[\varepsilon_0]=0$ and $\Var[\varepsilon_0]=\sigma^2$, independent of the training data. Then
 \[ \Exp\big[(Y_0-\hat{f}(\mathbf{x}_0))^2\big]=\underbrace{\sigma^2}_{\text{irreducible noise}}+\underbrace{\big(\Exp[\hat{f}(\mathbf{x}_0)]-f(\mathbf{x}_0)\big)^2}_{\text{bias}^2}+\underbrace{\Var[\hat{f}(\mathbf{x}_0)]}_{\text{variance}}. \]
 \end{theorem}
 
 \begin{proof}
-Add and subtract $f(\mathbf{x}_0)$ and $\Exp[\hat{f}(\mathbf{x}_0)]$ and expand; the cross terms vanish because $\varepsilon_0$ has mean zero and is independent of $\hat{f}$, and $\Exp[\hat{f}-\Exp[\hat{f}]]=0$. This is the decomposition $\MSE=\Var+\bias^2$ of Chapter~1 applied to prediction, with the unavoidable noise $\sigma^2$ added.
+Add and subtract $f(\mathbf{x}_0)$ and $\Exp[\hat{f}(\mathbf{x}_0)]$, and expand. The cross terms vanish because $\varepsilon_0$ has mean zero and is independent of $\hat{f}$, and $\Exp[\hat{f}-\Exp[\hat{f}]]=0$. This is the decomposition $\MSE=\Var+\bias^2$ of Chapter~1 applied to prediction, plus the unavoidable noise $\sigma^2$.
 \end{proof}
 
-More flexible models (more regressors, higher-degree polynomials, smaller regularisation) have lower bias but higher variance; simple models have high bias but low variance. The test error is minimised at an intermediate complexity, which is the bias--variance trade-off; training error, by contrast, keeps decreasing with complexity and is therefore useless for model selection.
+\begin{itemize}
+  \item More flexible models (more regressors, higher-degree polynomials, weaker regularisation) have lower bias and higher variance.
+  \item Simple models have high bias and low variance.
+  \item Test error is lowest at an intermediate complexity. This is the bias--variance trade-off.
+  \item Training error keeps falling as complexity grows, so it is useless for choosing a model.
+\end{itemize}
 
 \begin{theorem}[Optimism of the training error]\label{thm:optimism}
-For a linear regression fit by least squares with $p$ parameters and error variance $\sigma^2$, the expected test error on new responses at the \emph{same} regressor values exceeds the expected training error by $2p\sigma^2/n$ (per observation):
+For a least squares fit with $p$ parameters and error variance $\sigma^2$, the expected test error on new responses at the \emph{same} regressor values exceeds the expected training error by $2p\sigma^2/n$ per observation:
 \[ \Exp[\mathrm{Err}_{\mathrm{in}}]=\Exp[\mathrm{err}_{\mathrm{train}}]+\frac{2p}n\sigma^2. \]
 \end{theorem}
 
@@ -125,59 +171,91 @@ For the hat matrix $H$ (Chapter~6), $\hat{\mathbf{y}}=H\mathbf{y}$ and $\sum_i\C
 This motivates Mallows' $C_p=\mathrm{err}_{\mathrm{train}}\cdot n/\hat\sigma^2+2p-n$ (Chapter~6) and the information criteria below.
 
 \begin{definition}[AIC and BIC]
-For a model with $p$ parameters and maximised log-likelihood $\hat\ell$ based on $n$ observations,
+For a model with $p$ parameters and maximised log-likelihood $\hat\ell$ on $n$ observations,
 \[ \mathrm{AIC}=-2\hat\ell+2p,\qquad\mathrm{BIC}=-2\hat\ell+p\ln n. \]
-Smaller is better. AIC aims at predictive accuracy (it estimates out-of-sample log-loss); BIC penalises complexity more heavily for $n>7$ and is consistent for selecting the true model among those considered, when one of them is true.
+Smaller is better.
+\begin{itemize}
+  \item AIC aims at predictive accuracy (it estimates out-of-sample log-loss).
+  \item BIC penalises complexity more for $n>7$. It is consistent for picking the true model among those considered, when one of them is true.
+\end{itemize}
 \end{definition}
 
 \section{Cross-validation}
 
-Information criteria rely on distributional assumptions. \emph{Cross-validation} (CV) estimates the test error directly by repeatedly holding out part of the data.
+Information criteria rely on distributional assumptions. \emph{Cross-validation} (CV) estimates the test error directly, by repeatedly holding out part of the data.
 
 \begin{definition}[$K$-fold cross-validation]
-Split the data randomly into $K$ roughly equal folds. For $k=1,\dots,K$ fit the model on the other $K-1$ folds and compute the loss on fold $k$. The CV estimate is the average of the held-out losses over all $n$ observations. $K=5$ or $10$ is typical; $K=n$ is \emph{leave-one-out} cross-validation (LOOCV).
+Split the data randomly into $K$ roughly equal folds. For $k=1,\dots,K$: fit the model on the other $K-1$ folds and compute the loss on fold $k$. The CV estimate is the average held-out loss over all $n$ observations. $K=5$ or $10$ is typical. $K=n$ is \emph{leave-one-out} cross-validation (LOOCV).
 \end{definition}
 
 \begin{theorem}[LOOCV shortcut for linear regression]\label{thm:loocv}
-For least squares with hat-matrix diagonal $h_{ii}$ and residuals $e_i$, the leave-one-out prediction error for observation $i$ is $e_i/(1-h_{ii})$, so
+For least squares with hat-matrix diagonal $h_{ii}$ and residuals $e_i$, the leave-one-out prediction error for observation $i$ is $e_i/(1-h_{ii})$. So
 \[ \mathrm{LOOCV}=\frac1n\sum_{i=1}^n\Big(\frac{e_i}{1-h_{ii}}\Big)^2=\frac{PRESS}n, \]
-computed from a single fit.
+from a single fit.
 \end{theorem}
 
-(This is the PRESS statistic of Chapter~6.) Practical rules: perform any data-dependent preprocessing, feature selection or tuning \emph{inside} each training fold, otherwise the CV estimate is optimistically biased; for time-ordered data use forward-chaining splits rather than random folds; for grouped data (several rows per user) split by group.
+This is the PRESS statistic of Chapter~6. Practical rules:
+\begin{itemize}
+  \item Do any data-dependent preprocessing, feature selection or tuning \emph{inside} each training fold. Otherwise the CV estimate is optimistic.
+  \item For time-ordered data, use forward-chaining splits, not random folds.
+  \item For grouped data (several rows per user), split by group.
+\end{itemize}
 
 \begin{interview}{training, validation and test sets}
-A clean workflow: use training data to fit models, a validation set (or CV) to choose among models and tune hyperparameters, and a final untouched \emph{test set}, used once, to report the performance of the chosen model. Reusing the test set to pick models turns it into a validation set and gives optimistic performance estimates.
+A clean workflow:
+\begin{itemize}
+  \item Training data: fit models.
+  \item Validation set (or CV): choose among models and tune hyperparameters.
+  \item A final untouched \emph{test set}, used once: report the performance of the chosen model.
+\end{itemize}
+Reusing the test set to pick models turns it into a validation set and gives optimistic estimates.
 \end{interview}
 
 \section{Regularisation: ridge and lasso}
 
-When $p$ is large relative to $n$, least squares overfits. Penalising the size of the coefficients trades a little bias for a large reduction in variance (Theorem~\ref{thm:biasvar-pred}).
+When $p$ is large relative to $n$, least squares overfits. Penalising the size of the coefficients trades a little bias for a big drop in variance (Theorem~\ref{thm:biasvar-pred}).
 
 \begin{definition}[Ridge and lasso]
-For $\lambda\ge0$ (regressors standardised, intercept unpenalised),
-\[ \hat{\boldsymbol\beta}^{\mathrm{ridge}}=\arg\min_{\boldsymbol\beta}\ \tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2+\tfrac\lambda2\norm{\boldsymbol\beta}_2^2,\qquad\hat{\boldsymbol\beta}^{\mathrm{lasso}}=\arg\min_{\boldsymbol\beta}\ \tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2+\lambda\norm{\boldsymbol\beta}_1. \]
+For $\lambda\ge0$ (regressors standardised, intercept unpenalised):
+\begin{align*}
+\hat{\boldsymbol\beta}^{\mathrm{ridge}}&=\arg\min_{\boldsymbol\beta}\ \tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2+\tfrac\lambda2\norm{\boldsymbol\beta}_2^2,\\
+\hat{\boldsymbol\beta}^{\mathrm{lasso}}&=\arg\min_{\boldsymbol\beta}\ \tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2+\lambda\norm{\boldsymbol\beta}_1.
+\end{align*}
 \end{definition}
 
-The ridge solution is $(X\T X+\lambda I)^{-1}X\T\mathbf{y}$ (Chapter~6; Linear Algebra, Chapter~17): coefficients shrink smoothly but are never exactly zero. The lasso has no closed form in general but for an \emph{orthonormal} design ($X\T X=I$) it is explicit.
+\begin{itemize}
+  \item Ridge: $(X\T X+\lambda I)^{-1}X\T\mathbf{y}$ (Chapter~6; Linear Algebra, Chapter~17). Coefficients shrink smoothly but are never exactly zero.
+  \item Lasso: no closed form in general. For an \emph{orthonormal} design ($X\T X=I$) it is explicit.
+\end{itemize}
 
 \begin{theorem}[Lasso with orthonormal design]\label{thm:lasso}
-If $X\T X=I$ and $\hat\beta_j^{\mathrm{OLS}}$ are the least squares coefficients, then
+If $X\T X=I$, and $\hat\beta_j^{\mathrm{OLS}}$ are the least squares coefficients, then
 \[ \hat\beta_j^{\mathrm{lasso}}=\sgn\big(\hat\beta_j^{\mathrm{OLS}}\big)\big(\abs{\hat\beta_j^{\mathrm{OLS}}}-\lambda\big)_+\quad\text{(soft thresholding)},\qquad\hat\beta_j^{\mathrm{ridge}}=\frac{\hat\beta_j^{\mathrm{OLS}}}{1+\lambda}. \]
 \end{theorem}
 
 \begin{proof}
-With $X\T X=I$, $\tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2=\text{const}+\tfrac12\sum_j(\beta_j-\hat\beta_j^{\mathrm{OLS}})^2$, so the problem separates into $p$ scalar problems $\min_\beta\tfrac12(\beta-b)^2+\lambda\abs{\beta}$, whose solution is $\sgn(b)(\abs{b}-\lambda)_+$ (a subgradient argument: for $\beta>0$ the derivative $\beta-b+\lambda$ vanishes at $b-\lambda$, valid when $b>\lambda$; and $\beta=0$ is optimal exactly when $\abs{b}\le\lambda$). The ridge case differentiates $\tfrac12(\beta-b)^2+\tfrac\lambda2\beta^2$.
+With $X\T X=I$, $\tfrac12\norm{\mathbf{y}-X\boldsymbol\beta}^2=\text{const}+\tfrac12\sum_j(\beta_j-\hat\beta_j^{\mathrm{OLS}})^2$. The problem splits into $p$ scalar problems $\min_\beta\tfrac12(\beta-b)^2+\lambda\abs{\beta}$.
+
+Their solution is $\sgn(b)(\abs{b}-\lambda)_+$. For $\beta>0$ the derivative $\beta-b+\lambda$ vanishes at $b-\lambda$, valid when $b>\lambda$. And $\beta=0$ is optimal exactly when $\abs{b}\le\lambda$.
+
+The ridge case differentiates $\tfrac12(\beta-b)^2+\tfrac\lambda2\beta^2$.
 \end{proof}
 
-Hence the lasso sets small coefficients exactly to zero (it performs \emph{variable selection}) while shrinking the others by a constant $\lambda$, and ridge shrinks every coefficient by the same factor $1/(1+\lambda)$. Geometrically, the contours of the squared error first touch the diamond $\norm{\boldsymbol\beta}_1\le t$ at a corner, where some coordinates vanish, whereas the round ball $\norm{\boldsymbol\beta}_2\le t$ has no corners (Linear Algebra, Chapter~1). The penalty $\lambda$ is chosen by cross-validation; its role is the complexity knob of the bias--variance trade-off. The same penalties apply to logistic and other GLMs by adding them to the negative log-likelihood.
+So:
+\begin{itemize}
+  \item The lasso sets small coefficients exactly to zero (\emph{variable selection}) and shrinks the others by the constant $\lambda$.
+  \item Ridge shrinks every coefficient by the same factor $1/(1+\lambda)$.
+  \item Geometrically, the contours of the squared error first touch the diamond $\norm{\boldsymbol\beta}_1\le t$ at a corner, where some coordinates vanish. The round ball $\norm{\boldsymbol\beta}_2\le t$ has no corners (Linear Algebra, Chapter~1).
+  \item Choose $\lambda$ by cross-validation. It is the complexity knob of the bias--variance trade-off.
+  \item The same penalties work for logistic and other GLMs: add them to the negative log-likelihood.
+\end{itemize}
 
 \begin{summarybox}
 \begin{itemize}
-  \item A GLM = exponential-family response + linear predictor $\eta=\mathbf{x}\T\boldsymbol\beta$ + link $g(\mu)=\eta$. Logistic regression: logit link, $e^{\beta_j}$ is an odds ratio; Poisson regression: log link, $e^{\beta_j}$ a rate ratio.
-  \item Logistic MLE: score $X\T(\mathbf{y}-\mathbf{p})$, Hessian $-X\T WX$ (concave), solved by IRLS; Wald and likelihood-ratio tests; deviance generalises the residual sum of squares; beware perfect separation and overdispersion.
-  \item Test error $=\sigma^2+\text{bias}^2+\text{variance}$; training error is optimistic by $2p\sigma^2/n$; compare models by AIC, BIC, or cross-validation ($K$-fold; LOOCV $=PRESS/n$ for linear regression).
-  \item Ridge shrinks smoothly; lasso soft-thresholds and selects variables; tune $\lambda$ by cross-validation, with all preprocessing inside the folds and a final untouched test set.
+  \item A GLM is an exponential-family response, a linear predictor $\eta=\mathbf{x}\T\boldsymbol\beta$, and a link $g(\mu)=\eta$. Logistic regression: logit link, $e^{\beta_j}$ is an odds ratio. Poisson regression: log link, $e^{\beta_j}$ is a rate ratio.
+  \item Logistic MLE: score $X\T(\mathbf{y}-\mathbf{p})$, Hessian $-X\T WX$ (concave), solved by IRLS. Use Wald and likelihood-ratio tests. Deviance generalises the residual sum of squares. Beware perfect separation and overdispersion.
+  \item Test error $=\sigma^2+\text{bias}^2+\text{variance}$. Training error is optimistic by $2p\sigma^2/n$. Compare models by AIC, BIC or cross-validation ($K$-fold; LOOCV $=PRESS/n$ for linear regression).
+  \item Ridge shrinks smoothly. Lasso soft-thresholds and selects variables. Tune $\lambda$ by cross-validation, with all preprocessing inside the folds and a final untouched test set.
 \end{itemize}
 \end{summarybox}
 

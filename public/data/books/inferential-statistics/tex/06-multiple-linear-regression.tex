@@ -4,22 +4,40 @@
 
 \subsection{Introduction}
 
+Simple regression uses one regressor. Multiple regression uses several, $x_1,\dots,x_k$.
+
 \begin{definition}[Multiple linear regression model]
-With $k$ regressors $x_1,\dots,x_k$,
 \[ Y=\beta_0+\beta_1x_1+\beta_2x_2+\dots+\beta_kx_k+\varepsilon,\qquad\varepsilon\sim\Normal(0,\sigma^2). \]
-The model is \emph{linear} because it is linear in the parameters $\beta_j$; the regressors themselves may be nonlinear functions (squares, products, logarithms). The coefficient $\beta_j$ is the change in the mean response per unit change in $x_j$ \emph{with the other regressors held fixed}.
+\begin{itemize}
+  \item The model is \emph{linear} because it is linear in the parameters $\beta_j$. The regressors themselves may be squares, products or logarithms.
+  \item $\beta_j$ is the change in the mean response for a one-unit change in $x_j$, \emph{with the other regressors held fixed}.
+\end{itemize}
 \end{definition}
 
-Models that look more complicated are still multiple linear regression models. A cubic in one regressor, $Y=\beta_0+\beta_1x+\beta_2x^2+\beta_3x^3+\varepsilon$, becomes linear on setting $x_1=x$, $x_2=x^2$, $x_3=x^3$. An interaction $Y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{12}x_1x_2+\varepsilon$ is linear with $x_3=x_1x_2$, $\beta_3=\beta_{12}$. The second-order model with interaction, $Y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{11}x_1^2+\beta_{22}x_2^2+\beta_{12}x_1x_2+\varepsilon$, is likewise linear with five regressors; its surface can be a mound, a saddle or a ridge depending on the coefficients. Any model linear in the $\beta$'s is a linear regression model, \emph{regardless of the shape of the surface} it generates. \emph{Interaction} means that the effect of changing $x_1$ depends on the level of $x_2$: in the model with $\beta_{12}$, $\partial\,\Exp(Y)/\partial x_1=\beta_1+\beta_{12}x_2$.
+Models that look more complicated are still multiple linear regression models.
+\begin{itemize}
+  \item \textbf{Cubic:} $Y=\beta_0+\beta_1x+\beta_2x^2+\beta_3x^3+\varepsilon$. Set $x_1=x$, $x_2=x^2$, $x_3=x^3$.
+  \item \textbf{Interaction:} $Y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{12}x_1x_2+\varepsilon$. Set $x_3=x_1x_2$.
+  \item \textbf{Second-order with interaction:} $Y=\beta_0+\beta_1x_1+\beta_2x_2+\beta_{11}x_1^2+\beta_{22}x_2^2+\beta_{12}x_1x_2+\varepsilon$. This has five regressors. Its surface can be a mound, a saddle or a ridge, depending on the coefficients.
+\end{itemize}
+Any model linear in the $\beta$'s is a linear regression model, \emph{whatever the shape of the surface}.
 
-\begin{example}[Textbook example: wire bond pull strength]
-For $25$ wire bonds, regress pull strength $y$ on wire length $x_1$ and die height $x_2$. The normal equations (with the sums from the data table) are
-\[ 25\hat\beta_0+206\hat\beta_1+8294\hat\beta_2=725.82,\quad 206\hat\beta_0+2396\hat\beta_1+77{,}177\hat\beta_2=8008.37,\quad 8294\hat\beta_0+77{,}177\hat\beta_1+3{,}531{,}848\hat\beta_2=274{,}811.31, \]
-with solution $\hat\beta_0=2.26379$, $\hat\beta_1=2.74427$, $\hat\beta_2=0.01253$. The matrix route $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}$ gives the same values. The estimated error variance is $\hat\sigma^2=5.2364$ and the standard errors are $\se(\hat\beta_0)=1.060$, $\se(\hat\beta_1)=0.09352$, $\se(\hat\beta_2)=0.002798$ (precisely estimated slopes; the intercept is relatively less precise).
+\emph{Interaction} means the effect of $x_1$ depends on the level of $x_2$. In the model with $\beta_{12}$, $\partial\,\Exp(Y)/\partial x_1=\beta_1+\beta_{12}x_2$.
+
+\begin{example}[Wire bond pull strength]
+For $25$ wire bonds, regress pull strength $y$ on wire length $x_1$ and die height $x_2$. The normal equations are
+\begin{align*}
+25\hat\beta_0+206\hat\beta_1+8294\hat\beta_2&=725.82,\\
+206\hat\beta_0+2396\hat\beta_1+77{,}177\hat\beta_2&=8008.37,\\
+8294\hat\beta_0+77{,}177\hat\beta_1+3{,}531{,}848\hat\beta_2&=274{,}811.31.
+\end{align*}
+The solution is $\hat\beta_0=2.26379$, $\hat\beta_1=2.74427$, $\hat\beta_2=0.01253$. The matrix formula $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}$ gives the same values.
+
+The error variance is $\hat\sigma^2=5.2364$. The standard errors are $\se(\hat\beta_0)=1.060$, $\se(\hat\beta_1)=0.09352$, $\se(\hat\beta_2)=0.002798$. The slopes are estimated precisely; the intercept less so.
 \end{example}
 
 \begin{example}[The running example]\label{ex:mlrdata}
-Eight observations on a response $y$ with two coded regressors $x_1,x_2\in\{-1,+1\}$:
+Eight observations of a response $y$ with two coded regressors $x_1,x_2\in\{-1,+1\}$:
 \begin{center}
 \begin{tabular}{c|cccccccc}
 \toprule
@@ -35,54 +53,70 @@ $y$ & 12.1 & 13.0 & 15.2 & 16.1 & 17.9 & 19.2 & 21.0 & 22.3\\
 
 Given $n$ observations $(y_i,x_{i1},\dots,x_{ik})$, the least squares estimates minimise
 \[ L=\sum_{i=1}^n\Big(y_i-\beta_0-\sum_{j=1}^k\beta_jx_{ij}\Big)^2. \]
-Setting each partial derivative to zero gives $p=k+1$ \emph{normal equations} in the $p$ unknowns. In matrix form they are very compact.
+Setting each partial derivative to zero gives $p=k+1$ \emph{normal equations} in $p$ unknowns. In matrix form they are short.
 
 \subsection{Matrix Approach to Multiple Linear Regression}
 
 Write
-\[ \mathbf{y}=\begin{pmatrix}y_1\\\vdots\\y_n\end{pmatrix},\quad X=\begin{pmatrix}1&x_{11}&\cdots&x_{1k}\\\vdots&\vdots&&\vdots\\1&x_{n1}&\cdots&x_{nk}\end{pmatrix},\quad\boldsymbol\beta=\begin{pmatrix}\beta_0\\\vdots\\\beta_k\end{pmatrix},\quad\boldsymbol\varepsilon=\begin{pmatrix}\varepsilon_1\\\vdots\\\varepsilon_n\end{pmatrix}, \]
-so that $\mathbf{y}=X\boldsymbol\beta+\boldsymbol\varepsilon$, with $X$ the $n\times p$ \emph{design matrix}.
+\[ \mathbf{y}=\begin{pmatrix}y_1\\\vdots\\y_n\end{pmatrix},\quad X=\begin{pmatrix}1&x_{11}&\cdots&x_{1k}\\\vdots&\vdots&&\vdots\\1&x_{n1}&\cdots&x_{nk}\end{pmatrix},\quad\boldsymbol\beta=\begin{pmatrix}\beta_0\\\vdots\\\beta_k\end{pmatrix},\quad\boldsymbol\varepsilon=\begin{pmatrix}\varepsilon_1\\\vdots\\\varepsilon_n\end{pmatrix}. \]
+The model is $\mathbf{y}=X\boldsymbol\beta+\boldsymbol\varepsilon$. The $n\times p$ matrix $X$ is the \emph{design matrix}.
 
 \begin{theorem}[Least squares estimator]\label{thm:mlr-ls}
-If $X\T X$ is invertible (the columns of $X$ are linearly independent),
-\[ \hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}, \]
-the unique solution of the normal equations $X\T X\hat{\boldsymbol\beta}=X\T\mathbf{y}$. The fitted values are $\hat{\mathbf{y}}=X\hat{\boldsymbol\beta}=H\mathbf{y}$ with the \emph{hat matrix} $H=X(X\T X)^{-1}X\T$, and the residuals are $\mathbf{e}=\mathbf{y}-\hat{\mathbf{y}}=(I-H)\mathbf{y}$.
+If $X\T X$ is invertible (the columns of $X$ are linearly independent), then
+\[ \hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}. \]
+It is the unique solution of the normal equations $X\T X\hat{\boldsymbol\beta}=X\T\mathbf{y}$.
+
+The fitted values are $\hat{\mathbf{y}}=X\hat{\boldsymbol\beta}=H\mathbf{y}$, where $H=X(X\T X)^{-1}X\T$ is the \emph{hat matrix}. The residuals are $\mathbf{e}=\mathbf{y}-\hat{\mathbf{y}}=(I-H)\mathbf{y}$.
 \end{theorem}
 
 \begin{proof}
-$L=(\mathbf{y}-X\boldsymbol\beta)\T(\mathbf{y}-X\boldsymbol\beta)$ has gradient $-2X\T(\mathbf{y}-X\boldsymbol\beta)$, which vanishes at the stated $\hat{\boldsymbol\beta}$, and the Hessian $2X\T X$ is positive definite, so this is the unique minimum.
+$L=(\mathbf{y}-X\boldsymbol\beta)\T(\mathbf{y}-X\boldsymbol\beta)$ has gradient $-2X\T(\mathbf{y}-X\boldsymbol\beta)$. This is zero at the stated $\hat{\boldsymbol\beta}$. The Hessian $2X\T X$ is positive definite, so this is the unique minimum.
 \end{proof}
 
-\begin{theorem}[Properties of $H$ (geometry)]\label{thm:hat}
-$H$ is symmetric and idempotent ($H^2=H$) with $\tr H=p$; it is the orthogonal projection of $\R^n$ onto the column space of $X$. Consequently $X\T\mathbf{e}=\mathbf{0}$: the residual vector is orthogonal to every column of $X$, and with an intercept column, $\sum e_i=0$.
+\begin{theorem}[Properties of $H$]\label{thm:hat}
+$H$ is symmetric and idempotent ($H^2=H$), and $\tr H=p$. It is the orthogonal projection of $\R^n$ onto the column space of $X$. So $X\T\mathbf{e}=\mathbf{0}$: the residual vector is orthogonal to every column of $X$. With an intercept column, $\sum e_i=0$.
 \end{theorem}
 
 \begin{definition}[Error variance estimate]
-$SS_E=\mathbf{e}\T\mathbf{e}=\mathbf{y}\T\mathbf{y}-\hat{\boldsymbol\beta}\T X\T\mathbf{y}$ and $\hat\sigma^2=MS_E=\dfrac{SS_E}{n-p}$, with $p=k+1$ parameters.
+$SS_E=\mathbf{e}\T\mathbf{e}=\mathbf{y}\T\mathbf{y}-\hat{\boldsymbol\beta}\T X\T\mathbf{y}$ and
+\[ \hat\sigma^2=MS_E=\frac{SS_E}{n-p},\qquad p=k+1\text{ parameters.} \]
 \end{definition}
 
 \begin{example}[Running example]\label{ex:mlrfit}
-Here $X\T X=\diag(8,8,8)$, since the columns $\mathbf{1}$, $x_1$, $x_2$ are mutually orthogonal, so $(X\T X)^{-1}=\tfrac18I$ and each coefficient is a simple average: $\hat\beta_0=\bar{y}=17.1$, $\hat\beta_1=\tfrac18\sum x_{i1}y_i=24.0/8=3.0$, $\hat\beta_2=\tfrac18\sum x_{i2}y_i=12.4/8=1.55$. The fitted equation is $\hat{y}=17.1+3.0x_1+1.55x_2$. The fitted values are $12.55,\,12.55,\,15.65,\,15.65,\,18.55,\,18.55,\,21.65,\,21.65$, the residuals are $-0.45,\,0.45,\,-0.45,\,0.45,\,-0.65,\,0.65,\,-0.65,\,0.65$, $SS_E=4(0.2025)+4(0.4225)=2.5$ and $\hat\sigma^2=2.5/(8-3)=0.5$.
+The columns $\mathbf{1}$, $x_1$, $x_2$ are mutually orthogonal, so $X\T X=\diag(8,8,8)$ and $(X\T X)^{-1}=\tfrac18I$. Each coefficient is a simple average:
+\[ \hat\beta_0=\bar{y}=17.1,\qquad \hat\beta_1=\tfrac18\sum x_{i1}y_i=\tfrac{24.0}{8}=3.0,\qquad \hat\beta_2=\tfrac18\sum x_{i2}y_i=\tfrac{12.4}{8}=1.55. \]
+The fitted equation is $\hat{y}=17.1+3.0x_1+1.55x_2$.
+\begin{itemize}
+  \item Fitted values: $12.55,\ 12.55,\ 15.65,\ 15.65,\ 18.55,\ 18.55,\ 21.65,\ 21.65$.
+  \item Residuals: $-0.45,\ 0.45,\ -0.45,\ 0.45,\ -0.65,\ 0.65,\ -0.65,\ 0.65$.
+  \item $SS_E=4(0.2025)+4(0.4225)=2.5$ and $\hat\sigma^2=2.5/(8-3)=0.5$.
+\end{itemize}
 \end{example}
 
 \subsection{Properties of the Least Squares Estimators}
 
 \begin{theorem}[Sampling properties]\label{thm:mlr-dist}
-Under the model with $\Exp[\boldsymbol\varepsilon]=\mathbf{0}$ and $\Cov[\boldsymbol\varepsilon]=\sigma^2I$:
+Assume $\Exp[\boldsymbol\varepsilon]=\mathbf{0}$ and $\Cov[\boldsymbol\varepsilon]=\sigma^2I$. Then:
 \begin{enumerate}[label=(\roman*)]
-  \item $\Exp[\hat{\boldsymbol\beta}]=\boldsymbol\beta$ and $\Cov[\hat{\boldsymbol\beta}]=\sigma^2(X\T X)^{-1}$; write $C_{jj}$ for the $j$-th diagonal entry of $(X\T X)^{-1}$, so $\Var[\hat\beta_j]=\sigma^2C_{jj}$ and $\se(\hat\beta_j)=\sqrt{\hat\sigma^2C_{jj}}$;
-  \item $\Exp[\hat\sigma^2]=\sigma^2$;
-  \item (Gauss--Markov) among all linear unbiased estimators, $\hat\beta_j$ has minimum variance;
-  \item if $\boldsymbol\varepsilon\sim\Normal(\mathbf{0},\sigma^2I)$, then $\hat{\boldsymbol\beta}\sim\Normal\big(\boldsymbol\beta,\sigma^2(X\T X)^{-1}\big)$, $\ (n-p)\hat\sigma^2/\sigma^2\sim\chi^2_{n-p}$, and $\hat{\boldsymbol\beta}$ is independent of $\hat\sigma^2$.
+  \item $\Exp[\hat{\boldsymbol\beta}]=\boldsymbol\beta$ and $\Cov[\hat{\boldsymbol\beta}]=\sigma^2(X\T X)^{-1}$. Let $C_{jj}$ be the $j$-th diagonal entry of $(X\T X)^{-1}$. Then $\Var[\hat\beta_j]=\sigma^2C_{jj}$ and $\se(\hat\beta_j)=\sqrt{\hat\sigma^2C_{jj}}$.
+  \item $\Exp[\hat\sigma^2]=\sigma^2$.
+  \item (Gauss--Markov) Among all linear unbiased estimators, $\hat\beta_j$ has the smallest variance.
+  \item If $\boldsymbol\varepsilon\sim\Normal(\mathbf{0},\sigma^2I)$, then $\hat{\boldsymbol\beta}\sim\Normal\big(\boldsymbol\beta,\sigma^2(X\T X)^{-1}\big)$, $(n-p)\hat\sigma^2/\sigma^2\sim\chi^2_{n-p}$, and $\hat{\boldsymbol\beta}$ is independent of $\hat\sigma^2$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(i) $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T(X\boldsymbol\beta+\boldsymbol\varepsilon)=\boldsymbol\beta+(X\T X)^{-1}X\T\boldsymbol\varepsilon$, so $\Exp[\hat{\boldsymbol\beta}]=\boldsymbol\beta$ and $\Cov[\hat{\boldsymbol\beta}]=(X\T X)^{-1}X\T\,\sigma^2I\,X(X\T X)^{-1}=\sigma^2(X\T X)^{-1}$. (ii) $\mathbf{e}=(I-H)\boldsymbol\varepsilon$ because $(I-H)X=0$; then $\Exp(\mathbf{e}\T\mathbf{e})=\Exp[\boldsymbol\varepsilon\T(I-H)\boldsymbol\varepsilon]=\sigma^2\tr(I-H)=\sigma^2(n-p)$. (iv) $(I-H)$ is the projection onto a subspace of dimension $n-p$, so with orthonormal coordinates adapted to that subspace $\boldsymbol\varepsilon\T(I-H)\boldsymbol\varepsilon/\sigma^2$ is a sum of $n-p$ squared independent standard normals; independence of $\hat{\boldsymbol\beta}$ and $\mathbf{e}$ follows because $\hat{\boldsymbol\beta}-\boldsymbol\beta=(X\T X)^{-1}X\T\boldsymbol\varepsilon$ and $\mathbf{e}=(I-H)\boldsymbol\varepsilon$ are jointly normal and uncorrelated ($X\T(I-H)=0$). (iii) Any other linear unbiased estimator $A\mathbf{y}$ has $AX=I$; write $A=(X\T X)^{-1}X\T+D$ with $DX=0$, so $\Cov(A\mathbf{y})=\sigma^2(X\T X)^{-1}+\sigma^2DD\T\succeq\sigma^2(X\T X)^{-1}$.
+(i) $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T(X\boldsymbol\beta+\boldsymbol\varepsilon)=\boldsymbol\beta+(X\T X)^{-1}X\T\boldsymbol\varepsilon$. So $\Exp[\hat{\boldsymbol\beta}]=\boldsymbol\beta$, and $\Cov[\hat{\boldsymbol\beta}]=(X\T X)^{-1}X\T\,\sigma^2I\,X(X\T X)^{-1}=\sigma^2(X\T X)^{-1}$.
+
+(ii) $\mathbf{e}=(I-H)\boldsymbol\varepsilon$ because $(I-H)X=0$. Then $\Exp(\mathbf{e}\T\mathbf{e})=\Exp[\boldsymbol\varepsilon\T(I-H)\boldsymbol\varepsilon]=\sigma^2\tr(I-H)=\sigma^2(n-p)$.
+
+(iv) $I-H$ projects onto a subspace of dimension $n-p$. In orthonormal coordinates adapted to that subspace, $\boldsymbol\varepsilon\T(I-H)\boldsymbol\varepsilon/\sigma^2$ is a sum of $n-p$ squared independent standard normals. Also $\hat{\boldsymbol\beta}-\boldsymbol\beta=(X\T X)^{-1}X\T\boldsymbol\varepsilon$ and $\mathbf{e}=(I-H)\boldsymbol\varepsilon$ are jointly normal and uncorrelated (since $X\T(I-H)=0$), so they are independent.
+
+(iii) Any other linear unbiased estimator $A\mathbf{y}$ has $AX=I$. Write $A=(X\T X)^{-1}X\T+D$ with $DX=0$. Then $\Cov(A\mathbf{y})=\sigma^2(X\T X)^{-1}+\sigma^2DD\T\succeq\sigma^2(X\T X)^{-1}$.
 \end{proof}
 
 \begin{example}
-In the running example $C_{jj}=1/8$ for each coefficient, so $\se(\hat\beta_j)=\sqrt{0.5/8}=0.25$ for $j=0,1,2$, and $\hat\beta_1,\hat\beta_2$ are uncorrelated (the off-diagonal entries of $(X\T X)^{-1}$ are $0$). The hat matrix diagonal is $h_{ii}=\tfrac38$ for every observation, which sums to $p=3$.
+In the running example, $C_{jj}=1/8$ for every coefficient, so $\se(\hat\beta_j)=\sqrt{0.5/8}=0.25$. The off-diagonal entries of $(X\T X)^{-1}$ are $0$, so $\hat\beta_1$ and $\hat\beta_2$ are uncorrelated. Every hat-matrix diagonal entry is $h_{ii}=\tfrac38$, and they sum to $p=3$.
 \end{example}
 
 \section{Hypothesis Tests in Multiple Linear Regression}
@@ -90,86 +124,118 @@ In the running example $C_{jj}=1/8$ for each coefficient, so $\se(\hat\beta_j)=\
 \subsection{Test for Significance of Regression}
 
 \begin{definition}[Sums of squares]
-$SS_T=\sum(y_i-\bar{y})^2=\mathbf{y}\T\mathbf{y}-n\bar{y}^2$, $\ SS_R=\hat{\boldsymbol\beta}\T X\T\mathbf{y}-n\bar{y}^2$ and $SS_E=SS_T-SS_R$, with degrees of freedom $n-1=k+(n-p)$.
+\[ SS_T=\sum(y_i-\bar{y})^2=\mathbf{y}\T\mathbf{y}-n\bar{y}^2,\qquad SS_R=\hat{\boldsymbol\beta}\T X\T\mathbf{y}-n\bar{y}^2,\qquad SS_E=SS_T-SS_R. \]
+Degrees of freedom: $n-1=k+(n-p)$.
 \end{definition}
 
 \begin{theorem}[$F$-test for significance of regression]\label{thm:mlr-F}
 To test $H_0:\beta_1=\beta_2=\dots=\beta_k=0$ against $H_1:$ at least one $\beta_j\ne0$, use
-\[ F_0=\frac{SS_R/k}{SS_E/(n-p)}=\frac{MS_R}{MS_E}\sim F_{k,\,n-p}\ \text{ under }H_0. \]
-Reject $H_0$ if $f_0>f_{\alpha,k,n-p}$.
+\[ F_0=\frac{SS_R/k}{SS_E/(n-p)}=\frac{MS_R}{MS_E}\sim F_{k,\,n-p}\ \text{ when }H_0\text{ is true.} \]
+Reject $H_0$ if $f_0>f_{\alpha,\,k,\,n-p}$ (upper tail only).
 \end{theorem}
 
 \begin{definition}[$R^2$ and adjusted $R^2$]
-$R^2=SS_R/SS_T$ and
-\[ R^2_{\mathrm{adj}}=1-\frac{SS_E/(n-p)}{SS_T/(n-1)}. \]
-$R^2$ never decreases when a regressor is added; $R^2_{\mathrm{adj}}$ penalises extra regressors (it can decrease) and is preferred for comparing models of different size.
+\[ R^2=\frac{SS_R}{SS_T},\qquad R^2_{\mathrm{adj}}=1-\frac{SS_E/(n-p)}{SS_T/(n-1)}. \]
+\begin{itemize}
+  \item $R^2$ never decreases when you add a regressor.
+  \item $R^2_{\mathrm{adj}}$ penalises extra regressors and can decrease. Use it to compare models of different size.
+\end{itemize}
 \end{definition}
 
 \begin{example}
-For the running example: $SS_R=8(3.0)^2+8(1.55)^2=72+19.22=91.22$, $SS_E=2.5$, $SS_T=93.72$. $f_0=(91.22/2)/0.5=91.2>f_{0.05,2,5}=5.79$: reject $H_0$; at least one regressor is useful. $R^2=0.973$ and $R^2_{\mathrm{adj}}=1-(0.5)/(93.72/7)=0.963$.
+For the running example: $SS_R=8(3.0)^2+8(1.55)^2=72+19.22=91.22$, $SS_E=2.5$, $SS_T=93.72$.
+\begin{itemize}
+  \item $f_0=(91.22/2)/0.5=91.2$. Since $f_{0.05,2,5}=5.79$, reject $H_0$: at least one regressor is useful.
+  \item $R^2=0.973$ and $R^2_{\mathrm{adj}}=1-0.5/(93.72/7)=0.963$.
+\end{itemize}
 \end{example}
 
 \subsection{Tests on Individual Regression Coefficients and Subsets of Coefficients}
 
 \begin{theorem}[$t$-test on a single coefficient]\label{thm:mlr-t}
-To test $H_0:\beta_j=0$ against $H_1:\beta_j\ne0$ use $T_0=\hat\beta_j/\se(\hat\beta_j)\sim t_{n-p}$ under $H_0$, and reject if $\abs{t_0}>t_{\alpha/2,n-p}$. For the one-sided alternatives, reject $H_1:\beta_j>0$ if $t_0>t_{\alpha,n-p}$ and $H_1:\beta_j<0$ if $t_0<-t_{\alpha,n-p}$. This is a \emph{marginal} test: it asks whether $x_j$ adds anything given that all the other regressors are already in the model.
+To test $H_0:\beta_j=0$ against $H_1:\beta_j\ne0$, use $T_0=\hat\beta_j/\se(\hat\beta_j)\sim t_{n-p}$ when $H_0$ is true. Reject if $\abs{t_0}>t_{\alpha/2,\,n-p}$.
+
+One-sided: reject $H_1:\beta_j>0$ if $t_0>t_{\alpha,\,n-p}$; reject $H_1:\beta_j<0$ if $t_0<-t_{\alpha,\,n-p}$.
 \end{theorem}
 
+This is a \emph{marginal} test. It asks whether $x_j$ adds anything when all the other regressors are already in the model.
+
 \begin{example}
-$t_0=3.0/0.25=12.0$ for $\beta_1$ and $1.55/0.25=6.2$ for $\beta_2$, both exceeding $t_{0.025,5}=2.571$: both regressors are significant.
+$t_0=3.0/0.25=12.0$ for $\beta_1$ and $1.55/0.25=6.2$ for $\beta_2$. Both exceed $t_{0.025,5}=2.571$, so both regressors are significant.
 \end{example}
 
-A \emph{subset} of coefficients is tested by the \emph{extra sum of squares} method. Partition $\boldsymbol\beta=(\boldsymbol\beta_1,\boldsymbol\beta_2)$, with $\boldsymbol\beta_2$ containing $r$ coefficients, and test $H_0:\boldsymbol\beta_2=\mathbf{0}$ against $H_1:\boldsymbol\beta_2\ne\mathbf{0}$. Fit the \emph{full model} and the \emph{reduced model} (without $\boldsymbol\beta_2$); the improvement in the regression sum of squares is
+To test a \emph{subset} of coefficients, use the \emph{extra sum of squares} method.
+\begin{enumerate}
+  \item Split $\boldsymbol\beta=(\boldsymbol\beta_1,\boldsymbol\beta_2)$, where $\boldsymbol\beta_2$ holds $r$ coefficients. Test $H_0:\boldsymbol\beta_2=\mathbf{0}$.
+  \item Fit the \emph{full} model and the \emph{reduced} model (without $\boldsymbol\beta_2$).
+  \item The gain in the regression sum of squares is
+\end{enumerate}
 \[ SS_R(\boldsymbol\beta_2\mid\boldsymbol\beta_1)=SS_R(\text{full})-SS_R(\text{reduced})=SS_E(\text{reduced})-SS_E(\text{full}). \]
 
 \begin{theorem}[Partial $F$-test]\label{thm:partialF}
-Under $H_0:\boldsymbol\beta_2=\mathbf{0}$,
-\[ F_0=\frac{SS_R(\boldsymbol\beta_2\mid\boldsymbol\beta_1)/r}{MS_E(\text{full})}\sim F_{r,\,n-p}, \]
-and $H_0$ is rejected if $f_0>f_{\alpha,r,n-p}$. When $r=1$, $F_0=T_0^2$ for the $t$-test of that coefficient.
+When $H_0:\boldsymbol\beta_2=\mathbf{0}$ is true,
+\[ F_0=\frac{SS_R(\boldsymbol\beta_2\mid\boldsymbol\beta_1)/r}{MS_E(\text{full})}\sim F_{r,\,n-p}. \]
+Reject $H_0$ if $f_0>f_{\alpha,\,r,\,n-p}$. When $r=1$, $F_0=T_0^2$, where $T_0$ is the $t$ statistic of that coefficient.
 \end{theorem}
 
 \begin{example}
-Test whether $x_2$ adds anything to a model already containing $x_1$: the reduced model $\hat{y}=17.1+3.0x_1$ has $SS_R=72$, so $SS_R(\beta_2\mid\beta_1)=91.22-72=19.22$, and $F_0=19.22/0.5=38.4=6.2^2$ (compare $f_{0.05,1,5}=6.61$): significant.
+Does $x_2$ add anything to a model that already has $x_1$? The reduced model $\hat{y}=17.1+3.0x_1$ has $SS_R=72$. So $SS_R(\beta_2\mid\beta_1)=91.22-72=19.22$ and $F_0=19.22/0.5=38.4=6.2^2$. Since $f_{0.05,1,5}=6.61$, it is significant.
 \end{example}
 
-\begin{example}[Textbook example: wire bond data]
-For the wire bond fit ($n=25$, $p=3$, so $22$ error degrees of freedom): $SS_T=6105.9447$, $SS_R=5990.7712$, $SS_E=115.1735$. Then $f_0\approx572\gg f_{0.05,2,22}=3.44$, so the regression is significant: pull strength is linearly related to wire length, die height, or both. This does not by itself show the model is adequate for prediction, which needs the checks of Section~\ref{sec:madeq}. $R^2=5990.7712/6105.9447=0.9811$ and $R^2_{\mathrm{adj}}=0.979$, against $R^2=0.9640$ and $R^2_{\mathrm{adj}}=0.962$ for the one-variable model with wire length alone: adding die height raises $R^2$ by only $0.0171$ but also raises $R^2_{\mathrm{adj}}$, so it is a genuine improvement. For $H_0:\beta_2=0$: $t_0=4.4767>t_{0.025,22}=2.074$ ($P=0.0002$), so die height contributes given wire length. The partial $F$-statistic is $t_0^2\approx20.0>f_{0.05,1,22}=4.30$, the same conclusion.
+\begin{example}[Wire bond data]
+Here $n=25$ and $p=3$, so there are $22$ error degrees of freedom. $SS_T=6105.9447$, $SS_R=5990.7712$, $SS_E=115.1735$.
+\begin{itemize}
+  \item $f_0\approx572$, far above $f_{0.05,2,22}=3.44$. The regression is significant. This does not show the model is adequate for prediction; that needs the checks of Section~\ref{sec:madeq}.
+  \item $R^2=0.9811$ and $R^2_{\mathrm{adj}}=0.979$. With wire length alone: $R^2=0.9640$ and $R^2_{\mathrm{adj}}=0.962$. Adding die height raises $R^2_{\mathrm{adj}}$ too, so it is a real improvement.
+  \item For $H_0:\beta_2=0$: $t_0=4.4767>t_{0.025,22}=2.074$ ($P=0.0002$). Die height helps, given wire length. The partial $F$ is $t_0^2\approx20.0>f_{0.05,1,22}=4.30$: same conclusion.
+\end{itemize}
 \end{example}
 
 \subsection{More About the Extra Sum of Squares Method (CD Only)}
 
-With an orthogonal design (as above), $SS_R(\beta_2\mid\beta_1)=SS_R(\beta_2)$: the contribution of each regressor does not depend on the order in which they are entered. In non-orthogonal data it does, and the contributions generally do not add to $SS_R$. The sequential (``Type I'') sums of squares depend on the order of entry, the partial (``Type III'') sums of squares measure each regressor's contribution given all the others and are equivalent to the $t$-tests. The extra sum of squares framework also tests any linear restriction $C\boldsymbol\beta=\mathbf{0}$ via $F_0=\dfrac{(SS_E(\text{restricted})-SS_E(\text{full}))/r}{MS_E(\text{full})}$.
+With an orthogonal design (as in the running example), $SS_R(\beta_2\mid\beta_1)=SS_R(\beta_2)$. The contribution of each regressor does not depend on the order of entry.
+
+With non-orthogonal data it does depend on the order, and the contributions do not add up to $SS_R$.
+\begin{itemize}
+  \item Sequential (``Type I'') sums of squares depend on the order of entry.
+  \item Partial (``Type III'') sums of squares measure each regressor given all the others. They match the $t$-tests.
+\end{itemize}
+The same framework tests any linear restriction $C\boldsymbol\beta=\mathbf{0}$:
+\[ F_0=\frac{(SS_E(\text{restricted})-SS_E(\text{full}))/r}{MS_E(\text{full})}. \]
 
 \section{Confidence Intervals in Multiple Linear Regression}
 
 \subsection{Confidence Intervals on Individual Regression Coefficients}
 
 \begin{theorem}[Interval on $\beta_j$]\label{thm:mlr-ci}
-$\hat\beta_j-t_{\alpha/2,n-p}\sqrt{\hat\sigma^2C_{jj}}\le\beta_j\le\hat\beta_j+t_{\alpha/2,n-p}\sqrt{\hat\sigma^2C_{jj}}$ (two-sided, $\alpha/2$ in each tail). One-sided $100(1-\alpha)\%$ bounds use $t_{\alpha,n-p}$ and one limit: $\beta_j\le\hat\beta_j+t_{\alpha,n-p}\sqrt{\hat\sigma^2C_{jj}}$ (upper) or $\hat\beta_j-t_{\alpha,n-p}\sqrt{\hat\sigma^2C_{jj}}\le\beta_j$ (lower). Likewise for the mean-response and prediction intervals below: replace $t_{\alpha/2,n-p}$ by $t_{\alpha,n-p}$ and keep one limit.
+A two-sided $100(1-\alpha)\%$ interval, with $\alpha/2$ in each tail, is
+\[ \hat\beta_j-t_{\alpha/2,\,n-p}\sqrt{\hat\sigma^2C_{jj}}\le\beta_j\le\hat\beta_j+t_{\alpha/2,\,n-p}\sqrt{\hat\sigma^2C_{jj}}. \]
+One-sided $100(1-\alpha)\%$ bounds use $t_{\alpha,\,n-p}$ and one limit: upper $\beta_j\le\hat\beta_j+t_{\alpha,\,n-p}\sqrt{\hat\sigma^2C_{jj}}$, lower $\hat\beta_j-t_{\alpha,\,n-p}\sqrt{\hat\sigma^2C_{jj}}\le\beta_j$. The same change ($t_{\alpha/2}\to t_\alpha$, one limit) applies to the mean-response and prediction intervals below.
 \end{theorem}
 
 \begin{example}
-$3.0\pm2.571(0.25)=3.0\pm0.643$, i.e.\ $2.36\le\beta_1\le3.64$.
+$3.0\pm2.571(0.25)=3.0\pm0.643$, that is, $2.36\le\beta_1\le3.64$.
 \end{example}
 
 \subsection{Confidence Interval on the Mean Response}
 
-At a point $\mathbf{x}_0=(1,x_{01},\dots,x_{0k})\T$ the mean response is $\mu_{Y|\mathbf{x}_0}=\mathbf{x}_0\T\boldsymbol\beta$, estimated by $\hat\mu=\mathbf{x}_0\T\hat{\boldsymbol\beta}$ with $\Var[\hat\mu]=\sigma^2\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0$.
+At a point $\mathbf{x}_0=(1,x_{01},\dots,x_{0k})\T$ the mean response is $\mu_{Y|\mathbf{x}_0}=\mathbf{x}_0\T\boldsymbol\beta$. It is estimated by $\hat\mu=\mathbf{x}_0\T\hat{\boldsymbol\beta}$, with $\Var[\hat\mu]=\sigma^2\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0$.
 
 \begin{theorem}[Interval on the mean response]\label{thm:mlr-meanresp}
-$\hat\mu_{Y|\mathbf{x}_0}\pm t_{\alpha/2,n-p}\sqrt{\hat\sigma^2\,\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0}$.
+\[ \hat\mu_{Y|\mathbf{x}_0}\pm t_{\alpha/2,\,n-p}\sqrt{\hat\sigma^2\,\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0}. \]
 \end{theorem}
 
 \begin{example}
-At $\mathbf{x}_0=(1,1,1)\T$: $\hat\mu=17.1+3.0+1.55=21.65$ and $\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0=3/8$, so the standard error is $\sqrt{0.5\cdot3/8}=0.433$ and the $95\%$ interval is $21.65\pm2.571(0.433)=21.65\pm1.11$.
+At $\mathbf{x}_0=(1,1,1)\T$: $\hat\mu=17.1+3.0+1.55=21.65$ and $\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0=3/8$. The standard error is $\sqrt{0.5\cdot3/8}=0.433$, so the $95\%$ interval is $21.65\pm2.571(0.433)=21.65\pm1.11$.
 \end{example}
 
 \section{Prediction of New Observations}
 
-The prediction interval is always wider than the confidence interval on the mean response at the same point, because it adds the inherent variability of a single new $Y$ to the error of estimating the mean.
+A prediction interval is always wider than the confidence interval on the mean response at the same point. It must also cover the variation of one new $Y$.
 
 \begin{theorem}[Prediction interval]\label{thm:mlr-pi}
-A $100(1-\alpha)\%$ prediction interval for a new observation at $\mathbf{x}_0$ is $\hat{y}_0\pm t_{\alpha/2,n-p}\sqrt{\hat\sigma^2\big(1+\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0\big)}$.
+A $100(1-\alpha)\%$ prediction interval for a new observation at $\mathbf{x}_0$ is
+\[ \hat{y}_0\pm t_{\alpha/2,\,n-p}\sqrt{\hat\sigma^2\big(1+\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0\big)}. \]
 \end{theorem}
 
 \begin{example}
@@ -177,87 +243,138 @@ At $\mathbf{x}_0=(1,1,1)\T$: $21.65\pm2.571\sqrt{0.5(1+0.375)}=21.65\pm2.13$.
 \end{example}
 
 \begin{pitfall}{hidden extrapolation}
-In several dimensions a point can lie inside the range of each regressor separately yet far from the cloud of data jointly (a \emph{hidden extrapolation}). The quantity $h_{00}=\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0$ detects this: if it exceeds $\max_ih_{ii}$ the point lies outside the \emph{regressor variable hull} and predictions there are unreliable.
+In several dimensions, a point can lie inside the range of each regressor on its own, yet far from the cloud of data as a whole. This is a \emph{hidden extrapolation}. The quantity $h_{00}=\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0$ detects it: if $h_{00}>\max_ih_{ii}$, the point lies outside the \emph{regressor variable hull}, and predictions there are unreliable.
 \end{pitfall}
 
 \section{Model Adequacy Checking}\label{sec:madeq}
 
 \subsection{Residual Analysis}
 
-The residuals $\mathbf{e}=(I-H)\mathbf{y}$ have $\Cov(\mathbf{e})=\sigma^2(I-H)$, so $\Var[e_i]=\sigma^2(1-h_{ii})$: residuals at high-leverage points are artificially small. Several scalings are used.
+The residuals $\mathbf{e}=(I-H)\mathbf{y}$ have $\Cov(\mathbf{e})=\sigma^2(I-H)$, so $\Var[e_i]=\sigma^2(1-h_{ii})$. Residuals at high-leverage points are artificially small. So we also use scaled residuals.
 
 \begin{definition}[Scaled residuals]
-Standardised residual $d_i=e_i/\hat\sigma$; \emph{studentised} residual $r_i=\dfrac{e_i}{\sqrt{\hat\sigma^2(1-h_{ii})}}$, which has approximately unit variance for every observation. Values with $\abs{r_i}>3$ are potential outliers.
+\begin{itemize}
+  \item Standardised residual: $d_i=e_i/\hat\sigma$.
+  \item Studentised residual: $r_i=\dfrac{e_i}{\sqrt{\hat\sigma^2(1-h_{ii})}}$. It has about unit variance for every observation. A value with $\abs{r_i}>3$ is a potential outlier.
+\end{itemize}
 \end{definition}
 
-The plots of Chapter~5 apply: normal probability plot of the residuals, residuals versus $\hat{y}_i$, residuals versus each regressor $x_j$ (curvature suggests a missing quadratic term) and residuals versus time order. The \emph{prediction residual} $e_{(i)}=e_i/(1-h_{ii})$ is the error when observation $i$ is left out of the fit, and $PRESS=\sum e_{(i)}^2$ measures predictive ability.
+The plots of Chapter~5 still apply: normal probability plot, residuals against $\hat{y}_i$, residuals against each $x_j$ (curvature suggests a missing quadratic term), and residuals against time order.
+
+The \emph{prediction residual} $e_{(i)}=e_i/(1-h_{ii})$ is the error when observation $i$ is left out of the fit. The statistic $PRESS=\sum e_{(i)}^2$ measures how well the model predicts new data.
 
 \subsection{Influential Observations}
 
 \begin{definition}[Leverage and Cook's distance]
-The \emph{leverage} of observation $i$ is $h_{ii}=\mathbf{x}_i\T(X\T X)^{-1}\mathbf{x}_i$, the weight that $y_i$ has on its own fitted value ($\hat{y}_i=\sum_jh_{ij}y_j$); $0\le h_{ii}\le1$ and $\sum h_{ii}=p$, so the average leverage is $p/n$. Observations with $h_{ii}>2p/n$ have high leverage. \emph{Cook's distance}
+The \emph{leverage} of observation $i$ is $h_{ii}=\mathbf{x}_i\T(X\T X)^{-1}\mathbf{x}_i$. It is the weight that $y_i$ has on its own fitted value, since $\hat{y}_i=\sum_jh_{ij}y_j$.
+\begin{itemize}
+  \item $0\le h_{ii}\le1$ and $\sum h_{ii}=p$, so the average leverage is $p/n$.
+  \item High leverage: $h_{ii}>2p/n$.
+\end{itemize}
+\emph{Cook's distance}
 \[ D_i=\frac{r_i^2}p\cdot\frac{h_{ii}}{1-h_{ii}} \]
-measures how much all fitted values change when observation $i$ is deleted; $D_i>1$ marks an influential point.
+measures how much all the fitted values change when observation $i$ is deleted. $D_i>1$ marks an influential point.
 \end{definition}
 
-An observation is influential when it combines high leverage (unusual $x$) with a large residual; a high-leverage point lying exactly on the trend merely sharpens the fit, while an outlier at a low-leverage point shifts the line little. Investigate (do not automatically delete) influential points.
+An observation is influential when it has high leverage (unusual $x$) \emph{and} a large residual. A high-leverage point exactly on the trend only sharpens the fit. An outlier at low leverage shifts the line little. Investigate influential points; do not delete them automatically.
 
 \section{Aspects of Multiple Regression Modeling}
 
 \subsection{Polynomial Regression Models}
 
-A curved relationship can be fitted by including powers of a regressor: $Y=\beta_0+\beta_1x+\beta_2x^2+\varepsilon$ (quadratic) is a linear model in $(x,x^2)$, so all of the above applies with $x_1=x$, $x_2=x^2$. Guidelines: keep the order low (degree $\le2$ or $3$); retain lower-order terms when a higher-order term is included; \emph{centre} $x$ (use $x-\bar{x}$) to reduce the strong correlation between $x$ and $x^2$ that makes $X\T X$ ill-conditioned; and extrapolate with great caution since polynomials behave wildly outside the data range. Interaction terms $x_1x_2$ let the effect of $x_1$ depend on the level of $x_2$.
+A curve can be fitted by adding powers of a regressor. The quadratic $Y=\beta_0+\beta_1x+\beta_2x^2+\varepsilon$ is linear in $(x,x^2)$, so everything above applies with $x_1=x$, $x_2=x^2$.
+
+Guidelines:
+\begin{itemize}
+  \item Keep the degree low (2 or 3).
+  \item Keep the lower-order terms when you keep a higher-order term.
+  \item \emph{Centre} $x$ (use $x-\bar{x}$). This reduces the strong correlation between $x$ and $x^2$, which makes $X\T X$ ill-conditioned.
+  \item Be very careful when extrapolating: polynomials behave wildly outside the data range.
+\end{itemize}
+An interaction term $x_1x_2$ lets the effect of $x_1$ depend on the level of $x_2$.
 
 \subsection{Categorical Regressors and Indicator Variables}
 
-A qualitative factor with $m$ levels is represented by $m-1$ \emph{indicator (dummy) variables}. For a two-level factor (e.g.\ machine A or B) let $x=0$ for A and $x=1$ for B. In $Y=\beta_0+\beta_1x_1+\beta_2x+\varepsilon$, the coefficient $\beta_2$ is the difference between B and A at a fixed $x_1$: machine A has intercept $\beta_0$ and machine B intercept $\beta_0+\beta_2$, with parallel lines. Adding the product $x_1x$ allows different slopes. With $m=3$ levels use two indicators; using $m$ indicators together with an intercept makes $X\T X$ singular (the dummy-variable trap).
+A factor with $m$ levels needs $m-1$ \emph{indicator (dummy) variables}.
+
+For a two-level factor (machine A or B), let $x=0$ for A and $x=1$ for B. In $Y=\beta_0+\beta_1x_1+\beta_2x+\varepsilon$:
+\begin{itemize}
+  \item Machine A has intercept $\beta_0$. Machine B has intercept $\beta_0+\beta_2$. The lines are parallel.
+  \item $\beta_2$ is the difference between B and A at a fixed $x_1$.
+  \item Adding the product $x_1x$ allows different slopes.
+\end{itemize}
+For $m=3$ levels use two indicators. Using $m$ indicators together with an intercept makes $X\T X$ singular (the dummy-variable trap).
 
 \subsection{Selection of Variables and Model Building}
 
-With many candidate regressors we want a model that is simple yet predicts well. Adding regressors always reduces $SS_E$ but inflates the variance of predictions and risks fitting noise (overfitting).
+With many candidate regressors we want a model that is simple yet predicts well. Adding regressors always lowers $SS_E$. But it also raises the variance of predictions and can fit noise (overfitting).
 
 \begin{itemize}
-  \item \textbf{All possible regressions} for $k$ candidates ($2^k$ models) compared by $R^2_{\mathrm{adj}}$, $MS_E$, the PRESS statistic, Mallows' $C_p=\dfrac{SS_E(p)}{\hat\sigma^2_{\mathrm{full}}}-n+2p$ (a good model has $C_p\approx p$) or AIC$=n\ln(SS_E/n)+2p$.
-  \item \textbf{Stepwise methods} use partial $F$-statistics with an entry threshold $f_{\mathrm{in}}$ and a removal threshold $f_{\mathrm{out}}$, $f_{\mathrm{in}}\ge f_{\mathrm{out}}$ (software often uses $\alpha=0.15$ to enter and remove, $0.10$ for backward elimination). \emph{Stepwise regression} starts with the regressor most highly correlated with $y$ (largest $F$), then at each step adds the candidate with the largest partial $F$ if it exceeds $f_{\mathrm{in}}$, and afterwards deletes any included regressor whose partial $F$ falls below $f_{\mathrm{out}}$; it stops when nothing can be added or removed. \emph{Forward selection} only adds, never testing earlier entries for removal, which is its weakness. \emph{Backward elimination} starts with all $K$ candidates and repeatedly removes the one with the smallest partial $F$ if it is below $f_{\mathrm{out}}$. Because the variable chosen is the one that maximises $F$, the advertised significance level is not the true level, and the degrees of freedom of $MS_E$ change from step to step.
-  \item \textbf{Textbook recommendation.} If the number of candidates is not too large, use all possible regressions with the minimum $MS_E$ and $C_p$ criteria: it finds the best equation for those criteria, which stepwise methods do not guarantee, and it is not distorted by dependencies among regressors. $C_p$ uses $MS_E$ of the full model as the estimate of $\sigma^2$; a model with negligible bias has $C_p\approx p$, and one chooses the minimum $C_p$ or a model with a slightly larger $C_p$ that is not much biased. A final model should always be checked with residuals, lack of fit and influence, and several methods should be compared since no single ``best'' equation need exist.
+  \item \textbf{All possible regressions.} Compare all $2^k$ models using $R^2_{\mathrm{adj}}$, $MS_E$, PRESS, Mallows' $C_p=\dfrac{SS_E(p)}{\hat\sigma^2_{\mathrm{full}}}-n+2p$ (a good model has $C_p\approx p$), or AIC$=n\ln(SS_E/n)+2p$.
+  \item \textbf{Stepwise methods.} They use partial $F$-statistics with an entry threshold $f_{\mathrm{in}}$ and a removal threshold $f_{\mathrm{out}}$, where $f_{\mathrm{in}}\ge f_{\mathrm{out}}$. (Software often uses $\alpha=0.15$ to enter and remove, and $0.10$ for backward elimination.)
+  \begin{itemize}
+    \item \emph{Stepwise regression:} start with the regressor most correlated with $y$. At each step add the candidate with the largest partial $F$ if it exceeds $f_{\mathrm{in}}$, then delete any included regressor whose partial $F$ falls below $f_{\mathrm{out}}$. Stop when nothing can be added or removed.
+    \item \emph{Forward selection:} only adds. It never checks earlier entries for removal. This is its weakness.
+    \item \emph{Backward elimination:} start with all $K$ candidates and remove the one with the smallest partial $F$ if it is below $f_{\mathrm{out}}$. Repeat.
+  \end{itemize}
+  Because each chosen variable maximises $F$, the advertised significance level is not the true level. The degrees of freedom of $MS_E$ also change at each step.
+  \item \textbf{Textbook recommendation.} If the number of candidates is small, use all possible regressions with the minimum $MS_E$ and $C_p$ criteria. It finds the best equation by those criteria, which stepwise methods do not guarantee, and it is not distorted by dependence among regressors. For $C_p$, use $MS_E$ of the full model as the estimate of $\sigma^2$. A model with negligible bias has $C_p\approx p$. Choose the minimum $C_p$, or a slightly larger one with little bias.
+  \item Always check the final model with residuals, lack of fit and influence. Compare several methods: there may be no single ``best'' equation.
 \end{itemize}
 
 \begin{pitfall}{variable selection and inference}
-Selecting a model with the same data used to test it makes the reported $t$ and $F$ statistics and $P$-values too optimistic, because the winner of many comparisons was chosen \emph{because} it looked good. Validate the final model on fresh data or by cross-validation (Chapter~14), and prefer subject-matter judgement to blind automation.
+If you choose a model with the same data you then use to test it, the reported $t$, $F$ and $P$-values are too optimistic. The winner was chosen \emph{because} it looked good. Validate on fresh data or by cross-validation (Chapter~14). Prefer subject knowledge to blind automation.
 \end{pitfall}
 
 \subsection{Multicollinearity}
 
 \begin{definition}[Multicollinearity and VIF]
-\emph{Multicollinearity} means that some regressors are nearly linear combinations of others, so $X\T X$ is nearly singular. The \emph{variance inflation factor} of $x_j$ is
+\emph{Multicollinearity} means some regressors are nearly linear combinations of others, so $X\T X$ is nearly singular. The \emph{variance inflation factor} of $x_j$ is
 \[ \mathrm{VIF}_j=\frac1{1-R_j^2}, \]
-where $R_j^2$ is the $R^2$ from regressing $x_j$ on the remaining regressors.
+where $R_j^2$ is the $R^2$ from regressing $x_j$ on the other regressors.
 \end{definition}
 
-One can show $\Var[\hat\beta_j]=\dfrac{\sigma^2}{S_{jj}}\mathrm{VIF}_j$ (with $S_{jj}=\sum(x_{ij}-\bar{x}_j)^2$), so VIF is the factor by which collinearity inflates the variance. The textbook rule: $\mathrm{VIF}_j>10$ ($R_j^2>0.9$) signals a problem, though some authors consider $10$ too liberal and use $4$ or $5$ as the limit. Symptoms: large standard errors and unstable coefficients (signs that flip with small changes in the data), a significant overall $F$ with no significant individual $t$'s, and an $X\T X$ with a very small eigenvalue (condition number $\kappa(X\T X)=\lambda_{\max}/\lambda_{\min}>1000$). Remedies: remove or combine redundant regressors, collect data that spread the regressors, centre variables, or use ridge regression or principal components regression. Predictions \emph{within} the range of the data can still be fine; it is the interpretation of individual coefficients that suffers.
+One can show $\Var[\hat\beta_j]=\dfrac{\sigma^2}{S_{jj}}\mathrm{VIF}_j$, where $S_{jj}=\sum(x_{ij}-\bar{x}_j)^2$. So VIF is the factor by which collinearity inflates the variance.
 
-Remedies listed in the textbook: augment the data with new observations designed to break the near-dependencies (often impossible for cost or physical reasons); delete regressors (at the price of discarding their information); or use an estimator less sensitive to collinearity, such as ridge regression. Even with collinearity the fitted equation can still predict well by \emph{interpolation} inside the original region of $x$-space, since $\mathbf{x}\T\hat{\boldsymbol\beta}$ may be well estimated though individual $\hat\beta_j$ are not; extrapolation needs good individual estimates and generally fails.
+\begin{itemize}
+  \item \textbf{Rule.} $\mathrm{VIF}_j>10$ (that is, $R_j^2>0.9$) signals a problem. Some authors think $10$ is too liberal and use $4$ or $5$.
+  \item \textbf{Symptoms.} Large standard errors; coefficients that change sign with small changes in the data; a significant overall $F$ with no significant individual $t$'s; a very small eigenvalue of $X\T X$ (condition number $\lambda_{\max}/\lambda_{\min}>1000$).
+  \item \textbf{Remedies.} Add data that break the near-dependence (often impossible). Drop or combine redundant regressors (you lose their information). Centre the variables. Use ridge regression or principal components regression.
+  \item \textbf{What still works.} Predictions \emph{inside} the range of the data can be fine, because $\mathbf{x}\T\hat{\boldsymbol\beta}$ may be well estimated even when individual $\hat\beta_j$ are not. Extrapolation needs good individual estimates and usually fails.
+\end{itemize}
 
 \subsection{Ridge Regression (CD Only)}
 
 \begin{definition}[Ridge estimator]
-For $\lambda\ge0$, $\hat{\boldsymbol\beta}_R=(X\T X+\lambda I)^{-1}X\T\mathbf{y}$ (with the regressors standardised and the intercept left unpenalised). It minimises $SS_E+\lambda\sum_{j\ge1}\beta_j^2$.
+For $\lambda\ge0$,
+\[ \hat{\boldsymbol\beta}_R=(X\T X+\lambda I)^{-1}X\T\mathbf{y}, \]
+with the regressors standardised and the intercept left unpenalised. It minimises $SS_E+\lambda\sum_{j\ge1}\beta_j^2$.
 \end{definition}
 
-In practice $\lambda$ is chosen by solving for several values (on standardised data, usually $0<\lambda<1$) and inspecting a plot of the coefficients against $\lambda$, the \emph{ridge trace}: take $\lambda$ as small as possible that still stabilises the estimates, because variance decreases and squared bias increases with $\lambda$. The ridge estimator is biased but has smaller variance, and for a suitable $\lambda>0$ a smaller mean square error than least squares when collinearity is severe. It shrinks the coefficients toward zero, most strongly along directions in which the data carry little information (the small singular values of $X$; see Linear Algebra, Chapter~17). The value of $\lambda$ is chosen by cross-validation or from the ridge trace (plot of the coefficients against $\lambda$).
+\begin{itemize}
+  \item The ridge estimator is biased, but it has smaller variance. For a suitable $\lambda>0$ it has a smaller mean square error than least squares when collinearity is severe.
+  \item It shrinks coefficients towards zero, most strongly in directions where the data carry little information (the small singular values of $X$; see Linear Algebra, Chapter~17).
+  \item Choosing $\lambda$: solve for several values (on standardised data, usually $0<\lambda<1$) and plot the coefficients against $\lambda$. This plot is the \emph{ridge trace}. Take $\lambda$ as small as possible while the estimates are stable, since variance falls and squared bias rises as $\lambda$ grows. Cross-validation is another way.
+\end{itemize}
 
 \subsection{Nonlinear Regression Models (CD Only)}
 
-Some models are \emph{intrinsically nonlinear} in the parameters, for example $Y=\theta_1\big(1-e^{-\theta_2x}\big)+\varepsilon$. The least squares estimates minimise $\sum\big(y_i-f(x_i;\boldsymbol\theta)\big)^2$ but there is no closed-form solution; one iterates, for example by the \emph{Gauss--Newton} method: linearise $f$ about the current estimate, $f(x_i;\boldsymbol\theta)\approx f(x_i;\boldsymbol\theta^{(m)})+J_i(\boldsymbol\theta-\boldsymbol\theta^{(m)})$, solve the resulting linear least squares problem for the step, and repeat until convergence. Good starting values (often from a transformation or from physical insight) are important, and the usual $t$ and $F$ tests hold only approximately (for large $n$).
+Some models are \emph{intrinsically nonlinear} in the parameters, for example $Y=\theta_1\big(1-e^{-\theta_2x}\big)+\varepsilon$. The least squares estimates minimise $\sum\big(y_i-f(x_i;\boldsymbol\theta)\big)^2$, but there is no closed-form solution. We iterate, for example by the \emph{Gauss--Newton} method:
+\begin{enumerate}
+  \item Linearise $f$ about the current estimate: $f(x_i;\boldsymbol\theta)\approx f(x_i;\boldsymbol\theta^{(m)})+J_i(\boldsymbol\theta-\boldsymbol\theta^{(m)})$.
+  \item Solve the resulting linear least squares problem for the step.
+  \item Repeat until the estimates stop changing.
+\end{enumerate}
+Good starting values (from a transformation or from physical insight) matter. The usual $t$ and $F$ tests hold only approximately, for large $n$.
 
 \begin{summarybox}
 \begin{itemize}
-  \item Model $\mathbf{y}=X\boldsymbol\beta+\boldsymbol\varepsilon$; $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}$; $\hat{\mathbf{y}}=H\mathbf{y}$ is the orthogonal projection onto $\Col X$; $\hat\sigma^2=SS_E/(n-p)$, $p=k+1$.
-  \item $\Cov[\hat{\boldsymbol\beta}]=\sigma^2(X\T X)^{-1}$; $\se(\hat\beta_j)=\sqrt{\hat\sigma^2C_{jj}}$; Gauss--Markov; normal errors give $t$ and $\chi^2$ distributions.
-  \item Overall test $F_0=MS_R/MS_E\sim F_{k,n-p}$; individual tests $t_0=\hat\beta_j/\se(\hat\beta_j)\sim t_{n-p}$; subsets by partial $F$ with the extra sum of squares; $R^2_{\mathrm{adj}}$ for comparing models.
-  \item Mean response $\mathbf{x}_0\T\hat{\boldsymbol\beta}\pm t\sqrt{\hat\sigma^2\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0}$; prediction adds $1$ under the root.
-  \item Diagnostics: studentised residuals, leverage $h_{ii}>2p/n$, Cook's $D_i>1$, PRESS; check for hidden extrapolation.
-  \item Modeling: polynomial terms (centre them), indicator variables ($m-1$ for $m$ levels), selection by $C_p$/AIC/stepwise (beware optimism), multicollinearity via $\mathrm{VIF}>10$, ridge as a remedy, Gauss--Newton for nonlinear models.
+  \item Model: $\mathbf{y}=X\boldsymbol\beta+\boldsymbol\varepsilon$. Estimator: $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}$. $\hat{\mathbf{y}}=H\mathbf{y}$ is the orthogonal projection onto $\Col X$. $\hat\sigma^2=SS_E/(n-p)$ with $p=k+1$.
+  \item $\Cov[\hat{\boldsymbol\beta}]=\sigma^2(X\T X)^{-1}$ and $\se(\hat\beta_j)=\sqrt{\hat\sigma^2C_{jj}}$. Gauss--Markov holds. Normal errors give $t$ and $\chi^2$ distributions.
+  \item Overall test: $F_0=MS_R/MS_E\sim F_{k,n-p}$. Single coefficient: $t_0=\hat\beta_j/\se(\hat\beta_j)\sim t_{n-p}$. Subsets: partial $F$ with the extra sum of squares. Use $R^2_{\mathrm{adj}}$ to compare models.
+  \item Mean response: $\mathbf{x}_0\T\hat{\boldsymbol\beta}\pm t\sqrt{\hat\sigma^2\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0}$. For a prediction, add $1$ under the root.
+  \item Diagnostics: studentised residuals, leverage $h_{ii}>2p/n$, Cook's $D_i>1$, PRESS. Watch for hidden extrapolation.
+  \item Modelling: polynomial terms (centre them); indicator variables ($m-1$ for $m$ levels); selection by $C_p$, AIC or stepwise (the $P$-values are optimistic); multicollinearity ($\mathrm{VIF}>10$), with ridge as a remedy; Gauss--Newton for nonlinear models.
 \end{itemize}
 \end{summarybox}
 

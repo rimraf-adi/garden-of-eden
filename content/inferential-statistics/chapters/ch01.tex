@@ -2,16 +2,21 @@
 
 \section{Introduction}
 
-A \emph{population} is described by a probability distribution that depends on one or more unknown constants called \emph{parameters}: the mean $\mu$ and variance $\sigma^2$ of a normal distribution, the rate $\lambda$ of an exponential distribution, the success probability $p$ of a Bernoulli trial. We cannot see the parameter. We see a \emph{random sample} $X_1,\dots,X_n$, independent random variables each with the population distribution, and we must use it to say something about the parameter.
+A \emph{population} is described by a probability distribution with one or more unknown constants called \emph{parameters}. Examples: the mean $\mu$ and variance $\sigma^2$ of a normal distribution, the rate $\lambda$ of an exponential distribution, the success probability $p$ of a Bernoulli trial.
+
+We cannot see the parameter. We see a \emph{random sample} $X_1,\dots,X_n$: independent random variables, each with the population distribution. We must use the sample to say something about the parameter.
 
 \begin{definition}[Point estimator and estimate]
-A \emph{point estimator} of a parameter $\theta$ is a statistic $\hat\Theta=h(X_1,\dots,X_n)$, a function of the sample whose value is intended to be close to $\theta$. After the data are observed, the number $\hat\theta=h(x_1,\dots,x_n)$ is the \emph{point estimate}.
+\begin{itemize}
+  \item A \emph{point estimator} of a parameter $\theta$ is a statistic $\hat\Theta=h(X_1,\dots,X_n)$, a function of the sample meant to be close to $\theta$.
+  \item After the data are observed, the number $\hat\theta=h(x_1,\dots,x_n)$ is the \emph{point estimate}.
+\end{itemize}
 \end{definition}
 
-The distinction matters: the estimator is a random variable (it varies from sample to sample) and the estimate is one realised number. Everything we ask of an estimator, such as ``it is unbiased'' or ``it has small variance'', is a statement about the distribution of the random variable $\hat\Theta$.
+The difference matters. The estimator is a random variable: it changes from sample to sample. The estimate is one realised number. Statements such as ``it is unbiased'' or ``it has small variance'' are about the distribution of the random variable $\hat\Theta$.
 
 \begin{example}
-To estimate the mean $\mu$ of a population we may use the sample mean $\bar{X}$, the sample median $\tilde{X}$, or the midrange $(X_{\min}+X_{\max})/2$. All three are point estimators of $\mu$. Which is best depends on the population and on what we mean by ``best'', which is the subject of the next section.
+To estimate a population mean $\mu$ we could use the sample mean $\bar{X}$, the sample median $\tilde{X}$, or the midrange $(X_{\min}+X_{\max})/2$. All three are point estimators of $\mu$. Which is best depends on the population and on what ``best'' means. The next section deals with that.
 \end{example}
 
 \section{General Concepts of Point Estimation}
@@ -19,90 +24,131 @@ To estimate the mean $\mu$ of a population we may use the sample mean $\bar{X}$,
 \subsection{Unbiased Estimators}
 
 \begin{definition}[Unbiased estimator]
-$\hat\Theta$ is an \emph{unbiased estimator} of $\theta$ if $\Exp[\hat\Theta]=\theta$ for every possible value of $\theta$. The \emph{bias} is $\bias(\hat\Theta)=\Exp[\hat\Theta]-\theta$.
+$\hat\Theta$ is \emph{unbiased} for $\theta$ if $\Exp[\hat\Theta]=\theta$ for every possible value of $\theta$. The \emph{bias} is $\bias(\hat\Theta)=\Exp[\hat\Theta]-\theta$.
 \end{definition}
 
-Unbiasedness says that the estimator is correct on average over repeated samples: it does not systematically overshoot or undershoot.
+Unbiased means correct on average over repeated samples. The estimator does not systematically overshoot or undershoot.
 
 \begin{theorem}[Standard unbiased estimators]\label{thm:unbiased}
 Let $X_1,\dots,X_n$ be a random sample from a distribution with mean $\mu$ and variance $\sigma^2$. Then
 \begin{enumerate}[label=(\roman*)]
-  \item $\bar{X}$ is an unbiased estimator of $\mu$;
-  \item $S^2=\dfrac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2$ is an unbiased estimator of $\sigma^2$;
-  \item if the data are Bernoulli trials with success probability $p$ and $X$ is the number of successes, $\hat{P}=X/n$ is an unbiased estimator of $p$.
+  \item $\bar{X}$ is unbiased for $\mu$;
+  \item $S^2=\dfrac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2$ is unbiased for $\sigma^2$;
+  \item for Bernoulli trials with success probability $p$, and $X$ the number of successes, $\hat{P}=X/n$ is unbiased for $p$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(i) $\Exp[\bar{X}]=\frac1n\sum\Exp[X_i]=\mu$. (iii) $\Exp[X]=np$, so $\Exp[\hat{P}]=p$. (ii) Expand the sum of squares about the true mean:
+(i) $\Exp[\bar{X}]=\frac1n\sum\Exp[X_i]=\mu$.
+
+(iii) $\Exp[X]=np$, so $\Exp[\hat{P}]=p$.
+
+(ii) Expand the sum of squares about the true mean:
 \[ \sum(X_i-\bar{X})^2=\sum(X_i-\mu)^2-n(\bar{X}-\mu)^2. \]
-Taking expectations, $\Exp\Big[\sum(X_i-\bar{X})^2\Big]=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2$, using $\Var[\bar{X}]=\sigma^2/n$. Dividing by $n-1$ gives $\Exp[S^2]=\sigma^2$.
+Take expectations, using $\Var[\bar{X}]=\sigma^2/n$:
+\[ \Exp\Big[\sum(X_i-\bar{X})^2\Big]=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2. \]
+Divide by $n-1$ to get $\Exp[S^2]=\sigma^2$.
 \end{proof}
 
 \begin{intuition}
-The sum of squares around $\bar{X}$ is systematically smaller than the sum of squares around the true $\mu$, because $\bar{X}$ is the point that minimises the sum of squares for this very sample. Dividing by $n$ would therefore underestimate $\sigma^2$ on average, by the factor $(n-1)/n$. Dividing by $n-1$ exactly corrects this. The estimator $\frac1n\sum(X_i-\bar{X})^2$ is biased, with $\bias=-\sigma^2/n$.
+The sum of squares around $\bar{X}$ is smaller than the sum around the true $\mu$, because $\bar{X}$ is the point that minimises the sum of squares for this very sample.
+\begin{itemize}
+  \item Dividing by $n$ would underestimate $\sigma^2$ on average, by the factor $(n-1)/n$.
+  \item Dividing by $n-1$ corrects this exactly.
+  \item The estimator $\frac1n\sum(X_i-\bar{X})^2$ is biased, with $\bias=-\sigma^2/n$.
+\end{itemize}
 \end{intuition}
 
 \begin{example}
-A sample of four measurements is $12.1,\ 11.8,\ 12.4,\ 12.3$. Then $\bar{x}=12.15$. The deviations $-0.05,-0.35,0.25,0.15$, squares $0.0025,0.1225,0.0625,0.0225$ with sum $\sum(x_i-\bar{x})^2=0.21$. So $s^2=0.21/3=0.07$ and $s=0.265$. These are point estimates of $\mu$ and $\sigma$.
+Four measurements: $12.1,\ 11.8,\ 12.4,\ 12.3$.
+\begin{itemize}
+  \item $\bar{x}=12.15$.
+  \item Deviations: $-0.05,\ -0.35,\ 0.25,\ 0.15$. Squares: $0.0025,\ 0.1225,\ 0.0625,\ 0.0225$. Sum: $0.21$.
+  \item $s^2=0.21/3=0.07$ and $s=0.265$.
+\end{itemize}
+These are point estimates of $\mu$ and $\sigma$.
 \end{example}
 
 \begin{nuance}{unbiased is not always sensible}
-An unbiased estimator need not exist, and when it exists it need not be good. If $X$ is a single observation from a Poisson distribution, the only unbiased estimator of $e^{-2\lambda}$ is $(-1)^X$, which takes the values $\pm1$ for a quantity lying in $(0,1)$. Unbiasedness is a desirable property, not a requirement; Section~\ref{sec:mse} balances bias against variance.
+An unbiased estimator may not exist. When it exists, it may be poor.
+
+If $X$ is one observation from a Poisson distribution, the only unbiased estimator of $e^{-2\lambda}$ is $(-1)^X$. It takes the values $\pm1$ for a quantity that lies in $(0,1)$.
+
+Unbiasedness is desirable, not required. Section~\ref{sec:mse} balances bias against variance.
 \end{nuance}
 
 \subsection{Proof that $S$ is a Biased Estimator of $\sigma$ (CD Only)}
 
-Although $S^2$ is unbiased for $\sigma^2$, the square root $S$ is \emph{not} unbiased for $\sigma$.
+$S^2$ is unbiased for $\sigma^2$, but $S=\sqrt{S^2}$ is \emph{not} unbiased for $\sigma$.
 
 \begin{theorem}\label{thm:sbiased}
 If $\sigma^2>0$ and the sample is not degenerate, $\Exp[S]<\sigma$.
 \end{theorem}
 
 \begin{proof}
-The square root is a strictly concave function, so Jensen's inequality gives $\Exp[\sqrt{S^2}]<\sqrt{\Exp[S^2]}=\sqrt{\sigma^2}=\sigma$ (strict inequality because $S^2$ is not constant).
+The square root is strictly concave. By Jensen's inequality, $\Exp[\sqrt{S^2}]<\sqrt{\Exp[S^2]}=\sigma$. The inequality is strict because $S^2$ is not constant.
 \end{proof}
 
-For a normal sample the bias is explicit: $\Exp[S]=c_4(n)\,\sigma$ with $c_4(n)=\sqrt{\dfrac2{n-1}}\,\dfrac{\Gamma(n/2)}{\Gamma((n-1)/2)}$; for example $c_4(5)\approx0.940$, $c_4(10)\approx0.973$, $c_4(25)\approx0.990$. The bias is small unless $n$ is small, and it is routinely ignored; control charts (Chapter~10) do use $c_4$ to correct it.
+For a normal sample the bias is explicit: $\Exp[S]=c_4(n)\,\sigma$, where
+\[ c_4(n)=\sqrt{\dfrac2{n-1}}\,\dfrac{\Gamma(n/2)}{\Gamma((n-1)/2)}. \]
+For example $c_4(5)\approx0.940$, $c_4(10)\approx0.973$, $c_4(25)\approx0.990$. The bias is small unless $n$ is small, and is usually ignored. Control charts (Chapter~10) do use $c_4$ to correct it.
 
 \subsection{Variance of a Point Estimator}
 
-Among several unbiased estimators of the same parameter, we prefer the one with the smallest variance, because it varies least from sample to sample.
+Among several unbiased estimators of the same parameter, prefer the one with the smallest variance. It varies least from sample to sample.
 
 \begin{definition}[MVUE]
 Among all unbiased estimators of $\theta$, the one with the smallest variance is the \emph{minimum variance unbiased estimator} (MVUE).
 \end{definition}
 
 \begin{example}[Mean versus median]
-For a sample of size $n$ from $\Normal(\mu,\sigma^2)$ both $\bar{X}$ and the sample median $\tilde{X}$ are unbiased for $\mu$ (the normal is symmetric). But $\Var[\bar{X}]=\sigma^2/n$ while, for large $n$, $\Var[\tilde{X}]\approx\frac\pi2\cdot\frac{\sigma^2}n\approx1.57\,\sigma^2/n$. The median needs about $57\%$ more data to reach the same accuracy.
+For a sample from $\Normal(\mu,\sigma^2)$, both $\bar{X}$ and the sample median $\tilde{X}$ are unbiased for $\mu$ (the normal is symmetric).
+\begin{itemize}
+  \item $\Var[\bar{X}]=\sigma^2/n$.
+  \item For large $n$, $\Var[\tilde{X}]\approx\frac\pi2\cdot\frac{\sigma^2}n\approx1.57\,\sigma^2/n$.
+\end{itemize}
+The median needs about $57\%$ more data for the same accuracy.
 \end{example}
 
 \begin{theorem}[$\bar{X}$ is the MVUE for the normal mean]\label{thm:mvue}
 If $X_1,\dots,X_n$ is a random sample from $\Normal(\mu,\sigma^2)$, then $\bar{X}$ is the MVUE of $\mu$.
 \end{theorem}
 
-This is a consequence of the Cram\'er--Rao inequality, proved in Chapter~12. For non-normal populations the answer changes: for a uniform distribution on $(\mu-a,\mu+a)$ the midrange has variance of order $1/n^2$, far smaller than $\Var[\bar{X}]=a^2/(3n)$.
+This follows from the Cram\'er--Rao inequality, proved in Chapter~12. For non-normal populations the answer changes. For a uniform distribution on $(\mu-a,\mu+a)$, the midrange has variance of order $1/n^2$. That is far smaller than $\Var[\bar{X}]=a^2/(3n)$.
 
 \subsection{Standard Error: Reporting a Point Estimator}
 
-A point estimate alone is incomplete without some measure of its precision.
+A point estimate alone is incomplete. We also need a measure of its precision.
 
 \begin{definition}[Standard error]
-The \emph{standard error} of an estimator $\hat\Theta$ is its standard deviation, $\sigma_{\hat\Theta}=\sqrt{\Var[\hat\Theta]}$. If this depends on unknown parameters and these are replaced by estimates, the result is the \emph{estimated standard error}, written $\hat\sigma_{\hat\Theta}$ or $\se(\hat\Theta)$.
+The \emph{standard error} of an estimator $\hat\Theta$ is its standard deviation, $\sigma_{\hat\Theta}=\sqrt{\Var[\hat\Theta]}$. If it depends on unknown parameters, replace them by estimates. The result is the \emph{estimated standard error}, written $\hat\sigma_{\hat\Theta}$ or $\se(\hat\Theta)$.
 \end{definition}
 
-For the sample mean, $\sigma_{\bar{X}}=\sigma/\sqrt n$, and since $\sigma$ is usually unknown the estimated standard error is $\se(\bar{X})=s/\sqrt n$. The standard practice is to report the estimate together with its standard error, as $\hat\theta\ \pm\ \se(\hat\theta)$.
+For the sample mean, $\sigma_{\bar{X}}=\sigma/\sqrt n$. Since $\sigma$ is usually unknown, the estimated standard error is $\se(\bar{X})=s/\sqrt n$. Standard practice is to report $\hat\theta\ \pm\ \se(\hat\theta)$.
 
 \begin{example}
-Thermal conductivity measurements on $n=10$ specimens give $\bar{x}=41.924$ and $s=0.284$. The estimated standard error of $\bar{x}$ is $s/\sqrt{10}=0.0898$, so we report $41.924\pm0.0898$. For a normal population, about $95\%$ of the time the estimate $\bar{X}$ is within $2\sigma_{\bar{X}}$ of $\mu$ (Section~\ref{sec:sampmeans}).
+Thermal conductivity of $n=10$ specimens: $\bar{x}=41.924$, $s=0.284$.
+\begin{itemize}
+  \item $\se(\bar{x})=s/\sqrt{10}=0.0898$. Report $41.924\pm0.0898$.
+  \item For a normal population, about $95\%$ of the time $\bar{X}$ is within $2\sigma_{\bar{X}}$ of $\mu$ (Section~\ref{sec:sampmeans}).
+\end{itemize}
 \end{example}
 
 \begin{pitfall}{standard error is not standard deviation}
-The standard deviation $s$ measures the spread of individual observations; the standard error $s/\sqrt n$ measures the spread of the \emph{mean} over repeated samples and shrinks as $n$ grows. Reporting $\pm s$ when one means $\pm\se$ overstates the uncertainty of the mean by a factor $\sqrt n$.
+\begin{itemize}
+  \item The standard deviation $s$ measures the spread of individual observations.
+  \item The standard error $s/\sqrt n$ measures the spread of the \emph{mean} over repeated samples. It shrinks as $n$ grows.
+\end{itemize}
+Reporting $\pm s$ when you mean $\pm\se$ overstates the uncertainty of the mean by a factor $\sqrt n$.
 \end{pitfall}
 
-\begin{example}[Textbook example: thermal conductivity of Armco iron]
-Ten measurements of thermal conductivity at $100^\circ$F and $550$ W give $\bar{x}=41.924$ and $s=0.284$. The estimated standard error of $\bar{X}$ is $s/\sqrt{10}=0.0898$, about $0.2\%$ of the estimate, so the estimate is precise. If conductivity is normal, $2\,\widehat{\se}=0.1796$ and we are highly confident that the true mean lies in $41.924\pm0.1796$, i.e.\ $(41.744,\,42.104)$. Even if the estimator is not normal, as long as it is unbiased the estimate deviates from the true value by as much as four standard errors at most about $6\%$ of the time (Chebyshev), so a very conservative statement is that the parameter is within four standard errors of the estimate.
+\begin{example}[Thermal conductivity of Armco iron]
+Ten measurements at $100^\circ$F and $550$ W give $\bar{x}=41.924$, $s=0.284$.
+\begin{itemize}
+  \item $\se=s/\sqrt{10}=0.0898$, about $0.2\%$ of the estimate. The estimate is precise.
+  \item If conductivity is normal, $2\,\widehat{\se}=0.1796$. We are highly confident the true mean lies in $41.924\pm0.1796$, that is $(41.744,\,42.104)$.
+  \item Even if the estimator is not normal, as long as it is unbiased, the estimate is off by four standard errors or more at most about $6\%$ of the time (Chebyshev). So a very cautious statement: the parameter is within four standard errors of the estimate.
+\end{itemize}
 \end{example}
 
 \subsection{Bootstrap Estimate of the Standard Error (CD Only)}
@@ -112,27 +158,27 @@ For many estimators there is no formula for the standard error. The \emph{bootst
 \begin{definition}[Bootstrap standard error]
 Given data $x_1,\dots,x_n$ and an estimator $\hat\theta=h(x_1,\dots,x_n)$:
 \begin{enumerate}[label=(\arabic*)]
-  \item draw a \emph{bootstrap sample} $x_1^*,\dots,x_n^*$ by sampling $n$ values \emph{with replacement} from the observed data;
-  \item compute $\hat\theta^*=h(x_1^*,\dots,x_n^*)$;
-  \item repeat steps 1--2 $B$ times, obtaining $\hat\theta^*_1,\dots,\hat\theta^*_B$;
-  \item the bootstrap standard error is the sample standard deviation of these values,
+  \item Draw a \emph{bootstrap sample} $x_1^*,\dots,x_n^*$: $n$ values sampled \emph{with replacement} from the data.
+  \item Compute $\hat\theta^*=h(x_1^*,\dots,x_n^*)$.
+  \item Repeat steps 1--2 $B$ times to get $\hat\theta^*_1,\dots,\hat\theta^*_B$.
+  \item The bootstrap standard error is their sample standard deviation:
   \[ \se_{\mathrm{boot}}(\hat\theta)=\sqrt{\frac1{B-1}\sum_{b=1}^B\big(\hat\theta^*_b-\bar{\theta}^*\big)^2},\qquad\bar{\theta}^*=\frac1B\sum_b\hat\theta^*_b. \]
 \end{enumerate}
-Typically $B$ between $200$ and $1000$ suffices for a standard error.
+Typically $B$ between $200$ and $1000$ is enough for a standard error.
 \end{definition}
 
-The idea is that the observed data are our best picture of the population, so sampling from the data mimics sampling from the population. The method works for the median, the trimmed mean, a correlation coefficient, a ratio, or any statistic whatsoever. Chapter~13 develops the bootstrap in more detail.
+The idea: the observed data are our best picture of the population, so sampling from the data mimics sampling from the population. It works for the median, a trimmed mean, a correlation, a ratio, or any statistic. Chapter~13 gives more detail.
 
 \begin{example}
-For the data $2,\ 5,\ 9$ the bootstrap sample $(5,5,9)$ gives the mean $6.33$ and $(2,2,2)$ gives $2$. Repeating many times, the standard deviation of the bootstrap means approaches $\sqrt{\sum(x_i-\bar{x})^2/n^2}$, which for $n=3$ is about $1.7$.
+Data: $2,\ 5,\ 9$. The bootstrap sample $(5,5,9)$ has mean $6.33$. The sample $(2,2,2)$ has mean $2$. After many repeats, the standard deviation of the bootstrap means approaches $\sqrt{\sum(x_i-\bar{x})^2/n^2}$, which is about $1.7$ for $n=3$.
 \end{example}
 
 \subsection{Mean Square Error of an Estimator}\label{sec:mse}
 
-Unbiased estimators are not always best: allowing a small bias can sharply reduce variance. We need a single criterion that accounts for both.
+Unbiased estimators are not always best. A small bias can buy a large cut in variance. We need one criterion that counts both.
 
 \begin{definition}[Mean square error]
-$\MSE(\hat\Theta)=\Exp\big[(\hat\Theta-\theta)^2\big]$, the expected squared distance from the target.
+$\MSE(\hat\Theta)=\Exp\big[(\hat\Theta-\theta)^2\big]$: the expected squared distance from the target.
 \end{definition}
 
 \begin{theorem}[Bias--variance decomposition]\label{thm:biasvar}
@@ -140,95 +186,130 @@ $\MSE(\hat\Theta)=\Exp\big[(\hat\Theta-\theta)^2\big]$, the expected squared dis
 \end{theorem}
 
 \begin{proof}
-Write $\hat\Theta-\theta=(\hat\Theta-\Exp[\hat\Theta])+(\Exp[\hat\Theta]-\theta)$ and square. The cross term has expectation $2(\Exp[\hat\Theta]-\theta)\Exp(\hat\Theta-\Exp[\hat\Theta])=0$, leaving the variance plus the squared bias.
+Write $\hat\Theta-\theta=(\hat\Theta-\Exp[\hat\Theta])+(\Exp[\hat\Theta]-\theta)$ and square. The cross term has expectation $2(\Exp[\hat\Theta]-\theta)\Exp(\hat\Theta-\Exp[\hat\Theta])=0$. What remains is the variance plus the squared bias.
 \end{proof}
 
-For an unbiased estimator the MSE equals the variance. For biased ones the decomposition shows the trade-off.
+For an unbiased estimator, the MSE equals the variance. For biased ones, the decomposition shows the trade-off.
 
 \begin{example}[A biased estimator can beat an unbiased one]\label{ex:mseexample}
-Let $X_1,\dots,X_n$ be normal with variance $\sigma^2$. Consider $\hat\sigma^2_c=c\sum(X_i-\bar{X})^2$. From $\sum(X_i-\bar{X})^2/\sigma^2\sim\chi^2_{n-1}$ (with mean $n-1$ and variance $2(n-1)$), the MSE is $\sigma^4\big[2c^2(n-1)+((n-1)c-1)^2\big]$, which is minimised at $c=1/(n+1)$. The unbiased choice $c=1/(n-1)$ has $\MSE=2\sigma^4/(n-1)$, while $c=1/(n+1)$ gives the smaller $\MSE=2\sigma^4/(n+1)$.
+Let $X_1,\dots,X_n$ be normal with variance $\sigma^2$. Consider $\hat\sigma^2_c=c\sum(X_i-\bar{X})^2$.
+\begin{itemize}
+  \item $\sum(X_i-\bar{X})^2/\sigma^2\sim\chi^2_{n-1}$, which has mean $n-1$ and variance $2(n-1)$.
+  \item So $\MSE=\sigma^4\big[2c^2(n-1)+((n-1)c-1)^2\big]$. It is minimised at $c=1/(n+1)$.
+  \item The unbiased choice $c=1/(n-1)$ has $\MSE=2\sigma^4/(n-1)$.
+  \item $c=1/(n+1)$ gives the smaller $\MSE=2\sigma^4/(n+1)$.
+\end{itemize}
 \end{example}
 
 \begin{definition}[Relative efficiency, consistency]
-The \emph{relative efficiency} of $\hat\Theta_2$ to $\hat\Theta_1$ is $\MSE(\hat\Theta_1)/\MSE(\hat\Theta_2)$; if it is less than $1$, $\hat\Theta_1$ is the more efficient estimator of $\theta$, in the sense that it has the smaller mean square error. An estimator is \emph{consistent} if $\hat\Theta_n\to\theta$ in probability as $n\to\infty$. A sufficient condition: $\bias\to0$ and $\Var\to0$ (then $\MSE\to0$).
+\begin{itemize}
+  \item The \emph{relative efficiency} of $\hat\Theta_2$ to $\hat\Theta_1$ is $\MSE(\hat\Theta_1)/\MSE(\hat\Theta_2)$. If it is less than $1$, $\hat\Theta_1$ is more efficient: it has the smaller mean square error.
+  \item An estimator is \emph{consistent} if $\hat\Theta_n\to\theta$ in probability as $n\to\infty$. Sufficient condition: $\bias\to0$ and $\Var\to0$, so that $\MSE\to0$.
+\end{itemize}
 \end{definition}
 
 \section{Methods of Point Estimation}
 
-So far we judged estimators that were proposed ad hoc. Two systematic recipes produce estimators from the distribution.
+So far we judged estimators proposed ad hoc. Two systematic recipes produce estimators from the distribution.
 
 \subsection{Method of Moments}
 
 \begin{definition}[Population and sample moments]
-The $k$-th \emph{population moment} is $\Exp(X^k)$; the $k$-th \emph{sample moment} is $\frac1n\sum_{i=1}^nX_i^k$.
+The $k$-th \emph{population moment} is $\Exp(X^k)$. The $k$-th \emph{sample moment} is $\frac1n\sum_{i=1}^nX_i^k$.
 \end{definition}
 
 \begin{definition}[Method of moments]
-Suppose the distribution has $m$ unknown parameters $\theta_1,\dots,\theta_m$. Equate the first $m$ population moments (which are functions of the parameters) to the first $m$ sample moments, and solve the resulting $m$ equations for the parameters. The solutions are the \emph{moment estimators}.
+Suppose the distribution has $m$ unknown parameters $\theta_1,\dots,\theta_m$.
+\begin{enumerate}
+  \item Equate the first $m$ population moments (functions of the parameters) to the first $m$ sample moments.
+  \item Solve the $m$ equations for the parameters.
+\end{enumerate}
+The solutions are the \emph{moment estimators}.
 \end{definition}
 
 \begin{example}[Exponential]\label{ex:momexp}
-For the exponential with rate $\lambda$, $\Exp[X]=1/\lambda$. Equating to $\bar{X}$ gives $\hat\lambda=1/\bar{X}$.
+For the exponential with rate $\lambda$, $\Exp[X]=1/\lambda$. Setting this equal to $\bar{X}$ gives $\hat\lambda=1/\bar{X}$.
 \end{example}
 
 \begin{example}[Normal]
-$\Exp[X]=\mu$ and $\Exp[X^2]=\sigma^2+\mu^2$. Equating to $\bar{X}$ and $\frac1n\sum X_i^2$: $\hat\mu=\bar{X}$ and $\hat\sigma^2=\frac1n\sum X_i^2-\bar{X}^2=\frac1n\sum(X_i-\bar{X})^2$, which is the \emph{biased} version of the sample variance.
+$\Exp[X]=\mu$ and $\Exp[X^2]=\sigma^2+\mu^2$. Equating to $\bar{X}$ and $\frac1n\sum X_i^2$:
+\[ \hat\mu=\bar{X},\qquad\hat\sigma^2=\frac1n\sum X_i^2-\bar{X}^2=\frac1n\sum(X_i-\bar{X})^2. \]
+This is the \emph{biased} version of the sample variance.
 \end{example}
 
 \begin{example}[Gamma]
-For a gamma distribution with shape $r$ and rate $\lambda$, $\Exp[X]=r/\lambda$ and $\Var[X]=r/\lambda^2$. Using the first two moments (equivalently the mean and the variance $\frac1n\sum(X_i-\bar{X})^2=:\hat v$): $\hat r=\bar{X}^2/\hat v$ and $\hat\lambda=\bar{X}/\hat v$.
+For a gamma distribution with shape $r$ and rate $\lambda$: $\Exp[X]=r/\lambda$ and $\Var[X]=r/\lambda^2$. Use the mean and the variance $\hat v=\frac1n\sum(X_i-\bar{X})^2$:
+\[ \hat r=\bar{X}^2/\hat v,\qquad\hat\lambda=\bar{X}/\hat v. \]
 \end{example}
 
 \begin{example}[Uniform]
-For a uniform distribution on $(0,\theta)$, $\Exp[X]=\theta/2$, so $\hat\theta=2\bar{X}$. This estimator is unbiased but can be silly: if the sample is $(1,2,9)$ then $\hat\theta=8$, which is smaller than the observed value $9$ and hence impossible. The maximum likelihood estimator below does not have this defect.
+For a uniform distribution on $(0,\theta)$, $\Exp[X]=\theta/2$, so $\hat\theta=2\bar{X}$. This is unbiased but can be silly. For the sample $(1,2,9)$, $\hat\theta=8$, smaller than the observed $9$, which is impossible. The maximum likelihood estimator below avoids this.
 \end{example}
 
-Moment estimators are simple and usually consistent, but they need not be efficient, and may fall outside the parameter space.
+Moment estimators are simple and usually consistent. But they need not be efficient, and they can fall outside the parameter space.
 
-\begin{example}[Textbook example: failure-time data]
-Eight electronic modules, tested at elevated temperature, have exponentially distributed failure times (hours) with $\bar{x}=21.65$ and $\sum x_i^2=6639.40$. The moment estimate of the exponential rate is $\hat\lambda=1/\bar{x}=0.0462$. Fitting a gamma distribution by moments gives $\hat{r}=1.30$ and $\hat\lambda=0.0599$; since $\hat{r}$ is slightly above $1$ (where the gamma reduces to the exponential) either distribution could be plausible.
+\begin{example}[Failure-time data]
+Eight electronic modules, tested at elevated temperature, have exponential failure times (hours) with $\bar{x}=21.65$ and $\sum x_i^2=6639.40$.
+\begin{itemize}
+  \item Exponential rate by moments: $\hat\lambda=1/\bar{x}=0.0462$.
+  \item Gamma fit by moments: $\hat{r}=1.30$ and $\hat\lambda=0.0599$.
+  \item $\hat{r}$ is slightly above $1$ (where the gamma reduces to the exponential), so either distribution is plausible.
+\end{itemize}
 \end{example}
 
 \subsection{Method of Maximum Likelihood}
 
 \begin{definition}[Likelihood function]
-Let $X_1,\dots,X_n$ be a random sample from a distribution with probability mass or density function $f(x;\theta)$. The \emph{likelihood function} of the observed data is
+Let $X_1,\dots,X_n$ be a random sample from a distribution with mass or density function $f(x;\theta)$. The \emph{likelihood function} of the observed data is
 \[ L(\theta)=f(x_1;\theta)\,f(x_2;\theta)\cdots f(x_n;\theta)=\prod_{i=1}^nf(x_i;\theta), \]
-regarded as a function of $\theta$ with the data fixed. The \emph{maximum likelihood estimator} (MLE) is the value $\hat\theta$ that maximises $L(\theta)$.
+seen as a function of $\theta$ with the data fixed. The \emph{maximum likelihood estimator} (MLE) is the value $\hat\theta$ that maximises $L(\theta)$.
 \end{definition}
 
 \begin{intuition}
-For discrete data $L(\theta)$ is the probability, under parameter $\theta$, of obtaining exactly the data observed. The MLE chooses the parameter value under which the observed data were most probable. It is the value that makes the data least surprising.
+For discrete data, $L(\theta)$ is the probability, under parameter $\theta$, of getting exactly the data we saw. The MLE picks the parameter value under which the observed data were most probable. It makes the data least surprising.
 \end{intuition}
 
-Since the logarithm is increasing, maximising $L$ is the same as maximising the \emph{log-likelihood} $\ell(\theta)=\ln L(\theta)=\sum\ln f(x_i;\theta)$, which turns products into sums and is easier to differentiate. The usual recipe: write $\ell(\theta)$, solve $\ell'(\theta)=0$ (the \emph{likelihood equation}), and check that the solution is a maximum.
+The logarithm is increasing, so maximising $L$ is the same as maximising the \emph{log-likelihood} $\ell(\theta)=\ln L(\theta)=\sum\ln f(x_i;\theta)$. It turns products into sums, which are easier to differentiate.
+
+\textbf{Recipe.}
+\begin{enumerate}
+  \item Write $\ell(\theta)$.
+  \item Solve $\ell'(\theta)=0$ (the \emph{likelihood equation}).
+  \item Check that the solution is a maximum.
+\end{enumerate}
 
 \begin{example}[Bernoulli]\label{ex:mlebern}
-For $n$ trials with $x$ successes, $L(p)=p^x(1-p)^{n-x}$ and $\ell(p)=x\ln p+(n-x)\ln(1-p)$. Setting $\ell'(p)=x/p-(n-x)/(1-p)=0$ gives $\hat{p}=x/n$, the sample proportion.
+For $n$ trials with $x$ successes: $L(p)=p^x(1-p)^{n-x}$ and $\ell(p)=x\ln p+(n-x)\ln(1-p)$. Set $\ell'(p)=x/p-(n-x)/(1-p)=0$. This gives $\hat{p}=x/n$, the sample proportion.
 \end{example}
 
 \begin{example}[Exponential]\label{ex:mleexp}
-For $f(x;\lambda)=\lambda e^{-\lambda x}$, $\ell(\lambda)=n\ln\lambda-\lambda\sum x_i$, and $\ell'(\lambda)=n/\lambda-\sum x_i=0$ gives $\hat\lambda=n/\sum x_i=1/\bar{x}$, the same as the moment estimator.
+For $f(x;\lambda)=\lambda e^{-\lambda x}$: $\ell(\lambda)=n\ln\lambda-\lambda\sum x_i$. Set $\ell'(\lambda)=n/\lambda-\sum x_i=0$. This gives $\hat\lambda=n/\sum x_i=1/\bar{x}$, the same as the moment estimator.
 \end{example}
 
 \begin{example}[Normal]\label{ex:mlenormal}
-For $\Normal(\mu,\sigma^2)$, $\ell(\mu,\sigma^2)=-\frac n2\ln(2\pi\sigma^2)-\frac1{2\sigma^2}\sum(x_i-\mu)^2$. Setting both partial derivatives to zero: $\partial\ell/\partial\mu=\frac1{\sigma^2}\sum(x_i-\mu)=0$ gives $\hat\mu=\bar{x}$, and $\partial\ell/\partial\sigma^2=-\frac n{2\sigma^2}+\frac1{2\sigma^4}\sum(x_i-\mu)^2=0$ gives $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$. Thus the MLE of the variance is the \emph{biased} estimator with divisor $n$.
+For $\Normal(\mu,\sigma^2)$:
+\[ \ell(\mu,\sigma^2)=-\frac n2\ln(2\pi\sigma^2)-\frac1{2\sigma^2}\sum(x_i-\mu)^2. \]
+\begin{itemize}
+  \item $\partial\ell/\partial\mu=\frac1{\sigma^2}\sum(x_i-\mu)=0$ gives $\hat\mu=\bar{x}$.
+  \item $\partial\ell/\partial\sigma^2=-\frac n{2\sigma^2}+\frac1{2\sigma^4}\sum(x_i-\mu)^2=0$ gives $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$.
+\end{itemize}
+So the MLE of the variance is the \emph{biased} estimator with divisor $n$.
 \end{example}
 
 \begin{example}[Poisson]
-For $f(x;\lambda)=e^{-\lambda}\lambda^x/x!$, $\ell(\lambda)=-n\lambda+(\sum x_i)\ln\lambda-\sum\ln x_i!$, so $\hat\lambda=\bar{x}$.
+For $f(x;\lambda)=e^{-\lambda}\lambda^x/x!$: $\ell(\lambda)=-n\lambda+(\sum x_i)\ln\lambda-\sum\ln x_i!$. So $\hat\lambda=\bar{x}$.
 \end{example}
 
 \begin{example}[Uniform: a likelihood without a stationary point]\label{ex:mleunif}
-For $f(x;\theta)=1/\theta$ on $0\le x\le\theta$: $L(\theta)=\theta^{-n}$ provided $\theta\ge\max x_i$ and $0$ otherwise. The function $\theta^{-n}$ is decreasing, so the maximum is at the smallest admissible value, $\hat\theta=\max(x_1,\dots,x_n)$. No calculus is possible here; one must look at the shape of $L$ directly.
+For $f(x;\theta)=1/\theta$ on $0\le x\le\theta$: $L(\theta)=\theta^{-n}$ if $\theta\ge\max x_i$, and $0$ otherwise. $\theta^{-n}$ is decreasing, so the maximum is at the smallest allowed value: $\hat\theta=\max(x_1,\dots,x_n)$. Calculus does not apply here. Look at the shape of $L$ directly.
 \end{example}
 
 \begin{theorem}[Invariance property]\label{thm:invariance}
-If $\hat\theta$ is the MLE of $\theta$, then for any function $g$ the MLE of $g(\theta)$ is $g(\hat\theta)$.
+If $\hat\theta$ is the MLE of $\theta$, then for any function $g$, the MLE of $g(\theta)$ is $g(\hat\theta)$.
 \end{theorem}
 
 \begin{example}
-Since $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$ is the MLE of $\sigma^2$ for a normal sample, the MLE of $\sigma$ is $\hat\sigma=\sqrt{\hat\sigma^2}$. For the exponential, the MLE of the mean $1/\lambda$ is $\bar{x}$ and of the probability $\Prob(X>t)=e^{-\lambda t}$ is $e^{-t/\bar{x}}$.
+$\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$ is the MLE of $\sigma^2$ for a normal sample. So the MLE of $\sigma$ is $\hat\sigma=\sqrt{\hat\sigma^2}$. For the exponential, the MLE of the mean $1/\lambda$ is $\bar{x}$, and the MLE of $\Prob(X>t)=e^{-\lambda t}$ is $e^{-t/\bar{x}}$.
 \end{example}
 
 \begin{theorem}[Large-sample properties of the MLE]\label{thm:mleasymp}
@@ -236,47 +317,63 @@ Under mild regularity conditions, as $n\to\infty$ the MLE $\hat\Theta$ is
 \begin{enumerate}[label=(\roman*)]
   \item asymptotically unbiased: $\Exp[\hat\Theta]\to\theta$;
   \item consistent;
-  \item asymptotically normal, $\hat\Theta\approx\Normal\big(\theta,\ 1/(n\Fish(\theta))\big)$, with variance equal to the Cram\'er--Rao lower bound, where $\Fish(\theta)=\Exp\big[-\partial^2\ln f(X;\theta)/\partial\theta^2\big]$ is the Fisher information of one observation;
-  \item consequently asymptotically the MVUE (no consistent estimator has smaller large-sample variance).
+  \item asymptotically normal: $\hat\Theta\approx\Normal\big(\theta,\ 1/(n\Fish(\theta))\big)$. The variance equals the Cram\'er--Rao lower bound. Here $\Fish(\theta)=\Exp\big[-\partial^2\ln f(X;\theta)/\partial\theta^2\big]$ is the Fisher information of one observation;
+  \item therefore asymptotically the MVUE: no consistent estimator has smaller large-sample variance.
 \end{enumerate}
 \end{theorem}
 
-The Fisher information and the Cram\'er--Rao bound are developed in Chapter~12. Practical consequence: the standard error of an MLE can be estimated by $1/\sqrt{n\Fish(\hat\theta)}$, the reciprocal square root of the curvature of the log-likelihood at its peak.
+Fisher information and the Cram\'er--Rao bound are developed in Chapter~12. Practical use: the standard error of an MLE can be estimated by $1/\sqrt{n\Fish(\hat\theta)}$. This is the reciprocal square root of the curvature of the log-likelihood at its peak.
 
 \begin{example}
-For Bernoulli data, $\Fish(p)=1/[p(1-p)]$, so $\se(\hat{p})\approx\sqrt{\hat{p}(1-\hat{p})/n}$: the familiar standard error of a proportion. For the exponential, $\Fish(\lambda)=1/\lambda^2$ and $\se(\hat\lambda)\approx\hat\lambda/\sqrt n$.
+\begin{itemize}
+  \item Bernoulli: $\Fish(p)=1/[p(1-p)]$, so $\se(\hat{p})\approx\sqrt{\hat{p}(1-\hat{p})/n}$. This is the familiar standard error of a proportion.
+  \item Exponential: $\Fish(\lambda)=1/\lambda^2$, so $\se(\hat\lambda)\approx\hat\lambda/\sqrt n$.
+\end{itemize}
 \end{example}
 
 \begin{interview}{when the MLE is awkward}
-Likelihood equations often have no closed form (gamma shape, logistic regression) and are solved numerically by Newton's method or EM. The MLE can be biased in small samples (normal variance), can fail to be a stationary point (uniform), and can be non-unique or even infinite (logistic regression with perfectly separated classes). Know the Bernoulli, exponential, Poisson and normal cases by heart.
+\begin{itemize}
+  \item Likelihood equations often have no closed form (gamma shape, logistic regression). They are solved numerically, by Newton's method or EM.
+  \item The MLE can be biased in small samples (normal variance).
+  \item It can fail to be a stationary point (uniform).
+  \item It can be non-unique or even infinite (logistic regression with perfectly separated classes).
+\end{itemize}
+Know the Bernoulli, exponential, Poisson and normal cases by heart.
 \end{interview}
 
 \subsection{Bayesian Estimation of Parameters (CD Only)}
 
-The methods so far treat $\theta$ as an unknown constant. The Bayesian approach treats $\theta$ as a random variable with a \emph{prior} distribution $f(\theta)$ expressing what is known before the data. Bayes' theorem updates it to the \emph{posterior} distribution after observing $x_1,\dots,x_n$:
+The methods so far treat $\theta$ as an unknown constant. The Bayesian approach treats $\theta$ as a random variable with a \emph{prior} distribution $f(\theta)$, which says what is known before the data. Bayes' theorem updates it to the \emph{posterior} after seeing $x_1,\dots,x_n$:
 \[ f(\theta\mid x_1,\dots,x_n)=\frac{f(x_1,\dots,x_n\mid\theta)\,f(\theta)}{\int f(x_1,\dots,x_n\mid\theta')f(\theta')\,d\theta'}\ \propto\ L(\theta)\,f(\theta). \]
-The \emph{Bayes estimator} of $\theta$ is the mean of the posterior distribution, which minimises the expected squared error.
+The \emph{Bayes estimator} of $\theta$ is the mean of the posterior. It minimises the expected squared error.
 
 \begin{example}[Bernoulli with a beta prior]\label{ex:betabin}
-Let $X\sim\mathrm{Binomial}(n,p)$ and let the prior on $p$ be $\mathrm{Beta}(a,b)$ with density $\propto p^{a-1}(1-p)^{b-1}$. Multiplying by the likelihood $p^x(1-p)^{n-x}$ shows that the posterior is $\mathrm{Beta}(a+x,\ b+n-x)$. The Bayes estimator is the posterior mean
-\[ \hat{p}_B=\frac{a+x}{a+b+n}=\frac{n}{a+b+n}\cdot\frac xn+\frac{a+b}{a+b+n}\cdot\frac a{a+b}, \]
-a weighted average of the sample proportion and the prior mean. As $n$ grows the data dominate and $\hat{p}_B\to x/n$.
+Let $X\sim\mathrm{Binomial}(n,p)$ with prior $p\sim\mathrm{Beta}(a,b)$, density $\propto p^{a-1}(1-p)^{b-1}$. Multiply by the likelihood $p^x(1-p)^{n-x}$. The posterior is $\mathrm{Beta}(a+x,\ b+n-x)$. The Bayes estimator is the posterior mean
+\[ \hat{p}_B=\frac{a+x}{a+b+n}=\frac{n}{a+b+n}\cdot\frac xn+\frac{a+b}{a+b+n}\cdot\frac a{a+b}. \]
+This is a weighted average of the sample proportion and the prior mean. As $n$ grows, the data dominate and $\hat{p}_B\to x/n$.
 \end{example}
 
 \begin{example}[Normal mean with a normal prior]
-Let $X_1,\dots,X_n$ be $\Normal(\mu,\sigma^2)$ with $\sigma^2$ known and prior $\mu\sim\Normal(\mu_0,\sigma_0^2)$. The posterior is normal with mean $\dfrac{(\sigma^2/n)\mu_0+\sigma_0^2\bar{x}}{\sigma^2/n+\sigma_0^2}$ and variance $\dfrac{(\sigma^2/n)\sigma_0^2}{\sigma^2/n+\sigma_0^2}$. The estimate pulls $\bar{x}$ toward the prior mean, more strongly when the prior is precise (small $\sigma_0^2$) or the data are few.
+Let $X_1,\dots,X_n$ be $\Normal(\mu,\sigma^2)$ with $\sigma^2$ known, and prior $\mu\sim\Normal(\mu_0,\sigma_0^2)$. The posterior is normal with
+\[ \text{mean }\ \frac{(\sigma^2/n)\mu_0+\sigma_0^2\bar{x}}{\sigma^2/n+\sigma_0^2},\qquad\text{variance }\ \frac{(\sigma^2/n)\sigma_0^2}{\sigma^2/n+\sigma_0^2}. \]
+The estimate pulls $\bar{x}$ toward the prior mean. The pull is stronger when the prior is precise (small $\sigma_0^2$) or the data are few.
 \end{example}
 
 \section{Sampling Distributions}
 
 \begin{definition}[Sampling distribution]
-A statistic is a function of the sample and is therefore a random variable; its probability distribution is called its \emph{sampling distribution}.
+A statistic is a function of the sample, so it is a random variable. Its probability distribution is its \emph{sampling distribution}.
 \end{definition}
 
-Every estimator and test statistic in this book has a sampling distribution, and the whole of inference rests on knowing it.
+Every estimator and test statistic in this book has a sampling distribution. All of inference rests on knowing it.
 
 \begin{example}
-A population consists of the equally likely values $1,3,5$. For random samples of size $2$ with replacement there are nine equally likely pairs, and the sample mean takes the following values: $(1,1)\to1$, $(1,3),(3,1)\to2$, $(1,5),(5,1),(3,3)\to3$, $(3,5),(5,3)\to4$, $(5,5)\to5$. So $\bar{X}$ has probabilities $1/9,\ 2/9,\ 3/9,\ 2/9,\ 1/9$ on $1,2,3,4,5$, with mean $3$ (equal to the population mean) and variance $4/3=\sigma^2/2$, where $\sigma^2=8/3$.
+A population has the equally likely values $1,3,5$. Take samples of size $2$ with replacement: nine equally likely pairs.
+\begin{itemize}
+  \item $(1,1)\to1$; $(1,3),(3,1)\to2$; $(1,5),(5,1),(3,3)\to3$; $(3,5),(5,3)\to4$; $(5,5)\to5$.
+  \item So $\bar{X}$ has probabilities $1/9,\ 2/9,\ 3/9,\ 2/9,\ 1/9$ on $1,2,3,4,5$.
+  \item Its mean is $3$ (the population mean). Its variance is $4/3=\sigma^2/2$, where $\sigma^2=8/3$.
+\end{itemize}
 \end{example}
 
 \section{Sampling Distribution of Means}\label{sec:sampmeans}
@@ -287,40 +384,53 @@ Let $X_1,\dots,X_n$ be a random sample with mean $\mu$ and variance $\sigma^2$. 
 
 \begin{theorem}[Central limit theorem]\label{thm:clt-text}
 If $X_1,\dots,X_n$ is a random sample from a population with mean $\mu$ and finite variance $\sigma^2$, then for large $n$
-\[ Z=\frac{\bar{X}-\mu}{\sigma/\sqrt n}\ \text{ is approximately }\Normal(0,1),\qquad\text{i.e. }\bar{X}\approx\Normal\Big(\mu,\frac{\sigma^2}n\Big). \]
-The approximation improves as $n$ grows. For most populations it is good when $n\ge30$; for a nearly symmetric population smaller $n$ suffices, and for a strongly skewed population larger $n$ may be required.
+\[ Z=\frac{\bar{X}-\mu}{\sigma/\sqrt n}\ \text{ is approximately }\Normal(0,1),\qquad\text{that is, }\bar{X}\approx\Normal\Big(\mu,\frac{\sigma^2}n\Big). \]
+The approximation improves as $n$ grows.
+\begin{itemize}
+  \item For most populations it is good when $n\ge30$.
+  \item For a nearly symmetric population, smaller $n$ is enough.
+  \item For a strongly skewed population, larger $n$ may be needed.
+\end{itemize}
 \end{theorem}
 
 \begin{example}
-An electronics company makes resistors with mean $\mu=100\ \Omega$ and standard deviation $\sigma=10\ \Omega$. For a sample of $n=25$, what is the probability that the average resistance is less than $95\ \Omega$? Since $\sigma_{\bar{X}}=10/\sqrt{25}=2$, $\Prob(\bar{X}<95)\approx\Prob\big(Z<(95-100)/2\big)=\Prob(Z<-2.5)=0.0062$.
+Resistors have mean $\mu=100\ \Omega$ and standard deviation $\sigma=10\ \Omega$. For a sample of $n=25$, what is the probability that the average resistance is below $95\ \Omega$?
+
+$\sigma_{\bar{X}}=10/\sqrt{25}=2$, so $\Prob(\bar{X}<95)\approx\Prob\big(Z<(95-100)/2\big)=\Prob(Z<-2.5)=0.0062$.
 \end{example}
 
 \begin{theorem}[Difference of two sample means]\label{thm:diffmeans}
-Let independent random samples of sizes $n_1,n_2$ come from populations with means $\mu_1,\mu_2$ and variances $\sigma_1^2,\sigma_2^2$. Then $\bar{X}_1-\bar{X}_2$ has mean $\mu_1-\mu_2$ and variance $\sigma_1^2/n_1+\sigma_2^2/n_2$, and
+Take independent random samples of sizes $n_1,n_2$ from populations with means $\mu_1,\mu_2$ and variances $\sigma_1^2,\sigma_2^2$. Then $\bar{X}_1-\bar{X}_2$ has mean $\mu_1-\mu_2$ and variance $\sigma_1^2/n_1+\sigma_2^2/n_2$. Also
 \[ Z=\frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}} \]
 is exactly $\Normal(0,1)$ if both populations are normal, and approximately so for large $n_1,n_2$.
 \end{theorem}
 
 \begin{example}
-Two machines fill cartons. Machine 1: $\mu_1=500$, $\sigma_1=6$; machine 2: $\mu_2=497$, $\sigma_2=5$. For $n_1=n_2=36$, $\bar{X}_1-\bar{X}_2$ has mean $3$ and standard deviation $\sqrt{36/36+25/36}=1.30$. The probability that machine 1's sample mean exceeds machine 2's is $\Prob(Z>(0-3)/1.30)=\Prob(Z>-2.30)=0.989$.
+Two machines fill cartons. Machine 1: $\mu_1=500$, $\sigma_1=6$. Machine 2: $\mu_2=497$, $\sigma_2=5$. With $n_1=n_2=36$:
+\begin{itemize}
+  \item $\bar{X}_1-\bar{X}_2$ has mean $3$ and standard deviation $\sqrt{36/36+25/36}=1.30$.
+  \item $\Prob(\bar{X}_1>\bar{X}_2)=\Prob(Z>(0-3)/1.30)=\Prob(Z>-2.30)=0.989$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Further textbook examples]
+\begin{itemize}
+  \item \emph{Uniform.} If $X\sim U(4,6)$, then $\mu=5$ and $\sigma^2=(6-4)^2/12=1/3$. For $n=40$, the CLT gives $\bar{X}\approx\Normal(5,\ \sigma^2/n=1/120)$.
+  \item \emph{Two samples.} A jet-engine component has life with mean $5000$ h and $\sigma=40$ (old process). After improvement: mean $5050$ h and $\sigma=30$ (new process). Samples: $n_1=16$ old, $n_2=25$ new. Then $\bar{X}_2-\bar{X}_1\sim\Normal\big(50,\ 30^2/25+40^2/16=36+100=136\big)$. So $\Prob(\bar{X}_2-\bar{X}_1\ge25)=\Prob\big(Z\ge(25-50)/\sqrt{136}=-2.14\big)=0.9838$.
+  \item \emph{Likelihood and sample size.} For the exponential failure data, the log-likelihood peaks at $\hat\lambda=0.0462$ but is quite flat for $n=8$, so $\lambda$ is not estimated precisely. With $\bar{x}=21.65$ held fixed, it becomes steeper (more sharply peaked) for $n=20$ and $n=40$. For the gamma model, numerical maximum likelihood gives about $\hat{r}=1.75$ and $\hat\lambda=0.08$.
+\end{itemize}
 \end{example}
 
 \begin{summarybox}
 \begin{itemize}
-  \item An estimator is a statistic; its value is an estimate. Judge estimators by bias, variance and $\MSE=\Var+\bias^2$.
-  \item $\bar{X}$, $S^2$ and $\hat{P}$ are unbiased; $S$ is slightly biased low; the mean beats the median for normal data (the median has about $57\%$ larger variance).
-  \item Report estimates with their standard errors; the bootstrap gives standard errors without a formula.
-  \item Method of moments equates sample and population moments; maximum likelihood maximises $L(\theta)=\prod f(x_i;\theta)$, is invariant under transformations and is asymptotically unbiased, normal and efficient.
-  \item Bayesian estimation combines a prior with the likelihood; the posterior mean is a weighted average of the data estimate and the prior mean.
-  \item $\bar{X}\approx\Normal(\mu,\sigma^2/n)$ (exactly for normal populations, by the CLT otherwise); $\bar{X}_1-\bar{X}_2$ has variance $\sigma_1^2/n_1+\sigma_2^2/n_2$.
+  \item An estimator is a statistic. Its value is an estimate. Judge estimators by bias, variance and $\MSE=\Var+\bias^2$.
+  \item $\bar{X}$, $S^2$ and $\hat{P}$ are unbiased. $S$ is slightly biased low. The mean beats the median for normal data (the median has about $57\%$ larger variance).
+  \item Report estimates with their standard errors. The bootstrap gives standard errors without a formula.
+  \item Method of moments equates sample and population moments. Maximum likelihood maximises $L(\theta)=\prod f(x_i;\theta)$. It is invariant under transformations, and asymptotically unbiased, normal and efficient.
+  \item Bayesian estimation combines a prior with the likelihood. The posterior mean is a weighted average of the data estimate and the prior mean.
+  \item $\bar{X}\approx\Normal(\mu,\sigma^2/n)$ (exactly for normal populations, by the CLT otherwise). $\bar{X}_1-\bar{X}_2$ has variance $\sigma_1^2/n_1+\sigma_2^2/n_2$.
 \end{itemize}
 \end{summarybox}
-
-\begin{example}[Textbook examples: sampling distributions]
-\emph{Uniform.} If $X\sim U(4,6)$ then $\mu=5$, $\sigma^2=(6-4)^2/12=1/3$, and for $n=40$ the central limit theorem gives $\bar{X}\approx\Normal(5,\ \sigma^2/n=1/120)$.
-\emph{Two samples.} A jet-engine component has life with mean $5000$ h and $\sigma=40$ (old process), and after improvement mean $5050$ h and $\sigma=30$ (new process); samples $n_1=16$ old and $n_2=25$ new are taken. $\bar{X}_2-\bar{X}_1\sim\Normal\big(50,\ 30^2/25+40^2/16=36+100=136\big)$, so $\Prob(\bar{X}_2-\bar{X}_1\ge25)=\Prob\big(Z\ge(25-50)/\sqrt{136}=-2.14\big)=0.9838$.
-\emph{Likelihood and sample size.} For the exponential failure data the log-likelihood is maximised at $\hat\lambda=0.0462$ but is quite flat for $n=8$, which means $\lambda$ is not estimated very precisely; keeping $\bar{x}=21.65$ fixed, the log-likelihood becomes steeper (more sharply peaked) for $n=20$ and $n=40$. For the gamma model the maximum likelihood estimates, found numerically, are about $\hat{r}=1.75$ and $\hat\lambda=0.08$.
-\end{example}
 
 \section{Exercises}
 

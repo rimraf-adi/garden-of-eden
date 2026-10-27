@@ -10,9 +10,9 @@
    "slug": "01-point-estimation-of-parameters",
    "title": "Point Estimation of Parameters",
    "tag": "Estimation & Intervals",
-   "summary": "A population is described by a probability distribution that depends on one or more unknown constants called parameters: the mean $\\mu$ and variance $\\sigma^2$ of a normal distribution, the rate $\\lambda$ of an exponential distribution, the success…",
-   "wordCount": 4351,
-   "readingTimeMin": 22,
+   "summary": "A population is described by a probability distribution with one or more unknown constants called parameters. Examples: the mean $\\mu$ and variance $\\sigma^2$ of a normal distribution, the rate $\\lambda$ of an exponential distribution, the success…",
+   "wordCount": 4139,
+   "readingTimeMin": 21,
    "sectionCount": 6,
    "sections": [
     {
@@ -48,9 +48,9 @@
    "slug": "02-statistical-intervals-for-a-single-sample",
    "title": "Statistical Intervals for a Single Sample",
    "tag": "Estimation & Intervals",
-   "summary": "An estimate $\\hat\\theta$ will not equal $\\theta$ exactly. A statistical interval quantifies how far off it may be. Three kinds are used. A confidence interval is a range that contains a population parameter (such as $\\mu$) with a stated probability, over…",
-   "wordCount": 4475,
-   "readingTimeMin": 22,
+   "summary": "An estimate $\\hat\\theta$ will not equal $\\theta$ exactly. A statistical interval says how far off it may be. Three kinds are used. A confidence interval contains a population parameter (such as $\\mu$) with a stated probability, over repeated sampling. A…",
+   "wordCount": 4239,
+   "readingTimeMin": 21,
    "sectionCount": 8,
    "sections": [
     {
@@ -94,9 +94,9 @@
    "slug": "03-tests-of-hypotheses-for-a-single-sample",
    "title": "Tests of Hypotheses for a Single Sample",
    "tag": "Tests of Hypotheses",
-   "summary": "Statistical Hypotheses A statistical hypothesis is a statement about the parameters of one or more populations (or about the form of the distribution). A hypothesis test is a rule, based on a random sample, for deciding between two hypotheses: the null…",
-   "wordCount": 5403,
-   "readingTimeMin": 27,
+   "summary": "Statistical Hypotheses A statistical hypothesis is a claim about a population. Most often it is a claim about a parameter, such as the mean $\\mu$ or a proportion $p$. A hypothesis test is a rule that uses a random sample to decide between two competing…",
+   "wordCount": 6339,
+   "readingTimeMin": 32,
    "sectionCount": 9,
    "sections": [
     {
@@ -144,9 +144,9 @@
    "slug": "04-statistical-inference-for-two-samples",
    "title": "Statistical Inference for Two Samples",
    "tag": "Tests of Hypotheses",
-   "summary": "Let $X_{11},\\dots,X_{1n_1}$ be a random sample from population 1 (mean $\\mu_1$, variance $\\sigma_1^2$) and $X_{21},\\dots,X_{2n_2}$ an independent random sample from population 2 (mean $\\mu_2$, variance $\\sigma_2^2$). Throughout, the two samples are…",
-   "wordCount": 4585,
-   "readingTimeMin": 23,
+   "summary": "This chapter compares two populations. Take a random sample from population 1 (mean $\\mu_1$, variance $\\sigma_1^2$) and an independent random sample from population 2 (mean $\\mu_2$, variance $\\sigma_2^2$). The samples are independent, except in Section…",
+   "wordCount": 4379,
+   "readingTimeMin": 22,
    "sectionCount": 8,
    "sections": [
     {
@@ -190,9 +190,9 @@
    "slug": "05-simple-linear-regression-and-correlation",
    "title": "Simple Linear Regression and Correlation",
    "tag": "Regression & Correlation",
-   "summary": "Many problems involve the relationship between two or more variables: the strength of a weld and its temperature, the fuel use of a car and its weight. An empirical model is an equation fitted to observed data that describes this relationship without being…",
-   "wordCount": 3922,
-   "readingTimeMin": 20,
+   "summary": "Many problems ask how two variables are related: the strength of a weld and its temperature, or the fuel use of a car and its weight. An empirical model is an equation fitted to observed data. It describes the relationship but is not derived from first…",
+   "wordCount": 3782,
+   "readingTimeMin": 19,
    "sectionCount": 12,
    "sections": [
     {
@@ -252,9 +252,9 @@
    "slug": "06-multiple-linear-regression",
    "title": "Multiple Linear Regression",
    "tag": "Regression & Correlation",
-   "summary": "Introduction With $k$ regressors $x_1,\\dots,x_k$, Y=\\beta_0+\\beta_1x_1+\\beta_2x_2+\\dots+\\beta_kx_k+\\varepsilon,\\qquad\\varepsilon\\sim\\Normal(0,\\sigma^2). The model is linear because it is linear in the parameters $\\beta_j$; the regressors themselves may be…",
-   "wordCount": 4438,
-   "readingTimeMin": 22,
+   "summary": "Introduction Simple regression uses one regressor. Multiple regression uses several, $x_1,\\dots,x_k$. Y=\\beta_0+\\beta_1x_1+\\beta_2x_2+\\dots+\\beta_kx_k+\\varepsilon,\\qquad\\varepsilon\\sim\\Normal(0,\\sigma^2). The model is linear because it is linear in the…",
+   "wordCount": 4255,
+   "readingTimeMin": 21,
    "sectionCount": 7,
    "sections": [
     {
@@ -294,9 +294,9 @@
    "slug": "07-design-and-analysis-of-single-factor-experiments",
    "title": "Design and Analysis of Single-Factor Experiments: The Analysis of Variance",
    "tag": "Designed Experiments",
-   "summary": "An experiment deliberately changes controllable inputs (factors) and observes the effect on a response. A factor takes several levels; a treatment is a particular combination of factor levels. Statistics enters in three ways: choosing the design, analysing…",
-   "wordCount": 4646,
-   "readingTimeMin": 23,
+   "summary": "An experiment changes controllable inputs on purpose and watches the response. A factor is an input we control. It takes several levels. A treatment is one combination of factor levels. Statistics helps in three places: choosing the design, analysing the…",
+   "wordCount": 4465,
+   "readingTimeMin": 22,
    "sectionCount": 5,
    "sections": [
     {
@@ -328,9 +328,9 @@
    "slug": "08-design-of-experiments-with-several-factors",
    "title": "Design of Experiments with Several Factors",
    "tag": "Designed Experiments",
-   "summary": "In Chapter 7 a single factor was varied. Real processes depend on many factors, and the effect of one factor often depends on the level of another. The one-factor-at-a-time strategy cannot detect this and uses the data inefficiently. In a factorial…",
-   "wordCount": 5184,
-   "readingTimeMin": 26,
+   "summary": "Chapter 7 varied one factor. Real processes depend on many factors, and the effect of one factor often depends on the level of another. The one-factor-at-a-time strategy cannot detect this, and it uses the data inefficiently. In a factorial experiment, all…",
+   "wordCount": 4876,
+   "readingTimeMin": 24,
    "sectionCount": 11,
    "sections": [
     {
@@ -386,9 +386,9 @@
    "slug": "09-nonparametric-statistics",
    "title": "Nonparametric Statistics",
    "tag": "Nonparametric & Quality Control",
-   "summary": "Most procedures in Chapters 2–10 assume that the data come from a normal population. They are called parametric methods because they rest on a particular parametric family. The $t$- and $F$-procedures are fairly insensitive to slight non-normality, but…",
-   "wordCount": 3839,
-   "readingTimeMin": 19,
+   "summary": "Most procedures in Chapters 2–10 assume the data come from a normal population. These are parametric methods: they rest on one parametric family. The $t$- and $F$-procedures tolerate slight non-normality. When the population is clearly non-normal, or the…",
+   "wordCount": 3458,
+   "readingTimeMin": 17,
    "sectionCount": 6,
    "sections": [
     {
@@ -424,9 +424,9 @@
    "slug": "10-statistical-quality-control",
    "title": "Statistical Quality Control",
    "tag": "Nonparametric & Quality Control",
-   "summary": "Quality means fitness for use. It is determined by two things: quality of design (the grade, performance and reliability deliberately built into the product) and quality of conformance (how consistently units meet the design, i.e. the systematic reduction…",
-   "wordCount": 5801,
-   "readingTimeMin": 29,
+   "summary": "Quality means fitness for use. It has two parts: Quality of design: the grade, performance and reliability deliberately built into the product. Quality of conformance: how consistently units meet the design. This means steadily reducing variability and…",
+   "wordCount": 5288,
+   "readingTimeMin": 26,
    "sectionCount": 13,
    "sections": [
     {
@@ -490,9 +490,9 @@
    "slug": "11-supplement-sampling-distributions-and-descriptiv",
    "title": "Supplement: Sampling Distributions and Descriptive Statistics",
    "tag": "Supplementary Chapters",
-   "summary": "This is a supplementary chapter, not part of the textbook’s Chapter 7. It collects what the textbook states without proof or leaves to earlier chapters: descriptive statistics, the sampling distribution of the sample mean, and the exact distributions of…",
-   "wordCount": 2730,
-   "readingTimeMin": 14,
+   "summary": "This is a supplementary chapter. It is not part of the textbook’s Chapter 7. It collects what the textbook states without proof or leaves to earlier chapters: descriptive statistics; the sampling distribution of the sample mean; the exact distributions of…",
+   "wordCount": 2619,
+   "readingTimeMin": 13,
    "sectionCount": 7,
    "sections": [
     {
@@ -532,9 +532,9 @@
    "slug": "12-supplement-estimation-theory",
    "title": "Supplement: Estimation Theory",
    "tag": "Supplementary Chapters",
-   "summary": "This supplementary chapter proves the results that Chapter 1 states without proof: why the sample mean is the MVUE for a normal mean, how much precision is possible at all (the Cram'er–Rao bound), why the maximum likelihood estimator is asymptotically…",
-   "wordCount": 2554,
-   "readingTimeMin": 13,
+   "summary": "This supplementary chapter proves what Chapter 1 states without proof: why the sample mean is the MVUE for a normal mean; how much precision is possible at all (the Cram'er–Rao bound); why the maximum likelihood estimator is asymptotically optimal; what it…",
+   "wordCount": 2500,
+   "readingTimeMin": 12,
    "sectionCount": 6,
    "sections": [
     {
@@ -570,8 +570,8 @@
    "slug": "13-supplement-multiple-testing-resampling-and-a-b-t",
    "title": "Supplement: Multiple Testing, Resampling and A/B Tests",
    "tag": "Supplementary Chapters",
-   "summary": "This supplementary chapter covers topics that the textbook does not treat but that modern practice (and most interviews) require: what goes wrong when many hypotheses are tested, how to correct for it, how to do inference by resampling when no formula is…",
-   "wordCount": 2203,
+   "summary": "This supplementary chapter covers topics the textbook skips but modern practice (and most interviews) needs: what goes wrong when many hypotheses are tested, and how to correct for it; inference by resampling when no formula exists (the bootstrap and…",
+   "wordCount": 2141,
    "readingTimeMin": 11,
    "sectionCount": 5,
    "sections": [
@@ -604,9 +604,9 @@
    "slug": "14-supplement-generalised-linear-models-and-model-a",
    "title": "Supplement: Generalised Linear Models and Model Assessment",
    "tag": "Supplementary Chapters",
-   "summary": "This supplementary chapter extends the regression of Chapters 5–6 in two directions that the textbook does not cover. First, responses that are not normal and continuous (yes/no outcomes, counts) are handled by generalised linear models, of which logistic…",
-   "wordCount": 2760,
-   "readingTimeMin": 14,
+   "summary": "This supplementary chapter extends the regression of Chapters 5–6 in two directions the textbook does not cover. Responses that are not normal and continuous (yes/no outcomes, counts) are handled by generalised linear models. Logistic regression is the…",
+   "wordCount": 2698,
+   "readingTimeMin": 13,
    "sectionCount": 8,
    "sections": [
     {
@@ -740,5 +740,5 @@
    ]
   }
  ],
- "figureCount": 6
+ "figureCount": 9
 }

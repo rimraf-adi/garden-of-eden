@@ -2,37 +2,49 @@
 
 \section{Introduction}
 
-An estimate $\hat\theta$ will not equal $\theta$ exactly. A \emph{statistical interval} quantifies how far off it may be. Three kinds are used.
+An estimate $\hat\theta$ will not equal $\theta$ exactly. A \emph{statistical interval} says how far off it may be. Three kinds are used.
 
 \begin{itemize}
-  \item A \emph{confidence interval} is a range that contains a population parameter (such as $\mu$) with a stated probability, over repeated sampling.
-  \item A \emph{prediction interval} is a range that contains a single future observation with a stated probability.
-  \item A \emph{tolerance interval} is a range that contains at least a stated proportion of the population, with a stated confidence.
+  \item A \emph{confidence interval} contains a population parameter (such as $\mu$) with a stated probability, over repeated sampling.
+  \item A \emph{prediction interval} contains a single future observation with a stated probability.
+  \item A \emph{tolerance interval} contains at least a stated proportion of the population, with a stated confidence.
 \end{itemize}
 
-For the same data the three have different widths: the confidence interval is the narrowest (it concerns only the mean, whose uncertainty shrinks like $1/\sqrt n$), the prediction interval is wider (it must also include the variability of one new value), and the tolerance interval is the widest.
+For the same data the three have different widths:
+\begin{itemize}
+  \item the confidence interval is narrowest. It concerns only the mean, whose uncertainty shrinks like $1/\sqrt n$;
+  \item the prediction interval is wider. It must also cover the variability of one new value;
+  \item the tolerance interval is widest.
+\end{itemize}
 
 \section{Confidence Interval on the Mean of a Normal Distribution, Variance Known}
 
 \subsection{Development of the Confidence Interval and Its Basic Properties}
 
-Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ with $\sigma^2$ known and $\mu$ unknown. We know (Chapter~1) that
+Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ with $\sigma^2$ known and $\mu$ unknown. From Chapter~1,
 \[ Z=\frac{\bar{X}-\mu}{\sigma/\sqrt n}\sim\Normal(0,1). \]
-Let $z_{\alpha/2}$ be the point that cuts off a right-tail area of $\alpha/2$ under the standard normal curve ($z_{0.025}=1.96$, $z_{0.05}=1.645$, $z_{0.005}=2.576$). Then $\Prob(-z_{\alpha/2}\le Z\le z_{\alpha/2})=1-\alpha$, and solving the inequalities for $\mu$:
+Let $z_{\alpha/2}$ cut off a right-tail area $\alpha/2$ under the standard normal curve. ($z_{0.025}=1.96$, $z_{0.05}=1.645$, $z_{0.005}=2.576$.) Then $\Prob(-z_{\alpha/2}\le Z\le z_{\alpha/2})=1-\alpha$. Solve the inequalities for $\mu$:
 \[ \Prob\Big(\bar{X}-z_{\alpha/2}\frac{\sigma}{\sqrt n}\ \le\ \mu\ \le\ \bar{X}+z_{\alpha/2}\frac\sigma{\sqrt n}\Big)=1-\alpha. \]
 
 \begin{definition}[Confidence interval on the mean, $\sigma$ known]
 If $\bar{x}$ is the mean of a random sample of size $n$ from a normal population with known variance $\sigma^2$, a $100(1-\alpha)\%$ confidence interval for $\mu$ is
 \[ \bar{x}-z_{\alpha/2}\frac\sigma{\sqrt n}\ \le\ \mu\ \le\ \bar{x}+z_{\alpha/2}\frac\sigma{\sqrt n}. \]
-The number $1-\alpha$ is the \emph{confidence level}; the two endpoints are the \emph{lower and upper confidence limits}.
+$1-\alpha$ is the \emph{confidence level}. The two endpoints are the \emph{lower and upper confidence limits}.
 \end{definition}
 
 \begin{example}\label{ex:ci-known}
-Ten measurements of the impact energy of a steel have $\bar{x}=64.46$ J, and $\sigma=1$ J is known. A $95\%$ confidence interval: $64.46\pm1.96\cdot1/\sqrt{10}=64.46\pm0.62$, that is $63.84\le\mu\le65.08$.
+Ten measurements of the impact energy of a steel have $\bar{x}=64.46$ J. $\sigma=1$ J is known.
+
+A $95\%$ interval: $64.46\pm1.96\cdot1/\sqrt{10}=64.46\pm0.62$, that is $63.84\le\mu\le65.08$.
 \end{example}
 
 \begin{pitfall}{what ``95\% confidence'' means}
-The $95\%$ refers to the \emph{procedure}, not to the particular interval. Before the data are collected, the random interval $\bar{X}\pm z_{\alpha/2}\sigma/\sqrt n$ will contain the fixed $\mu$ with probability $0.95$. After the data are in, the computed interval either contains $\mu$ or it does not; one cannot say ``the probability that $\mu$ lies in $(63.84,65.08)$ is $0.95$'' (in the frequentist framework $\mu$ is not random). The correct reading: if the procedure were repeated on many independent samples, about $95\%$ of the intervals would cover $\mu$.
+The $95\%$ describes the \emph{procedure}, not the particular interval.
+\begin{itemize}
+  \item Before the data are collected, the random interval $\bar{X}\pm z_{\alpha/2}\sigma/\sqrt n$ contains the fixed $\mu$ with probability $0.95$.
+  \item After the data are in, the computed interval either contains $\mu$ or it does not. You cannot say ``the probability that $\mu$ lies in $(63.84,65.08)$ is $0.95$''. In the frequentist view $\mu$ is not random.
+  \item Correct reading: if you repeated the procedure on many independent samples, about $95\%$ of the intervals would cover $\mu$.
+\end{itemize}
 \end{pitfall}
 
 \begin{figure}[h]
@@ -49,16 +61,16 @@ The $95\%$ refers to the \emph{procedure}, not to the particular interval. Befor
 \subsection*{Properties}
 
 \begin{itemize}
-  \item \textbf{Width.} The length of the interval is $2z_{\alpha/2}\sigma/\sqrt n$, called the \emph{precision}. It shrinks with larger $n$ and larger $\alpha$ (lower confidence), and grows with larger $\sigma$ and higher confidence. The quantity $E=z_{\alpha/2}\sigma/\sqrt n$ is the \emph{error} (margin of error) in estimating $\mu$ by $\bar{x}$.
-  \item \textbf{Confidence versus precision.} Greater confidence costs width: moving from $95\%$ to $99\%$ replaces $1.96$ by $2.576$, an increase of $31\%$ in the interval length.
+  \item \textbf{Width.} The length is $2z_{\alpha/2}\sigma/\sqrt n$, called the \emph{precision}. It shrinks with larger $n$ and larger $\alpha$ (lower confidence). It grows with larger $\sigma$ and higher confidence. $E=z_{\alpha/2}\sigma/\sqrt n$ is the \emph{error} (margin of error) in estimating $\mu$ by $\bar{x}$.
+  \item \textbf{Confidence against precision.} More confidence costs width. Going from $95\%$ to $99\%$ replaces $1.96$ by $2.576$, a $31\%$ longer interval.
 \end{itemize}
 
 \subsection{Choice of Sample Size}
 
-With confidence $100(1-\alpha)\%$ we are sure that the error $\abs{\bar{x}-\mu}$ will not exceed $E=z_{\alpha/2}\sigma/\sqrt n$. Solving for $n$:
+With confidence $100(1-\alpha)\%$ we are sure the error $\abs{\bar{x}-\mu}$ does not exceed $E=z_{\alpha/2}\sigma/\sqrt n$. Solve for $n$:
 
 \begin{theorem}[Sample size for estimating a mean]\label{thm:samplesize-mean}
-To be $100(1-\alpha)\%$ confident that the error in estimating $\mu$ by $\bar{x}$ does not exceed $E$, use
+To be $100(1-\alpha)\%$ confident that the error in estimating $\mu$ by $\bar{x}$ is at most $E$, use
 \[ n=\left(\frac{z_{\alpha/2}\,\sigma}{E}\right)^2,\qquad\text{rounded up to the next integer.} \]
 \end{theorem}
 
@@ -66,26 +78,34 @@ To be $100(1-\alpha)\%$ confident that the error in estimating $\mu$ by $\bar{x}
 In Example~\ref{ex:ci-known}, how large must $n$ be for a $95\%$ error of at most $0.5$ J? $n=(1.96\cdot1/0.5)^2=15.37$, so $n=16$.
 \end{example}
 
-Because $n$ varies as $1/E^2$, halving the error multiplies the sample size by four.
+$n$ varies as $1/E^2$. Halving the error multiplies the sample size by four.
 
 \subsection{One-sided Confidence Bounds}
 
-Sometimes only an upper or lower limit is of interest (a maximum emission level, a minimum strength). Nothing is assumed here: the two kinds of statement are built differently, and Table~\ref{tab:onetwo} lists both for every parameter in this chapter.
+Sometimes only an upper or lower limit matters (a maximum emission level, a minimum strength). The two kinds of statement are built differently. Table~\ref{tab:onetwo} lists both for every parameter in this chapter.
 
 \begin{definition}[One-sided confidence bounds]
-A $100(1-\alpha)\%$ \emph{upper confidence bound} for $\mu$ is $\mu\le\bar{x}+z_\alpha\sigma/\sqrt n$, and a $100(1-\alpha)\%$ \emph{lower confidence bound} is $\bar{x}-z_\alpha\sigma/\sqrt n\le\mu$. Note $z_\alpha$, not $z_{\alpha/2}$: all of the error probability $\alpha$ is placed in \emph{one} tail, because only one end of the interval is being claimed. Each bound by itself has coverage $1-\alpha$.
+\begin{itemize}
+  \item $100(1-\alpha)\%$ \emph{upper confidence bound}: $\mu\le\bar{x}+z_\alpha\sigma/\sqrt n$.
+  \item $100(1-\alpha)\%$ \emph{lower confidence bound}: $\bar{x}-z_\alpha\sigma/\sqrt n\le\mu$.
+\end{itemize}
+Note $z_\alpha$, not $z_{\alpha/2}$. All of the error probability $\alpha$ sits in \emph{one} tail, because only one end is claimed. Each bound alone has coverage $1-\alpha$.
 \end{definition}
 
 \begin{example}
-Using the data above, a $95\%$ lower bound is $64.46-1.645/\sqrt{10}=63.94$, tighter than the two-sided lower limit $63.84=64.46-1.96/\sqrt{10}$. The $95\%$ upper bound is $64.46+0.52=64.98$, versus the two-sided upper limit $65.08$.
+Same data as above.
+\begin{itemize}
+  \item $95\%$ lower bound: $64.46-1.645/\sqrt{10}=63.94$. Tighter than the two-sided lower limit $63.84=64.46-1.96/\sqrt{10}$.
+  \item $95\%$ upper bound: $64.46+0.52=64.98$. The two-sided upper limit is $65.08$.
+\end{itemize}
 \end{example}
 
-\begin{nuance}{one-sided versus two-sided: the rules, with no assumptions}
+\begin{nuance}{one-sided versus two-sided: the rules}
 \begin{enumerate}
-  \item \textbf{Two-sided} $100(1-\alpha)\%$ interval: $\alpha/2$ in each tail, critical value with subscript $\alpha/2$ ($z_{\alpha/2}$, $t_{\alpha/2,\nu}$, $\chi^2_{\alpha/2,\nu}$ and $\chi^2_{1-\alpha/2,\nu}$, $f_{\alpha/2}$ and $f_{1-\alpha/2}$).
-  \item \textbf{One-sided} $100(1-\alpha)\%$ bound: all of $\alpha$ in one tail, critical value with subscript $\alpha$ ($z_\alpha$, $t_{\alpha,\nu}$, $\chi^2_{\alpha,\nu}$ or $\chi^2_{1-\alpha,\nu}$, $f_\alpha$ or $f_{1-\alpha}$), and \emph{only one} limit is written; the other side is left open ($-\infty$ or $+\infty$, or $0$/$1$ for a variance or proportion that cannot go beyond).
-  \item \textbf{They are not the same confidence level.} A one-sided $95\%$ upper bound is \emph{not} the upper end of a two-sided $95\%$ interval. The upper end of a two-sided $95\%$ interval is a one-sided $97.5\%$ upper bound. Conversely the upper end of a two-sided $90\%$ interval is a one-sided $95\%$ upper bound.
-  \item \textbf{Tests.} A one-sided test at level $\alpha$ corresponds to a one-sided bound at level $100(1-\alpha)\%$; a two-sided test at level $\alpha$ corresponds to a two-sided interval at level $100(1-\alpha)\%$. Reject $H_0:\theta=\theta_0$ against $H_1:\theta>\theta_0$ exactly when the lower bound exceeds $\theta_0$; against $H_1:\theta<\theta_0$ exactly when the upper bound falls below $\theta_0$.
+  \item \textbf{Two-sided} $100(1-\alpha)\%$ interval: $\alpha/2$ in each tail. The critical value has subscript $\alpha/2$ ($z_{\alpha/2}$, $t_{\alpha/2,\nu}$, $\chi^2_{\alpha/2,\nu}$ and $\chi^2_{1-\alpha/2,\nu}$, $f_{\alpha/2}$ and $f_{1-\alpha/2}$).
+  \item \textbf{One-sided} $100(1-\alpha)\%$ bound: all of $\alpha$ in one tail. The critical value has subscript $\alpha$ ($z_\alpha$, $t_{\alpha,\nu}$, $\chi^2_{\alpha,\nu}$ or $\chi^2_{1-\alpha,\nu}$, $f_\alpha$ or $f_{1-\alpha}$). Write \emph{only one} limit. The other side stays open ($-\infty$ or $+\infty$, or $0$/$1$ for a variance or proportion that cannot go further).
+  \item \textbf{They are not the same confidence level.} A one-sided $95\%$ upper bound is \emph{not} the upper end of a two-sided $95\%$ interval. The upper end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound. The upper end of a two-sided $90\%$ interval is a one-sided $95\%$ bound.
+  \item \textbf{Tests.} A one-sided test at level $\alpha$ matches a one-sided $100(1-\alpha)\%$ bound. A two-sided test at level $\alpha$ matches a two-sided $100(1-\alpha)\%$ interval. Reject $H_0:\theta=\theta_0$ against $H_1:\theta>\theta_0$ exactly when the lower bound exceeds $\theta_0$. Reject against $H_1:\theta<\theta_0$ exactly when the upper bound is below $\theta_0$.
 \end{enumerate}
 \end{nuance}
 
@@ -104,93 +124,122 @@ $p$ (large $n$) & $\hat{p}\pm z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$ 
 \end{tabular}
 \end{table}
 
-For a $95\%$ statement the multipliers are $z_{0.025}=1.960$ (two-sided) versus $z_{0.05}=1.645$ (one-sided). For $t$ with $9$ degrees of freedom they are $t_{0.025,9}=2.262$ versus $t_{0.05,9}=1.833$.
+Multipliers for a $95\%$ statement:
+\begin{itemize}
+  \item $z$: $z_{0.025}=1.960$ (two-sided) against $z_{0.05}=1.645$ (one-sided).
+  \item $t$ with $9$ degrees of freedom: $t_{0.025,9}=2.262$ against $t_{0.05,9}=1.833$.
+\end{itemize}
 
-\emph{Sample size} follows the same rule: a two-sided interval with error at most $E$ needs $n=(z_{\alpha/2}\sigma/E)^2$, while a one-sided bound whose distance from $\bar{x}$ is at most $E$ needs $n=(z_\alpha\sigma/E)^2$, which is smaller.
+\emph{Sample size} follows the same rule. A two-sided interval with error at most $E$ needs $n=(z_{\alpha/2}\sigma/E)^2$. A one-sided bound at distance at most $E$ from $\bar{x}$ needs the smaller $n=(z_\alpha\sigma/E)^2$.
 
 \subsection{General Method to Derive a Confidence Interval}
 
 All the intervals in this chapter come from one idea.
 
 \begin{definition}[Pivotal quantity]
-A \emph{pivotal quantity} (or pivot) is a function $g(X_1,\dots,X_n;\theta)$ of the sample and the unknown parameter whose distribution does not depend on $\theta$ (or on any other unknown parameter).
+A \emph{pivotal quantity} (pivot) is a function $g(X_1,\dots,X_n;\theta)$ of the sample and the unknown parameter whose distribution does not depend on $\theta$ (or on any other unknown parameter).
 \end{definition}
 
-Recipe: (1) find a pivot $g$ for $\theta$ with a known distribution; (2) find constants $a,b$ with $\Prob(a\le g\le b)=1-\alpha$; (3) rearrange $a\le g(X;\theta)\le b$ into $L(X)\le\theta\le U(X)$.
+Recipe:
+\begin{enumerate}
+  \item Find a pivot $g$ for $\theta$ with a known distribution.
+  \item Find constants $a,b$ with $\Prob(a\le g\le b)=1-\alpha$.
+  \item Rearrange $a\le g(X;\theta)\le b$ into $L(X)\le\theta\le U(X)$.
+\end{enumerate}
 
 \begin{example}
-For $\Normal(\mu,\sigma^2)$ with $\sigma$ known, $g=(\bar{X}-\mu)/(\sigma/\sqrt n)$ is a pivot with a standard normal distribution; for $\mu$ with $\sigma$ unknown, $T=(\bar{X}-\mu)/(S/\sqrt n)\sim t_{n-1}$; for $\sigma^2$, $(n-1)S^2/\sigma^2\sim\chi^2_{n-1}$. The remaining sections apply the recipe to each.
+Pivots used in this chapter:
+\begin{itemize}
+  \item $\mu$, $\sigma$ known: $g=(\bar{X}-\mu)/(\sigma/\sqrt n)\sim\Normal(0,1)$.
+  \item $\mu$, $\sigma$ unknown: $T=(\bar{X}-\mu)/(S/\sqrt n)\sim t_{n-1}$.
+  \item $\sigma^2$: $(n-1)S^2/\sigma^2\sim\chi^2_{n-1}$.
+\end{itemize}
 \end{example}
 
 \subsection{A Large-Sample Confidence Interval for $\mu$}
 
-When the population is not normal or not assumed to be, but $n$ is large, the central limit theorem gives $\bar{X}\approx\Normal(\mu,\sigma^2/n)$. If $\sigma$ is unknown, replacing it by $S$ costs little because $S$ is close to $\sigma$ when $n$ is large.
+If the population is not normal (or not assumed so) but $n$ is large, the CLT gives $\bar{X}\approx\Normal(\mu,\sigma^2/n)$. If $\sigma$ is unknown, replacing it by $S$ costs little, because $S$ is close to $\sigma$ for large $n$.
 
 \begin{theorem}[Large-sample interval]\label{thm:largesample}
-If $n$ is large (say $n\ge40$), an approximate $100(1-\alpha)\%$ confidence interval for the mean $\mu$ of any population with finite variance is
+If $n$ is large (say $n\ge40$), an approximate $100(1-\alpha)\%$ interval for the mean $\mu$ of any population with finite variance is
 \[ \bar{x}-z_{\alpha/2}\frac{s}{\sqrt n}\ \le\ \mu\ \le\ \bar{x}+z_{\alpha/2}\frac s{\sqrt n}. \]
 \end{theorem}
 
 \begin{example}
-A sample of $n=50$ has $\bar{x}=23.4$ and $s=3.1$. A $90\%$ interval: $23.4\pm1.645\cdot3.1/\sqrt{50}=23.4\pm0.72$.
+$n=50$, $\bar{x}=23.4$, $s=3.1$. A $90\%$ interval: $23.4\pm1.645\cdot3.1/\sqrt{50}=23.4\pm0.72$.
 \end{example}
 
 \subsection{Bootstrap Confidence Intervals (CD Only)}
 
-For statistics such as the median or a correlation, no pivot with a known distribution is available. The bootstrap of Chapter~1 gives the \emph{percentile interval}.
+For statistics like the median or a correlation, no pivot with a known distribution exists. The bootstrap of Chapter~1 gives the \emph{percentile interval}.
 
 \begin{definition}[Bootstrap percentile interval]
-Generate $B$ bootstrap estimates $\hat\theta^*_1,\dots,\hat\theta^*_B$ by resampling the data with replacement and sort them. A $100(1-\alpha)\%$ percentile confidence interval is
+Generate $B$ bootstrap estimates $\hat\theta^*_1,\dots,\hat\theta^*_B$ by resampling the data with replacement, and sort them. A $100(1-\alpha)\%$ percentile interval is
 \[ \big[\ \hat\theta^*_{(\alpha/2)},\ \hat\theta^*_{(1-\alpha/2)}\ \big], \]
-the $\alpha/2$ and $1-\alpha/2$ sample quantiles of the bootstrap distribution. With $B=1000$ and $\alpha=0.05$ these are the $25$th and $975$th ordered values.
+the $\alpha/2$ and $1-\alpha/2$ sample quantiles of the bootstrap distribution. With $B=1000$ and $\alpha=0.05$, these are the $25$th and $975$th ordered values.
 \end{definition}
 
-A second version, the \emph{bootstrap standard-error interval}, is $\hat\theta\pm z_{\alpha/2}\se_{\mathrm{boot}}$ and is reasonable when the bootstrap distribution is roughly normal. The bootstrap requires no distributional assumption but needs a reasonably large and representative sample; see Chapter~13.
+A second version, the \emph{bootstrap standard-error interval}, is $\hat\theta\pm z_{\alpha/2}\se_{\mathrm{boot}}$. It is reasonable when the bootstrap distribution is roughly normal. The bootstrap needs no distributional assumption, but it needs a reasonably large and representative sample. See Chapter~13.
 
 \section{Confidence Interval on the Mean of a Normal Distribution, Variance Unknown}
 
 \subsection{The $t$ Distribution}
 
-If $\sigma$ is unknown, substituting $S$ for $\sigma$ changes the sampling distribution of the pivot.
+If $\sigma$ is unknown, replacing it by $S$ changes the sampling distribution of the pivot.
 
 \begin{theorem}[The $t$ statistic]\label{thm:t-pivot}
 If $X_1,\dots,X_n$ is a random sample from a \emph{normal} distribution with mean $\mu$, then
-\[ T=\frac{\bar{X}-\mu}{S/\sqrt n} \]
-has a $t$ distribution with $n-1$ degrees of freedom, $T\sim t_{n-1}$.
+\[ T=\frac{\bar{X}-\mu}{S/\sqrt n}\sim t_{n-1}. \]
 \end{theorem}
 
-The $t$ density is bell-shaped and symmetric about $0$, like the standard normal, but with heavier tails; the shape depends on the degrees of freedom $k=n-1$. $\Var[T]=k/(k-2)$ for $k>2$, and as $k\to\infty$, $t_k\to\Normal(0,1)$. Let $t_{\alpha,k}$ denote the point with right-tail area $\alpha$ under $t_k$. For example $t_{0.025,9}=2.262$ and $t_{0.025,\infty}=1.960$.
+About the $t$ density:
+\begin{itemize}
+  \item Bell-shaped and symmetric about $0$, like the standard normal, but with heavier tails. The shape depends on the degrees of freedom $k=n-1$.
+  \item $\Var[T]=k/(k-2)$ for $k>2$.
+  \item As $k\to\infty$, $t_k\to\Normal(0,1)$.
+  \item $t_{\alpha,k}$ is the point with right-tail area $\alpha$. For example $t_{0.025,9}=2.262$ and $t_{0.025,\infty}=1.960$.
+\end{itemize}
 
 \subsection{Development of the $t$ Distribution (CD Only)}
 
-The statistic $T$ can be written
+Write
 \[ T=\frac{(\bar{X}-\mu)/(\sigma/\sqrt n)}{\sqrt{S^2/\sigma^2}}=\frac{Z}{\sqrt{V/(n-1)}},\qquad Z\sim\Normal(0,1),\quad V=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{n-1}, \]
-with $Z$ and $V$ independent. This is the definition of the $t$ distribution with $n-1$ degrees of freedom. The independence of $\bar{X}$ and $S^2$ and the $\chi^2$ distribution of $V$ are proved in Chapter~11 (Theorem~\ref{thm:cochran}), where the density of $t_k$ is also written down.
+with $Z$ and $V$ independent. That is the definition of the $t$ distribution with $n-1$ degrees of freedom. Chapter~11 (Theorem~\ref{thm:cochran}) proves the independence of $\bar{X}$ and $S^2$ and the $\chi^2$ law of $V$, and writes down the density of $t_k$.
 
 \subsection{The $t$ Confidence Interval on $\mu$}
 
-Using $\Prob(-t_{\alpha/2,n-1}\le T\le t_{\alpha/2,n-1})=1-\alpha$ and rearranging:
+Use $\Prob(-t_{\alpha/2,n-1}\le T\le t_{\alpha/2,n-1})=1-\alpha$ and rearrange:
 
 \begin{theorem}[$t$ interval]\label{thm:t-ci}
-If $\bar{x}$ and $s$ are the mean and standard deviation of a random sample from a normal distribution with unknown variance $\sigma^2$, a $100(1-\alpha)\%$ confidence interval on $\mu$ is
+If $\bar{x}$ and $s$ are the mean and standard deviation of a random sample from a normal distribution with unknown variance, a $100(1-\alpha)\%$ interval on $\mu$ is
 \[ \bar{x}-t_{\alpha/2,n-1}\frac s{\sqrt n}\ \le\ \mu\ \le\ \bar{x}+t_{\alpha/2,n-1}\frac s{\sqrt n}. \]
-
-\emph{One-sided $t$ bounds} ($100(1-\alpha)\%$ each): upper $\mu\le\bar{x}+t_{\alpha,n-1}\,s/\sqrt n$; lower $\bar{x}-t_{\alpha,n-1}\,s/\sqrt n\le\mu$. They use $t_{\alpha,n-1}$, not $t_{\alpha/2,n-1}$, and give one limit only.
+\emph{One-sided $100(1-\alpha)\%$ bounds:} upper $\mu\le\bar{x}+t_{\alpha,n-1}\,s/\sqrt n$; lower $\bar{x}-t_{\alpha,n-1}\,s/\sqrt n\le\mu$. They use $t_{\alpha,n-1}$, not $t_{\alpha/2,n-1}$, and give one limit only.
 \end{theorem}
 
 \begin{example}\label{ex:t-ci}
-Ten measurements of the load at failure of a component have $\bar{x}=22.4$ kN and $s=3.0$ kN. A $95\%$ confidence interval: $t_{0.025,9}=2.262$, so $22.4\pm2.262\cdot3.0/\sqrt{10}=22.4\pm2.15$, that is $20.25\le\mu\le24.55$. One-sided $95\%$ bounds use $t_{0.05,9}=1.833$: $\mu\le22.4+1.833(0.9487)=24.14$ and $\mu\ge22.4-1.739=20.66$. Each is tighter than the corresponding end of the two-sided interval.
+Ten measurements of the load at failure of a component: $\bar{x}=22.4$ kN, $s=3.0$ kN.
+\begin{itemize}
+  \item $95\%$ interval: $t_{0.025,9}=2.262$, so $22.4\pm2.262\cdot3.0/\sqrt{10}=22.4\pm2.15$, that is $20.25\le\mu\le24.55$.
+  \item One-sided $95\%$ bounds use $t_{0.05,9}=1.833$: $\mu\le22.4+1.833(0.9487)=24.14$ and $\mu\ge22.4-1.739=20.66$.
+\end{itemize}
+Each bound is tighter than the matching end of the two-sided interval.
 \end{example}
 
-\begin{example}[Textbook example: tensile adhesion of U-700 alloy]
-Load at failure for $n=22$ specimens has $\bar{x}=13.71$ and $s=3.55$ (box plot and normal plot support normality). With $n-1=21$ degrees of freedom, $t_{0.025,21}=2.080$ and the $95\%$ interval is $13.71\pm2.080(3.55)/\sqrt{22}=13.71\pm1.57$, i.e.\ $12.14\le\mu\le15.28$. The interval is fairly wide because the variability is large. A sample size for a given length cannot be found directly because the length involves $s$ and $t_{\alpha/2,n-1}$, which depend on the unknown data; $n$ is chosen by trial and error from a prior guess of $\sigma$.
+\begin{example}[Tensile adhesion of U-700 alloy]
+Load at failure for $n=22$ specimens: $\bar{x}=13.71$, $s=3.55$. (The box plot and normal plot support normality.)
+\begin{itemize}
+  \item $21$ degrees of freedom, $t_{0.025,21}=2.080$.
+  \item $95\%$ interval: $13.71\pm2.080(3.55)/\sqrt{22}=13.71\pm1.57$, that is $12.14\le\mu\le15.28$.
+  \item The interval is fairly wide because the variability is large.
+\end{itemize}
+You cannot solve directly for the sample size that gives a target length. The length involves $s$ and $t_{\alpha/2,n-1}$, which depend on the data. Choose $n$ by trial and error from a prior guess of $\sigma$.
 \end{example}
 
 \begin{pitfall}{using $z$ with a small sample}
-With $n=10$ the normal multiplier $1.96$ would give $22.4\pm1.86$, an interval that is too short and covers $\mu$ less than $95\%$ of the time. The $t$ multiplier corrects for the extra uncertainty from estimating $\sigma$. The correction is large for $n<30$ and negligible for $n>100$.
+With $n=10$, the normal multiplier $1.96$ gives $22.4\pm1.86$. That is too short and covers $\mu$ less than $95\%$ of the time. The $t$ multiplier corrects for the extra uncertainty from estimating $\sigma$. The correction is large for $n<30$ and negligible for $n>100$.
 \end{pitfall}
 
-The $t$ interval assumes a normal population; it is fairly robust to moderate non-normality for $n\ge15$ if the data are roughly symmetric, but is unreliable for small samples from skewed or heavy-tailed populations. Check with a normal probability plot.
+The $t$ interval assumes a normal population. It is fairly robust to moderate non-normality for $n\ge15$ if the data are roughly symmetric. It is unreliable for small samples from skewed or heavy-tailed populations. Check with a normal probability plot.
 
 \section{Confidence Interval on the Variance and Standard Deviation of a Normal Distribution}
 
@@ -199,50 +248,69 @@ Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ with sample 
 Let $\chi^2_{\alpha,k}$ be the point with right-tail area $\alpha$. Then $\Prob\big(\chi^2_{1-\alpha/2,n-1}\le(n-1)S^2/\sigma^2\le\chi^2_{\alpha/2,n-1}\big)=1-\alpha$.
 
 \begin{theorem}[Interval for $\sigma^2$ and $\sigma$]\label{thm:var-ci}
-A $100(1-\alpha)\%$ confidence interval for $\sigma^2$ is
-\[ \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\ \le\ \sigma^2\ \le\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}, \]
-and taking square roots gives an interval for $\sigma$. One-sided $100(1-\alpha)\%$ bounds use $\alpha$ (not $\alpha/2$) and one limit: upper $\sigma^2\le(n-1)s^2/\chi^2_{1-\alpha,n-1}$; lower $\sigma^2\ge(n-1)s^2/\chi^2_{\alpha,n-1}$. (The upper bound divides by the \emph{small} chi-square point, the lower bound by the \emph{large} one.)
+A $100(1-\alpha)\%$ interval for $\sigma^2$ is
+\[ \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\ \le\ \sigma^2\ \le\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}. \]
+Take square roots for an interval on $\sigma$.
+
+One-sided $100(1-\alpha)\%$ bounds use $\alpha$ (not $\alpha/2$) and one limit: upper $\sigma^2\le(n-1)s^2/\chi^2_{1-\alpha,n-1}$; lower $\sigma^2\ge(n-1)s^2/\chi^2_{\alpha,n-1}$. The upper bound divides by the \emph{small} chi-square point. The lower bound divides by the \emph{large} one.
 \end{theorem}
 
 \begin{example}
-A sample of $n=20$ fill volumes has $s^2=0.0153$. For $95\%$: $\chi^2_{0.025,19}=32.85$ and $\chi^2_{0.975,19}=8.91$, so $19(0.0153)/32.85=0.00885\le\sigma^2\le19(0.0153)/8.91=0.0326$, and $0.094\le\sigma\le0.181$. One-sided $95\%$ bounds: $\chi^2_{0.95,19}=10.12$ and $\chi^2_{0.05,19}=30.14$ give $\sigma^2\le19(0.0153)/10.12=0.0287$ and $\sigma^2\ge19(0.0153)/30.14=0.00965$.
+$n=20$ fill volumes, $s^2=0.0153$.
+\begin{itemize}
+  \item $95\%$ two-sided: $\chi^2_{0.025,19}=32.85$ and $\chi^2_{0.975,19}=8.91$. So $19(0.0153)/32.85=0.00885\le\sigma^2\le19(0.0153)/8.91=0.0326$, and $0.094\le\sigma\le0.181$.
+  \item One-sided $95\%$: $\chi^2_{0.95,19}=10.12$ and $\chi^2_{0.05,19}=30.14$. So $\sigma^2\le19(0.0153)/10.12=0.0287$ and $\sigma^2\ge19(0.0153)/30.14=0.00965$.
+\end{itemize}
 \end{example}
 
 \begin{nuance}{asymmetry and non-normality}
-Because the $\chi^2$ distribution is skewed, the interval is not symmetric about $s^2$ (the point estimate lies closer to the lower limit). And, unlike the $t$ interval for the mean, this interval is \emph{very sensitive} to non-normality, since the distribution of $S^2$ depends on the fourth moment of the population. It should be used only when normality is credible.
+The $\chi^2$ distribution is skewed, so the interval is not symmetric about $s^2$. The point estimate lies closer to the lower limit.
+
+Unlike the $t$ interval for the mean, this interval is \emph{very sensitive} to non-normality, because the distribution of $S^2$ depends on the fourth moment. Use it only when normality is credible.
 \end{nuance}
 
 \section{A Large-Sample Confidence Interval for a Population Proportion}
 
-Let $X$ be the number of successes in $n$ independent trials with success probability $p$; $\hat{P}=X/n$. For large $n$ the normal approximation to the binomial gives $\hat{P}\approx\Normal\big(p,\ p(1-p)/n\big)$, and replacing $p$ in the variance by $\hat{p}$:
+Let $X$ be the number of successes in $n$ independent trials with success probability $p$, and $\hat{P}=X/n$. For large $n$, the normal approximation to the binomial gives $\hat{P}\approx\Normal\big(p,\ p(1-p)/n\big)$. Replace $p$ in the variance by $\hat{p}$:
 
 \begin{theorem}[Interval for a proportion]\label{thm:prop-ci}
-If $\hat{p}$ is the proportion of successes in a random sample of size $n$, an approximate $100(1-\alpha)\%$ confidence interval for $p$ is
+If $\hat{p}$ is the proportion of successes in a random sample of size $n$, an approximate $100(1-\alpha)\%$ interval for $p$ is
 \[ \hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}n}\ \le\ p\ \le\ \hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}n}. \]
-The approximation is acceptable when $n\hat{p}$ and $n(1-\hat{p})$ are both at least about $5$ to $10$. One-sided $100(1-\alpha)\%$ bounds use $z_\alpha$ and one limit: $p\le\hat{p}+z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}$ (upper), $\hat{p}-z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}\le p$ (lower).
+The approximation is acceptable when $n\hat{p}$ and $n(1-\hat{p})$ are both at least about $5$ to $10$.
+
+One-sided $100(1-\alpha)\%$ bounds use $z_\alpha$ and one limit: $p\le\hat{p}+z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}$ (upper), $\hat{p}-z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}\le p$ (lower).
 \end{theorem}
 
 \begin{example}
-In a sample of $n=85$ automobile engine crankshaft bearings, $10$ have rough surfaces. $\hat{p}=10/85=0.1176$, and a $95\%$ interval is $0.1176\pm1.96\sqrt{0.1176\cdot0.8824/85}=0.1176\pm0.0685$, that is $0.049\le p\le0.186$. The one-sided $95\%$ upper bound is $0.1176+1.645(0.0349)=0.175$ and the one-sided lower bound is $0.060$; note these use $1.645$, not $1.96$.
+Among $n=85$ automobile crankshaft bearings, $10$ have rough surfaces. $\hat{p}=10/85=0.1176$.
+\begin{itemize}
+  \item $95\%$ interval: $0.1176\pm1.96\sqrt{0.1176\cdot0.8824/85}=0.1176\pm0.0685$, that is $0.049\le p\le0.186$.
+  \item One-sided $95\%$ upper bound: $0.1176+1.645(0.0349)=0.175$. Lower bound: $0.060$. These use $1.645$, not $1.96$.
+\end{itemize}
 \end{example}
 
 \begin{theorem}[Sample size for a proportion]\label{thm:samplesize-prop}
 To be $100(1-\alpha)\%$ confident that the error $\abs{\hat{p}-p}$ is at most $E$, use
 \[ n=\left(\frac{z_{\alpha/2}}E\right)^2p(1-p). \]
-Since $p$ is unknown, use a preliminary estimate, or the worst case $p=0.5$ (which maximises $p(1-p)=0.25$), giving $n=0.25\,(z_{\alpha/2}/E)^2$.
+Since $p$ is unknown, use a preliminary estimate, or the worst case $p=0.5$ (which maximises $p(1-p)=0.25$). That gives $n=0.25\,(z_{\alpha/2}/E)^2$.
 \end{theorem}
 
 \begin{example}
-Poll sample size for a $\pm3\%$ margin at $95\%$ confidence with no prior information: $n=0.25(1.96/0.03)^2=1067.1$, so $n=1068$.
+A poll with a $\pm3\%$ margin at $95\%$ confidence and no prior information needs $n=0.25(1.96/0.03)^2=1067.1$, so $n=1068$.
 \end{example}
 
 \begin{interview}{better intervals for proportions}
-The interval of Theorem~\ref{thm:prop-ci} (the Wald interval) can have poor coverage when $p$ is near $0$ or $1$ or $n$ is small. The \emph{Wilson score interval}, obtained by solving $\abs{\hat{p}-p}\le z_{\alpha/2}\sqrt{p(1-p)/n}$ for $p$ exactly instead of plugging in $\hat{p}$, and the simple ``add two successes and two failures'' adjustment ($\tilde{p}=(x+2)/(n+4)$ in the formula above) both have much better coverage. For $x=0$ successes, the $95\%$ upper bound is approximately $3/n$ (the ``rule of three'').
+The interval of Theorem~\ref{thm:prop-ci} (the Wald interval) can have poor coverage when $p$ is near $0$ or $1$, or $n$ is small. Two better options:
+\begin{itemize}
+  \item The \emph{Wilson score interval}: solve $\abs{\hat{p}-p}\le z_{\alpha/2}\sqrt{p(1-p)/n}$ for $p$ exactly, instead of plugging in $\hat{p}$.
+  \item The ``add two successes and two failures'' adjustment: use $\tilde{p}=(x+2)/(n+4)$ in the formula above.
+\end{itemize}
+Both have much better coverage. For $x=0$ successes, the $95\%$ upper bound is about $3/n$ (the ``rule of three'').
 \end{interview}
 
 \section{A Prediction Interval for a Future Observation}
 
-A confidence interval concerns a fixed parameter. Often we instead want a range for the next individual value, $X_{n+1}$, to be drawn from the same population.
+A confidence interval is about a fixed parameter. Often we want a range for the next individual value $X_{n+1}$, drawn from the same population.
 
 \begin{theorem}[Prediction interval]\label{thm:pi}
 Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ and $X_{n+1}$ an independent future observation. A $100(1-\alpha)\%$ prediction interval for $X_{n+1}$ is
@@ -250,27 +318,29 @@ Let $X_1,\dots,X_n$ be a random sample from $\Normal(\mu,\sigma^2)$ and $X_{n+1}
 \end{theorem}
 
 \begin{proof}
-$X_{n+1}-\bar{X}$ is normal with mean $0$ and variance $\sigma^2+\sigma^2/n=\sigma^2(1+1/n)$, because the new observation is independent of $\bar{X}$. Hence $\dfrac{X_{n+1}-\bar{X}}{S\sqrt{1+1/n}}=\dfrac{(X_{n+1}-\bar{X})/(\sigma\sqrt{1+1/n})}{\sqrt{S^2/\sigma^2}}\sim t_{n-1}$, and the interval follows as in Theorem~\ref{thm:t-ci}.
+$X_{n+1}-\bar{X}$ is normal with mean $0$ and variance $\sigma^2+\sigma^2/n=\sigma^2(1+1/n)$, because the new observation is independent of $\bar{X}$. So
+\[ \frac{X_{n+1}-\bar{X}}{S\sqrt{1+1/n}}=\frac{(X_{n+1}-\bar{X})/(\sigma\sqrt{1+1/n})}{\sqrt{S^2/\sigma^2}}\sim t_{n-1}, \]
+and the interval follows as in Theorem~\ref{thm:t-ci}.
 \end{proof}
 
 \begin{example}
-Continuing Example~\ref{ex:t-ci} ($n=10$, $\bar{x}=22.4$, $s=3.0$): the $95\%$ prediction interval for the load of the next component is $22.4\pm2.262\cdot3.0\sqrt{1.1}=22.4\pm7.12$, that is $15.3$ to $29.5$. The confidence interval for $\mu$, $20.25$ to $24.55$, is much narrower.
+Continue Example~\ref{ex:t-ci} ($n=10$, $\bar{x}=22.4$, $s=3.0$). The $95\%$ prediction interval for the next component is $22.4\pm2.262\cdot3.0\sqrt{1.1}=22.4\pm7.12$, that is $15.3$ to $29.5$. The confidence interval for $\mu$, $20.25$ to $24.55$, is much narrower.
 \end{example}
 
-As $n\to\infty$ the prediction interval tends to $\mu\pm z_{\alpha/2}\sigma$, which does not shrink to zero: no amount of data removes the variability of a single future value. The confidence interval, by contrast, shrinks to a point.
+As $n\to\infty$, the prediction interval tends to $\mu\pm z_{\alpha/2}\sigma$. It does not shrink to zero: no amount of data removes the variability of a single future value. The confidence interval shrinks to a point.
 
-\begin{example}[Textbook example: prediction interval, same data]
-For a twenty-third specimen, the $95\%$ prediction interval is $13.71\pm2.080(3.55)\sqrt{1+1/22}=13.71\pm7.55$, i.e.\ $6.16$ to $21.26$, considerably longer than the interval $(12.14,\,15.28)$ for the mean. As $n\to\infty$ the prediction interval tends to $\mu\pm z_{\alpha/2}\sigma$, which does not shrink to zero: there is always uncertainty about the next observation even when $\mu$ is known.
+\begin{example}[Prediction interval, same alloy data]
+For a twenty-third specimen, the $95\%$ prediction interval is $13.71\pm2.080(3.55)\sqrt{1+1/22}=13.71\pm7.55$, that is $6.16$ to $21.26$. This is much longer than the interval $(12.14,\,15.28)$ for the mean. There is always uncertainty about the next observation, even when $\mu$ is known.
 \end{example}
 
 \section{Tolerance Intervals for a Normal Distribution}
 
-A \emph{tolerance interval} is meant to capture a stated proportion of the whole population, with a stated confidence that it really does.
+A \emph{tolerance interval} aims to capture a stated proportion of the whole population, with a stated confidence that it really does.
 
 \begin{definition}[Tolerance interval]
 A \emph{tolerance interval for capturing at least $100\gamma\%$ of the values of a normal distribution with confidence level $100(1-\alpha)\%$} is
-\[ \bar{x}-k\,s\ \le\ x\ \le\ \bar{x}+k\,s, \]
-where $k=k(n,\gamma,\alpha)$ is a constant found from tables (or software) so that, over repeated samples, a proportion $1-\alpha$ of the resulting intervals contain at least a proportion $\gamma$ of the population.
+\[ \bar{x}-k\,s\ \le\ x\ \le\ \bar{x}+k\,s. \]
+The constant $k=k(n,\gamma,\alpha)$ comes from tables or software. It is chosen so that, over repeated samples, a proportion $1-\alpha$ of such intervals contain at least a proportion $\gamma$ of the population.
 \end{definition}
 
 A good approximation for the two-sided factor (Howe's formula) is
@@ -278,25 +348,40 @@ A good approximation for the two-sided factor (Howe's formula) is
 where $\chi^2_{1-\alpha,n-1}$ is the point with \emph{left} tail area $\alpha$ (right-tail area $1-\alpha$).
 
 \begin{example}
-For $n=10$, $\gamma=0.95$, $1-\alpha=0.95$: $z_{0.975}=1.96$, $\chi^2_{0.95,9}=3.325$, and $k\approx1.96\sqrt{9(1.1)/3.325}=1.96\sqrt{2.977}=3.38$; the exact tabled value is $3.38$. With $\bar{x}=22.4$, $s=3.0$ the tolerance interval is $22.4\pm3.38\cdot3.0$, i.e.\ $12.3$ to $32.5$, which is wider than the prediction interval $15.3$ to $29.5$.
+$n=10$, $\gamma=0.95$, $1-\alpha=0.95$.
+\begin{itemize}
+  \item $z_{0.975}=1.96$ and $\chi^2_{0.95,9}=3.325$.
+  \item $k\approx1.96\sqrt{9(1.1)/3.325}=1.96\sqrt{2.977}=3.38$. The exact tabled value is $3.38$.
+  \item With $\bar{x}=22.4$, $s=3.0$: $22.4\pm3.38\cdot3.0$, that is $12.3$ to $32.5$. Wider than the prediction interval $15.3$ to $29.5$.
+\end{itemize}
 \end{example}
 
-\begin{example}[Textbook example: tolerance interval, same data]
-To include $90\%$ of the population with $95\%$ confidence for $n=22$, Table XI gives $k=2.264$, so the interval is $\bar{x}\pm2.264s=\bar{x}\pm8.04$. (The textbook prints $\bar{x}=31.71$ here, giving $(23.67,\,39.75)$; with $\bar{x}=13.71$ as in the previous examples the same calculation gives $(5.67,\,21.75)$. The width $16.08$ is what matters.) As $n\to\infty$, $k$ approaches $z_{0.05}=1.645$ for a $90\%$ two-sided tolerance interval, and a $100(1-\alpha)\%$ prediction interval tends to a tolerance interval containing $100(1-\alpha)\%$ of the distribution. For known $\mu=600$ and $\sigma=30$ the interval $600\pm1.96(30)=(541.2,\,658.8)$ captures $95\%$ of the population; with $\bar{x}$ and $s$ in place of $\mu,\sigma$ the plain interval $\bar{x}\pm1.96s$ is likely to contain less than $95\%$, which is why $1.96$ is replaced by the larger factor $k$.
+\begin{example}[Tolerance interval, same alloy data]
+To include $90\%$ of the population with $95\%$ confidence for $n=22$, Table XI gives $k=2.264$. The interval is $\bar{x}\pm2.264s=\bar{x}\pm8.04$. With $\bar{x}=13.71$ this is $(5.67,\,21.75)$. The width, $16.08$, is what matters.
+\begin{itemize}
+  \item As $n\to\infty$, $k$ approaches $z_{0.05}=1.645$ for a $90\%$ two-sided tolerance interval. A $100(1-\alpha)\%$ prediction interval tends to a tolerance interval containing $100(1-\alpha)\%$ of the distribution.
+  \item If $\mu=600$ and $\sigma=30$ are known, $600\pm1.96(30)=(541.2,\,658.8)$ captures $95\%$ of the population.
+  \item With $\bar{x}$ and $s$ in place of $\mu,\sigma$, the plain interval $\bar{x}\pm1.96s$ is likely to contain less than $95\%$. That is why $1.96$ is replaced by the larger factor $k$.
+\end{itemize}
 \end{example}
 
 \begin{interview}{three intervals, three questions}
-\emph{Confidence interval:} where is the population mean? (narrowest, shrinks with $n$.) \emph{Prediction interval:} where will the next single observation fall? (limit $\mu\pm z\sigma$.) \emph{Tolerance interval:} what range covers $95\%$ of all units, with $95\%$ confidence that the claim is right? (widest; limit $\mu\pm z_{(1+\gamma)/2}\sigma$ from above.) Quality engineers use tolerance intervals for specification limits and confidence intervals for process averages.
+\begin{itemize}
+  \item \emph{Confidence interval:} where is the population mean? Narrowest. Shrinks with $n$.
+  \item \emph{Prediction interval:} where will the next single observation fall? Limit $\mu\pm z\sigma$.
+  \item \emph{Tolerance interval:} what range covers $95\%$ of all units, with $95\%$ confidence that the claim is right? Widest. Limit $\mu\pm z_{(1+\gamma)/2}\sigma$ from above.
+\end{itemize}
+Quality engineers use tolerance intervals for specification limits and confidence intervals for process averages.
 \end{interview}
 
 \begin{summarybox}
 \begin{itemize}
-  \item $\sigma$ known: $\bar{x}\pm z_{\alpha/2}\sigma/\sqrt n$; sample size $n=(z_{\alpha/2}\sigma/E)^2$. One-sided $100(1-\alpha)\%$ bounds: $\bar{x}+z_\alpha\sigma/\sqrt n$ (upper) or $\bar{x}-z_\alpha\sigma/\sqrt n$ (lower), one limit only, $\alpha$ not $\alpha/2$; the end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound.
-  \item $\sigma$ unknown (normal data): $\bar{x}\pm t_{\alpha/2,n-1}s/\sqrt n$; large samples (any population): $\bar{x}\pm z_{\alpha/2}s/\sqrt n$.
-  \item Variance: $\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\le\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}$ (sensitive to non-normality).
-  \item Proportion: $\hat{p}\pm z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$; sample size $n=(z_{\alpha/2}/E)^2p(1-p)\le0.25(z_{\alpha/2}/E)^2$.
-  \item Prediction interval: $\bar{x}\pm t_{\alpha/2,n-1}s\sqrt{1+1/n}$; tolerance interval: $\bar{x}\pm ks$.
-  \item The confidence level describes the long-run coverage of the procedure, not the probability that one computed interval contains $\mu$.
+  \item $\sigma$ known: $\bar{x}\pm z_{\alpha/2}\sigma/\sqrt n$. Sample size $n=(z_{\alpha/2}\sigma/E)^2$. One-sided $100(1-\alpha)\%$ bounds: $\bar{x}+z_\alpha\sigma/\sqrt n$ (upper) or $\bar{x}-z_\alpha\sigma/\sqrt n$ (lower). One limit only, and $\alpha$ not $\alpha/2$. The end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound.
+  \item $\sigma$ unknown (normal data): $\bar{x}\pm t_{\alpha/2,n-1}s/\sqrt n$. Large samples (any population): $\bar{x}\pm z_{\alpha/2}s/\sqrt n$.
+  \item Variance: $\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\le\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}$. Sensitive to non-normality.
+  \item Proportion: $\hat{p}\pm z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$. Sample size $n=(z_{\alpha/2}/E)^2p(1-p)\le0.25(z_{\alpha/2}/E)^2$.
+  \item Prediction interval: $\bar{x}\pm t_{\alpha/2,n-1}s\sqrt{1+1/n}$. Tolerance interval: $\bar{x}\pm ks$.
+  \item The confidence level is the long-run coverage of the procedure. It is not the probability that one computed interval contains $\mu$.
 \end{itemize}
 \end{summarybox}
 
