@@ -41,7 +41,7 @@ function Box({ b, figBook }: { b: Extract<Block, { t: 'box' }>; figBook: string 
   const style = BOX_STYLES[b.kind] ?? BOX_STYLES[KIND_ALIAS[b.kind] ?? 'definition'];
   const label = [b.name, b.num].filter(Boolean).join(' ');
   return (
-    <div className={`my-7 rounded-2xl border border-l-4 p-5 sm:p-6 space-y-4 shadow-sm backdrop-blur-sm ${style.frame}`}>
+    <div className={`my-7 rounded-2xl border border-l-4 p-5 sm:p-7 space-y-5 shadow-sm backdrop-blur-sm ${style.frame}`}>
       <div className={`flex flex-wrap items-baseline gap-x-2 font-mono text-xs font-bold uppercase tracking-wider ${style.label}`}>
         <span>{label}</span>
         {b.title && (
@@ -99,9 +99,9 @@ export function BlockView({ b, book }: { b: Block; book: string }) {
       }
       const Tag = b.ordered ? 'ol' : 'ul';
       return (
-        <Tag className="space-y-2.5 pl-7 marker:text-amber-600 dark:marker:text-amber-400" style={{ listStyleType: style }}>
+        <Tag className="space-y-3.5 pl-7 marker:text-amber-600 dark:marker:text-amber-400" style={{ listStyleType: style }}>
           {b.items.map((it, i) => (
-            <li key={i} className="pl-1 space-y-2">
+            <li key={i} className="pl-1 space-y-3">
               {it.blocks.map((c, j) => <BlockView key={j} b={c} book={book} />)}
             </li>
           ))}
@@ -145,7 +145,7 @@ export function BlockView({ b, book }: { b: Block; book: string }) {
 
 export default function BlockList({ blocks, book }: { blocks: Block[]; book: string }) {
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       {blocks.map((b, i) => <BlockView key={i} b={b} book={book} />)}
     </div>
   );

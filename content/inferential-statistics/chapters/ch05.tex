@@ -153,41 +153,127 @@ Cautions:
 
 \section{Hypothesis Tests in Simple Linear Regression}
 
+\subsection{What question are we asking?}
+
+The fitted slope $\hat\beta_1$ is never exactly $0$, even if $x$ has no effect on $Y$. Noise alone makes it wobble up and down from sample to sample. So the real question is:
+
+\begin{center}
+\emph{Is the slope we found big enough, compared with that wobble, to be believed?}
+\end{center}
+
+\begin{itemize}
+  \item The \emph{wobble} of $\hat\beta_1$ is its standard error, $\se(\hat\beta_1)$.
+  \item The \emph{signal} is how far $\hat\beta_1$ is from the value $H_0$ claims.
+  \item A test compares the two: $\ \text{signal}/\text{noise}$.
+\end{itemize}
+
+The most important claim is $H_0:\beta_1=0$. If it is true, the line is flat: the mean of $Y$ is the same at every $x$, so $x$ is useless for predicting $Y$. This is the \emph{test for significance of regression}.
+
 \subsection{Use of $t$-Tests}
 
-With normal errors, dividing each coefficient by its estimated standard error gives a $t$ statistic.
+With normal errors, signal divided by noise has a known distribution.
 
 \begin{theorem}[$t$-tests on the coefficients]\label{thm:regt}
 \[ T=\frac{\hat\beta_1-\beta_{1,0}}{\se(\hat\beta_1)}\sim t_{n-2}\ \text{ when }\beta_1=\beta_{1,0},\qquad T=\frac{\hat\beta_0-\beta_{0,0}}{\se(\hat\beta_0)}\sim t_{n-2}\ \text{ when }\beta_0=\beta_{0,0}. \]
 To test $H_0:\beta_1=\beta_{1,0}$ against $H_1:\beta_1\ne\beta_{1,0}$, reject if $\abs{t_0}>t_{\alpha/2,\,n-2}$.
 \end{theorem}
 
-The most important case is $H_0:\beta_1=0$ against $H_1:\beta_1\ne0$. This is the \emph{test for significance of regression}.
-\begin{itemize}
-  \item \emph{Fail to reject $H_0$:} there is no evidence of a linear relationship. Either $x$ explains little of $Y$ (the best estimate of $Y$ for every $x$ is $\bar{y}$), or the true relationship is not linear.
-  \item \emph{Reject $H_0$:} $x$ helps explain $Y$. The straight line may be adequate, or it may be a good first approximation that a higher-order term would improve.
-\end{itemize}
-Also, $\hat\beta_0$ and $\hat\beta_1$ are not independent: $\operatorname{cov}(\hat\beta_0,\hat\beta_1)=-\bar{x}\sigma^2/S_{xx}$.
+Where the standard errors come from (Theorem~\ref{thm:lsprops}):
+\[ \se(\hat\beta_1)=\sqrt{\frac{\hat\sigma^2}{S_{xx}}},\qquad\se(\hat\beta_0)=\sqrt{\hat\sigma^2\Big(\frac1n+\frac{\bar{x}^2}{S_{xx}}\Big)}. \]
+The degrees of freedom are $n-2$ because $\hat\sigma^2$ used up two degrees of freedom.
 
-\begin{example}
-For Example~\ref{ex:regfit}:
+\textbf{Recipe for any test on a coefficient.}
+\begin{enumerate}
+  \item State $H_0:\beta_1=\beta_{1,0}$ and $H_1$.
+  \item Compute $\hat\beta_1$, $\hat\sigma^2=MS_E$ and $\se(\hat\beta_1)$.
+  \item Compute $t_0=(\hat\beta_1-\beta_{1,0})/\se(\hat\beta_1)$.
+  \item Find the critical value $t_{\alpha/2,\,n-2}$ (two-sided) or $t_{\alpha,\,n-2}$ (one-sided).
+  \item Decide: reject if $t_0$ falls beyond the critical value. Equivalently, reject if $P\le\alpha$.
+\end{enumerate}
+
+\textbf{How to read the answer for $H_0:\beta_1=0$.}
 \begin{itemize}
-  \item Slope: $\se(\hat\beta_1)=\sqrt{0.0325/42}=0.0278$ and $t_0=1.9976/0.0278=71.8$ with $6$ degrees of freedom. This is far beyond $t_{0.005,6}=3.707$, so reject $H_0:\beta_1=0$ ($P<0.0001$).
-  \item Intercept: $\se(\hat\beta_0)=\sqrt{0.0325(1/8+20.25/42)}=0.1405$ and $t_0=0.0357/0.1405=0.25$. There is no evidence that the intercept differs from $0$.
+  \item \emph{Reject $H_0$.} $x$ helps explain $Y$. The straight line may be adequate, or it may be a good first approximation that a higher-order term would improve.
+  \item \emph{Fail to reject $H_0$.} No evidence of a linear relationship. Either $x$ explains little of $Y$ (the best guess for every $x$ is $\bar{y}$), or the true relationship is not linear.
 \end{itemize}
+
+One-sided versions: reject $H_1:\beta_1>\beta_{1,0}$ when $t_0>t_{\alpha,\,n-2}$. Reject $H_1:\beta_1<\beta_{1,0}$ when $t_0<-t_{\alpha,\,n-2}$.
+
+Note that $\hat\beta_0$ and $\hat\beta_1$ are not independent: $\operatorname{cov}(\hat\beta_0,\hat\beta_1)=-\bar{x}\sigma^2/S_{xx}$.
+
+\begin{example}[Testing the slope and the intercept]
+Continue Example~\ref{ex:regfit}. We have $\hat\beta_1=1.9976$, $\hat\beta_0=0.0357$, $\hat\sigma^2=0.0325$ on $6$ degrees of freedom, $\bar{x}=4.5$ and $S_{xx}=42$.
+
+\textbf{Slope. Is there a linear relationship?}
+
+\emph{Step 1.} $H_0:\beta_1=0$ against $H_1:\beta_1\ne0$, with $\alpha=0.01$.
+
+\emph{Step 2.} The noise in the slope:
+\[ \se(\hat\beta_1)=\sqrt{0.0325/42}=0.0278. \]
+
+\emph{Step 3.} Signal over noise:
+\[ t_0=\frac{1.9976-0}{0.0278}=71.8. \]
+
+\emph{Step 4.} The cutoff is $t_{0.005,6}=3.707$.
+
+\emph{Step 5.} $71.8\gg3.707$, so \textbf{reject $H_0$} ($P<0.0001$). The slope is about $72$ standard errors from zero. The relationship is real.
+
+\textbf{Intercept. Does the line pass through the origin?}
+
+\emph{Step 1.} $H_0:\beta_0=0$ against $H_1:\beta_0\ne0$.
+
+\emph{Step 2.}
+\[ \se(\hat\beta_0)=\sqrt{0.0325\Big(\frac18+\frac{20.25}{42}\Big)}=0.1405. \]
+
+\emph{Step 3.}
+\[ t_0=\frac{0.0357-0}{0.1405}=0.25. \]
+
+\emph{Step 4--5.} $\abs{0.25}<3.707$, so \textbf{fail to reject}. There is no evidence that the intercept differs from $0$. The line may well pass through the origin.
 \end{example}
 
 \begin{example}[Oxygen purity]
-Oxygen purity $y$ (\%) against hydrocarbon level $x$ (\%), $n=20$. $S_{xx}=0.68088$ and $S_{xy}=10.17744$, so $\hat\beta_1=14.947$ and $\hat\beta_0=74.283$. The fitted line is $\hat{y}=74.283+14.947x$. At $x=1.00$ the predicted purity is $89.23\%$.
+Oxygen purity $y$ (\%) against hydrocarbon level $x$ (\%), $n=20$.
 
-$SS_T=173.38$, $SS_R=\hat\beta_1S_{xy}=152.13$, $SS_E=21.25$, $\hat\sigma^2=1.18$.
+\emph{The fit.} $S_{xx}=0.68088$ and $S_{xy}=10.17744$, so $\hat\beta_1=14.947$ and $\hat\beta_0=74.283$. The line is $\hat{y}=74.283+14.947x$. At $x=1.00$ the predicted purity is $89.23\%$.
 
-Test $H_0:\beta_1=0$ at $\alpha=0.01$: $t_0=11.35$ against $t_{0.005,18}=2.88$. Also $F_0=152.13/1.18=128.86=t_0^2$, with $P\approx1.2\times10^{-9}$. Reject. Finally $R^2=152.13/173.38=0.877$: the model explains $87.7\%$ of the variability.
+\emph{The sums of squares.} $SS_T=173.38$, $SS_R=\hat\beta_1S_{xy}=152.13$, $SS_E=21.25$, $\hat\sigma^2=1.18$.
+
+\emph{The test.} $H_0:\beta_1=0$ at $\alpha=0.01$. $t_0=11.35$ against $t_{0.005,18}=2.88$. Reject. Also $F_0=152.13/1.18=128.86=t_0^2$ ($P\approx1.2\times10^{-9}$).
+
+\emph{The strength.} $R^2=152.13/173.38=0.877$. The model explains $87.7\%$ of the variability in purity.
 \end{example}
 
 \subsection{Analysis of Variance Approach to Test Significance of Regression}
 
-The total variability in $y$ splits into a part explained by the regression and a part left over.
+There is a second way to ask the same question. Instead of looking at the slope, look at how the \emph{variability in $y$} is shared out.
+
+\textbf{The idea.} Take one observation $y_i$. Its distance from the overall mean $\bar{y}$ has two parts:
+\begin{itemize}
+  \item the part the line explains: $\hat{y}_i-\bar{y}$;
+  \item the part the line leaves over (the residual): $y_i-\hat{y}_i$.
+\end{itemize}
+\[ \underbrace{y_i-\bar{y}}_{\text{total}}=\underbrace{\hat{y}_i-\bar{y}}_{\text{explained}}+\underbrace{y_i-\hat{y}_i}_{\text{unexplained}}. \]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.25]
+  \draw[axis] (0,0)--(7.8,0) node[right,lab]{$x$}; \draw[axis] (0,0)--(0,6.6) node[above,lab]{$y$};
+  \draw[thick,accent2] (0.4,0.9)--(7.4,6.3);
+  \draw[dashed,mid] (0,3.65)--(6.9,3.65); \node[lab,left] at (0,3.65){$\bar{y}$};
+  \fill[ink] (5.5,5.9) circle (1.8pt);
+  \draw[very thick,accent2] (5.5,3.65)--(5.5,4.79);
+  \draw[very thick,accent] (5.5,4.79)--(5.5,5.9);
+  \draw[very thick,ink] (6.7,3.65)--(6.7,5.9);
+  \node[lab,accent2,anchor=east] at (5.42,4.2){explained};
+  \node[lab,accent,anchor=east] at (5.42,5.4){unexplained};
+  \node[lab,anchor=west] at (6.8,4.8){total};
+  \node[lab,anchor=south] at (5.5,6.05){$y_i$};
+  \node[lab,anchor=north west] at (5.55,4.7){$\hat{y}_i$};
+\end{tikzpicture}
+\caption{One observation $y_i$. Its total distance from $\bar{y}$ splits into the distance the fitted line accounts for (blue) and the distance left over (orange). Summing the squares of these distances over all observations gives $SS_T=SS_R+SS_E$.}
+\end{figure}
+
+Square the pieces and add over all observations. The cross terms cancel, and we get the identity below.
 
 \begin{theorem}[Analysis of variance identity]\label{thm:anova-reg}
 \[ \underbrace{\sum(y_i-\bar{y})^2}_{SS_T=S_{yy}}=\underbrace{\sum(\hat{y}_i-\bar{y})^2}_{SS_R=\hat\beta_1S_{xy}}+\underbrace{\sum(y_i-\hat{y}_i)^2}_{SS_E}, \]
@@ -198,10 +284,25 @@ with degrees of freedom $n-1=1+(n-2)$.
 Write $y_i-\bar{y}=(\hat{y}_i-\bar{y})+(y_i-\hat{y}_i)$ and square. The cross term is $2\sum(\hat{y}_i-\bar{y})e_i=2\hat\beta_1\sum(x_i-\bar{x})e_i=0$. The normal equations make the residuals sum to zero and be orthogonal to the $x_i$.
 \end{proof}
 
-The ratio of the mean squares gives an $F$-test that is equivalent to the $t$-test.
+In words:
+\begin{itemize}
+  \item $SS_T$ is the total variability of $y$.
+  \item $SS_R$ is the variability the regression explains.
+  \item $SS_E$ is the variability left unexplained (the noise).
+\end{itemize}
+
+\textbf{Turning this into a test.} Compare the two parts \emph{per degree of freedom}.
+\begin{itemize}
+  \item $MS_R=SS_R/1$: explained variability per parameter used (one slope).
+  \item $MS_E=SS_E/(n-2)$: unexplained variability per remaining degree of freedom. This is our estimate $\hat\sigma^2$ of the noise.
+  \item If $\beta_1=0$, the line explains only chance variation, so $MS_R$ is about the same size as $MS_E$. The ratio is near $1$.
+  \item If $\beta_1\ne0$, the line explains real variation, so $MS_R$ is much larger than $MS_E$. The ratio is large.
+\end{itemize}
 
 \begin{theorem}[$F$-test for significance of regression]\label{thm:regF}
-Let $MS_R=SS_R/1$ and $MS_E=SS_E/(n-2)$. When $H_0:\beta_1=0$ is true, $F_0=MS_R/MS_E\sim F_{1,\,n-2}$. Reject $H_0$ if $f_0>f_{\alpha,\,1,\,n-2}$. Also $F_0=T_0^2$, where $T_0=\hat\beta_1/\se(\hat\beta_1)$.
+When $H_0:\beta_1=0$ is true,
+\[ F_0=\frac{MS_R}{MS_E}\sim F_{1,\,n-2}. \]
+Reject $H_0$ if $f_0>f_{\alpha,\,1,\,n-2}$ (upper tail only). Also $F_0=T_0^2$, where $T_0=\hat\beta_1/\se(\hat\beta_1)$.
 \end{theorem}
 
 \begin{center}
@@ -216,13 +317,55 @@ Total & $SS_T$ & $n-1$ & & \\
 \end{tabular}
 \end{center}
 
-\begin{example}
-Here $SS_T=167.795$, $SS_R=1.9976(83.9)=167.600$ and $SS_E=0.195$. Then $f_0=167.600/0.0325=5157$. This equals $t_0^2=71.8^2$ and is far above $f_{0.05,1,6}=5.99$.
+Why only the upper tail? A small $F_0$ would mean the line explains \emph{less} than chance, which cannot signal a real slope. Only a large $F_0$ is evidence against $H_0$.
+
+The $F$-test and the $t$-test give the same decision, because $F_0=T_0^2$. The $t$-test is more flexible: it allows one-sided alternatives and tests $\beta_{1,0}\ne0$. The $F$-test generalises to several regressors (Chapter~6).
+
+\begin{example}[Filling in the ANOVA table]
+Continue Example~\ref{ex:regfit}.
+
+\emph{Step 1: total variability.} $SS_T=S_{yy}=167.795$, with $n-1=7$ degrees of freedom.
+
+\emph{Step 2: explained.} $SS_R=\hat\beta_1S_{xy}=1.9976(83.9)=167.600$, with $1$ degree of freedom.
+
+\emph{Step 3: unexplained, by subtraction.} $SS_E=167.795-167.600=0.195$, with $6$ degrees of freedom.
+
+\emph{Step 4: mean squares.} $MS_R=167.600$ and $MS_E=0.195/6=0.0325$.
+
+\emph{Step 5: the ratio.}
+\[ f_0=\frac{167.600}{0.0325}=5157. \]
+\emph{Step 6: decide.} $f_{0.05,1,6}=5.99$. Since $5157\gg5.99$, reject $H_0$.
+
+\emph{Check.} $t_0^2=71.8^2=5155$, matching $f_0$ up to rounding. And $R^2=SS_R/SS_T=167.600/167.795=0.9988$: the line explains $99.9\%$ of the variability.
 \end{example}
 
-The $t$-test is more flexible than the $F$-test: it also allows one-sided alternatives.
-
 \section{Confidence Intervals}
+
+\subsection{What a confidence interval adds}
+
+A test answers a yes/no question. A confidence interval answers a bigger one: \emph{which values of the parameter are consistent with the data?}
+
+\begin{itemize}
+  \item Every estimate wobbles from sample to sample. Its standard error measures the wobble.
+  \item An interval is built as
+  \[ \text{estimate}\ \pm\ (\text{multiplier})\times(\text{standard error}). \]
+  The multiplier, $t_{\alpha/2,\,n-2}$, sets the confidence level.
+  \item The link to testing: the two-sided $100(1-\alpha)\%$ interval contains exactly those values $\beta_{1,0}$ that the two-sided test at level $\alpha$ would \emph{not} reject. If $0$ is outside the interval, the slope is significant.
+\end{itemize}
+
+This section gives three intervals. They answer three different questions, so they differ in width.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Interval & It answers & Width\\
+\midrule
+On $\beta_1$ or $\beta_0$ & What are the true line's coefficients? & Narrow\\
+On the mean response at $x_0$ & Where is the true line at this $x_0$? & Narrow, widest far from $\bar{x}$\\
+Prediction at $x_0$ & Where will the next single $y$ fall? & Wide\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \subsection{Confidence Intervals on the Slope and Intercept}
 
@@ -235,38 +378,80 @@ Two-sided $100(1-\alpha)\%$ intervals:
 \end{itemize}
 \end{theorem}
 
-\textbf{One-sided versions.} Use $\alpha$ in one tail and write one limit only.
+\textbf{How to read the slope interval.} It is the range of slopes that the data cannot rule out. A narrow interval far from $0$ means a well-determined slope. An interval that includes $0$ means we cannot tell whether $x$ matters.
+
+\textbf{One-sided versions.} Put $\alpha$ in one tail and write one limit only.
 \begin{itemize}
   \item Slope, upper bound: $\beta_1\le\hat\beta_1+t_{\alpha,\,n-2}\sqrt{\hat\sigma^2/S_{xx}}$.
   \item Slope, lower bound: $\hat\beta_1-t_{\alpha,\,n-2}\sqrt{\hat\sigma^2/S_{xx}}\le\beta_1$. The intercept is similar.
   \item Variance: $\sigma^2\le(n-2)\hat\sigma^2/\chi^2_{1-\alpha,\,n-2}$ and $\sigma^2\ge(n-2)\hat\sigma^2/\chi^2_{\alpha,\,n-2}$.
-  \item Matching tests: reject $H_1:\beta_1>\beta_{1,0}$ when $t_0>t_{\alpha,\,n-2}$; reject $H_1:\beta_1<\beta_{1,0}$ when $t_0<-t_{\alpha,\,n-2}$.
   \item The end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound, not a one-sided $95\%$ bound.
-  \item The same applies to the intervals on the mean response and the prediction interval below: use $t_{\alpha,\,n-2}$ and keep one limit.
+  \item The same applies to the mean-response and prediction intervals below: use $t_{\alpha,\,n-2}$ and keep one limit.
 \end{itemize}
 
-\begin{example}
-Slope: $1.9976\pm2.447(0.0278)=1.9976\pm0.068$, that is, $1.930\le\beta_1\le2.066$.
+\begin{example}[Intervals for the running example]
+We have $t_{0.025,6}=2.447$ for $95\%$ intervals.
+
+\textbf{Slope.} The margin is $2.447(0.0278)=0.068$. So
+\[ 1.9976\pm0.068,\qquad\text{that is}\qquad1.930\le\beta_1\le2.066. \]
+The slope is pinned down to within about $\pm0.07$, and $0$ is far outside. This agrees with the test, which rejected $\beta_1=0$.
+
+\textbf{Intercept.} The margin is $2.447(0.1405)=0.344$. So
+\[ 0.0357\pm0.344,\qquad\text{that is}\qquad-0.308\le\beta_0\le0.380. \]
+$0$ is inside, which agrees with the test that did not reject $\beta_0=0$.
+
+\textbf{Variance.} $(n-2)\hat\sigma^2=6(0.0325)=0.195$. With $\chi^2_{0.025,6}=14.449$ and $\chi^2_{0.975,6}=1.237$:
+\[ \frac{0.195}{14.449}\le\sigma^2\le\frac{0.195}{1.237},\qquad\text{that is}\qquad0.0135\le\sigma^2\le0.158. \]
+This interval is wide and asymmetric. With only $6$ degrees of freedom the noise level is poorly known.
 \end{example}
 
 \subsection{Confidence Interval on the Mean Response}
 
-The \emph{mean response} at $x=x_0$ is $\mu_{Y|x_0}=\beta_0+\beta_1x_0$. It is estimated by $\hat\mu_{Y|x_0}=\hat\beta_0+\hat\beta_1x_0$. This estimator is normal and unbiased, with variance $\sigma^2\Big[\dfrac1n+\dfrac{(x_0-\bar{x})^2}{S_{xx}}\Big]$.
+The \emph{mean response} at $x=x_0$ is the height of the \emph{true line} there, $\mu_{Y|x_0}=\beta_0+\beta_1x_0$. We estimate it by the height of the fitted line, $\hat\mu_{Y|x_0}=\hat\beta_0+\hat\beta_1x_0$.
+
+This estimator is normal and unbiased, with variance
+\[ \sigma^2\Big[\frac1n+\frac{(x_0-\bar{x})^2}{S_{xx}}\Big]. \]
+Look at the two terms:
+\begin{itemize}
+  \item $1/n$: uncertainty in the overall height of the line. It shrinks with more data.
+  \item $(x_0-\bar{x})^2/S_{xx}$: uncertainty from the tilt of the line. It grows as $x_0$ moves away from $\bar{x}$, like a seesaw pivoting at the centre.
+\end{itemize}
 
 \begin{theorem}[Interval on the mean response]\label{thm:meanresp}
 A $100(1-\alpha)\%$ confidence interval on $\mu_{Y|x_0}$ is
 \[ \hat\mu_{Y|x_0}\pm t_{\alpha/2,\,n-2}\sqrt{\hat\sigma^2\Big[\frac1n+\frac{(x_0-\bar{x})^2}{S_{xx}}\Big]}. \]
 \end{theorem}
 
-The interval is narrowest at $x_0=\bar{x}$ and widens as $x_0$ moves away from the centre of the data. We know the line best in the middle. The confidence level applies to one chosen $x_0$, not to the whole line.
+The interval is narrowest at $x_0=\bar{x}$ and widens as $x_0$ moves away. We know the line best in the middle of the data. The confidence level applies to one chosen $x_0$, not to the whole line at once.
 
-\begin{example}
-At $x_0=5$: $\hat\mu=0.0357+1.9976(5)=10.024$. The standard error is $\sqrt{0.0325(1/8+0.25/42)}=0.0652$. The $95\%$ interval is $10.024\pm2.447(0.0652)=10.024\pm0.160$.
+\begin{example}[Mean response at two values of $x_0$]
+Use $\hat\sigma^2=0.0325$, $n=8$, $\bar{x}=4.5$, $S_{xx}=42$, $t_{0.025,6}=2.447$.
+
+\textbf{At $x_0=5$ (near the centre).}
+\begin{itemize}
+  \item Estimate: $\hat\mu=0.0357+1.9976(5)=10.024$.
+  \item Standard error: $\sqrt{0.0325(1/8+0.25/42)}=0.0652$.
+  \item $95\%$ interval: $10.024\pm2.447(0.0652)=10.024\pm0.160$.
+\end{itemize}
+
+\textbf{At $x_0=8$ (the edge of the data).}
+\begin{itemize}
+  \item Estimate: $\hat\mu=0.0357+1.9976(8)=16.017$.
+  \item Standard error: $\sqrt{0.0325(1/8+12.25/42)}=0.1164$.
+  \item $95\%$ interval: $16.017\pm2.447(0.1164)=16.017\pm0.285$.
+\end{itemize}
+The margin at the edge ($0.285$) is almost twice the margin near the centre ($0.160$).
 \end{example}
 
 \section{Prediction of New Observations}
 
-A new observation $Y_0$ at $x_0$ equals the mean response plus a new error $\varepsilon_0$, independent of the data.
+A confidence interval on the mean response locates the \emph{line}. A prediction interval locates a \emph{new point}.
+
+A new observation is $Y_0=\beta_0+\beta_1x_0+\varepsilon_0$. It differs from the line by a fresh error $\varepsilon_0$, independent of the data. So it has two sources of uncertainty:
+\begin{enumerate}
+  \item Where is the line? (the same uncertainty as the mean response)
+  \item How far does a single new point scatter from the line? (variance $\sigma^2$, which never shrinks)
+\end{enumerate}
 
 \begin{theorem}[Prediction interval]\label{thm:regpi}
 A $100(1-\alpha)\%$ prediction interval for a future observation $Y_0$ at $x_0$ is
@@ -277,10 +462,49 @@ A $100(1-\alpha)\%$ prediction interval for a future observation $Y_0$ at $x_0$ 
 $Y_0-\hat{Y}_0$ has mean $0$ and variance $\sigma^2+\sigma^2[1/n+(x_0-\bar{x})^2/S_{xx}]$. The two parts are independent. Standardising with $\hat\sigma$ gives a $t_{n-2}$ pivot.
 \end{proof}
 
-\begin{example}
-At $x_0=5$: $\sqrt{0.0325(1+0.1310)}=0.1917$. The prediction interval is $10.024\pm2.447(0.1917)=10.024\pm0.469$.
+The only difference from the mean-response interval is the extra $1$ inside the bracket. That $1$ is the scatter of one new point.
 
-This is much wider than the $\pm0.160$ for the mean response. Even if the line were known exactly, one new observation still scatters by $\sigma$.
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[axis] (0,0)--(9.6,0) node[right,lab]{$x$}; \draw[axis] (0,0)--(0,7.4) node[above,lab]{$y$};
+  \fill[accent!12,domain=0.6:8.4,samples=40] (0.6,{0.75*0.6+0.5-1.2*sqrt(1.125+(0.6-4.5)^2/42)}) -- plot (\x,{0.75*\x+0.5-1.2*sqrt(1.125+(\x-4.5)^2/42)}) -- (8.4,{0.75*8.4+0.5+1.2*sqrt(1.125+(8.4-4.5)^2/42)}) -- plot[domain=8.4:0.6] (\x,{0.75*\x+0.5+1.2*sqrt(1.125+(\x-4.5)^2/42)}) -- cycle;
+  \fill[accent2!25,domain=0.6:8.4,samples=40] (0.6,{0.75*0.6+0.5-1.2*sqrt(0.125+(0.6-4.5)^2/42)}) -- plot (\x,{0.75*\x+0.5-1.2*sqrt(0.125+(\x-4.5)^2/42)}) -- (8.4,{0.75*8.4+0.5+1.2*sqrt(0.125+(8.4-4.5)^2/42)}) -- plot[domain=8.4:0.6] (\x,{0.75*\x+0.5+1.2*sqrt(0.125+(\x-4.5)^2/42)}) -- cycle;
+  \draw[thick,ink] (0.6,{0.75*0.6+0.5})--(8.4,{0.75*8.4+0.5});
+  \foreach \x/\y in {1/1.5,2/1.7,3/3.2,4/3.1,5/4.8,6/4.9,7/6.4,8/6.1}{\fill[ink] (\x,\y) circle (1.5pt);}
+  \draw[dashed,mid] (4.5,0)--(4.5,3.9); \node[lab] at (4.5,-0.35){$\bar{x}$};
+  \node[lab,accent2,anchor=west] at (8.6,6.2){confidence band};
+  \node[lab,accent,anchor=west] at (8.6,7.0){prediction band};
+\end{tikzpicture}
+\caption{Schematic. The dark blue band is the confidence interval for the mean response. The pale orange band is the prediction interval. Both are narrowest at $\bar{x}$ and flare outward. The prediction band is wider everywhere: it must catch individual points, while the confidence band only has to catch the true line.}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Confidence interval (mean response) & Prediction interval\\
+\midrule
+Target & the true line at $x_0$ & one new observation at $x_0$\\
+Variance inside the root & $\dfrac1n+\dfrac{(x_0-\bar{x})^2}{S_{xx}}$ & $1+\dfrac1n+\dfrac{(x_0-\bar{x})^2}{S_{xx}}$\\
+With a huge sample & shrinks to a point & stays about $\pm t\,\sigma$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{example}[Prediction at $x_0=5$ and $x_0=8$]
+\textbf{At $x_0=5$.}
+\begin{itemize}
+  \item $\sqrt{0.0325(1+0.1310)}=0.1917$.
+  \item Interval: $10.024\pm2.447(0.1917)=10.024\pm0.469$.
+  \item Compare the mean-response margin of $\pm0.160$. The prediction interval is about three times wider. Even if the line were known exactly, one new point would still scatter by $\sigma=0.18$.
+\end{itemize}
+
+\textbf{At $x_0=8$.}
+\begin{itemize}
+  \item $\sqrt{0.0325(1+1/8+12.25/42)}=0.2146$.
+  \item Interval: $16.017\pm2.447(0.2146)=16.017\pm0.525$.
+\end{itemize}
+Moving to the edge of the data widens the prediction interval only a little ($0.469\to0.525$), because the scatter of the new point dominates. The mean-response interval widened much more in relative terms.
 \end{example}
 
 \section{Adequacy of the Regression Model}

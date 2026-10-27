@@ -191,8 +191,8 @@
    "title": "Simple Linear Regression and Correlation",
    "tag": "Regression & Correlation",
    "summary": "Many problems ask how two variables are related: the strength of a weld and its temperature, or the fuel use of a car and its weight. An empirical model is an equation fitted to observed data. It describes the relationship but is not derived from first…",
-   "wordCount": 3782,
-   "readingTimeMin": 19,
+   "wordCount": 5146,
+   "readingTimeMin": 26,
    "sectionCount": 12,
    "sections": [
     {
@@ -651,8 +651,8 @@
    "title": "Final Exam Summary: Formulae and Nuances",
    "tag": "Exam Revision",
    "summary": "These nine rules cause most of the lost marks in exams. Learn them before the formulas. Count the tails. Two-sided: split $\\alpha$ into two parts, $\\alpha/2$ in each tail. Use $z_{\\alpha/2}$, $t_{\\alpha/2}$, $\\chi^2_{\\alpha/2}$ and $\\chi^2_{1-\\alpha/2}$,…",
-   "wordCount": 8159,
-   "readingTimeMin": 41,
+   "wordCount": 8740,
+   "readingTimeMin": 44,
    "sectionCount": 12,
    "sections": [
     {
@@ -740,5 +740,5 @@
    ]
   }
  ],
- "figureCount": 9
+ "figureCount": 11
 }

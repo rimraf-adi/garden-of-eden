@@ -26,9 +26,18 @@ These nine rules cause most of the lost marks in exams. Learn them before the fo
     \item One-sided test at $\alpha$ $\leftrightarrow$ one-sided $100(1-\alpha)\%$ bound.
     \item $H_1:\theta>\theta_0$ goes with the lower bound: reject if $\theta_0$ is below it. $H_1:\theta<\theta_0$ goes with the upper bound.
     \item A one-sided test (cutoff $1.645$) can reject while $\theta_0$ is still inside the two-sided $95\%$ interval (cutoff $1.96$). This is not a contradiction. Compare a one-sided test with a one-sided bound, or with the two-sided $90\%$ interval.
+    \item \emph{The gap.} Any $z_0$ between $1.645$ and $1.96$ is rejected by the one-sided test and not by the two-sided test. Example: $\mu_0=50$, $\sigma/\sqrt n=1$, $\bar{x}=51.75$, so $z_0=1.75$. One-sided $P=0.040$ (reject). Two-sided $P=0.080$ (fail). Two-sided $95\%$ interval $(49.79,\,53.71)$ contains $50$. One-sided lower bound $50.105$ excludes $50$.
+    \item \emph{Choose the side before the data.} Choosing the one-sided test after seeing $\bar{x}$ roughly doubles the true Type~I error.
   \end{itemize}
   \item \textbf{Put the claim you want to prove in $H_1$.} Rejecting $H_0$ is a strong conclusion. Failing to reject only means there is not enough evidence. It never proves $H_0$.
-  \item \textbf{Read the $P$-value correctly.} $P$ is the probability of a result at least this extreme if $H_0$ is true. It is not the probability that $H_0$ is true. Reject $H_0$ when $P\le\alpha$.
+  \item \textbf{Read the $P$-value correctly.}
+  \begin{itemize}
+    \item Pretend $H_0$ is true. $P$ is how often a sample would look at least this far from $H_0$ just by luck.
+    \item Small $P$: data like yours would be rare under $H_0$, so doubt $H_0$. Large $P$: nothing contradicts $H_0$.
+    \item $P$ is not the probability that $H_0$ is true.
+    \item $\alpha$ is a cutoff set before the data. $P$ is computed from the data. Reject when $P\le\alpha$.
+    \item For a symmetric statistic, $P_{\text{two-sided}}=2P_{\text{one-sided}}$.
+  \end{itemize}
   \item \textbf{Read confidence correctly.} The $95\%$ describes the method: $95\%$ of intervals made this way contain the parameter. It does not give a probability for one computed interval.
   \item \textbf{Know the three intervals.} A confidence interval bounds a parameter. A prediction interval bounds one future value and is always wider. A tolerance interval bounds a stated proportion of the population.
   \item \textbf{State and check the assumptions.} Normal population for $t$, $\chi^2$ and $F$. Independent samples. Equal variances for the pooled $t$-test and for ANOVA.
@@ -564,6 +573,12 @@ The sign in $H_1$ points to the tail: $>$ means the statistic must be large and 
 \begin{itemize}
   \item $\hat\sigma^2$ divides by $n-2$ (two parameters estimated). $\operatorname{cov}(\hat\beta_0,\hat\beta_1)=-\bar{x}\sigma^2/S_{xx}$. The $\hat\beta$'s are unbiased and BLUE.
   \item The $t$-test allows one-sided alternatives; the $F$-test does not. One-sided bounds use $t_{\alpha,n-2}$.
+  \item \textbf{Every test is signal over noise.} $t_0=(\hat\beta_1-\beta_{1,0})/\se(\hat\beta_1)$: distance from the claimed value, measured in standard errors. A large $\abs{t_0}$ means the slope is not just wobble.
+  \item \textbf{Reading $H_0:\beta_1=0$.} Reject: $x$ helps explain $Y$ (line may still need a higher-order term). Fail to reject: no evidence of a linear relationship (either $x$ explains little, or the relationship is not linear).
+  \item \textbf{ANOVA logic.} Each $y_i-\bar{y}$ splits into explained $(\hat{y}_i-\bar{y})$ plus unexplained $(y_i-\hat{y}_i)$. $F_0=MS_R/MS_E$ compares explained to unexplained variability per degree of freedom. Near $1$: the line explains only chance. Large: real slope. Only the upper tail rejects. $F_0=t_0^2$, so both tests always agree.
+  \item \textbf{Interval $=$ estimate $\pm$ multiplier $\times$ standard error.} A two-sided $100(1-\alpha)\%$ interval contains exactly the values $\beta_{1,0}$ that the two-sided level-$\alpha$ test would not reject. If $0$ is outside the slope interval, the slope is significant.
+  \item \textbf{Which interval?} Coefficients: where is the true line's slope or intercept? Mean response: where is the true line at $x_0$? Prediction: where will one new $y$ fall? Prediction adds the extra $1$ (the scatter $\sigma^2$ of one new point), so it never shrinks to zero width.
+  \item \textbf{Variance interval:} $\dfrac{(n-2)\hat\sigma^2}{\chi^2_{\alpha/2,n-2}}\le\sigma^2\le\dfrac{(n-2)\hat\sigma^2}{\chi^2_{1-\alpha/2,n-2}}$ (wide and asymmetric for small $n$).
   \item Both intervals are narrowest at $x_0=\bar{x}$; the prediction interval is always wider. The confidence level applies to one $x_0$, not the whole line.
   \item $R^2$ does not measure the slope or whether the model is correct, and it always rises with more terms.
   \item Residuals: standardised $d_i=e_i/\hat\sigma$ (about $95\%$ within $\pm2$). A curve means the wrong form; a funnel means transform $y$ ($\sqrt{y}$, $\ln y$, $1/y$). Linearise $y=\beta_0e^{\beta_1x}$ by $\ln y$, $y=\beta_0x^{\beta_1}$ by logs of both.
@@ -601,6 +616,27 @@ The sign in $H_1$ points to the tail: $>$ means the statistic must be large and 
   \item \textbf{Mean response.} $\se=\sqrt{0.0357\big(\tfrac15+\tfrac{0.25}{10}\big)}=0.0896$, so $7.015\pm3.182(0.0896)=7.015\pm0.285$.
   \item \textbf{New observation.} $\se=\sqrt{0.0357\big(1+\tfrac15+\tfrac{0.25}{10}\big)}=0.209$, so $7.015\pm3.182(0.209)=7.015\pm0.665$.
   \item \textbf{Conclusion.} The prediction interval is wider because it includes the variation of a single new observation.
+\end{itemize}
+\end{example}
+
+\begin{example}[ANOVA table, step by step]
+\begin{itemize}
+  \item \textbf{Given.} Same data: $S_{yy}=39.708$, $S_{xy}=19.9$, $\hat\beta_1=1.99$, $n=5$.
+  \item \textbf{Total.} $SS_T=39.708$, $4$ df.
+  \item \textbf{Explained.} $SS_R=\hat\beta_1S_{xy}=1.99(19.9)=39.601$, $1$ df, so $MS_R=39.601$.
+  \item \textbf{Unexplained.} $SS_E=39.708-39.601=0.107$, $3$ df, so $MS_E=0.0357$.
+  \item \textbf{Ratio.} $f_0=39.601/0.0357=1109$. Critical value $f_{0.05,1,3}=10.13$. Reject.
+  \item \textbf{Check.} $t_0^2=33.3^2=1109$. Same decision as the $t$-test.
+\end{itemize}
+\end{example}
+
+\begin{example}[Intervals on the slope and intercept]
+\begin{itemize}
+  \item \textbf{Given.} $\hat\beta_1=1.99$, $\se(\hat\beta_1)=0.0597$, $\hat\beta_0=0.05$, $t_{0.025,3}=3.182$.
+  \item \textbf{Slope.} $1.99\pm3.182(0.0597)=1.99\pm0.190$, that is $(1.80,\,2.18)$. Excludes $0$, matching the significant test.
+  \item \textbf{Intercept standard error.} $\sqrt{0.0357(1/5+9/10)}=0.198$.
+  \item \textbf{Intercept.} $0.05\pm3.182(0.198)=0.05\pm0.631$, that is $(-0.58,\,0.68)$. Includes $0$: no evidence the line misses the origin.
+  \item \textbf{One-sided $95\%$ lower bound for the slope.} Use $t_{0.05,3}=2.353$: $1.99-2.353(0.0597)=1.85$.
 \end{itemize}
 \end{example}
 
