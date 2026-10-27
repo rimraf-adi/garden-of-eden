@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summary - Very Important — Matrices & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Matrices &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Matrices and Determinants</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-matrices" class="toc-link" data-slug="types-of-matrices">Types of Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#row-matrix" class="toc-link" data-slug="row-matrix">Row Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#column-matrix" class="toc-link" data-slug="column-matrix">Column Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#square-matrix" class="toc-link" data-slug="square-matrix">Square Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#zero-matrix" class="toc-link" data-slug="zero-matrix">Zero Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-matrix" class="toc-link" data-slug="identity-matrix">Identity Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#diagonal-matrix" class="toc-link" data-slug="diagonal-matrix">Diagonal Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#triangular-matrix" class="toc-link" data-slug="triangular-matrix">Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#upper-triangular-matrix" class="toc-link" data-slug="upper-triangular-matrix">Upper Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#lower-triangular-matrix" class="toc-link" data-slug="lower-triangular-matrix">Lower Triangular Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#matrix-operations" class="toc-link" data-slug="matrix-operations">Matrix Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#addition" class="toc-link" data-slug="addition">Addition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#scalar-multiplications" class="toc-link" data-slug="scalar-multiplications">Scalar Multiplications</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#matrix-multiplication" class="toc-link" data-slug="matrix-multiplication">Matrix Multiplication</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#transpose" class="toc-link" data-slug="transpose">Transpose</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#square-matrices" class="toc-link" data-slug="square-matrices">Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#diagonal-and-trace" class="toc-link" data-slug="diagonal-and-trace">Diagonal and Trace</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#identity-and-scalar-matrices" class="toc-link" data-slug="identity-and-scalar-matrices">Identity and Scalar Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#powers-of-matrices" class="toc-link" data-slug="powers-of-matrices">Powers of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#polynomials-in-matrices" class="toc-link" data-slug="polynomials-in-matrices">Polynomials in Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#definition-of-determinant" class="toc-link" data-slug="definition-of-determinant">Definition of Determinant</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#cofactor-expansion" class="toc-link" data-slug="cofactor-expansion">Cofactor Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#properties-of-determinants" class="toc-link" data-slug="properties-of-determinants">Properties of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#invertible-nonsingular-matrices" class="toc-link" data-slug="invertible-nonsingular-matrices">Invertible (Nonsingular) Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#inverse-of-a-2-times-2-matrix" class="toc-link" data-slug="inverse-of-a-2-times-2-matrix">Inverse of a $2 \times 2$ Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#inverse-of-an-n-times-n-matrix" class="toc-link" data-slug="inverse-of-an-n-times-n-matrix">Inverse of an $n \times n$ Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-determinants" class="toc-link" data-slug="applications-of-determinants">Applications of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#special-square-matrices" class="toc-link" data-slug="special-square-matrices">Special Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#symmetric-and-skew-symmetric" class="toc-link" data-slug="symmetric-and-skew-symmetric">Symmetric and Skew-Symmetric</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Rank and Nullity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#vectors-from-matrices" class="toc-link" data-slug="vectors-from-matrices">Vectors from Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#row-space-column-space-and-null-space" class="toc-link" data-slug="row-space-column-space-and-null-space">Row Space, Column Space, and Null Space</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#prerequisites-echelon-forms" class="toc-link" data-slug="prerequisites-echelon-forms">Prerequisites: Echelon Forms</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#finding-the-spaces" class="toc-link" data-slug="finding-the-spaces">Finding the Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-1-row-column-and-null-spaces" class="toc-link" data-slug="example-1-row-column-and-null-spaces">Example 1: Row, Column, and Null Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-2-already-in-row-echelon-form" class="toc-link" data-slug="example-2-already-in-row-echelon-form">Example 2: Already in Row Echelon Form</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-of-a-matrix" class="toc-link" data-slug="rank-of-a-matrix">Rank of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-rank" class="toc-link" data-slug="properties-of-rank">Properties of Rank</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#nullity-of-a-matrix" class="toc-link" data-slug="nullity-of-a-matrix">Nullity of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-nullity-theorem" class="toc-link" data-slug="rank-nullity-theorem">Rank-Nullity Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-rank-and-nullity" class="toc-link" data-slug="applications-of-rank-and-nullity">Applications of Rank and Nullity</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Eigenvalues and Eigenvectors</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#characteristic-polynomial" class="toc-link" data-slug="characteristic-polynomial">Characteristic Polynomial</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#finding-eigenvalues-and-eigenvectors" class="toc-link" data-slug="finding-eigenvalues-and-eigenvectors">Finding Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#properties-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="properties-of-eigenvalues-and-eigenvectors">Properties of Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-matrices" class="toc-link" data-slug="diagonalization-of-matrices">Diagonalization of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="applications-of-eigenvalues-and-eigenvectors">Applications of Eigenvalues and Eigenvectors</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Systems of Linear Equations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#matrix-representation-of-linear-systems" class="toc-link" data-slug="matrix-representation-of-linear-systems">Matrix Representation of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#homogeneous-and-non-homogeneous-systems" class="toc-link" data-slug="homogeneous-and-non-homogeneous-systems">Homogeneous and Non-Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#consistency-of-systems" class="toc-link" data-slug="consistency-of-systems">Consistency of Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gaussian-elimination" class="toc-link" data-slug="gaussian-elimination">Gaussian Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gauss-jordan-elimination" class="toc-link" data-slug="gauss-jordan-elimination">Gauss-Jordan Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#solution-using-inverse-of-a-matrix" class="toc-link" data-slug="solution-using-inverse-of-a-matrix">Solution using Inverse of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#properties-and-shortcuts-in-linear-systems" class="toc-link" data-slug="properties-and-shortcuts-in-linear-systems">Properties and Shortcuts in Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications-of-linear-systems" class="toc-link" data-slug="applications-of-linear-systems">Applications of Linear Systems</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Matrix Factorizations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#lu-decomposition" class="toc-link" data-slug="lu-decomposition">LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#applications-of-lu-factorization" class="toc-link" data-slug="applications-of-lu-factorization">Applications of LU Factorization</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Special Matrices</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal" class="toc-link" data-slug="orthogonal">Orthogonal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal" class="toc-link" data-slug="normal">Normal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#idempotent-matrices" class="toc-link" data-slug="idempotent-matrices">Idempotent Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#partition-block-matrices" class="toc-link" data-slug="partition-block-matrices">Partition (Block) Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#properties-of-special-matrices" class="toc-link" data-slug="properties-of-special-matrices">Properties of Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#applications-of-special-matrices" class="toc-link" data-slug="applications-of-special-matrices">Applications of Special Matrices</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch07.html" class="chapter-link active">Chapter 7: Summary - Very Important</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#1-types-of-linear-systems" class="toc-link" data-slug="1-types-of-linear-systems">1. Types of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#2-rank-and-nullity" class="toc-link" data-slug="2-rank-and-nullity">2. Rank and Nullity</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#3-rouch-capelli-theorem-consistency" class="toc-link" data-slug="3-rouch-capelli-theorem-consistency">3. Rouché–Capelli Theorem (Consistency)</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#4-homogeneous-systems" class="toc-link" data-slug="4-homogeneous-systems">4. Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#5-determinants-and-invertibility" class="toc-link" data-slug="5-determinants-and-invertibility">5. Determinants and Invertibility</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#6-lu-decomposition" class="toc-link" data-slug="6-lu-decomposition">6. LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#7-eigenvalues-and-eigenvectors" class="toc-link" data-slug="7-eigenvalues-and-eigenvectors">7. Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#8-underdetermined-and-overdetermined-systems" class="toc-link" data-slug="8-underdetermined-and-overdetermined-systems">8. Underdetermined and Overdetermined Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#9-free-variables-and-infinite-solutions" class="toc-link" data-slug="9-free-variables-and-infinite-solutions">9. Free Variables and Infinite Solutions</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#10-parameter-dependent-systems" class="toc-link" data-slug="10-parameter-dependent-systems">10. Parameter-Dependent Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#11-linear-dependence-of-columns" class="toc-link" data-slug="11-linear-dependence-of-columns">11. Linear Dependence of Columns</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#12-key-tricks-and-observations" class="toc-link" data-slug="12-key-tricks-and-observations">12. Key Tricks and Observations</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 7 of 7</div><h1>Summary - Very Important</h1></div>
+<section id="1-types-of-linear-systems" class="content-section level-1">
+<h2 class="section-heading">1. Types of Linear Systems</h2>
+<div class="concept-box"><div class="box-title">Linear Systems</div><div class="box-body"><ul><li><p><strong>Homogeneous:</strong> $AX=0$</p>
+<ul><li><p>Always consistent</p></li><li><p>Trivial solution: $X=0$</p></li><li><p>Non-trivial solution if $\text{rank}(A)&lt;n$</p></li><li><p>Nullity = $n - \text{rank}(A)$ → number of free variables</p></li></ul></li><li><p><strong>Non-homogeneous:</strong> $AX=b$</p>
+<ul><li><p>Consistent if $\text{rank}(A) = \text{rank}([A|b])$</p></li><li><p>No solution if $\text{rank}(A) \neq \text{rank}([A|b])$</p></li></ul></li></ul></div></div>
+<p><strong>Space to write examples:</strong></p>
+</section>
+<section id="2-rank-and-nullity" class="content-section level-1">
+<h2 class="section-heading">2. Rank and Nullity</h2>
+<div class="concept-box"><div class="box-title">Rank and Nullity</div><div class="box-body"><ul><li><p>Rank: Number of linearly independent rows/columns</p></li><li><p>Nullity: $n - \text{rank}(A)$</p></li><li><p>Dimension of null space → solutions to $AX=0$</p></li><li><p>Number of free variables = nullity</p></li></ul></div></div>
+</section>
+<section id="3-rouch-capelli-theorem-consistency" class="content-section level-1">
+<h2 class="section-heading">3. Rouché–Capelli Theorem (Consistency)</h2>
+<div class="concept-box"><div class="box-title">Consistency</div><div class="box-body"><p>System $AX=b$ is consistent iff:
+\[
+\text{rank}(A) = \text{rank}([A|b])
+\]</p>
+<ul><li><p>Unique solution: rank = n (full rank)</p></li><li><p>Infinite solutions: rank &lt; n and consistent</p></li><li><p>No solution: rank([A|b]) &gt; rank(A)</p></li></ul></div></div>
+</section>
+<section id="4-homogeneous-systems" class="content-section level-1">
+<h2 class="section-heading">4. Homogeneous Systems</h2>
+<div class="concept-box"><div class="box-title">Homogeneous Systems</div><div class="box-body"><ul><li><p>Always consistent</p></li><li><p>Trivial solution: $X=0$</p></li><li><p>Non-trivial solution exists if $\text{rank}(A)&lt;n$</p></li><li><p>All solutions are linear combinations of basis vectors of null space</p></li></ul></div></div>
+</section>
+<section id="5-determinants-and-invertibility" class="content-section level-1">
+<h2 class="section-heading">5. Determinants and Invertibility</h2>
+<div class="concept-box"><div class="box-title">Determinants</div><div class="box-body"><ul><li><p>$\det(A)\neq 0 \Rightarrow$ Full rank, invertible</p></li><li><p>$\det(A)=0 \Rightarrow$ Singular, rank $&lt;$ n</p></li><li><p>Non-homogeneous system unique solution only if $\det(A)\neq0$</p></li></ul></div></div>
+</section>
+<section id="6-lu-decomposition" class="content-section level-1">
+<h2 class="section-heading">6. LU Decomposition</h2>
+<div class="concept-box"><div class="box-title">LU Decomposition</div><div class="box-body"><p>\[
+A = LU, \quad L=\text{lower triangular}, \quad U=\text{upper triangular}
+\]</p>
+<ul><li><p>Solve $AX=b$ via:</p>
+<ol><li><p>$LY=b$ (forward substitution)</p></li><li><p>$UX=Y$ (backward substitution)</p></li></ol></li><li><p>$A$ invertible $\Rightarrow$ L and U invertible</p></li><li><p>Singular $A \Rightarrow$ at least one zero on U diagonal</p></li></ul></div></div>
+</section>
+<section id="7-eigenvalues-and-eigenvectors" class="content-section level-1">
+<h2 class="section-heading">7. Eigenvalues and Eigenvectors</h2>
+<div class="concept-box"><div class="box-title">Eigenvalues</div><div class="box-body"><ul><li><p>$Av = \lambda v$</p></li><li><p>Trace = sum of eigenvalues</p></li><li><p>Determinant = product of eigenvalues</p></li><li><p>Rank = number of non-zero eigenvalues</p></li><li><p>Symmetric matrices → real eigenvalues, orthogonal eigenvectors</p></li></ul></div></div>
+</section>
+<section id="8-underdetermined-and-overdetermined-systems" class="content-section level-1">
+<h2 class="section-heading">8. Underdetermined and Overdetermined Systems</h2>
+<div class="concept-box"><div class="box-title">Under/Overdetermined</div><div class="box-body"><ul><li><p>$m&lt;n$: fewer equations → infinite solutions (if consistent)</p></li><li><p>$m&gt;n$: more equations → may be inconsistent</p></li><li><p>$m=n$: full rank → unique solution possible</p></li></ul></div></div>
+</section>
+<section id="9-free-variables-and-infinite-solutions" class="content-section level-1">
+<h2 class="section-heading">9. Free Variables and Infinite Solutions</h2>
+<div class="concept-box"><div class="box-title">Free Variables</div><div class="box-body"><ul><li><p>Free variables = $n - \text{rank}(A)$</p></li><li><p>Infinite solutions = linear combination of null space basis</p></li><li><p>Homogeneous: all solutions = linear combinations of null space vectors</p></li></ul></div></div>
+</section>
+<section id="10-parameter-dependent-systems" class="content-section level-1">
+<h2 class="section-heading">10. Parameter-Dependent Systems</h2>
+<div class="concept-box"><div class="box-title">Parameters</div><div class="box-body"><ul><li><p>Compute determinant/rank symbolically</p></li><li><p>Solve for parameters:</p>
+<ul><li><p>Infinitely many solutions → rank drops</p></li><li><p>Unique solution → full rank</p></li><li><p>No solution → augmented rank $&gt;$ rank</p></li></ul></li></ul></div></div>
+</section>
+<section id="11-linear-dependence-of-columns" class="content-section level-1">
+<h2 class="section-heading">11. Linear Dependence of Columns</h2>
+<div class="concept-box"><div class="box-title">Linear Dependence</div><div class="box-body"><ul><li><p>Columns $a_1,\dots,a_n$ linearly dependent if $\sum c_i a_i = 0, c_i \neq 0$</p></li><li><p>Implication: solution may be infinite or none depending on augmented rank</p></li></ul></div></div>
+</section>
+<section id="12-key-tricks-and-observations" class="content-section level-1">
+<h2 class="section-heading">12. Key Tricks and Observations</h2>
+<div class="concept-box"><div class="box-title">Tricks</div><div class="box-body"><ul><li><p>Sum of singular matrices → may be non-singular</p></li><li><p>Sum of non-singular matrices → may be singular</p></li><li><p>Zero determinant → each row/column = linear combination of others</p></li><li><p>Eigenvalues of symmetric → real</p></li><li><p>LU decomposition: forward/backward substitution</p></li></ul></div></div>
+</section>
+<section id="summary" class="content-section level-1">
+<h2 class="section-heading">Summary</h2>
+<div class="concept-box"><div class="box-title">1. Types of Systems</div><div class="box-body"><p>Homogeneous, Non-homogeneous; Trivial/non-trivial solutions</p></div></div>
+<div class="concept-box"><div class="box-title">2. Rank and Nullity</div><div class="box-body"><p>Rank = independent rows/columns; Nullity = n - rank</p></div></div>
+<div class="concept-box"><div class="box-title">3. Consistency (Rouché–Capelli)</div><div class="box-body"><p>System consistent if rank(A) = rank([A|b])</p></div></div>
+<div class="concept-box"><div class="box-title">4. Homogeneous Systems</div><div class="box-body"><p>Always consistent; non-trivial if rank &lt; n</p></div></div>
+<div class="concept-box"><div class="box-title">5. Determinants and Invertibility</div><div class="box-body"><p>det(A) ≠ 0 → invertible; det(A) = 0 → singular</p></div></div>
+<div class="concept-box"><div class="box-title">6. LU Decomposition</div><div class="box-body"><p>Solve AX=b via LY=b, UX=Y; L,U invertible if A invertible</p></div></div>
+<div class="concept-box"><div class="box-title">7. Eigenvalues and Eigenvectors</div><div class="box-body"><p>$Av = \lambda v$; Symmetric → real eigenvalues, orthogonal eigenvectors</p></div></div>
+<div class="concept-box"><div class="box-title">8. Under/Overdetermined Systems</div><div class="box-body"><p>m$&lt;$n → infinite solutions; m&gt;n → may be inconsistent</p></div></div>
+<div class="concept-box"><div class="box-title">9. Free Variables and Infinite Solutions</div><div class="box-body"><p>Free variables = n - rank(A); infinite solutions = linear combinations</p></div></div>
+<div class="concept-box"><div class="box-title">10. Parameter-Dependent Systems</div><div class="box-body"><p>Use determinant/rank symbolically to find parameter values for solution type</p></div></div>
+<div class="concept-box"><div class="box-title">11. Linear Dependence of Columns</div><div class="box-body"><p>Columns dependent → solution may be infinite or none depending on augmented rank</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch06.html">&larr; Chapter 6: Special Matrices</a><span class="spacer"></span></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Matrices &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classification Models - II — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 6</div><h1>Classification Models - II</h1></div>
+<section id="linear-discrimination-analysis-lda" class="content-section level-1">
+<h2 class="section-heading">Linear Discrimination Analysis (LDA)</h2>
+<div class="concept-box"><div class="box-title">What is LDA?</div><div class="box-body"><p><strong>Linear Discriminant Analysis (LDA)</strong> is a supervised dimensionality reduction technique used in machine learning, statistics, and pattern recognition. It seeks to find a <strong>linear projection</strong> (a direction or axis) that maximizes the separation between multiple classes while minimizing the spread within each class.</p>
+<p>LDA is primarily used for:</p>
+<ul><li><p><strong>Feature reduction:</strong> projecting high-dimensional data onto a lower-dimensional subspace.</p></li><li><p><strong>Classification:</strong> improving class separability before applying classifiers such as Logistic Regression or SVM.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Two Perspectives of Linear Discriminant Analysis (LDA)</div><div class="box-body"><ul><li><p><strong>Generative Perspective (Bayesian LDA):</strong> <br>
+    This approach treats LDA as a <em>generative model</em>, meaning it attempts to learn how each class generates the data. 
+    It models the probability distribution of the features for each class, $p(x|C_k)$, and combines it with the prior probability $P(C_k)$ 
+    to compute the posterior probability $P(C_k|x)$ using Bayes’ theorem. 
+    In simple terms, the model first learns the underlying data distribution of each class and then predicts which class 
+    is most likely to have produced a new observation.</p></li><li><p><strong>Discriminative Perspective (Fisher’s LDA):</strong> <br>
+    This approach treats LDA as a <em>discriminative model</em>, meaning it focuses on finding a boundary that best separates the classes 
+    rather than modeling how the data was generated. 
+    Fisher’s method seeks a projection direction in which the classes are most distinct — that is, the distance between class means is large 
+    while the variation within each class is small. 
+    It does not model class probabilities explicitly but directly aims to achieve maximum class separability.</p></li></ul>
+<p><strong>Summary:</strong> <br>
+In essence, the generative form (Bayesian LDA) focuses on how data is produced by each class, 
+while the discriminative form (Fisher’s LDA) focuses on how to best separate the classes.</p></div></div>
+</section>
+<section id="fisher-s-linear-discriminant-analysis-lda" class="content-section level-1">
+<h2 class="section-heading">Fisher’s Linear Discriminant Analysis (LDA)</h2>
+<p>LDA aims to find a direction \( \mathbf{w} \) such that, when data points \( \mathbf{x} \) are projected onto it, the <em>between-class variance</em> is maximized, and the <em>within-class variance</em> is minimized.</p>
+<p>The following figures illustrate how LDA transforms data by projecting it onto a line that best separates the classes.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig041.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig042.png" alt="diagram"></div>
+<p><br></p>
+<p>{LDA finds a projection direction $\mathbf{w}$ that maximizes class separability.
+In the top figure, data from two classes overlap in the 2D space.
+After projection (bottom figure), the classes are well separated in 1D.}</p>
+<div class="concept-box"><div class="box-title">Concept of Fisher’s LDA</div><div class="box-body"><p><strong>Fisher’s Linear Discriminant Analysis (LDA)</strong> finds a projection direction (or matrix) that maximizes the separation between classes in a lower-dimensional space.</p>
+<p><strong>Goal:</strong> Find a projection vector $w$ that projects high-dimensional data $X = (X_1, X_2, \ldots, X_p)^T$ onto a one-dimensional line $y = w^T X$ such that samples from different classes are well-separated while samples within the same class remain close.</p>
+<p><strong>Intuition:</strong></p>
+<ul><li><p>LDA is not just a classifier — it’s a dimensionality reduction technique that preserves class separability.</p></li><li><p>For two classes, it finds a single direction $w$ maximizing the ratio of between-class variance to within-class variance.</p></li><li><p>For $K$ classes, it finds $(K-1)$ optimal directions (columns of $W$).</p></li></ul></div></div>
+<section id="two-class-fisher-lda-step-by-step-derivation" class="content-section level-2">
+<h3 class="section-heading">Two-Class Fisher LDA: Step-by-Step Derivation</h3>
+<div class="concept-box"><div class="box-title">Step 1: Define means and scatter matrices</div><div class="box-body"><p>Let two classes $C_1$ and $C_2$ have:
+\[
+\mu_1 = \frac{1}{N_1}\sum_{i\in C_1} x^{(i)}, \quad
+\mu_2 = \frac{1}{N_2}\sum_{i\in C_2} x^{(i)}
+\]
+The global mean:
+\[
+\mu = \frac{N_1\mu_1 + N_2\mu_2}{N_1 + N_2}
+\]</p>
+<p><strong>Within-class scatter:</strong>
+\[
+S_W = S_1 + S_2, \quad
+S_k = \sum_{i\in C_k} (x^{(i)} - \mu_k)(x^{(i)} - \mu_k)^T
+\]
+represents how samples of the same class are scattered around their mean.</p>
+<p><strong>Between-class scatter:</strong>
+\[
+S_B = (\mu_1 - \mu_2)(\mu_1 - \mu_2)^T
+\]
+represents how far apart the class means are.</p></div></div>
+<div class="concept-box"><div class="box-title">Step 2: Define the Fisher criterion</div><div class="box-body"><p>We project each sample $x$ onto a line:
+\[
+y = w^T x
+\]</p>
+<p>The projected means:
+\[
+m_1 = w^T \mu_1, \quad m_2 = w^T \mu_2
+\]</p>
+<p>The projected within-class variance:
+\[
+s_w^2 = w^T S_W w
+\]</p>
+<p><strong>Fisher’s criterion:</strong>
+\[
+J(w) = \frac{(m_1 - m_2)^2}{s_w^2} = \frac{w^T S_B w}{w^T S_W w}
+\]</p>
+<p><strong>Goal:</strong> Maximize $J(w)$ to find the best discriminant direction.</p></div></div>
+<div class="concept-box"><div class="box-title">Step 3: Optimization using generalized eigenvalue problem</div><div class="box-body"><p>Maximizing $J(w)$:
+\[
+\max_w \frac{w^T S_B w}{w^T S_W w}
+\]</p>
+<p>This leads to:
+\[
+S_B w = \lambda S_W w
+\]</p>
+<p>Substitute $S_B = (\mu_1 - \mu_2)(\mu_1 - \mu_2)^T$:
+\[
+(\mu_1 - \mu_2)(\mu_1 - \mu_2)^T w = \lambda S_W w
+\]</p>
+<p>This gives the solution:
+\[
+w \propto S_W^{-1}(\mu_1 - \mu_2)
+\]</p>
+<p><strong>Interpretation:</strong></p>
+<ul><li><p>$S_W^{-1}$ “whitens” the data (removes within-class correlation).</p></li><li><p>$(\mu_1 - \mu_2)$ gives the direction connecting class means.</p></li><li><p>Hence $w$ points in the direction of maximal class separability.</p></li></ul></div></div>
+</section>
+<section id="numerical-example" class="content-section level-2">
+<h3 class="section-heading">Numerical Example</h3>
+<div class="concept-box"><div class="box-title">Example: Two-Class Case</div><div class="box-body"><p><strong>Given:</strong>
+\[
+\mu_1 = \begin{bmatrix}1\\2\end{bmatrix}, \quad
+\mu_2 = \begin{bmatrix}3\\4\end{bmatrix}, \quad
+S_W = \begin{bmatrix}2 &amp; 1\\1 &amp; 2\end{bmatrix}
+\]</p>
+<p><strong>Compute:</strong>
+\[
+w = S_W^{-1}(\mu_1 - \mu_2)
+\]
+\[
+S_W^{-1} = \frac{1}{3}
+\begin{bmatrix}2 &amp; -1\\-1 &amp; 2\end{bmatrix}
+\Rightarrow
+w = \frac{1}{3}\begin{bmatrix}-2\\-2\end{bmatrix}
+\propto
+\begin{bmatrix}-1\\-1\end{bmatrix}
+\]</p>
+<p><strong>Decision rule:</strong>
+Project $x$ and classify based on threshold:
+\[
+y = w^T x, \quad
+\text{assign to } C_1 \text{ if } y &lt; t, \text{ else } C_2
+\]
+where
+\[
+t = \frac{1}{2} w^T (\mu_1 + \mu_2)
+\]</p></div></div>
+</section>
+<section id="multiclass-fisher-lda-derivation" class="content-section level-2">
+<h3 class="section-heading">Multiclass Fisher LDA Derivation</h3>
+<div class="concept-box"><div class="box-title">Multiclass Case $(K&gt;2)$</div><div class="box-body"><p>For $K$ classes, we define:
+\[
+S_W = \sum_{k=1}^{K}\sum_{i\in C_k}(x^{(i)} - \mu_k)(x^{(i)} - \mu_k)^T,
+\quad
+S_B = \sum_{k=1}^{K} N_k(\mu_k - \mu)(\mu_k - \mu)^T
+\]</p>
+<p>Objective:
+\[
+J(W) = \frac{|W^T S_B W|}{|W^T S_W W|}
+\]</p>
+<p>Optimization leads to the generalized eigenvalue problem:
+\[
+S_B w_i = \lambda_i S_W w_i, \quad i = 1,2,\ldots,K-1
+\]</p>
+<p>The top $(K-1)$ eigenvectors form the projection matrix:
+\[
+W = [w_1, w_2, \ldots, w_{K-1}]
+\]</p></div></div>
+<p><strong>Interpretation:</strong></p>
+<ul><li><p>Each column of $W$ defines one discriminant axis.</p></li><li><p>The data is projected onto the $(K-1)$-dimensional subspace for maximum separability.</p></li></ul>
+</section>
+<section id="assumptions-of-fisher-lda" class="content-section level-2">
+<h3 class="section-heading">Assumptions of Fisher LDA</h3>
+<ul><li><p>Each class is normally distributed (Gaussian).</p></li><li><p>All classes share the same covariance matrix $\Sigma$.</p></li><li><p>Classes are linearly separable in some projection space.</p></li><li><p>$S_W$ is nonsingular or regularized.</p></li></ul>
+</section>
+</section>
+<section id="bayesian-view-of-linear-discriminant-analysis" class="content-section level-1">
+<h2 class="section-heading">Bayesian View of Linear Discriminant Analysis</h2>
+<div class="concept-box"><div class="box-title">Step-by-step Bayesian derivation of LDA</div><div class="box-body"><p><strong>Assumption:</strong> For each class \(C_k\) the class-conditional density is Gaussian with common covariance \(\Sigma\) and mean \(\mu_k\):
+\[
+p(x\mid C_k)
+=
+\frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}
+\exp\!\Big( -\tfrac{1}{2}(x-\mu_k)^\top\Sigma^{-1}(x-\mu_k)\Big).
+\]</p>
+<p><strong>Step 1: write the log-likelihood (log of class-conditional density).</strong>
+\[
+\log p(x\mid C_k)
+= -\frac{p}{2}\log(2\pi) -\frac{1}{2}\log|\Sigma|
+\;-\;\frac{1}{2}(x-\mu_k)^\top\Sigma^{-1}(x-\mu_k).
+\]
+The first two terms are constants w.r.t. \(x\) and \(k\) (if \(\Sigma\) is common).</p>
+<p><strong>Step 2: expand the quadratic form.</strong>
+Use
+\[
+(x-\mu_k)^\top\Sigma^{-1}(x-\mu_k)
+= x^\top\Sigma^{-1}x \;-\; 2x^\top\Sigma^{-1}\mu_k \;+\; \mu_k^\top\Sigma^{-1}\mu_k.
+\]
+Substitute into the log-likelihood:
+\[
+\log p(x\mid C_k)
+= -\frac{p}{2}\log(2\pi) -\frac{1}{2}\log|\Sigma|
+\;-\;\frac{1}{2}x^\top\Sigma^{-1}x
+\;+\; x^\top\Sigma^{-1}\mu_k
+\;-\;\frac{1}{2}\mu_k^\top\Sigma^{-1}\mu_k.
+\]</p>
+<p><strong>Step 3: form the log-posterior (discriminant) by adding the log prior.</strong>
+Let the class prior be \(P(C_k)=\pi_k\). Define
+\[
+\delta_k(x) \;=\; \log p(x\mid C_k) + \log\pi_k.
+\]
+Hence
+\[
+\delta_k(x)
+= -\frac{p}{2}\log(2\pi) -\frac{1}{2}\log|\Sigma|
+-\frac{1}{2}x^\top\Sigma^{-1}x
++ x^\top\Sigma^{-1}\mu_k
+-\frac{1}{2}\mu_k^\top\Sigma^{-1}\mu_k
++ \log\pi_k.
+\]</p>
+<p><strong>Step 4: drop terms that are common to all classes.</strong>
+The terms \(-\tfrac{p}{2}\log(2\pi)\), \(-\tfrac{1}{2}\log|\Sigma|\) and \(-\tfrac{1}{2}x^\top\Sigma^{-1}x\) do not depend on \(k\), so they cancel when comparing \(\delta_i(x)\) vs \(\delta_j(x)\). Removing those common terms (or equivalently adding a constant) yields the simplified discriminant:
+\[
+\boxed{\;
+\delta_k(x) \;=\; x^\top\Sigma^{-1}\mu_k \;-\; \tfrac{1}{2}\mu_k^\top\Sigma^{-1}\mu_k \;+\; \log\pi_k
+\;}
+\]
+This is an affine (linear + constant) function of \(x\).</p>
+<p><strong>Step 5: write the pairwise decision boundary.</strong>
+To find the boundary between class \(C_i\) and \(C_j\) set \(\delta_i(x)=\delta_j(x)\). Rearranging:
+\[
+x^\top\Sigma^{-1}(\mu_i-\mu_j)
+\;=\;
+\tfrac{1}{2}\big(\mu_i^\top\Sigma^{-1}\mu_i - \mu_j^\top\Sigma^{-1}\mu_j\big)
+\;-\; \log\frac{\pi_i}{\pi_j}.
+\]
+This is a linear equation in \(x\) (a hyperplane), so the decision boundary is linear.</p>
+<p><strong>Remark:</strong> If covariances are <em>not</em> equal (\(\Sigma_k\) differ across classes), the quadratic term \(-\tfrac12 x^\top\Sigma_k^{-1}x\) will <em>not</em> cancel across classes and the resulting boundary is generally <em>quadratic</em> — this gives Quadratic Discriminant Analysis (QDA) instead of LDA.</p>
+<p><strong>Decision rule:</strong> Assign \(x\) to the class \(C_k\) with the largest \(\delta_k(x)\).</p></div></div>
+<section id="assumptions-in-bayesian-lda" class="content-section level-2">
+<h3 class="section-heading">Assumptions in Bayesian LDA</h3>
+<ul><li><p>$p(x|C_k)$ is Gaussian for all $k$.</p></li><li><p>All classes share identical covariance $\Sigma$.</p></li><li><p>Priors $\pi_k$ are known or estimated from sample proportions.</p></li><li><p>The decision boundaries are linear in $x$.</p></li></ul>
+</section>
+<section id="example-bayesian-lda-two-classes" class="content-section level-2">
+<h3 class="section-heading">Example: Bayesian LDA (Two Classes)</h3>
+<div class="concept-box"><div class="box-title">Numerical Example</div><div class="box-body"><p>Let:
+\[
+\mu_1 = (1,2), \quad \mu_2 = (3,4), \quad \Sigma = I, \quad \pi_1 = \pi_2 = 0.5
+\]
+Then:
+\[
+\delta_k(x) = x^T \mu_k - \frac{1}{2}\mu_k^T \mu_k + \log \pi_k
+\]</p>
+<p>Boundary:
+\[
+x^T(\mu_1 - \mu_2) = \frac{1}{2}(\mu_1^T \mu_1 - \mu_2^T \mu_2)
+\]
+Substitute:
+\[
+x^T[-2, -2] = \frac{1}{2}(5 - 25) \Rightarrow x_1 + x_2 = 5
+\]
+Hence, samples with $x_1 + x_2 &gt; 5$ belong to $C_2$; otherwise $C_1$.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Classification Models - I</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Model Evaluation and Generalization &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

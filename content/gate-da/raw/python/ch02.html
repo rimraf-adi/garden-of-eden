@@ -1,0 +1,2817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Built-in Data Structures — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 6</div><h1>Built-in Data Structures</h1></div>
+<section id="strings" class="content-section level-1">
+<h2 class="section-heading">Strings</h2>
+
+<section id="string-properties" class="content-section level-2">
+<h3 class="section-heading">String Properties</h3>
+
+<section id="immutable-unicode-sequence" class="content-section level-3">
+<h4 class="section-heading">Immutable Unicode Sequence</h4>
+<div class="concept-box"><div class="box-title">String --- Definition and Core Properties</div><div class="box-body"><p>A Python <strong>string</strong> (<code>str</code>) is an <strong>immutable, ordered sequence of
+Unicode code points</strong>. Every character is a Unicode scalar value (Python 3 is fully
+Unicode-aware; there is no separate “byte string” in <code>str</code>).</p>
+<p><strong>Immutable</strong> means: once created, the contents of a string <em>cannot be
+changed in place</em>. Any operation that appears to modify a string (replace, upper,
+strip, …) actually <strong>returns a brand-new string object</strong>; the original is
+unchanged.</p>
+<p><strong>Sequence</strong> means: strings support all sequence operations — indexing,
+slicing, <code>len()</code>, <code>in</code>, iteration.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig032.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">String Properties Summary</div><div class="box-body"><ul><li><p><strong>Immutable</strong>: <code>s[0] = 'X'</code> raises <code>TypeError</code>; use
+        <code>s[:0] + 'X' + s[1:]</code> to build modified string</p></li><li><p><strong>Ordered sequence</strong>: maintains insertion order; supports
+        <code>len()</code>, indexing, slicing, iteration</p></li><li><p><strong>Unicode</strong>: each character is a Unicode code point
+        (<code>ord('A')=65</code>, <code>ord('$\alpha$')=945</code>)</p></li><li><p><strong>Positive indexing</strong>: <code>s[0]</code> first, <code>s[len(s)-1]</code> last</p></li><li><p><strong>Negative indexing</strong>: <code>s[-1]</code> last, <code>s[-2]</code> second-last,
+        <code>s[-n] = s[len(s)-n]</code></p></li><li><p><strong>Hashable</strong>: strings can be dict keys and set members
+        (because they are immutable)</p></li><li><p><strong>Interned</strong>: short strings and identifiers are often cached
+        as a single object in CPython</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 41: Immutability and Unicode Indexing</div><div class="box-body"><div class="code-box"><pre><code>s = &quot;GateXAIML&quot;
+print(len(s))        # 9
+print(s[0])          # G
+print(s[-1])         # L
+print(s[-3])         # I   = s[9-3] = s[6]
+
+# Every char is a full Unicode code point
+emoji = &quot;Hi ��&quot;
+print(len(emoji))    # 4 (each character, including emoji, counts as 1)
+print(emoji[-1])     # ��
+
+# Immutability
+try:
+    s[0] = &#x27;g&#x27;
+except TypeError as e:
+    print(e)         # &#x27;str&#x27; object does not support item assignment
+
+# &quot;Modify&quot; by building new string
+s_new = &#x27;g&#x27; + s[1:]
+print(s_new)         # gateXAIML  (new object)
+print(s)             # GateXAIML  (original unchanged)
+
+# Concatenation creates new object each time (use join for many strings)
+a = &quot;Hello&quot;
+b = &quot; World&quot;
+c = a + b            # new str object &quot;Hello World&quot;
+print(id(a) == id(c))  # False</code></pre></div></div></div>
+</section>
+</section>
+<section id="string-literals" class="content-section level-2">
+<h3 class="section-heading">String Literals</h3>
+
+<section id="quoting-styles-and-escape-sequences" class="content-section level-3">
+<h4 class="section-heading">Quoting Styles and Escape Sequences</h4>
+<div class="concept-box"><div class="box-title">String Literal Forms</div><div class="box-body"><p>Python provides multiple ways to write string literals:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig033.png" alt="diagram"></div>
+<p><strong>Common escape sequences:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig034.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig035.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Raw Strings and f-Strings Properties</div><div class="box-body"><ul><li><p><strong>Raw string</strong> <code>r"..."</code>: backslash is treated as a literal
+        character — <code>r"\ n"</code> is two chars (<code>\</code> and <code>n</code>),
+        not a newline. Ideal for: regex patterns, Windows file paths</p></li><li><p><strong>Byte string</strong> <code>b"..."</code>: type is <code>bytes</code>, not <code>str</code>;
+        each element is an integer 0–255. Use for binary protocols, file I/O</p></li><li><p><strong>f-string</strong> <code>f"..."</code>: <em>expressions</em> inside <code>{...}</code>
+        are evaluated at runtime; supports full format spec inside the braces:
+        <code>f"{x:.2f}"</code>, <code>f"{name!r}"</code></p></li><li><p><strong>f-string <code>=</code> specifier</strong> (Python 3.8+):
+        <code>f"{x=}"</code> prints <code>x=42</code> for debugging</p></li><li><p>Prefix combinations: <code>rb"..."</code> (raw bytes), <code>rf"..."</code>
+        (raw f-string), <code>u"..."</code> (Unicode, legacy Python 2)</p></li><li><p><strong>Adjacent string literals</strong> are <em>concatenated at compile time</em>:
+        <code>"hello" " " "world"</code> $\to$ <code>"hello world"</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 42: Single, Double, Triple Quotes and Escape Sequences</div><div class="box-body"><div class="code-box"><pre><code># Single and double -- interchangeable
+s1 = &#x27;He said &quot;hello&quot;&#x27;       # embed double quotes in single
+s2 = &quot;it&#x27;s a test&quot;           # embed apostrophe in double
+
+# Triple quotes -- multi-line
+poem = &quot;&quot;&quot;Roses are red,
+Violets are blue,
+Python is great,
+And so are you!&quot;&quot;&quot;
+print(poem)
+
+# Triple for long strings with quotes inside
+sql = &#x27;&#x27;&#x27;SELECT *
+FROM users
+WHERE name = &#x27;Alice&#x27; AND age &gt; 18&#x27;&#x27;&#x27;
+
+% Using math mode escape wrapper if Greek character causes engine failures</code></pre></div>
+<div class="code-box"><pre><code>[escapechar=§]
+# Escape sequences
+print(&quot;Tab:\there&quot;)          # Tab:    here
+print(&quot;Newline:\nSecond&quot;)    # Newline: / Second
+print(&quot;Backslash: \\&quot;)       # Backslash: \
+print(&quot;Unicode: \u03B1&quot;)     # Unicode: §$\alpha$§  (Greek alpha)
+print(&quot;Hex: \x41\x42&quot;)       # Hex: AB</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 43: Raw Strings --- Regex and File Paths</div><div class="box-body"><div class="code-box"><pre><code>import re, os
+
+# Without raw string: double backslash needed
+path1 = &quot;C:\\Users\\Alice\\Documents&quot;
+print(path1)   # C:\Users\Alice\Documents
+
+# With raw string: cleaner
+path2 = r&quot;C:\Users\Alice\Documents&quot;
+print(path2)   # C:\Users\Alice\Documents  (same result)
+
+# Regex: raw strings are essential
+email_pattern_bad  = &quot;\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\\b&quot;
+email_pattern_good = r&quot;\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b&quot;
+
+text = &quot;Contact us at gate@aiml.edu or admin@python.org&quot;
+emails = re.findall(email_pattern_good, text)
+print(emails)   # [&#x27;gate@aiml.edu&#x27;, &#x27;admin@python.org&#x27;]
+
+# Raw string still processes some escapes (e.g. cannot end with odd backslashes)
+# r&quot;C:\path\&quot;   &lt;-- SyntaxError! (raw string cannot end with &#x27;\&#x27;)
+# Workaround:
+path3 = r&quot;C:\path&quot; + &quot;\\&quot;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 44: f-Strings --- Full Feature Tour</div><div class="box-body"><div class="code-box"><pre><code>name  = &quot;Alice&quot;
+score = 95.678
+items = [10, 20, 30]
+
+# Basic expression
+print(f&quot;Name: {name}, Score: {score}&quot;)
+
+# Format specification inside {}
+print(f&quot;Score: {score:.2f}&quot;)          # Score: 95.68
+print(f&quot;Score: {score:010.3f}&quot;)       # Score: 000095.678  (zero-padded, width 10)
+print(f&quot;Hex  : {255:#010x}&quot;)          # Hex  : 0x000000ff
+print(f&quot;Sci  : {0.000123:e}&quot;)         # Sci  : 1.230000e-04
+
+# Alignment
+print(f&quot;{&#x27;left&#x27;:&lt;10}|{&#x27;center&#x27;:^10}|{&#x27;right&#x27;:&gt;10}&quot;)
+# left      |  center  |     right
+
+# Debug specifier (Python 3.8+)
+x = 42
+print(f&quot;{x=}&quot;)           # x=42
+print(f&quot;{score=:.1f}&quot;)   # score=95.7
+
+# Arbitrary expressions
+print(f&quot;{len(items)} items, sum={sum(items)}&quot;)   # 3 items, sum=60
+print(f&quot;{name.upper()!r}&quot;)    # &#x27;ALICE&#x27;  (!r calls repr())
+print(f&quot;{2**10 = }&quot;)          # 2**10 = 1024
+
+# Nested braces for dynamic width
+width = 15
+print(f&quot;{&#x27;centered&#x27;:^{width}}&quot;)   # &#x27;   centered   &#x27;
+
+# Multiline f-string
+report = (
+    f&quot;Student : {name}\n&quot;
+    f&quot;Score   : {score:.1f}\n&quot;
+    f&quot;Grade   : {&#x27;A&#x27; if score &gt;= 90 else &#x27;B&#x27;}&quot;
+)
+print(report)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 45: Byte Strings and Encoding</div><div class="box-body"><div class="code-box"><pre><code># byte string -- type is bytes, not str
+b = b&quot;hello&quot;
+print(type(b))          # &lt;class &#x27;bytes&#x27;&gt;
+print(b[0])             # 1box4  (integer, not char)
+print(b[0:3])           # b&#x27;hel&#x27;
+
+% Encoding str -&gt; bytes
+s = &quot;Hello, GATE!&quot;
+encoded = s.encode(&quot;utf-8&quot;)          # bytes
+print(encoded)                        # b&#x27;Hello, GATE!&#x27;
+
+% Decoding bytes -&gt; str
+decoded = encoded.decode(&quot;utf-8&quot;)
+print(decoded)                        # Hello, GATE!</code></pre></div>
+<div class="code-box"><pre><code>[escapechar=§]
+# Non-ASCII characters
+greek = &quot;§$\Lambda\lambda\phi\alpha$§&quot;
+b2 = greek.encode(&quot;utf-8&quot;)
+print(b2)              # b&#x27;\xce\x91\xce\xbb\xce\xb8\xce\xb1&#x27;
+print(len(greek))      # 4 characters
+print(len(b2))         # 8 bytes (each Greek char = 2 UTF-8 bytes)</code></pre></div></div></div>
+</section>
+</section>
+<section id="slicing" class="content-section level-2">
+<h3 class="section-heading">Slicing</h3>
+
+<section id="the-texttt-s-start-stop-step-syntax" class="content-section level-3">
+<h4 class="section-heading">The <code>s[start:stop:step]</code> Syntax</h4>
+<div class="concept-box"><div class="box-title">String Slicing --- Formal Definition</div><div class="box-body"><p><strong>Slicing</strong> extracts a substring using the syntax:
+\[\texttt{s[start : stop : step]}\]</p>
+<ul><li><p>Returns a <strong>new string</strong> (original unchanged)</p></li><li><p><strong><code>start</code></strong>: index of first included character
+        (default: <code>0</code> for positive step, <code>len(s)-1</code> for negative step)</p></li><li><p><strong><code>stop</code></strong>: index of first <em>excluded</em> character
+        (default: <code>len(s)</code> for positive step, <code>-len(s)-1</code> for negative step)</p></li><li><p><strong><code>step</code></strong>: stride (default: <code>1</code>); negative step reverses direction</p></li><li><p>Out-of-range indices are <em>clamped</em> (no <code>IndexError</code> on slices)</p></li></ul>
+<p><strong>Characters included:</strong> indices $\{start,\ start+step,\ start+2\cdot step,\ \ldots\}$
+such that the index is in $[start, stop)$ for positive step, or $(stop, start]$ for
+negative step.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig036.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Slicing Rules and Special Cases</div><div class="box-body"><ul><li><p><strong>Omitted start</strong>: defaults to beginning (<code>s[:3]</code> = first 3 chars)</p></li><li><p><strong>Omitted stop</strong>: defaults to end (<code>s[2:]</code> = from index 2 onward)</p></li><li><p><strong>Omitted both</strong>: <code>s[:]</code> is a <em>shallow copy</em> (new object, same content)</p></li><li><p><strong>Negative step</strong>: <code>s[a:b:-1]</code> goes from <code>a</code> down to
+        <code>b+1</code>; <code>s[::-1]</code> reverses entire string</p></li><li><p><strong>Out-of-bounds silently clamped</strong>: <code>s[0:1000]</code> is same as
+        <code>s[0:len(s)]</code>; no <code>IndexError</code></p></li><li><p><strong>Empty result</strong>: step-incompatible range returns <code>""</code></p></li><li><p><strong>Step must not be 0</strong>: <code>s[::0]</code> raises <code>ValueError</code></p></li><li><p>Negative indices in slicing: <code>s[-3:-1]</code> is second-last two chars</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 46: Slicing --- All Patterns</div><div class="box-body"><div class="code-box"><pre><code>s = &quot;PYTHON!?&quot;
+ 
+# Basic slices
+print(s[1:5])      # YTHO   (chars at index 1,2,3,4)
+print(s[:3])       # PYT    (first 3)
+print(s[3:])       # HON!?  (from index 3 to end)
+print(s[:])        # PYTHON!?  (full copy)
+ 
+# Negative indices in slices
+print(s[-3:])      # N!?    (last 3 characters)
+print(s[:-2])      # PYTHON  (all except last 2)
+print(s[-5:-2])    # HON    (slice within negative range)
+ 
+# Step
+print(s[::2])      # PTO!   (every 2nd char: P,T,O,!)
+print(s[::3])      # PH?    (every 3rd: P,H,?)
+print(s[1::2])     # YHN    (start at 1, every 2nd)
+ 
+# Reversal
+print(s[::-1])     # ?!NOHTYP (completely reversed)
+print(s[5:1:-1])   # NOHY   (from 5 down to 2)
+print(s[::-2])     # ?!TP   (reverse every 2nd)
+ 
+# Out-of-bounds -- no error
+print(s[0:1000])   # PYTHON!?  (clamped to len)
+print(s[100:200])  # &quot;&quot;  (empty, no error)
+ 
+# Common patterns
+def is_palindrome(t): return t == t[::-1]
+print(is_palindrome(&quot;racecar&quot;))  # True
+print(is_palindrome(&quot;python&quot;))   # False
+ 
+# Remove prefix/suffix (pre-Python 3.9)
+url = &quot;https://example.com&quot;
+if url.startswith(&quot;https://&quot;):
+    url = url[len(&quot;https://&quot;):]  # slicing off prefix
+print(url)   # example.com</code></pre></div></div></div>
+</section>
+</section>
+<section id="key-string-methods" class="content-section level-2">
+<h3 class="section-heading">Key String Methods</h3>
+
+<section id="searching-testing" class="content-section level-3">
+<h4 class="section-heading">Searching &amp; Testing</h4>
+<div class="concept-box"><div class="box-title">Searching and Testing Methods</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig037.png" alt="diagram"></div></div></div>
+<div class="concept-box-alt"><div class="box-title">find vs index --- Key Differences</div><div class="box-body"><ul><li><p><strong><code>find()</code></strong> returns <code>-1</code> when not found — safe for
+        conditional checks without try/except</p></li><li><p><strong><code>index()</code></strong> raises <code>ValueError</code> when not found —
+        use when absence of the substring is a <em>programming error</em></p></li><li><p>Both accept optional <code>start</code> and <code>end</code> arguments to restrict
+        the search range (like a slice, but doesn't create a new string)</p></li><li><p><strong><code>in</code></strong> is the idiomatic membership test when you only need
+        existence (not position) — most readable</p></li><li><p><strong><code>count()</code></strong> counts <em>non-overlapping</em> occurrences:
+        <code>"aaa".count("aa") == 1</code> (not 2)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 47: Searching Methods --- find, count, startswith</div><div class="box-body"><div class="code-box"><pre><code>s = &quot;the quick brown fox jumps over the lazy dog&quot;
+ 
+# find / rfind
+print(s.find(&quot;the&quot;))           # 0  (first occurrence)
+print(s.rfind(&quot;the&quot;))          # 31 (last occurrence)
+print(s.find(&quot;cat&quot;))           # -1 (not found)
+print(s.find(&quot;the&quot;, 5))        # 31 (search from index 5)
+print(s.find(&quot;the&quot;, 5, 20))    # -1 (search only s[5:20])
+ 
+# index raises ValueError
+try:
+    s.index(&quot;cat&quot;)
+except ValueError as e:
+    print(e)   # substring not found
+ 
+# count (non-overlapping)
+print(s.count(&quot;the&quot;))          # 2
+print(&quot;aaaaaa&quot;.count(&quot;aa&quot;))    # 3  (non-overlapping: aa|aa|aa)
+print(&quot;aaa&quot;.count(&quot;aa&quot;))       # 1  (aa|a -- only 1 non-overlapping)
+ 
+# startswith / endswith with tuple
+files = [&quot;report.pdf&quot;, &quot;data.csv&quot;, &quot;image.png&quot;, &quot;notes.txt&quot;]
+docs  = [f for f in files if f.endswith((&quot;.pdf&quot;, &quot;.txt&quot;))]
+print(docs)   # [&#x27;report.pdf&#x27;, &#x27;notes.txt&#x27;]
+ 
+# in operator
+print(&quot;fox&quot; in s)       # True
+print(&quot;FOX&quot; in s)       # False  (case-sensitive)
+print(&quot;&quot; in s)          # True   (empty string is in any string)
+ 
+# Character testing
+print(&quot;Python3&quot;.isalpha())   # False (digit present)
+print(&quot;Python&quot;.isalpha())    # True
+print(&quot;12345&quot;.isdigit())     # True
+print(&quot;abc123&quot;.isalnum())    # True
+print(&quot;  \t\n&quot;.isspace())    # True
+print(&quot;GATE&quot;.isupper())      # True
+print(&quot;Gate Exam&quot;.istitle()) # True</code></pre></div></div></div>
+</section>
+<section id="modification-methods-return-new-string" class="content-section level-3">
+<h4 class="section-heading">Modification Methods (Return New String)</h4>
+<div class="concept-box"><div class="box-title">String Modification Methods</div><div class="box-body"><p>All modification methods return <strong>new string objects</strong>; the original is unchanged.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig038.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig039.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 48: strip, replace, case, justify --- All Forms</div><div class="box-body"><div class="code-box"><pre><code># strip variants
+s = &quot;   hello world   &quot;
+print(repr(s.strip()))    # &#x27;hello world&#x27;
+print(repr(s.lstrip()))   # &#x27;hello world   &#x27;
+print(repr(s.rstrip()))   # &#x27;   hello world&#x27;
+ 
+# strip with character set
+t = &quot;***ERROR: file not found***&quot;
+print(t.strip(&quot;*&quot;))       # &#x27;ERROR: file not found&#x27;
+print(t.strip(&quot;*E&quot;))      # &#x27;RROR: file not found&#x27;   (strips any of *, E)
+ 
+# replace
+sentence = &quot;the cat sat on the mat&quot;
+print(sentence.replace(&quot;at&quot;, &quot;og&quot;))          # the cog sog on the mog
+print(sentence.replace(&quot;the&quot;, &quot;a&quot;, 1))      # a cat sat on the mat (count=1)
+ 
+# Case methods
+s = &quot;hello WoRlD&quot;
+print(s.upper())        # HELLO WORLD
+print(s.lower())        # hello world
+print(s.capitalize())   # Hello world  (only first char up)
+print(s.title())        # Hello World  (each word)
+print(s.swapcase())     # HELLO wOrLd
+ 
+# casefold for international comparison
+print(&quot;straße&quot;.casefold())      # strasse  (German ß -&gt; ss)
+print(&quot;straße&quot;.lower())         # straße   (lower doesn&#x27;t expand ß)
+print(&quot;straße&quot;.casefold() == &quot;strasse&quot;)  # True (correct comparison)
+ 
+# Justification and fill
+print(&quot;42&quot;.zfill(6))           # 000042
+print(&quot;-42&quot;.zfill(6))          # -00042  (sign preserved)
+print(&quot;GATE&quot;.center(12, &#x27;-&#x27;))  # ----GATE----
+print(&quot;left&quot;.ljust(10, &#x27;.&#x27;))   # left......
+print(&quot;right&quot;.rjust(10, &#x27;.&#x27;))  # .....right
+ 
+# Method chaining (each returns new string)
+result = &quot;  GATE Exam 2025  &quot;.strip().lower().replace(&quot; &quot;, &quot;_&quot;)
+print(result)   # gate_exam_2025</code></pre></div></div></div>
+</section>
+<section id="splitting-joining" class="content-section level-3">
+<h4 class="section-heading">Splitting &amp; Joining</h4>
+<div class="concept-box"><div class="box-title">split, join, partition --- Definitions</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig040.png" alt="diagram"></div>
+<p><strong>Golden rule for building strings from many pieces:</strong><br>
+<em>Never</em> use <code>+=</code> in a loop (each iteration creates a new object, $O(n^2)$).<br>
+<em>Always</em> use <code>"".join(list)</code> ($O(n)$).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig041.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 49: split and join --- All Variants</div><div class="box-body"><div class="code-box"><pre><code># Default split: any whitespace, strips leading/trailing
+s = &quot;  one  two    three  &quot;
+print(s.split())             # [&#x27;one&#x27;, &#x27;two&#x27;, &#x27;three&#x27;]
+ 
+# Split on specific separator
+csv = &quot;gate,aiml,python,exam&quot;
+print(csv.split(&quot;,&quot;))        # [&#x27;gate&#x27;, &#x27;aiml&#x27;, &#x27;python&#x27;, &#x27;exam&#x27;]
+ 
+# maxsplit: limit number of splits
+print(csv.split(&quot;,&quot;, 2))     # [&#x27;gate&#x27;, &#x27;aiml&#x27;, &#x27;python,exam&#x27;]
+ 
+# rsplit: split from right
+print(csv.rsplit(&quot;,&quot;, 1))    # [&#x27;gate,aiml,python&#x27;, &#x27;exam&#x27;]
+ 
+# splitlines
+text = &quot;Line1\nLine2\r\nLine3\rLine4&quot;
+print(text.splitlines())     # [&#x27;Line1&#x27;, &#x27;Line2&#x27;, &#x27;Line3&#x27;, &#x27;Line4&#x27;]
+print(text.splitlines(True)) # keeps line endings: [&#x27;Line1\n&#x27;, ...]
+ 
+# join -- the correct way to build strings
+words = [&quot;GATE&quot;, &quot;2025&quot;, &quot;AI&quot;, &quot;ML&quot;]
+print(&quot; &quot;.join(words))    # GATE 2025 AI ML
+print(&quot;-&quot;.join(words))    # GATE-2025-AI-ML
+print(&quot;&quot;.join(words))     # GATE2025AIML
+ 
+# Efficient string building (join vs +=)
+parts = []
+for i in range(5):
+    parts.append(str(i * i))   # collect first
+result = &quot;, &quot;.join(parts)      # join once at the end
+print(result)   # 0, 1, 4, 9, 16
+ 
+# partition
+conn = &quot;user:password:hostname&quot;
+before, sep, after = conn.partition(&quot;:&quot;)
+print(before, sep, after)   # user : password:hostname
+ 
+# rpartition (last occurrence)
+before2, sep2, after2 = conn.rpartition(&quot;:&quot;)
+print(before2, sep2, after2) # user:password : hostname
+ 
+# partition when sep not found
+a, b, c = &quot;nocohere&quot;.partition(&quot;:&quot;)
+print(repr(a), repr(b), repr(c))  # &#x27;nocohere&#x27; &#x27;&#x27; &#x27;&#x27;</code></pre></div></div></div>
+</section>
+<section id="string-formatting" class="content-section level-3">
+<h4 class="section-heading">String Formatting</h4>
+<div class="concept-box"><div class="box-title">Three Generations of Python String Formatting</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig042.png" alt="diagram"></div>
+<p><strong>Format specification mini-language</strong> (same for <code>format()</code> and f-strings):
+\[\texttt{[[fill]align][sign][z][\#][0][width][grouping\_option][.precision][type]}\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig043.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig044.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Format Type Codes Reference</div><div class="box-body"><ul><li><p><strong><code>d</code></strong> — Decimal integer: <code>f"{255:d}"</code> $\to$ <code>255</code></p></li><li><p><strong><code>b</code></strong> — Binary: <code>f"{10:#b}"</code> $\to$ <code>0b1010</code></p></li><li><p><strong><code>o</code></strong> — Octal: <code>f"{8:#o}"</code> $\to$ <code>0o10</code></p></li><li><p><strong><code>x/X</code></strong> — Hex lower/upper: <code>f"{255:#x}"</code> $\to$ <code>0xff</code></p></li><li><p><strong><code>f</code></strong> — Fixed float: <code>f"{3.14159:.2f}"</code> $\to$ <code>3.14</code></p></li><li><p><strong><code>e/E</code></strong> — Scientific: <code>f"{0.00123:e}"</code> $\to$ <code>1.230000e-03</code></p></li><li><p><strong><code>g</code></strong> — General (shorter of <code>f</code>/<code>e</code>):
+        <code>f"{0.00001:g}"</code> $\to$ <code>1e-05</code></p></li><li><p><strong><code>%</code></strong> — Percentage: <code>f"{0.856:.1%}"</code> $\to$ <code>85.6%</code></p></li><li><p><strong><code>s</code></strong> — String (default): <code>f"{"gate":&gt;10s}"</code> $\to$ <code>"\ \ \ \ \ \ gate"</code></p></li><li><p><strong><code>,</code></strong> — Thousands separator: <code>f"{1234567:,}"</code> $\to$ <code>1,234,567</code></p></li><li><p><strong><code>_</code></strong> — Underscore separator (3.6+): <code>f"{1234567:_}"</code> $\to$ <code>1_234_567</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 50: % Formatting (Old Style)</div><div class="box-body"><div class="code-box"><pre><code>name  = &quot;Alice&quot;
+score = 95.678
+rank  = 3
+ 
+# Basic substitution
+print(&quot;Name: %s, Score: %.2f&quot; % (name, score))
+# Name: Alice, Score: 95.68
+ 
+# Width and alignment
+print(&quot;%-10s | %5d | %8.3f&quot; % (name, rank, score))
+# Alice      |     3 |   95.678
+ 
+# Multiple types
+for item, qty, price in [(&quot;Pen&quot;,5,1.5),(&quot;Book&quot;,2,299.0)]:
+    print(&quot;%-8s %3d  Rs %7.2f&quot; % (item, qty, qty*price))
+# Pen          5  Rs    7.50
+# Book         2  Rs  598.00
+ 
+# Named substitution using dict
+print(&quot;%(name)s scored %(score).1f&quot; % {&quot;name&quot;:name, &quot;score&quot;:score})
+# Alice scored 95.7</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 51: <code>str.format()</code> (New Style)</div><div class="box-body"><div class="code-box"><pre><code># Positional
+print(&quot;{} items at Rs {:.2f} each&quot;.format(5, 49.99))
+# 5 items at Rs 49.99 each
+ 
+# Explicit positional
+print(&quot;{0} and {1}, then {0} again&quot;.format(&quot;A&quot;,&quot;B&quot;))
+# A and B, then A again
+ 
+# Named
+print(&quot;{name} scored {score:.1f}%&quot;.format(name=&quot;Alice&quot;, score=95.7))
+# Alice scored 95.7%
+ 
+# Alignment and fill
+print(&quot;{:*^20}&quot;.format(&quot;GATE&quot;))   # ********GATE********
+print(&quot;{:&gt;10}&quot;.format(&quot;right&quot;))   # &quot;     right&quot;
+print(&quot;{:&lt;10}&quot;.format(&quot;left&quot;))    # &quot;left      &quot;
+ 
+# Number formatting
+print(&quot;{:010.3f}&quot;.format(3.14))   # 000003.140
+print(&quot;{:+.2f}&quot;.format(-42.5))    # -42.50
+print(&quot;{:+.2f}&quot;.format(42.5))     # +42.50
+print(&quot;{:,}&quot;.format(1_000_000))   # 1,000,000
+print(&quot;{:#010x}&quot;.format(255))     # 0x000000ff
+print(&quot;{:#010b}&quot;.format(10))      # 0b00001010
+ 
+# Dynamic width/precision
+width, prec = 12, 4
+print(&quot;{:{w}.{p}f}&quot;.format(3.14159, w=width, p=prec))
+# &quot;       3.1416&quot;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 52: f-Strings --- Modern Formatting (Full Spec)</div><div class="box-body"><div class="code-box"><pre><code>import math
+ 
+pi    = math.pi
+n     = 1_000_000
+name  = &quot;GATE DA&quot;
+score = 0.8567
+ 
+# Basic
+print(f&quot;{name} pass rate: {score:.1%}&quot;)   # GATE DA pass rate: 85.7%
+ 
+# Alignment
+for lang, rank in [(&quot;Python&quot;,1),(&quot;Java&quot;,2),(&quot;C&quot;,3)]:
+    print(f&quot;{lang:&lt;10} rank: {rank:&gt;3}&quot;)
+# Python     rank:   1
+# Java       rank:   2
+# C          rank:   3
+ 
+# Number bases
+n2 = 255
+print(f&quot;Dec:{n2:d}  Bin:{n2:#010b}  Oct:{n2:#o}  Hex:{n2:#x}&quot;)
+# Dec:255  Bin:0b11111111  Oct:0o377  Hex:0xff
+ 
+# Scientific and general
+print(f&quot;pi = {pi:.5f}&quot;)         # pi = 3.14159
+print(f&quot;pi = {pi:.3e}&quot;)         # pi = 3.142e+00
+print(f&quot;pi = {pi:.4g}&quot;)         # pi = 3.142
+print(f&quot;big = {n:_}&quot;)           # big = 1_000_000
+print(f&quot;big = {n:,}&quot;)           # big = 1,000,000
+ 
+# Debug with =
+x, y = 10, 20
+print(f&quot;{x=}, {y=}, {x+y=}&quot;)    # x=10, y=20, x+y=30
+ 
+# Expression inside format spec
+col_width = 8
+headers = [&quot;Name&quot;, &quot;Score&quot;, &quot;Rank&quot;]
+print(&quot;  &quot;.join(f&quot;{h:^{col_width}}&quot; for h in headers))
+#    Name     Score    Rank
+ 
+# Nested f-string
+fmt = &quot;.3f&quot;
+print(f&quot;{pi:{fmt}}&quot;)            # 3.142
+ 
+# Conversion flags: !r (repr), !s (str), !a (ascii)
+s = &quot;café&quot;
+print(f&quot;{s!r}&quot;)     # &#x27;café&#x27;
+print(f&quot;{s!a}&quot;)     # &#x27;caf\xe9&#x27;  (ascii-safe)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 53: Comparison of All Three Formatting Styles</div><div class="box-body"><div class="code-box"><pre><code>name, score, rank = &quot;Alice&quot;, 95.678, 1
+ 
+# Old style
+print(&quot;%-10s %5.2f #%d&quot;    % (name, score, rank))
+ 
+# .format()
+print(&quot;{:&lt;10} {:5.2f} #{:d}&quot;.format(name, score, rank))
+ 
+# f-string (recommended)
+print(f&quot;{name:&lt;10} {score:5.2f} #{rank:d}&quot;)
+ 
+# All produce:   Alice      95.68 #1
+ 
+# template strings (safe for user input, no arbitrary expressions)
+from string import Template
+t = Template(&quot;Hello $name, your score is $score&quot;)
+print(t.substitute(name=name, score=round(score,1)))
+# Hello Alice, your score is 95.7</code></pre></div></div></div>
+</section>
+<section id="performance-and-common-patterns" class="content-section level-3">
+<h4 class="section-heading">Performance and Common Patterns</h4>
+<div class="concept-box-alt"><div class="box-title">String Performance Tips and Idiomatic Patterns</div><div class="box-body"><ul><li><p><strong>Concatenation in loop</strong>: use <code>list.append()</code> + <code>"".join()</code>
+        instead of <code>s += part</code> (avoids $O(n^2)$ copying)</p></li><li><p><strong>Check prefix/suffix</strong>: Python 3.9+ has <code>str.removeprefix()</code> and
+        <code>str.removesuffix()</code> (cleaner than slicing)</p></li><li><p><strong>Palindrome check</strong>: <code>s == s[::-1]</code> (simple); for case-insensitive:
+        <code>s.lower() == s[::-1].lower()</code></p></li><li><p><strong>Count words</strong>: <code>len(s.split())</code> (handles multiple spaces)</p></li><li><p><strong>Reverse words</strong>: <code>" ".join(s.split()[::-1])</code></p></li><li><p><strong>String to list of chars</strong>: <code>list(s)</code> or <code>[c for c in s]</code></p></li><li><p><strong>Check all chars</strong>: <code>all(c.isdigit() for c in s)</code></p></li><li><p><strong>Caesar cipher</strong>: <code>chr((ord(c) - ord('a') + n) % 26 + ord('a'))</code></p></li><li><p><strong>String interning</strong>: <code>sys.intern(s)</code> forces a single shared copy
+        of <code>s</code> in memory (speeds up repeated equality tests)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 54: Useful String Patterns for GATE</div><div class="box-body"><div class="code-box"><pre><code># 1. Count vowels
+s = &quot;Python Programming&quot;
+vowels = sum(1 for c in s.lower() if c in &quot;aeiou&quot;)
+print(vowels)    # 5
+ 
+# 2. Reverse words in a sentence
+sentence = &quot;  Hello World  Python  &quot;
+reversed_words = &quot; &quot;.join(sentence.split()[::-1])
+print(reversed_words)   # Python World Hello
+ 
+# 3. Check pangram (contains all 26 letters)
+def is_pangram(text):
+    return set(&#x27;abcdefghijklmnopqrstuvwxyz&#x27;).issubset(set(text.lower()))
+print(is_pangram(&quot;The quick brown fox jumps over the lazy dog&quot;))  # True
+ 
+# 4. Remove duplicates preserving order
+s = &quot;programming&quot;
+unique = &quot;&quot;.join(dict.fromkeys(s))
+print(unique)    # progamin</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="lists" class="content-section level-1">
+<h2 class="section-heading">Lists</h2>
+
+<section id="list-properties" class="content-section level-2">
+<h3 class="section-heading">List Properties</h3>
+
+<section id="core-characteristics" class="content-section level-3">
+<h4 class="section-heading">Core Characteristics</h4>
+<div class="concept-box"><div class="box-title">List --- Definition and Core Properties</div><div class="box-body"><p>A Python <strong>list</strong> is an <strong>ordered, mutable, heterogeneous sequence</strong> that
+allows duplicate elements. It is Python's workhorse general-purpose container.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig045.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Dynamic Array Implementation</div><div class="box-body"><p>Internally CPython implements <code>list</code> as a <strong>dynamic array</strong> (array of
+pointers to PyObjects):</p>
+<ul><li><p>A contiguous block of memory stores <em>pointers</em> (references) to objects,
+        not the objects themselves</p></li><li><p>When the array is full, Python <strong>over-allocates</strong> a larger block
+        (roughly $\times 1.125$ growth factor) and copies pointers over — this
+        gives <strong>amortised $O(1)$</strong> for <code>append</code></p></li><li><p>Random access <code>L[i]</code> is $O(1)$ (pointer arithmetic)</p></li><li><p>Insertion / deletion at the middle is $O(n)$ (shifting pointers)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig046.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">List Properties Summary</div><div class="box-body"><ul><li><p><strong>Heterogeneous</strong>: <code>[1, "two", 3.0, True, None, [5,6]]</code> is valid</p></li><li><p><strong>Nestable</strong>: lists can contain other lists (any depth)</p></li><li><p><strong>Mutable</strong>: supports item assignment <code>L[i] = x</code>,
+        slice assignment <code>L[a:b] = [...]</code>, <code>del L[i]</code></p></li><li><p><strong>Ordered</strong>: <code>[1,2,3] != [3,2,1]</code> even with same elements</p></li><li><p><strong>Iterable</strong>: works with <code>for</code>, <code>map</code>, <code>filter</code>,
+        <code>zip</code>, comprehensions</p></li><li><p><strong>Hashable?</strong> No — lists are mutable so cannot be dict keys or set members</p></li><li><p><strong>Truthiness</strong>: empty list <code>[]</code> is falsy; any non-empty list is truthy</p></li></ul></div></div>
+</section>
+</section>
+<section id="list-creation" class="content-section level-2">
+<h3 class="section-heading">List Creation</h3>
+
+<section id="all-creation-methods" class="content-section level-3">
+<h4 class="section-heading">All Creation Methods</h4>
+<div class="concept-box"><div class="box-title">Ways to Create a List</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig047.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Repetition Pitfall --- Shared Inner Lists</div><div class="box-body"><p>The expression <code>[[]] * n</code> creates a list of <code>n</code> references to the
+<strong>same single inner list object</strong>. Modifying one element modifies all of them.</p>
+<p><code>M = [[0]*3]*3</code> $\quad\Rightarrow\quad$ all three rows point to the <em>same</em> list</p>
+<p><strong>Correct pattern</strong> for independent rows:
+
+  <code>M = [[0]*3 for _ in range(3)]</code></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig048.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 55: List Creation --- All Methods</div><div class="box-body"><div class="code-box"><pre><code># Literal
+a = [1, 2, 3]
+b = []                       # empty list
+c = [1, &quot;hello&quot;, 3.14, True, None]  # heterogeneous
+
+# Constructor from iterable
+d = list(&quot;GATE&quot;)             # [&#x27;G&#x27;, &#x27;A&#x27;, &#x27;T&#x27;, &#x27;E&#x27;]
+e = list(range(1, 6))        # [1, 2, 3, 4, 5]
+f = list((10, 20, 30))       # from tuple
+g = list({1, 2, 3})          # from set (order not guaranteed)
+
+# Repetition
+zeros  = [0] * 5             # [0, 0, 0, 0, 0]
+filler = [None] * 4          # [None, None, None, None]
+
+# PITFALL: nested mutable
+bad = [[]] * 3
+bad[0].append(1)
+print(bad)   # [[1], [1], [1]]  -- ALL rows affected!
+
+# CORRECT: comprehension
+good = [[] for _ in range(3)]
+good[0].append(1)
+print(good)  # [[1], [], []]   -- only row 0 affected
+
+# 2D matrix (3x4) of zeros
+matrix = [[0] * 4 for _ in range(3)]
+matrix[1][2] = 99
+print(matrix)
+# [[0, 0, 0, 0],
+#  [0, 0, 99, 0],
+#  [0, 0, 0, 0]]</code></pre></div></div></div>
+</section>
+</section>
+<section id="indexing-slicing" class="content-section level-2">
+<h3 class="section-heading">Indexing &amp; Slicing</h3>
+
+<section id="list-indexing-slice-assignment-and-texttt-del" class="content-section level-3">
+<h4 class="section-heading">List Indexing, Slice Assignment and <code>del</code></h4>
+<div class="concept-box"><div class="box-title">List Slicing and Slice Assignment</div><div class="box-body"><p>List slicing uses the same <code>L[start:stop:step]</code> syntax as strings, but because
+lists are <strong>mutable</strong>, they additionally support:</p>
+<ul><li><p><strong>Slice assignment</strong>: <code>L[a:b] = [x, y, z]</code> — replaces the slice
+        with new elements; can <em>change the length</em> of the list</p></li><li><p><strong><code>del</code> statement</strong>: <code>del L[i]</code> removes one element;
+        <code>del L[a:b]</code> removes a range; <code>del L[::2]</code> removes every other</p></li><li><p>Slicing returns a <strong>new list</strong> (shallow copy of that slice)</p></li></ul>
+<p><strong>Key differences from string slicing:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig049.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig050.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 56: Slice Assignment and <code>del</code> --- Changing List Length</div><div class="box-body"><div class="code-box"><pre><code>L = [10, 20, 30, 40, 50]
+
+% Regular slicing: returns NEW list (no modification)
+sub = L[1:4]
+print(sub)       # [20, 30, 40]
+print(L)         # [10, 20, 30, 40, 50]  unchanged
+
+% Slice assignment: modifies IN PLACE, can change length
+L[1:3] = [100, 200, 300]   # replace 2 elements with 3
+print(L)         # [10, 100, 200, 300, 40, 50]  (length 6)
+
+L[1:4] = []      # delete elements at index 1,2,3
+print(L)         # [10, 40, 50]  (length 3)
+
+L[1:1] = [99, 88]  # insert without replacing (stop==start)
+print(L)         # [10, 99, 88, 40, 50]
+
+# del statement
+L = [10, 20, 30, 40, 50]
+del L[2]         # delete element at index 2
+print(L)         # [10, 20, 40, 50]
+
+del L[1:3]       # delete slice
+print(L)         # [10, 50]
+
+L = list(range(10))
+del L[::2]       # delete every other element (indices 0,2,4,6,8)
+print(L)         # [1, 3, 5, 7, 9]
+
+# Negative index assignment
+L = [1, 2, 3, 4, 5]
+L[-1] = 99
+print(L)         # [1, 2, 3, 4, 99]</code></pre></div></div></div>
+</section>
+</section>
+<section id="list-methods" class="content-section level-2">
+<h3 class="section-heading">List Methods</h3>
+
+<section id="mutation-methods-in-place" class="content-section level-3">
+<h4 class="section-heading">Mutation Methods (In-Place)</h4>
+<div class="concept-box"><div class="box-title">Mutating Methods --- All Return <code>None</code></div><div class="box-body"><p>All in-place mutation methods <strong>return <code>None</code></strong> (not the list). This is a
+common bug: <code>L = L.sort()</code> sets <code>L</code> to <code>None</code>!</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig051.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig052.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">sort() Properties --- Timsort</div><div class="box-body"><ul><li><p><strong>Timsort</strong>: hybrid merge sort + insertion sort; Python's native sort since Python 2.3</p></li><li><p><strong>Stable</strong>: equal elements keep their relative order</p></li><li><p><strong>In-place</strong>: modifies the list; returns <code>None</code></p></li><li><p><strong><code>key</code> parameter</strong>: a function applied to each element before comparison; the original values are stored unmodified</p></li><li><p><strong><code>reverse=True</code></strong>: sorts in descending order</p></li><li><p><strong><code>sorted(L)</code></strong> vs <strong><code>L.sort()</code></strong>: <code>sorted()</code> returns a <em>new</em> sorted list; <code>L.sort()</code> is in-place</p></li><li><p>Time: $O(n\log n)$ worst/average; $O(n)$ best case (already sorted runs)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 57: append, extend, insert, remove, pop</div><div class="box-body"><div class="code-box"><pre><code>L = [1, 2, 3]
+
+# append: adds one object (even if it&#x27;s a list)
+L.append(4)
+print(L)              # [1, 2, 3, 4]
+L.append([5, 6])      # adds [5,6] as a SINGLE element (nested list)
+print(L)              # [1, 2, 3, 4, [5, 6]]
+
+# extend: adds each element of the iterable
+L = [1, 2, 3]
+L.extend([4, 5, 6])   # unpacks and appends individually
+print(L)              # [1, 2, 3, 4, 5, 6]
+L.extend(&quot;AB&quot;)        # strings are iterable
+print(L)              # [1, 2, 3, 4, 5, 6, &#x27;A&#x27;, &#x27;B&#x27;]
+
+# insert: O(n)
+L = [10, 20, 30, 40]
+L.insert(0, 99)       # insert at beginning
+print(L)              # [99, 10, 20, 30, 40]
+L.insert(len(L), 0)   # same as append
+print(L)              # [99, 10, 20, 30, 40, 0]
+L.insert(-1, 77)      # before last element
+print(L)              # [99, 10, 20, 30, 40, 77, 0]
+
+# remove: removes FIRST occurrence
+L = [3, 1, 4, 1, 5, 9, 2, 6]
+L.remove(1)           # removes first 1
+print(L)              # [3, 4, 1, 5, 9, 2, 6]
+try:
+    L.remove(99)      # raises ValueError if not found
+except ValueError as e:
+    print(e)          # list.remove(x): x not in list
+
+# pop: removes and returns
+L = [10, 20, 30, 40, 50]
+print(L.pop())        # 50  (from end, O(1))
+print(L.pop(1))       # 20  (from index 1, O(n))
+print(L)              # [10, 30, 40]</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 58: <code>sort()</code> vs <code>sorted()</code> --- key and reverse</div><div class="box-body"><div class="code-box"><pre><code># sort() -- in-place, returns None
+nums = [3, 1, 4, 1, 5, 9, 2, 6]
+nums.sort()
+print(nums)             # [1, 1, 2, 3, 4, 5, 6, 9]
+
+# sorted() -- returns new list, original unchanged
+nums2 = [3, 1, 4, 1, 5, 9, 2, 6]
+result = sorted(nums2)
+print(result)           # [1, 1, 2, 3, 4, 5, 6, 9]
+print(nums2)            # [3, 1, 4, 1, 5, 9, 2, 6]  unchanged!
+
+# reverse=True
+nums.sort(reverse=True)
+print(nums)             # [9, 6, 5, 4, 3, 2, 1, 1]
+
+# key function -- sort by absolute value
+data = [-5, 2, -1, 8, -3]
+data.sort(key=abs)
+print(data)             # [-1, 2, -3, -5, 8]
+
+# sort strings by length
+words = [&quot;banana&quot;, &quot;kiwi&quot;, &quot;apple&quot;, &quot;fig&quot;, &quot;pear&quot;]
+words.sort(key=len)
+print(words)            # [&#x27;fig&#x27;, &#x27;kiwi&#x27;, &#x27;pear&#x27;, &#x27;apple&#x27;, &#x27;banana&#x27;]
+
+# sort complex objects
+students = [(&quot;Alice&quot;,85), (&quot;Bob&quot;,92), (&quot;Charlie&quot;,78)]
+students.sort(key=lambda s: s[1], reverse=True)
+print(students)   # [(&#x27;Bob&#x27;,92), (&#x27;Alice&#x27;,85), (&#x27;Charlie&#x27;,78)]
+
+# stable sort: equal keys preserve original order
+data = [(&quot;a&quot;,2),(&quot;b&quot;,1),(&quot;c&quot;,2),(&quot;d&quot;,1)]
+data.sort(key=lambda x: x[1])
+print(data)   # [(&#x27;b&#x27;,1), (&#x27;d&#x27;,1), (&#x27;a&#x27;,2), (&#x27;c&#x27;,2)]
+
+# Common bug
+L = [3, 1, 2]
+L = L.sort()   # BUG: sort() returns None!
+print(L)       # None</code></pre></div></div></div>
+</section>
+<section id="non-mutating-methods" class="content-section level-3">
+<h4 class="section-heading">Non-Mutating Methods</h4>
+<div class="concept-box"><div class="box-title">Non-Mutating List Methods</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig053.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 59: index, count, enumerate, zip</div><div class="box-body"><div class="code-box"><pre><code>L = [10, 20, 30, 20, 40, 20]
+
+# index: first occurrence
+print(L.index(20))        # 1
+print(L.index(20, 2))     # 3  (search from index 2)
+print(L.index(20, 4))     # 5  (search from index 4)
+try:
+    L.index(99)
+except ValueError as e:
+    print(e)              # 99 is not in list
+
+# count
+print(L.count(20))        # 3
+print(L.count(99))        # 0  (no error for missing)
+
+# enumerate: index + value pairs
+fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;]
+for i, fruit in enumerate(fruits):
+    print(f&quot;{i}: {fruit}&quot;)
+
+for i, fruit in enumerate(fruits, start=1):  # start index at 1
+    print(f&quot;{i}. {fruit}&quot;)
+
+# zip: pair corresponding elements
+names  = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+scores = [85, 92, 78]
+for name, score in zip(names, scores):
+    print(f&quot;{name}: {score}&quot;)
+
+# zip stops at shortest
+a = [1, 2, 3, 4]
+b = [10, 20]
+print(list(zip(a, b)))    # [(1,10), (2,20)]
+
+# zip(*list) to unzip (transpose)
+pairs = [(1,&#x27;a&#x27;), (2,&#x27;b&#x27;), (3,&#x27;c&#x27;)]
+nums, chars = zip(*pairs)
+print(nums)    # (1, 2, 3)
+print(chars)   # (&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;)</code></pre></div></div></div>
+</section>
+</section>
+<section id="copying-semantics" class="content-section level-2">
+<h3 class="section-heading">Copying Semantics</h3>
+
+<section id="assignment-shallow-copy-deep-copy" class="content-section level-3">
+<h4 class="section-heading">Assignment, Shallow Copy, Deep Copy</h4>
+<div class="concept-box"><div class="box-title">Three Levels of List Copying</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig054.png" alt="diagram"></div>
+<p><strong>Shallow copy is sufficient</strong> when the list contains only <em>immutable</em> objects (ints, strings, tuples). A <strong>deep copy</strong> is needed when the list contains <em>mutable</em> inner objects (lists, dicts, custom objects).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig055.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 60: Assignment vs Shallow vs Deep Copy</div><div class="box-body"><div class="code-box"><pre><code>import copy
+
+original = [1, 2, [30, 40]]
+
+# ── 1. Assignment: alias, NOT a copy ──────────────────────
+alias = original
+alias.append(99)
+print(original)   # [1, 2, [30, 40], 99]
+alias[2].append(50)
+print(original)   # [1, 2, [30, 40, 50], 99]
+
+# ── 2. Shallow copy ───────────────────────────────────────
+original = [1, 2, [30, 40]]
+shallow = original.copy()
+
+shallow.append(99)          # does NOT affect original
+print(original)   # [1, 2, [30, 40]]
+
+shallow[2].append(50)       # DOES affect original!
+print(original)   # [1, 2, [30, 40, 50]]
+print(shallow)    # [1, 2, [30, 40, 50], 99]
+
+# ── 3. Deep copy: fully independent ───────────────────────
+original = [1, 2, [30, 40]]
+deep = copy.deepcopy(original)
+
+deep.append(99)
+deep[2].append(50)          # does NOT affect original
+print(original)   # [1, 2, [30, 40]]
+print(deep)       # [1, 2, [30, 40, 50], 99]
+
+# ── Confirming identity ────────────────────────────────────
+a = [1, [2, 3]]
+s = a.copy()
+d = copy.deepcopy(a)
+
+print(a is s)           # False (different outer list)
+print(a[1] is s[1])     # True  (same inner list -- shallow!)
+print(a[1] is d[1])     # False (different inner list -- deep)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 61: Nested List Pitfall --- <code>[[0]*3]*3</code></div><div class="box-body"><div class="code-box"><pre><code># PITFALL: repetition creates shared references to inner list
+bad_matrix = [[0] * 3] * 3
+print(bad_matrix)         # [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+bad_matrix[0][1] = 99
+print(bad_matrix)
+
+# Proof: all rows are the same object
+print(bad_matrix[0] is bad_matrix[1])  # True
+print(bad_matrix[1] is bad_matrix[2])  # True
+
+# CORRECT: list comprehension creates independent rows
+good_matrix = [[0] * 3 for _ in range(3)]
+good_matrix[0][1] = 99
+print(good_matrix)
+
+print(good_matrix[0] is good_matrix[1])  # False</code></pre></div></div></div>
+</section>
+</section>
+<section id="append-vs-extend-vs-vs" class="content-section level-2">
+<h3 class="section-heading">append vs extend vs + vs +=</h3>
+
+<section id="adding-elements-and-combining-lists" class="content-section level-3">
+<h4 class="section-heading">Adding Elements and Combining Lists</h4>
+<div class="concept-box"><div class="box-title">Four Ways to Add to a List --- Differences</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig056.png" alt="diagram"></div>
+<p><strong>Key distinction:</strong></p>
+<ul><li><p><strong><code>append([4,5])</code></strong> adds the list <code>[4,5]</code> as a <em>single nested element</em></p></li><li><p><strong><code>extend([4,5])</code></strong> adds <code>4</code> and <code>5</code> as <em>two separate elements</em></p></li><li><p><strong><code>L + [4,5]</code></strong> creates a <em>new list</em>; <code>L</code> is unchanged</p></li><li><p><strong><code>L += [4,5]</code></strong> calls <code>__iadd__</code> (same as <code>extend</code>); same id</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig057.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 62: append vs extend vs + vs += --- Side by Side</div><div class="box-body"><div class="code-box"><pre><code># ── append: adds ONE item (even if it&#x27;s a list) ────────────
+L = [1, 2, 3]
+L.append([4, 5])
+print(L)               # [1, 2, 3, [4, 5]]
+print(len(L))          # 4
+
+# ── extend: unpacks iterable, adds each item ───────────────
+L = [1, 2, 3]
+L.extend([4, 5])
+print(L)               # [1, 2, 3, 4, 5]
+print(len(L))          # 5
+
+# ── + creates NEW list ─────────────────────────────────────
+L = [1, 2, 3]
+M = L + [4, 5]
+print(M)               # [1, 2, 3, 4, 5]
+print(L)               # [1, 2, 3]
+print(id(L) == id(M))  # False
+
+# ── += modifies IN PLACE (same id) ─────────────────────────
+L = [1, 2, 3]
+old_id = id(L)
+L += [4, 5]
+print(L)               # [1, 2, 3, 4, 5]
+print(id(L) == old_id) # True
+
+# ── += vs + with immutables ────────────────────────────────
+s = &quot;hello&quot;
+old_id = id(s)
+s += &quot; world&quot;
+print(id(s) == old_id) # False
+
+# ── Practical: build list efficiently ──────────────────────
+L = []
+L.extend(range(5))     # L = [0,1,2,3,4]
+
+L2 = []
+for x in range(5):
+    L2.append(x)
+
+matrix_rows = [[1,2],[3,4],[5,6]]
+flat1 = []
+for row in matrix_rows:
+    flat1.extend(row)
+flat2 = []
+for row in matrix_rows:
+    flat2.append(row)
+print(flat1)   # [1, 2, 3, 4, 5, 6]
+print(flat2)   # [[1, 2], [3, 4], [5, 6]]</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 63: Important List Patterns for GATE</div><div class="box-body"><div class="code-box"><pre><code># 1. Flatten a 2D list
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+flat = [x for row in matrix for x in row]
+print(flat)    # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 2. Remove duplicates preserving order
+def unique(lst):
+    seen = set()
+    return [x for x in lst if not (x in seen or seen.add(x))]
+print(unique([3,1,4,1,5,9,2,6,5]))   # [3, 1, 4, 5, 9, 2, 6]
+
+# 3. Rotate list by k positions
+def rotate(lst, k):
+    k %= len(lst)
+    return lst[-k:] + lst[:-k]
+print(rotate([1,2,3,4,5], 2))   # [4, 5, 1, 2, 3]
+
+# 4. Stack and Queue using list
+stack = []
+stack.append(1); stack.append(2); stack.append(3)
+print(stack.pop())       # 3
+
+from collections import deque
+queue = deque()
+queue.append(1); queue.append(2); queue.append(3)
+print(queue.popleft())   # 1
+
+# 5. Two-pointer technique
+def two_sum(lst, target):
+    lst_sorted = sorted(lst)
+    lo, hi = 0, len(lst_sorted) - 1
+    while lo &lt; hi:
+        s = lst_sorted[lo] + lst_sorted[hi]
+        if s == target:   return (lst_sorted[lo], lst_sorted[hi])
+        elif s &lt; target:  lo += 1
+        else:             hi -= 1
+    return None
+print(two_sum([2,7,11,15], 9))   # (2, 7)
+
+# 6. List as default argument pitfall
+def bad_append(x, L=[]):
+    L.append(x)
+    return L
+
+print(bad_append(1))   # [1]
+print(bad_append(2))   # [1, 2]
+
+def good_append(x, L=None):
+    if L is None:
+        L = []
+    L.append(x)
+    return L</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="tuples" class="content-section level-1">
+<h2 class="section-heading">Tuples</h2>
+
+<section id="tuple-properties" class="content-section level-2">
+<h3 class="section-heading">Tuple Properties</h3>
+
+<section id="core-characteristics-2" class="content-section level-3">
+<h4 class="section-heading">Core Characteristics</h4>
+<div class="concept-box"><div class="box-title">Tuple --- Definition and Core Properties</div><div class="box-body"><p>A Python <strong>tuple</strong> is an <strong>ordered, immutable, heterogeneous sequence</strong>
+that allows duplicate elements. It is Python's built-in fixed-size container.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig058.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Immutability and Hashability</div><div class="box-body"><p><strong>Immutable</strong> means the tuple's structure (which objects it refers to) cannot
+change after creation. However:</p>
+<ul><li><p>If a tuple <em>contains a mutable object</em> (e.g.\ a list), that object's
+        <em>contents</em> can still change.  The tuple's reference to it does not.</p></li><li><p>A tuple is <strong>hashable only if all its elements are hashable</strong>.
+        <code>(1, 2, 3)</code> is hashable; <code>(1, [2, 3])</code> is <strong>not</strong>
+        (list is unhashable).</p></li></ul>
+<p><strong>Formal:</strong>\ <code>hash(t)</code> succeeds $\Leftrightarrow$ every element
+<code>e</code> in <code>t</code> satisfies <code>hash(e)</code> succeeds (recursively).</p>
+<p><strong>Why tuples are faster / smaller:</strong></p>
+<ul><li><p>CPython allocates <em>exactly</em> the right number of slots (no over-allocation)</p></li><li><p>Tuples of literals are stored as <strong>compile-time constants</strong> in bytecode</p></li><li><p>CPython maintains a <strong>free-list</strong> of small empty/1-element tuples for reuse</p></li><li><p><code>sys.getsizeof((1,2,3))</code> $&lt;$ <code>sys.getsizeof([1,2,3])</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig059.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Tuple Use Cases</div><div class="box-body"><ul><li><p><strong>Heterogeneous records</strong>: <code>person = ("Alice", 30, "Delhi")</code>
+        — fields have fixed meaning by position</p></li><li><p><strong>Dict keys</strong>: <code>grid[(0, 3)] = "start"</code> — (row, col) pairs</p></li><li><p><strong>Set members</strong>: <code>{(1,2), (3,4), (1,2)}</code> $\to$ dedup works</p></li><li><p><strong>Multiple return values</strong>: <code>return x, y</code>
+        (Python returns a tuple implicitly)</p></li><li><p><strong>Named tuples</strong>: <code>collections.namedtuple</code> for readable field access</p></li><li><p><strong>Constant data</strong>: configuration, RGB colours, coordinates that
+        <em>should not change</em></p></li><li><p><strong>Performance-critical code</strong>: iteration over a tuple is marginally
+        faster than over a list of the same size</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 64: Immutability, Hashability and Memory</div><div class="box-body"><div class="code-box"><pre><code>import sys
+
+% Tuple is immutable
+t = (10, 20, 30)
+try:
+    t[0] = 99
+except TypeError as e:
+    print(e)   # &#x27;tuple&#x27; object does not support item assignment
+
+% But a mutable element inside can still change
+t2 = (1, [2, 3], 4)
+t2[1].append(99)        # list inside the tuple is mutable!
+print(t2)               # (1, [2, 3, 99], 4)  -- tuple reference unchanged
+
+% Hashable tuples can be dict keys
+locations = {}
+locations[(28.6, 77.2)] = &quot;Delhi&quot;
+locations[(19.1, 72.8)] = &quot;Mumbai&quot;
+print(locations[(28.6, 77.2)])   # Delhi
+
+% Tuple with mutable element is NOT hashable
+try:
+    hash((1, [2, 3]))
+except TypeError as e:
+    print(e)   # unhashable type: &#x27;list&#x27;
+
+% Memory comparison
+t3 = (1, 2, 3, 4, 5)
+l3 = [1, 2, 3, 4, 5]
+print(f&quot;tuple: {sys.getsizeof(t3)} bytes&quot;)  # tuple: 80 bytes
+print(f&quot;list : {sys.getsizeof(l3)} bytes&quot;)  # list : 104 bytes
+
+% Tuples as set members
+points = {(0,0), (1,2), (3,4), (0,0)}   # duplicate removed
+print(points)   # {(0, 0), (1, 2), (3, 4)}</code></pre></div></div></div>
+</section>
+</section>
+<section id="creation-special-syntax" class="content-section level-2">
+<h3 class="section-heading">Creation &amp; Special Syntax</h3>
+
+<section id="literal-forms-and-the-comma-rule" class="content-section level-3">
+<h4 class="section-heading">Literal Forms and the Comma Rule</h4>
+<div class="concept-box"><div class="box-title">Tuple Creation --- The Comma Makes the Tuple, Not Parentheses</div><div class="box-body"><p>A common misconception: parentheses <em>do not</em> create tuples — the
+<strong>comma does</strong>.  Parentheses are only for grouping or disambiguation.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig060.png" alt="diagram"></div>
+<p><strong>Single-element tuple</strong>: the trailing comma <code>(x,)</code> is <strong>mandatory</strong>.
+Without it, <code>(42)</code> is just an integer in parentheses.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig061.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">All Creation Methods</div><div class="box-body"><ul><li><p><strong>Packing literal</strong>: <code>t = 1, 2, 3</code> or <code>t = (1, 2, 3)</code></p></li><li><p><strong>Single-element</strong>: <code>t = (x,)</code> or <code>t = x,</code>
+        — trailing comma is <em>required</em></p></li><li><p><strong>Empty</strong>: <code>t = ()</code> or <code>t = tuple()</code></p></li><li><p><strong>Constructor</strong>: <code>tuple(iterable)</code> — converts any iterable</p></li><li><p><strong>Repetition</strong>: <code>(0,) * 5</code> $\to$ <code>(0, 0, 0, 0, 0)</code>
+        (safe for immutables; same pitfall as lists for nested mutables)</p></li><li><p><strong>Nested</strong>: <code>t = ((1,2), (3,4), (5,6))</code> — tuple of tuples</p></li><li><p><strong>Concatenation</strong>: <code>(1,2) + (3,4)</code> $\to$ <code>(1,2,3,4)</code>
+        (creates new tuple)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 65: Creating Tuples --- All Forms</div><div class="box-body"><div class="code-box"><pre><code>% Literal with parentheses
+t1 = (1, 2, 3)
+print(type(t1), t1)    # &lt;class &#x27;tuple&#x27;&gt; (1, 2, 3)
+
+% Parentheses are OPTIONAL (comma packs)
+t2 = 1, 2, 3
+print(type(t2), t2)    # &lt;class &#x27;tuple&#x27;&gt; (1, 2, 3)
+print(t1 == t2)        # True
+
+% Single element: COMMA IS MANDATORY
+a = (42,)
+b = (42)               # this is just int 42!
+print(type(a), a)      # &lt;class &#x27;tuple&#x27;&gt; (42,)
+print(type(b), b)      # &lt;class &#x27;int&#x27;&gt;   42
+
+% Trailing comma works without parens too
+c = 42,
+print(type(c), c)      # &lt;class &#x27;tuple&#x27;&gt; (42,)
+
+% Empty tuple
+e = ()
+print(type(e), len(e)) # &lt;class &#x27;tuple&#x27;&gt; 0
+
+% Constructor from iterables
+t3 = tuple(&quot;GATE&quot;)               # (&#x27;G&#x27;, &#x27;A&#x27;, &#x27;T&#x27;, &#x27;E&#x27;)
+t4 = tuple(range(1, 6))          # (1, 2, 3, 4, 5)
+t5 = tuple([10, 20, 30])         # from list
+t6 = tuple({3, 1, 2})            # from set (order not guaranteed)
+print(t3, t4, t5)
+
+% Repetition
+t7 = (0,) * 5
+print(t7)              # (0, 0, 0, 0, 0)
+
+% Concatenation creates NEW tuple
+t8 = (1, 2) + (3, 4)
+print(t8)              # (1, 2, 3, 4)
+
+% Nested tuple
+coords = ((0.0, 1.0), (3.5, 4.2), (-1.0, 2.0))
+print(coords[1])       # (3.5, 4.2)
+print(coords[1][0])    # 3.5</code></pre></div></div></div>
+</section>
+</section>
+<section id="packing-unpacking" class="content-section level-2">
+<h3 class="section-heading">Packing &amp; Unpacking</h3>
+
+<section id="all-unpacking-forms" class="content-section level-3">
+<h4 class="section-heading">All Unpacking Forms</h4>
+<div class="concept-box"><div class="box-title">Tuple Packing and Unpacking</div><div class="box-body"><p><strong>Packing</strong>: multiple values on the right of <code>=</code> are automatically
+gathered into a tuple.</p>
+<p><strong>Unpacking</strong>: a tuple (or any iterable) on the right of <code>=</code> is
+distributed across multiple names on the left. The number of names must match the
+number of elements (unless <code>*</code> is used).</p>
+<p><strong>Forms:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig062.png" alt="diagram"></div>
+<p><strong>Rules:</strong></p>
+<ul><li><p>Only <strong>one <code>*</code> variable</strong> allowed per unpacking expression</p></li><li><p><code>*</code> always captures a <strong>list</strong> (not a tuple), even when
+        unpacking a tuple</p></li><li><p>Works for <em>any iterable</em> on the right, not just tuples</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig063.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Extended Unpacking Rules</div><div class="box-body"><ul><li><p><strong>Only one <code>*</code></strong> per assignment: <code>a, *b, *c = t</code> is a
+        <code>SyntaxError</code></p></li><li><p><strong><code>*</code> always collects a list</strong>: even when unpacking a tuple,
+        the starred variable gets a <code>list</code> object</p></li><li><p><strong>Zero or more elements</strong>: <code>first, *rest = (1,)</code> gives
+        <code>first=1</code>, <code>rest=[]</code></p></li><li><p><strong>Works on any iterable</strong>: list, range, string, generator, etc.</p></li><li><p><strong>Nested unpacking</strong>: patterns can be nested to arbitrary depth</p></li><li><p><strong>Underscore convention</strong>: use <code>_</code> for values you want to discard</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 66: Basic and Extended Unpacking</div><div class="box-body"><div class="code-box"><pre><code>% Basic
+a, b, c = (10, 20, 30)
+print(a, b, c)           # 10 20 30
+
+% Too few / too many -- ValueError
+try:
+    x, y = (1, 2, 3)
+except ValueError as e:
+    print(e)   # too many values to unpack (expected 2)
+
+% Extended unpacking
+first, *rest = (1, 2, 3, 4, 5)
+print(first)             # 1
+print(rest)              # [2, 3, 4, 5]   &lt;-- list!
+print(type(rest))        # &lt;class &#x27;list&#x27;&gt;
+
+*init, last = (1, 2, 3, 4, 5)
+print(init, last)        # [1, 2, 3, 4]  5
+
+a, *mid, z = (1, 2, 3, 4, 5)
+print(a, mid, z)         # 1  [2, 3, 4]  5
+
+% Star captures zero elements too
+first2, *empty, last2 = (1, 2)
+print(first2, empty, last2)   # 1 [] 2
+
+% Discarding values with _
+_, y, _ = (1, 99, 3)
+print(y)                 # 99
+
+% Unpack in for-loop (very common!)
+pairs = [(1, &#x27;a&#x27;), (2, &#x27;b&#x27;), (3, &#x27;c&#x27;)]
+for num, char in pairs:
+    print(f&quot;{num}: {char}&quot;)
+% 1: a  /  2: b  /  3: c
+
+% Works on strings (any iterable)
+first_char, *rest_chars = &quot;Python&quot;
+print(first_char)        # P
+print(rest_chars)        # [&#x27;y&#x27;, &#x27;t&#x27;, &#x27;h&#x27;, &#x27;o&#x27;, &#x27;n&#x27;]</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 67: Nested Unpacking</div><div class="box-body"><div class="code-box"><pre><code>% Nested tuple unpacking
+(a, b), c = (1, 2), 3
+print(a, b, c)           # 1 2 3
+
+% Unpack nested in for-loop
+matrix = [(1, (2, 3)), (4, (5, 6)), (7, (8, 9))]
+for x, (y, z) in matrix:
+    print(f&quot;x={x}, y={y}, z={z}&quot;)
+% x=1, y=2, z=3
+% x=4, y=5, z=6
+% x=7, y=8, z=9
+
+% Deep nesting
+((a, b), (c, d)) = ((1, 2), (3, 4))
+print(a, b, c, d)        # 1 2 3 4
+
+% Mixed nesting with *
+(first, *rest), last = (1, 2, 3), 4
+print(first, rest, last) # 1 [2, 3] 4
+
+% Practical: parse CSV-like records
+records = [
+    (&quot;Alice&quot;, 25, (&quot;Delhi&quot;, &quot;IN&quot;)),
+    (&quot;Bob&quot;,   30, (&quot;London&quot;, &quot;UK&quot;)),
+]
+for name, age, (city, country) in records:
+    print(f&quot;{name}, {age}, {city}, {country}&quot;)
+% Alice, 25, Delhi, IN
+% Bob, 30, London, UK</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 68: Swap and Function Unpacking</div><div class="box-body"><div class="code-box"><pre><code>% Simultaneous swap -- RHS fully evaluated first
+a, b = 10, 20
+a, b = b, a                # packs (20,10) then unpacks
+print(a, b)                # 20 10
+
+% Three-way rotation
+x, y, z = 1, 2, 3
+x, y, z = y, z, x
+print(x, y, z)             # 2 3 1
+
+% Unpack as function arguments with *
+def add3(x, y, z):
+    return x + y + z
+
+args = (3, 4, 5)
+print(add3(*args))         # 12  (same as add3(3, 4, 5))
+
+% Mixed: some explicit, some starred
+def greet(name, greeting, punct):
+    return f&quot;{greeting}, {name}{punct}&quot;
+
+params = (&quot;World&quot;, &quot;!&quot;)
+print(greet(&quot;Hello&quot;, *params))   # Hello, World!
+
+% ** for dict unpacking into keyword args
+def describe(name, age, city):
+    return f&quot;{name}, {age}, {city}&quot;
+
+info = {&quot;age&quot;: 30, &quot;city&quot;: &quot;Delhi&quot;}
+print(describe(&quot;Alice&quot;, **info))  # Alice, 30, Delhi
+
+% Function returning multiple values as tuple
+def minmax(lst):
+    return min(lst), max(lst)   # implicitly packs a tuple
+
+low, high = minmax([3, 1, 4, 1, 5, 9])
+print(low, high)           # 1 9
+
+result = minmax([3, 1, 4])
+print(type(result))        # &lt;class &#x27;tuple&#x27;&gt;</code></pre></div></div></div>
+</section>
+</section>
+<section id="tuple-methods" class="content-section level-2">
+<h3 class="section-heading">Tuple Methods</h3>
+
+<section id="texttt-count-and-texttt-index" class="content-section level-3">
+<h4 class="section-heading"><code>count()</code> and <code>index()</code></h4>
+<div class="concept-box"><div class="box-title">Tuple Methods --- Only Two</div><div class="box-body"><p>Tuples have exactly <strong>two methods</strong> (because they are immutable; no mutation
+methods exist):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig064.png" alt="diagram"></div>
+<p>All other sequence operations are <strong>built-in functions</strong> (not methods):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig065.png" alt="diagram"></div></div></div>
+<div class="concept-box-alt"><div class="box-title">Named Tuples --- <code>collections.namedtuple</code></div><div class="box-body"><p><strong>Named tuples</strong> are a subclass of <code>tuple</code> that give each position a
+<em>name</em>, making records self-documenting without the overhead of a full class.</p>
+<ul><li><p>Accessed by <strong>name</strong> (<code>p.x</code>) or <strong>index</strong> (<code>p[0]</code>)</p></li><li><p>Still <strong>immutable</strong> (no assignment to fields)</p></li><li><p>Usable anywhere a regular tuple is (hashing, dict keys, unpacking)</p></li><li><p><code>_asdict()</code> returns an <code>OrderedDict</code> of field values</p></li><li><p><code>_replace(**kwargs)</code> returns a <em>new</em> tuple with some fields changed</p></li><li><p>Python 3.6+ <strong><code>typing.NamedTuple</code></strong>: cleaner class-based syntax with type hints</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 69: <code>count()</code>, <code>index()</code> and All Sequence Operations</div><div class="box-body"><div class="code-box"><pre><code>t = (3, 1, 4, 1, 5, 9, 2, 6, 1, 4)
+
+% count: occurrences (no ValueError for missing)
+print(t.count(1))          # 3
+print(t.count(7))          # 0
+
+% index: first occurrence
+print(t.index(4))          # 2
+print(t.index(4, 3))       # 9  (search from index 3)
+try:
+    t.index(99)
+except ValueError as e:
+    print(e)               # tuple.index(x): x not in tuple
+
+% Built-in operations on tuples
+print(len(t))              # 10
+print(min(t), max(t))      # 1  9
+print(sum(t))              # 36
+print(1 in t)              # True
+print(99 not in t)         # True
+
+% sorted returns NEW LIST
+print(sorted(t))           # [1, 1, 1, 2, 3, 4, 4, 5, 6, 9]
+print(type(sorted(t)))     # &lt;class &#x27;list&#x27;&gt;
+
+% reversed returns iterator
+print(list(reversed(t)))   # [4, 1, 6, 2, 9, 5, 1, 4, 1, 3]
+
+% Slicing returns NEW TUPLE
+print(t[2:6])              # (4, 1, 5, 9)
+print(t[::-1])             # (4, 1, 6, 2, 9, 5, 1, 4, 1, 3)
+
+% Concatenation and repetition
+print((1, 2) + (3, 4))    # (1, 2, 3, 4)
+print((0,) * 4)            # (0, 0, 0, 0)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 70: Named Tuples</div><div class="box-body"><div class="code-box"><pre><code>from collections import namedtuple
+
+% Define a named tuple type
+Point = namedtuple(&#x27;Point&#x27;, [&#x27;x&#x27;, &#x27;y&#x27;])
+Person = namedtuple(&#x27;Person&#x27;, &#x27;name age city&#x27;)   # space-separated too
+
+% Create instances
+p = Point(3.0, 4.0)
+print(p)                # Point(x=3.0, y=4.0)
+print(p.x, p.y)         # 3.0  4.0   (field access by name)
+print(p[0], p[1])       # 3.0  4.0   (index access still works)
+
+% Distance from origin
+dist = (p.x**2 + p.y**2) ** 0.5
+print(dist)             # 5.0
+
+% Unpacking works as usual
+x, y = p
+print(x, y)             # 3.0  4.0
+
+% _asdict: convert to dict
+print(p._asdict())      # {&#x27;x&#x27;: 3.0, &#x27;y&#x27;: 4.0}
+
+% _replace: returns NEW tuple with changed fields
+p2 = p._replace(x=10.0)
+print(p2)               # Point(x=10.0, y=4.0)
+print(p)                # Point(x=3.0, y=4.0)  original unchanged
+
+% Hashable -- can be dict key or set member
+locations = {Point(0,0): &quot;origin&quot;, Point(1,0): &quot;unit-x&quot;}
+print(locations[Point(0,0)])   # origin
+
+% Python 3.6+: class-based syntax with type hints
+from typing import NamedTuple
+
+class Student(NamedTuple):
+    name: str
+    score: float
+    rank: int = 0           # default value
+
+s = Student(&quot;Alice&quot;, 95.5)
+print(s)                    # Student(name=&#x27;Alice&#x27;, score=95.5, rank=0)
+print(s.name, s.score)      # Alice  95.5
+
+% Iterate namedtuple fields
+for field, val in s._asdict().items():
+    print(f&quot;  {field}: {val}&quot;)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 71: Tuples as Dict Keys --- Practical Uses</div><div class="box-body"><div class="code-box"><pre><code>% 2D grid mapping using tuple keys
+grid = {}
+grid[(0, 0)] = &quot;start&quot;
+grid[(3, 4)] = &quot;end&quot;
+grid[(1, 2)] = &quot;obstacle&quot;
+
+print(grid[(0, 0)])         # start
+print((3, 4) in grid)       # True
+
+% Memoisation with tuple key
+memo = {}
+def fib(n):
+    if n &lt;= 1:
+        return n
+    if (n,) not in memo:    # single-element tuple key
+        memo[(n,)] = fib(n-1) + fib(n-2)
+    return memo[(n,)]
+
+% Multi-key grouping
+from collections import defaultdict
+sales = [
+    (&quot;Jan&quot;, &quot;North&quot;, 500),
+    (&quot;Jan&quot;, &quot;South&quot;, 300),
+    (&quot;Feb&quot;, &quot;North&quot;, 700),
+    (&quot;Jan&quot;, &quot;North&quot;, 200),
+]
+region_monthly = defaultdict(int)
+for month, region, amount in sales:
+    region_monthly[(month, region)] += amount   # tuple as compound key
+
+for key, total in sorted(region_monthly.items()):
+    print(f&quot;{key}: {total}&quot;)
+% (&#x27;Feb&#x27;, &#x27;North&#x27;): 700
+% (&#x27;Jan&#x27;, &#x27;North&#x27;): 700
+% (&#x27;Jan&#x27;, &#x27;South&#x27;): 300
+
+% Sorting a list of tuples
+data = [(&quot;Charlie&quot;, 78), (&quot;Alice&quot;, 95), (&quot;Bob&quot;, 78), (&quot;Diana&quot;, 95)]
+% Sort by score desc, then name asc
+data.sort(key=lambda x: (-x[1], x[0]))
+print(data)
+% [(&#x27;Alice&#x27;, 95), (&#x27;Diana&#x27;, 95), (&#x27;Bob&#x27;, 78), (&#x27;Charlie&#x27;, 78)]</code></pre></div></div></div>
+</section>
+<section id="tuple-vs-list-when-to-use-which" class="content-section level-3">
+<h4 class="section-heading">Tuple vs List --- When to Use Which</h4>
+<div class="concept-box-alt"><div class="box-title">Tuple vs List Decision Guide</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig066.png" alt="diagram"></div>
+<ul><li><p>Choose <strong>tuples</strong> for fixed structured records, coordinates, lookup keys, and static configuration constants to optimize performance and guard safety.</p></li><li><p>Choose <strong>lists</strong> for collections of homogeneous elements that grow, shrink, dynamically reorder, or update frequently throughout execution.</p></li></ul></div></div>
+</section>
+</section>
+</section>
+<section id="dictionaries" class="content-section level-1">
+<h2 class="section-heading">Dictionaries</h2>
+
+<section id="dictionary-properties" class="content-section level-2">
+<h3 class="section-heading">Dictionary Properties</h3>
+
+<section id="core-characteristics-3" class="content-section level-3">
+<h4 class="section-heading">Core Characteristics</h4>
+<div class="concept-box"><div class="box-title">Dictionary --- Definition and Core Properties</div><div class="box-body"><p>A Python <strong>dictionary</strong> (<code>dict</code>) is an <strong>ordered mapping</strong> of
+<strong>hashable keys</strong> to <strong>arbitrary values</strong>. It is Python's primary
+associative data structure.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig067.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Hash Table Implementation</div><div class="box-body"><p>CPython implements <code>dict</code> as a <strong>compact hash table</strong>:</p>
+<ol><li><p><strong>Hash the key</strong>: <code>hash(k)</code> produces an integer (e.g.\ <code>hash("name") = -8134...</code>)</p></li><li><p><strong>Compute slot</strong>: <code>slot = hash(k) % table_size</code></p></li><li><p><strong>Probe on collision</strong>: if the slot is occupied by a <em>different</em> key,
+        Python probes subsequent slots (open addressing with perturbation)</p></li><li><p><strong>Compare</strong>: once the slot is reached, Python checks <code>k == stored_key</code>
+        to confirm (hash equality does not guarantee key equality)</p></li></ol>
+<p><strong>Resizing</strong>: when the load factor exceeds $\approx 2/3$, the table is resized
+(doubled) and all entries are rehashed — $O(n)$ occasionally, $O(1)$ amortised.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig068.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">What Can Be a Dictionary Key?</div><div class="box-body"><ul><li><p><strong>Valid keys</strong> (hashable): <code>int</code>, <code>float</code>, <code>str</code>,
+        <code>bool</code>, <code>bytes</code>, <code>tuple</code> (of hashables),
+        <code>frozenset</code>, <code>None</code>, custom objects with <code>__hash__</code></p></li><li><p><strong>Invalid keys</strong> (unhashable): <code>list</code>, <code>dict</code>,
+        <code>set</code> — raise <code>TypeError: unhashable type</code></p></li><li><p><strong>Equality determines uniqueness</strong>: <code>True == 1</code> and
+        <code>hash(True) == hash(1)</code>, so <code>{True: "a", 1: "b"}</code> has only
+        <em>one</em> key (<code>True</code>) with value <code>"b"</code></p></li><li><p><strong>Float keys</strong>: technically valid but <em>dangerous</em> due to floating-point
+        imprecision; avoid using floats as keys</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 72: Valid and Invalid Keys; True/1 Collision</div><div class="box-body"><div class="code-box"><pre><code># Valid key types
+d = {
+    42:          &quot;int key&quot;,
+    3.14:        &quot;float key&quot;,     # valid but risky
+    &quot;name&quot;:      &quot;str key&quot;,
+    True:        &quot;bool key&quot;,
+    (1, 2):      &quot;tuple key&quot;,
+    frozenset({1,2}): &quot;frozenset key&quot;,
+    None:        &quot;None key&quot;,
+}
+print(d[42], d[&quot;name&quot;], d[(1,2)])  # int key / str key / tuple key
+
+# Invalid key: list raises TypeError
+try:
+    bad = {[1,2]: &quot;value&quot;}
+except TypeError as e:
+    print(e)   # unhashable type: &#x27;list&#x27;
+
+# True == 1 and hash(True) == hash(1): same key!
+d2 = {True: &quot;first&quot;, 1: &quot;second&quot;}
+print(d2)        # {True: &#x27;second&#x27;}  -- only one entry; value overwritten
+print(len(d2))   # 1
+
+d3 = {False: &quot;zero&quot;, 0: &quot;also zero&quot;}
+print(d3)        # {False: &#x27;also zero&#x27;}
+print(len(d3))   # 1
+
+# Ordered by insertion (Python 3.7+)
+d4 = {&quot;c&quot;: 3, &quot;a&quot;: 1, &quot;b&quot;: 2}
+print(list(d4.keys()))   # [&#x27;c&#x27;, &#x27;a&#x27;, &#x27;b&#x27;]  -- insertion order preserved</code></pre></div></div></div>
+</section>
+</section>
+<section id="dictionary-creation" class="content-section level-2">
+<h3 class="section-heading">Dictionary Creation</h3>
+
+<section id="all-creation-methods-2" class="content-section level-3">
+<h4 class="section-heading">All Creation Methods</h4>
+<div class="concept-box"><div class="box-title">Dictionary Creation Forms</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig069.png" alt="diagram"></div>
+<p><strong>fromkeys pitfall</strong>: <code>dict.fromkeys(keys, [])</code> shares the <em>same</em>
+list object for all keys — same pitfall as <code>[[]] * n</code> in lists.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig070.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 73: All Creation Methods</div><div class="box-body"><div class="code-box"><pre><code># Literal
+d1 = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Delhi&quot;}
+
+# dict() with keyword arguments (keys must be valid identifiers)
+d2 = dict(name=&quot;Alice&quot;, age=25, city=&quot;Delhi&quot;)
+print(d1 == d2)       # True
+
+# dict() from list of (key, value) pairs
+pairs = [(&quot;x&quot;, 10), (&quot;y&quot;, 20), (&quot;z&quot;, 30)]
+d3 = dict(pairs)
+print(d3)             # {&#x27;x&#x27;: 10, &#x27;y&#x27;: 20, &#x27;z&#x27;: 30}
+
+# dict() from zip
+keys   = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+values = [1, 2, 3]
+d4 = dict(zip(keys, values))
+print(d4)             # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 2, &#x27;c&#x27;: 3}
+
+# fromkeys: all keys get the SAME default
+d5 = dict.fromkeys([&quot;x&quot;, &quot;y&quot;, &quot;z&quot;], 0)
+print(d5)             # {&#x27;x&#x27;: 0, &#x27;y&#x27;: 0, &#x27;z&#x27;: 0}
+
+# fromkeys PITFALL with mutable default
+d6 = dict.fromkeys([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], [])   # shared list!
+d6[&quot;a&quot;].append(1)
+print(d6)     # {&#x27;a&#x27;: [1], &#x27;b&#x27;: [1], &#x27;c&#x27;: [1]}  ALL changed!
+
+# Correct: use comprehension for independent defaults
+d7 = {k: [] for k in [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]}
+d7[&quot;a&quot;].append(1)
+print(d7)     # {&#x27;a&#x27;: [1], &#x27;b&#x27;: [], &#x27;c&#x27;: []}  only &#x27;a&#x27; changed 
+
+# Merge two dicts (Python 3.9+)
+base    = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+updates = {&quot;b&quot;: 99, &quot;c&quot;: 3}
+merged  = base | updates
+print(merged)   # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 99, &#x27;c&#x27;: 3}  (right dict wins on conflict)
+
+# Unpack merge (all Python 3 versions)
+merged2 = {**base, **updates}
+print(merged2)  # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 99, &#x27;c&#x27;: 3}</code></pre></div></div></div>
+</section>
+</section>
+<section id="access-mutation" class="content-section level-2">
+<h3 class="section-heading">Access &amp; Mutation</h3>
+
+<section id="reading-writing-deleting" class="content-section level-3">
+<h4 class="section-heading">Reading, Writing, Deleting</h4>
+<div class="concept-box"><div class="box-title">Accessing and Modifying Dictionary Entries</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig071.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig072.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">get vs setdefault vs defaultdict</div><div class="box-body"><ul><li><p><strong><code>d.get(k, default)</code></strong>: read-only safe access; does not modify dict</p></li><li><p><strong><code>d.setdefault(k, default)</code></strong>: ensures key exists with default;
+        <em>inserts</em> on first miss; idiomatic for building grouped dicts</p></li><li><p><strong><code>collections.defaultdict(factory)</code></strong>: auto-inserts
+        <code>factory()</code> for any missing key; cleaner than <code>setdefault</code>
+        for aggregation patterns</p></li><li><p><strong>Never</strong> use <code>d[k]</code> when key may be absent unless you handle
+        <code>KeyError</code> explicitly</p></li><li><p><strong><code>d.pop(k, None)</code></strong>: safe delete — never raises <code>KeyError</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 74: get, setdefault, pop, update --- Full Examples</div><div class="box-body"><div class="code-box"><pre><code>d = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25}
+
+# d[k] vs d.get()
+print(d[&quot;name&quot;])              # Alice
+try:
+    print(d[&quot;score&quot;])         # KeyError!
+except KeyError as e:
+    print(f&quot;KeyError: {e}&quot;)
+
+print(d.get(&quot;score&quot;))         # None  (no error)
+print(d.get(&quot;score&quot;, 0))      # 0     (custom default)
+print(d.get(&quot;name&quot;,  &quot;?&quot;))    # Alice (key exists, default ignored)
+
+# setdefault: insert-then-return
+d.setdefault(&quot;score&quot;, 100)    # inserts &quot;score&quot;: 100
+print(d[&quot;score&quot;])             # 100
+d.setdefault(&quot;score&quot;, 200)    # key already exists: no change
+print(d[&quot;score&quot;])             # 100  (still 100!)
+
+# Grouping with setdefault
+words = [&quot;apple&quot;,&quot;ant&quot;,&quot;banana&quot;,&quot;blueberry&quot;,&quot;avocado&quot;,&quot;cherry&quot;]
+grouped = {}
+for word in words:
+    grouped.setdefault(word[0], []).append(word)
+print(grouped)
+# {&#x27;a&#x27;: [&#x27;apple&#x27;,&#x27;ant&#x27;,&#x27;avocado&#x27;], &#x27;b&#x27;: [&#x27;banana&#x27;,&#x27;blueberry&#x27;], &#x27;c&#x27;: [&#x27;cherry&#x27;]}
+
+# pop
+removed = d.pop(&quot;age&quot;)        # removes and returns
+print(removed)                # 25
+print(&quot;age&quot; in d)             # False
+
+d.pop(&quot;nonexistent&quot;, &quot;safe&quot;)  # no KeyError with default
+# d.pop(&quot;nonexistent&quot;)        # would raise KeyError!
+
+# popitem: removes last inserted item (Python 3.7+ guaranteed LIFO)
+d2 = {&quot;x&quot;: 1, &quot;y&quot;: 2, &quot;z&quot;: 3}
+print(d2.popitem())           # (&#x27;z&#x27;, 3)
+print(d2)                     # {&#x27;x&#x27;: 1, &#x27;y&#x27;: 2}
+
+# update: merge in-place
+base = {&quot;a&quot;: 1, &quot;b&quot;: 2}
+base.update({&quot;b&quot;: 99, &quot;c&quot;: 3})   # b overwritten, c added
+print(base)   # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 99, &#x27;c&#x27;: 3}
+
+base.update(d=4, e=5)            # keyword form
+print(base)   # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 99, &#x27;c&#x27;: 3, &#x27;d&#x27;: 4, &#x27;e&#x27;: 5}
+
+# |= in-place merge (Python 3.9+)
+d3 = {&quot;x&quot;: 1}
+d3 |= {&quot;y&quot;: 2, &quot;z&quot;: 3}
+print(d3)   # {&#x27;x&#x27;: 1, &#x27;y&#x27;: 2, &#x27;z&#x27;: 3}</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 75: defaultdict --- Cleaner Aggregation</div><div class="box-body"><div class="code-box"><pre><code>from collections import defaultdict
+
+# defaultdict(list): auto-creates [] for missing keys
+grouped = defaultdict(list)
+words = [&quot;apple&quot;,&quot;ant&quot;,&quot;banana&quot;,&quot;blueberry&quot;,&quot;avocado&quot;,&quot;cherry&quot;]
+for word in words:
+    grouped[word[0]].append(word)   # no setdefault needed!
+print(dict(grouped))
+# {&#x27;a&#x27;: [&#x27;apple&#x27;,&#x27;ant&#x27;,&#x27;avocado&#x27;], &#x27;b&#x27;: [&#x27;banana&#x27;,&#x27;blueberry&#x27;], &#x27;c&#x27;: [&#x27;cherry&#x27;]}
+
+# defaultdict(int): word frequency counter
+sentence = &quot;the quick brown fox jumps over the lazy fox&quot;
+freq = defaultdict(int)
+for word in sentence.split():
+    freq[word] += 1              # missing key auto-initialised to 0
+print(dict(freq))
+# {&#x27;the&#x27;: 2, &#x27;quick&#x27;: 1, &#x27;brown&#x27;: 1, &#x27;fox&#x27;: 2, ...}
+
+# defaultdict(set): group into sets (dedup)
+pairs = [(&quot;A&quot;,&quot;x&quot;),(&quot;B&quot;,&quot;y&quot;),(&quot;A&quot;,&quot;z&quot;),(&quot;B&quot;,&quot;y&quot;),(&quot;A&quot;,&quot;x&quot;)]
+mapping = defaultdict(set)
+for k, v in pairs:
+    mapping[k].add(v)
+print(dict(mapping))   # {&#x27;A&#x27;: {&#x27;x&#x27;, &#x27;z&#x27;}, &#x27;B&#x27;: {&#x27;y&#x27;}}</code></pre></div></div></div>
+</section>
+</section>
+<section id="views-iteration" class="content-section level-2">
+<h3 class="section-heading">Views &amp; Iteration</h3>
+
+<section id="live-views-keys-values-items" class="content-section level-3">
+<h4 class="section-heading">Live Views: keys(), values(), items()</h4>
+<div class="concept-box"><div class="box-title">Dictionary Views --- Live, Dynamic Objects</div><div class="box-body"><p>The three view objects returned by <code>d.keys()</code>, <code>d.values()</code>,
+<code>d.items()</code> are <strong>live views</strong>: they <em>reflect changes</em> to the
+dictionary in real time without creating copies.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig073.png" alt="diagram"></div>
+<p><strong>Set operations on views</strong> (keys and items):
+<code>d.keys() &amp; other.keys()</code> (intersection),
+<code>d.keys() | other.keys()</code> (union),
+<code>d.keys() - other.keys()</code> (difference).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig074.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Iteration Patterns and Safe Modification</div><div class="box-body"><ul><li><p><strong>Iterate keys</strong>: <code>for k in d:</code> (same as <code>for k in d.keys()</code>)</p></li><li><p><strong>Iterate values</strong>: <code>for v in d.values():</code></p></li><li><p><strong>Iterate key-value</strong>: <code>for k, v in d.items():</code> (most common)</p></li><li><p><strong>Never modify a dict while iterating over it</strong> — raises
+        <code>RuntimeError: dictionary changed size during iteration</code></p></li><li><p><strong>Safe delete during iteration</strong>: iterate over <code>list(d.keys())</code>
+        (a copy) and delete from the original</p></li><li><p><strong><code>k in d</code></strong> tests key membership in $O(1)$;
+        <strong><code>v in d.values()</code></strong> is $O(n)$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 76: Iterating Over Views</div><div class="box-body"><div class="code-box"><pre><code>d = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Delhi&quot;, &quot;score&quot;: 95.5}
+
+% Iterate keys (default)
+for k in d:
+    print(k, end=&quot; &quot;)     # name age city score
+
+% Iterate values
+for v in d.values():
+    print(v, end=&quot; &quot;)     # Alice 25 Delhi 95.5
+
+% Iterate items (most useful)
+for key, val in d.items():
+    print(f&quot;{key}: {val}&quot;)
+
+% Views are LIVE
+kv = d.keys()
+print(list(kv))           # [&#x27;name&#x27;, &#x27;age&#x27;, &#x27;city&#x27;, &#x27;score&#x27;]
+d[&quot;rank&quot;] = 1
+print(list(kv))           # [&#x27;name&#x27;, &#x27;age&#x27;, &#x27;city&#x27;, &#x27;score&#x27;, &#x27;rank&#x27;]  updated!
+
+% Set operations on keys
+d1 = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+d2 = {&quot;b&quot;: 20, &quot;c&quot;: 30, &quot;d&quot;: 40}
+print(d1.keys() &amp; d2.keys())   # {&#x27;b&#x27;, &#x27;c&#x27;}   intersection
+print(d1.keys() | d2.keys())   # {&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;}  union
+print(d1.keys() - d2.keys())   # {&#x27;a&#x27;}  difference
+
+% Membership: O(1) for keys, O(n) for values
+print(&quot;name&quot; in d)            # True   O(1)
+print(&quot;Alice&quot; in d.values())  # True   O(n) -- linear scan!
+
+% Safe deletion during iteration
+d3 = {&quot;a&quot;: 1, &quot;b&quot;: -2, &quot;c&quot;: 3, &quot;d&quot;: -4, &quot;e&quot;: 5}
+for k in list(d3.keys()):      # copy the keys!
+    if d3[k] &lt; 0:
+        del d3[k]
+print(d3)   # {&#x27;a&#x27;: 1, &#x27;c&#x27;: 3, &#x27;e&#x27;: 5}</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 77: Useful Iteration Patterns</div><div class="box-body"><div class="code-box"><pre><code>inventory = {&quot;apple&quot;: 50, &quot;banana&quot;: 0, &quot;cherry&quot;: 30, &quot;date&quot;: 0}
+
+# Filter: items with non-zero stock
+in_stock = {k: v for k, v in inventory.items() if v &gt; 0}
+print(in_stock)   # {&#x27;apple&#x27;: 50, &#x27;cherry&#x27;: 30}
+
+# Invert a dict (value -&gt; key)
+original = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+inverted = {v: k for k, v in original.items()}
+print(inverted)   # {1: &#x27;a&#x27;, 2: &#x27;b&#x27;, 3: &#x27;c&#x27;}
+
+# Sort by value (returns list of tuples)
+scores = {&quot;Alice&quot;: 85, &quot;Bob&quot;: 92, &quot;Charlie&quot;: 78, &quot;Diana&quot;: 95}
+sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+print(sorted_scores)
+# [(&#x27;Diana&#x27;, 95), (&#x27;Bob&#x27;, 92), (&#x27;Alice&#x27;, 85), (&#x27;Charlie&#x27;, 78)]
+
+# Sorted dict (preserves insertion order after sort in 3.7+)
+sorted_dict = dict(sorted(scores.items(), key=lambda x: x[1]))
+print(sorted_dict)
+
+# Enumerate with dict
+for i, (k, v) in enumerate(scores.items(), 1):
+    print(f&quot;{i}. {k}: {v}&quot;)
+
+# Merge and aggregate
+monthly = [
+    {&quot;region&quot;: &quot;North&quot;, &quot;sales&quot;: 500},
+    {&quot;region&quot;: &quot;South&quot;, &quot;sales&quot;: 300},
+    {&quot;region&quot;: &quot;North&quot;, &quot;sales&quot;: 200},
+]
+total = {}
+for entry in monthly:
+    total[entry[&quot;region&quot;]] = total.get(entry[&quot;region&quot;], 0) + entry[&quot;sales&quot;]
+print(total)   # {&#x27;North&#x27;: 700, &#x27;South&#x27;: 300}</code></pre></div></div></div>
+</section>
+</section>
+<section id="nested-dictionaries" class="content-section level-2">
+<h3 class="section-heading">Nested Dictionaries</h3>
+
+<section id="access-mutation-and-the-sharing-trap" class="content-section level-3">
+<h4 class="section-heading">Access, Mutation, and the Sharing Trap</h4>
+<div class="concept-box"><div class="box-title">Nested Dictionaries --- Structure and Access</div><div class="box-body"><p>A <strong>nested dictionary</strong> is a dictionary whose <em>values</em> are themselves
+dictionaries (or other containers). This models hierarchical data (JSON, configs,
+databases).</p>
+<p><strong>Accessing nested values:</strong>
+\[\texttt{d['outer']['inner']} \quad\equiv\quad \texttt{temp = d['outer'];\ temp['inner']}\]</p>
+<p><strong>Safe access for deep nesting:</strong>
+\[\texttt{d.get('outer', \{\}).get('inner', default)}\]</p>
+<p><strong>Mutation trap:</strong> when a mutable object (list, dict) is a <em>value</em>
+in two different dictionaries (because one was assigned from the other without a
+deep copy), modifying through one dict modifies both.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig075.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Nested Dict Patterns and Tools</div><div class="box-body"><ul><li><p><strong>Safe deep access</strong>: <code>d.get("k1", {}).get("k2", default)</code>
+        chains safely without <code>KeyError</code></p></li><li><p><strong><code>collections.ChainMap</code></strong>: overlay multiple dicts without copying</p></li><li><p><strong>Deep copy for independence</strong>: <code>copy.deepcopy(d)</code> when nested
+        mutable values must be independent</p></li><li><p><strong>Flattening</strong>: use recursive function or <code>pandas.json_normalize</code></p></li><li><p><strong>JSON roundtrip</strong>: <code>json.dumps(d)</code> $\leftrightarrow$
+        <code>json.loads(s)</code> — nested dicts map directly to JSON objects</p></li><li><p><strong>Avoid</strong> key chains longer than 3 levels — prefer a class or
+        <code>dataclass</code> instead</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 78: Nested Dict --- Access and Safe Traversal</div><div class="box-body"><div class="code-box"><pre><code># Building a nested dict
+students = {
+    &quot;alice&quot;: {&quot;age&quot;: 25, &quot;scores&quot;: [85, 90, 78], &quot;city&quot;: &quot;Delhi&quot;},
+    &quot;bob&quot;:   {&quot;age&quot;: 30, &quot;scores&quot;: [92, 88],      &quot;city&quot;: &quot;Mumbai&quot;},
+}
+
+# Access: chained []
+print(students[&quot;alice&quot;][&quot;age&quot;])          # 25
+print(students[&quot;alice&quot;][&quot;scores&quot;][0])    # 85
+
+# Modify nested value
+students[&quot;alice&quot;][&quot;scores&quot;].append(95)
+print(students[&quot;alice&quot;][&quot;scores&quot;])       # [85, 90, 78, 95]
+
+# Add new nested key
+students[&quot;alice&quot;][&quot;rank&quot;] = 1
+print(students[&quot;alice&quot;])
+# {&#x27;age&#x27;: 25, &#x27;scores&#x27;: [85, 90, 78, 95], &#x27;city&#x27;: &#x27;Delhi&#x27;, &#x27;rank&#x27;: 1}
+
+# Safe access: missing key at any level
+print(students.get(&quot;carol&quot;, {}).get(&quot;age&quot;, 0))   # 0  (no KeyError)
+print(students.get(&quot;alice&quot;, {}).get(&quot;phone&quot;, &quot;N/A&quot;))  # N/A
+
+# KeyError example
+try:
+    print(students[&quot;carol&quot;][&quot;age&quot;])  # KeyError: &#x27;carol&#x27;
+except KeyError as e:
+    print(f&quot;KeyError: {e}&quot;)
+
+% Iterate nested
+for name, info in students.items():
+    avg = sum(info[&quot;scores&quot;]) / len(info[&quot;scores&quot;])
+    print(f&quot;{name.title()}: avg = {avg:.1f}, city = {info[&#x27;city&#x27;]}&quot;)
+# Alice: avg = 87.0, city = Delhi
+# Bob  : avg = 90.0, city = Mumbai</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 79: Nested Dict Mutation Trap --- Shared References</div><div class="box-body"><div class="code-box"><pre><code>import copy
+
+# TRAP: shallow copy shares nested dicts
+original = {
+    &quot;alice&quot;: {&quot;scores&quot;: [85, 90]},
+    &quot;bob&quot;:   {&quot;scores&quot;: [92, 88]},
+}
+shallow = original.copy()   # shallow copy
+
+# Outer dict: independent
+shallow[&quot;carol&quot;] = {&quot;scores&quot;: [70]}
+print(&quot;carol&quot; in original)  # False   (outer is independent)
+
+# Inner dict: SHARED
+shallow[&quot;alice&quot;][&quot;scores&quot;].append(99)
+print(original[&quot;alice&quot;][&quot;scores&quot;])   # [85, 90, 99]  MODIFIED!
+
+# CORRECT: deep copy
+original = {
+    &quot;alice&quot;: {&quot;scores&quot;: [85, 90]},
+    &quot;bob&quot;:   {&quot;scores&quot;: [92, 88]},
+}
+deep = copy.deepcopy(original)
+deep[&quot;alice&quot;][&quot;scores&quot;].append(99)
+print(original[&quot;alice&quot;][&quot;scores&quot;])   # [85, 90]  unchanged 
+
+# TRAP: fromkeys with mutable default (same issue)
+d = dict.fromkeys([&quot;alice&quot;, &quot;bob&quot;], {&quot;scores&quot;: []})
+d[&quot;alice&quot;][&quot;scores&quot;].append(100)
+print(d)  # {&#x27;alice&#x27;: {&#x27;scores&#x27;: [100]}, &#x27;bob&#x27;: {&#x27;scores&#x27;: [100]}} -- Both mutated!</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="sets-frozensets" class="content-section level-1">
+<h2 class="section-heading">Sets &amp; Frozensets</h2>
+
+<section id="properties" class="content-section level-2">
+<h3 class="section-heading">Properties</h3>
+
+<section id="core-characteristics-4" class="content-section level-3">
+<h4 class="section-heading">Core Characteristics</h4>
+<div class="concept-box"><div class="box-title">Set and Frozenset --- Definitions</div><div class="box-body"><p>A Python <strong>set</strong> is an <strong>unordered collection of unique, hashable elements</strong>.
+It models the mathematical notion of a set.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig076.png" alt="diagram"></div>
+<p><strong>Frozenset</strong> is the <em>immutable</em> version of <code>set</code>. Because it is
+immutable it is hashable and can be used as a dict key or as an element of another
+set.</p></div></div>
+<div class="concept-box"><div class="box-title">Hash-Table Implementation</div><div class="box-body"><p>Like <code>dict</code>, both <code>set</code> and <code>frozenset</code> are implemented as
+<strong>hash tables</strong>, which gives:</p>
+<ul><li><p><strong>$O(1)$ average time complexity</strong> for <code>add</code>, <code>remove</code>, <code>discard</code>,
+        and <code>in</code> (membership testing).</p></li><li><p><strong>$O(n)$ worst-case time complexity</strong> (driven by systematic hash collisions, though exceptionally rare with robust internal hash distributions).</p></li><li><p>No inherent ordering: iterating a set yields elements in an <em>arbitrary</em>
+        (but deterministic within a single process lifecycle) execution order.</p></li><li><p>Elements must be explicitly <strong>hashable</strong>: attempting to insert a mutable container like a <code>list</code> instantly triggers a <code>TypeError: unhashable type: 'list'</code>.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig077.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Set vs Frozenset Use Cases</div><div class="box-body"><ul><li><p><strong>set</strong>: Data deduplication, rapid empirical membership evaluation, implementation of discrete mathematical set algebra operations on dynamic mutations.</p></li><li><p><strong>frozenset</strong>: Keys within a <code>dict</code> schema requiring structural compounding, multi-element sets of intersecting criteria (<em>set of sets</em>), unalterable system wide global flags/registries, and secure shared-state thread operations.</p></li><li><p><strong>Algorithmic Selection Rule</strong>: Choose a <code>set</code> over a linear sequence (<code>list</code>) whenever processing scale compounds alongside dense, repetitive membership validation iterations ($O(1)$ constant vs. $O(n)$ linear sweep cost).</p></li><li><p><strong>Truthiness evaluations</strong>: An uninstantiated or empty structural reference <code>set()</code> maps cleanly to boolean <code>False</code>; any non-empty variant resolves explicitly to <code>True</code>.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 80: Set Properties --- Uniqueness, Ordering, Hashability</div><div class="box-body"><div class="code-box"><pre><code># Duplicates automatically removed
+s = {3, 1, 4, 1, 5, 9, 2, 6, 5}
+print(s)        # {1, 2, 3, 4, 5, 6, 9}  (order not guaranteed)
+print(len(s))   # 7  (not 9 -- duplicates gone)
+
+# No ordering: index access raises TypeError
+try:
+    print(s[0])
+except TypeError as e:
+    print(e)    # &#x27;set&#x27; object is not subscriptable
+
+# O(1) membership test (vs O(n) for list)
+print(5 in s)   # True
+print(7 in s)   # False
+
+# Elements must be hashable
+try:
+    bad = {[1, 2], [3, 4]}
+except TypeError as e:
+    print(e)    # unhashable type: &#x27;list&#x27;
+
+# frozenset is hashable -- can be dict key or set element
+fs = frozenset({1, 2, 3})
+d = {fs: &quot;frozen group&quot;}
+print(d[frozenset({1, 2, 3})])   # frozen group
+
+# set of frozensets
+groups = {frozenset({1,2}), frozenset({3,4}), frozenset({1,2})}
+print(groups)   # {frozenset({1, 2}), frozenset({3, 4})}  (deduped)
+
+# Truthiness
+print(bool(set()))          # False
+print(bool({0}))            # True  (non-empty, even if element is 0)</code></pre></div></div></div>
+</section>
+</section>
+<section id="set-creation" class="content-section level-2">
+<h3 class="section-heading">Set Creation</h3>
+
+<section id="literals-and-constructors" class="content-section level-3">
+<h4 class="section-heading">Literals and Constructors</h4>
+<div class="concept-box"><div class="box-title">Creating Sets and Frozensets</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig078.png" alt="diagram"></div>
+<p><strong>Critical Architectural Warning</strong>: Standard structural compiler mapping rules route explicit <code>{}</code> declarations directly to an unallocated <em>empty dict</em>. An explicit target conversion sequence must utilize the explicit constructor function <code>set()</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig079.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 81: All Creation Methods</div><div class="box-body"><div class="code-box"><pre><code># Literal: {1, 2, 3}
+s1 = {3, 1, 4, 1, 5}
+print(s1, type(s1))    # {1, 3, 4, 5}  &lt;class &#x27;set&#x27;&gt;
+
+# EMPTY SET: must use set(), not {}
+empty_set  = set()
+empty_dict = {}
+print(type(empty_set))   # &lt;class &#x27;set&#x27;&gt;
+print(type(empty_dict))  # &lt;class &#x27;dict&#x27;&gt;  &lt;- common mistake!
+
+# From iterables
+s2 = set(&quot;abracadabra&quot;)       # {&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;d&#x27;,&#x27;r&#x27;}
+s3 = set([1, 2, 2, 3, 3, 3]) # {1, 2, 3}
+s4 = set(range(0, 10, 2))     # {0, 2, 4, 6, 8}
+s5 = set((10, 20, 10, 30))    # {10, 20, 30}
+
+# Set comprehension
+squares = {x**2 for x in range(1, 6)}
+print(squares)   # {1, 4, 9, 16, 25}
+
+evens = {x for x in range(20) if x % 2 == 0}
+print(evens)     # {0, 2, 4, 6, 8, 10, 12, 14, 16, 18}
+
+# frozenset
+fs1 = frozenset({1, 2, 3})
+fs2 = frozenset(&quot;python&quot;)
+print(fs1)       # frozenset({1, 2, 3})
+print(fs2)       # frozenset({&#x27;p&#x27;,&#x27;y&#x27;,&#x27;t&#x27;,&#x27;h&#x27;,&#x27;o&#x27;,&#x27;n&#x27;})
+
+# frozenset is hashable: use as dict key
+edges = {frozenset({&quot;A&quot;,&quot;B&quot;}): 5, frozenset({&quot;B&quot;,&quot;C&quot;}): 3}
+print(edges[frozenset({&quot;A&quot;,&quot;B&quot;})])   # 5
+
+# Deduplication idiom: list -&gt; set -&gt; list
+lst = [3,1,4,1,5,9,2,6,5,3,5]
+unique = list(set(lst))       # order NOT preserved
+print(sorted(unique))         # [1, 2, 3, 4, 5, 6, 9]
+
+# Preserve order while deduping (Python 3.7+ dict keeps order)
+seen = {}
+unique_ordered = list(dict.fromkeys(lst))
+print(unique_ordered)   # [3, 1, 4, 5, 9, 2, 6]  insertion order preserved</code></pre></div></div></div>
+</section>
+</section>
+<section id="set-operations" class="content-section level-2">
+<h3 class="section-heading">Set Operations</h3>
+
+<section id="mathematical-set-operators" class="content-section level-3">
+<h4 class="section-heading">Mathematical Set Operators</h4>
+<div class="concept-box"><div class="box-title">Set Algebra --- Operators and Method Equivalents</div><div class="box-body"><p>Python provides both highly structured <strong>operator syntax</strong> (restricting interaction evaluation properties explicitly between strict matching <code>set</code> objects) and programmatic <strong>method syntax</strong> (accepting any arbitrary <em>iterable</em> as an evaluation argument):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig080.png" alt="diagram"></div>
+<p><strong>Type Constraint Difference</strong>: <code>A | B</code> enforces compilation constraints requiring clean type uniformity across all operators. Conversely, invocation properties like <code>A.union(B)</code> implicitly execute cast operations across any operational container target sequence passed within parameter scopes.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig081.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Operator vs Method --- Key Difference</div><div class="box-body"><ul><li><p><strong>Operators</strong> (<code>|, &amp;, -, \^{}</code>): Enforce strict verification rules requiring both operational parameters to conform explicitly as <code>set</code> or <code>frozenset</code> instances.</p></li><li><p><strong>Methods</strong> (<code>.union()</code>, <code>.intersection()</code>, …): Provide extensive execution latitude by unpacking any sequential stream or iterable entity passed during operational lifecycle execution.</p></li><li><p>Modular expansion strategies enable execution calls across several arguments simultaneously, mapping the conversion equation <code>A.union(B, C, D)</code> identically to <code>A | B | C | D</code>.</p></li><li><p><strong>In-place operations</strong> execute memory conservation parameters by directly restructuring active state definitions over target addresses; these structural shifts fail under immutable <code>frozenset</code> boundaries.</p></li><li><p>Type system consistency dictates that calls dispatched against structural variable instances preserve parent instance types exactly upon execution output generation.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 82: All Set Algebra Operations</div><div class="box-body"><div class="code-box"><pre><code>A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+
+# Union: all elements from both
+print(A | B)                  # {1, 2, 3, 4, 5, 6, 7, 8}
+print(A.union(B))             # same
+print(A.union([4,5,6,7,8]))   # method accepts any iterable!
+% print(A | [4,5,6])          # TypeError: operator needs set
+
+# Intersection: only common elements
+print(A &amp; B)                  # {4, 5}
+print(A.intersection(B))      # {4, 5}
+
+# Difference: in A but not B
+print(A - B)                  # {1, 2, 3}
+print(B - A)                  # {6, 7, 8}  (not symmetric!)
+
+# Symmetric difference: in exactly one of A, B
+print(A ^ B)                  # {1, 2, 3, 6, 7, 8}
+print(A.symmetric_difference(B))  # same
+
+# Multiple sets with methods
+C = {5, 6, 9}
+print(A.union(B, C))          # {1,2,3,4,5,6,7,8,9}
+print(A.intersection(B, C))   # {5}   common to all three
+
+# In-place operations
+X = {1, 2, 3, 4}
+X |= {4, 5, 6}                # X = X | {4,5,6}
+print(X)                      # {1, 2, 3, 4, 5, 6}
+
+Y = {1, 2, 3, 4, 5}
+Y &amp;= {3, 4, 5, 6}
+print(Y)                      # {3, 4, 5}
+
+Z = {1, 2, 3, 4, 5}
+Z -= {3, 4}
+print(Z)                      # {1, 2, 5}
+
+W = {1, 2, 3, 4}
+W ^= {3, 4, 5, 6}
+print(W)                      # {1, 2, 5, 6}</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 83: Subset, Superset, Disjoint Checks</div><div class="box-body"><div class="code-box"><pre><code>A = {1, 2, 3}
+B = {1, 2, 3, 4, 5}
+C = {4, 5, 6}
+D = {1, 2, 3}   # same as A
+
+# Subset: A &lt;= B  (A is subset of B)
+print(A &lt;= B)              # True   (all of A is in B)
+print(A.issubset(B))       # True
+print(B &lt;= A)              # False  (B has elements not in A)
+
+# Proper subset: A &lt; B  (subset AND not equal)
+print(A &lt; B)               # True   (A subset of B, A != B)
+print(A &lt; D)               # False  (A == D, so NOT proper subset)
+print(A &lt;= D)              # True   (A == D, still a subset)
+
+# Superset: B &gt;= A
+print(B &gt;= A)              # True
+print(B.issuperset(A))     # True
+print(B &gt; A)               # True   (proper superset)
+print(D &gt; A)               # False  (D == A)
+
+# Disjoint: no common elements
+print(A.isdisjoint(C))     # True   (A={1,2,3}, C={4,5,6})
+print(A.isdisjoint(B))     # False  (share 1,2,3)
+print(A.isdisjoint([7,8])) # True   (method accepts any iterable)
+
+# Equality
+print(A == D)              # True
+print(A == B)              # False
+
+# Practical validation pattern: verify structural dictionary signatures
+required = {&quot;name&quot;, &quot;age&quot;, &quot;email&quot;}
+form_data = {&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 25, &quot;email&quot;: &quot;a@b.com&quot;, &quot;city&quot;: &quot;Delhi&quot;}
+print(required &lt;= form_data.keys())  # True (all required keys present)
+
+missing = required - form_data.keys()
+print(missing)   # set()  (no missing keys)</code></pre></div></div></div>
+</section>
+<section id="mutation-methods" class="content-section level-3">
+<h4 class="section-heading">Mutation Methods</h4>
+<div class="concept-box"><div class="box-title">Set Mutation Methods</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig082.png" alt="diagram"></div>
+<p><strong>Defensive Choice: remove vs discard</strong>:</p>
+<ul><li><p>Leverage <strong><code>remove(x)</code></strong> when missing query components reveal logic breaking validation states across system runtimes.</p></li><li><p>Leverage <strong><code>discard(x)</code></strong> when structural mapping configurations do not promise structural membership continuity during execution passes.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig083.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 84: add, remove, discard, pop, clear</div><div class="box-body"><div class="code-box"><pre><code>s = {1, 2, 3, 4, 5}
+
+# add: no-op if already present
+s.add(6)
+print(s)              # {1, 2, 3, 4, 5, 6}
+s.add(3)              # already in set: no change, no error
+print(s)              # {1, 2, 3, 4, 5, 6}  unchanged
+
+# remove: raises KeyError if missing
+s.remove(6)
+print(s)              # {1, 2, 3, 4, 5}
+try:
+    s.remove(99)
+except KeyError as e:
+    print(f&quot;KeyError: {e}&quot;)   # KeyError: 99
+
+# discard: silent if missing
+s.discard(5)          # 5 was in set: removed
+print(s)              # {1, 2, 3, 4}
+s.discard(99)         # 99 not in set: no error
+print(s)              # {1, 2, 3, 4}  unchanged
+
+# pop: removes and returns arbitrary element
+s2 = {10, 20, 30}
+val = s2.pop()
+print(val)            # some element (arbitrary: 10 or 20 or 30)
+print(s2)             # remaining 2 elements
+
+# pop on empty set
+try:
+    empty = set()
+    empty.pop()
+except KeyError as e:
+    print(e)   # &#x27;pop from an empty set&#x27;
+
+# clear: empty the set
+s3 = {1, 2, 3}
+s3.clear()
+print(s3)             # set()
+print(len(s3))        # 0
+
+# In-place update methods (same as |=, &amp;=, -=, ^=)
+A = {1, 2, 3, 4}
+A.update([5, 6, 7])                   # A |= {5,6,7}
+print(A)              # {1, 2, 3, 4, 5, 6, 7}
+
+A.intersection_update([2, 4, 6, 8])   # A &amp;= {2,4,6,8}
+print(A)              # {2, 4, 6}
+
+A.difference_update([4])              # A -= {4}
+print(A)              # {2, 6}
+
+A.symmetric_difference_update([2,3,4])  # A ^= {2,3,4}
+print(A)              # {3, 4, 6}</code></pre></div></div></div>
+</section>
+<section id="frozenset-details-and-practical-set-patterns" class="content-section level-3">
+<h4 class="section-heading">Frozenset Details and Practical Set Patterns</h4>
+<div class="concept-box-alt"><div class="box-title">Frozenset --- Extra Properties</div><div class="box-body"><ul><li><p><strong>Complete Evaluation Symmetry</strong>: Every non-mutating query pipeline supported by standard mutable instances operates cleanly on immutable variants: <code>in</code>, <code>|</code>, <code>&amp;</code>, <code>-</code>, <code>\^{}</code>, <code>issubset</code>, <code>issuperset</code>, <code>isdisjoint</code>, data-length metrics, and sequence loops.</p></li><li><p><strong>Total Immutability Protection</strong>: Mutation gateways such as <code>add</code>, <code>remove</code>, <code>discard</code>, <code>pop</code>, <code>clear</code>, and <code>update</code> are completely omitted from the interface definition.</p></li><li><p><strong>Heterogeneous Computation Rules</strong>: Intersection evaluation patterns yield types derived from the primary operand sequence: <code>frozenset &amp; set</code> generates a <code>frozenset</code>; reversing evaluation sequences shifts output allocation cleanly to standard <code>set</code> configurations.</p></li><li><p><strong>Hash Consistency Verification</strong>: Evaluating structural inputs via <code>hash(frozenset({1,2,3}))</code> processes securely; checking matching state definitions via <code>frozenset({1,2}) == {1,2}</code> tracks cleanly to mathematical evaluation criteria.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 85: Frozenset Operations</div><div class="box-body"><div class="code-box"><pre><code>fs = frozenset({1, 2, 3, 4, 5})
+s  = {3, 4, 5, 6, 7}
+
+# All read operations work
+print(3 in fs)           # True
+print(fs &amp; s)            # frozenset({3, 4, 5})
+print(fs | s)            # frozenset({1, 2, 3, 4, 5, 6, 7})
+print(fs - s)            # frozenset({1, 2})
+print(fs.issubset({1,2,3,4,5,6}))  # True
+
+# Hashable: dict key
+graph_edges = {
+    frozenset({&quot;A&quot;,&quot;B&quot;}): 5,
+    frozenset({&quot;B&quot;,&quot;C&quot;}): 3,
+    frozenset({&quot;A&quot;,&quot;C&quot;}): 7,
+}
+print(graph_edges[frozenset({&quot;A&quot;,&quot;C&quot;})])   # 7
+
+# Hashable: element of set
+families = {
+    frozenset({&quot;Alice&quot;,&quot;Bob&quot;}),
+    frozenset({&quot;Charlie&quot;,&quot;Diana&quot;}),
+    frozenset({&quot;Alice&quot;,&quot;Bob&quot;}),    # duplicate -- removed
+}
+print(len(families))   # 2
+
+# Mutation raises AttributeError
+try:
+    fs.add(6)
+except AttributeError as e:
+    print(e)   # &#x27;frozenset&#x27; object has no attribute &#x27;add&#x27;
+
+# Mixed operations: frozenset op set -&gt; frozenset; set op frozenset -&gt; set
+print(type(fs &amp; s))        # &lt;class &#x27;frozenset&#x27;&gt;
+print(type(s &amp; fs))        # &lt;class &#x27;set&#x27;&gt;
+
+# Equality across types
+print(frozenset({1,2,3}) == {1,2,3})   # True</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 86: Practical Set Patterns for Computational Evaluation</div><div class="box-body"><div class="code-box"><pre><code># 1. High-Speed Linear Array Deduplication
+data = [1,2,3,2,4,1,5,3,6]
+unique = list(set(data))          # order not preserved
+print(sorted(unique))             # [1, 2, 3, 4, 5, 6]
+
+# 2. Performance Profiling: Linear Array Sweep vs. Constant Hash Lookup
+import time
+large_list = list(range(1_000_000))
+large_set  = set(range(1_000_000))
+
+t0 = time.perf_counter()
+_ = 999_999 in large_list
+print(f&quot;list: {time.perf_counter()-t0:.4f}s&quot;)   # ~0.01s (O(n) dependency loop)
+
+t0 = time.perf_counter()
+_ = 999_999 in large_set
+print(f&quot;set : {time.perf_counter()-t0:.6f}s&quot;)   # ~0.0000001s (O(1) constant index look)
+
+# 3. Dissecting Overlaps and Set Variances
+list1 = [1, 2, 3, 4, 5]
+list2 = [3, 4, 5, 6, 7]
+common   = set(list1) &amp; set(list2)   # {3, 4, 5}
+only_l1  = set(list1) - set(list2)   # {1, 2}
+only_l2  = set(list2) - set(list1)   # {6, 7}
+all_uniq = set(list1) ^ set(list2)   # {1, 2, 6, 7}
+
+# 4. Identity Evaluation Mechanics (Character Frequency Invariant Check)
+def is_same_letters(a, b):
+    return set(a.lower()) == set(b.lower())
+print(is_same_letters(&quot;listen&quot;, &quot;silent&quot;))  # True
+
+# 5. Schema Validation Architecture
+def validate_form(data, required):
+    missing = required - data.keys()
+    if missing:
+        return f&quot;Missing fields: {missing}&quot;
+    return &quot;OK&quot;
+
+required = {&quot;name&quot;, &quot;email&quot;, &quot;age&quot;}
+form = {&quot;name&quot;: &quot;Alice&quot;, &quot;email&quot;: &quot;a@b.com&quot;, &quot;city&quot;: &quot;Delhi&quot;}
+print(validate_form(form, required))   # Missing fields: {&#x27;age&#x27;}
+
+# 6. Graph Structures: Tracking Network Reachability via Constant Sets
+graph = {1:[2,3], 2:[4], 3:[4,5], 4:[], 5:[]}
+def reachable(start, graph):
+    visited = {start}
+    queue   = [start]
+    while queue:
+        node = queue.pop(0)
+        for nb in graph[node]:
+            if nb not in visited:     # Fast constant evaluation barrier
+                visited.add(nb)
+                queue.append(nb)
+    return visited
+print(reachable(1, graph))   # {1, 2, 3, 4, 5}
+
+# 7. Combinatorial Generation: Designing Power Sets via Immutable Composition
+def power_set(s):
+    ps = {frozenset()}
+    for elem in s:
+        ps = ps | {sub | {elem} for sub in ps}
+    return ps
+print(power_set({1,2,3}))</code></pre></div></div></div>
+</section>
+<section id="collection-types-at-a-glance" class="content-section level-3">
+<h4 class="section-heading">Collection Types --- At a Glance</h4>
+<div class="concept-box-alt"><div class="box-title">Python Built-in Collection Types Summary</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig084.png" alt="diagram"></div></div></div>
+</section>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Python Basics</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Control Flow &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

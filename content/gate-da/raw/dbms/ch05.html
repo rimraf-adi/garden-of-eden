@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structured Query Language (SQL) — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch05.html" class="chapter-link active">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 5 of 7</div><h1>Structured Query Language (SQL)</h1></div>
+<section id="sql-schema-creation-and-insertion" class="content-section level-1">
+<h2 class="section-heading">SQL Schema Creation and Insertion</h2>
+
+<section id="basic-data-type" class="content-section level-2">
+<h3 class="section-heading">Basic Data Type</h3>
+<div class="concept-box"><div class="box-title">SQL Basic Data Types</div><div class="box-body"><p>SQL provides a variety of built-in data types to store different kinds of values. Each data type has its own characteristics and constraints. The most commonly used types include:</p>
+<ul><li><p><strong>char(n)</strong>: A fixed-length character string with a specified length <code>n</code>. If the stored string is shorter than <code>n</code>, extra spaces are appended to fill the length. Full form: <code>character(n)</code>.</p></li><li><p><strong>varchar(n)</strong>: A variable-length character string with a maximum length <code>n</code>. Only the actual string is stored, without extra spaces. Full form: <code>character varying(n)</code>.</p></li><li><p><strong>int / integer</strong>: Stores integer numbers. The exact range is machine-dependent.</p></li><li><p><strong>smallint</strong>: Stores smaller integer numbers, a subset of <code>int</code>.</p></li><li><p><strong>numeric(p,d)</strong>: A fixed-point number with total precision <code>p</code> (number of digits) and scale <code>d</code> (number of digits to the right of the decimal point).  
+    Example: <code>numeric(3,1)</code> allows storing 44.5 exactly but not 444.5 or 0.32.</p></li><li><p><strong>real</strong>: Single-precision floating-point number with machine-dependent precision.</p></li><li><p><strong>double precision</strong>: Double-precision floating-point number with higher precision than <code>real</code>.</p></li><li><p><strong>float(n)</strong>: Floating-point number with at least <code>n</code> digits of precision.</p></li><li><p><strong>nvarchar(n)</strong>: Variable-length Unicode string supporting multilingual characters.</p></li></ul>
+<p><strong>Null values:</strong>  
+All SQL data types can include the special <code>NULL</code> value, which represents missing or unknown data. Null values indicate that a value may exist but is currently unknown, or that it may not exist at all. Certain columns can be restricted to disallow <code>NULL</code>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Rules and Observations for Character Types</div><div class="box-body"><ul><li><p><code>char(n)</code> always stores fixed-length strings. Shorter strings are padded with spaces to reach the specified length.</p></li><li><p><code>varchar(n)</code> stores variable-length strings. Only the actual string is stored; no extra spaces are added.</p></li><li><p>When comparing two <code>char</code> values of different lengths, SQL automatically pads the shorter string with spaces for comparison.</p></li><li><p>Comparing <code>char</code> and <code>varchar</code> may behave differently depending on the database system. Some systems pad the <code>varchar</code>, while others do not.</p></li><li><p>To avoid unexpected comparison results, it is generally recommended to use <code>varchar</code> instead of <code>char</code>.</p></li><li><p><code>nvarchar</code> (or UTF-8 <code>varchar</code>) should be used to store multilingual or Unicode data.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rules and Observations for Numeric Types</div><div class="box-body"><ul><li><p><code>int</code> and <code>smallint</code> store integer values. <code>smallint</code> uses less storage but has a smaller range.</p></li><li><p><code>numeric(p,d)</code> stores fixed-point numbers with exact precision. Values exceeding the specified precision or scale are not allowed.</p></li><li><p><code>real</code>, <code>double precision</code>, and <code>float(n)</code> store approximate floating-point numbers. Floating-point operations may introduce rounding errors.</p></li><li><p>When using numeric types, always choose the type that fits the required precision and storage constraints.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Null Values</div><div class="box-body"><ul><li><p><code>NULL</code> indicates missing, unknown, or inapplicable data.</p></li><li><p><code>NULL</code> is distinct from zero, empty string, or any other default value.</p></li><li><p>Columns can be restricted using <code>NOT NULL</code> to ensure that data is always provided.</p></li><li><p>Operations involving <code>NULL</code> generally result in <code>NULL</code> (e.g., arithmetic, comparisons), except when explicitly handled.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Best Practices</div><div class="box-body"><ul><li><p>Prefer <code>varchar</code> over <code>char</code> for most text fields to avoid padding issues.</p></li><li><p>Use <code>nvarchar</code> when storing multilingual data.</p></li><li><p>Use <code>numeric(p,d)</code> for financial or fixed-point calculations to maintain exact precision.</p></li><li><p>Always consider <code>NULL</code> constraints and handle missing data carefully.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 106: Character Types char and varchar</div><div class="box-body"><p>Consider two attributes:</p>
+<ul><li><p>Attribute <code>A</code> of type <code>char(10)</code></p></li><li><p>Attribute <code>B</code> of type <code>varchar(10)</code></p></li></ul>
+<p><strong>Example Values:</strong></p>
+<ul><li><p>Storing "Avi" in <code>A</code> → "Avi      " (7 trailing spaces added to make length 10)</p></li><li><p>Storing "Avi" in <code>B</code> → "Avi" (no extra spaces)</p></li><li><p>Storing "Samantha" in <code>A</code> → "Samantha  " (2 trailing spaces)</p></li><li><p>Storing "Samantha" in <code>B</code> → "Samantha" (length exactly stored)</p></li></ul>
+<p><strong>Observations:</strong></p>
+<ul><li><p>Comparison of two <code>char</code> values automatically pads the shorter string with spaces.  
+      For example, "Avi      " = "Avi      " → TRUE</p></li><li><p>Comparison of <code>char</code> with <code>varchar</code> may fail in some systems:  
+      "Avi      " = "Avi" → may return FALSE</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 107: Numeric Types int smallint numeric real float</div><div class="box-body"><p><strong>Integer Examples:</strong></p>
+<ul><li><p><code>int</code> can store: 0, 10, -500, 100000</p></li><li><p><code>smallint</code> can store: 0, 10, -32000, 32000 (smaller range than int)</p></li></ul>
+<p><strong>Fixed-Point Numeric Examples:</strong></p>
+<ul><li><p><code>numeric(5,2)</code> → 5 total digits, 2 after decimal</p>
+<ul><li><p>123.45 → valid</p></li><li><p>1.23 → valid (stored as 1.23)</p></li><li><p>1234.56 → invalid (exceeds 5 digits)</p></li></ul></li><li><p><code>numeric(3,1)</code> → 3 digits, 1 decimal place</p>
+<ul><li><p>44.5 → valid</p></li><li><p>444.5 → invalid</p></li><li><p>0.32 → invalid (requires 1 digit after decimal)</p></li></ul></li></ul>
+<p><strong>Floating-Point Examples:</strong></p>
+<ul><li><p><code>real</code> or <code>float(7)</code></p>
+<ul><li><p>Can store 3.141592, 2.71828, -0.00001</p></li><li><p>Approximate values; may have rounding errors</p></li></ul></li><li><p><code>double precision</code></p>
+<ul><li><p>Higher precision than real</p></li><li><p>Suitable for scientific calculations</p></li></ul></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 108: Null Value Examples</div><div class="box-body"><p>Consider an attribute <code>MiddleName</code> of type <code>varchar(20)</code>:</p>
+<ul><li><p>Person1 → "Ravi"</p></li><li><p>Person2 → NULL (middle name unknown)</p></li><li><p>Person3 → "" (empty string)</p></li></ul>
+<p><strong>Observations:</strong></p>
+<ul><li><p>NULL is different from an empty string ""</p></li><li><p>Arithmetic or string operations with NULL generally result in NULL</p></li><li><p>Columns can be constrained with <code>NOT NULL</code> to prevent missing values</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 109: Unicode and Multilingual Strings</div><div class="box-body"><p>Attribute <code>Language</code> of type <code>nvarchar(20)</code>:</p>
+<ul><li><p>"English" → stored as usual</p></li><li><p>"Español" → stored correctly with ñ</p></li></ul>
+<p><strong>Observations:</strong></p>
+<ul><li><p><code>nvarchar</code> allows multilingual characters in a single column</p></li><li><p>UTF-8 <code>varchar</code> may also support Unicode, depending on the database</p></li></ul></div></div>
+</section>
+<section id="basic-schema-definition" class="content-section level-2">
+<h3 class="section-heading">Basic Schema Definition</h3>
+<div class="concept-box"><div class="box-title">Defining SQL Relations</div><div class="box-body"><p>An SQL relation (table) is defined using the <code>CREATE TABLE</code> command.</p>
+<p>A relation consists of:</p>
+<ul><li><p>A name (relation name)</p></li><li><p>A set of attributes (columns), each with a name and domain (data type)</p></li><li><p>Optional integrity constraints (primary key, foreign key, NOT NULL, unique, etc.)</p></li></ul>
+<p><strong>General Syntax:</strong></p>
+<div class="code-box"><pre><code>CREATE TABLE relation_name (
+    attribute1 datatype [constraint],
+    attribute2 datatype [constraint],
+    ...,
+    [table-level constraints]
+);</code></pre></div>
+<p><strong>Notes:</strong></p>
+<ul><li><p>Semicolon at the end of a SQL statement is optional in many implementations.</p></li><li><p>Newly created tables are initially empty; data is inserted later.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Integrity Constraints in SQL</div><div class="box-body"><p>Integrity constraints maintain correctness of data in the database.</p>
+<ul><li><p><strong>Primary Key:</strong>  
+    Attributes that uniquely identify each tuple. Cannot be NULL and must be unique.</p></li><li><p><strong>Foreign Key:</strong>  
+    Ensures that attribute values in one table correspond to values of primary key attributes in another table.</p></li><li><p><strong>Not Null:</strong>  
+    Prevents NULL values in a column.</p></li><li><p><strong>Composite Keys:</strong>  
+    Primary or foreign keys can consist of multiple attributes to uniquely identify a tuple.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 110: Department Table</div><div class="box-body"><p>The <code>department</code> table stores information about university departments.</p>
+<ul><li><p><code>dept_name</code>: Name of the department (primary key). Maximum 20 characters.</p></li><li><p><code>building</code>: Building of the department. Maximum 15 characters.</p></li><li><p><code>budget</code>: Budget of the department. Numeric(12,2).</p></li></ul>
+<div class="code-box"><pre><code>CREATE TABLE department (
+    dept_name VARCHAR(20),
+    building VARCHAR(15),
+    budget NUMERIC(12,2),
+    PRIMARY KEY (dept_name)
+);</code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>Primary key ensures unique department names.</p></li><li><p>Building and budget are optional unless specified NOT NULL.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 111: Course Table</div><div class="box-body"><p>The <code>course</code> table stores courses offered by departments.</p>
+<ul><li><p><code>course_id</code>: Unique course identifier (primary key), max 7 chars.</p></li><li><p><code>title</code>: Course title, max 50 chars.</p></li><li><p><code>dept_name</code>: Foreign key referencing <code>department.dept_name</code>.</p></li><li><p><code>credits</code>: Numeric(2,0) indicating course credits.</p></li></ul>
+<div class="code-box"><pre><code>CREATE TABLE course (
+    course_id VARCHAR(7),
+    title VARCHAR(50),
+    dept_name VARCHAR(20),
+    credits NUMERIC(2,0),
+    PRIMARY KEY (course_id),
+    FOREIGN KEY (dept_name) REFERENCES department(dept_name)
+);</code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>Ensures each course references a valid department.</p></li><li><p>Primary key guarantees unique course IDs.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 112: Instructor Table</div><div class="box-body"><p>Stores instructor information.</p>
+<ul><li><p><code>ID</code>: Instructor ID (primary key), max 5 chars.</p></li><li><p><code>name</code>: Instructor name, max 20 chars, NOT NULL.</p></li><li><p><code>dept_name</code>: Foreign key referencing department.</p></li><li><p><code>salary</code>: Numeric(8,2) salary.</p></li></ul>
+<div class="code-box"><pre><code>CREATE TABLE instructor (
+    ID VARCHAR(5),
+    name VARCHAR(20) NOT NULL,
+    dept_name VARCHAR(20),
+    salary NUMERIC(8,2),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (dept_name) REFERENCES department(dept_name)
+);</code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>NOT NULL ensures every instructor has a name.</p></li><li><p>Foreign key maintains department validity.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 113: Section Table</div><div class="box-body"><p>Stores class sections.</p>
+<ul><li><p>Composite primary key: <code>course_id, sec_id, semester, year</code>.</p></li><li><p><code>building</code>, <code>room_number</code>, <code>time_slot_id</code> store section location and schedule.</p></li></ul>
+<div class="code-box"><pre><code>CREATE TABLE section (
+    course_id VARCHAR(8),
+    sec_id VARCHAR(8),
+    semester VARCHAR(6),
+    year NUMERIC(4,0),
+    building VARCHAR(15),
+    room_number VARCHAR(7),
+    time_slot_id VARCHAR(4),
+    PRIMARY KEY (course_id, sec_id, semester, year),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
+);</code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>Composite key ensures each section is uniquely identified.</p></li><li><p>Foreign key ensures section references a valid course.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 114: Teaches Table</div><div class="box-body"><p>Records which instructors teach which sections.</p>
+<ul><li><p>Composite primary key: <code>ID, course_id, sec_id, semester, year</code>.</p></li><li><p>Foreign keys ensure valid instructor IDs and valid section references.</p></li></ul>
+<div class="code-box"><pre><code>CREATE TABLE teaches (
+    ID VARCHAR(5),
+    course_id VARCHAR(8),
+    sec_id VARCHAR(8),
+    semester VARCHAR(6),
+    year NUMERIC(4,0),
+    PRIMARY KEY (ID, course_id, sec_id, semester, year),
+    FOREIGN KEY (ID) REFERENCES instructor(ID),
+    FOREIGN KEY (course_id, sec_id, semester, year) 
+        REFERENCES section(course_id, sec_id, semester, year)
+);</code></pre></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>Composite primary key prevents duplicate teaching assignments.</p></li><li><p>Ensures only valid instructors teach valid sections.</p></li></ul></div></div>
+</section>
+<section id="data-insertion" class="content-section level-2">
+<h3 class="section-heading">Data Insertion</h3>
+<div class="concept-box"><div class="box-title">INSERT Statement in SQL</div><div class="box-body"><p>The <code>INSERT</code> statement is used to add tuples (rows) into a relation (table).</p>
+<p>There are two common forms:</p>
+<p><strong>Form 1 — Insert with attribute list:</strong></p>
+<div class="code-box"><pre><code>INSERT INTO table_name (A1, A2, ..., An)
+VALUES (v1, v2, ..., vn);</code></pre></div>
+<p><strong>Form 2 — Insert without attribute list (full tuple order):</strong></p>
+<div class="code-box"><pre><code>INSERT INTO table_name
+VALUES (v1, v2, ..., vn);</code></pre></div>
+<p><strong>Key Ideas:</strong></p>
+<ul><li><p>Values must match the attribute data types.</p></li><li><p>Order must match attribute order if column list is omitted.</p></li><li><p>String values are written in quotes.</p></li><li><p>Numeric values are written without quotes.</p></li><li><p>Missing attributes get NULL (if allowed).</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rules with Constraints During INSERT</div><div class="box-body"><ul><li><p>Primary key values must be <strong>unique and non-null</strong>.</p></li><li><p>NOT NULL attributes must be given values.</p></li><li><p>Foreign key values must already exist in the referenced table.</p></li><li><p>If a foreign key value does not exist in the parent table, insertion fails.</p></li><li><p>Data type and size limits are enforced (e.g., VARCHAR length, NUMERIC precision).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Insertion Order with Foreign Keys</div><div class="box-body"><p>When foreign key constraints exist, tables must be populated in dependency order.</p>
+<p><strong>Rule: Insert into parent tables first, then child tables.</strong></p>
+<p>If table B has a foreign key referencing table A:</p>
+<ul><li><p>Insert into table A first.</p></li><li><p>Insert into table B next.</p></li></ul>
+<p>Otherwise, the DBMS rejects the insert due to referential integrity violation.</p>
+<p><strong>Typical Order Example:</strong></p>
+<ol><li><p>department (parent)</p></li><li><p>course (references department)</p></li><li><p>section (references course)</p></li><li><p>enrollment (references section)</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 115: Parent and Child Tables Setup</div><div class="box-body"><p>We create two related tables: <code>department</code> and <code>employee</code>.
+Employee has a foreign key referencing department.</p>
+<div class="code-box"><pre><code>CREATE TABLE department (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(20),
+    budget NUMERIC(10,2)
+);
+
+CREATE TABLE employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(20),
+    dept_id INT,
+    salary INT,
+    FOREIGN KEY (dept_id) REFERENCES department(dept_id)
+);</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 116: Insert into Parent Table First</div><div class="box-body"><p>Insert rows into the parent table <code>department</code> first.</p>
+<div class="code-box"><pre><code>INSERT INTO department VALUES (10, &#x27;Sales&#x27;, 500000.00);
+INSERT INTO department VALUES (20, &#x27;HR&#x27;, 300000.00);
+INSERT INTO department VALUES (30, &#x27;Tech&#x27;, 900000.00);</code></pre></div>
+<p><strong>Department Table After Insert:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig163.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 117: Insert into Child Table with Valid Foreign Keys</div><div class="box-body"><p>Now insert into the child table <code>employee</code>.  
+Each <code>dept_id</code> must already exist in department.</p>
+<div class="code-box"><pre><code>INSERT INTO employee VALUES (1, &#x27;Asha&#x27;, 10, 60000);
+INSERT INTO employee VALUES (2, &#x27;Ravi&#x27;, 30, 85000);
+INSERT INTO employee VALUES (3, &#x27;Meera&#x27;, 20, 50000);</code></pre></div>
+<p><strong>Employee Table After Insert:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig164.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 118: Foreign Key Violation Example</div><div class="box-body"><p>Attempt to insert an employee with a non-existing department.</p>
+<div class="code-box"><pre><code>INSERT INTO employee VALUES (4, &#x27;Kiran&#x27;, 99, 70000);</code></pre></div>
+<p><strong>Step-by-step outcome:</strong></p>
+<ul><li><p>DB checks foreign key: dept_id = 99</p></li><li><p>No such dept_id exists in department table</p></li><li><p>Insert is rejected</p></li><li><p>No row is added</p></li></ul>
+<p><strong>Result:</strong> Referential integrity error.</p></div></div>
+<div class="example-box"><div class="box-title">Example 119: Insert Using Column List</div><div class="box-body"><p>We can insert specifying attribute names in any order.</p>
+<div class="code-box"><pre><code>INSERT INTO employee (emp_id, emp_name, salary, dept_id)
+VALUES (5, &#x27;Neel&#x27;, 72000, 10);</code></pre></div>
+<p><strong>Why useful:</strong></p>
+<ul><li><p>Order of columns can change</p></li><li><p>Some nullable columns may be skipped</p></li><li><p>Safer when table has many attributes</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 120: Multiple Row Insert</div><div class="box-body"><p>Many systems support inserting multiple rows in one statement.</p>
+<div class="code-box"><pre><code>INSERT INTO department VALUES
+(40, &#x27;Finance&#x27;, 650000.00),
+(50, &#x27;Admin&#x27;, 200000.00);</code></pre></div>
+<p><strong>Department Table After Insert:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig165.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 121: Insert Using Arithmetic Expressions</div><div class="box-body"><p>Arithmetic expressions can be used inside VALUES.</p>
+<div class="code-box"><pre><code>INSERT INTO employee VALUES (6, &#x27;Pooja&#x27;, 30, 50000 + 5000);</code></pre></div>
+<p><strong>Stored salary becomes:</strong> 55000</p>
+<p><strong>Explanation:</strong>
+Expression is evaluated first, then inserted.</p></div></div>
+</section>
+</section>
+<section id="sql-data-definition-modification-commands" class="content-section level-1">
+<h2 class="section-heading">SQL Data Definition / Modification Commands</h2>
+<div class="concept-box-alt"><div class="box-title">SQL DDL/DML Commands Overview</div><div class="box-body"><p>SQL provides commands to define, modify, and manage database objects and data.</p>
+<p><strong>Key Commands:</strong></p>
+<ul><li><p><strong>DELETE:</strong> Removes rows from a table based on a condition.</p></li><li><p><strong>UPDATE</strong> : Modifies existing values in table rows.</p></li><li><p><strong>ALTER:</strong> Modifies the structure of an existing table (add/drop/modify columns, constraints).</p></li><li><p><strong>DROP:</strong> Removes entire database objects like tables, views, or indexes.</p></li><li><p><strong>TRUNCATE:</strong> Removes all rows from a table quickly, resetting storage and optionally identity counters.</p></li></ul></div></div>
+<section id="delete" class="content-section level-2">
+<h3 class="section-heading">DELETE</h3>
+<div class="example-box"><div class="box-title">Example 122: DELETE Example</div><div class="box-body"><p><strong>Relation:</strong> student(sid, name, age, dept)</p>
+<div class="code-box"><pre><code>-- Delete students in &#x27;Physics&#x27; department
+DELETE FROM student
+WHERE dept = &#x27;Physics&#x27;;</code></pre></div>
+<p><strong>Result:</strong> Only rows where dept = 'Physics' are removed; table structure remains.</p></div></div>
+<div class="concept-box"><div class="box-title">Referential Integrity in DELETE</div><div class="box-body"><p>When a row in a <strong>parent table</strong> is deleted, the DBMS must ensure that
+no invalid references remain in related tables.</p>
+<p>If another table contains a <strong>Foreign Key</strong> referencing the deleted row,
+the database must decide what to do.</p></div></div>
+<div class="concept-box"><div class="box-title">Possible Actions</div><div class="box-body"><p>When a referenced row is deleted, the DBMS can apply one of the following rules:</p>
+<ul><li><p><strong>RESTRICT (Default)</strong></p>
+<p>Deletion is rejected if related rows exist.</p>
+<p>Fails if instructors belong to CS.</p></li><li><p><strong>CASCADE</strong></p>
+<p>Deletes the referencing rows automatically.</p>
+<p>Deleting department → deletes its instructors.</p></li><li><p><strong>SET NULL</strong></p>
+<p>Foreign key values in referencing table become NULL.</p>
+<p>Instructor still exists but department becomes unknown.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Specifying Deletion / Update Policies</div><div class="box-body"><div class="code-box"><pre><code>CREATE TABLE instructor (
+    ID char(5) PRIMARY KEY,
+    name varchar(20),
+    dept_name varchar(20),
+    FOREIGN KEY (dept_name)
+        REFERENCES department(dept_name)
+        ON DELETE CASCADE
+        ON UPDATE SET NULL
+);</code></pre></div>
+<p><strong>Meaning</strong></p>
+<ul><li><p><strong>ON DELETE CASCADE</strong> → deleting a department deletes its instructors.</p></li><li><p><strong>ON UPDATE SET NULL</strong> → if department name changes, instructor.dept_name becomes NULL.</p></li><li><p>If no rule is specified → <strong>RESTRICT (default)</strong> prevents deletion/update.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 123: Deletion Failure Example (RESTRICT)</div><div class="box-body"><p><strong>department</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig166.png" alt="diagram"></div>
+<p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig167.png" alt="diagram"></div>
+<p><strong>Query</strong></p>
+<div class="code-box"><pre><code>DELETE FROM department
+WHERE dept_name = &#x27;CS&#x27;;</code></pre></div>
+<p><strong>Result</strong></p>
+<p>Deletion <strong>fails</strong>.</p>
+<p>Reason: Instructor <strong>Alice</strong> still references department <strong>CS</strong>.</p>
+<p>Database prevents the operation to maintain <strong>referential integrity</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 124: Deletion with CASCADE</div><div class="box-body"><p><strong>Before Deletion</strong></p>
+<p><strong>department</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig168.png" alt="diagram"></div>
+<p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig169.png" alt="diagram"></div>
+<p><strong>Query</strong></p>
+<div class="code-box"><pre><code>DELETE FROM department
+WHERE dept_name = &#x27;CS&#x27;;</code></pre></div>
+<p><strong>Result (CASCADE)</strong></p>
+<p><strong>department</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig170.png" alt="diagram"></div>
+<p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig171.png" alt="diagram"></div>
+<p>Instructor <strong>Alice</strong> is automatically deleted.</p></div></div>
+</section>
+<section id="update" class="content-section level-2">
+<h3 class="section-heading">UPDATE</h3>
+<div class="concept-box"><div class="box-title">UPDATE Statement — Modify Existing Rows</div><div class="box-body"><p>The <strong>UPDATE</strong> command is used to modify existing values in a table.</p>
+<p><strong>Syntax</strong></p>
+<div class="code-box"><pre><code>UPDATE table_name
+SET column1 = value1,
+    column2 = value2
+WHERE condition;</code></pre></div>
+<p><strong>Important Points</strong></p>
+<ul><li><p>Updates one or more columns in existing rows.</p></li><li><p><strong>WHERE clause</strong> specifies which rows to update.</p></li><li><p>If <strong>WHERE is omitted</strong>, all rows in the table are updated.</p></li><li><p>Multiple columns can be updated in a single statement.</p></li><li><p>Can use expressions or values from other columns.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 125: UPDATE Command Example</div><div class="box-body"><p><strong>student</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig172.png" alt="diagram"></div>
+<p><strong>Query</strong></p>
+<div class="code-box"><pre><code>UPDATE student
+SET Marks = 85
+WHERE Name = &#x27;Neha&#x27;;</code></pre></div>
+<p><strong>After Update</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig173.png" alt="diagram"></div>
+<p><strong>Explanation</strong></p>
+<p>Updates the marks of student <strong>Neha</strong> from 80 to 85.</p></div></div>
+</section>
+<section id="alter" class="content-section level-2">
+<h3 class="section-heading">ALTER</h3>
+<div class="concept-box"><div class="box-title">ALTER Command</div><div class="box-body"><p>The <strong>ALTER TABLE</strong> command is used to modify the structure of an existing table.  
+It can add new columns, modify column definitions, or remove columns.</p></div></div>
+<div class="example-box"><div class="box-title">Example 126: ALTER Example</div><div class="box-body"><p><strong>Relation:</strong> student(sid, name, age)</p>
+<div class="code-box"><pre><code>-- Add a new column &#x27;dept&#x27;
+ALTER TABLE student
+ADD dept VARCHAR(20);
+
+-- Modify column &#x27;age&#x27; datatype
+ALTER TABLE student
+MODIFY age INT;
+
+-- Drop column &#x27;dept&#x27;
+ALTER TABLE student
+DROP COLUMN dept;</code></pre></div>
+<p><strong>Result:</strong> Table structure is changed; existing data may be affected based on operation.</p></div></div>
+</section>
+<section id="drop" class="content-section level-2">
+<h3 class="section-heading">DROP</h3>
+<div class="concept-box"><div class="box-title">DROP Command</div><div class="box-body"><p>The <strong>DROP</strong> command is used to permanently remove a database object such as a table.  
+Both the table structure and all stored data are deleted.</p></div></div>
+<div class="example-box"><div class="box-title">Example 127: DROP Example</div><div class="box-body"><p><strong>Relation:</strong> student(sid, name, age, dept)</p>
+<div class="code-box"><pre><code>-- Drop the entire table
+DROP TABLE student;</code></pre></div>
+<p><strong>Result:</strong> Table and all its data are permanently deleted.</p></div></div>
+</section>
+<section id="truncate" class="content-section level-2">
+<h3 class="section-heading">TRUNCATE</h3>
+<div class="concept-box"><div class="box-title">TRUNCATE Command</div><div class="box-body"><p>The <strong>TRUNCATE</strong> command removes all rows from a table quickly.  
+The table structure remains unchanged.</p></div></div>
+<div class="example-box"><div class="box-title">Example 128: TRUNCATE Example</div><div class="box-body"><p><strong>Relation:</strong> student(sid, name, age, dept)</p>
+<div class="code-box"><pre><code>-- Remove all rows quickly
+TRUNCATE TABLE student;</code></pre></div>
+<p><strong>Result:</strong> Table structure remains, but all rows are removed. Identity columns reset (if any).</p></div></div>
+</section>
+</section>
+<section id="sql-query-and-basic-operations" class="content-section level-1">
+<h2 class="section-heading">SQL Query and Basic Operations</h2>
+<div class="concept-box"><div class="box-title">Basic Structure of SQL Queries</div><div class="box-body"><p>An SQL query consists of three main clauses:</p>
+<ul><li><p><strong>SELECT:</strong> Specifies the attributes or expressions to appear in the result.</p></li><li><p><strong>FROM:</strong> Specifies the relations (tables) from which tuples are retrieved.</p></li><li><p><strong>WHERE:</strong> (Optional) Specifies conditions to filter tuples.</p></li></ul>
+<p><strong>General Syntax:</strong></p>
+<div class="code-box"><pre><code>SELECT attribute1, attribute2, ... 
+FROM relation1 [, relation2, ...]
+WHERE condition;</code></pre></div>
+<p><strong>Notes:</strong></p>
+<ul><li><p>Queries produce a relation as output.</p></li><li><p>By default, SQL allows duplicates. Use <code>DISTINCT</code> to remove duplicates.</p></li><li><p>Logical operators (<code>AND, OR, NOT</code>) and comparison operators (<code>=, &lt;&gt;, &gt;, &gt;=, &lt;, &lt;=</code>) can be used in the WHERE clause.</p></li><li><p>Arithmetic expressions (<code>+, -, *, /</code>) can be used in the SELECT clause.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rules and Properties</div><div class="box-body"><ul><li><p><code>DISTINCT</code> removes duplicates from the result.</p></li><li><p><code>ALL</code> explicitly keeps duplicates (default behavior).</p></li><li><p>Arithmetic operations in SELECT compute values on-the-fly; they do not change table data.</p></li><li><p>Logical connectives allow combining multiple conditions.</p></li><li><p>WHERE filters rows based on comparison or logical expressions.</p></li></ul></div></div>
+<section id="select-all-attributes" class="content-section level-2">
+<h3 class="section-heading">Select all Attributes (*)</h3>
+<div class="concept-box"><div class="box-title">Using * in SELECT Clause</div><div class="box-body"><p>The asterisk symbol (*) in the SELECT clause denotes <strong>all attributes</strong>.</p>
+<p>Two important forms exist:</p>
+<p><strong>1. SELECT *</strong></p>
+<div class="code-box"><pre><code>SELECT *
+FROM table_list;</code></pre></div>
+<p>Returns all attributes of the <strong>result relation</strong> formed by the FROM clause.</p>
+<p><strong>2. table_name.*</strong></p>
+<div class="code-box"><pre><code>SELECT table_name.*
+FROM table_list;</code></pre></div>
+<p>Returns all attributes of only that specific table.</p>
+<p>Properties:</p>
+<ul><li><p>Column order follows schema definition order.</p></li><li><p>Includes all columns — even if later added.</p></li><li><p>Common in quick inspection queries.</p></li><li><p>Not recommended in production views (schema-change risk).</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Behavior with Multiple Tables</div><div class="box-body"><p>When multiple tables appear in FROM:</p>
+<ul><li><p>SELECT * → returns all columns from all tables</p></li><li><p>SELECT A.* → only columns from table A</p></li><li><p>SELECT A.*, B.col → mix of full table + specific columns</p></li><li><p>Duplicate column names may appear in result</p></li></ul>
+<p>If duplicate attribute names exist, qualify them using table or alias.</p></div></div>
+<div class="example-box"><div class="box-title">Example 129: SELECT * from Single Table</div><div class="box-body"><p><strong>student</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig174.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT *
+FROM student;</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig175.png" alt="diagram"></div></div></div>
+</section>
+<section id="renaming-in-sql-as" class="content-section level-2">
+<h3 class="section-heading">Renaming in SQL (AS)</h3>
+<div class="concept-box"><div class="box-title">Attribute and Relation Renaming in SQL</div><div class="box-body"><p>SQL provides the <strong>AS clause</strong> to rename attributes (columns) and relations (tables)
+within the result of a query. This is called the <strong>rename operation</strong>.</p>
+<p>Renaming is required because:</p>
+<ul><li><p>Different relations may contain attributes with the same name.</p></li><li><p>Arithmetic expressions in SELECT do not have default column names.</p></li><li><p>Derived columns need meaningful labels.</p></li><li><p>Long table names should be shortened for readability.</p></li><li><p>Self-joins require multiple logical copies of the same table.</p></li></ul>
+<p>Renaming does not change the base table — it only affects the query result.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">AS Clause — Syntax Rules</div><div class="box-body"><p>AS can be used in two places.</p>
+<p><strong>Column rename (SELECT clause):</strong></p>
+<div class="code-box"><pre><code>SELECT column_or_expression AS new_name
+FROM table;</code></pre></div>
+<p><strong>Relation rename (FROM clause — table alias):</strong></p>
+<div class="code-box"><pre><code>SELECT ...
+FROM table_name AS alias_name;</code></pre></div>
+<p>Rules and properties:</p>
+<ul><li><p>AS keyword is optional in many DBMS but recommended.</p></li><li><p>Alias exists only during query execution.</p></li><li><p>After aliasing, use alias.column instead of table.column.</p></li><li><p>Alias is mandatory in self-join queries.</p></li><li><p>Alias improves readability and reduces typing.</p></li></ul></div></div>
+</section>
+<section id="relational-operators-comparison-operators" class="content-section level-2">
+<h3 class="section-heading">Relational Operators: Comparison Operators</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Concept of Relational Operators</strong></p>
+<p>Relational operators (also known as <strong>Comparison Operators</strong>) are used in SQL to compare two expressions. When a comparison is made, the result is a <strong>Boolean value</strong>: either <code>TRUE</code>, <code>FALSE</code>, or <code>UNKNOWN</code> (in the case of <code>NULL</code> values). These operators are the backbone of data filtering in the <code>WHERE</code> clause.</p>
+<p><strong>The Standard Relational Operators are:</strong></p>
+<ul><li><p><code>=</code> : Equal to</p></li><li><p><code>&lt;&gt;</code> or <code>!=</code> : Not equal to</p></li><li><p><code>&gt;</code> : Greater than</p></li><li><p><code>&lt;</code> : Less than</p></li><li><p><code>&gt;=</code> : Greater than or equal to</p></li><li><p><code>&lt;=</code> : Less than or equal to</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 130: Using Greater Than or Equal To ($\ge$)</div><div class="box-body"><p>Consider the following <strong>employee</strong> table as our dataset:</p>
+<p><strong>Employee:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig176.png" alt="diagram"></div>
+<p>Find employees earning 70000 or more:</p>
+<div class="code-box"><pre><code>SELECT Name, Salary
+FROM employee
+WHERE Salary &gt;= 70000;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig177.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 131: Using Not Equal To ($\neq$)</div><div class="box-body"><p>Find all employees who are NOT in the 'Sales' department:</p>
+<div class="code-box"><pre><code>SELECT Name, Department
+FROM employee
+WHERE Department &lt;&gt; &#x27;Sales&#x27;;</code></pre></div>
+<p><em>Note: <code>&lt;&gt;</code> and <code>!=</code> are both accepted in most SQL dialects.</em></p>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig178.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 132: Using Less Than ($&lt;$)</div><div class="box-body"><p>Find employees hired before the year 2023:</p>
+<div class="code-box"><pre><code>SELECT Name, JoinDate
+FROM employee
+WHERE JoinDate &lt; &#x27;2023-01-01&#x27;;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig179.png" alt="diagram"></div></div></div>
+</section>
+<section id="arithmetic-operations" class="content-section level-2">
+<h3 class="section-heading">Arithmetic Operations</h3>
+<div class="concept-box"><div class="box-title">Arithmetic Operators in SQL SELECT</div><div class="box-body"><p>SQL supports arithmetic operations in the SELECT clause:</p>
+<ul><li><p><code>+</code> addition</p></li><li><p><code>-</code> subtraction</p></li><li><p><code>*</code> multiplication</p></li><li><p><code>/</code> division</p></li></ul>
+<p>These operations can be applied to numeric attributes or constants.</p>
+<div class="code-box"><pre><code>SELECT salary * 1.1 AS new_salary, salary + 500 AS incremented_salary
+FROM employee;</code></pre></div>
+<p><strong>Explanation:</strong> The query shows salary after 10% increase and after adding 500.</p></div></div>
+<div class="example-box"><div class="box-title">Example 133: Employee Table</div><div class="box-body"><p>Input table <code>employee</code>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig180.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 134: Select Names of All Employees</div><div class="box-body"><div class="code-box"><pre><code>SELECT Name
+FROM employee;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig181.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 135: Select Salary with Arithmetic Expressions</div><div class="box-body"><div class="code-box"><pre><code>SELECT ID, Name, Salary, Salary * 1.1 AS SalaryAfterRaise, Salary + 2000 AS Bonus
+FROM employee;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig182.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 136: Filter Rows Using WHERE Clause</div><div class="box-body"><p>Find employees with salary $&gt;$ 70000:</p>
+<div class="code-box"><pre><code>SELECT Name, Salary
+FROM employee
+WHERE Salary &gt; 70000;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig183.png" alt="diagram"></div></div></div>
+</section>
+<section id="basic-logical-operators-and-or" class="content-section level-2">
+<h3 class="section-heading">Basic Logical Operators: AND OR</h3>
+<div class="example-box"><div class="box-title">Example 137: Using Logical Operators in WHERE Clause</div><div class="box-body"><p>Find employees earning more than 60000 and less than 90000:</p>
+<div class="code-box"><pre><code>SELECT Name, Salary
+FROM employee
+WHERE Salary &gt; 60000 AND Salary &lt; 90000;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig184.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 138: Using DISTINCT to Remove Duplicates</div><div class="box-body"><p>Suppose an employee table with duplicate salaries:</p>
+<div class="code-box"><pre><code>SELECT DISTINCT Salary
+FROM employee;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig185.png" alt="diagram"></div></div></div>
+</section>
+<section id="string-operations" class="content-section level-2">
+<h3 class="section-heading">String Operations</h3>
+<div class="concept-box"><div class="box-title">String Literals and Basic String Handling</div><div class="box-body"><p>SQL represents strings using <strong>single quotes</strong>.</p>
+<p>Examples of string literals:</p>
+<ul><li><p>'Computer'</p></li><li><p>'Database Systems'</p></li><li><p>'CS101'</p></li></ul>
+<p>If a single quote appears inside a string, it must be written twice.</p>
+<p>Example:</p>
+<ul><li><p>Text: It's correct</p></li><li><p>SQL string: 'It”s correct'</p></li></ul>
+<p>String comparison using equality (=) is defined as <strong>case sensitive</strong> in the SQL standard.
+Thus:</p>
+<ul><li><p>'data' = 'DATA' → false (standard behavior)</p></li></ul>
+<p>However, some systems (like MySQL default collations) may treat string comparison as
+case-insensitive unless configured otherwise.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Common SQL String Functions and Operators</div><div class="box-body"><p>SQL supports many string operations. Exact names may vary slightly across DBMS.</p>
+<p>Common ones:</p>
+<p><strong>Concatenation</strong></p>
+<ul><li><p>Standard operator: <code>||</code></p></li><li><p>MySQL alternative: <code>CONCAT(s1,s2)</code></p></li></ul>
+<p><strong>Case conversion</strong></p>
+<ul><li><p><code>UPPER(s)</code> — convert to uppercase</p></li><li><p><code>LOWER(s)</code> — convert to lowercase</p></li></ul>
+<p><strong>Length</strong></p>
+<ul><li><p><code>LENGTH(s)</code> — number of characters</p></li></ul>
+<p><strong>Substring</strong></p>
+<ul><li><p><code>SUBSTRING(s, start, len)</code></p></li></ul>
+<p><strong>Trim spaces</strong></p>
+<ul><li><p><code>TRIM(s)</code> — removes leading/trailing spaces</p></li></ul>
+<p>Properties:</p>
+<ul><li><p>Functions can appear in SELECT and WHERE.</p></li><li><p>Function results can be renamed using AS.</p></li><li><p>Functions operate row-by-row.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Pattern Matching with LIKE</div><div class="box-body"><p>SQL supports pattern matching using the <strong>LIKE</strong> operator.</p>
+<p>Special pattern characters:</p>
+<ul><li><p>%  → matches any substring (zero or more characters)</p></li><li><p>_  → matches exactly one character</p></li></ul>
+<p>Pattern matching is case sensitive in standard SQL, but may be case-insensitive in some systems.</p>
+<p>Forms:</p>
+<div class="code-box"><pre><code>column LIKE pattern
+column NOT LIKE pattern</code></pre></div>
+<p>Examples of patterns:</p>
+<ul><li><p>'Data</p></li><li><p>'</p></li><li><p>'___' → exactly 3 characters</p></li><li><p>'__</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">LIKE with ESCAPE Character</div><div class="box-body"><p>If pattern must include special characters (% or _), use ESCAPE.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>column LIKE pattern ESCAPE &#x27;escape_char&#x27;</code></pre></div>
+<p>Rules:</p>
+<ul><li><p>Escape character appears before special symbol.</p></li><li><p>That symbol is treated as normal text.</p></li></ul>
+<p>Example meanings:</p>
+<ul><li><p>LIKE 'ab%%' ESCAPE '\' → starts with literal ab</p></li><li><p>LIKE 'file_1' ESCAPE '\' → matches file_1 exactly</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 139: String Equality and Quotes</div><div class="box-body"><p>Table: course</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig186.png" alt="diagram"></div>
+<p>Find exact match.</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM course
+WHERE title = &#x27;Data Science&#x27;;</code></pre></div>
+<p>Step-by-step:</p>
+<ul><li><p>Compare full string</p></li><li><p>Case matters (standard SQL)</p></li><li><p>Only exact match selected</p></li></ul>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig187.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 140: Concatenation of Strings</div><div class="box-body"><p>Table: student</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig188.png" alt="diagram"></div>
+<p>Create full name.</p>
+<div class="code-box"><pre><code>SELECT first_name || &#x27; &#x27; || last_name AS full_name
+FROM student;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig189.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 141: UPPER, LOWER, LENGTH</div><div class="box-body"><p>Table: department</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig190.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT dept_name,
+       UPPER(dept_name) AS upper_name,
+       LOWER(dept_name) AS lower_name,
+       LENGTH(dept_name) AS len
+FROM department;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig191.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 142: LIKE with Percent Pattern</div><div class="box-body"><p>Table: building</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig192.png" alt="diagram"></div>
+<p>Find names containing Watson.</p>
+<div class="code-box"><pre><code>SELECT building
+FROM building
+WHERE building LIKE &#x27;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig193.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 143: LIKE with Underscore Pattern</div><div class="box-body"><p>Table: codes</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig194.png" alt="diagram"></div>
+<p>Match exactly 3-character codes.</p>
+<div class="code-box"><pre><code>SELECT code
+FROM codes
+WHERE code LIKE &#x27;___&#x27;;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig195.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 144: LIKE with ESCAPE Character</div><div class="box-body"><p>Table: files</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig196.png" alt="diagram"></div>
+<p>Match literal percent sign.</p>
+<div class="code-box"><pre><code>SELECT fname
+FROM files
+WHERE fname LIKE &#x27;data\%</code></pre></div>
+<p>Step-by-step:</p>
+<ul><li><p>% treated as normal character</p></li><li><p>Then wildcard</p></li></ul>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig197.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 145: Selecting All Attributes with *</div><div class="box-body"><p>Table: trainer</p>
+<div class="code-box"><pre><code>SELECT *
+FROM trainer;</code></pre></div>
+<p>Meaning:</p>
+<ul><li><p>Returns all attributes of the result relation.</p></li><li><p>Equivalent to listing every column explicitly.</p></li></ul>
+<p>Qualified form:</p>
+<div class="code-box"><pre><code>SELECT T.*
+FROM trainer AS T;</code></pre></div>
+<p>Returns all columns only from alias T.</p></div></div>
+</section>
+</section>
+<section id="order-by" class="content-section level-1">
+<h2 class="section-heading">ORDER BY</h2>
+<div class="concept-box"><div class="box-title">ORDER BY Clause — Sorted Output</div><div class="box-body"><p>SQL provides the <strong>ORDER BY</strong> clause to control the order in which tuples
+(rows) are displayed in the query result.</p>
+<p>Basic syntax:</p>
+<div class="code-box"><pre><code>SELECT attributes
+FROM table_list
+WHERE condition
+ORDER BY attribute_list;</code></pre></div>
+<p>Key properties:</p>
+<ul><li><p>Sorting is applied to the final result relation.</p></li><li><p>Default order is <strong>ascending</strong>.</p></li><li><p>Sorting can be done on one or more attributes.</p></li><li><p>Does not change stored table order — only display order.</p></li><li><p>Can be used with expressions and aliases.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">ASC and DESC Options</div><div class="box-body"><p>Sort direction can be controlled explicitly.</p>
+<div class="code-box"><pre><code>ORDER BY column ASC   -- ascending (default)
+ORDER BY column DESC  -- descending</code></pre></div>
+<p>Multi-attribute sorting is evaluated left to right:</p>
+<ul><li><p>First attribute sorted fully</p></li><li><p>Ties are broken using next attribute</p></li><li><p>Each attribute may have its own ASC/DESC</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 146: Ordering by One Attribute — Alphabetic</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig198.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE dept = &#x27;Physics&#x27;
+ORDER BY name;</code></pre></div>
+<p>Result Relation (ascending by name):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig199.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 147: Descending Order</div><div class="box-body"><p><strong>employee</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig200.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT name, salary
+FROM employee
+ORDER BY salary DESC;</code></pre></div>
+<p>Result Relation (highest first):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig201.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 148: Multi-Attribute Ordering</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig202.png" alt="diagram"></div>
+<p>Requirement:
+Sort by salary descending, then name ascending.</p>
+<div class="code-box"><pre><code>SELECT *
+FROM instructor
+ORDER BY salary DESC, name ASC;</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig203.png" alt="diagram"></div>
+<p>Tie handling:</p>
+<ul><li><p>Salary sorted first (DESC)</p></li><li><p>Equal salary → name sorted ASC</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 149: Ordering Using Expression</div><div class="box-body"><p><strong>sales</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig204.png" alt="diagram"></div>
+<p>Order by computed total value.</p>
+<div class="code-box"><pre><code>SELECT item, qty * price AS total_value
+FROM sales
+ORDER BY total_value DESC;</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig205.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 150: Ordering with Alias Name</div><div class="box-body"><p>Alias can be used inside ORDER BY.</p>
+<div class="code-box"><pre><code>SELECT name, salary AS pay
+FROM instructor
+ORDER BY pay DESC;</code></pre></div>
+<p>Sorting uses the alias column label.</p></div></div>
+</section>
+<section id="between" class="content-section level-1">
+<h2 class="section-heading">BETWEEN</h2>
+<div class="concept-box"><div class="box-title">BETWEEN Operator — Range Comparison</div><div class="box-body"><p>SQL provides the <strong>BETWEEN</strong> operator to simplify range conditions in the
+WHERE clause.</p>
+<p>Instead of writing two comparisons with AND, BETWEEN expresses
+a closed interval test.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>column BETWEEN low_value AND high_value</code></pre></div>
+<p>Equivalent form:</p>
+<div class="code-box"><pre><code>column &gt;= low_value AND column &lt;= high_value</code></pre></div>
+<p>Key properties:</p>
+<ul><li><p>Range is <strong>inclusive</strong> of both limits.</p></li><li><p>Works with numeric, date, and string types.</p></li><li><p>Improves readability of range predicates.</p></li><li><p>Can be negated using NOT BETWEEN.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">NOT BETWEEN and Tuple (Row) Constructors</div><div class="box-body"><p><strong>NOT BETWEEN</strong> selects values outside the range.</p>
+<div class="code-box"><pre><code>column NOT BETWEEN a AND b</code></pre></div>
+<p>SQL also supports <strong>row constructors</strong> — tuple values written as:</p>
+<div class="code-box"><pre><code>(v1, v2, ..., vn)</code></pre></div>
+<p>Tuple comparisons are allowed and use <strong>lexicographic ordering</strong>.</p>
+<p>For tuples:</p>
+<ul><li><p>(a1, a2) = (b1, b2) → both components equal</p></li><li><p>(a1, a2) &lt; (b1, b2) → compared left to right</p></li><li><p>Used for compact multi-column comparisons</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 151: BETWEEN — Salary Range Query</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig206.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE salary BETWEEN 90000 AND 100000;</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig207.png" alt="diagram"></div>
+<p>Equivalent condition:</p>
+<div class="code-box"><pre><code>WHERE salary &gt;= 90000 AND salary &lt;= 100000;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 152: NOT BETWEEN Example</div><div class="box-body"><p>Query instructors outside the mid salary band.</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE salary NOT BETWEEN 90000 AND 100000;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig208.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 153: BETWEEN on Strings</div><div class="box-body"><p>BETWEEN also works on strings using alphabetical order.</p>
+<p><strong>department</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig209.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT dept_name
+FROM department
+WHERE dept_name BETWEEN &#x27;C&#x27; AND &#x27;P&#x27;;</code></pre></div>
+<p>Result (alphabetic range):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig210.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 154: Row Constructor — Multi-Column Equality</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig211.png" alt="diagram"></div>
+<p><strong>teaches</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig212.png" alt="diagram"></div>
+<p>Tuple comparison query:</p>
+<div class="code-box"><pre><code>SELECT name, course
+FROM instructor, teaches
+WHERE (instructor.ID, dept) =
+      (teaches.ID, &#x27;Biology&#x27;);</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig213.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 155: Lexicographic Tuple Comparison</div><div class="box-body"><p>Tuple comparisons follow left-to-right ordering.</p>
+<div class="code-box"><pre><code>SELECT *
+FROM instructor
+WHERE (salary, name) &gt;= (90000, &#x27;M&#x27;);</code></pre></div>
+<p>Interpretation:</p>
+<ul><li><p>First compare salary</p></li><li><p>If salary equal → compare name</p></li><li><p>Acts like dictionary ordering</p></li></ul></div></div>
+</section>
+<section id="null-values" class="content-section level-1">
+<h2 class="section-heading">NULL Values</h2>
+<div class="concept-box"><div class="box-title">What is a NULL Value?</div><div class="box-body"><p><strong>NULL</strong> represents a missing, unknown, or inapplicable value.</p>
+<p>It does <strong>not</strong> mean:</p>
+<ul><li><p>zero</p></li><li><p>empty string</p></li><li><p>false</p></li></ul>
+<p>NULL means: <em>value exists but is not known or not provided</em>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Effect of NULL in Different Operations</div><div class="box-body"><p><strong>1. Arithmetic Operations</strong></p>
+<p>Any arithmetic expression involving NULL evaluates to NULL.</p>
+<div class="code-box"><pre><code>A + 5 → NULL if A is NULL
+A * 10 → NULL if A is NULL
+A / B → NULL if A or B is NULL</code></pre></div>
+<p><strong>Reason:</strong> Result cannot be determined if an input is unknown.</p>
+<p><strong>2. Comparison Operations</strong></p>
+<p>Any comparison with NULL results in <strong>UNKNOWN</strong>.</p>
+<div class="code-box"><pre><code>salary &gt; 5000     → UNKNOWN if salary is NULL
+A = NULL          → UNKNOWN
+1 &lt; NULL          → UNKNOWN
+NULL = NULL       → UNKNOWN</code></pre></div>
+<p>SQL uses <strong>three-valued logic</strong>: TRUE, FALSE, UNKNOWN.</p></div></div>
+<div class="concept-box"><div class="box-title">Three-Valued Logic with NULL</div><div class="box-body"><p>Boolean operators are extended to handle UNKNOWN.</p>
+<p><strong>AND rules</strong></p>
+<ul><li><p>TRUE AND UNKNOWN = UNKNOWN</p></li><li><p>FALSE AND UNKNOWN = FALSE</p></li><li><p>UNKNOWN AND UNKNOWN = UNKNOWN</p></li></ul>
+<p><strong>OR rules</strong></p>
+<ul><li><p>TRUE OR UNKNOWN = TRUE</p></li><li><p>FALSE OR UNKNOWN = UNKNOWN</p></li><li><p>UNKNOWN OR UNKNOWN = UNKNOWN</p></li></ul>
+<p><strong>NOT rule</strong></p>
+<ul><li><p>NOT UNKNOWN = UNKNOWN</p></li></ul>
+<p>If a WHERE predicate evaluates to FALSE or UNKNOWN, the tuple is <strong>not selected</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 156: Arithmetic with NULL</div><div class="box-body"><p><strong>employee</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig214.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT id, bonus + 100
+FROM employee;</code></pre></div>
+<p>Result:</p>
+<p>E1 → 600 <br>
+E2 → NULL</p></div></div>
+<div class="example-box"><div class="box-title">Example 157: Comparison with NULL in WHERE</div><div class="box-body"><div class="code-box"><pre><code>SELECT id
+FROM employee
+WHERE bonus &gt; 200;</code></pre></div>
+<p>If bonus is NULL → condition becomes UNKNOWN → row excluded.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Testing for NULL  Correct Method</div><div class="box-body"><p>NULL cannot be tested using = or &lt;&gt;.</p>
+<p><strong>Wrong:</strong></p>
+<div class="code-box"><pre><code>WHERE salary = NULL</code></pre></div>
+<p><strong>Correct:</strong></p>
+<div class="code-box"><pre><code>WHERE salary IS NULL
+WHERE salary IS NOT NULL</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 158: Find Rows with NULL Salary</div><div class="box-body"><div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE salary IS NULL;</code></pre></div></div></div>
+<div class="concept-box"><div class="box-title">Testing UNKNOWN Result</div><div class="box-body"><p>SQL allows explicit test of UNKNOWN predicate result.</p>
+<div class="code-box"><pre><code>condition IS UNKNOWN
+condition IS NOT UNKNOWN</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 159: UNKNOWN Predicate Check</div><div class="box-body"><div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE (salary &gt; 10000) IS UNKNOWN;</code></pre></div>
+<p>Selects rows where salary is NULL.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">NULL and DISTINCT</div><div class="box-body"><p>In duplicate elimination (DISTINCT):</p>
+<p>Two NULL values are treated as <strong>equal</strong>.</p>
+<p>Example tuples:
+\[
+(A, NULL), (A, NULL)
+\]</p>
+<p>DISTINCT keeps only one copy.</p>
+<p>Note: This differs from predicate logic where</p>
+<div class="code-box"><pre><code>NULL = NULL → UNKNOWN</code></pre></div></div></div>
+<div class="concept-box"><div class="box-title">NULL in Set Operations</div><div class="box-body"><p>For UNION, INTERSECT, EXCEPT:</p>
+<p>Tuples are considered identical if:</p>
+<ul><li><p>All non-NULL attributes equal</p></li><li><p>Corresponding attributes are both NULL</p></li></ul>
+<p>Therefore duplicate NULL tuples collapse into one in set operations.</p></div></div>
+<div class="example-box"><div class="box-title">Example 160: DISTINCT with NULL</div><div class="box-body"><p><strong>table T</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig215.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT DISTINCT * FROM T;</code></pre></div>
+<p>Result keeps only one tuple.</p></div></div>
+</section>
+<section id="aggregate-functions" class="content-section level-1">
+<h2 class="section-heading">AGGREGATE FUNCTIONS</h2>
+<div class="concept-box"><div class="box-title">Aggregate Functions</div><div class="box-body"><p><strong>Aggregate Functions:</strong> These operations process a collection of values (either a set or a multiset) to produce a single scalar output.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">SQL Aggregate Functions</div><div class="box-body"><p><strong>Standard SQL Aggregates:</strong> SQL provides five primary built-in functions:</p>
+<ul><li><p><code>avg</code>: Calculates the arithmetic mean.</p></li><li><p><code>min</code>: Identifies the minimum value.</p></li><li><p><code>max</code>: Identifies the maximum value.</p></li><li><p><code>sum</code>: Computes the numerical total.</p></li><li><p><code>count</code>: Returns the number of elements in the collection.</p></li></ul>
+<p><strong>Data Type Constraints:</strong> While <code>sum</code> and <code>avg</code> are strictly limited to numeric datasets, <code>min</code>, <code>max</code>, and <code>count</code> are versatile enough to handle non-numeric data, such as character strings.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Aggregate Function — Basic Syntax</div><div class="box-body"><div class="code-box"><pre><code>SELECT AGG_FUNCTION(column)
+FROM table
+WHERE condition;</code></pre></div>
+<p>Examples:</p>
+<div class="code-box"><pre><code>SELECT AVG(salary) FROM instructor;
+SELECT SUM(credits) FROM course;
+SELECT MAX(age) FROM student;</code></pre></div></div></div>
+<div class="concept-box-alt"><div class="box-title">COUNT Variants</div><div class="box-body"><p><strong>COUNT(*)</strong></p>
+<ul><li><p>Counts every row</p></li><li><p>Includes rows containing NULL</p></li></ul>
+<p><strong>COUNT(column)</strong></p>
+<ul><li><p>Counts only rows where column is NOT NULL</p></li></ul>
+<p><strong>COUNT(DISTINCT column)</strong></p>
+<ul><li><p>Counts distinct non-NULL values only</p></li></ul></div></div>
+<section id="aggregation-and-null-values" class="content-section level-2">
+<h3 class="section-heading">Aggregation and Null Values</h3>
+<div class="concept-box"><div class="box-title">NULL Values and Aggregate Functions — Core Rule</div><div class="box-body"><p>In SQL aggregation, NULL values are treated specially.</p>
+<p><strong>Rule:</strong> All aggregate functions <strong>ignore NULL values</strong> in their input,
+except COUNT(*).</p>
+<p>This prevents unknown values from corrupting aggregate results.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Behavior of Each Aggregate with NULL</div><div class="box-body"><p>Assume relation instructor(name, dept, salary) where some salary values are NULL.</p>
+<p><strong>SUM, AVG, MIN, MAX</strong></p>
+<ul><li><p>NULL values are skipped</p></li><li><p>Only non-NULL values are used</p></li></ul>
+<p><strong>COUNT(column)</strong></p>
+<ul><li><p>Counts only non-NULL values</p></li></ul>
+<p><strong>COUNT(*)</strong></p>
+<ul><li><p>Counts all rows</p></li><li><p>NULL does not matter</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 161: Aggregate Ignoring NULL</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig216.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT SUM(salary), AVG(salary), COUNT(salary), COUNT(*)
+FROM instructor;</code></pre></div>
+<p>Computed on values: 50000, 70000</p>
+<p>Result:</p>
+<ul><li><p>SUM = 120000</p></li><li><p>AVG = 60000</p></li><li><p>COUNT(salary) = 2</p></li><li><p>COUNT(*) = 3</p></li></ul>
+<p>Row with NULL salary is ignored except in COUNT(*).</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Aggregates on Empty Input Set</div><div class="box-body"><p>After NULL removal, the value set may become empty.</p>
+<p>SQL defines:</p>
+<ul><li><p>COUNT → returns 0</p></li><li><p>SUM → returns NULL</p></li><li><p>AVG → returns NULL</p></li><li><p>MIN → returns NULL</p></li><li><p>MAX → returns NULL</p></li></ul>
+<p><strong>Reason:</strong>
+Only COUNT has a well-defined identity for empty sets.</p></div></div>
+<div class="example-box"><div class="box-title">Example 162: Empty Aggregate Case</div><div class="box-body"><div class="code-box"><pre><code>SELECT AVG(salary)
+FROM instructor
+WHERE dept = &#x27;Astronomy&#x27;;</code></pre></div>
+<p>If no matching rows → result is NULL (not 0).</p></div></div>
+<div class="example-box"><div class="box-title">Example 163: Aggregate Example Table</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig217.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 164: AVG and SUM Example</div><div class="box-body"><div class="code-box"><pre><code>SELECT AVG(salary), SUM(salary)
+FROM instructor;</code></pre></div>
+<p>NULL salary is ignored in computation.</p>
+<p>AVG = (50000 + 60000 + 60000)/3</p>
+<p>SUM = 170000</p></div></div>
+<div class="example-box"><div class="box-title">Example 165: MIN and MAX Example</div><div class="box-body"><div class="code-box"><pre><code>SELECT MIN(salary), MAX(salary)
+FROM instructor;</code></pre></div>
+<p>Result:</p>
+<p>MIN = 50000 <br>
+MAX = 60000</p></div></div>
+<div class="example-box"><div class="box-title">Example 166: COUNT Difference Example</div><div class="box-body"><div class="code-box"><pre><code>SELECT COUNT(*), COUNT(salary)
+FROM instructor;</code></pre></div>
+<p>COUNT(*) = 4 <br>
+COUNT(salary) = 3</p></div></div>
+<div class="concept-box-alt"><div class="box-title">DISTINCT with Aggregates</div><div class="box-body"><p>DISTINCT can be used inside aggregate functions.</p>
+<div class="code-box"><pre><code>SELECT COUNT(DISTINCT salary)
+FROM instructor;</code></pre></div>
+<p>Counts only unique non-NULL values.</p></div></div>
+</section>
+</section>
+<section id="groups" class="content-section level-1">
+<h2 class="section-heading">Groups</h2>
+
+<section id="group-by-having" class="content-section level-2">
+<h3 class="section-heading">GROUP BY HAVING</h3>
+<div class="concept-box"><div class="box-title">GROUP BY — Core Concept</div><div class="box-body"><p>GROUP BY is used to divide tuples into groups based on one or more attributes,
+and then apply aggregate functions on each group separately.</p>
+<p>Instead of one aggregate result for the whole table,
+we get one aggregate result per group.</p>
+<p>Typical use: summaries per department, per course, per year, etc.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Logical Query Execution Order with GROUP BY</div><div class="box-body"><p>SQL evaluates grouped queries logically in this order:</p>
+<ol><li><p>FROM</p></li><li><p>WHERE</p></li><li><p>GROUP BY</p></li><li><p>AGGREGATE</p></li><li><p>HAVING</p></li><li><p>SELECT</p></li><li><p>ORDER BY</p></li></ol>
+<p>Meaning:</p>
+<ul><li><p>WHERE filters rows first</p></li><li><p>GROUP BY forms groups</p></li><li><p>Aggregates are computed per group</p></li><li><p>HAVING filters groups</p></li><li><p>SELECT outputs final columns</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">GROUP BY — Basic Syntax</div><div class="box-body"><div class="code-box"><pre><code>SELECT group_column, AGG_FUNC(column)
+FROM table
+WHERE row_condition
+GROUP BY group_column;</code></pre></div>
+<p>Each distinct value of group_column forms one group.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">GROUP BY — Mandatory Rule</div><div class="box-body"><p>In SELECT list of a grouped query:</p>
+<p>Every attribute must be either:</p>
+<ul><li><p>present in GROUP BY, OR</p></li><li><p>used inside an aggregate function</p></li></ul>
+<p>Otherwise SQL raises an error.</p>
+<p><strong>Invalid:</strong></p>
+<div class="code-box"><pre><code>SELECT dept, salary
+FROM instructor
+GROUP BY dept;</code></pre></div>
+<p>salary is neither grouped nor aggregated.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">HAVING — Syntax</div><div class="box-body"><div class="code-box"><pre><code>SELECT group_col, AGG_FUNC(col)
+FROM table
+WHERE row_condition
+GROUP BY group_col
+HAVING aggregate_condition;</code></pre></div>
+<p>HAVING condition is applied per group.</p></div></div>
+<div class="example-box"><div class="box-title">Example 167: HAVING — Departments with Avg Salary $&gt;$ 70000</div><div class="box-body"><div class="code-box"><pre><code>SELECT dept, AVG(salary)
+FROM instructor
+GROUP BY dept
+HAVING AVG(salary) &gt; 70000;</code></pre></div>
+<p>Evaluation:</p>
+<p>CS avg = 85000 → kept <br>
+EE avg = 65000 → removed</p></div></div>
+<div class="concept-box-alt"><div class="box-title">GROUP BY HAVING — Logical Processing Steps</div><div class="box-body"><p>For a query:</p>
+<div class="code-box"><pre><code>SELECT dept, AVG(salary)
+FROM instructor
+WHERE salary &gt; 50000
+GROUP BY dept
+HAVING AVG(salary) &gt; 70000;</code></pre></div>
+<p>SQL processes it in this exact order:</p>
+<ol><li><p>FROM — load tables</p></li><li><p>WHERE — filter rows</p></li><li><p>GROUP BY — create groups</p></li><li><p>Aggregate — compute per group</p></li><li><p>HAVING — filter groups</p></li><li><p>SELECT — produce output columns</p></li><li><p>ORDER BY — sort result (if present)</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 168: Step-by-Step GROUP BY Execution</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig218.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT dept, AVG(salary)
+FROM instructor
+WHERE salary &gt;= 60000
+GROUP BY dept;</code></pre></div>
+<p><strong>Step 1 — FROM</strong></p>
+<p>All rows are read.</p>
+<p><strong>Step 2 — WHERE filter</strong></p>
+<p>Keep only salary ≥ 60000</p>
+<p>Remaining rows:</p>
+<p>A CS 80000 <br>
+B CS 90000 <br>
+C EE 70000 <br>
+E ME 60000</p>
+<p>Row D removed.</p>
+<p><strong>Step 3 — GROUP Formation</strong></p>
+<p>Rows are partitioned by dept:</p>
+<p>CS → (80000, 90000) <br>
+EE → (70000) <br>
+ME → (60000)</p>
+<p><strong>Step 4 — Aggregate Computation</strong></p>
+<p>AVG per group:</p>
+<p>CS → 85000 <br>
+EE → 70000 <br>
+ME → 60000</p>
+<p><strong>Step 5 — SELECT Output</strong></p>
+<p>Final relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig219.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 169: Adding HAVING</div><div class="box-body"><p>Query:</p>
+<div class="code-box"><pre><code>SELECT dept, AVG(salary)
+FROM instructor
+WHERE salary &gt;= 60000
+GROUP BY dept
+HAVING AVG(salary) &gt; 65000;</code></pre></div>
+<p>Steps 1–4 same as before.</p>
+<p><strong>Step 5 — HAVING filter on groups</strong></p>
+<p>CS → 85000 → keep <br>
+EE → 70000 → keep <br>
+ME → 60000 → remove</p>
+<p><strong>Final Output</strong></p>
+<p>CS, EE only.</p></div></div>
+<div class="example-box"><div class="box-title">Example 170: GROUP BY with COUNT</div><div class="box-body"><div class="code-box"><pre><code>SELECT dept, COUNT(*)
+FROM instructor
+GROUP BY dept;</code></pre></div>
+<p>Counts total rows per department (NULL allowed).</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Grouping by Multiple Attributes</div><div class="box-body"><p>GROUP BY can use multiple attributes.</p>
+<p>Each unique combination forms a group.</p>
+<div class="code-box"><pre><code>GROUP BY dept, year</code></pre></div>
+<p>Grouping key = (dept, year)</p></div></div>
+<div class="example-box"><div class="box-title">Example 171: Multi-Attribute Grouping</div><div class="box-body"><div class="code-box"><pre><code>SELECT dept, salary, COUNT(*)
+FROM instructor
+GROUP BY dept, salary;</code></pre></div>
+<p>Each (dept, salary) pair becomes one group.</p></div></div>
+<div class="concept-box"><div class="box-title">HAVING — Group Filter</div><div class="box-body"><p>HAVING filters groups after aggregation.</p>
+<p>WHERE filters rows before grouping.</p>
+<p>Key difference:</p>
+<ul><li><p>WHERE → cannot use aggregates</p></li><li><p>HAVING → can use aggregates</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 172: WHERE + HAVING Together</div><div class="box-body"><div class="code-box"><pre><code>SELECT dept, AVG(salary)
+FROM instructor
+WHERE salary &gt; 60000
+GROUP BY dept
+HAVING AVG(salary) &gt; 75000;</code></pre></div>
+<p>Steps:</p>
+<p>WHERE → remove rows salary ≤ 60000 <br>
+GROUP → form groups <br>
+AVG → compute per group <br>
+HAVING → filter groups</p></div></div>
+<div class="example-box"><div class="box-title">Example 173: HAVING with COUNT</div><div class="box-body"><p>Find departments with at least 2 instructors.</p>
+<div class="code-box"><pre><code>SELECT dept, COUNT(*)
+FROM instructor
+GROUP BY dept
+HAVING COUNT(*) &gt;= 2;</code></pre></div></div></div>
+<div class="concept-box-alt"><div class="box-title">HAVING Without GROUP BY</div><div class="box-body"><p>If GROUP BY is absent,
+entire table is treated as one group.</p>
+<p>HAVING can still be used.</p>
+<div class="code-box"><pre><code>SELECT AVG(salary)
+FROM instructor
+HAVING AVG(salary) &gt; 70000;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 174: GROUP BY + ORDER BY</div><div class="box-body"><div class="code-box"><pre><code>SELECT dept, AVG(salary) AS avg_sal
+FROM instructor
+GROUP BY dept
+ORDER BY avg_sal DESC;</code></pre></div>
+<p>ORDER BY applies after grouping.</p></div></div>
+<div class="concept-box"><div class="box-title">Common GROUP BY Errors</div><div class="box-body"><ul><li><p>Selecting non-grouped, non-aggregated column</p></li><li><p>Using aggregate in WHERE</p></li><li><p>Forgetting that WHERE runs before grouping</p></li><li><p>Confusing HAVING with WHERE</p></li></ul>
+<p>Rule:
+Row filter → WHERE <br>
+Group filter → HAVING</p></div></div>
+</section>
+<section id="group-by-and-null-values" class="content-section level-2">
+<h3 class="section-heading">GROUP BY and Null Values</h3>
+<div class="concept-box"><div class="box-title">GROUP BY with NULL Values</div><div class="box-body"><p>When grouping:</p>
+<ul><li><p>All NULL values form one group</p></li><li><p>Aggregates inside the group still ignore NULL inputs</p></li><li><p>Unlike comparisons, GROUP BY treats NULL = NULL
+for grouping purposes.</p></li></ul>
+<p>So:</p>
+<div class="code-box"><pre><code>GROUP BY dept</code></pre></div>
+<p>All rows with dept = NULL go into one group.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Trap Points</div><div class="box-body"><ul><li><p>SUM ignores NULL — does not return NULL unless no values remain</p></li><li><p>COUNT(column) $\neq$ COUNT(*)</p></li><li><p>AVG never divides by total rows — divides by non-NULL rows only</p></li><li><p>Empty aggregate → NULL (except COUNT)</p></li><li><p>NULL group exists in GROUP BY</p></li></ul></div></div>
+</section>
+</section>
+<section id="joins" class="content-section level-1">
+<h2 class="section-heading">Joins</h2>
+
+<section id="queries-on-multiple-tables" class="content-section level-2">
+<h3 class="section-heading">Queries on Multiple Tables</h3>
+<div class="concept-box"><div class="box-title">Queries on Multiple Relations — Theory</div><div class="box-body"><p>Many practical SQL queries need data from more than one relation. Such queries are called
+<strong>multi-relation queries</strong>. SQL allows combining multiple tables using the <code>FROM</code>
+clause and specifying matching conditions in the <code>WHERE</code> clause (or using JOIN syntax).</p>
+<p>Core idea:</p>
+<ul><li><p>Each relation listed in the FROM clause participates in query evaluation.</p></li><li><p>SQL conceptually forms a Cartesian product of those relations.</p></li><li><p>The WHERE clause filters only meaningful tuple combinations.</p></li><li><p>The SELECT clause finally projects required attributes.</p></li></ul>
+<p>Typical business questions answered using multi-relation queries:</p>
+<ul><li><p>Get employee names with department buildings.</p></li><li><p>List students with course titles.</p></li><li><p>Show orders with customer details.</p></li><li><p>Find instructors with courses taught.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">General Form — Multi-Relation Query</div><div class="box-body"><p>General structure:</p>
+<p>\[
+\texttt{SELECT } A_1, A_2, \dots, A_n \\
+\texttt{FROM } r_1, r_2, \dots, r_m \\
+\texttt{WHERE } P;
+\]</p>
+<p>Rules:</p>
+<ul><li><p>FROM lists all relations involved.</p></li><li><p>WHERE contains join predicates and filters.</p></li><li><p>If attribute names repeat across tables, prefix with relation name.</p></li><li><p>If WHERE is omitted → full Cartesian product is returned.</p></li><li><p>Logical evaluation order: FROM → WHERE → SELECT.</p></li></ul></div></div>
+</section>
+<section id="cartesian-product-or-cross-join" class="content-section level-2">
+<h3 class="section-heading">Cartesian Product or CROSS JOIN</h3>
+<div class="concept-box"><div class="box-title">Cartesian Product Concept</div><div class="box-body"><p>If multiple tables are listed in FROM without a matching condition, SQL generates a
+<strong>Cartesian product</strong>:</p>
+<ul><li><p>Every tuple of table A pairs with every tuple of table B.</p></li><li><p>Result size = $|A| \times |B|$</p></li><li><p>Usually very large and rarely meaningful by itself.</p></li><li><p><strong>Cartesian Product Without WHERE Clause is called CROSS JOIN</strong></p></li><li><p>Join predicates in WHERE restrict combinations.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Attribute Name Disambiguation</div><div class="box-body"><p>When the same attribute appears in multiple relations:</p>
+<ul><li><p>Use qualified names: table.attribute</p></li><li><p>Example: <code>employee.dept_id</code>, <code>department.dept_id</code></p></li><li><p>If attribute appears in only one table → prefix optional</p></li><li><p>All relations in FROM must have distinct names (or aliases).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 175: Employee–Department Join</div><div class="box-body"><p>Assume two colorful relations:</p>
+<p><strong>employee</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig220.png" alt="diagram"></div>
+<p><strong>department</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig221.png" alt="diagram"></div>
+<p>Goal: Get employee names with department name and building.</p>
+<p>Step-by-step logic:</p>
+<ul><li><p>FROM combines employee × department</p></li><li><p>WHERE keeps rows where dept codes match</p></li><li><p>SELECT outputs chosen columns</p></li></ul>
+<div class="code-box"><pre><code>SELECT name, department.dept_name, building
+FROM employee, department
+WHERE employee.dept_code = department.dept_code;</code></pre></div>
+<p><strong>Result Relation</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig222.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 176: Cartesian Product Without WHERE - CROSS JOIN</div><div class="box-body"><p>Using same tables but NO matching predicate.
+<strong>Cartesian Product Without WHERE Clause is called CROSS JOIN</strong></p>
+<div class="code-box"><pre><code>SELECT name, dept_name
+FROM employee, department;</code></pre></div>
+<p>Step-by-step:</p>
+<ul><li><p>employee has 4 rows</p></li><li><p>department has 3 rows</p></li><li><p>Result size = 4 × 3 = 12 rows</p></li><li><p>Every employee paired with every department</p></li></ul>
+<p>(Only partial output shown)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig223.png" alt="diagram"></div>
+<p>This is usually incorrect for real queries — missing join condition.</p></div></div>
+<div class="example-box"><div class="box-title">Example 177: Join with Additional Filter + Arithmetic Operator</div><div class="box-body"><p>Find employees with department info whose salary after 10% raise exceeds 60000.</p>
+<div class="code-box"><pre><code>SELECT name,
+       department.dept_name,
+       salary,
+       salary * 1.10 AS revised_salary
+FROM employee, department
+WHERE employee.dept_code = department.dept_code
+  AND salary * 1.10 &gt; 60000;</code></pre></div>
+<p>Arithmetic operator used: multiplication (*)</p>
+<p>Evaluation:</p>
+<ul><li><p>Join first</p></li><li><p>Compute salary * 1.10</p></li><li><p>Apply filter condition</p></li><li><p>Output projected columns</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig224.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 178: Three-Relation Query</div><div class="box-body"><p>Add third table:</p>
+<p><strong>project</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig225.png" alt="diagram"></div>
+<p>Get employee, department, and project.</p>
+<div class="code-box"><pre><code>SELECT name, dept_name, project_title
+FROM employee, department, project
+WHERE employee.dept_code = department.dept_code
+  AND department.dept_code = project.dept_code;</code></pre></div>
+<p>Process:</p>
+<ul><li><p>Cartesian product of 3 tables</p></li><li><p>Two join predicates restrict matches</p></li><li><p>Final projection returned</p></li></ul></div></div>
+</section>
+<section id="rename-tables" class="content-section level-2">
+<h3 class="section-heading">Rename Tables</h3>
+<div class="concept-box"><div class="box-title">Correlation Names / Table Aliases</div><div class="box-body"><p>When a table is renamed in a query using AS, the new name is called a:</p>
+<ul><li><p>correlation name</p></li><li><p>table alias</p></li><li><p>tuple variable</p></li></ul>
+<p>All mean the same concept: a temporary query-level name for a relation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 179: Renaming Output Columns</div><div class="box-body"><p>Tables:</p>
+<p><strong>trainer</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig226.png" alt="diagram"></div>
+<p><strong>teaches</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig227.png" alt="diagram"></div>
+<p>Rename output attribute names.</p>
+<div class="code-box"><pre><code>SELECT name AS trainer_name,
+       course_code AS course_id
+FROM trainer, teaches
+WHERE trainer.tid = teaches.tid;</code></pre></div>
+<p><strong>Result Relation</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig228.png" alt="diagram"></div>
+<p>Step-by-step:</p>
+<ul><li><p>Join on matching tid</p></li><li><p>Select two attributes</p></li><li><p>Rename them using AS</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 180: Renaming Expression Columns</div><div class="box-body"><p>Arithmetic expressions produce unnamed columns — alias is useful.</p>
+<p><strong>trainer</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig229.png" alt="diagram"></div>
+<p>Compute payment.</p>
+<div class="code-box"><pre><code>SELECT name,
+       hours * rate AS total_payment
+FROM trainer;</code></pre></div>
+<p><strong>Result Relation</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig230.png" alt="diagram"></div>
+<p>Without AS, the column header would be system-generated.</p></div></div>
+<div class="example-box"><div class="box-title">Example 181: Table Alias for Short Names</div><div class="box-body"><p>Rename tables to simplify query writing.</p>
+<div class="code-box"><pre><code>SELECT T.name, C.course_code
+FROM trainer AS T, teaches AS C
+WHERE T.tid = C.tid;</code></pre></div>
+<p>Why alias helps:</p>
+<ul><li><p>Avoids long prefixes</p></li><li><p>Improves readability</p></li><li><p>Reduces typing errors</p></li><li><p>Clearer join conditions</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 182: Alias Without Using AS Keyword</div><div class="box-body"><p>Many DBMS allow alias without AS.</p>
+<div class="code-box"><pre><code>SELECT name trainer_name
+FROM trainer;</code></pre></div>
+<p>Equivalent to using AS — but AS is clearer and preferred in textbooks.</p></div></div>
+</section>
+<section id="self-join" class="content-section level-2">
+<h3 class="section-heading">SELF JOIN</h3>
+<div class="example-box"><div class="box-title">Example 183: Self Join Using Aliases</div><div class="box-body"><p>Find trainers whose rate is greater than at least one trainer with skill = 'SQL'.</p>
+<p><strong>trainer</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig231.png" alt="diagram"></div>
+<p>Self-join requires aliases to distinguish copies.</p>
+<div class="code-box"><pre><code>SELECT DISTINCT A.name
+FROM trainer AS A, trainer AS B
+WHERE A.rate &gt; B.rate
+  AND B.skill = &#x27;SQL&#x27;;</code></pre></div>
+<p><strong>OR</strong></p>
+<div class="code-box"><pre><code>SELECT DISTINCT A.name
+FROM trainer AS A
+JOIN trainer AS B ON A.rate &gt; B.rate
+WHERE B.skill = &#x27;SQL&#x27;;    </code></pre></div>
+<p>Step-by-step:</p>
+<ul><li><p>Table used twice → A and B</p></li><li><p>Compare rates across rows</p></li><li><p>Filter B rows where skill = SQL</p></li><li><p>Select A names</p></li></ul>
+<p><strong>Result Relation</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig232.png" alt="diagram"></div></div></div>
+</section>
+<section id="inner-join" class="content-section level-2">
+<h3 class="section-heading">INNER JOIN</h3>
+<div class="concept-box"><div class="box-title">Concept: The Inner Join</div><div class="box-body"><p>The <strong>INNER JOIN</strong> is the most fundamental join type in SQL. It selects records that have matching values in both tables being joined.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul><li><p>It returns only the <strong>intersection</strong> of two tables.</p></li><li><p>If a row in Table A does not have a corresponding match in Table B, it will not appear in the result.</p></li><li><p>It is used to combine related data stored in separate tables.</p></li></ul>
+<p><strong>Venn Diagram Representation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig233.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 184: Basic Inner Join</div><div class="box-body"><p><strong>Employee Table:</strong><br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig234.png" alt="diagram"></div>
+<p><strong>Department Table:</strong><br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig235.png" alt="diagram"></div>
+<p>Find the department name for every employee that has a valid department:</p>
+<div class="code-box"><pre><code>SELECT E.Name, D.DeptName
+FROM employee AS E
+INNER JOIN department AS D ON E.DeptID = D.DeptID;</code></pre></div>
+<p><em>Note: David (DeptID 4) is excluded because 4 does not exist in the Department table. 'Marketing' (DeptID 3) is excluded because no employee belongs to it.</em></p>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig236.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 185: Inner Join with Condition</div><div class="box-body"><p>Find employees specifically in the 'Sales' department:</p>
+<div class="code-box"><pre><code>SELECT E.Name, D.DeptName
+FROM employee AS E
+INNER JOIN department AS D ON E.DeptID = D.DeptID
+WHERE D.DeptName = &#x27;Sales&#x27;;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig237.png" alt="diagram"></div></div></div>
+</section>
+<section id="natural-join" class="content-section level-2">
+<h3 class="section-heading">NATURAL JOIN</h3>
+<div class="concept-box"><div class="box-title">Concept: The Natural Join</div><div class="box-body"><p>A <strong>NATURAL JOIN</strong> is a specialized type of join that automatically joins two tables based on <strong>all columns</strong> that have the same name and data type in both tables.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul><li><p><strong>Implicit Join Condition:</strong> You do not use the <code>ON</code> or <code>USING</code> clause; SQL identifies matching columns automatically.</p></li><li><p><strong>Column Deduplication:</strong> Unlike a standard Join, the Natural Join automatically removes duplicate columns from the output.</p></li><li><p><strong>Risk Factor:</strong> If tables share common names like <code>ID</code> or <code>Created_At</code> that aren't intended for joining, it can lead to empty or incorrect results.</p></li></ul>
+<p><strong>Venn Diagram Representation:</strong>
+Like an Inner Join, it represents the intersection, but specifically restricted by shared column names.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig238.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 186: Natural Join between Students and Courses</div><div class="box-body"><p>In this example, both tables share the column <code>CourseID</code>.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>students Table:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig239.png" alt="diagram"></div>
+<p><strong>courses Table:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig240.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT * FROM students NATURAL JOIN courses;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig241.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 187: Natural Join for Orders</div><div class="box-body"><p>Tables share the <code>ProductID</code> column.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>orders Table:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig242.png" alt="diagram"></div>
+<p><strong>products Table:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig243.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT OrderID, ProductID, Price
+FROM orders NATURAL JOIN products;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig244.png" alt="diagram"></div></div></div>
+</section>
+<section id="left-outer-join" class="content-section level-2">
+<h3 class="section-heading">LEFT (OUTER) JOIN</h3>
+<div class="concept-box"><div class="box-title">Concept: The LEFT (OUTER) JOIN</div><div class="box-body"><p>The <strong>LEFT JOIN</strong> (or <strong>LEFT OUTER JOIN</strong>) returns <strong>all</strong> records from the left table (Table A), and the matched records from the right table (Table B).</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul><li><p><strong>Persistence:</strong> Every row from the left table is guaranteed to appear at least once in the result.</p></li><li><p><strong>Handling Mismatches:</strong> If there is no match in the right table for a specific row, the result will contain <code>NULL</code> values for all columns of the right table.</p></li><li><p><strong>Directional:</strong> The order in which you list the tables matters significantly.</p></li></ul>
+<p><strong>Venn Diagram Representation:</strong>
+The result is the entirety of Table A, including the overlapping section with Table B.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig245.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 188: Left Join: Employees and Departments</div><div class="box-body"><p>Identify all employees, including those who have not yet been assigned to a department.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>employee Table (Left):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig246.png" alt="diagram"></div>
+<p><strong>department Table (Right):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig247.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT E.Name, D.DeptName
+FROM employee E
+LEFT JOIN department D ON E.DeptID = D.DeptID;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig248.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 189: Left Join: Customers and Orders</div><div class="box-body"><p>List all customers and their order amounts. Customers without orders will show <code>NULL</code>.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>customers Table (Left):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig249.png" alt="diagram"></div>
+<p><strong>orders Table (Right):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig250.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT C.Name, O.Amount
+FROM customers C
+LEFT JOIN orders O ON C.CustID = O.CustID;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig251.png" alt="diagram"></div></div></div>
+</section>
+<section id="right-outer-join" class="content-section level-2">
+<h3 class="section-heading">RIGHT (OUTER) JOIN</h3>
+<div class="concept-box"><div class="box-title">Concept: The RIGHT (OUTER) JOIN</div><div class="box-body"><p>The <strong>RIGHT JOIN</strong> (or <strong>RIGHT OUTER JOIN</strong>) is the mirror image of the Left Join. It returns <strong>all</strong> records from the right table (Table B), and the matched records from the left table (Table A).</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul><li><p><strong>Persistence:</strong> Every row from the right table is guaranteed to appear in the result set.</p></li><li><p><strong>Handling Mismatches:</strong> If there is no matching row in the left table for a specific row in the right table, the result will contain <code>NULL</code> values for the columns belonging to the left table.</p></li><li><p><strong>Logic:</strong> It is essentially a Left Join with the table order reversed.</p></li></ul>
+<p><strong>Venn Diagram Representation:</strong>
+The result covers the entirety of Table B, including the overlapping section where records match Table A.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig252.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 190: Right Join: Employees and Departments</div><div class="box-body"><p>Identify all departments, including those that currently have no employees assigned to them.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>employee Table (Left):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig253.png" alt="diagram"></div>
+<p><strong>department Table (Right):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig254.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT E.Name, D.DeptName
+FROM employee E
+RIGHT JOIN department D ON E.DeptID = D.DeptID;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig255.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 191: Right Join: Books and Authors</div><div class="box-body"><p>List all authors and the titles of books they have written in the database.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>books Table (Left):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig256.png" alt="diagram"></div>
+<p><strong>authors Table (Right):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig257.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT B.Title, A.AuthorName
+FROM books B
+RIGHT JOIN authors A ON B.AuthorID = A.AuthorID;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig258.png" alt="diagram"></div></div></div>
+</section>
+<section id="full-outer-join" class="content-section level-2">
+<h3 class="section-heading">FULL (OUTER) JOIN</h3>
+<div class="concept-box"><div class="box-title">Concept: The FULL (OUTER) JOIN</div><div class="box-body"><p>The <strong>FULL JOIN</strong> returns all records when there is a match in either left (Table A) or right (Table B) table records. It essentially combines the results of both a Left and a Right Join.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul><li><p><strong>Complete Visibility:</strong> It retains every row from both tables.</p></li><li><p><strong>NULL Padding:</strong> For rows where there is no match, <code>NULL</code> values are placed in the columns of the table that lacks the matching record.</p></li><li><p><strong>Compatibility Note:</strong> Some databases (like MySQL) do not support <code>FULL JOIN</code> directly and require a <code>UNION</code> of a Left and Right Join.</p></li></ul>
+<p><strong>Venn Diagram Representation:</strong>
+The result is the union of both sets, covering all areas of both circles.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig259.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 192: Full Join: Projects and Departments</div><div class="box-body"><p>List all projects and all departments, showing links where they exist.</p>
+<p><strong>Input Tables:</strong></p>
+<p><strong>projects Table (Left):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig260.png" alt="diagram"></div>
+<p><strong>departments Table (Right):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig261.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT P.ProjName, D.Name
+FROM projects P
+FULL OUTER JOIN departments D ON P.DeptID = D.DeptID;</code></pre></div>
+<p><strong>Output Relation:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig262.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="set-operations" class="content-section level-1">
+<h2 class="section-heading">Set Operations</h2>
+<div class="concept-box"><div class="box-title">Set Operations</div><div class="box-body"><p>In SQL, the UNION, INTERSECT, and EXCEPT operators allow us to perform set-based logic directly on the results of our queries.</p></div></div>
+<section id="union" class="content-section level-2">
+<h3 class="section-heading">UNION</h3>
+<div class="concept-box"><div class="box-title">UNION Operation — Set Combination</div><div class="box-body"><p>The <strong>UNION</strong> operator combines the results of two SELECT queries
+and returns tuples that appear in either result.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>SELECT column_list
+FROM table1
+WHERE condition
+UNION
+SELECT column_list
+FROM table2
+WHERE condition;</code></pre></div>
+<p>Rules:</p>
+<ul><li><p>Both queries must return the <strong>same number of columns</strong>.</p></li><li><p>Corresponding columns must have <strong>compatible domains</strong>.</p></li><li><p>Column names in output come from the first query.</p></li><li><p><strong>Duplicates are automatically removed</strong>.</p></li><li><p>Parentheses around subqueries are optional (DB dependent).</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">UNION ALL — Keeping Duplicates</div><div class="box-body"><p><strong>UNION ALL</strong> performs multiset union.</p>
+<div class="code-box"><pre><code>query1
+UNION ALL
+query2;</code></pre></div>
+<p>Properties:</p>
+<ul><li><p>Does <strong>not remove duplicates</strong>.</p></li><li><p>Faster than UNION (no duplicate elimination step).</p></li><li><p>Duplicate count in result = sum of occurrences in both queries.</p></li><li><p>Used when duplicate tuples are meaningful.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 193: UNION — Courses Offered in Two Semesters</div><div class="box-body"><p><strong>section</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig263.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester = &#x27;Fall&#x27; AND year = 2017
+UNION
+SELECT course_id
+FROM section
+WHERE semester = &#x27;Spring&#x27; AND year = 2018;</code></pre></div>
+<p>Result Relation (duplicates removed):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig264.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 194: UNION ALL — Keeping Duplicates</div><div class="box-body"><p>Using same table.</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester = &#x27;Fall&#x27; AND year = 2017
+UNION ALL
+SELECT course_id
+FROM section
+WHERE semester = &#x27;Spring&#x27; AND year = 2018;</code></pre></div>
+<p>Result Relation (duplicates preserved):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig265.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 195: UNION with Character Data</div><div class="box-body"><p><strong>ug_students</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig266.png" alt="diagram"></div>
+<p><strong>pg_students</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig267.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT name FROM ug_students
+UNION
+SELECT name FROM pg_students;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig268.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 196: UNION Requires Compatible Columns</div><div class="box-body"><p>Valid UNION (same column count and type):</p>
+<div class="code-box"><pre><code>SELECT dept_name
+FROM department
+UNION
+SELECT building
+FROM department;</code></pre></div>
+<p>Invalid UNION (different column counts):</p>
+<div class="code-box"><pre><code>-- ERROR
+SELECT name, salary FROM instructor
+UNION
+SELECT name FROM employee;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 197: UNION with ORDER BY</div><div class="box-body"><p>ORDER BY applies to the <strong>final combined result</strong>.</p>
+<div class="code-box"><pre><code>SELECT name FROM ug_students
+UNION
+SELECT name FROM pg_students
+ORDER BY name;</code></pre></div>
+<p>Sorting happens after duplicate elimination.</p></div></div>
+</section>
+<section id="intersection" class="content-section level-2">
+<h3 class="section-heading">INTERSECTION</h3>
+<div class="concept-box"><div class="box-title">INTERSECT Operation — Common Tuples</div><div class="box-body"><p>The <strong>INTERSECT</strong> operator returns only those tuples that appear in
+<strong>both</strong> query results.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>SELECT column_list
+FROM table1
+WHERE condition
+INTERSECT
+SELECT column_list
+FROM table2
+WHERE condition;</code></pre></div>
+<p>Rules:</p>
+<ul><li><p>Both queries must return same number of columns.</p></li><li><p>Corresponding columns must have compatible domains.</p></li><li><p>Result column names come from first query.</p></li><li><p><strong>Duplicates are automatically removed</strong>.</p></li><li><p>Output = set intersection of the two results.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">INTERSECT ALL — Duplicate Preserving</div><div class="box-body"><p><strong>INTERSECT ALL</strong> keeps duplicates.</p>
+<div class="code-box"><pre><code>query1
+INTERSECT ALL
+query2;</code></pre></div>
+<p>Duplicate rule:</p>
+<ul><li><p>Duplicate count in result =
+minimum(count in query1, count in query2)</p></li><li><p>Uses multiset (bag) semantics.</p></li><li><p>Not supported in many DBMS implementations.</p></li></ul>
+<p>Note:</p>
+<ul><li><p><strong>MySQL does not support INTERSECT directly.</strong></p></li><li><p>Workaround uses subqueries with IN or EXISTS.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 198: INTERSECT — Courses in Both Semesters</div><div class="box-body"><p><strong>section</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig269.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester = &#x27;Fall&#x27; AND year = 2017
+INTERSECT
+SELECT course_id
+FROM section
+WHERE semester = &#x27;Spring&#x27; AND year = 2018;</code></pre></div>
+<p>Result Relation (only common course):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig270.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 199: INTERSECT ALL — Duplicate Counting</div><div class="box-body"><p>Assume:</p>
+<ul><li><p>Fall 2017 has 4 sections of ECE101</p></li><li><p>Spring 2018 has 2 sections of ECE101</p></li></ul>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+INTERSECT ALL
+SELECT course_id
+FROM section
+WHERE semester=&#x27;Spring&#x27; AND year=2018;</code></pre></div>
+<p>Result contains:</p>
+<ul><li><p>ECE101 appears <strong>2 times</strong></p></li><li><p>Minimum of (4, 2)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 200: INTERSECT with Student Lists</div><div class="box-body"><p><strong>clubA</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig271.png" alt="diagram"></div>
+<p><strong>clubB</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig272.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT sid FROM clubA
+INTERSECT
+SELECT sid FROM clubB;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig273.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 201: MySQL Workaround Using IN</div><div class="box-body"><p>Equivalent of INTERSECT in MySQL:</p>
+<div class="code-box"><pre><code>SELECT DISTINCT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+AND course_id IN (
+  SELECT course_id
+  FROM section
+  WHERE semester=&#x27;Spring&#x27; AND year=2018
+);</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 202: MySQL Workaround Using EXISTS</div><div class="box-body"><div class="code-box"><pre><code>SELECT DISTINCT s1.course_id
+FROM section s1
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+AND EXISTS (
+  SELECT 1
+  FROM section s2
+  WHERE s2.course_id = s1.course_id
+  AND semester=&#x27;Spring&#x27; AND year=2018
+);</code></pre></div></div></div>
+</section>
+<section id="except" class="content-section level-2">
+<h3 class="section-heading">EXCEPT</h3>
+<div class="concept-box"><div class="box-title">EXCEPT Operation — Set Difference</div><div class="box-body"><p>The <strong>EXCEPT</strong> operator returns all tuples that appear in the
+<strong>first query result but not in the second</strong>.</p>
+<p>It performs <strong>set difference</strong>.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>SELECT column_list
+FROM table1
+WHERE condition
+EXCEPT
+SELECT column_list
+FROM table2
+WHERE condition;</code></pre></div>
+<p>Rules:</p>
+<ul><li><p>Both queries must return same number of columns.</p></li><li><p>Corresponding columns must have compatible domains.</p></li><li><p>Result column names come from first query.</p></li><li><p>Duplicate tuples are removed before difference.</p></li><li><p>Output = tuples in query1 − tuples in query2.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">EXCEPT ALL — Duplicate Preserving Difference</div><div class="box-body"><p><strong>EXCEPT ALL</strong> keeps duplicate counts.</p>
+<div class="code-box"><pre><code>query1
+EXCEPT ALL
+query2;</code></pre></div>
+<p>Duplicate rule:</p>
+<ul><li><p>Result count = count(query1) − count(query2)</p></li><li><p>Included only if difference is positive.</p></li><li><p>Uses multiset (bag) semantics.</p></li></ul>
+<p>DBMS notes:</p>
+<ul><li><p>Oracle uses keyword <strong>MINUS</strong> instead of EXCEPT.</p></li><li><p>MySQL does <strong>not support EXCEPT</strong>.</p></li><li><p>MySQL workaround uses NOT IN / NOT EXISTS.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 203: EXCEPT — Courses Only in Fall</div><div class="box-body"><p><strong>section</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig274.png" alt="diagram"></div>
+<p>Query:</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+EXCEPT
+SELECT course_id
+FROM section
+WHERE semester=&#x27;Spring&#x27; AND year=2018;</code></pre></div>
+<p>Result Relation:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig275.png" alt="diagram"></div>
+<p>CS101 removed because it appears in Spring also.</p></div></div>
+<div class="example-box"><div class="box-title">Example 204: EXCEPT — Duplicate Elimination</div><div class="box-body"><p>Assume:</p>
+<ul><li><p>Fall has 4 sections of ECE101</p></li><li><p>Spring has 2 sections of ECE101</p></li></ul>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27;
+EXCEPT
+SELECT course_id
+FROM section
+WHERE semester=&#x27;Spring&#x27;;</code></pre></div>
+<p>Result:</p>
+<ul><li><p>No ECE101 appears</p></li><li><p>Because duplicates are removed before subtraction</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 205: EXCEPT ALL — Duplicate Arithmetic</div><div class="box-body"><p>Using same counts:</p>
+<div class="code-box"><pre><code>SELECT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27;
+EXCEPT ALL
+SELECT course_id
+FROM section
+WHERE semester=&#x27;Spring&#x27;;</code></pre></div>
+<p>Result:</p>
+<ul><li><p>ECE101 appears 2 times</p></li><li><p>Because 4 − 2 = 2</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 206: Student Difference Example</div><div class="box-body"><p><strong>registered</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig276.png" alt="diagram"></div>
+<p><strong>paid_fees</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig277.png" alt="diagram"></div>
+<div class="code-box"><pre><code>SELECT sid FROM registered
+EXCEPT
+SELECT sid FROM paid_fees;</code></pre></div>
+<p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig278.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 207: MySQL Workaround Using NOT IN</div><div class="box-body"><div class="code-box"><pre><code>SELECT DISTINCT course_id
+FROM section
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+AND course_id NOT IN (
+  SELECT course_id
+  FROM section
+  WHERE semester=&#x27;Spring&#x27; AND year=2018
+);</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 208: MySQL Workaround Using NOT EXISTS</div><div class="box-body"><div class="code-box"><pre><code>SELECT DISTINCT s1.course_id
+FROM section s1
+WHERE semester=&#x27;Fall&#x27; AND year=2017
+AND NOT EXISTS (
+  SELECT 1
+  FROM section s2
+  WHERE s2.course_id = s1.course_id
+  AND semester=&#x27;Spring&#x27; AND year=2018
+);</code></pre></div></div></div>
+</section>
+</section>
+<section id="nested-queries" class="content-section level-1">
+<h2 class="section-heading">Nested Queries</h2>
+<p>Nested queries (subqueries) are SQL queries written inside another query.
+They are evaluated either:</p>
+<ul><li><p>once (non-correlated subquery), or</p></li><li><p>once per outer row (correlated subquery)</p></li></ul>
+<p>They are commonly used with:</p>
+<ul><li><p>IN / NOT IN</p></li><li><p>SOME / ANY / ALL</p></li><li><p>EXISTS / NOT EXISTS</p></li></ul>
+<section id="set-membership-in-not-in" class="content-section level-2">
+<h3 class="section-heading">Set Membership: IN &amp; NOT IN</h3>
+<div class="concept-box"><div class="box-title">IN Set Membership Test</div><div class="box-body"><p>Checks whether a value belongs to the result set of a subquery.</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>value IN (subquery)</code></pre></div>
+<p>True if value matches any element returned by subquery.</p></div></div>
+<div class="example-box"><div class="box-title">Example 209: IN Subquery Example</div><div class="box-body"><p>Find instructors who belong to departments located in Delhi.</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE dept_name IN (
+    SELECT dept_name
+    FROM department
+    WHERE city = &#x27;Delhi&#x27;
+);</code></pre></div>
+<p><strong>Execution Steps</strong></p>
+<ol><li><p>Inner query returns set of dept_name (Delhi departments)</p></li><li><p>Outer query checks membership in that set</p></li></ol></div></div>
+<div class="concept-box-alt"><div class="box-title">NOT IN  NULL Trap</div><div class="box-body"><div class="code-box"><pre><code>value NOT IN (subquery)</code></pre></div>
+<p>Equivalent to: value $\neq$ every element of set.</p>
+<p><strong>If subquery result contains even one NULL → comparison becomes UNKNOWN → no rows returned.</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 210: NOT IN with NULL Problem</div><div class="box-body"><p>If subquery returns: {CS, EE, NULL}</p>
+<p>Then:</p>
+<div class="code-box"><pre><code>dept_name NOT IN (...)</code></pre></div>
+<p>Result → UNKNOWN → filtered out.</p></div></div>
+</section>
+<section id="set-comparison-some-any-all" class="content-section level-2">
+<h3 class="section-heading">Set Comparison: SOME, ANY &amp; ALL</h3>
+<div class="concept-box"><div class="box-title">Comparison with Subquery Results</div><div class="box-body"><p>Used when subquery returns numeric or comparable values.</p>
+<p>Form:</p>
+<div class="code-box"><pre><code>value &gt; ANY (subquery)
+value &gt; ALL (subquery)</code></pre></div></div></div>
+<div class="concept-box-alt"><div class="box-title">ANY / SOME Semantics</div><div class="box-body"><p>ANY and SOME are synonyms.</p>
+<div class="code-box"><pre><code>x &gt; ANY(S)</code></pre></div>
+<p>True if x is greater than at least one value in S.</p>
+<p>Equivalent to OR over comparisons.</p></div></div>
+<div class="example-box"><div class="box-title">Example 211: ANY Example</div><div class="box-body"><p>Find instructors earning more than at least one CS instructor.</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE salary &gt; ANY (
+    SELECT salary
+    FROM instructor
+    WHERE dept_name = &#x27;CS&#x27;
+);</code></pre></div></div></div>
+<div class="concept-box-alt"><div class="box-title">ALL Semantics</div><div class="box-body"><div class="code-box"><pre><code>x &gt; ALL(S)</code></pre></div>
+<p>True if x is greater than every value in S.</p>
+<p>Equivalent to AND over comparisons.</p></div></div>
+<div class="example-box"><div class="box-title">Example 212: ALL Example</div><div class="box-body"><p>Find instructors earning more than all CS instructors.</p>
+<div class="code-box"><pre><code>SELECT name
+FROM instructor
+WHERE salary &gt; ALL (
+    SELECT salary
+    FROM instructor
+    WHERE dept_name = &#x27;CS&#x27;
+);</code></pre></div>
+<p>Equivalent logic:
+salary $&gt;$ MAX(CS salaries)</p></div></div>
+<div class="concept-box"><div class="box-title">Empty Set Behavior</div><div class="box-body"><p>If subquery returns empty set:</p>
+<ul><li><p>x $&gt;$ ALL(empty) → TRUE</p></li><li><p>x $&gt;$ ANY(empty) → FALSE</p></li></ul></div></div>
+</section>
+<section id="test-empty-exists-not-exists" class="content-section level-2">
+<h3 class="section-heading">Test Empty: EXISTS &amp; NOT EXISTS</h3>
+<div class="concept-box"><div class="box-title">EXISTS  Tuple Existence Test</div><div class="box-body"><p>Checks whether subquery returns at least one row.</p>
+<div class="code-box"><pre><code>EXISTS (subquery)</code></pre></div>
+<p>Returns TRUE if subquery result is non-empty.</p></div></div>
+<div class="example-box"><div class="box-title">Example 213: EXISTS Example — Correlated</div><div class="box-body"><p>Find departments that have at least one instructor.</p>
+<div class="code-box"><pre><code>SELECT d.dept_name
+FROM department d
+WHERE EXISTS (
+    SELECT *
+    FROM instructor i
+    WHERE i.dept_name = d.dept_name
+);</code></pre></div>
+<p>Subquery runs once per department row.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">NOT EXISTS — Universal Condition Trick</div><div class="box-body"><p>NOT EXISTS is often used to express “for all” conditions.</p>
+<p>Pattern:</p>
+<div class="code-box"><pre><code>NOT EXISTS (violating rows)</code></pre></div>
+<p>Meaning: no counterexample exists.</p></div></div>
+<div class="example-box"><div class="box-title">Example 214: NOT EXISTS — For All Pattern</div><div class="box-body"><p>Find instructors who teach all courses in CS dept.</p>
+<div class="code-box"><pre><code>SELECT i.ID
+FROM instructor i
+WHERE NOT EXISTS (
+    SELECT c.course_id
+    FROM course c
+    WHERE c.dept_name = &#x27;CS&#x27;
+    AND NOT EXISTS (
+        SELECT *
+        FROM teaches t
+        WHERE t.ID = i.ID
+        AND t.course_id = c.course_id
+    )
+);</code></pre></div>
+<p>Logic:
+No CS course exists that this instructor does not teach.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Nested Subquery Operators — Outcome Truth Table</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig279.png" alt="diagram"></div></div></div>
+</section>
+<section id="subqueries-in-the-from-clause" class="content-section level-2">
+<h3 class="section-heading">Subqueries in the FROM Clause</h3>
+<div class="concept-box-alt"><div class="box-title">Subquery in FROM Clause — Derived Tables</div><div class="box-body"><p>A subquery can appear in the <strong>FROM clause</strong>.  
+Its result is treated as a temporary table (called a <strong>derived table</strong>).</p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>SELECT ...
+FROM (subquery) AS alias
+WHERE condition;</code></pre></div>
+<p>Rules:</p>
+<ul><li><p>Alias is <strong>mandatory</strong></p></li><li><p>Subquery is evaluated first</p></li><li><p>Outer query runs on the derived result</p></li><li><p>Columns of subquery become columns of derived table</p></li></ul>
+<p>Execution order:
+Subquery → temporary table → outer query</p></div></div>
+<div class="example-box"><div class="box-title">Example 215: Average Salary Per Department — Two-Level Query</div><div class="box-body"><p>Find departments whose average salary is greater than 70000.</p>
+<div class="code-box"><pre><code>SELECT dept_name, avg_sal
+FROM (
+    SELECT dept_name, AVG(salary) AS avg_sal
+    FROM instructor
+    GROUP BY dept_name
+) AS D
+WHERE avg_sal &gt; 70000;</code></pre></div>
+<p>Steps:</p>
+<ol><li><p>Inner query computes avg salary per department</p></li><li><p>Result becomes derived table D</p></li><li><p>Outer query filters using avg_sal</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 216: Aggregation then Join</div><div class="box-body"><p>Find departments whose average salary is greater than the overall average salary.</p>
+<div class="code-box"><pre><code>SELECT D.dept_name
+FROM (
+    SELECT dept_name, AVG(salary) AS avg_sal
+    FROM instructor
+    GROUP BY dept_name
+) AS D
+WHERE D.avg_sal &gt;
+      (SELECT AVG(salary) FROM instructor);</code></pre></div>
+<p>Derived table stores group results → compared with scalar subquery.</p></div></div>
+<div class="example-box"><div class="box-title">Example 217: Top Earners Per Department — Derived Table Join</div><div class="box-body"><div class="code-box"><pre><code>SELECT i.name, i.dept_name
+FROM instructor i,
+     (
+       SELECT dept_name, MAX(salary) AS max_sal
+       FROM instructor
+       GROUP BY dept_name
+     ) AS M
+WHERE i.dept_name = M.dept_name
+AND i.salary = M.max_sal;</code></pre></div>
+<p>Pattern:
+Group → compute aggregate → join back to base table.</p></div></div>
+</section>
+<section id="the-with-clause-common-table-expressions" class="content-section level-2">
+<h3 class="section-heading">The WITH Clause (Common Table Expressions)</h3>
+<div class="concept-box-alt"><div class="box-title">WITH Clause — Common Table Expression (CTE)</div><div class="box-body"><p>WITH defines a named temporary relation used inside a query.</p>
+<p>Also called:
+<strong>CTE — Common Table Expression</strong></p>
+<p>Syntax:</p>
+<div class="code-box"><pre><code>WITH name AS (subquery)
+SELECT ...
+FROM name;</code></pre></div>
+<p>Properties:</p>
+<ul><li><p>Improves readability</p></li><li><p>Avoids repeating subqueries</p></li><li><p>Acts like temporary view</p></li><li><p>Exists only for that query</p></li><li><p>Can define multiple CTEs</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 218: WITH instead of FROM Subquery</div><div class="box-body"><p>Same as derived-table example, using WITH.</p>
+<div class="code-box"><pre><code>WITH dept_avg AS (
+    SELECT dept_name, AVG(salary) AS avg_sal
+    FROM instructor
+    GROUP BY dept_name
+)
+SELECT dept_name
+FROM dept_avg
+WHERE avg_sal &gt; 70000;</code></pre></div>
+<p>Cleaner than nested FROM subquery.</p></div></div>
+<div class="example-box"><div class="box-title">Example 219: Multiple CTE Definitions</div><div class="box-body"><div class="code-box"><pre><code>WITH
+dept_avg AS (
+  SELECT dept_name, AVG(salary) AS a
+  FROM instructor
+  GROUP BY dept_name
+),
+overall AS (
+  SELECT AVG(salary) AS g
+  FROM instructor
+)
+SELECT dept_name
+FROM dept_avg, overall
+WHERE a &gt; g;</code></pre></div>
+<p>Two temporary tables created → used in final query.</p></div></div>
+<div class="example-box"><div class="box-title">Example 220: Reuse of CTE</div><div class="box-body"><div class="code-box"><pre><code>WITH high_paid AS (
+    SELECT *
+    FROM instructor
+    WHERE salary &gt; 80000
+)
+SELECT COUNT(*)
+FROM high_paid;
+
+SELECT AVG(salary)
+FROM high_paid;</code></pre></div>
+<p>CTE logic written once → reused multiple times.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch04.html">&larr; Chapter 4: Relational Algebra &amp; Tuple Calculus</a><span class="spacer"></span><a class="nav-btn next" href="ch06.html">Chapter 6: Normalization &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

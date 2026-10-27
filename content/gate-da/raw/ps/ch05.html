@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mean and Variance of a Random Variable — Probability &amp; Statistics</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: { } },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Probability &amp; Statistics</span></div></div>
+<div class="sidebar-scroll"><ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Counting</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch01.html#what-is-combinatorics" class="toc-link" data-slug="what-is-combinatorics">What is Combinatorics?</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#key-areas-in-combinatorics" class="toc-link" data-slug="key-areas-in-combinatorics">Key Areas in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-combinatorics" class="toc-link" data-slug="applications-of-combinatorics">Applications of Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#rule-identification-guide-in-combinatorics" class="toc-link" data-slug="rule-identification-guide-in-combinatorics">Rule Identification Guide in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#quick-decision-table" class="toc-link" data-slug="quick-decision-table">Quick Decision Table</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#permutations" class="toc-link" data-slug="permutations">Permutations</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#how-to-identify-permutation-problems" class="toc-link" data-slug="how-to-identify-permutation-problems">How to Identify Permutation Problems</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-permutation-problems" class="toc-link" data-slug="examples-of-permutation-problems">Examples of Permutation Problems</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-simple-permutation" class="toc-link" data-slug="example-1-simple-permutation">Example 1: Simple Permutation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-permutation-of-a-subset" class="toc-link" data-slug="example-2-permutation-of-a-subset">Example 2: Permutation of a Subset</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-digits-in-a-number" class="toc-link" data-slug="example-3-digits-in-a-number">Example 3: Digits in a Number</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-arrangement-with-restrictions" class="toc-link" data-slug="example-4-arrangement-with-restrictions">Example 4: Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-circular-permutations" class="toc-link" data-slug="example-5-circular-permutations">Example 5: Circular Permutations</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-permutations-with-repeated-items" class="toc-link" data-slug="example-6-permutations-with-repeated-items">Example 6: Permutations with Repeated Items</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-at-least-condition" class="toc-link" data-slug="example-7-at-least-condition">Example 7: At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-arrangement-with-items-together" class="toc-link" data-slug="example-8-arrangement-with-items-together">Example 8: Arrangement with Items Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-number-with-constraints" class="toc-link" data-slug="example-9-number-with-constraints">Example 9: Number with Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-all-letters-used-with-restrictions" class="toc-link" data-slug="example-10-all-letters-used-with-restrictions">Example 10: All Letters Used with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-11-repeated-digits-constraint" class="toc-link" data-slug="example-11-repeated-digits-constraint">Example 11: Repeated Digits Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-12-vowels-together" class="toc-link" data-slug="example-12-vowels-together">Example 12: Vowels Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-13-at-least-one-condition" class="toc-link" data-slug="example-13-at-least-one-condition">Example 13: At Least One Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-14-positions-fixed" class="toc-link" data-slug="example-14-positions-fixed">Example 14: Positions Fixed</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-15-word-arrangement-with-restrictions" class="toc-link" data-slug="example-15-word-arrangement-with-restrictions">Example 15: Word Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-16-conditional-digit-use" class="toc-link" data-slug="example-16-conditional-digit-use">Example 16: Conditional Digit Use</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-17-circular-permutation-with-a-gap-constraint" class="toc-link" data-slug="example-17-circular-permutation-with-a-gap-constraint">Example 17: Circular Permutation with a Gap Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-18-permutations-with-restricted-positions" class="toc-link" data-slug="example-18-permutations-with-restricted-positions">Example 18: Permutations with Restricted Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-19-permutation-with-minimum-gap" class="toc-link" data-slug="example-19-permutation-with-minimum-gap">Example 19: Permutation with Minimum Gap</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-20-arrangements-with-fixed-distance" class="toc-link" data-slug="example-20-arrangements-with-fixed-distance">Example 20: Arrangements with Fixed Distance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-21-permutations-with-banned-positions" class="toc-link" data-slug="example-21-permutations-with-banned-positions">Example 21: Permutations with Banned Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-22-permutations-with-digit-reuse-prohibited" class="toc-link" data-slug="example-22-permutations-with-digit-reuse-prohibited">Example 22: Permutations with Digit Reuse Prohibited</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-23-permutations-with-specific-characters-together" class="toc-link" data-slug="example-23-permutations-with-specific-characters-together">Example 23: Permutations with Specific Characters Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-24-at-least-one-fixed-digit" class="toc-link" data-slug="example-24-at-least-one-fixed-digit">Example 24: At Least One Fixed Digit</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-25-group-arrangements-with-subgroup-together" class="toc-link" data-slug="example-25-group-arrangements-with-subgroup-together">Example 25: Group Arrangements with Subgroup Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-26-letter-arrangement-with-repetition-and-restrictions" class="toc-link" data-slug="example-26-letter-arrangement-with-repetition-and-restrictions">Example 26: Letter Arrangement with Repetition and Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-27-permutation-with-parity-constraints" class="toc-link" data-slug="example-27-permutation-with-parity-constraints">Example 27: Permutation with Parity Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-28-multiset-with-at-least-condition" class="toc-link" data-slug="example-28-multiset-with-at-least-condition">Example 28: Multiset with At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-29-permutations-with-min-distance-constraint" class="toc-link" data-slug="example-29-permutations-with-min-distance-constraint">Example 29: Permutations with Min Distance Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-30-distribution-of-items-in-permutations" class="toc-link" data-slug="example-30-distribution-of-items-in-permutations">Example 30: Distribution of Items in Permutations</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#combinations" class="toc-link" data-slug="combinations">Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#when-to-identify-a-problem-as-combination" class="toc-link" data-slug="when-to-identify-a-problem-as-combination">When to Identify a Problem as Combination</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-combinations" class="toc-link" data-slug="examples-of-combinations">Examples of Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-committee-selection" class="toc-link" data-slug="example-1-committee-selection">Example 1: Committee Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-handshake-problem" class="toc-link" data-slug="example-2-handshake-problem">Example 2: Handshake Problem</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-choosing-balls" class="toc-link" data-slug="example-3-choosing-balls">Example 3: Choosing Balls</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-forming-teams" class="toc-link" data-slug="example-4-forming-teams">Example 4: Forming Teams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-card-selection" class="toc-link" data-slug="example-5-card-selection">Example 5: Card Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-dividing-prizes" class="toc-link" data-slug="example-6-dividing-prizes">Example 6: Dividing Prizes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-selecting-questions" class="toc-link" data-slug="example-7-selecting-questions">Example 7: Selecting Questions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-subsets" class="toc-link" data-slug="example-8-subsets">Example 8: Subsets</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-lottery-selection" class="toc-link" data-slug="example-9-lottery-selection">Example 9: Lottery Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-choosing-books" class="toc-link" data-slug="example-10-choosing-books">Example 10: Choosing Books</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Introduction to Statistics</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch02.html#motivation" class="toc-link" data-slug="motivation">Motivation</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-do-we-sample" class="toc-link" data-slug="why-do-we-sample">Why Do We Sample?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#how-does-inference-work" class="toc-link" data-slug="how-does-inference-work">How Does Inference Work?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fundamental-relationship-between-probability-and-statistics" class="toc-link" data-slug="fundamental-relationship-between-probability-and-statistics">Fundamental Relationship between Probability and Statistics</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#real-world-motivation-and-example" class="toc-link" data-slug="real-world-motivation-and-example">Real-World Motivation and Example</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-collection" class="toc-link" data-slug="data-collection">Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#steps-in-the-sampling-and-data-collection-process" class="toc-link" data-slug="steps-in-the-sampling-and-data-collection-process">Steps in the Sampling and Data Collection Process</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-is-sampling-important" class="toc-link" data-slug="why-is-sampling-important">Why is Sampling Important?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#common-pitfalls-in-data-collection" class="toc-link" data-slug="common-pitfalls-in-data-collection">Common Pitfalls in Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-location" class="toc-link" data-slug="measures-of-location">Measures of Location</a>
+<ul><li class="toc-l2"><a href="ch02.html#sample-mean-texorpdfstring-bar-x-x" class="toc-link" data-slug="sample-mean-texorpdfstring-bar-x-x">Sample Mean ($\bar{x}$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#importance" class="toc-link" data-slug="importance">Importance:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example" class="toc-link" data-slug="example">Example:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison" class="toc-link" data-slug="comparison">Comparison</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-variability" class="toc-link" data-slug="measures-of-variability">Measures of Variability</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: The Probability Theory</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch03.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#probability-rules" class="toc-link" data-slug="probability-rules">Probability Rules</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#conditional-probability" class="toc-link" data-slug="conditional-probability">Conditional Probability</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#bayes-theorem" class="toc-link" data-slug="bayes-theorem">Bayes Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: The Random Variables</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch04.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-discrete-probability-distributions" class="toc-link" data-slug="overview-of-discrete-probability-distributions">Overview of Discrete Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-continuous-probability-distributions" class="toc-link" data-slug="overview-of-continuous-probability-distributions">Overview of Continuous Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#joint-probability-distributions" class="toc-link" data-slug="joint-probability-distributions">Joint Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#marginal-probability-distributions" class="toc-link" data-slug="marginal-probability-distributions">Marginal Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#conditional-probability-distributions" class="toc-link" data-slug="conditional-probability-distributions">Conditional Probability Distributions</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch05.html" class="chapter-link active">Chapter 5: Mean and Variance of a Random Variable</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch05.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-joint-and-marginal-distributions" class="toc-link" data-slug="expectation-of-joint-and-marginal-distributions">Expectation of Joint and Marginal Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-conditional-probability-distribution" class="toc-link" data-slug="expectation-of-conditional-probability-distribution">Expectation of Conditional Probability Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#variance-and-covariance" class="toc-link" data-slug="variance-and-covariance">Variance and Covariance</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#linear-combinations-of-expectation-and-variance" class="toc-link" data-slug="linear-combinations-of-expectation-and-variance">Linear Combinations of Expectation and Variance</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Discrete Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch06.html#bernoulli-trials-and-binomial-distribution" class="toc-link" data-slug="bernoulli-trials-and-binomial-distribution">Bernoulli trials and Binomial distribution</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#poisson-distribution" class="toc-link" data-slug="poisson-distribution">Poisson Distribution</a>
+<ul><li class="toc-l2"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples:</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#properties-of-the-poisson-process" class="toc-link" data-slug="properties-of-the-poisson-process">Properties of the Poisson Process</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#poisson-random-variable-and-distribution" class="toc-link" data-slug="poisson-random-variable-and-distribution">Poisson Random Variable and Distribution</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Continuous Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch07.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#exponential-distribution" class="toc-link" data-slug="exponential-distribution">Exponential Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#normal-distribution-and-standard-normal" class="toc-link" data-slug="normal-distribution-and-standard-normal">Normal Distribution and Standard Normal</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-of-normal-distribution" class="toc-link" data-slug="graph-of-normal-distribution">Graph of Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#tips-to-identify-normal-distribution-problems" class="toc-link" data-slug="tips-to-identify-normal-distribution-problems">Tips to Identify Normal Distribution Problems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#standard-normal-distribution" class="toc-link" data-slug="standard-normal-distribution">Standard Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#t-distribution" class="toc-link" data-slug="t-distribution">t-Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-4" class="toc-link" data-slug="examples-4">Examples</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#chi-squared-distribution" class="toc-link" data-slug="chi-squared-distribution">Chi-Squared Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-5" class="toc-link" data-slug="examples-5">Examples</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Central Limit Theorem and Confidence Intervals</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch08.html#the-central-limit-theorem" class="toc-link" data-slug="the-central-limit-theorem">The Central Limit Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#confidence-intervals" class="toc-link" data-slug="confidence-intervals">Confidence Intervals</a>
+</li></ul></details></li>
+</ul></div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 5 of 8</div><h1>Mean and Variance of a Random Variable</h1></div>
+<section id="mean" class="content-section level-1">
+<h2 class="section-heading">Mean</h2>
+<div class="concept-box"><div class="box-title">Expected Value - Discrete and Continuous Cases</div><div class="box-body"><p>Let $X$ be a random variable with probability distribution $f(x)$. The <strong>expected value</strong> or <strong>mean</strong> of $X$ is defined differently based on whether $X$ is discrete or continuous:</p>
+<ul><li><p><strong>Discrete case:</strong> 
+    \[
+        \mu = \mathbb{E}(X) = \sum_x x f(x)
+    \]</p></li><li><p><strong>Continuous case:</strong> 
+    \[
+        \mu = \mathbb{E}(X) = \int_{-\infty}^{\infty} x f(x) \, dx
+    \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example - Discrete Expected Value</div><div class="box-body"><p>Let $X$ be a discrete random variable with the following probability distribution:</p>
+<p>\[
+\begin{array}{c|ccc}
+x &amp; 1 &amp; 2 &amp; 3 \\
+
+f(x) &amp; 0.2 &amp; 0.5 &amp; 0.3 \\
+\end{array}
+\]</p>
+<p>Then the expected value is:
+\[
+\mathbb{E}(X) = 1 \cdot 0.2 + 2 \cdot 0.5 + 3 \cdot 0.3 = 0.2 + 1.0 + 0.9 = 2.1
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example - Continuous Expected Value</div><div class="box-body"><p>Let $X$ be a continuous random variable with the probability density function:
+\[
+f(x) = 
+\begin{cases}
+2x, &amp; 0 &lt; x &lt; 1 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>Then the expected value is:
+\[
+\mathbb{E}(X) = \int_0^1 x \cdot 2x \, dx = \int_0^1 2x^2 \, dx = \left[ \frac{2x^3}{3} \right]_0^1 = \frac{2}{3}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Expected Commission Calculation</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>A salesperson for a medical device company has two appointments on a given day.</p>
+<ul><li><p>At the <strong>first appointment</strong>, there is a $70\%$ chance ($P_1 = 0.7$) of making a deal with a commission of $1000.</p></li><li><p>At the <strong>second appointment</strong>, there is a $40\%$ chance ($P_2 = 0.4$) of making a deal with a commission of $1500.</p></li><li><p>The two appointments are independent.</p></li></ul>
+<p>What is the salesperson&#x27;s <strong>expected total commission</strong> based on their own probability belief?</p>
+<p><strong>Solution:</strong></p>
+<p>Let $X_1$ be the random variable representing the commission from the first appointment, and $X_2$ for the second.</p>
+<p>\begin{align*}
+\mathbb{E}[X_1] &amp;= (0.7)(1000) + (0.3)(0) = 700 \\
+\mathbb{E}[X_2] &amp;= (0.4)(1500) + (0.6)(0) = 600 \\
+\text{Total Expected Commission} &amp;= \mathbb{E}[X_1] + \mathbb{E}[X_2] = 700 + 600 = \boxed{1300}
+\end{align*}</p>
+<p>So, the expected commission is <strong>$1300</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Expected Life of a Device</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>Let $X$ be the random variable that denotes the life in hours of a certain electronic
+device. The probability density function is
+\[
+f(x) =
+\begin{cases}
+\dfrac{20,000}{x^3}, &amp; x &gt; 100 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]
+Find the expected life of this type of device.</p>
+<p><strong>Solution:</strong></p>
+<p>The expected value (mean) of a continuous random variable $X$ with PDF $f(x)$ is:
+\[
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x f(x)\,dx
+\]</p>
+<p>Since $f(x) = 0$ outside $x &gt; 100$, we compute:
+\[
+\mathbb{E}[X] = \int_{100}^{\infty} x \cdot \frac{20,000}{x^3} \, dx 
+= \int_{100}^{\infty} \frac{20,000}{x^2} \, dx
+\]</p>
+<p>Now compute the integral:
+\[
+\begin{aligned}
+\mathbb{E}[X] 
+&amp;= 20,000 \int_{100}^{\infty} x^{-2} \, dx \\
+&amp;= 20,000 \left[ \frac{x^{-1}}{-1} \right]_{100}^{\infty} \\
+&amp;= 20,000 \left[ 0 - \left(-\frac{1}{100} \right) \right] \\
+&amp;= 20,000 \cdot \frac{1}{100} \\
+&amp;= \boxed{200}
+\end{aligned}
+\]</p>
+<p><strong>Answer:</strong> The expected life of the device is <strong>200 hours</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Expected Value of a Function of a Random Variable</div><div class="box-body"><p>Let $X$ be a random variable with probability distribution $f(x)$. The expected
+value of the random variable $g(X)$ is given by:</p>
+<p>\[
+\mu_{g(X)} = \mathbb{E}[g(X)] = \sum_x g(x) f(x) \quad \text{if } X \text{ is discrete}
+\]</p>
+<p>and</p>
+<p>\[
+\mu_{g(X)} = \mathbb{E}[g(X)] = \int_{-\infty}^{\infty} g(x) f(x) \, dx \quad \text{if } X \text{ is continuous}.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example: Expected Value of a Function of a Random Variable</div><div class="box-body"><p>Consider a random variable $X$ that denotes the number of cars arriving at a car wash in a day. The probability distribution of $X$ is:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div>
+<p>Suppose the manager rewards the attendant according to the rule 
+\[
+g(X) = 2X - 1,
+\]
+where $g(X)$ represents the amount (in dollars) paid.</p>
+<p><strong>Task:</strong> Compute the expected payment to the attendant during this one-hour period.</p>
+<p><strong>Solution:</strong>  
+The expected reward is
+\[
+\mathbb{E}[g(X)] = \sum_{x=4}^{9}(2x - 1)\,P(X=x).
+\]
+\[
+= (7)\left(\tfrac{1}{12}\right) + (9)\left(\tfrac{1}{12}\right) + (11)\left(\tfrac{1}{4}\right) + (13)\left(\tfrac{1}{4}\right) + (15)\left(\tfrac{1}{6}\right) + (17)\left(\tfrac{1}{6}\right).
+\]
+\[
+= \tfrac{7+9}{12} + \tfrac{11+13}{4} + \tfrac{15+17}{6} 
+= \tfrac{16}{12} + \tfrac{24}{4} + \tfrac{32}{6}.
+\]
+\[
+= 1.33 + 6 + 5.33 = \boxed{\$12.67}.
+\]</p>
+<p>Thus, on average, the attendant can expect to earn about $12.67 during this period.</p></div></div>
+<div class="concept-box"><div class="box-title">Example: Expected Value for a Continuous Random Variable</div><div class="box-body"><p>Let $X$ be a random variable with density function
+\[
+f(x) = 
+\begin{cases}
+\frac{x^2}{3}, &amp; -1 &lt; x &lt; 2 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]</p>
+<p>Let $g(X) = 4X + 3$.</p>
+<p><strong>Find:</strong> The expected value of $g(X)$.</p>
+<p><strong>Solution:</strong>  we have:
+\[
+\mathbb{E}[g(X)] = \mathbb{E}(4X + 3) = \int_{-1}^{2}(4x + 3)\cdot \frac{x^2}{3} \, dx
+\]
+\[
+= \frac{1}{3} \int_{-1}^{2}(4x^3 + 3x^2) \, dx = \frac{1}{3} \left[ x^4 + x^3 \right]_{-1}^{2}
+\]</p>
+<p>Now compute:
+\[
+= \frac{1}{3} \left[(2^4 + 2^3) - ((-1)^4 + (-1)^3)\right] = \frac{1}{3} \left[(16 + 8) - (1 - 1)\right] = \frac{1}{3}(24) = \boxed{8}
+\]</p></div></div>
+</section>
+<section id="expectation-of-joint-and-marginal-distributions" class="content-section level-1">
+<h2 class="section-heading">Expectation of Joint and Marginal Distributions</h2>
+<div class="concept-box"><div class="box-title"><strong>Expected Value of a Function of Two Random Variables</strong></div><div class="box-body"><p>Let \( X \) and \( Y \) be random variables with joint probability distribution \( f(x, y) \).</p>
+<p><strong>1. Discrete Case:</strong></p>
+<p>If \( X \) and \( Y \) are <strong>discrete</strong> random variables, and \( g(X, Y) \) is a function of \( X \) and \( Y \), then the expected value (or mean) of \( g(X, Y) \) is given by:</p>
+<p>\[
+\mu_{g(X,Y)} = E[g(X, Y)] = \sum_x \sum_y g(x, y) \, f(x, y)
+\]</p>
+<p><strong>2. Continuous Case:</strong></p>
+<p>If \( X \) and \( Y \) are <strong>continuous</strong> random variables, then the expected value is given by:</p>
+<p>\[
+\mu_{g(X,Y)} = E[g(X, Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) \, f(x, y) \, dx \, dy
+\]</p>
+<p><strong>Notes:</strong></p>
+<ul><li><p>\( f(x, y) \) is the joint probability mass function (PMF) for discrete variables or joint probability density function (PDF) for continuous variables.</p></li><li><p>\( g(x, y) \) can be any function such as \( x+y \), \( xy \), \( x^2 + y^2 \), etc.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example</div><div class="box-body"><p>Let $X$ and $Y$ be the random variables with joint probability distribution indicated in table. Find the expected value of $g(X,Y)=XY$.</p>
+<p>\[
+\begin{array}{c|ccc|c}
+x\backslash y &amp; 0 &amp; 1 &amp; 2 &amp; \text{Row Totals} \\
+
+0 &amp; 3/28 &amp; 9/28 &amp; 3/28 &amp; 15/28 \\
+1 &amp; 3/14 &amp; 3/14 &amp; 0 &amp; 6/14? \\
+2 &amp; 1/28 &amp; 0 &amp; 0 &amp; 1/28 \\
+
+\text{Column Totals} &amp; 5/14 &amp; 15/28 &amp; 1/28 &amp; 1
+\end{array}
+\]
+<strong>Solution:</strong><br>
+By the definition of expected value:</p>
+<p>\[
+E(XY)=\sum_{x}\sum_{y} xy\, f(x,y)
+\]</p>
+<p>Compute each term:</p>
+<p>\[
+E(XY)=(0\cdot0)f(0,0) + (0\cdot1)f(0,1) + (1\cdot0)f(1,0) + (1\cdot1)f(1,1) + (2\cdot0)f(2,0)+\cdots
+\]</p>
+<p>Only the term with $x=1$ and $y=1$ contributes:</p>
+<p>\[
+E(XY) = f(1,1) = \frac{3}{14}.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 2: Finding \( E\left(\dfrac{Y}{X}\right) \)</strong></div><div class="box-body"><p><strong>Given:</strong>  
+Joint probability density function:
+\[
+f(x, y) = 
+\begin{cases}
+\dfrac{x(1 + 3y^2)}{4}, &amp; 0 &lt; x &lt; 2,\; 0 &lt; y &lt; 1 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]</p>
+<p>We are asked to find the expected value:
+\[
+E\left(\dfrac{Y}{X}\right)
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+E\left(\dfrac{Y}{X}\right) = \int_0^1 \int_0^2 \dfrac{y}{x} \cdot f(x, y) \, dx \, dy = \int_0^1 \int_0^2 \dfrac{y}{x} \cdot \dfrac{x(1 + 3y^2)}{4} \, dx \, dy
+\]</p>
+<p>Simplifying the integrand:
+\[
+= \int_0^1 \int_0^2 \dfrac{y(1 + 3y^2)}{4} \, dx \, dy
+\]</p>
+<p>Since the integrand is independent of \( x \), integrate with respect to \( x \) first:</p>
+<p>\[
+= \int_0^1 \left[ \dfrac{y(1 + 3y^2)}{4} \cdot \int_0^2 dx \right] dy = \int_0^1 \dfrac{y(1 + 3y^2)}{4} \cdot 2 \, dy
+\]</p>
+<p>\[
+= \int_0^1 \dfrac{y(1 + 3y^2)}{2} \, dy
+\]</p>
+<p>Expand and integrate:</p>
+<p>\[
+= \int_0^1 \left( \dfrac{y}{2} + \dfrac{3y^3}{2} \right) dy = \left[ \dfrac{y^2}{4} + \dfrac{3y^4}{8} \right]_0^1 = \dfrac{1}{4} + \dfrac{3}{8} = \dfrac{5}{8}
+\]</p>
+<p><strong>Final Answer:</strong>
+\[
+E\left(\dfrac{Y}{X}\right) = \dfrac{5}{8}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Expected Value from Joint and Marginal Distributions</div><div class="box-body"><p><strong>Note:</strong> If \( g(X, Y) = X \), then the expected value \( E(X) \) can be calculated using either the joint or the marginal distribution:</p>
+<p><strong>Discrete Case:</strong>
+\[
+E(X) = \sum_x \sum_y x f(x, y) = \sum_x x g(x)
+\]
+where \( g(x) \) is the marginal distribution of \( X \), obtained by summing over all values of \( y \).</p>
+<p><strong>Continuous Case:</strong>
+\[
+E(X) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x f(x, y) \, dy \, dx = \int_{-\infty}^{\infty} x g(x) \, dx
+\]
+where \( g(x) = \int_{-\infty}^{\infty} f(x, y) \, dy \) is the marginal density of \( X \).</p>
+<p><strong>Similarly, for \( E(Y) \):</strong></p>
+<p><strong>Discrete Case:</strong>
+\[
+E(Y) = \sum_y \sum_x y f(x, y) = \sum_y y h(y)
+\]
+where \( h(y) \) is the marginal distribution of \( Y \).</p>
+<p><strong>Continuous Case:</strong>
+\[
+E(Y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} y f(x, y) \, dx \, dy = \int_{-\infty}^{\infty} y h(y) \, dy
+\]
+where \( h(y) = \int_{-\infty}^{\infty} f(x, y) \, dx \) is the marginal density of \( Y \).</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Discrete Random Variables</div><div class="box-body"><p>Let \( X \) and \( Y \) be discrete random variables with joint probability distribution given by:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div>
+<p>Find \( E(X) \) and \( E(Y) \).<br>
+<strong>solution:</strong><br>
+First, compute the marginal distributions:</p>
+<p><strong>Marginal of </strong> \( X \):
+\[
+P(X=0) = 0.1 + 0.2 + 0.1 = 0.4,\quad P(X=1) = 0.1 + 0.2 + 0.1 = 0.4
+\]</p>
+<p><strong>Marginal of </strong> \( Y \):
+\[
+P(Y=0) = 0.1 + 0.1 = 0.2,\quad P(Y=1) = 0.2 + 0.2 = 0.4,\quad P(Y=2) = 0.1 + 0.1 = 0.2
+\]</p>
+<p>Now compute expectations:</p>
+<p><strong>Expected value of \( X \)</strong>:
+\[
+E(X) = 0 \cdot 0.4 + 1 \cdot 0.6 = 0.6
+\]</p>
+<p><strong>Expected value of \( Y \)</strong>:
+\[
+E(Y) = 0 \cdot 0.2 + 1 \cdot 0.4 + 2 \cdot 0.4 = 1.2
+\]</p>
+<p><strong>Conclusion:</strong> \( E(X) = 0.6, \quad E(Y) = 1.2 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Continuous Random Variables</div><div class="box-body"><p>Let \( X \) and \( Y \) be continuous random variables with joint PDF:
+\[
+f(x, y) = 
+\begin{cases}
+2, &amp; 0 &lt; x &lt; 1,\; 0 &lt; y &lt; 1 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>Find the expected values \( E(X) \) and \( E(Y) \).<br></p>
+<p><strong>Solution:</strong><br>
+The joint PDF is uniform over the unit square.</p>
+<p><strong>Marginal of </strong> \( X \):
+\[
+g(x) = \int_0^1 f(x,y)\,dy = \int_0^1 2\,dy = 2,\quad 0 &lt; x &lt; 1
+\]</p>
+<p><strong>Marginal of </strong> \( Y \):
+\[
+h(y) = \int_0^1 f(x,y)\,dx = \int_0^1 2\,dx = 2,\quad 0 &lt; y &lt; 1
+\]</p>
+<p><strong>Expected value of \( X \)</strong>:
+\[
+E(X) = \int_0^1 x \cdot 2\,dx = 2 \cdot \left[ \frac{x^2}{2} \right]_0^1 = 1
+\]</p>
+<p><strong>Expected value of \( Y \)</strong>:
+\[
+E(Y) = \int_0^1 y \cdot 2\,dy = 2 \cdot \left[ \frac{y^2}{2} \right]_0^1 = 1
+\]</p>
+<p><strong>Conclusion:</strong> \( E(X) = E(Y) = 1 \)</p></div></div>
+</section>
+<section id="expectation-of-conditional-probability-distribution" class="content-section level-1">
+<h2 class="section-heading">Expectation of Conditional Probability Distribution</h2>
+<div class="concept-box"><div class="box-title">Expectation of Conditional Probability Distributions</div><div class="box-body"><p>Let $X$ and $Y$ be random variables. The conditional expectation of $X$ given $Y=y$ is defined as:</p>
+<p>\[
+E[X\mid Y=y] = \sum_x x\, f(x\mid y), \quad \text{(discrete)}
+\]</p>
+<p>\[
+E[X\mid Y=y] = \int_{-\infty}^{\infty} x\, f(x\mid y)\, dx, \quad \text{(continuous)}
+\]</p>
+<p>where the conditional probability/density is</p>
+<p>\[
+f(x\mid y) = \frac{f(x,y)}{h(y)}, \quad f(y\mid x) = \frac{f(x,y)}{g(x)}
+\]</p>
+<p>and the marginals are denoted as</p>
+<p>\[
+g(x) = \sum_y f(x,y) \text{ or } \int f(x,y) dy, \quad 
+h(y) = \sum_x f(x,y) \text{ or } \int f(x,y) dx.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1 (Discrete)</div><div class="box-body"><p>Let $X$ take values $1,2,3$ and $Y$ indicate group membership (0 or 1). Let the joint probability be $f(x,y)$. Find $E[X\mid Y=1]$ and $E[X\mid Y=0]$.
+Compute the marginals:</p>
+<p><strong>Solution:</strong><br></p>
+<p>\[
+h(y) = \sum_x f(x,y)
+\]</p>
+<p>Conditional probabilities:</p>
+<p>\[
+f(x\mid y) = \frac{f(x,y)}{h(y)}
+\]</p>
+<p>Then the conditional expectation:</p>
+<p>\[
+E[X\mid Y=y] = \sum_x x \, f(x\mid y)
+\]</p>
+<p>Compute for $y=1$ and $y=0$ using the given table.</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2 (Discrete)</div><div class="box-body"><p>Given joint PMF:</p>
+<p>\[
+\begin{array}{c|cc}
+X\backslash Y &amp; 0 &amp; 1 \\ 
+0 &amp; 0.2 &amp; 0.1 \\
+1 &amp; 0.3 &amp; 0.4
+\end{array}
+\]</p>
+<p>Find $E[X\mid Y=0]$ and $E[X\mid Y=1]$ using marginals $h(y)$.</p>
+<p><strong>Solution:</strong><br>
+Compute marginals:</p>
+<p>\[
+h(0) = 0.2+0.3=0.5, \quad h(1)=0.1+0.4=0.5
+\]</p>
+<p>Conditional PMFs:</p>
+<p>\[
+f(x\mid 0) = \frac{f(x,0)}{h(0)} = \{0.4,0.6\}, \quad f(x\mid 1) = \frac{f(x,1)}{h(1)} = \{0.2,0.8\}
+\]</p>
+<p>Conditional expectations:</p>
+<p>\[
+E[X\mid Y=0] = 0\cdot0.4 + 1\cdot0.6 = 0.6
+\]</p>
+<p>\[
+E[X\mid Y=1] = 0\cdot0.2 + 1\cdot0.8 = 0.8
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1 (Continuous)</div><div class="box-body"><p>Let $X$ and $Y$ have joint density $f(x,y)=6x$ for $0&lt;x&lt;y&lt;1$. Compute $E[X\mid Y=y]$ using marginal $h(y)$.</p>
+<p><strong>Solution:</strong><br>
+Compute marginal of $Y$:</p>
+<p>\[
+h(y) = \int_0^y f(x,y)\, dx = \int_0^y 6x\, dx = 3y^2
+\]</p>
+<p>Conditional density:</p>
+<p>\[
+f(x\mid y) = \frac{f(x,y)}{h(y)} = \frac{6x}{3y^2} = \frac{2x}{y^2}, \quad 0&lt;x&lt;y
+\]</p>
+<p>Expectation:</p>
+<p>\[
+E[X\mid Y=y] = \int_0^y x \cdot f(x\mid y)\, dx = \int_0^y x \cdot \frac{2x}{y^2} dx = \frac{2y}{3}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2 (Continuous)</div><div class="box-body"><p>Let $f(x,y)=12 xy$ for $0&lt;x&lt;1,0&lt;y&lt;1$. Compute $E[X\mid Y=y]$ using marginal $h(y)$.</p>
+<p><strong>Solution:</strong><br>
+Compute marginal of $Y$:</p>
+<p>\[
+h(y) = \int_0^1 f(x,y)\, dx = \int_0^1 12xy\, dx = 6y
+\]</p>
+<p>Conditional density:</p>
+<p>\[
+f(x\mid y) = \frac{f(x,y)}{h(y)} = \frac{12xy}{6y} = 2x, \quad 0&lt;x&lt;1
+\]</p>
+<p>Expectation:</p>
+<p>\[
+E[X\mid Y=y] = \int_0^1 x\cdot 2x\, dx = \frac{2}{3}
+\]</p>
+<p>Notice: $E[X\mid Y=y]$ is independent of $y$.</p></div></div>
+</section>
+<section id="variance-and-covariance" class="content-section level-1">
+<h2 class="section-heading">Variance and Covariance</h2>
+<div class="concept-box"><div class="box-title">Variance and Standard Deviation</div><div class="box-body"><p>Let $X$ be a random variable with probability distribution $f(x)$ and mean $\mu$.</p>
+<p><strong>Variance</strong> of $X$ is given by:
+\[
+\sigma^2 = \mathbb{E}[(X - \mu)^2] = \sum_x (x - \mu)^2 f(x), \quad \text{if $X$ is discrete,}
+\]
+\[
+\sigma^2 = \mathbb{E}[(X - \mu)^2] = \int_{-\infty}^{\infty} (x - \mu)^2 f(x)\, dx, \quad \text{if $X$ is continuous.}
+\]</p>
+<p><strong>Standard Deviation</strong> of $X$ is the positive square root of the variance:
+\[
+\sigma = \sqrt{\sigma^2}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Alternative Formula for Variance</div><div class="box-body"><p>The variance of a random variable \( X \) can also be computed using the formula:
+\[
+\sigma^2 = \mathbb{E}(X^2) - \mu^2
+\]
+where:</p>
+<ul><li><p>\( \mathbb{E}(X^2) \) is the expected value of \( X^2 \),</p></li><li><p>\( \mu = \mathbb{E}(X) \) is the mean of \( X \),</p></li><li><p>\( \sigma^2 \) is the variance of \( X \).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Variance of a Function of a Random Variable</div><div class="box-body"><p>Let \( X \) be a random variable and \( g(X) \) be a function of \( X \). Then the variance of \( g(X) \) is given by:
+\[
+\sigma^2_{g(X)} = \mathbb{E}\left([g(X) - \mu_{g(X)}]^2\right)
+\]
+where \( \mu_{g(X)} = \mathbb{E}[g(X)] \) is the expected value of \( g(X) \).</p></div></div>
+<div class="concept-box"><div class="box-title">Variance of a Transformed Random Variable</div><div class="box-body"><p>Let $X$ be a random variable with probability distribution $f(x)$. The variance of the random variable $g(X)$ is:</p>
+<p>\[
+\sigma^2_{g(X)} = \mathbb{E}\left\{[g(X) - \mu_{g(X)}]^2\right\} = \sum_x [g(x) - \mu_{g(X)}]^2 f(x), \quad \text{if $X$ is discrete,}
+\]</p>
+<p>\[
+\sigma^2_{g(X)} = \mathbb{E}\left\{[g(X) - \mu_{g(X)}]^2\right\} = \int_{-\infty}^{\infty} [g(x) - \mu_{g(X)}]^2 f(x) \, dx, \quad \text{if $X$ is continuous.}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Standard Deviation of Discrete Random Variable</div><div class="box-body"><p>Let \( X \) be a random variable with the following probability distribution:</p>
+<p>\[
+\begin{array}{c|ccc}
+x &amp; -2 &amp; 3 &amp; 5 \\
+
+f(x) &amp; 0.3 &amp; 0.2 &amp; 0.5
+\end{array}
+\]</p>
+<p><strong>Step 1: Compute the mean</strong> \( \mu = \mathbb{E}[X] \)
+\[
+\mu = (-2)(0.3) + 3(0.2) + 5(0.5) = -0.6 + 0.6 + 2.5 = 2.5
+\]</p>
+<p><strong>Step 2: Compute</strong> \( \mathbb{E}[X^2] \)
+\[
+\mathbb{E}[X^2] = (-2)^2(0.3) + 3^2(0.2) + 5^2(0.5) = 4(0.3) + 9(0.2) + 25(0.5) = 1.2 + 1.8 + 12.5 = 15.5
+\]</p>
+<p><strong>Step 3: Compute variance and standard deviation</strong>
+\[
+\sigma^2 = \mathbb{E}[X^2] - \mu^2 = 15.5 - (2.5)^2 = 15.5 - 6.25 = 9.25
+\]
+\[
+\sigma = \sqrt{9.25} \approx 3.04
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Mean and Variance of Y = 3X - 2</div><div class="box-body"><p>Let \( Y = 3X - 2 \), where \( X \) has the density function:
+\[
+f(x) = \begin{cases}
+\frac{1}{4} e^{-x/4}, &amp; x &gt; 0 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]</p>
+<p><strong>Step 1: Mean and Variance of </strong> \( X \) (Exponential distribution)</p>
+<p>\[
+\mathbb{E}[X] = 4, \quad \text{Var}(X) = 4^2 = 16
+\]</p>
+<p><strong>Step 2: Use linear transformation rules</strong></p>
+<p>\[
+\mathbb{E}[Y] = \mathbb{E}[3X - 2] = 3 \cdot \mathbb{E}[X] - 2 = 3(4) - 2 = 10
+\]</p>
+<p>\[
+\text{Var}(Y) = \text{Var}(3X - 2) = 3^2 \cdot \text{Var}(X) = 9 \cdot 16 = 144
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 3: Variance of g(X) = 3X<sup>2</sup> + 4</div><div class="box-body"><p>Given:
+\[
+f(x) = \begin{cases}
+\frac{2(x+2)}{5}, &amp; 0 &lt; x &lt; 1 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\quad \text{and} \quad g(X) = 3X^2 + 4
+\]</p>
+<p><strong>Step 1: Compute </strong> \( \mu_{g(X)} = \mathbb{E}[g(X)] \)</p>
+<p>\[
+\mathbb{E}[g(X)] = \int_0^1 (3x^2 + 4) \cdot \frac{2(x+2)}{5} \, dx
+\]</p>
+<p>First simplify the integrand:
+\[
+(3x^2 + 4)(2x + 4) = 6x^3 + 8x^2 + 24x + 32
+\Rightarrow \frac{1}{5} (6x^3 + 8x^2 + 24x + 32)
+\]</p>
+<p>\[
+\begin{aligned}
+\mu_{g(X)} 
+&amp;= \frac{1}{5} \int_0^1 (6x^3 + 8x^2 + 24x + 32) \, dx \\
+&amp;= \frac{1}{5} \left[ \frac{6x^4}{4} + \frac{8x^3}{3} + \frac{24x^2}{2} + 32x \right]_0^1 \\
+&amp;= \frac{1}{5} \left( \frac{6}{4} + \frac{8}{3} + 12 + 32 \right) \\
+&amp;= \frac{1}{5} \left(1.5 + 2.\overline{6} + 12 + 32 \right) \\
+&amp;= \frac{48.\overline{166}}{5} \\
+&amp;= \boxed{9.6334}
+\end{aligned}
+\]</p>
+<p><strong>Step 2: Compute </strong> \( \mathbb{E}[g(X)^2] \) (use expansion of \( g(X)^2 = (3x^2 + 4)^2 = 9x^4 + 24x^2 + 16 \))</p>
+<p>\[
+\mathbb{E}[g(X)^2] = \int_0^1 (9x^4 + 24x^2 + 16) \cdot \frac{2(x+2)}{5} \, dx
+\quad \text{(you can expand, integrate term-wise similarly)}
+\]</p>
+<p>Then compute:
+\[
+\sigma^2_{g(X)} = \mathbb{E}[g(X)^2] - (\mu_{g(X)})^2
+\]</p>
+<p>(This step left as exercise for integration; numerical computation follows same idea.)</p></div></div>
+<div class="concept-box"><div class="box-title">Covariance of a Function of a Random Variable</div><div class="box-body"><p>Let $X$ and $Y$ be random variables with joint probability distribution $f(x, y)$. The covariance of $X$ and $Y$ is
+\[
+\sigma_{XY} = E[(X - \mu_X)(Y - \mu_Y)] = \sum_x \sum_y (x - \mu_X)(y - \mu_Y) f(x, y)
+\]
+if $X$ and $Y$ are discrete, and
+\[
+\sigma_{XY} = E[(X - \mu_X)(Y - \mu_Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (x - \mu_X)(y - \mu_Y) f(x, y) \, dx \, dy
+\]
+if $X$ and $Y$ are continuous.</p>
+<p>The covariance of two random variables $X$ and $Y$ with means $\mu_X$ and $\mu_Y$, respectively, is also given by:
+\[
+\sigma_{XY} = E(XY) - \mu_X \mu_Y
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Covariance of Discrete Random Variables</div><div class="box-body"><p>Let the joint probability distribution of random variables $X$ and $Y$ be given as:</p>
+<p>\[
+\begin{array}{c|cc}
+X \backslash Y &amp; 1 &amp; 2 \\
+
+0 &amp; 0.1 &amp; 0.2 \\
+1 &amp; 0.3 &amp; 0.4 \\
+\end{array}
+\]</p>
+<p><strong>Step 1: Find marginal probabilities</strong></p>
+<p>\[
+P_X(0) = 0.1 + 0.2 = 0.3, \quad P_X(1) = 0.3 + 0.4 = 0.7
+\]
+\[
+P_Y(1) = 0.1 + 0.3 = 0.4, \quad P_Y(2) = 0.2 + 0.4 = 0.6
+\]</p>
+<p><strong>Step 2: Find means</strong></p>
+<p>\[
+\mu_X = 0 \cdot 0.3 + 1 \cdot 0.7 = 0.7
+\]
+\[
+\mu_Y = 1 \cdot 0.4 + 2 \cdot 0.6 = 1.6
+\]</p>
+<p><strong>Step 3: Covariance formula</strong></p>
+<p>\[
+\mathrm{Cov}(X, Y) = \sum_x \sum_y (x - \mu_X)(y - \mu_Y) f(x, y)
+\]</p>
+<p><strong>Step 4: Compute terms</strong></p>
+<p>\[
+\begin{aligned}
+(0 - 0.7)(1 - 1.6)(0.1) &amp;= (-0.7)(-0.6)(0.1) = 0.042 \\
+(0 - 0.7)(2 - 1.6)(0.2) &amp;= (-0.7)(0.4)(0.2) = -0.056 \\
+(1 - 0.7)(1 - 1.6)(0.3) &amp;= (0.3)(-0.6)(0.3) = -0.054 \\
+(1 - 0.7)(2 - 1.6)(0.4) &amp;= (0.3)(0.4)(0.4) = 0.048 \\
+\end{aligned}
+\]</p>
+<p>\[
+\mathrm{Cov}(X, Y) = 0.042 - 0.056 - 0.054 + 0.048 = -0.02
+\]</p>
+<p><strong>Final Answer:</strong> \( \boxed{\mathrm{Cov}(X, Y) = -0.02} \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Covariance of Continuous Random Variables</div><div class="box-body"><p>Let \( X \) and \( Y \) be continuous random variables with joint PDF:
+\[
+f(x, y) = 
+\begin{cases}
+8xy, &amp; 0 &lt; x &lt; 1, \, 0 &lt; y &lt; 1 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p><strong>Step 1: Compute means</strong></p>
+<p>\[
+\mu_X = \int_0^1 x \left( \int_0^1 8xy \, dy \right) dx = \int_0^1 x \cdot 4x \, dx = 4 \int_0^1 x^2 \, dx = \frac{4}{3}
+\]</p>
+<p>\[
+\mu_Y = \int_0^1 y \left( \int_0^1 8xy \, dx \right) dy = \int_0^1 y \cdot 4y \, dy = 4 \int_0^1 y^2 \, dy = \frac{4}{3}
+\]</p>
+<p><strong>Step 2: Compute \( E(XY) \)</strong></p>
+<p>\[
+E(XY) = \int_0^1 \int_0^1 xy \cdot 8xy \, dx \, dy = 8 \int_0^1 \int_0^1 x^2 y^2 \, dx \, dy = 8 \cdot \frac{1}{3} \cdot \frac{1}{3} = \frac{8}{9}
+\]</p>
+<p><strong>Step 3: Covariance</strong></p>
+<p>\[
+\mathrm{Cov}(X, Y) = E(XY) - \mu_X \mu_Y = \frac{8}{9} - \left( \frac{4}{3} \cdot \frac{4}{3} \right) = \frac{8}{9} - \frac{16}{9} = -\frac{8}{9}
+\]</p>
+<p><strong>Final Answer:</strong> \( \boxed{\mathrm{Cov}(X, Y) = -\frac{8}{9}} \)</p></div></div>
+<div class="concept-box"><div class="box-title">Correlation Coefficient</div><div class="box-body"><p>Let $X$ and $Y$ be random variables with covariance $\sigma_{XY}$ and standard deviations $\sigma_X$ and $\sigma_Y$, respectively. The correlation coefficient of $X$ and $Y$ is defined as
+\[
+\rho_{XY} = \frac{\sigma_{XY}}{\sigma_X \sigma_Y}.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Covariance and Correlation (Discrete Case)</div><div class="box-body"><p>Let $X$ and $Y$ have the joint probability distribution:</p>
+<p>\[
+\begin{array}{c|ccc}
+X \backslash Y &amp; 1 &amp; 2 &amp; 3 \\
+
+1 &amp; 0.1 &amp; 0.1 &amp; 0.2 \\
+2 &amp; 0.1 &amp; 0.2 &amp; 0.3 \\
+\end{array}
+\]</p>
+<p><strong>Step 1:</strong> Compute $E(X)$ and $E(Y)$.</p>
+<p>\[
+E(X) = 1(0.1 + 0.1 + 0.2) + 2(0.1 + 0.2 + 0.3) = 1(0.4) + 2(0.6) = 1.6
+\]</p>
+<p>\[
+E(Y) = 1(0.1 + 0.1) + 2(0.1 + 0.2) + 3(0.2 + 0.3) = 0.2 + 0.6 + 1.5 = 2.3
+\]</p>
+<p><strong>Step 2:</strong> Compute $E(XY)$.</p>
+<p>\[
+E(XY) = 1\cdot1\cdot0.1 + 1\cdot2\cdot0.1 + 1\cdot3\cdot0.2 + 2\cdot1\cdot0.1 + 2\cdot2\cdot0.2 + 2\cdot3\cdot0.3
+= 0.1 + 0.2 + 0.6 + 0.2 + 0.8 + 1.8 = 3.7
+\]</p>
+<p><strong>Step 3:</strong> Covariance</p>
+<p>\[
+\text{Cov}(X, Y) = E(XY) - E(X)E(Y) = 3.7 - (1.6)(2.3) = 3.7 - 3.68 = 0.02
+\]</p>
+<p><strong>Step 4:</strong> Compute $\sigma_X$ and $\sigma_Y$.</p>
+<p>\[
+E(X^2) = 1^2(0.4) + 2^2(0.6) = 0.4 + 2.4 = 2.8 \Rightarrow \sigma_X^2 = 2.8 - 1.6^2 = 0.24
+\Rightarrow \sigma_X = \sqrt{0.24}
+\]</p>
+<p>\[
+\begin{aligned}
+E(Y^2) &amp;= 1^2(0.2) + 2^2(0.3) + 3^2(0.5) \\
+       &amp;= 0.2 + 1.2 + 4.5 = 5.9 \\
+\sigma_Y^2 &amp;= E(Y^2) - (E(Y))^2 = 5.9 - 2.3^2 = 5.9 - 5.29 = 0.61 \\
+\sigma_Y &amp;= \sqrt{0.61}
+\end{aligned}
+\]</p>
+<p><strong>Step 5:</strong> Correlation coefficient</p>
+<p>\[
+\rho_{XY} = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y} = \frac{0.02}{\sqrt{0.24}\sqrt{0.61}} \approx 0.052
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Covariance and Correlation (Continuous Case)</div><div class="box-body"><p>Let $f(x, y) = 4xy$ for $0 &lt; x &lt; 1$, $0 &lt; y &lt; 1$, and zero elsewhere. Let $X$ and $Y$ be random variables with this joint PDF.</p>
+<p><strong>Step 1:</strong> Compute $E(X)$, $E(Y)$:</p>
+<p>\[
+E(X) = \int_0^1 \int_0^1 x \cdot 4xy \,dy\,dx = 4 \int_0^1 x^2 \left[\int_0^1 y \,dy\right] dx = 4 \int_0^1 x^2 \cdot \frac{1}{2} dx = 2 \int_0^1 x^2 dx = 2 \cdot \frac{1}{3} = \frac{2}{3}
+\]</p>
+<p>Similarly,</p>
+<p>\[
+E(Y) = \frac{2}{3}
+\]</p>
+<p><strong>Step 2:</strong> Compute $E(XY)$:</p>
+<p>\[
+E(XY) = \int_0^1 \int_0^1 xy \cdot 4xy \,dy\,dx = 4 \int_0^1 x^2 \left[\int_0^1 y^2 \,dy\right] dx = 4 \int_0^1 x^2 \cdot \frac{1}{3} dx = \frac{4}{3} \cdot \frac{1}{3} = \frac{4}{9}
+\]</p>
+<p><strong>Step 3:</strong> Covariance</p>
+<p>\[
+\text{Cov}(X, Y) = E(XY) - E(X)E(Y) = \frac{4}{9} - \left(\frac{2}{3}\right)^2 = \frac{4}{9} - \frac{4}{9} = 0
+\]</p>
+<p><strong>Step 4:</strong> Since covariance is zero, correlation is also zero:
+\[
+\rho_{XY} = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y} = 0
+\]</p></div></div>
+</section>
+<section id="linear-combinations-of-expectation-and-variance" class="content-section level-1">
+<h2 class="section-heading">Linear Combinations of Expectation and Variance</h2>
+<div class="concept-box"><div class="box-title">Linearity of Expectation</div><div class="box-body"><p>If $a$ and $b$ are constants, then:
+\[
+E(aX + b) = aE(X) + b
+\]
+Setting $a = 0$, we get $E(b) = b$.</p>
+<p>Setting $b = 0$, we get $E(aX) = aE(X)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Example (Discrete)</div><div class="box-body"><p>Let $X$ be a discrete random variable with $P(X = 1) = 0.3$, $P(X = 2) = 0.4$, $P(X = 3) = 0.3$.  
+Find $E(2X + 3)$.</p>
+<p><strong>Solution:</strong>  
+\[
+E(X) = 1(0.3) + 2(0.4) + 3(0.3) = 2.0 \\
+E(2X + 3) = 2E(X) + 3 = 2(2.0) + 3 = 7
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example (Continuous)</div><div class="box-body"><p>Let $X$ have pdf $f(x) = 2x$ for $0 &lt; x &lt; 1$. Find $E(5X - 4)$.</p>
+<p><strong>Solution:</strong>  
+\[
+E(X) = \int_0^1 x \cdot 2x \, dx = \int_0^1 2x^2 \, dx = \frac{2}{3} \\
+E(5X - 4) = 5E(X) - 4 = 5\left(\frac{2}{3}\right) - 4 = \frac{10}{3} - 4 = -\frac{2}{3}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Expectation of Sum or Difference of Functions</div><div class="box-body"><p>The expected value of the sum or difference of two functions of a random variable $X$ is the sum or difference of the expected values:
+\[
+E[g(X) \pm h(X)] = E[g(X)] \pm E[h(X)]
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example (Continuous)</div><div class="box-body"><p>The weekly demand for a drink is $g(X) = X^2 + X - 2$, where $X$ has the density function:
+\[
+f(x) = \begin{cases}
+2(x - 1), &amp; 1 &lt; x &lt; 2 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]</p>
+<p><strong>Solution:</strong>  
+We compute:
+\[
+E[g(X)] = \int_1^2 (x^2 + x - 2) \cdot 2(x - 1) \, dx
+\]
+Expand the integrand:
+\[
+(x^2 + x - 2)(2x - 2) = 2x^3 - 2x^2 + 2x^2 - 2x - 4x + 4 = 2x^3 - 6x + 4
+\]
+Now integrate:
+\[
+\int_1^2 (2x^3 - 6x + 4) \, dx = \left[\frac{2x^4}{4} - 3x^2 + 4x\right]_1^2 \\
+= \left[\frac{2(16)}{4} - 3(4) + 8\right] - \left[\frac{2(1)}{4} - 3(1) + 4\right] \\
+= (8 - 12 + 8) - (0.5 - 3 + 4) = 4 - 1.5 = 2.5
+\]
+\[
+\boxed{E[g(X)] = 2.5}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Expectation of Product of Independent Variables</div><div class="box-body"><p>If $X$ and $Y$ are independent random variables, then:
+\[
+E(XY) = E(X) \cdot E(Y)
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example</div><div class="box-body"><p>Let $X$ and $Y$ be independent with:
+\[
+E(X) = 2, \quad E(Y) = 5
+\]
+Then:
+\[
+E(XY) = 2 \cdot 5 = \boxed{10}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Covariance of Independent Variables</div><div class="box-body"><p>If $X$ and $Y$ are independent random variables, then:
+\[
+\sigma_{XY} = \text{Cov}(X, Y) = E(XY) - E(X)E(Y) = 0
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example</div><div class="box-body"><p>Let $X$ and $Y$ be independent random variables such that:
+\[
+E(X) = 1, \quad E(Y) = 3, \quad E(XY) = 3
+\]
+Then:
+\[
+\sigma_{XY} = E(XY) - E(X)E(Y) = 3 - (1)(3) = 0
+\]
+\[
+\boxed{\text{Cov}(X, Y) = 0}
+\]</p></div></div>
+<p><strong> Linear Combinations of Expectation and Variance</strong></p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch04.html">&larr; Chapter 4: The Random Variables</a><span class="spacer"></span><a class="nav-btn next" href="ch06.html">Chapter 6: Discrete Probability Distributions &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Probability &amp; Statistics &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

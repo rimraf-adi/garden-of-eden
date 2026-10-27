@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Statistics — Probability &amp; Statistics</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: { } },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Probability &amp; Statistics</span></div></div>
+<div class="sidebar-scroll"><ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Counting</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch01.html#what-is-combinatorics" class="toc-link" data-slug="what-is-combinatorics">What is Combinatorics?</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#key-areas-in-combinatorics" class="toc-link" data-slug="key-areas-in-combinatorics">Key Areas in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-combinatorics" class="toc-link" data-slug="applications-of-combinatorics">Applications of Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#rule-identification-guide-in-combinatorics" class="toc-link" data-slug="rule-identification-guide-in-combinatorics">Rule Identification Guide in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#quick-decision-table" class="toc-link" data-slug="quick-decision-table">Quick Decision Table</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#permutations" class="toc-link" data-slug="permutations">Permutations</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#how-to-identify-permutation-problems" class="toc-link" data-slug="how-to-identify-permutation-problems">How to Identify Permutation Problems</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-permutation-problems" class="toc-link" data-slug="examples-of-permutation-problems">Examples of Permutation Problems</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-simple-permutation" class="toc-link" data-slug="example-1-simple-permutation">Example 1: Simple Permutation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-permutation-of-a-subset" class="toc-link" data-slug="example-2-permutation-of-a-subset">Example 2: Permutation of a Subset</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-digits-in-a-number" class="toc-link" data-slug="example-3-digits-in-a-number">Example 3: Digits in a Number</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-arrangement-with-restrictions" class="toc-link" data-slug="example-4-arrangement-with-restrictions">Example 4: Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-circular-permutations" class="toc-link" data-slug="example-5-circular-permutations">Example 5: Circular Permutations</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-permutations-with-repeated-items" class="toc-link" data-slug="example-6-permutations-with-repeated-items">Example 6: Permutations with Repeated Items</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-at-least-condition" class="toc-link" data-slug="example-7-at-least-condition">Example 7: At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-arrangement-with-items-together" class="toc-link" data-slug="example-8-arrangement-with-items-together">Example 8: Arrangement with Items Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-number-with-constraints" class="toc-link" data-slug="example-9-number-with-constraints">Example 9: Number with Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-all-letters-used-with-restrictions" class="toc-link" data-slug="example-10-all-letters-used-with-restrictions">Example 10: All Letters Used with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-11-repeated-digits-constraint" class="toc-link" data-slug="example-11-repeated-digits-constraint">Example 11: Repeated Digits Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-12-vowels-together" class="toc-link" data-slug="example-12-vowels-together">Example 12: Vowels Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-13-at-least-one-condition" class="toc-link" data-slug="example-13-at-least-one-condition">Example 13: At Least One Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-14-positions-fixed" class="toc-link" data-slug="example-14-positions-fixed">Example 14: Positions Fixed</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-15-word-arrangement-with-restrictions" class="toc-link" data-slug="example-15-word-arrangement-with-restrictions">Example 15: Word Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-16-conditional-digit-use" class="toc-link" data-slug="example-16-conditional-digit-use">Example 16: Conditional Digit Use</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-17-circular-permutation-with-a-gap-constraint" class="toc-link" data-slug="example-17-circular-permutation-with-a-gap-constraint">Example 17: Circular Permutation with a Gap Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-18-permutations-with-restricted-positions" class="toc-link" data-slug="example-18-permutations-with-restricted-positions">Example 18: Permutations with Restricted Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-19-permutation-with-minimum-gap" class="toc-link" data-slug="example-19-permutation-with-minimum-gap">Example 19: Permutation with Minimum Gap</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-20-arrangements-with-fixed-distance" class="toc-link" data-slug="example-20-arrangements-with-fixed-distance">Example 20: Arrangements with Fixed Distance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-21-permutations-with-banned-positions" class="toc-link" data-slug="example-21-permutations-with-banned-positions">Example 21: Permutations with Banned Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-22-permutations-with-digit-reuse-prohibited" class="toc-link" data-slug="example-22-permutations-with-digit-reuse-prohibited">Example 22: Permutations with Digit Reuse Prohibited</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-23-permutations-with-specific-characters-together" class="toc-link" data-slug="example-23-permutations-with-specific-characters-together">Example 23: Permutations with Specific Characters Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-24-at-least-one-fixed-digit" class="toc-link" data-slug="example-24-at-least-one-fixed-digit">Example 24: At Least One Fixed Digit</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-25-group-arrangements-with-subgroup-together" class="toc-link" data-slug="example-25-group-arrangements-with-subgroup-together">Example 25: Group Arrangements with Subgroup Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-26-letter-arrangement-with-repetition-and-restrictions" class="toc-link" data-slug="example-26-letter-arrangement-with-repetition-and-restrictions">Example 26: Letter Arrangement with Repetition and Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-27-permutation-with-parity-constraints" class="toc-link" data-slug="example-27-permutation-with-parity-constraints">Example 27: Permutation with Parity Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-28-multiset-with-at-least-condition" class="toc-link" data-slug="example-28-multiset-with-at-least-condition">Example 28: Multiset with At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-29-permutations-with-min-distance-constraint" class="toc-link" data-slug="example-29-permutations-with-min-distance-constraint">Example 29: Permutations with Min Distance Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-30-distribution-of-items-in-permutations" class="toc-link" data-slug="example-30-distribution-of-items-in-permutations">Example 30: Distribution of Items in Permutations</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#combinations" class="toc-link" data-slug="combinations">Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#when-to-identify-a-problem-as-combination" class="toc-link" data-slug="when-to-identify-a-problem-as-combination">When to Identify a Problem as Combination</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-combinations" class="toc-link" data-slug="examples-of-combinations">Examples of Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-committee-selection" class="toc-link" data-slug="example-1-committee-selection">Example 1: Committee Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-handshake-problem" class="toc-link" data-slug="example-2-handshake-problem">Example 2: Handshake Problem</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-choosing-balls" class="toc-link" data-slug="example-3-choosing-balls">Example 3: Choosing Balls</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-forming-teams" class="toc-link" data-slug="example-4-forming-teams">Example 4: Forming Teams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-card-selection" class="toc-link" data-slug="example-5-card-selection">Example 5: Card Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-dividing-prizes" class="toc-link" data-slug="example-6-dividing-prizes">Example 6: Dividing Prizes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-selecting-questions" class="toc-link" data-slug="example-7-selecting-questions">Example 7: Selecting Questions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-subsets" class="toc-link" data-slug="example-8-subsets">Example 8: Subsets</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-lottery-selection" class="toc-link" data-slug="example-9-lottery-selection">Example 9: Lottery Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-choosing-books" class="toc-link" data-slug="example-10-choosing-books">Example 10: Choosing Books</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Introduction to Statistics</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch02.html#motivation" class="toc-link" data-slug="motivation">Motivation</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-do-we-sample" class="toc-link" data-slug="why-do-we-sample">Why Do We Sample?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#how-does-inference-work" class="toc-link" data-slug="how-does-inference-work">How Does Inference Work?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fundamental-relationship-between-probability-and-statistics" class="toc-link" data-slug="fundamental-relationship-between-probability-and-statistics">Fundamental Relationship between Probability and Statistics</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#real-world-motivation-and-example" class="toc-link" data-slug="real-world-motivation-and-example">Real-World Motivation and Example</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-collection" class="toc-link" data-slug="data-collection">Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#steps-in-the-sampling-and-data-collection-process" class="toc-link" data-slug="steps-in-the-sampling-and-data-collection-process">Steps in the Sampling and Data Collection Process</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-is-sampling-important" class="toc-link" data-slug="why-is-sampling-important">Why is Sampling Important?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#common-pitfalls-in-data-collection" class="toc-link" data-slug="common-pitfalls-in-data-collection">Common Pitfalls in Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-location" class="toc-link" data-slug="measures-of-location">Measures of Location</a>
+<ul><li class="toc-l2"><a href="ch02.html#sample-mean-texorpdfstring-bar-x-x" class="toc-link" data-slug="sample-mean-texorpdfstring-bar-x-x">Sample Mean ($\bar{x}$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#importance" class="toc-link" data-slug="importance">Importance:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example" class="toc-link" data-slug="example">Example:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison" class="toc-link" data-slug="comparison">Comparison</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-variability" class="toc-link" data-slug="measures-of-variability">Measures of Variability</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: The Probability Theory</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch03.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#probability-rules" class="toc-link" data-slug="probability-rules">Probability Rules</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#conditional-probability" class="toc-link" data-slug="conditional-probability">Conditional Probability</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#bayes-theorem" class="toc-link" data-slug="bayes-theorem">Bayes Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: The Random Variables</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch04.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-discrete-probability-distributions" class="toc-link" data-slug="overview-of-discrete-probability-distributions">Overview of Discrete Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-continuous-probability-distributions" class="toc-link" data-slug="overview-of-continuous-probability-distributions">Overview of Continuous Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#joint-probability-distributions" class="toc-link" data-slug="joint-probability-distributions">Joint Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#marginal-probability-distributions" class="toc-link" data-slug="marginal-probability-distributions">Marginal Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#conditional-probability-distributions" class="toc-link" data-slug="conditional-probability-distributions">Conditional Probability Distributions</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Mean and Variance of a Random Variable</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch05.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-joint-and-marginal-distributions" class="toc-link" data-slug="expectation-of-joint-and-marginal-distributions">Expectation of Joint and Marginal Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-conditional-probability-distribution" class="toc-link" data-slug="expectation-of-conditional-probability-distribution">Expectation of Conditional Probability Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#variance-and-covariance" class="toc-link" data-slug="variance-and-covariance">Variance and Covariance</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#linear-combinations-of-expectation-and-variance" class="toc-link" data-slug="linear-combinations-of-expectation-and-variance">Linear Combinations of Expectation and Variance</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Discrete Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch06.html#bernoulli-trials-and-binomial-distribution" class="toc-link" data-slug="bernoulli-trials-and-binomial-distribution">Bernoulli trials and Binomial distribution</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#poisson-distribution" class="toc-link" data-slug="poisson-distribution">Poisson Distribution</a>
+<ul><li class="toc-l2"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples:</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#properties-of-the-poisson-process" class="toc-link" data-slug="properties-of-the-poisson-process">Properties of the Poisson Process</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#poisson-random-variable-and-distribution" class="toc-link" data-slug="poisson-random-variable-and-distribution">Poisson Random Variable and Distribution</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Continuous Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch07.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#exponential-distribution" class="toc-link" data-slug="exponential-distribution">Exponential Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#normal-distribution-and-standard-normal" class="toc-link" data-slug="normal-distribution-and-standard-normal">Normal Distribution and Standard Normal</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-of-normal-distribution" class="toc-link" data-slug="graph-of-normal-distribution">Graph of Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#tips-to-identify-normal-distribution-problems" class="toc-link" data-slug="tips-to-identify-normal-distribution-problems">Tips to Identify Normal Distribution Problems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#standard-normal-distribution" class="toc-link" data-slug="standard-normal-distribution">Standard Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#t-distribution" class="toc-link" data-slug="t-distribution">t-Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-4" class="toc-link" data-slug="examples-4">Examples</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#chi-squared-distribution" class="toc-link" data-slug="chi-squared-distribution">Chi-Squared Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-5" class="toc-link" data-slug="examples-5">Examples</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Central Limit Theorem and Confidence Intervals</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch08.html#the-central-limit-theorem" class="toc-link" data-slug="the-central-limit-theorem">The Central Limit Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#confidence-intervals" class="toc-link" data-slug="confidence-intervals">Confidence Intervals</a>
+</li></ul></details></li>
+</ul></div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 8</div><h1>Introduction to Statistics</h1></div>
+<section id="motivation" class="content-section level-1">
+<h2 class="section-heading">Motivation</h2>
+<div class="concept-box"><div class="box-title">Key Relationship</div><div class="box-body"><ul><li><p><strong>Probability</strong> starts from the known and predicts data outcomes.</p></li><li><p><strong>Statistics</strong> starts from observed data and infers about the unknown.</p></li><li><p>Together, they enable evidence-based decisions under uncertainty.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Applications in Real Life</div><div class="box-body"><p><strong>1. Business Forecasting</strong></p>
+<ul><li><p><em>Goal:</em> Predict future sales.</p></li><li><p><em>Method:</em> Use historical data to build a predictive model.</p></li><li><p><em>Inference:</em> Make data-driven decisions on inventory and marketing.</p></li></ul>
+<p><strong>2. Legal Evidence</strong></p>
+<ul><li><p><em>Goal:</em> Determine if a DNA match is reliable.</p></li><li><p><em>Method:</em> Use probability to evaluate random match likelihood.</p></li><li><p><em>Inference:</em> Decide strength of evidence in court.</p></li></ul>
+<p><strong>3. Quality Control</strong></p>
+<ul><li><p><em>Goal:</em> Detect faulty products.</p></li><li><p><em>Method:</em> Sample and analyze a few items from a batch.</p></li><li><p><em>Inference:</em> Accept/reject batch based on probability of defects.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Core Concept</div><div class="box-body"><p>In statistics, we are often interested in studying a large group of individuals or items called the <strong>population</strong>. However, it&#x27;s usually impractical or impossible to collect data on every member of the population. Instead, we select a <strong>sample</strong> — a smaller, manageable subset — and use the information gathered from this sample to make <strong>inferences</strong> about the entire population.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+</section>
+<section id="why-do-we-sample" class="content-section level-1">
+<h2 class="section-heading">Why Do We Sample?</h2>
+<ul><li><p><strong>Cost-effective:</strong> It’s cheaper to collect data from a sample than the whole population.</p></li><li><p><strong>Time-saving:</strong> Sampling takes less time than a full population study.</p></li><li><p><strong>Practicality:</strong> Often, the entire population isn’t accessible.</p></li><li><p><strong>Feasibility:</strong> Data analysis becomes manageable.</p></li></ul>
+</section>
+<section id="how-does-inference-work" class="content-section level-1">
+<h2 class="section-heading">How Does Inference Work?</h2>
+<div class="concept-box"><div class="box-title">Inference Flow</div><div class="box-body"><ol><li><p>Define the population and a variable of interest (e.g., average income).</p></li><li><p>Select a representative sample from the population.</p></li><li><p>Collect data from the sample.</p></li><li><p>Compute statistics (like sample mean, variance).</p></li><li><p>Use probability theory to estimate population parameters or test hypotheses.</p></li></ol></div></div>
+</section>
+<section id="fundamental-relationship-between-probability-and-statistics" class="content-section level-1">
+<h2 class="section-heading">Fundamental Relationship between Probability and Statistics</h2>
+<div class="concept-box"><div class="box-title">Key Insight</div><div class="box-body"><p><strong>Probability</strong> is used to model uncertainty in the data generation process. <br>
+<strong>Statistics</strong> uses the collected data (from a sample) to estimate the underlying probabilities and infer characteristics of the population.</p></div></div>
+</section>
+<section id="real-world-motivation-and-example" class="content-section level-1">
+<h2 class="section-heading">Real-World Motivation and Example</h2>
+<div class="concept-box"><div class="box-title">Example: Medical Study</div><div class="box-body"><p>A pharmaceutical company wants to test the effectiveness of a new drug. Instead of testing on all patients with a disease, they:</p>
+<ul><li><p>Select a random sample of 500 patients.</p></li><li><p>Administer the drug and collect recovery data.</p></li><li><p>Use statistical inference to estimate the drug&#x27;s effectiveness for the entire patient population.</p></li></ul></div></div>
+</section>
+<section id="data-collection" class="content-section level-1">
+<h2 class="section-heading">Data Collection</h2>
+<div class="concept-box"><div class="box-title">What is Sampling?</div><div class="box-body"><p>Sampling is the process of selecting a subset (sample) from a larger group (population) to gather insights and make inferences about the entire population. The goal is to collect data efficiently while maintaining accuracy and representativeness.</p></div></div>
+</section>
+<section id="steps-in-the-sampling-and-data-collection-process" class="content-section level-1">
+<h2 class="section-heading">Steps in the Sampling and Data Collection Process</h2>
+<ol><li><p><strong>Define the Target Population</strong> <br>
+    Identify the entire group you are interested in studying (e.g., all college students in India).</p></li><li><p><strong>Specify the Sampling Frame</strong> <br>
+    This is a list or mechanism that gives access to the population (e.g., list of students enrolled in universities).</p></li><li><p><strong>Choose the Sampling Method</strong> <br>
+    Select a technique to draw the sample:</p>
+<ul><li><p><strong>Simple Random Sampling:</strong> Every individual has an equal chance.</p></li><li><p><strong>Stratified Sampling:</strong> Divide into strata (groups) and sample from each.</p></li><li><p><strong>Systematic Sampling:</strong> Every $k^{th}$ member is selected.</p></li><li><p><strong>Cluster Sampling:</strong> Randomly select entire groups.</p></li></ul></li><li><p><strong>Determine the Sample Size</strong> <br>
+    Choose how many observations you need based on budget, precision, and confidence level.</p></li><li><p><strong>Collect the Data</strong> <br>
+    Use surveys, experiments, interviews, observations, or other tools to gather the information.</p></li><li><p><strong>Check for Bias and Errors</strong> <br>
+    Ensure the data is accurate, reliable, and free from systematic errors.</p></li></ol>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+</section>
+<section id="why-is-sampling-important" class="content-section level-1">
+<h2 class="section-heading">Why is Sampling Important?</h2>
+<div class="concept-box"><div class="box-title">Advantages of Sampling</div><div class="box-body"><ul><li><p><strong>Cost-effective:</strong> Saves resources by studying a small group.</p></li><li><p><strong>Time-saving:</strong> Quicker than studying the entire population.</p></li><li><p><strong>Practical:</strong> Ideal when the population is infinite or hard to reach.</p></li><li><p><strong>Accurate:</strong> Well-designed samples can produce highly reliable results.</p></li></ul></div></div>
+</section>
+<section id="common-pitfalls-in-data-collection" class="content-section level-1">
+<h2 class="section-heading">Common Pitfalls in Data Collection</h2>
+<div class="concept-box"><div class="box-title">Beware of These Issues</div><div class="box-body"><ul><li><p><strong>Sampling Bias:</strong> Sample is not representative of the population.</p></li><li><p><strong>Non-response Bias:</strong> Some selected participants do not respond.</p></li><li><p><strong>Measurement Errors:</strong> Faulty instruments or survey design can distort results.</p></li><li><p><strong>Data Entry Errors:</strong> Mistakes during manual or automatic input.</p></li></ul></div></div>
+</section>
+<section id="measures-of-location" class="content-section level-1">
+<h2 class="section-heading">Measures of Location</h2>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Understanding Measures of Location</div><div class="box-body"><p>Measures of location describe the central tendency of a dataset. The two most commonly used measures are the <strong>sample mean</strong> and the <strong>sample median</strong>. These values summarize the dataset with a single representative value.</p></div></div>
+<section id="sample-mean-texorpdfstring-bar-x-x" class="content-section level-2">
+<h3 class="section-heading">Sample Mean ($\bar{x}$)</h3>
+<p>Suppose that the observations in a sample are \( x_1, x_2, \ldots, x_n \). The sample mean, denoted by \( \bar{x} \), is computed as:</p>
+<p>\[
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
+\]</p>
+<ul><li><p>\( x_1, x_2, \ldots, x_n \) are the sample observations.</p></li><li><p>\( n \) is the sample size.</p></li><li><p>\( \bar{x} \) gives the arithmetic average of the values.</p></li></ul>
+<p><strong>Example:</strong></p>
+<p>\[
+\text{Let the sample be: } 5,\ 7,\ 9,\ 4,\ 6
+\]</p>
+<p>\[
+\bar{x} = \frac{5 + 7 + 9 + 4 + 6}{5} = \frac{31}{5} = 6.2
+\]</p>
+<div class="concept-box"><div class="box-title">Importance of Sample Mean</div><div class="box-body"><p>The sample mean is sensitive to all data points and is a good measure when data is symmetric and not heavily skewed. It is used in many statistical methods, including confidence intervals and hypothesis testing.</p></div></div>
+<div class="concept-box"><div class="box-title">Sample Median</div><div class="box-body"><p>Given a set of $n$ observations in a sample arranged in <strong>increasing order</strong> of magnitude as:
+\[
+x_1 \leq x_2 \leq \cdots \leq x_n,
+\]
+the <strong>sample median</strong>, denoted by $\tilde{x}$, is defined as:
+\[
+\tilde{x} =
+\begin{cases}
+x_{(n+1)/2}, &amp; \text{if } n \text{ is odd} \\
+\dfrac{1}{2} \left(x_{n/2} + x_{n/2 + 1} \right), &amp; \text{if } n \text{ is even}
+\end{cases}
+\]</p></div></div>
+</section>
+<section id="importance" class="content-section level-2">
+<h3 class="section-heading">Importance:</h3>
+<ul><li><p>The sample median provides a measure of the <strong>central location</strong> of the data.</p></li><li><p>It is particularly useful when the data contains <strong>outliers</strong> or is <strong>skewed</strong>, as it is less affected by extreme values than the mean.</p></li></ul>
+</section>
+<section id="example" class="content-section level-2">
+<h3 class="section-heading">Example:</h3>
+<div class="concept-box"><div class="box-title">Example</div><div class="box-body"><p>Consider the following sample of $n=7$ ordered values:
+\[
+2,\ 4,\ 7,\ 10,\ 12,\ 15,\ 18
+\]
+Since $n = 7$ is odd, the median is the $\left(\dfrac{7+1}{2}\right)^{\text{th}} = 4^{\text{th}}$ observation:
+\[
+\tilde{x} = x_4 = 10
+\]</p>
+<p>Now consider another sample of $n = 8$ ordered values:
+\[
+1,\ 3,\ 6,\ 9,\ 11,\ 14,\ 17,\ 19
+\]
+Since $n = 8$ is even, the median is the average of the 4th and 5th observations:
+\[
+\tilde{x} = \dfrac{1}{2}(x_4 + x_5) = \dfrac{1}{2}(9 + 11) = 10
+\]</p></div></div>
+</section>
+<section id="comparison" class="content-section level-2">
+<h3 class="section-heading">Comparison</h3>
+<ul><li><p>The <strong>mean</strong> considers all values but can be affected by outliers.</p></li><li><p>The <strong>median</strong> is less sensitive to outliers and skewed distributions.</p></li><li><p>In symmetric distributions, mean and median are approximately equal.</p></li></ul>
+<p><strong>NOTE: $\bar{x}$ represents the mean of the sample, whereas $\mu$ represents the mean of the population.</strong></p>
+</section>
+</section>
+<section id="measures-of-variability" class="content-section level-1">
+<h2 class="section-heading">Measures of Variability</h2>
+<p>Just as there are many measures of central tendency or location, there are many measures of spread
+or variability. Variability tells you how far apart points lie from each other and from the center
+of a distribution or a data set. Variability is also referred to as spread, scatter or dispersion.
+Along with measures of central tendency, measures of variability give you descriptive statistics that
+summarize your data. While the central tendency, or average, tells you where most of your points lie, variability summarizes how far apart they are. This is important because the amount of variability determines how well you can generalize results from the sample to your population. Low variability is ideal because it means that you can better predict information about the population based on sample data. High variability means that the values are less consistent, so it’s harder to
+make predictions. Variability is most commonly measured with range, standard deviation and variance .</p>
+<div class="concept-box"><div class="box-title">Sample Range</div><div class="box-body"><p><strong>Definition:</strong> <br>
+The <strong>sample range</strong> is the difference between the largest and smallest values in a sample.</p>
+<p>\[
+\text{Range} = x_{\max} - x_{\min}
+\]</p>
+<p><strong>Why It Is Used:</strong></p>
+<ul><li><p>Gives a quick sense of the spread.</p></li><li><p>Easy to compute.</p></li><li><p>Sensitive to outliers.</p></li></ul>
+<p><strong>Example:</strong> <br>
+Sample: $5,\ 9,\ 12,\ 18,\ 22$ <br>
+\[
+\text{Range} = 22 - 5 = 17
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Sample Variance</div><div class="box-body"><p><strong>Definition:</strong> <br>
+Sample variance measures the average squared deviation from the mean. It is denoted by $s^2$ and defined as:</p>
+<p>\[
+s^2 = \dfrac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+\]</p>
+<p>Where:</p>
+<ul><li><p>$n$ is the number of observations,</p></li><li><p>$x_i$ is each observation,</p></li><li><p>$\bar{x}$ is the sample mean.</p></li></ul>
+<p><strong>Why It Is Used:</strong></p>
+<ul><li><p>Reflects the overall spread in the data.</p></li><li><p>Fundamental in inferential statistics, including hypothesis testing and confidence intervals.</p></li></ul>
+<p><strong>Example:</strong> <br>
+Sample: $4,\ 6,\ 8,\ 10$ <br>
+\[
+\bar{x} = \frac{4+6+8+10}{4} = 7
+\]
+Squared deviations:
+\[
+(4-7)^2 = 9,\quad (6-7)^2 = 1,\quad (8-7)^2 = 1,\quad (10-7)^2 = 9
+\]
+\[
+\sum (x_i - \bar{x})^2 = 9 + 1 + 1 + 9 = 20
+\]
+\[
+s^2 = \frac{20}{4 - 1} = \frac{20}{3} \approx 6.667
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Sample Standard Deviation</div><div class="box-body"><p><strong>Definition:</strong> <br>
+The <strong>sample standard deviation</strong> is the square root of the sample variance:</p>
+<p>\[
+s = \sqrt{s^2} = \sqrt{ \dfrac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 }
+\]</p>
+<p><strong>Why It Is Used:</strong></p>
+<ul><li><p>Represents the typical distance of data points from the mean.</p></li><li><p>Expressed in the same units as the data.</p></li><li><p>Widely used in data analysis and reporting.</p></li></ul>
+<p><strong>Continuing the Previous Example:</strong>
+\[
+s = \sqrt{6.667} \approx 2.582
+\]</p>
+<p>Thus, the standard deviation gives a more intuitive sense of variability than variance.</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Population Variance and Standard Deviation</strong></div><div class="box-body"><p><strong>NOTE: $\sigma^2$ represents the <em>population variance</em>, and $\sigma$ represents the <em>population standard deviation</em>.</strong></p>
+<p>The formulas for population variance and standard deviation are:</p>
+<p>\[
+\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2
+\]
+\[
+\sigma = \sqrt{\sigma^2} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2}
+\]</p>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>$x_i$ is each individual data point.</p></li><li><p>$\mu$ is the population mean.</p></li><li><p>$N$ is the total number of data points in the population.</p></li><li><p>$\sigma^2$ is the variance — it measures the average squared deviation from the mean.</p></li><li><p>$\sigma$ is the standard deviation — it gives a sense of how spread out the data is.</p></li></ul>
+<p><strong>Example:</strong>  
+Given a population dataset: 2, 4, 6, 8  
+\[
+\mu = \frac{2 + 4 + 6 + 8}{4} = 5
+\]
+\[
+\sigma^2 = \frac{(2-5)^2 + (4-5)^2 + (6-5)^2 + (8-5)^2}{4} = \frac{9 + 1 + 1 + 9}{4} = \frac{20}{4} = 5
+\]
+\[
+\sigma = \sqrt{5} \approx 2.236
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Understanding Sample Variance and Standard Deviation</div><div class="box-body"><p>The <strong>sample variance</strong> and <strong>sample standard deviation</strong> both measure how spread out data is, but:</p>
+<ul><li><p>Variance uses <em>squared units</em> (e.g., cm&lt;sup&gt;2&lt;/sup&gt;), while</p></li><li><p>Standard deviation uses <em>linear units</em> (e.g., cm).</p></li></ul>
+<p><strong>Why are both important?</strong></p>
+<ul><li><p>They help understand the variability in data.</p></li><li><p><strong>Variance</strong> is used more in statistical theory.</p></li><li><p><strong>Standard deviation</strong> is more common in real-world applications.</p></li></ul>
+<p>In statistics, we often want to know about a population:</p>
+<ul><li><p><strong>Population Mean</strong> $(\mu)$</p></li><li><p><strong>Population Variance</strong> $(\sigma^2)$</p></li></ul>
+<p><strong>Sample variance</strong> helps us estimate $\sigma^2$ (population variance), while <strong>sample standard deviation</strong> is used with the sample mean $\bar{x}$ to estimate $\mu$ (population mean).</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Counting</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: The Probability Theory &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Probability &amp; Statistics &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

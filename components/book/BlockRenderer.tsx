@@ -113,7 +113,7 @@ export function BlockView({ b, book }: { b: Block; book: string }) {
         <figure className="my-8 rounded-3xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-4 sm:p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-center gap-4 rounded-2xl bg-white p-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            {b.figs.map((n) => <img key={n} src={`/books/${book}/fig-${n}.svg`} alt={b.caption ? b.caption.replace(/<[^>]+>|\$/g, '') : 'Figure'} className="max-h-[420px] max-w-full h-auto" loading="lazy" />)}
+            {(b.srcs ?? b.figs.map((n) => `/books/${book}/fig-${n}.svg`)).map((src) => <img key={src} src={src} alt={b.caption ? b.caption.replace(/<[^>]+>|\$/g, '') : 'Figure'} className="max-h-[420px] max-w-full h-auto" loading="lazy" />)}
           </div>
           {(b.caption || b.num) && (
             <figcaption className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">

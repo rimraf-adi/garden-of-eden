@@ -1,0 +1,3046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Functions — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 6</div><h1>Functions</h1></div>
+<section id="defining-calling-functions" class="content-section level-1">
+<h2 class="section-heading">Defining &amp; Calling Functions</h2>
+
+<section id="basic-syntax" class="content-section level-2">
+<h3 class="section-heading">Basic Syntax</h3>
+
+<section id="def-return-docstrings" class="content-section level-3">
+<h4 class="section-heading">def, return, docstrings</h4>
+<div class="concept-box"><div class="box-title">Function Definition --- Formal Syntax</div><div class="box-body"><p>A Python function is defined with the <strong><code>def</code></strong> keyword:</p>
+<p>\[\texttt{def}\ \langle\textit{name}\rangle
+  \texttt{(}\langle\textit{params}\rangle\texttt{):}
+  \quad \langle\textit{body}\rangle\]</p>
+<ul><li><p><strong><code>return</code></strong> exits the function and optionally passes a value
+        back to the caller</p></li><li><p><strong>No <code>return</code></strong> (or bare <code>return</code>): function returns
+        <code>None</code> implicitly</p></li><li><p><strong>Multiple return values</strong>: Python packs them into a <code>tuple</code>
+        (<code>return x, y</code> $\equiv$ <code>return (x, y)</code>)</p></li><li><p><strong>Docstring</strong>: first statement in the body, if a string literal, is
+        stored as <code>func.__doc__</code>; shown by <code>help(func)</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig098.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">return Semantics</div><div class="box-body"><ul><li><p><strong>Bare <code>return</code></strong> or <strong>fall-off-end</strong>: returns <code>None</code></p></li><li><p><strong><code>return expr</code></strong>: evaluates <code>expr</code> and returns it</p></li><li><p><strong><code>return a, b, c</code></strong>: packs into tuple <code>(a, b, c)</code>;
+        caller can unpack: <code>x, y, z = f()</code></p></li><li><p><strong>Multiple <code>return</code> statements</strong>: first one reached exits the
+        function</p></li><li><p><code>return</code> inside a generator becomes <code>StopIteration</code>
+        (covered in generators chapter)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 99: Function Definitions --- return, Docstrings, Multiple Values</div><div class="box-body"><div class="code-box"><pre><code># Basic function
+def greet(name):
+    &quot;&quot;&quot;Return a greeting string for the given name.&quot;&quot;&quot;
+    return f&quot;Hello, {name}!&quot;
+
+print(greet(&quot;GATE&quot;))          # Hello, GATE!
+print(greet.__doc__)          # Return a greeting string for the given name.
+
+# No return -&gt; None
+def no_return(x):
+    x * 2   # result not returned
+
+print(no_return(5))            # None
+
+# Multiple return values (tuple)
+def divmod_custom(a, b):
+    &quot;&quot;&quot;Return (quotient, remainder) of a ÷ b.&quot;&quot;&quot;
+    return a // b, a % b       # packs into tuple
+
+q, r = divmod_custom(17, 5)   # unpack
+print(q, r)                    # 3  2
+
+result = divmod_custom(17, 5)  # as tuple
+print(result)                  # (3, 2)
+print(type(result))            # &lt;class &#x27;tuple&#x27;&gt;
+
+# Early return
+def absolute(n):
+    if n &gt;= 0:
+        return n
+    return -n                  # unreachable if n &gt;= 0
+
+# Docstring access
+def area(r):
+    &quot;&quot;&quot;Compute the area of a circle with radius r.&quot;&quot;&quot;
+    import math
+    return math.pi * r ** 2
+
+help(area)    # shows the docstring
+print(area.__doc__)</code></pre></div></div></div>
+</section>
+</section>
+<section id="function-objects" class="content-section level-2">
+<h3 class="section-heading">Function Objects</h3>
+
+<section id="first-class-functions" class="content-section level-3">
+<h4 class="section-heading">First-Class Functions</h4>
+<div class="concept-box"><div class="box-title">Functions as First-Class Objects</div><div class="box-body"><p>In Python, <strong>functions are objects</strong> (instances of <code>function</code> type).
+A <strong>first-class object</strong> can be:</p>
+<ul><li><p><strong>Assigned to a variable</strong>: <code>f = my_func</code></p></li><li><p><strong>Passed as an argument</strong>: <code>map(str, [1,2,3])</code></p></li><li><p><strong>Returned from a function</strong>: decorators, closures</p></li><li><p><strong>Stored in a data structure</strong>: <code>ops = [add, sub, mul]</code></p></li><li><p><strong>Has attributes</strong>: <code>f.__name__</code>, <code>f.__doc__</code>,
+        <code>f.__code__</code></p></li></ul>
+<p><strong><code>callable(obj)</code></strong> returns <code>True</code> if <code>obj</code> can be called
+with <code>()</code>: functions, classes, objects with <code>__call__</code>,
+built-ins.</p></div></div>
+<div class="example-box"><div class="box-title">Example 100: Functions are Objects --- Assign, Pass, Return, Store</div><div class="box-body"><div class="code-box"><pre><code>def square(n): return n ** 2
+def cube(n):   return n ** 3
+def negate(n): return -n
+
+# Assign to variable
+f = square
+print(f(5))           # 25
+print(f.__name__)     # square (name stays &quot;square&quot;)
+
+# Pass as argument
+data = [1, 2, 3, 4, 5]
+print(list(map(square, data)))     # [1, 4, 9, 16, 25]
+print(list(filter(lambda x: x%2==0, data)))  # [2, 4]
+
+# Store in data structure
+ops = {&quot;sq&quot;: square, &quot;cb&quot;: cube, &quot;neg&quot;: negate}
+for name, op in ops.items():
+    print(f&quot;{name}(3) = {op(3)}&quot;)
+# sq(3) = 9 / cb(3) = 27 / neg(3) = -3
+
+# Return from function (higher-order)
+def make_power(exp):
+    def power(base):
+        return base ** exp
+    return power        # return function object
+
+square2 = make_power(2)
+cube2   = make_power(3)
+print(square2(5))      # 25
+print(cube2(4))        # 64
+
+# callable()
+print(callable(square))    # True
+print(callable(42))        # False
+print(callable(print))     # True
+print(callable([]))        # False
+
+class Adder:
+    def __call__(self, x): return x + 1
+
+add1 = Adder()
+print(callable(add1))  # True  (has __call__)
+print(add1(10))        # 11</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="arguments-parameters" class="content-section level-1">
+<h2 class="section-heading">Arguments &amp; Parameters</h2>
+
+<section id="positional-and-keyword-arguments" class="content-section level-2">
+<h3 class="section-heading">Positional and Keyword Arguments</h3>
+
+<section id="matching-rules" class="content-section level-3">
+<h4 class="section-heading">Matching Rules</h4>
+<div class="concept-box"><div class="box-title">Positional vs Keyword Arguments</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig099.png" alt="diagram"></div>
+<p><strong>Rule</strong>: all positional arguments must come <em>before</em> keyword arguments
+in any function call.
+<code>f(1, b=2)</code> is valid; <code>f(a=1, 2)</code> is a <code>SyntaxError</code>.</p></div></div>
+</section>
+</section>
+<section id="default-parameters" class="content-section level-2">
+<h3 class="section-heading">Default Parameters</h3>
+
+<section id="evaluated-once-at-definition-time" class="content-section level-3">
+<h4 class="section-heading">Evaluated Once at Definition Time</h4>
+<div class="concept-box"><div class="box-title">Default Parameters --- Definition-Time Evaluation</div><div class="box-body"><p>Default parameter values are <strong>evaluated exactly once</strong> at the time the
+<code>def</code> statement is executed, <em>not</em> at call time.</p>
+<p><strong>Consequence</strong>: if the default is an <em>immutable</em> object (<code>int</code>,
+<code>str</code>, <code>None</code>), re-evaluation doesn't matter. If it is a
+<em>mutable</em> object (<code>list</code>, <code>dict</code>), the same object is shared
+across <em>all calls</em> that use the default.</p></div></div>
+</section>
+</section>
+<section id="mutable-default-argument-trap" class="content-section level-2">
+<h3 class="section-heading">Mutable Default Argument Trap</h3>
+
+<section id="gate-critical-shared-mutable-default" class="content-section level-3">
+<h4 class="section-heading">GATE Critical --- Shared Mutable Default</h4>
+<div class="concept-box"><div class="box-title">Mutable Default Argument Trap </div><div class="box-body"><p>When a mutable object (<code>list</code>, <code>dict</code>, <code>set</code>) is used as a
+default parameter, it is created <strong>once at function definition time</strong> and
+<strong>shared across all calls</strong> that rely on the default. State accumulated in one
+call persists into the next.</p>
+<p><strong>Fix</strong>: use <code>None</code> as the sentinel default and create the mutable
+object <em>inside</em> the function body.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig100.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 101: Mutable Default --- Bug, Fix, and GATE Variants</div><div class="box-body"><div class="code-box"><pre><code># ── BUG: shared mutable default ───────────────────────────
+def append_to(val, lst=[]):    # lst created ONCE at def time
+    lst.append(val)
+    return lst
+
+print(append_to(1))   # [1]
+print(append_to(2))   # [1, 2]   UNEXPECTED!
+print(append_to(3))   # [1, 2, 3]  state persists!
+
+# Proof: it&#x27;s always the same list object
+print(id(append_to.__defaults__[0]))   # same id each call
+
+# ── FIX: use None sentinel ─────────────────────────────────
+def append_to_fixed(val, lst=None):
+    if lst is None:
+        lst = []               # new list created every call
+    lst.append(val)
+    return lst
+
+print(append_to_fixed(1))   # [1]
+print(append_to_fixed(2))   # [2]   correct
+print(append_to_fixed(3))   # [3]   correct
+
+# Explicit argument bypasses the shared default entirely
+print(append_to(4, []))    # [4]  -- no shared state
+
+# ── GATE variant: dict default ─────────────────────────────
+def add_entry(key, val, store={}):
+    store[key] = val
+    return store
+
+print(add_entry(&quot;a&quot;, 1))   # {&#x27;a&#x27;: 1}
+print(add_entry(&quot;b&quot;, 2))   # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 2}  shared!
+
+# ── GATE question: what does this print? ──────────────────
+def mystery(x, result=[]):
+    result.append(x * 2)
+    return result
+
+print(mystery(1))   # [2]
+print(mystery(2))   # [2, 4]
+print(mystery(3))   # [2, 4, 6]
+# Each call appends to the SAME list</code></pre></div></div></div>
+</section>
+</section>
+<section id="args-and-kwargs" class="content-section level-2">
+<h3 class="section-heading">*args and **kwargs</h3>
+
+<section id="variable-length-arguments" class="content-section level-3">
+<h4 class="section-heading">Variable-Length Arguments</h4>
+<div class="concept-box"><div class="box-title">*args and **kwargs --- Variable-Length Parameters</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig101.png" alt="diagram"></div>
+<p><strong>Parameter order</strong> (formal rule):
+\[
+\underbrace{\texttt{pos}}_{\text{positional}}
+\;\to\;
+\underbrace{\texttt{*args}}_{\text{var-pos}}
+\;\to\;
+\underbrace{\texttt{kw-only}}_{\text{after *}}
+\;\to\;
+\underbrace{\texttt{**kwargs}}_{\text{var-kw}}
+\]</p>
+<p><strong>Names <code>args</code>/<code>kwargs</code> are convention</strong>, not syntax —
+<code>*nums</code> and <code>**opts</code> work equally.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig102.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Keyword-Only and Positional-Only Parameters</div><div class="box-body"><ul><li><p><strong>Keyword-only</strong> (after <code>*</code> or <code>*args</code>): parameter
+        <em>must</em> be passed by name; cannot be satisfied positionally
+        \[\texttt{def f(a, *, b, c=0):}\quad\Rightarrow\quad
+          \texttt{f(1, b=2)}\text{ ok};\quad\texttt{f(1, 2)}\text{ TypeError}\]</p></li><li><p><strong>Positional-only</strong> (before <code>/</code>, Python 3.8+): parameter
+        <em>can only</em> be passed positionally; <code>f(a=1)</code> raises
+        <code>TypeError</code>
+        \[\texttt{def f(a, b, /, c):}\quad\Rightarrow\quad
+          \texttt{f(1, 2, c=3)}\text{ ok};\quad\texttt{f(a=1)}\text{ TypeError}\]</p></li><li><p><strong>Combined</strong>: <code>def f(a, b, /, c, *, d, e):</code>
+        — <code>a,b</code> pos-only; <code>c</code> normal; <code>d,e</code> kw-only</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig103.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 102: *args and **kwargs --- Definitions and Calls</div><div class="box-body"><div class="code-box"><pre><code># *args: collects extra positionals into a tuple
+def total(*args):
+    print(type(args), args)   # &lt;class &#x27;tuple&#x27;&gt;
+    return sum(args)
+
+print(total(1, 2, 3))        # 6
+print(total(10, 20))         # 30
+print(total())               # 0  (empty tuple)
+
+# **kwargs: collects extra keywords into a dict
+def show_info(**kwargs):
+    print(type(kwargs), kwargs)
+    for key, val in kwargs.items():
+        print(f&quot;  {key}: {val}&quot;)
+
+show_info(name=&quot;Alice&quot;, age=25, city=&quot;Delhi&quot;)
+# &lt;class &#x27;dict&#x27;&gt; {&#x27;name&#x27;: &#x27;Alice&#x27;, &#x27;age&#x27;: 25, &#x27;city&#x27;: &#x27;Delhi&#x27;}
+# name: Alice  / age: 25  / city: Delhi
+
+# Combined: positional + *args + kw-only + **kwargs
+def full_sig(a, b, *args, flag=False, **kwargs):
+    print(f&quot;a={a}, b={b}&quot;)
+    print(f&quot;args={args}&quot;)        # tuple of extra positionals
+    print(f&quot;flag={flag}&quot;)        # keyword-only
+    print(f&quot;kwargs={kwargs}&quot;)    # dict of extra keywords
+
+full_sig(1, 2, 3, 4, 5, flag=True, x=10, y=20)
+# a=1, b=2
+# args=(3, 4, 5)
+# flag=True
+# kwargs={&#x27;x&#x27;: 10, &#x27;y&#x27;: 20}
+
+# Forwarding all arguments (common in decorators)
+def debug(func):
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__} with {args}, {kwargs}&quot;)
+        result = func(*args, **kwargs)
+        print(f&quot;Returned: {result}&quot;)
+        return result
+    return wrapper
+
+@debug
+def add(x, y): return x + y
+add(3, y=4)
+# Calling add with (3,), {&#x27;y&#x27;: 4}
+# Returned: 7</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 103: Keyword-Only and Positional-Only Parameters</div><div class="box-body"><div class="code-box"><pre><code># Keyword-only (after *)
+def connect(host, port, *, timeout=30, retries=3):
+    print(f&quot;Connect to {host}:{port}, timeout={timeout}, retries={retries}&quot;)
+
+connect(&quot;localhost&quot;, 8080)                      # defaults
+connect(&quot;localhost&quot;, 8080, timeout=10)          # kw only
+connect(&quot;localhost&quot;, 8080, timeout=5, retries=1)
+
+# TypeError: timeout cannot be passed positionally
+try:
+    connect(&quot;localhost&quot;, 8080, 10)
+except TypeError as e:
+    print(e)  # takes 2 positional arguments but 3 were given
+
+# Positional-only (before /)
+def power(base, exp, /):
+    return base ** exp
+
+print(power(2, 10))     # 1024
+try:
+    power(base=2, exp=10)   # TypeError
+except TypeError as e:
+    print(e)   # got some positional-only arguments passed as keyword
+
+# Combined: pos-only / normal * kw-only
+def f(a, b, /, c, *, d):
+    return a + b + c + d
+
+print(f(1, 2, 3, d=4))      # 10
+print(f(1, 2, c=3, d=4))    # 10  (c can be positional or keyword)
+try:
+    f(a=1, b=2, c=3, d=4)   # TypeError: a,b are positional-only
+except TypeError as e:
+    print(e)</code></pre></div></div></div>
+</section>
+</section>
+<section id="argument-unpacking-in-calls" class="content-section level-2">
+<h3 class="section-heading">Argument Unpacking in Calls</h3>
+
+<section id="and-at-the-call-site" class="content-section level-3">
+<h4 class="section-heading">* and ** at the Call Site</h4>
+<div class="concept-box"><div class="box-title">Argument Unpacking --- * and ** in Calls</div><div class="box-body"><p>The <strong>*</strong> and <strong>**</strong> operators can appear at the <em>call site</em>
+(not just in function definitions) to <em>unpack</em> containers into arguments:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig104.png" alt="diagram"></div>
+<p>Multiple unpacking is allowed in a single call (Python 3.5+):
+<code>f(*a, *b, **c, **d)</code></p></div></div>
+<div class="example-box"><div class="box-title">Example 104: Unpacking at Call Site</div><div class="box-body"><div class="code-box"><pre><code>def add3(x, y, z):
+    return x + y + z
+
+args = (3, 4, 5)
+print(add3(*args))          # 12  same as add3(3, 4, 5)
+
+vals = [10, 20, 30]
+print(add3(*vals))          # 60
+
+# ** unpacks dict as keyword args
+def describe(name, age, city):
+    return f&quot;{name}, {age}, from {city}&quot;
+
+info = {&quot;age&quot;: 25, &quot;city&quot;: &quot;Delhi&quot;}
+print(describe(&quot;Alice&quot;, **info))   # Alice, 25, from Delhi
+
+# Full unpack: *args + **kwargs
+def f(a, b, c, x=0, y=0):
+    return a + b + c + x + y
+
+pos  = [1, 2, 3]
+kw   = {&quot;x&quot;: 10, &quot;y&quot;: 20}
+print(f(*pos, **kw))   # 36
+
+# Multiple unpacking (Python 3.5+)
+a = [1, 2]
+b = [3, 4]
+print([*a, *b])             # [1, 2, 3, 4]  (list merge)
+print({**{&quot;a&quot;:1}, **{&quot;b&quot;:2}})  # {&#x27;a&#x27;:1,&#x27;b&#x27;:2}  (dict merge)
+
+# Practical: pass config dict to function
+import json
+config = {&quot;indent&quot;: 2, &quot;sort_keys&quot;: True}
+data = {&quot;b&quot;: 2, &quot;a&quot;: 1}
+print(json.dumps(data, **config))
+# {&quot;a&quot;: 1, &quot;b&quot;: 2}  (sorted, indented)</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="pass-by-object-reference" class="content-section level-1">
+<h2 class="section-heading">Pass-by-Object-Reference</h2>
+
+<section id="how-python-passes-arguments" class="content-section level-3">
+<h4 class="section-heading">How Python Passes Arguments</h4>
+<div class="concept-box"><div class="box-title">Pass-by-Object-Reference (Call by Sharing)</div><div class="box-body"><p>Python uses <strong>pass-by-object-reference</strong> (also called <em>call by sharing</em>
+or <em>call by assignment</em>). The function receives a <strong>reference to the
+same object</strong> — not a copy of the object, not the variable itself.</p>
+<p><strong>Key rules:</strong></p>
+<ol><li><p><strong>Rebinding</strong> (<code>x = new_val</code>) inside a function creates a
+        <em>new local binding</em>; it <strong>never</strong> affects the caller's variable</p></li><li><p><strong>Mutation</strong> of a mutable object (e.g.\ <code>lst.append(x)</code>)
+        <em>is visible</em> to the caller because both names refer to the same object</p></li><li><p><strong>Immutable objects</strong> (int, str, tuple) cannot be mutated —
+        any “modification” creates a new object; caller is unaffected</p></li></ol></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig105.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Pass-by-Object-Reference Rules Summary</div><div class="box-body"><ul><li><p><strong>Mutation (mutable objects)</strong>: <code>lst.append(x)</code>,
+        <code>dct[k] = v</code>, <code>obj.attr = val</code> — caller <em>sees the change</em></p></li><li><p><strong>Rebinding</strong>: <code>x = something_new</code> inside function —
+        caller's name <em>unaffected</em>; local name now refers to a different object</p></li><li><p><strong>Immutable types</strong> (int, str, float, tuple, frozenset): impossible
+        to mutate in place — any “modification” produces a new object (rebinding)</p></li><li><p><strong>Augmented assignment on mutable</strong>: <code>lst += [x]</code> calls
+        <code>__iadd__</code> which mutates in place and rebinds — caller <em>sees change</em></p></li><li><p><strong>Augmented assignment on immutable</strong>: <code>n += 1</code> creates new
+        object and rebinds local name — caller <em>unaffected</em></p></li><li><p><strong>To prevent mutation</strong>: pass <code>lst[:]</code>, <code>tuple(lst)</code>,
+        or <code>copy.deepcopy(obj)</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 105: Mutation vs Rebinding --- Detailed</div><div class="box-body"><div class="code-box"><pre><code># ── 1. Mutable argument: mutation IS visible ───────────────
+def add_element(lst, val):
+    lst.append(val)        # mutates the object caller passed
+
+my_list = [1, 2, 3]
+add_element(my_list, 99)
+print(my_list)             # [1, 2, 3, 99]  -- changed!
+
+# ── 2. Rebinding does NOT affect caller ─────────────────────
+def try_rebind(lst):
+    lst = [10, 20, 30]     # local rebind; caller unaffected
+    lst.append(40)
+
+my_list2 = [1, 2, 3]
+try_rebind(my_list2)
+print(my_list2)            # [1, 2, 3]  -- unchanged!
+
+# ── 3. Immutable: always creates new object ─────────────────
+def increment(n):
+    n += 1                 # creates new int; local rebind
+    print(f&quot;inside: {n}&quot;)
+
+x = 10
+increment(x)               # inside: 11
+print(x)                   # 10  -- unchanged!
+
+# ── 4. Same with strings ────────────────────────────────────
+def modify_str(s):
+    s += &quot; World&quot;          # new str object
+    print(f&quot;inside: {s}&quot;)
+
+greeting = &quot;Hello&quot;
+modify_str(greeting)       # inside: Hello World
+print(greeting)            # Hello  -- unchanged!
+
+# ── 5. Augmented += on mutable: mutates AND rebinds ────────
+def extend_list(lst):
+    lst += [99]            # calls __iadd__: mutates in place!
+
+L = [1, 2, 3]
+extend_list(L)
+print(L)                   # [1, 2, 3, 99]  -- changed!
+
+# ── 6. How to truly prevent mutation: pass a copy ──────────
+import copy
+
+def safe_process(lst):
+    lst.append(999)        # modifies the copy, not original
+    return lst
+
+original = [1, 2, 3]
+result = safe_process(original[:])     # shallow copy
+print(original)            # [1, 2, 3]  -- safe!
+
+result2 = safe_process(copy.deepcopy(original))
+print(original)            # [1, 2, 3]  -- safe!</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 106:  Tricky Function Questions</div><div class="box-body"><div class="code-box"><pre><code># Q1: Trace the output
+def f(x, lst=[]):
+    lst.append(x)
+    return lst
+
+print(f(1))    # [1]
+print(f(2))    # [1, 2]   shared default!
+print(f(3,[]))  # [3]    explicit arg bypasses default
+print(f(4))    # [1, 2, 4]   still using shared default
+
+# Q2: What does this print?
+def swap(a, b):
+    a, b = b, a            # local rebind; tuple unpacking
+    print(f&quot;inside: {a}, {b}&quot;)
+
+x, y = 10, 20
+swap(x, y)                 # inside: 20, 10
+print(x, y)                # 10 20  -- caller unchanged!
+
+# Q3: Mutable inside immutable (tuple containing list)
+def modify(t):
+    t[0].append(99)        # modifies the LIST inside the tuple
+    # t[0] = []            # would TypeError: tuple is immutable
+
+data = ([1, 2], &quot;hello&quot;)
+modify(data)
+print(data)                # ([1, 2, 99], &#x27;hello&#x27;)  list inside changed!
+
+# Q4: *args receives a tuple
+def check_types(*args):
+    print(type(args))      # &lt;class &#x27;tuple&#x27;&gt;
+    for a in args:
+        print(type(a).__name__, a)
+
+check_types(1, &quot;hi&quot;, [1,2], None)
+# tuple
+# int 1
+# str hi
+# list [1, 2]
+# NoneType None
+
+# Q5: Keyword-only enforcement
+def strict(a, b, *, c):
+    return a + b + c
+
+print(strict(1, 2, c=3))   # 6
+try:
+    strict(1, 2, 3)         # TypeError: c is keyword-only
+except TypeError as e:
+    print(e)</code></pre></div></div></div>
+</section>
+</section>
+<section id="scope-legb-rule" class="content-section level-1">
+<h2 class="section-heading">Scope --- LEGB Rule</h2>
+
+<section id="the-four-scopes" class="content-section level-2">
+<h3 class="section-heading">The Four Scopes</h3>
+
+<section id="legb-lookup-order" class="content-section level-3">
+<h4 class="section-heading">LEGB Lookup Order</h4>
+<div class="concept-box"><div class="box-title">Scope and the LEGB Rule</div><div class="box-body"><p><strong>Scope</strong> defines where in code a name (variable, function, class) is visible
+and accessible. Python resolves names using the <strong>LEGB rule</strong> — a strict
+lookup order through four nested scopes:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig106.png" alt="diagram"></div>
+<p>Python searches <strong>L $\to$ E $\to$ G $\to$ B</strong> in order and uses the
+<em>first</em> match found. If no match exists in any scope, a
+<code>NameError</code> is raised.</p>
+<p><strong>Assignment creates a local binding</strong> unless <code>global</code> or
+<code>nonlocal</code> is declared.  Reading a name never creates a binding.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig107.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Scope Creation Rules</div><div class="box-body"><ul><li><p><strong>New scope created by</strong>: <code>def</code>, <code>class</code>,
+        <code>lambda</code> (not by <code>if</code>, <code>for</code>, <code>while</code>,
+        <code>with</code> — these share the enclosing scope)</p></li><li><p><strong>Assignment in a function</strong> ($=$, <code>+=</code>, <code>for</code> target,
+        <code>with ... as</code>, function parameter, <code>import</code>) creates a
+        <em>local</em> variable in that function's scope</p></li><li><p><strong>Reading only</strong> (no assignment anywhere in the function): looks up
+        LEGB</p></li><li><p><strong>UnboundLocalError</strong>: Python sees an assignment to <code>x</code>
+        anywhere in a function, so it treats <code>x</code> as local — reading
+        <code>x</code> before the assignment raises <code>UnboundLocalError</code>, not
+        <code>NameError</code></p></li><li><p><strong>Inspect scopes</strong>: <code>locals()</code>, <code>globals()</code>,
+        <code>vars()</code>, <code>dir()</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 107: LEGB Lookup --- Step by Step</div><div class="box-body"><div class="code-box"><pre><code># Built-in scope
+print(len([1,2,3]))    # len found in B (built-in)
+ 
+# Global scope
+x = &quot;global&quot;
+def show_global():
+    print(x)           # not in L or E; found in G
+show_global()          # global
+ 
+# Local shadows global
+x = &quot;global&quot;
+def show_local():
+    x = &quot;local&quot;        # creates LOCAL binding
+    print(x)           # found in L
+show_local()           # local
+print(x)               # global  (global unchanged)
+ 
+# LEGB full chain
+PI = 3.14159           # G
+ 
+def outer():
+    base = 10          # E (for inner)
+ 
+    def inner():
+        radius = 5     # L
+        area = PI * radius ** 2    # radius:L, PI:G
+        result = base * radius     # base:E
+        print(f&quot;area={area:.2f}, result={result}&quot;)
+ 
+    inner()
+ 
+outer()   # area=78.54, result=50
+ 
+# if/for do NOT create new scope
+for i in range(3):
+    loop_var = i * 2
+print(loop_var)   # 4  (loop_var leaks into enclosing scope!)
+# this would be an error in Java/C++ -- not in Python
+ 
+# UnboundLocalError trap
+val = 100
+def tricky():
+    print(val)    # ERROR: Python sees &#x27;val = ...&#x27; below,
+    val = 200     # so &#x27;val&#x27; is treated as LOCAL throughout
+# tricky()       # UnboundLocalError: free variable &#x27;val&#x27; ...</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 108: locals(), globals(), vars() Introspection</div><div class="box-body"><div class="code-box"><pre><code>MODULE_VAR = 42
+ 
+def demo(a, b):
+    c = a + b
+    d = &quot;local&quot;
+    print(locals())   # {&#x27;a&#x27;: 10, &#x27;b&#x27;: 20, &#x27;c&#x27;: 30, &#x27;d&#x27;: &#x27;local&#x27;}
+ 
+demo(10, 20)
+ 
+# globals() returns the module-level namespace dict
+g = globals()
+print(&quot;MODULE_VAR&quot; in g)   # True
+print(g[&quot;MODULE_VAR&quot;])     # 42
+ 
+# Dynamic lookup using globals()
+def call_by_name(func_name, *args):
+    func = globals()[func_name]   # look up function by name string
+    return func(*args)
+ 
+def add(a, b): return a + b
+def mul(a, b): return a * b
+ 
+print(call_by_name(&quot;add&quot;, 3, 4))   # 7
+print(call_by_name(&quot;mul&quot;, 3, 4))   # 12</code></pre></div></div></div>
+</section>
+</section>
+<section id="global-keyword" class="content-section level-2">
+<h3 class="section-heading">global Keyword</h3>
+
+<section id="accessing-and-modifying-module-level-names" class="content-section level-3">
+<h4 class="section-heading">Accessing and Modifying Module-Level Names</h4>
+<div class="concept-box"><div class="box-title">global Keyword --- Definition</div><div class="box-body"><p>By default, <em>assigning</em> to a name inside a function creates a <strong>local</strong>
+variable. To make an assignment target the <strong>module-level</strong> (global) name
+instead, declare it with <code>global</code>:</p>
+<p>\[\texttt{global}\ \langle\textit{name}\rangle\]</p>
+<p>Rules:</p>
+<ul><li><p><code>global x</code> must appear <em>before</em> any use of <code>x</code> in the
+        function (best practice: at the very top of the function)</p></li><li><p>After <code>global x</code>, <em>all</em> reads and writes in that function
+        refer to the global <code>x</code></p></li><li><p><strong>Reading</strong> a global without assignment does <em>not</em> need
+        <code>global</code> — LEGB handles it automatically</p></li><li><p>Can declare multiple: <code>global x, y, z</code></p></li><li><p><strong>Anti-pattern</strong>: excessive <code>global</code> use makes code hard to
+        test and reason about; prefer returning values</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig108.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 109: global --- Counter, Registry, and the No-global Reading Rule</div><div class="box-body"><div class="code-box"><pre><code>#  global needed for ASSIGNMENT 
+counter = 0
+ 
+def increment():
+    global counter         # declare intent to modify global
+    counter += 1
+ 
+increment(); increment(); increment()
+print(counter)             # 3
+ 
+# ── Without global: creates local, global untouched ─────────
+total = 100
+def try_modify():
+    total = 200            # creates LOCAL &#x27;total&#x27;; global unchanged
+    print(f&quot;inside: {total}&quot;)
+ 
+try_modify()               # inside: 200
+print(total)               # 100  -- global unchanged!
+ 
+# ── Reading global WITHOUT global keyword (no declaration needed) ──
+PI = 3.14159
+def area(r):
+    return PI * r ** 2     # reads PI from G via LEGB -- no &#x27;global&#x27; needed
+ 
+print(area(5))             # 78.53975
+ 
+# ── UnboundLocalError: assignment makes var local throughout ─
+value = 50
+def broken():
+    print(value)           # UnboundLocalError! assignment below
+    value = 99             # Python treats &#x27;value&#x27; as local in whole func
+ 
+# Fix with global:
+def fixed():
+    global value
+    print(value)           # 50
+    value = 99
+fixed()
+print(value)               # 99  (global modified)
+ 
+# ── Practical: function registry ────────────────────────────
+_registry = {}
+ 
+def register(func):
+    global _registry
+    _registry[func.__name__] = func
+    return func
+ 
+@register
+def add(a, b): return a + b
+ 
+@register
+def mul(a, b): return a * b
+ 
+print(_registry)     # {&#x27;add&#x27;: &lt;function add...&gt;, &#x27;mul&#x27;: &lt;function mul...&gt;}
+print(_registry[&quot;add&quot;](3, 4))   # 7</code></pre></div></div></div>
+</section>
+</section>
+<section id="nonlocal-keyword" class="content-section level-2">
+<h3 class="section-heading">nonlocal Keyword</h3>
+
+<section id="rebinding-in-enclosing-scope-closures" class="content-section level-3">
+<h4 class="section-heading">Rebinding in Enclosing Scope (Closures)</h4>
+<div class="concept-box"><div class="box-title">nonlocal Keyword --- Definition</div><div class="box-body"><p><code>nonlocal</code> rebinds a name in the <strong>nearest enclosing
+(non-global) function scope</strong>. It is needed <em>only for assignment</em>; reading
+an enclosing variable works automatically via LEGB.</p>
+<p>\[\texttt{nonlocal}\ \langle\textit{name}\rangle\]</p>
+<p>Rules:</p>
+<ul><li><p>The name must <em>already exist</em> in an enclosing function scope
+        (not module-level) — <code>nonlocal x</code> when <code>x</code> is only global
+        raises <code>SyntaxError</code></p></li><li><p>After declaration, all reads <em>and</em> writes refer to the enclosing
+        variable</p></li><li><p><strong>Mutation of a mutable object does NOT require <code>nonlocal</code></strong>:
+        <code>lst.append(x)</code> mutates the object the enclosing name refers to;
+        it never rebinds the name</p></li><li><p>Chains: if multiple levels nest, <code>nonlocal</code> reaches the
+        <em>nearest</em> enclosing scope that has the name</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig109.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig110.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 110: nonlocal --- Counter Closure and State Mutation</div><div class="box-body"><div class="code-box"><pre><code># ── nonlocal needed for rebinding ────────────────────────────
+def make_counter(start=0):
+    count = start              # E scope
+ 
+    def increment(step=1):
+        nonlocal count         # declare: modify E scope&#x27;s &#x27;count&#x27;
+        count += step          # rebind enclosing count
+        return count
+ 
+    def reset():
+        nonlocal count
+        count = start
+ 
+    def get():
+        return count           # READ only -- no nonlocal needed
+ 
+    return increment, reset, get
+ 
+inc, rst, get = make_counter(0)
+print(inc())      # 1
+print(inc())      # 2
+print(inc(5))     # 7
+print(get())      # 7
+rst()
+print(get())      # 0  (reset to start)
+ 
+# ── WITHOUT nonlocal: reading works, rebinding fails ─────────
+def outer():
+    x = 10
+ 
+    def inner_read():
+        print(x)       # OK: LEGB reads from E
+ 
+    def inner_write():
+        x += 1         # UnboundLocalError! treated as local
+ 
+    inner_read()       # 10
+ 
+outer()
+# inner_write() would crash with UnboundLocalError
+ 
+# ── Mutation of mutable does NOT need nonlocal ───────────────
+def make_history():
+    log = []                   # E scope, mutable
+ 
+    def record(event):
+        log.append(event)      # MUTATES the list; no nonlocal needed
+        return log
+ 
+    def clear():
+        log.clear()            # also mutation; no nonlocal needed
+ 
+    return record, clear
+ 
+rec, clr = make_history()
+print(rec(&quot;login&quot;))    # [&#x27;login&#x27;]
+print(rec(&quot;query&quot;))    # [&#x27;login&#x27;, &#x27;query&#x27;]
+clr()
+print(rec(&quot;logout&quot;))   # [&#x27;logout&#x27;]   (fresh after clear)
+ 
+# ── nonlocal chains multiple levels ─────────────────────────
+def level1():
+    n = 0
+ 
+    def level2():
+ 
+        def level3():
+            nonlocal n         # skips level2; reaches level1&#x27;s n
+            n += 100
+ 
+        level3()
+        print(f&quot;after level3: {n}&quot;)   # 100
+ 
+    level2()
+    print(f&quot;level1 n: {n}&quot;)           # 100
+ 
+level1()</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 111: Closures --- State via Enclosing Scope</div><div class="box-body"><div class="code-box"><pre><code># Closure: inner function &quot;closes over&quot; enclosing variables
+def make_multiplier(factor):
+    &quot;&quot;&quot;Return a function that multiplies its argument by factor.&quot;&quot;&quot;
+    def multiply(x):
+        return x * factor      # factor captured from E scope
+    return multiply
+ 
+double = make_multiplier(2)
+triple = make_multiplier(3)
+ 
+print(double(5))   # 10
+print(triple(5))   # 15
+print(double.__closure__)   # (&lt;cell at 0x...&gt;,)
+print(double.__closure__[0].cell_contents)  # 2
+ 
+# Closure cell shared across multiple inner functions
+def make_adder_pair(n):
+    def add(x):
+        nonlocal n
+        n += x
+        return n
+    def subtract(x):
+        nonlocal n
+        n -= x
+        return n
+    return add, subtract
+ 
+add5, sub5 = make_adder_pair(100)
+print(add5(10))    # 110
+print(sub5(5))     # 105  (shared n)
+print(add5(20))    # 125
+ 
+# GOTCHA: closure captures variable, not value
+def make_funcs_bad():
+    funcs = []
+    for i in range(3):
+        funcs.append(lambda: i)   # ALL capture the SAME &#x27;i&#x27;
+    return funcs
+ 
+fs = make_funcs_bad()
+print([f() for f in fs])   # [2, 2, 2]  -- all see final i=2!
+ 
+# FIX: capture by default argument (snapshot the value)
+def make_funcs_good():
+    funcs = []
+    for i in range(3):
+        funcs.append(lambda i=i: i)   # default arg binds current i
+    return funcs
+ 
+fs2 = make_funcs_good()
+print([f() for f in fs2])  # [0, 1, 2]  -- correct!</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 112:  Scope Tracing Questions</div><div class="box-body"><div class="code-box"><pre><code># Q1: What does this print?
+x = 1
+def f():
+    x = 2
+    def g():
+        x = 3
+        print(x)   # L: 3
+    g()
+    print(x)       # L (f&#x27;s): 2
+f()
+print(x)           # G: 1
+# Output: 3 / 2 / 1
+ 
+# Q2: global vs local -- UnboundLocalError
+y = 10
+def h():
+    y += 5         # UnboundLocalError: y treated as local
+# h()             # would crash
+ 
+def h_fixed():
+    global y
+    y += 5
+ 
+h_fixed()
+print(y)           # 15
+ 
+# Q3: nonlocal or mutation?
+def outer():
+    data = []
+ 
+    def add_item(x):
+        data.append(x)   # mutation: no nonlocal needed
+        # data = [x]     # THIS would need nonlocal (rebinding)
+ 
+    add_item(1); add_item(2); add_item(3)
+    print(data)    # [1, 2, 3]
+ 
+outer()
+ 
+# Q4: closure variable capture
+def make_powers():
+    return [lambda x, n=n: x**n for n in range(1, 4)]
+ 
+square, cube_fn, fourth = make_powers()
+print(square(3))    # 3   (3^1)
+print(cube_fn(3))   # 9   (3^2)
+print(fourth(3))    # 27  (3^3)
+ 
+# Q5: scope chain
+a = &quot;global_a&quot;
+def outer2():
+    b = &quot;enclosing_b&quot;
+    def inner():
+        c = &quot;local_c&quot;
+        print(a, b, c)   # G, E, L -- all accessible
+ 
+    inner()
+ 
+outer2()   # global_a  enclosing_b  local_c
+ 
+# Q6: What happens here?
+total = 0
+def add_to_total(n):
+    total = total + n  # UnboundLocalError! (no global declaration)
+    return total
+ 
+# Fix:
+def add_to_total_fixed(n):
+    global total
+    total = total + n
+    return total
+ 
+print(add_to_total_fixed(5))   # 5
+print(add_to_total_fixed(3))   # 8</code></pre></div></div></div>
+</section>
+<section id="global-vs-nonlocal-quick-reference" class="content-section level-3">
+<h4 class="section-heading">global vs nonlocal --- Quick Reference</h4>
+<div class="concept-box"><div class="box-title">global vs nonlocal --- Decision Guide</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig111.png" alt="diagram"></div>
+<ul><li><p>Use <strong><code>global</code></strong> when the target variable lives at
+        <em>module level</em></p></li><li><p>Use <strong><code>nonlocal</code></strong> when the target variable lives in an
+        <em>enclosing function</em> (closure)</p></li><li><p>Neither is needed to <em>read</em> an outer variable or to
+        <em>mutate a mutable object</em> (list, dict, set) in an outer scope</p></li><li><p>Prefer <strong>returning values</strong> over <code>global</code> whenever possible
+        — cleaner, testable, side-effect-free</p></li></ul></div></div>
+</section>
+</section>
+</section>
+<section id="recursion" class="content-section level-1">
+<h2 class="section-heading">Recursion</h2>
+
+<section id="mechanics" class="content-section level-2">
+<h3 class="section-heading">Mechanics</h3>
+
+<section id="call-stack-base-case-recursive-case" class="content-section level-3">
+<h4 class="section-heading">Call Stack, Base Case, Recursive Case</h4>
+<div class="concept-box"><div class="box-title">Recursion --- Definition and Mechanics</div><div class="box-body"><p>A function is <strong>recursive</strong> when it calls itself (directly or indirectly) as
+part of its own definition.</p>
+<p>Every recursive function needs two components:</p>
+<ol><li><p><strong>Base case</strong>: a condition under which the function returns
+        <em>directly</em> without another recursive call — terminates the recursion</p></li><li><p><strong>Recursive case</strong>: reduces the problem toward the base case and
+        makes a recursive call with the reduced input</p></li></ol>
+<p><strong>Call stack mechanics</strong>:</p>
+<ul><li><p>Each function call pushes a <strong>frame</strong> (local variables, return
+        address) onto the call stack</p></li><li><p>When the call returns, its frame is <strong>popped</strong></p></li><li><p>CPython's default recursion limit is <strong>1000</strong> frames;
+        exceeding it raises <code>RecursionError: maximum recursion depth exceeded</code></p></li><li><p>Check / change: <code>sys.getrecursionlimit()</code>,
+        <code>sys.setrecursionlimit(n)</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig112.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Recursion Properties and Limits</div><div class="box-body"><ul><li><p><strong>Stack depth</strong>: each recursive call adds one frame; depth = number
+        of open calls at any instant</p></li><li><p><strong>Maximum depth</strong>: CPython default is 1000;
+        <code>sys.setrecursionlimit(10000)</code> can increase it (use with care)</p></li><li><p><strong>Space complexity</strong>: $O(\text{depth})$ stack frames, each holding
+        local variables</p></li><li><p><strong>RecursionError</strong> most often caused by: missing base case,
+        wrong base case condition, or input that never reaches the base case</p></li><li><p><strong>No tail-call optimisation (TCO)</strong> in Python: even a pure tail-recursive
+        function uses one frame per call (Python intentionally omits TCO)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 113: Factorial --- Base Case, Recursive Case, RecursionError</div><div class="box-body"><div class="code-box"><pre><code>import sys
+
+def factorial(n):
+    &quot;&quot;&quot;n! for non-negative integer n.&quot;&quot;&quot;
+    if n == 0:           # BASE CASE: terminates recursion
+        return 1
+    return n * factorial(n - 1)   # RECURSIVE CASE: n reduced by 1 each time
+
+print(factorial(0))   # 1
+print(factorial(5))   # 120
+print(factorial(10))  # 3628800
+
+# Recursion depth
+def depth_count(n):
+    if n == 0:
+        return 0
+    return 1 + depth_count(n - 1)
+
+print(depth_count(100))   # 100 frames on the stack at peak
+
+# RecursionError: no base case reached
+def bad_recursion(n):
+    return bad_recursion(n - 1)   # never reaches 0 for negative n
+
+try:
+    bad_recursion(5)
+except RecursionError as e:
+    print(str(e)[:50])   # maximum recursion depth exceeded
+
+# Check and change limit
+print(sys.getrecursionlimit())    # 1000 (default)
+# sys.setrecursionlimit(5000)     # increase carefully</code></pre></div></div></div>
+</section>
+</section>
+<section id="tracing-recursive-calls" class="content-section level-2">
+<h3 class="section-heading">Tracing Recursive Calls</h3>
+
+<section id="call-trees-node-count-fibonacci" class="content-section level-3">
+<h4 class="section-heading">Call Trees, Node Count, Fibonacci</h4>
+<div class="concept-box"><div class="box-title">Tracing Recursion --- Call Tree Method</div><div class="box-body"><p>To trace any recursive function:</p>
+<ol><li><p>Draw the <strong>call tree</strong>: each node is one function call; children are
+        the recursive calls it makes</p></li><li><p><strong>Total activations</strong> = total number of nodes (including leaves)</p></li><li><p>Compute return values <strong>bottom-up</strong>: leaves return first; parents
+        combine children's returns</p></li></ol>
+<p><strong>Fibonacci complexity</strong>:
+\[\texttt{fib(n) = fib(n-1) + fib(n-2)}\]</p>
+<ul><li><p>Total calls for <code>fib(n)</code>: $T(n) = T(n-1)+T(n-2)+1$
+        $\approx 2^{n/2}$ — <strong>exponential</strong></p></li><li><p>Recomputes the same sub-problems many times (e.g.\ <code>fib(2)</code>
+        computed 3 times inside <code>fib(5)</code>)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig113.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Call Count Formulas for Common Recursions</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig114.png" alt="diagram"></div>
+<p><strong>GATE tip</strong>: count nodes, not edges. Each node = one function call = one frame.</p></div></div>
+<div class="example-box"><div class="box-title">Example 114: Tracing Factorial and Fibonacci --- Manual Unwinding</div><div class="box-body"><div class="code-box"><pre><code># Traced factorial(4)
+# factorial(4) -&gt; 4 * factorial(3)
+#                      3 * factorial(2)
+#                               2 * factorial(1)
+#                                        1 * factorial(0)
+#                                                  = 1   (base)
+#                                        = 1*1 = 1
+#                               = 2*1 = 2
+#                      = 3*2 = 6
+# = 4*6 = 24
+
+# Instrument to count calls
+call_count = 0
+
+def fib_count(n):
+    global call_count
+    call_count += 1
+    if n &lt;= 1:
+        return n
+    return fib_count(n-1) + fib_count(n-2)
+
+for k in range(1, 8):
+    call_count = 0
+    result = fib_count(k)
+    print(f&quot;fib({k}) = {result:3d}  calls = {call_count}&quot;)
+# fib(1) =   1  calls =   1
+# fib(2) =   1  calls =   3
+# fib(3) =   2  calls =   5
+# fib(4) =   3  calls =   9
+# fib(5) =   5  calls =  15
+# fib(6) =   8  calls =  25
+# fib(7) =  13  calls =  41
+
+# Pattern: calls(n) = calls(n-1) + calls(n-2) + 1
+# Roughly doubles every 2 steps -&gt; exponential
+
+# GATE question: how many times is fib(2) called in fib(6)?
+# Answer: 3 times (draw the tree to verify)</code></pre></div></div></div>
+</section>
+</section>
+<section id="return-value-aggregation" class="content-section level-2">
+<h3 class="section-heading">Return Value Aggregation</h3>
+
+<section id="accumulating-results-bottom-up" class="content-section level-3">
+<h4 class="section-heading">Accumulating Results Bottom-Up</h4>
+<div class="concept-box"><div class="box-title">Return Value Aggregation Patterns</div><div class="box-body"><p>Recursive functions aggregate results from sub-calls by:</p>
+<ul><li><p><strong>Sum</strong>: <code>return f(n-1) + value</code></p></li><li><p><strong>Count</strong>: <code>return f(n-1) + 1</code> or <code>+ (1 if cond else 0)</code></p></li><li><p><strong>Max/Min</strong>: <code>return max(f(left), f(right), current)</code></p></li><li><p><strong>List building</strong>: <code>return [current] + f(rest)</code></p></li><li><p><strong>Boolean</strong>: <code>return cond and f(rest)</code></p></li></ul>
+<p><strong>Tracing rule</strong>: resolve the deepest call first (base case), then work upward
+substituting return values.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig115.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 115: Aggregation --- Sum, Count, Flatten, Palindrome</div><div class="box-body"><div class="code-box"><pre><code># 1. Sum of digits
+def digit_sum(n):
+    n = abs(n)
+    if n &lt; 10:
+        return n
+    return n % 10 + digit_sum(n // 10)
+
+print(digit_sum(123))    # 6  (1+2+3)
+print(digit_sum(9999))   # 36
+
+# 2. Count occurrences in nested list
+def count_in(lst, target):
+    if not lst:
+        return 0
+    head, *tail = lst
+    if isinstance(head, list):
+        return count_in(head, target) + count_in(tail, target)
+    return (1 if head == target else 0) + count_in(tail, target)
+
+data = [1, [2, 1, [3, 1]], 1, [1]]
+print(count_in(data, 1))   # 5
+
+# 3. Flatten nested list
+def flatten(lst):
+    if not lst:
+        return []
+    head, *tail = lst
+    if isinstance(head, list):
+        return flatten(head) + flatten(tail)
+    return [head] + flatten(tail)
+
+nested = [1, [2, [3, 4]], [5, 6], 7]
+print(flatten(nested))   # [1, 2, 3, 4, 5, 6, 7]
+
+# 4. Palindrome check
+def is_palindrome(s):
+    if len(s) &lt;= 1:
+        return True
+    return s[0] == s[-1] and is_palindrome(s[1:-1])
+
+print(is_palindrome(&quot;racecar&quot;))  # True
+print(is_palindrome(&quot;python&quot;))   # False
+
+# 5. Power (fast exponentiation: O(log n) calls)
+def power(base, exp):
+    if exp == 0:    return 1
+    if exp % 2 == 0:
+        half = power(base, exp // 2)
+        return half * half        # only ONE recursive call!
+    return base * power(base, exp - 1)
+
+print(power(2, 10))   # 1024
+print(power(3, 5))    # 243
+
+# 6. Binary search (recursive)
+def binary_search(lst, target, lo=0, hi=None):
+    if hi is None: hi = len(lst) - 1
+    if lo &gt; hi:    return -1
+    mid = (lo + hi) // 2
+    if lst[mid] == target:   return mid
+    if lst[mid] &lt; target:    return binary_search(lst, target, mid+1, hi)
+    return binary_search(lst, target, lo, mid-1)
+
+arr = [1,3,5,7,9,11,13,15,17,19]
+print(binary_search(arr, 11))   # 5
+print(binary_search(arr, 6))    # -1</code></pre></div></div></div>
+</section>
+</section>
+<section id="recursive-vs-iterative-equivalence" class="content-section level-2">
+<h3 class="section-heading">Recursive vs Iterative Equivalence</h3>
+
+<section id="converting-recursion-to-iteration" class="content-section level-3">
+<h4 class="section-heading">Converting Recursion to Iteration</h4>
+<div class="concept-box"><div class="box-title">Recursive $\equiv$ Iterative + Explicit Stack</div><div class="box-body"><p>Any recursive algorithm can be converted to an iterative one by:</p>
+<ol><li><p>Replacing the call stack with an <strong>explicit stack</strong> (Python
+        <code>list</code> used as LIFO)</p></li><li><p>Pushing the “work to do” instead of making a recursive call</p></li><li><p>Popping from the stack and processing until the stack is empty</p></li></ol>
+<p><strong>When to prefer iterative</strong>:</p>
+<ul><li><p>Deep recursion risks <code>RecursionError</code> (stack depth $&gt; 1000$)</p></li><li><p>Performance: function call overhead is eliminated</p></li><li><p>Python has no tail-call optimisation — even pure tail recursion uses one
+        frame per call</p></li></ul>
+<p><strong>Tail recursion</strong>: a recursive call is in <em>tail position</em> when it is the
+<em>last action</em> of the function (no further computation after it returns).
+Python does <strong>not</strong> optimise tail calls — tail-recursive functions still
+consume $O(n)$ stack frames.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig116.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 116: Recursive $\leftrightarrow$ Iterative --- Three Patterns</div><div class="box-body"><div class="code-box"><pre><code># ── 1. Factorial: trivial tail recursion -&gt; loop ───────────────
+def fact_recursive(n):
+    if n == 0: return 1
+    return n * fact_recursive(n - 1)    # NOT tail: multiply after return
+
+def fact_iterative(n):
+    result = 1
+    while n &gt; 0:
+        result *= n
+        n -= 1
+    return result
+
+print(fact_iterative(10))   # 3628800
+
+# ── 2. Fibonacci: recursion -&gt; DP / iteration ─────────────────
+def fib_iterative(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+print([fib_iterative(k) for k in range(8)])
+# [0, 1, 1, 2, 3, 5, 8, 13]
+
+# ── 3. DFS (tree traversal): recursion -&gt; explicit stack ───────
+def dfs_recursive(graph, node, visited=None):
+    if visited is None: visited = set()
+    visited.add(node)
+    for nb in graph.get(node, []):
+        if nb not in visited:
+            dfs_recursive(graph, nb, visited)
+    return visited
+
+def dfs_iterative(graph, start):
+    visited = set()
+    stack   = [start]
+    while stack:
+        node = stack.pop()      # LIFO -- explicit stack replaces call stack
+        if node not in visited:
+            visited.add(node)
+            stack.extend(nb for nb in graph.get(node, [])
+                         if nb not in visited)
+    return visited
+
+graph = {1:[2,3], 2:[4,5], 3:[6], 4:[], 5:[], 6:[]}
+print(dfs_recursive(graph, 1))  # {1, 2, 3, 4, 5, 6}
+print(dfs_iterative(graph, 1))  # {1, 2, 3, 4, 5, 6}
+
+# ── 4. Tail recursion: Python still uses O(n) frames ───────────
+def fact_tail(n, acc=1):
+    if n == 0: return acc
+    return fact_tail(n - 1, acc * n)  # tail position: no work after return
+
+# Still O(n) stack frames in Python (no TCO)
+# For n=1000, this still RecursionErrors; use the loop version</code></pre></div></div></div>
+</section>
+</section>
+<section id="memoisation" class="content-section level-2">
+<h3 class="section-heading">Memoisation</h3>
+
+<section id="caching-with-lru-cache-and-manual-dicts" class="content-section level-3">
+<h4 class="section-heading">Caching with lru_cache and Manual Dicts</h4>
+<div class="concept-box"><div class="box-title">Memoisation --- Definition</div><div class="box-body"><p><strong>Memoisation</strong> (from <em>memo</em>, Latin for “to be remembered”) is an
+optimisation that <strong>caches the return values</strong> of a function so that repeated
+calls with the same arguments are returned instantly from cache instead of
+recomputed.</p>
+<p><strong>Effect on Fibonacci</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig117.png" alt="diagram"></div>
+<p><strong><code>functools.lru_cache</code></strong>:</p>
+<ul><li><p><code>@lru_cache(maxsize=None)</code>: unlimited cache (equivalent to
+        <code>@cache</code> in Python 3.9+)</p></li><li><p><code>@lru_cache(maxsize=128)</code>: keeps the 128 most recently used;
+        evicts oldest when full (Least Recently Used policy)</p></li><li><p>Arguments must be <strong>hashable</strong> (the cache key is the args tuple)</p></li><li><p><code>func.cache_info()</code>: <code>hits, misses, maxsize, currsize</code></p></li><li><p><code>func.cache_clear()</code>: empties the cache</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig118.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 117: lru_cache --- Fibonacci, Coin Change, Climbing Stairs</div><div class="box-body"><div class="code-box"><pre><code>from functools import lru_cache, cache
+
+# ── 1. Fibonacci with lru_cache ───────────────────────────────
+@lru_cache(maxsize=None)
+def fib(n):
+    if n &lt;= 1: return n
+    return fib(n-1) + fib(n-2)
+
+print(fib(50))    # 12586269025  (instant with cache)
+print(fib(100))   # 354224848179261915075
+
+print(fib.cache_info())
+# CacheInfo(hits=97, misses=101, maxsize=None, currsize=101)
+
+fib.cache_clear()   # reset cache
+
+# ── 2. Manual dict cache (explicit, same effect) ──────────────
+memo = {}
+def fib_manual(n):
+    if n in memo: return memo[n]
+    if n &lt;= 1:    return n
+    memo[n] = fib_manual(n-1) + fib_manual(n-2)
+    return memo[n]
+
+print(fib_manual(30))  # 832040
+
+# ── 3. Coin change (number of ways) ──────────────────────────
+@lru_cache(maxsize=None)
+def coin_ways(amount, coins=(1, 5, 10, 25)):
+    if amount == 0: return 1
+    if amount &lt; 0:  return 0
+    return sum(coin_ways(amount - c, coins) for c in coins)
+
+print(coin_ways(30))   # number of ways to make 30 cents
+
+# ── 4. Climbing stairs (1 or 2 steps at a time) ──────────────
+@cache    # Python 3.9+: same as lru_cache(maxsize=None)
+def climb(n):
+    if n &lt;= 1: return 1
+    if n == 2: return 2
+    return climb(n-1) + climb(n-2)
+
+print([climb(k) for k in range(1, 9)])
+# [1, 2, 3, 5, 8, 13, 21, 34]  (Fibonacci-like)
+
+# ── 5. Measuring the speedup ─────────────────────────────────
+import time
+
+def fib_slow(n):
+    if n &lt;= 1: return n
+    return fib_slow(n-1) + fib_slow(n-2)
+
+t0 = time.perf_counter()
+fib_slow(35)
+print(f&quot;Without cache: {time.perf_counter()-t0:.3f}s&quot;)   # ~2-5s
+
+t0 = time.perf_counter()
+fib(35)
+print(f&quot;With cache   : {time.perf_counter()-t0:.6f}s&quot;)   # ~0.000001s
+
+# ── 6. Cache with maxsize (LRU eviction) ─────────────────────
+@lru_cache(maxsize=4)
+def expensive(n):
+    print(f&quot;  computing {n}&quot;)
+    return n * n
+
+expensive(1); expensive(2); expensive(3); expensive(4)
+expensive(1)   # HIT (still in cache)
+expensive(5)   # MISS -&gt; evicts LRU entry (2)
+expensive(2)   # MISS again (was evicted)
+print(expensive.cache_info())</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 118: Recursion --- Classic GATE Problems</div><div class="box-body"><div class="code-box"><pre><code># ── Tower of Hanoi (exactly 2^n - 1 moves) ────────────────────
+def hanoi(n, src=&quot;A&quot;, dst=&quot;C&quot;, aux=&quot;B&quot;):
+    if n == 1:
+        print(f&quot;Move disk 1: {src} -&gt; {dst}&quot;)
+        return 1
+    moves  = hanoi(n-1, src, aux, dst)   # move n-1 to aux
+    print(f&quot;Move disk {n}: {src} -&gt; {dst}&quot;)
+    moves += hanoi(n-1, aux, dst, src)   # move n-1 from aux to dst
+    return moves + 1
+
+total = hanoi(3)
+print(f&quot;Total moves: {total}&quot;)   # 7  (= 2^3 - 1)
+
+% ── Permutations of a string ──────────────────────────────────
+def permutations(s):
+    if len(s) &lt;= 1:
+        return [s]
+    result = []
+    for i, ch in enumerate(s):
+        rest = s[:i] + s[i+1:]
+        for perm in permutations(rest):
+            result.append(ch + perm)
+    return result
+
+print(sorted(permutations(&quot;ABC&quot;)))
+# [&#x27;ABC&#x27;,&#x27;ACB&#x27;,&#x27;BAC&#x27;,&#x27;BCA&#x27;,&#x27;CAB&#x27;,&#x27;CBA&#x27;]  (3! = 6)
+
+# ── GCD (Euclidean algorithm) ─────────────────────────────────
+def gcd(a, b):
+    if b == 0: return a
+    return gcd(b, a % b)
+
+print(gcd(48, 18))   # 6
+# Call trace: gcd(48,18) -&gt; gcd(18,12) -&gt; gcd(12,6) -&gt; gcd(6,0) = 6
+
+# ── Exponentiation by squaring O(log n) calls ─────────────────
+@lru_cache(maxsize=None)
+def fast_pow(base, exp):
+    if exp == 0: return 1
+    if exp % 2 == 0:
+        half = fast_pow(base, exp // 2)
+        return half * half       # only 1 recursive call!
+    return base * fast_pow(base, exp - 1)
+
+print(fast_pow(2, 32))   # 4294967296
+print(fast_pow.cache_info())
+
+# ── GATE question: count total calls for fib(6) ──────────────
+# Answer: calls(n) = calls(n-1) + calls(n-2) + 1
+# calls(0)=1, calls(1)=1
+# calls(2)=3, calls(3)=5, calls(4)=9, calls(5)=15, calls(6)=25
+# fib(6) makes 25 total function calls (without memoisation)
+
+# ── GATE question: what is the output? ──────────────────────
+def mystery(n):
+    if n &lt;= 0: return 0
+    return mystery(n-2) + n
+
+print(mystery(6))   # mystery(4)+6 = mystery(2)+4+6 = mystery(0)+2+4+6 = 0+12 = 12
+print(mystery(5))   # mystery(3)+5 = mystery(1)+3+5 = mystery(-1)+1+3+5 = 0+9 = 9</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="lambda-functions" class="content-section level-1">
+<h2 class="section-heading">Lambda Functions</h2>
+
+<section id="anonymous-single-expression-functions" class="content-section level-3">
+<h4 class="section-heading">Anonymous Single-Expression Functions</h4>
+<div class="concept-box"><div class="box-title">Lambda --- Syntax and Semantics</div><div class="box-body"><p>A <strong>lambda</strong> is an anonymous, single-expression function created with the
+<code>lambda</code> keyword:</p>
+<p>\[\texttt{lambda}\ \langle\textit{params}\rangle\texttt{:}\ \langle\textit{expression}\rangle\]</p>
+<ul><li><p>The body must be a <strong>single expression</strong> (not statements like
+        <code>if/else</code> blocks, <code>for</code> loops, or <code>return</code>)</p></li><li><p>The expression's value is <strong>implicitly returned</strong> (no <code>return</code>
+        keyword)</p></li><li><p>Produces a <strong>function object</strong>, identical in capability to a
+        <code>def</code> — same scoping rules, closures, and first-class status</p></li><li><p>Can have <strong>default arguments</strong>: <code>lambda x, n=2: x**n</code></p></li><li><p>Can have <strong>*args</strong> and <strong>**kwargs</strong></p></li><li><p>Ternary expression <em>is</em> allowed (it is an expression):
+        <code>lambda x: x if x &gt; 0 else -x</code></p></li></ul>
+<p><strong>When to use lambda</strong>: short, throwaway functions passed as arguments.
+Prefer <code>def</code> when the function is complex, reused, or needs a docstring.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig119.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Lambda Properties and Constraints</div><div class="box-body"><ul><li><p><strong>Allowed</strong>: expressions, ternary <code>(a if c else b)</code>,
+        nested lambdas, <code>*args</code>, <code>**kwargs</code>, default args,
+        function calls, comprehensions</p></li><li><p><strong>Not allowed</strong>: statements (<code>print</code> is a function in
+        Python 3, so <code>lambda: print("hi")</code> is fine; but <code>for</code>,
+        <code>while</code>, <code>if/elif/else</code> <em>blocks</em>, <code>return</code>,
+        <code>assert</code>, <code>raise</code> are not)</p></li><li><p><strong>Debugging</strong>: lambda functions show as <code>&lt;lambda&gt;</code> in
+        tracebacks — hard to debug; prefer <code>def</code> in complex code</p></li><li><p><strong>Late binding</strong>: same closure behaviour as nested <code>def</code>
+        (loop lambda bug applies equally)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 119: Lambda --- All Syntactic Forms</div><div class="box-body"><div class="code-box"><pre><code># Basic
+square = lambda x: x ** 2
+print(square(5))           # 25
+print(type(square))        # &lt;class &#x27;function&#x27;&gt;
+print(square.__name__)     # &lt;lambda&gt;
+ 
+# Multiple parameters
+add  = lambda x, y: x + y
+dist = lambda x1, y1, x2, y2: ((x2-x1)**2 + (y2-y1)**2)**0.5
+print(add(3, 4))           # 7
+print(dist(0,0,3,4))       # 5.0
+ 
+# Default arguments
+power = lambda x, n=2: x ** n
+print(power(3))            # 9   (n=2 default)
+print(power(3, 3))         # 27
+ 
+# Ternary in lambda body
+absolute = lambda x: x if x &gt;= 0 else -x
+sign     = lambda x: 1 if x &gt; 0 else (-1 if x &lt; 0 else 0)
+print(absolute(-5), sign(-3), sign(0), sign(7))   # 5 -1 0 1
+ 
+# *args and **kwargs
+vsum  = lambda *args: sum(args)
+greet = lambda **kw: f&quot;Hello, {kw.get(&#x27;name&#x27;,&#x27;World&#x27;)}!&quot;
+print(vsum(1,2,3,4,5))          # 15
+print(greet(name=&quot;Alice&quot;))       # Hello, Alice!
+ 
+# Nested lambda (lambda returning lambda)
+make_adder = lambda n: (lambda x: x + n)
+add5 = make_adder(5)
+print(add5(10))            # 15
+ 
+# Immediately invoked lambda (IIFE)
+print((lambda x, y: x * y)(6, 7))   # 42
+ 
+# Sorting key (most common use)
+students = [(&quot;Alice&quot;,85),(&quot;Bob&quot;,72),(&quot;Charlie&quot;,91),(&quot;Diana&quot;,85)]
+by_score  = sorted(students, key=lambda s: s[1], reverse=True)
+by_name   = sorted(students, key=lambda s: s[0])
+tiebreak  = sorted(students, key=lambda s: (-s[1], s[0]))
+print(by_score)    # [(&#x27;Charlie&#x27;,91),(&#x27;Alice&#x27;,85),(&#x27;Diana&#x27;,85),(&#x27;Bob&#x27;,72)]
+print(tiebreak)    # [(&#x27;Charlie&#x27;,91),(&#x27;Alice&#x27;,85),(&#x27;Diana&#x27;,85),(&#x27;Bob&#x27;,72)]</code></pre></div></div></div>
+</section>
+</section>
+<section id="higher-order-functions" class="content-section level-1">
+<h2 class="section-heading">Higher-Order Functions</h2>
+
+<section id="map" class="content-section level-2">
+<h3 class="section-heading">map()</h3>
+
+<section id="applying-a-function-to-every-element" class="content-section level-3">
+<h4 class="section-heading">Applying a Function to Every Element</h4>
+<div class="concept-box"><div class="box-title">map() --- Definition</div><div class="box-body"><p><code>map(func, iterable, ...)</code> applies <code>func</code> to each element of
+<code>iterable</code> and returns a <strong>lazy iterator</strong> (not a list).</p>
+<p>\[ \text{map}(f, [x_1, x_2, \ldots, x_n]) \;\longrightarrow\; (f(x_1), f(x_2), \ldots, f(x_n)) \]</p>
+<p><strong>Multiple iterables</strong>: <code>map(f, it1, it2)</code> passes pairs
+<code>(e1, e2)</code> to <code>f(e1, e2)</code>; stops at the shortest iterable.</p>
+<p><strong>Lazy</strong>: elements are computed <em>only when consumed</em>. Use
+<code>list(map(...))</code> to materialise, or iterate with <code>for</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig120.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 120: map() --- Single and Multiple Iterables</div><div class="box-body"><div class="code-box"><pre><code># Basic: single iterable
+nums = [1, 2, 3, 4, 5]
+squares = list(map(lambda x: x**2, nums))
+print(squares)              # [1, 4, 9, 16, 25]
+
+# Using a named function
+def celsius_to_f(c): return c * 9/5 + 32
+temps_c = [0, 20, 37, 100]
+temps_f = list(map(celsius_to_f, temps_c))
+print(temps_f)              # [32.0, 68.0, 98.6, 212.0]
+
+# String operations
+words = [&quot;hello&quot;, &quot;WORLD&quot;, &quot;python&quot;]
+print(list(map(str.upper,  words)))   # [&#x27;HELLO&#x27;, &#x27;WORLD&#x27;, &#x27;PYTHON&#x27;]
+print(list(map(str.title,  words)))   # [&#x27;Hello&#x27;, &#x27;World&#x27;, &#x27;Python&#x27;]
+print(list(map(len, words)))          # [5, 5, 6]
+
+# Multiple iterables: stops at shortest
+a = [1, 2, 3, 4]
+b = [10, 20, 30]
+print(list(map(lambda x,y: x+y, a, b)))   # [11, 22, 33]  (4 ignored)
+print(list(map(pow, [2,3,4], [3,2,1])))   # [8, 9, 4]  2^3, 3^2, 4^1
+
+# map is lazy: no computation until consumed
+m = map(lambda x: (print(f&quot;  computing {x}&quot;), x**2)[1], range(3))
+print(&quot;map object created&quot;)   # no computation yet
+print(next(m))                # computing 0  -&gt;  0
+print(next(m))                # computing 1  -&gt;  1
+print(list(m))                # computing 2  -&gt;  [4]
+
+# map vs list comprehension (equivalent)
+result_map  = list(map(lambda x: x*2, range(5)))
+result_comp = [x*2 for x in range(5)]
+print(result_map == result_comp)   # True
+# List comprehension generally preferred for readability</code></pre></div></div></div>
+</section>
+</section>
+<section id="filter" class="content-section level-2">
+<h3 class="section-heading">filter()</h3>
+
+<section id="selecting-elements-by-predicate" class="content-section level-3">
+<h4 class="section-heading">Selecting Elements by Predicate</h4>
+<div class="concept-box"><div class="box-title">filter() --- Definition</div><div class="box-body"><p><code>filter(func, iterable)</code> returns an iterator of elements for which
+<code>func(element)</code> is <strong>truthy</strong>.</p>
+<p>\[ \text{filter}(p, [x_1, \ldots, x_n]) \;\longrightarrow\; ( x_i \mid p(x_i) \text{ is truthy} ) \]</p>
+<p><strong>Special case</strong>: <code>func=None</code> uses the element's own truthiness
+(removes all falsy values: <code>0</code>, <code>""</code>, <code>[]</code>,
+<code>None</code>, <code>False</code>, …).</p>
+<p>Like <code>map</code>, <code>filter</code> is <strong>lazy</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig121.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 121: filter() --- Predicates and None</div><div class="box-body"><div class="code-box"><pre><code>data = [-3, -1, 0, 2, 4, 7, -5]
+
+# Filter with lambda
+positives = list(filter(lambda x: x &gt; 0, data))
+print(positives)       # [2, 4, 7]
+
+evens = list(filter(lambda x: x % 2 == 0, data))
+print(evens)           # [0, 2, 4]
+
+# filter(None, ...) removes falsy values
+mixed = [0, 1, &quot;&quot;, &quot;hi&quot;, [], [1,2], None, False, True, 0.0, 3.14]
+print(list(filter(None, mixed)))
+# [1, &#x27;hi&#x27;, [1, 2], True, 3.14]
+
+# Filtering strings
+words = [&quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot;, &quot;avocado&quot;, &quot;blueberry&quot;]
+a_words = list(filter(lambda w: w.startswith(&quot;a&quot;), words))
+print(a_words)    # [&#x27;apple&#x27;, &#x27;avocado&#x27;]
+
+long_words = list(filter(lambda w: len(w) &gt; 6, words))
+print(long_words) # [&#x27;banana&#x27;, &#x27;avocado&#x27;, &#x27;blueberry&#x27;]
+
+# filter + map: filter then transform
+scores = [45, 82, 33, 91, 67, 55, 88]
+grade_A = list(map(lambda s: f&quot;{s}-&gt;A&quot;,
+                   filter(lambda s: s &gt;= 80, scores)))
+print(grade_A)    # [&#x27;82-&gt;A&#x27;, &#x27;91-&gt;A&#x27;, &#x27;88-&gt;A&#x27;]
+
+# Equivalent comprehension (usually preferred)
+grade_A2 = [f&quot;{s}-&gt;A&quot; for s in scores if s &gt;= 80]
+print(grade_A == grade_A2)  # True</code></pre></div></div></div>
+</section>
+</section>
+<section id="functools-reduce" class="content-section level-2">
+<h3 class="section-heading">functools.reduce()</h3>
+
+<section id="folding-an-iterable-to-a-single-value" class="content-section level-3">
+<h4 class="section-heading">Folding an Iterable to a Single Value</h4>
+<div class="concept-box"><div class="box-title">reduce() --- Definition</div><div class="box-body"><p><code>functools.reduce(func, iterable[, initializer])</code> reduces an iterable to a
+<strong>single value</strong> by applying <code>func(accumulator, current)</code> repeatedly
+from left to right:</p>
+<p>\[ \text{reduce}(f, [x_1, x_2, x_3, x_4]) = f(f(f(x_1, x_2), x_3), x_4) \]</p>
+<p><strong>Initializer</strong>: if provided, it is placed <em>before</em> the iterable
+elements and serves as the starting accumulator value. Required when the iterable
+might be empty.</p>
+<p><strong>Without initializer + empty iterable</strong>: raises <code>TypeError</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig122.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 122: reduce() --- Product, Max, Flatten, Compose</div><div class="box-body"><div class="code-box"><pre><code>from functools import reduce
+
+data = [1, 2, 3, 4, 5]
+
+# Sum (equivalent to sum())
+print(reduce(lambda acc, x: acc + x, data))          # 15
+print(reduce(lambda acc, x: acc + x, data, 100))     # 115  (initializer)
+
+# Product (no built-in in Python &lt; 3.8)
+print(reduce(lambda acc, x: acc * x, data))          # 120 = 5!
+
+# Max (equivalent to max())
+print(reduce(lambda a, b: a if a &gt; b else b, data))  # 5
+
+# String concatenation
+words = [&quot;Python&quot;, &quot; &quot;, &quot;is&quot;, &quot; &quot;, &quot;great&quot;]
+print(reduce(lambda a, b: a + b, words))             # Python is great
+
+# Flatten list of lists
+nested = [[1,2],[3,4],[5,6]]
+flat   = reduce(lambda a, b: a + b, nested)
+print(flat)   # [1, 2, 3, 4, 5, 6]
+
+# Function composition: compose(f,g)(x) = f(g(x))
+double = lambda x: x * 2
+inc    = lambda x: x + 1
+square = lambda x: x ** 2
+
+def compose(*funcs):
+    return reduce(lambda f, g: lambda x: f(g(x)), funcs)
+
+% compose(square, inc, double): x -&gt; double -&gt; inc -&gt; square
+transform = compose(square, inc, double)
+print(transform(3))   # double(3)=6, inc(6)=7, square(7)=49
+
+% Empty iterable: needs initializer
+print(reduce(lambda a,b: a+b, [], 0))   # 0
+try:
+    reduce(lambda a,b: a+b, [])          # TypeError: no initial value!
+except TypeError as e:
+    print(e)
+
+% map + filter + reduce pipeline
+data = range(1, 11)
+result = reduce(
+    lambda acc, x: acc + x,             # reduce: sum
+    filter(lambda x: x % 2 == 0,        # filter: evens
+           map(lambda x: x**2, data))   # map: squares
+)
+print(result)   # 2^2+4^2+6^2+8^2+10^2 = 4+16+36+64+100 = 220</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="closures-nested-functions" class="content-section level-1">
+<h2 class="section-heading">Closures &amp; Nested Functions</h2>
+
+<section id="what-is-a-closure" class="content-section level-2">
+<h3 class="section-heading">What is a Closure?</h3>
+
+<section id="definition-and-texttt-closure-cells" class="content-section level-3">
+<h4 class="section-heading">Definition and <code>__closure__</code> Cells</h4>
+<div class="concept-box"><div class="box-title">Closure --- Formal Definition</div><div class="box-body"><p>A <strong>closure</strong> is a function object that <strong>remembers values in its
+enclosing scope</strong> even after program execution has left that scope.</p>
+<p>More precisely, a closure is formed when:</p>
+<ol><li><p>There is a <strong>nested (inner) function</strong> defined inside an outer function</p></li><li><p>The inner function <strong>references at least one name</strong> from the outer
+        function's local scope (a <em>free variable</em>)</p></li><li><p>The outer function <strong>returns</strong> the inner function (or the inner
+        function escapes the outer scope in some other way)</p></li></ol>
+<p>The captured variables are stored as <strong>cell objects</strong> inside the inner
+function's <code>__closure__</code> attribute. Each cell wraps one variable;
+<code>cell.cell_contents</code> retrieves the current value.</p>
+<p><strong>Why closures matter</strong>: they provide <em>stateful functions</em> without
+requiring a class, and they are the foundation of <em>decorators</em>,
+<em>factories</em>, and <em>memoisation</em>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig123.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Closure Properties</div><div class="box-body"><ul><li><p><strong><code>__closure__</code></strong>: tuple of <code>cell</code> objects, or
+        <code>None</code> if no free variables</p></li><li><p><strong><code>cell.cell_contents</code></strong>: current value stored in that cell</p></li><li><p><strong><code>func.__code__.co_freevars</code></strong>: names of the free
+        variables (matches <code>__closure__</code> index-for-index)</p></li><li><p>A function with no free variables is <em>not</em> a closure
+        (<code>__closure__</code> is <code>None</code>)</p></li><li><p>The outer function's <strong>frame is deallocated</strong> after it returns, but
+        the cell objects remain alive as long as the closure exists</p></li><li><p>A closure makes the <strong>enclosing variable's lifetime</strong> independent of
+        the enclosing function's call lifetime</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 123: Closure Basics --- Inspecting __closure__</div><div class="box-body"><div class="code-box"><pre><code>def make_adder(n):
+    &quot;&quot;&quot;Return a closure that adds n to its argument.&quot;&quot;&quot;
+    def add(x):
+        return x + n        # n is a free variable
+    return add
+ 
+add5  = make_adder(5)
+add10 = make_adder(10)
+ 
+print(add5(3))              # 8
+print(add10(3))             # 13
+ 
+# Inspect the closure
+print(add5.__closure__)                         # (&lt;cell at 0x...&gt;,)
+print(add5.__closure__[0].cell_contents)        # 5
+print(add10.__closure__[0].cell_contents)       # 10
+ 
+print(add5.__code__.co_freevars)                # (&#x27;n&#x27;,)
+ 
+# A plain function has no closure
+def plain(x): return x * 2
+print(plain.__closure__)    # None
+ 
+# Closure keeps outer variable alive
+import gc, sys
+def outer():
+    big_data = list(range(1000))   # would normally be GC&#x27;d after outer() returns
+    def inner():
+        return len(big_data)       # big_data captured in cell
+    return inner
+ 
+get_len = outer()           # outer() returned; big_data NOT freed
+print(get_len())            # 1000   (big_data still alive in closure)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 124: Closure as Stateful Function (without class)</div><div class="box-body"><div class="code-box"><pre><code>def make_counter(start=0, step=1):
+    &quot;&quot;&quot;Factory: returns a counter closure.&quot;&quot;&quot;
+    count = [start]          # list so mutation works without nonlocal
+ 
+    def counter():
+        val = count[0]
+        count[0] += step
+        return val
+ 
+    return counter
+ 
+c1 = make_counter(0, 1)
+c2 = make_counter(10, 5)
+ 
+print(c1(), c1(), c1())    # 0 1 2
+print(c2(), c2())          # 10 15
+print(c1())                # 3  (c1 and c2 are independent!)
+ 
+# More idiomatic: using nonlocal
+def make_counter2(start=0):
+    n = start
+    def inc():
+        nonlocal n
+        n += 1
+        return n
+    def dec():
+        nonlocal n
+        n -= 1
+        return n
+    def reset():
+        nonlocal n
+        n = start
+    return inc, dec, reset
+ 
+inc, dec, rst = make_counter2(0)
+print(inc(), inc(), inc())  # 1 2 3
+print(dec())                # 2
+rst()
+print(inc())                # 1</code></pre></div></div></div>
+</section>
+</section>
+<section id="independent-closure-instances" class="content-section level-2">
+<h3 class="section-heading">Independent Closure Instances</h3>
+
+<section id="each-outer-call-creates-a-new-environment" class="content-section level-3">
+<h4 class="section-heading">Each Outer Call Creates a New Environment</h4>
+<div class="concept-box"><div class="box-title">Independent Closure Instances</div><div class="box-body"><p>Every call to the <strong>outer function</strong> creates a <strong>brand-new, independent
+set of cell objects</strong>. Two closures returned by two separate calls to the same outer
+function <strong>never share</strong> their enclosing variables — even though they were
+created by the same code.</p>
+<p>This is the mechanism that makes closures useful as <strong>factories</strong>: the same
+<code>def</code> block produces customised function objects on demand.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig124.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 125: Independent Closure Instances --- Factory Pattern</div><div class="box-body"><div class="code-box"><pre><code>def make_power(exp):
+    def power(base):
+        return base ** exp
+    return power
+ 
+square = make_power(2)
+cube   = make_power(3)
+sqrt_  = make_power(0.5)
+ 
+print(square(4))    # 16
+print(cube(4))      # 64
+print(sqrt_(4))     # 2.0
+ 
+# They share NO state
+print(square.__closure__[0].cell_contents)   # 2
+print(cube.__closure__[0].cell_contents)     # 3  (different cell)
+print(square.__closure__ is cube.__closure__)  # False
+ 
+# Real factory: validators
+def make_range_validator(lo, hi):
+    def validate(x):
+        if lo &lt;= x &lt;= hi:
+            return x
+        raise ValueError(f&quot;{x} not in [{lo}, {hi}]&quot;)
+    return validate
+ 
+check_score  = make_range_validator(0, 100)
+check_age    = make_range_validator(0, 150)
+check_rating = make_range_validator(1, 5)
+ 
+print(check_score(85))    # 85
+print(check_rating(4))    # 4
+try:
+    check_score(110)
+except ValueError as e:
+    print(e)              # 110 not in [0, 100]
+ 
+# Multiple calls: each closure is truly independent
+counters = [make_power(n) for n in range(1, 5)]
+for p in counters:
+    print(p(2), end=&quot; &quot;)   # 2 4 8 16</code></pre></div></div></div>
+</section>
+</section>
+<section id="shared-mutable-state-within-one-closure" class="content-section level-2">
+<h3 class="section-heading">Shared Mutable State Within One Closure</h3>
+
+<section id="multiple-inner-functions-one-shared-cell" class="content-section level-3">
+<h4 class="section-heading">Multiple Inner Functions, One Shared Cell</h4>
+<div class="concept-box"><div class="box-title">Shared Mutable State in a Closure</div><div class="box-body"><p>When <strong>multiple inner functions</strong> are defined inside the <em>same</em> outer
+function, they share the <strong>same cell objects</strong> for any variables from that
+outer scope.</p>
+<p>If the closed-over variable is a <strong>mutable object</strong> (list, dict), <em>all</em>
+inner functions see every mutation made by any of them. This is the basis of
+<em>shared-state closures</em> — an OOP-like pattern using only functions.</p>
+<p><strong>Important distinction</strong>:</p>
+<ul><li><p>Sharing <em>the same cell</em> $\Rightarrow$ rebinding with <code>nonlocal</code>
+        is visible to all inner functions</p></li><li><p>Sharing <em>the same mutable object</em> $\Rightarrow$ mutations are visible
+        without <code>nonlocal</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig125.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 126: Shared Mutable State --- Stack and Bank Account</div><div class="box-body"><div class="code-box"><pre><code># ── Shared state via nonlocal (immutable int) ──────────────────
+def make_bank_account(initial=0):
+    balance = initial
+ 
+    def deposit(amount):
+        nonlocal balance
+        if amount &lt;= 0:
+            raise ValueError(&quot;Deposit must be positive&quot;)
+        balance += amount
+        return balance
+ 
+    def withdraw(amount):
+        nonlocal balance
+        if amount &gt; balance:
+            raise ValueError(&quot;Insufficient funds&quot;)
+        balance -= amount
+        return balance
+ 
+    def get_balance():
+        return balance         # read only: no nonlocal needed
+ 
+    return deposit, withdraw, get_balance
+ 
+dep, wdr, bal = make_bank_account(1000)
+print(dep(500))    # 1500
+print(wdr(200))    # 1300
+print(bal())       # 1300  (all three share the same &#x27;balance&#x27; cell)
+ 
+# ── Shared state via mutable object (no nonlocal needed) ───────
+def make_history_tracker():
+    log = []           # mutable: shared without nonlocal
+ 
+    def record(event):
+        log.append({&quot;event&quot;: event, &quot;n&quot;: len(log)+1})
+ 
+    def undo():
+        if log:
+            return log.pop()
+        return None
+ 
+    def show():
+        for entry in log:
+            print(f&quot;  [{entry[&#x27;n&#x27;]}] {entry[&#x27;event&#x27;]}&quot;)
+ 
+    return record, undo, show
+ 
+rec, undo, show = make_history_tracker()
+rec(&quot;login&quot;)
+rec(&quot;query_db&quot;)
+rec(&quot;update_profile&quot;)
+show()
+# [1] login
+# [2] query_db
+# [3] update_profile
+print(undo())   # {&#x27;event&#x27;: &#x27;update_profile&#x27;, &#x27;n&#x27;: 3}
+show()
+# [1] login
+# [2] query_db
+ 
+# ── Two separate outer calls share NOTHING ─────────────────────
+dep2, wdr2, bal2 = make_bank_account(0)   # fresh account
+dep2(100)
+print(bal())    # 1300  (first account: unchanged)
+print(bal2())   # 100   (second account: independent)</code></pre></div></div></div>
+</section>
+</section>
+<section id="late-binding-in-closures" class="content-section level-2">
+<h3 class="section-heading">Late Binding in Closures</h3>
+
+<section id="the-loop-closure-bug" class="content-section level-3">
+<h4 class="section-heading">The Loop Closure Bug</h4>
+<div class="concept-box"><div class="box-title">Late Binding --- Closures Capture Variables, Not Values</div><div class="box-body"><p>Python closures capture the <strong>variable</strong> (the cell reference) —
+<em>not the value</em> at the time the closure is created. When the closure is
+<em>called</em>, it looks up the <em>current</em> value of the variable in the cell.</p>
+<p><strong>The loop closure bug</strong> is the most common manifestation:</p>
+<ol><li><p>A loop creates multiple closures (e.g.\ via <code>lambda</code> or
+        <code>def</code> inside a <code>for</code>)</p></li><li><p>All closures capture the <em>same loop variable</em></p></li><li><p>After the loop ends, the loop variable holds its <em>final</em> value</p></li><li><p>Calling any of the closures returns the <em>final</em> value
+        — not the value at iteration time</p></li></ol>
+<p><strong>Fixes:</strong></p>
+<ul><li><p><strong>Default argument</strong> <code>lambda x, i=i: ...</code> — evaluates
+        <code>i</code> at <em>definition time</em> and binds it as a default</p></li><li><p><strong>Immediately Invoked Function</strong> (IIFE):
+        <code>(lambda i=i: lambda x: x*i)()</code> — same principle</p></li><li><p><strong>Explicit factory function</strong>: <code>def make(i): return lambda x: x*i</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig126.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 127: Late Binding Bug --- All Three Fixes</div><div class="box-body"><div class="code-box"><pre><code># ── BUG: late binding captures variable, not value ────────────
+funcs_bad = [lambda: i for i in range(5)]
+print([f() for f in funcs_bad])
+# [4, 4, 4, 4, 4]  ALL return 4 (final value of i)
+
+# ── FIX 1: Default argument (most Pythonic) ───────────────────
+funcs_fix1 = [lambda i=i: i for i in range(5)]
+print([f() for f in funcs_fix1])
+# [0, 1, 2, 3, 4]  correct!
+
+# ── FIX 2: Explicit factory function ─────────────────────────
+def make_func(i):
+    return lambda: i        # i is now a local in make_func
+
+funcs_fix2 = [make_func(i) for i in range(5)]
+print([f() for f in funcs_fix2])
+# [0, 1, 2, 3, 4]  correct!
+
+# ── FIX 3: functools.partial ──────────────────────────────────
+from functools import partial
+
+def get_val(i): return i
+funcs_fix3 = [partial(get_val, i) for i in range(5)]
+print([f() for f in funcs_fix3])
+# [0, 1, 2, 3, 4]  correct!
+
+# ── The bug extends to any mutable loop variable ──────────────
+names = [&quot;Alice&quot;, &quot;Bob&quot;, &quot;Charlie&quot;]
+greets_bad  = [lambda: f&quot;Hello, {name}!&quot; for name in names]
+greets_good = [lambda name=name: f&quot;Hello, {name}!&quot; for name in names]
+
+print([g() for g in greets_bad])
+# [&#x27;Hello, Charlie!&#x27;, &#x27;Hello, Charlie!&#x27;, &#x27;Hello, Charlie!&#x27;]
+
+print([g() for g in greets_good])
+# [&#x27;Hello, Alice!&#x27;, &#x27;Hello, Bob!&#x27;, &#x27;Hello, Charlie!&#x27;]
+
+# ── More subtle: variable mutated AFTER closure creation ──────
+x = 10
+get_x = lambda: x          # captures &#x27;x&#x27; from enclosing scope
+print(get_x())             # 10
+x = 99                     # mutate AFTER closure was created
+print(get_x())             # 99  (sees the NEW value! late binding)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 128: GATE-Level Closure Tracing Questions</div><div class="box-body"><div class="code-box"><pre><code># Q1: What does this print?
+def outer(x):
+    def inner(y):
+        return x + y
+    return inner
+
+f = outer(10)
+g = outer(20)
+print(f(5))        # 15  (x=10 from f&#x27;s closure)
+print(g(5))        # 25  (x=20 from g&#x27;s closure)
+print(f(g(1)))     # f(21) = 10+21 = 31
+
+# Q2: Trace with nonlocal and shared cell
+def make_pair():
+    n = 0
+    def inc(): nonlocal n; n += 1; return n
+    def dec(): nonlocal n; n -= 1; return n
+    return inc, dec
+
+a, b = make_pair()
+print(a())   # 1
+print(a())   # 2
+print(b())   # 1
+print(a())   # 2  (n was 1, inc -&gt; 2)
+
+# Q3: Late binding with multiplication
+multipliers = [lambda x: x * i for i in range(1, 4)]
+print(multipliers[0](5))   # 15  (NOT 5! i is 3 at call time)
+print(multipliers[1](5))   # 15
+print(multipliers[2](5))   # 15
+
+# Q4: closure cell identity
+def outer2():
+    val = []
+    def f(): val.append(1)
+    def g(): val.append(2)
+    return f, g, lambda: val
+
+f2, g2, get = outer2()
+f2(); g2(); f2()
+print(get())   # [1, 2, 1]  all three share same list object
+
+# Q5: What is closure of inner here?
+def make(a, b):
+    def inner():
+        return a * b
+    return inner
+
+h = make(3, 4)
+print(h.__code__.co_freevars)     # (&#x27;a&#x27;, &#x27;b&#x27;)
+print(h.__closure__[0].cell_contents)  # 3  (a)
+print(h.__closure__[1].cell_contents)  # 4  (b)
+print(h())   # 12
+
+# Q6: Default arg vs closure --- crucial difference
+def create():
+    results = []
+    for n in [1, 2, 3]:
+        # WRONG: lambda captures n by reference
+        results.append(lambda: n)
+    return results
+
+fns = create()
+print([f() for f in fns])   # [3, 3, 3]  (n=3 after loop)
+
+def create_fixed():
+    results = []
+    for n in [1, 2, 3]:
+        results.append(lambda n=n: n)   # snapshot n
+    return results
+
+fns2 = create_fixed()
+print([f() for f in fns2])  # [1, 2, 3]</code></pre></div></div></div>
+</section>
+<section id="closure-vs-class-when-to-use-which" class="content-section level-3">
+<h4 class="section-heading">Closure vs Class --- When to Use Which</h4>
+<div class="concept-box"><div class="box-title">Closure vs Class --- Comparison</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig127.png" alt="diagram"></div>
+<p><strong>Rule of thumb</strong>: use a <strong>closure</strong> for a single callable with
+private state; use a <strong>class</strong> when you need multiple methods, inheritance,
+serialisation, or clear state introspection.</p></div></div>
+<div class="example-box"><div class="box-title">Example 129: Same Problem: Closure vs Class</div><div class="box-body"><div class="code-box"><pre><code># ── Closure approach ──────────────────────────────────────────
+def make_moving_average():
+    data = []
+    def update(x):
+        data.append(x)
+        return sum(data) / len(data)
+    return update
+
+avg = make_moving_average()
+print(avg(10))    # 10.0
+print(avg(20))    # 15.0
+print(avg(30))    # 20.0
+
+# ── Class approach (equivalent) ──────────────────────────────
+class MovingAverage:
+    def __init__(self):
+        self._data = []
+
+    def update(self, x):
+        self._data.append(x)
+        return sum(self._data) / len(self._data)
+
+    @property
+    def history(self):           # extra: easy introspection
+        return list(self._data)
+
+avg2 = MovingAverage()
+print(avg2.update(10))   # 10.0
+print(avg2.update(20))   # 15.0
+print(avg2.history)      # [10, 20]  -- not possible with closure easily</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="decorators" class="content-section level-1">
+<h2 class="section-heading">Decorators</h2>
+
+<section id="concept" class="content-section level-2">
+<h3 class="section-heading">Concept</h3>
+
+<section id="what-a-decorator-is" class="content-section level-3">
+<h4 class="section-heading">What a Decorator Is</h4>
+<div class="concept-box"><div class="box-title">Decorator --- Definition</div><div class="box-body"><p>A <strong>decorator</strong> is a <strong>callable that takes a function (or class) and
+returns a new callable</strong>. It <em>wraps</em> the original function to add behaviour
+before or after (or instead of) the original call.</p>
+<p><strong>Syntactic sugar</strong>:
+\[
+\begin{aligned}
+&amp;\texttt{@decorator} \\
+&amp;\texttt{def f(): ...}
+\end{aligned}
+\quad\equiv\quad
+\begin{aligned}
+&amp;\texttt{def f(): ...} \\
+&amp;\texttt{f = decorator(f)}
+\end{aligned}
+\]</p>
+<p>The <code>@</code> syntax is applied at <strong>function definition time</strong>, not at call
+time.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig128.png" alt="diagram"></div>
+</section>
+</section>
+<section id="writing-a-decorator" class="content-section level-2">
+<h3 class="section-heading">Writing a Decorator</h3>
+
+<section id="wrapper-pattern-and-functools-wraps" class="content-section level-3">
+<h4 class="section-heading">Wrapper Pattern and functools.wraps</h4>
+<div class="concept-box"><div class="box-title">Standard Decorator Pattern</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig129.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">functools.wraps --- Why It Matters</div><div class="box-body"><p>Without <code>@wraps</code>, the wrapped function <strong>loses its identity</strong>:
+<code>__name__</code> becomes <code>"wrapper"</code>, <code>__doc__</code> is lost.
+<code>@functools.wraps(func)</code> copies <code>__name__</code>, <code>__doc__</code>,
+<code>__module__</code>, <code>__qualname__</code>, <code>__annotations__</code>,
+<code>__dict__</code> from the wrapped function to the wrapper.</p>
+<p><strong>Always use <code>@functools.wraps(func)</code></strong> in production decorators.</p></div></div>
+<div class="example-box"><div class="box-title">Example 130: Writing Decorators --- Timer, Logger, Retry</div><div class="box-body"><div class="code-box"><pre><code>import time, functools
+
+# ── 1. Timer decorator ──────────────────────────────────────
+def timer(func):
+    @functools.wraps(func)           # preserves __name__, __doc__
+    def wrapper(*args, **kwargs):
+        start  = time.perf_counter()
+        result = func(*args, **kwargs)
+        end    = time.perf_counter()
+        print(f&quot;[{func.__name__}] took {end-start:.4f}s&quot;)
+        return result
+    return wrapper
+
+@timer
+def slow_sum(n):
+    &quot;&quot;&quot;Sum 0..n-1.&quot;&quot;&quot;
+    return sum(range(n))
+
+print(slow_sum(10_000_000))   # [slow_sum] took 0.3xxx s
+                               # 49999995000000
+
+print(slow_sum.__name__)       # slow_sum   (not &#x27;wrapper&#x27;!)
+print(slow_sum.__doc__)        # Sum 0..n-1.
+
+# ── 2. Logger decorator ─────────────────────────────────────
+def logger(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f&quot;Calling {func.__name__}({args}, {kwargs})&quot;)
+        result = func(*args, **kwargs)
+        print(f&quot;{func.__name__} returned {result!r}&quot;)
+        return result
+    return wrapper
+
+@logger
+def add(x, y): return x + y
+
+add(3, y=4)
+# Calling add((3,), {&#x27;y&#x27;: 4})
+# add returned 7
+
+# ── 3. Retry decorator ──────────────────────────────────────
+def retry(max_attempts=3):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    print(f&quot;Attempt {attempt} failed: {e}&quot;)
+                    if attempt == max_attempts:
+                        raise
+        return wrapper
+    return decorator
+
+# (decorator with arguments -- see next subsection)</code></pre></div></div></div>
+</section>
+</section>
+<section id="stacking-decorators" class="content-section level-2">
+<h3 class="section-heading">Stacking Decorators</h3>
+
+<section id="bottom-up-application-order" class="content-section level-3">
+<h4 class="section-heading">Bottom-Up Application Order</h4>
+<div class="concept-box"><div class="box-title">Stacking Decorators --- Application and Call Order</div><div class="box-body"><p>Multiple decorators stack <strong>bottom-up at definition time</strong>:</p>
+<p>\[
+\begin{aligned}
+&amp;\texttt{@d1} \\
+&amp;\texttt{@d2} \\
+&amp;\texttt{@d3} \\
+&amp;\texttt{def f(): ...}
+\end{aligned}
+\quad\equiv\quad
+\texttt{f = d1(d2(d3(f)))}
+\]</p>
+<p><strong>Definition</strong>: <code>d3</code> applied first, then <code>d2</code>, then <code>d1</code>.<br>
+<strong>Call</strong>: <code>d1</code>'s wrapper runs first, then <code>d2</code>'s, then
+<code>d3</code>'s, then the original <code>f</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig130.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 131: Stacking Decorators --- Order Proof</div><div class="box-body"><div class="code-box"><pre><code>import functools
+
+def decorator_factory(name):
+    &quot;&quot;&quot;Creates a decorator that announces itself.&quot;&quot;&quot;
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            print(f&quot;[{name}] BEFORE&quot;)
+            result = func(*args, **kwargs)
+            print(f&quot;[{name}] AFTER&quot;)
+            return result
+        return wrapper
+    return decorator
+
+d1 = decorator_factory(&quot;d1&quot;)
+d2 = decorator_factory(&quot;d2&quot;)
+d3 = decorator_factory(&quot;d3&quot;)
+
+@d1
+@d2
+@d3
+def greet(name):
+    print(f&quot;  Hello, {name}!&quot;)
+
+greet(&quot;Alice&quot;)
+# [d1] BEFORE
+# [d2] BEFORE
+# [d3] BEFORE
+#   Hello, Alice!
+# [d3] AFTER
+# [d2] AFTER
+# [d1] AFTER
+
+# Definition is: greet = d1(d2(d3(greet)))
+# d3 applied first (innermost), d1 outermost
+# At call: d1&#x27;s wrapper runs first, d2&#x27;s next, d3&#x27;s next, then original</code></pre></div></div></div>
+</section>
+</section>
+<section id="decorator-with-arguments" class="content-section level-2">
+<h3 class="section-heading">Decorator with Arguments</h3>
+
+<section id="three-level-nesting-factory-to-decorator-to-wrapper" class="content-section level-3">
+<h4 class="section-heading">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</h4>
+<div class="concept-box"><div class="box-title">Parameterised Decorator --- Three Levels</div><div class="box-body"><p>To pass arguments to a decorator, add one more level of nesting:
+a <strong>decorator factory</strong> that accepts the arguments and returns a decorator:</p>
+<p>\[ \underbrace{\text{repeat}(3)}_{\text{factory call}} \;\longrightarrow\; \underbrace{\text{decorator}}_{\text{receives func}} \;\longrightarrow\; \underbrace{\text{wrapper}}_{\text{wraps call}} \]</p>
+<p><code>@repeat(3) def f()</code> $\equiv$ <code>f = repeat(3)(f)</code></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig131.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 132: Decorators with Arguments --- repeat, validate_types, rate_limit</div><div class="box-body"><div class="code-box"><pre><code>import functools, time
+
+# ── 1. repeat(n): call function n times ─────────────────────
+def repeat(n):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            results = [func(*args, **kwargs) for _ in range(n)]
+            return results[-1]   # return last result
+        return wrapper
+    return decorator
+
+@repeat(3)
+def hello(name):
+    print(f&quot;Hello, {name}!&quot;)
+
+hello(&quot;Bob&quot;)
+# Hello, Bob!
+# Hello, Bob!
+# Hello, Bob!
+
+# ── 2. Type validation decorator ────────────────────────────
+def validate_types(**expected):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(**kwargs):
+            for key, typ in expected.items():
+                if key in kwargs and not isinstance(kwargs[key], typ):
+                    raise TypeError(
+                        f&quot;Arg &#x27;{key}&#x27; expected {typ.__name__}, &quot;
+                        f&quot;got {type(kwargs[key]).__name__}&quot;)
+            return func(**kwargs)
+        return wrapper
+    return decorator
+
+@validate_types(name=str, age=int)
+def register(name, age):
+    print(f&quot;Registered: {name}, {age}&quot;)
+
+register(name=&quot;Alice&quot;, age=25)    # OK
+try:
+    register(name=&quot;Bob&quot;, age=&quot;25&quot;)  # TypeError!
+except TypeError as e:
+    print(e)   # Arg &#x27;age&#x27; expected int, got str
+
+# ── 3. rate_limit(calls_per_sec) ────────────────────────────
+def rate_limit(calls_per_sec):
+    interval = 1.0 / calls_per_sec
+    def decorator(func):
+        last_called = [0.0]        # mutable cell trick
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            elapsed = time.time() - last_called[0]
+            if elapsed &lt; interval:
+                time.sleep(interval - elapsed)
+            last_called[0] = time.time()
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@rate_limit(calls_per_sec=2)   # max 2 calls per second
+def api_call(endpoint):
+    return f&quot;response from {endpoint}&quot;
+
+# ── 4. Combining @wraps with argument inspection ─────────────
+import inspect
+
+def log_calls(level=&quot;INFO&quot;):
+    def decorator(func):
+        sig = inspect.signature(func)
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            bound = sig.bind(*args, **kwargs)
+            bound.apply_defaults()
+            print(f&quot;[{level}] {func.__name__}({dict(bound.arguments)})&quot;)
+            result = func(*args, **kwargs)
+            print(f&quot;[{level}] returned: {result!r}&quot;)
+            return result
+        return wrapper
+    return decorator
+
+@log_calls(level=&quot;DEBUG&quot;)
+def divide(a, b=1):
+    return a / b
+
+divide(10, b=2)
+# [DEBUG] divide({&#x27;a&#x27;: 10, &#x27;b&#x27;: 2})
+# [DEBUG] returned: 5.0</code></pre></div></div></div>
+</section>
+</section>
+<section id="common-built-in-decorators" class="content-section level-2">
+<h3 class="section-heading">Common Built-in Decorators</h3>
+
+<section id="functools-lru-cache-cached-property" class="content-section level-3">
+<h4 class="section-heading">functools.lru_cache, cached_property</h4>
+<div class="concept-box"><div class="box-title">Built-in Decorators Reference</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig132.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 133: cached_property and total_ordering</div><div class="box-body"><div class="code-box"><pre><code>from functools import cached_property, total_ordering
+import math
+
+# ── cached_property: computed once, stored on instance ────────
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    @cached_property
+    def area(self):
+        print(&quot;  computing area...&quot;)
+        return math.pi * self.radius ** 2
+
+    @cached_property
+    def circumference(self):
+        print(&quot;  computing circumference...&quot;)
+        return 2 * math.pi * self.radius
+
+c = Circle(5)
+print(c.area)              # computing area... / 78.539...
+print(c.area)              # (cached: no &quot;computing&quot; print)
+print(&quot;area&quot; in c.__dict__) # True -- stored in instance dict
+
+# ── total_ordering: define __eq__ + one comparison ───────────
+@total_ordering
+class Student:
+    def __init__(self, name, gpa):
+        self.name = name
+        self.gpa  = gpa
+
+    def __eq__(self, other):
+        return self.gpa == other.gpa
+
+    def __lt__(self, other):
+        return self.gpa &lt; other.gpa
+
+    # @total_ordering auto-generates: __le__, __gt__, __ge__
+
+s1 = Student(&quot;Alice&quot;, 3.8)
+s2 = Student(&quot;Bob&quot;,   3.5)
+s3 = Student(&quot;Charlie&quot;, 3.8)
+
+print(s1 &gt; s2)    # True   (auto-generated __gt__)
+print(s1 &gt;= s3)   # True   (auto-generated __ge__)
+print(s2 &lt;= s1)   # True   (auto-generated __le__)
+var_students = [s1, s2, s3]
+print(sorted(var_students, key=lambda s: s.gpa))
+# Bob(3.5), Alice(3.8), Charlie(3.8)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 134: Decorator Patterns --- GATE Summary Questions</div><div class="box-body"><div class="code-box"><pre><code># Q1: What does this print?
+def d(f):
+    def w():
+        print(&quot;A&quot;)
+        f()
+        print(&quot;B&quot;)
+    return w
+
+@d
+def hello(name):
+    print(&quot;C&quot;)
+
+hello()
+# A / C / B
+
+# Q2: Stacking order
+def p(c):
+    def dec(f):
+        def w(*a,**k):
+            print(c, end=&quot; &quot;)
+            return f(*a,**k)
+        return w
+    return dec
+
+@p(&quot;1&quot;) @p(&quot;2&quot;) @p(&quot;3&quot;)
+def fn(): print(&quot;X&quot;)
+fn()   # 1 2 3 X  (d1 runs first, prints 1; d2 prints 2; d3 prints 3)
+
+# Q3: wraps vs no wraps
+def bad(f):
+    def wrapper(): return f()
+    return wrapper
+
+def good(f):
+    @functools.wraps(f)
+    def wrapper(): return f()
+    return wrapper
+
+@bad
+def foo(): &quot;&quot;&quot;foo docstring&quot;&quot;&quot;; pass
+@good
+def bar(): &quot;&quot;&quot;bar docstring&quot;&quot;&quot;; pass
+
+print(foo.__name__)   # wrapper  (LOST original name)
+print(bar.__name__)   # bar      (preserved by @wraps)
+print(foo.__doc__)    # None
+print(bar.__doc__)    # bar docstring
+
+# Q4: decorator = factory call at definition time
+import functools
+
+def count_calls(func):
+    @functools.wraps(func)
+    def wrapper(*a, **k):
+        wrapper.calls += 1
+        return func(*a, **k)
+    wrapper.calls = 0    # attach counter to wrapper function!
+    return wrapper
+
+@count_calls
+def add(x, y): return x + y
+
+add(1,2); add(3,4); add(5,6)
+print(add.calls)   # 3
+
+\newpage</code></pre></div></div></div>
+</section>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Control Flow</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Comprehensions &amp; Generators &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

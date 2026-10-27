@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discrete Probability Distributions — Probability &amp; Statistics</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: { } },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Probability &amp; Statistics</span></div></div>
+<div class="sidebar-scroll"><ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Counting</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch01.html#what-is-combinatorics" class="toc-link" data-slug="what-is-combinatorics">What is Combinatorics?</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#key-areas-in-combinatorics" class="toc-link" data-slug="key-areas-in-combinatorics">Key Areas in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-combinatorics" class="toc-link" data-slug="applications-of-combinatorics">Applications of Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#rule-identification-guide-in-combinatorics" class="toc-link" data-slug="rule-identification-guide-in-combinatorics">Rule Identification Guide in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#quick-decision-table" class="toc-link" data-slug="quick-decision-table">Quick Decision Table</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#permutations" class="toc-link" data-slug="permutations">Permutations</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#how-to-identify-permutation-problems" class="toc-link" data-slug="how-to-identify-permutation-problems">How to Identify Permutation Problems</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-permutation-problems" class="toc-link" data-slug="examples-of-permutation-problems">Examples of Permutation Problems</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-simple-permutation" class="toc-link" data-slug="example-1-simple-permutation">Example 1: Simple Permutation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-permutation-of-a-subset" class="toc-link" data-slug="example-2-permutation-of-a-subset">Example 2: Permutation of a Subset</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-digits-in-a-number" class="toc-link" data-slug="example-3-digits-in-a-number">Example 3: Digits in a Number</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-arrangement-with-restrictions" class="toc-link" data-slug="example-4-arrangement-with-restrictions">Example 4: Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-circular-permutations" class="toc-link" data-slug="example-5-circular-permutations">Example 5: Circular Permutations</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-permutations-with-repeated-items" class="toc-link" data-slug="example-6-permutations-with-repeated-items">Example 6: Permutations with Repeated Items</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-at-least-condition" class="toc-link" data-slug="example-7-at-least-condition">Example 7: At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-arrangement-with-items-together" class="toc-link" data-slug="example-8-arrangement-with-items-together">Example 8: Arrangement with Items Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-number-with-constraints" class="toc-link" data-slug="example-9-number-with-constraints">Example 9: Number with Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-all-letters-used-with-restrictions" class="toc-link" data-slug="example-10-all-letters-used-with-restrictions">Example 10: All Letters Used with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-11-repeated-digits-constraint" class="toc-link" data-slug="example-11-repeated-digits-constraint">Example 11: Repeated Digits Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-12-vowels-together" class="toc-link" data-slug="example-12-vowels-together">Example 12: Vowels Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-13-at-least-one-condition" class="toc-link" data-slug="example-13-at-least-one-condition">Example 13: At Least One Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-14-positions-fixed" class="toc-link" data-slug="example-14-positions-fixed">Example 14: Positions Fixed</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-15-word-arrangement-with-restrictions" class="toc-link" data-slug="example-15-word-arrangement-with-restrictions">Example 15: Word Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-16-conditional-digit-use" class="toc-link" data-slug="example-16-conditional-digit-use">Example 16: Conditional Digit Use</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-17-circular-permutation-with-a-gap-constraint" class="toc-link" data-slug="example-17-circular-permutation-with-a-gap-constraint">Example 17: Circular Permutation with a Gap Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-18-permutations-with-restricted-positions" class="toc-link" data-slug="example-18-permutations-with-restricted-positions">Example 18: Permutations with Restricted Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-19-permutation-with-minimum-gap" class="toc-link" data-slug="example-19-permutation-with-minimum-gap">Example 19: Permutation with Minimum Gap</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-20-arrangements-with-fixed-distance" class="toc-link" data-slug="example-20-arrangements-with-fixed-distance">Example 20: Arrangements with Fixed Distance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-21-permutations-with-banned-positions" class="toc-link" data-slug="example-21-permutations-with-banned-positions">Example 21: Permutations with Banned Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-22-permutations-with-digit-reuse-prohibited" class="toc-link" data-slug="example-22-permutations-with-digit-reuse-prohibited">Example 22: Permutations with Digit Reuse Prohibited</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-23-permutations-with-specific-characters-together" class="toc-link" data-slug="example-23-permutations-with-specific-characters-together">Example 23: Permutations with Specific Characters Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-24-at-least-one-fixed-digit" class="toc-link" data-slug="example-24-at-least-one-fixed-digit">Example 24: At Least One Fixed Digit</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-25-group-arrangements-with-subgroup-together" class="toc-link" data-slug="example-25-group-arrangements-with-subgroup-together">Example 25: Group Arrangements with Subgroup Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-26-letter-arrangement-with-repetition-and-restrictions" class="toc-link" data-slug="example-26-letter-arrangement-with-repetition-and-restrictions">Example 26: Letter Arrangement with Repetition and Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-27-permutation-with-parity-constraints" class="toc-link" data-slug="example-27-permutation-with-parity-constraints">Example 27: Permutation with Parity Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-28-multiset-with-at-least-condition" class="toc-link" data-slug="example-28-multiset-with-at-least-condition">Example 28: Multiset with At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-29-permutations-with-min-distance-constraint" class="toc-link" data-slug="example-29-permutations-with-min-distance-constraint">Example 29: Permutations with Min Distance Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-30-distribution-of-items-in-permutations" class="toc-link" data-slug="example-30-distribution-of-items-in-permutations">Example 30: Distribution of Items in Permutations</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#combinations" class="toc-link" data-slug="combinations">Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#when-to-identify-a-problem-as-combination" class="toc-link" data-slug="when-to-identify-a-problem-as-combination">When to Identify a Problem as Combination</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-combinations" class="toc-link" data-slug="examples-of-combinations">Examples of Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-committee-selection" class="toc-link" data-slug="example-1-committee-selection">Example 1: Committee Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-handshake-problem" class="toc-link" data-slug="example-2-handshake-problem">Example 2: Handshake Problem</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-choosing-balls" class="toc-link" data-slug="example-3-choosing-balls">Example 3: Choosing Balls</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-forming-teams" class="toc-link" data-slug="example-4-forming-teams">Example 4: Forming Teams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-card-selection" class="toc-link" data-slug="example-5-card-selection">Example 5: Card Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-dividing-prizes" class="toc-link" data-slug="example-6-dividing-prizes">Example 6: Dividing Prizes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-selecting-questions" class="toc-link" data-slug="example-7-selecting-questions">Example 7: Selecting Questions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-subsets" class="toc-link" data-slug="example-8-subsets">Example 8: Subsets</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-lottery-selection" class="toc-link" data-slug="example-9-lottery-selection">Example 9: Lottery Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-choosing-books" class="toc-link" data-slug="example-10-choosing-books">Example 10: Choosing Books</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Introduction to Statistics</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch02.html#motivation" class="toc-link" data-slug="motivation">Motivation</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-do-we-sample" class="toc-link" data-slug="why-do-we-sample">Why Do We Sample?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#how-does-inference-work" class="toc-link" data-slug="how-does-inference-work">How Does Inference Work?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fundamental-relationship-between-probability-and-statistics" class="toc-link" data-slug="fundamental-relationship-between-probability-and-statistics">Fundamental Relationship between Probability and Statistics</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#real-world-motivation-and-example" class="toc-link" data-slug="real-world-motivation-and-example">Real-World Motivation and Example</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-collection" class="toc-link" data-slug="data-collection">Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#steps-in-the-sampling-and-data-collection-process" class="toc-link" data-slug="steps-in-the-sampling-and-data-collection-process">Steps in the Sampling and Data Collection Process</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-is-sampling-important" class="toc-link" data-slug="why-is-sampling-important">Why is Sampling Important?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#common-pitfalls-in-data-collection" class="toc-link" data-slug="common-pitfalls-in-data-collection">Common Pitfalls in Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-location" class="toc-link" data-slug="measures-of-location">Measures of Location</a>
+<ul><li class="toc-l2"><a href="ch02.html#sample-mean-texorpdfstring-bar-x-x" class="toc-link" data-slug="sample-mean-texorpdfstring-bar-x-x">Sample Mean ($\bar{x}$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#importance" class="toc-link" data-slug="importance">Importance:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example" class="toc-link" data-slug="example">Example:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison" class="toc-link" data-slug="comparison">Comparison</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-variability" class="toc-link" data-slug="measures-of-variability">Measures of Variability</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: The Probability Theory</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch03.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#probability-rules" class="toc-link" data-slug="probability-rules">Probability Rules</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#conditional-probability" class="toc-link" data-slug="conditional-probability">Conditional Probability</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#bayes-theorem" class="toc-link" data-slug="bayes-theorem">Bayes Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: The Random Variables</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch04.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-discrete-probability-distributions" class="toc-link" data-slug="overview-of-discrete-probability-distributions">Overview of Discrete Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-continuous-probability-distributions" class="toc-link" data-slug="overview-of-continuous-probability-distributions">Overview of Continuous Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#joint-probability-distributions" class="toc-link" data-slug="joint-probability-distributions">Joint Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#marginal-probability-distributions" class="toc-link" data-slug="marginal-probability-distributions">Marginal Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#conditional-probability-distributions" class="toc-link" data-slug="conditional-probability-distributions">Conditional Probability Distributions</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Mean and Variance of a Random Variable</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch05.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-joint-and-marginal-distributions" class="toc-link" data-slug="expectation-of-joint-and-marginal-distributions">Expectation of Joint and Marginal Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-conditional-probability-distribution" class="toc-link" data-slug="expectation-of-conditional-probability-distribution">Expectation of Conditional Probability Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#variance-and-covariance" class="toc-link" data-slug="variance-and-covariance">Variance and Covariance</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#linear-combinations-of-expectation-and-variance" class="toc-link" data-slug="linear-combinations-of-expectation-and-variance">Linear Combinations of Expectation and Variance</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Discrete Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch06.html#bernoulli-trials-and-binomial-distribution" class="toc-link" data-slug="bernoulli-trials-and-binomial-distribution">Bernoulli trials and Binomial distribution</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#poisson-distribution" class="toc-link" data-slug="poisson-distribution">Poisson Distribution</a>
+<ul><li class="toc-l2"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples:</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#properties-of-the-poisson-process" class="toc-link" data-slug="properties-of-the-poisson-process">Properties of the Poisson Process</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#poisson-random-variable-and-distribution" class="toc-link" data-slug="poisson-random-variable-and-distribution">Poisson Random Variable and Distribution</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Continuous Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch07.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#exponential-distribution" class="toc-link" data-slug="exponential-distribution">Exponential Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#normal-distribution-and-standard-normal" class="toc-link" data-slug="normal-distribution-and-standard-normal">Normal Distribution and Standard Normal</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-of-normal-distribution" class="toc-link" data-slug="graph-of-normal-distribution">Graph of Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#tips-to-identify-normal-distribution-problems" class="toc-link" data-slug="tips-to-identify-normal-distribution-problems">Tips to Identify Normal Distribution Problems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#standard-normal-distribution" class="toc-link" data-slug="standard-normal-distribution">Standard Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#t-distribution" class="toc-link" data-slug="t-distribution">t-Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-4" class="toc-link" data-slug="examples-4">Examples</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#chi-squared-distribution" class="toc-link" data-slug="chi-squared-distribution">Chi-Squared Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-5" class="toc-link" data-slug="examples-5">Examples</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Central Limit Theorem and Confidence Intervals</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch08.html#the-central-limit-theorem" class="toc-link" data-slug="the-central-limit-theorem">The Central Limit Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#confidence-intervals" class="toc-link" data-slug="confidence-intervals">Confidence Intervals</a>
+</li></ul></details></li>
+</ul></div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 8</div><h1>Discrete Probability Distributions</h1></div>
+<section id="bernoulli-trials-and-binomial-distribution" class="content-section level-1">
+<h2 class="section-heading">Bernoulli trials and Binomial distribution</h2>
+<p>An experiment often involves repeated trials, each resulting in one of two possible outcomes, commonly labeled as <strong>success</strong> or <strong>failure</strong>. A typical example is testing items on an assembly line, where each item is classified as either <strong>defective</strong> or <strong>nondefective</strong>. Either outcome can be defined as a <strong>success</strong>, depending on the context. This type of experiment is known as a <strong>Bernoulli process</strong>, and each individual trial is referred to as a <strong>Bernoulli trial</strong>.</p>
+<p>It is important to note that for a sequence of trials to qualify as <strong>Bernoulli trials</strong>, the probability of success must remain constant from one trial to the next.</p>
+<p>For instance, consider tossing a fair coin multiple times. The probability of getting a head (which we define as <strong>success</strong>) is:
+\[
+P(\text{Head}) = \frac{1}{2}
+\]
+This probability remains the same for each toss, satisfying the condition for <strong>Bernoulli trials</strong>.</p>
+<p>However, if we consider drawing balls from a bag <strong>without replacement</strong>, the probability changes with each draw. For example, suppose a bag contains 3 red balls and 2 blue balls. The probability of drawing a red ball on the first draw is:
+\[
+P(\text{Red on first draw}) = \frac{3}{5}
+\]
+If a red ball is drawn and not replaced, the probability of drawing another red ball on the second draw becomes:
+\[
+P(\text{Red on second draw}) = \frac{2}{4} = \frac{1}{2}
+\]
+Since the probability changes from one trial to the next, this process does <strong>not</strong> meet the criteria for a <strong>Bernoulli process</strong>.</p>
+<div class="concept-box"><div class="box-title">Properties of a Bernoulli Process</div><div class="box-body"><p>A Bernoulli process must satisfy the following conditions:</p>
+<ol><li><p>The experiment consists of repeated trials.</p></li><li><p>Each trial results in an outcome that may be classified as a <strong>success</strong> or a <strong>failure</strong>.</p></li><li><p>The probability of success, denoted by \( p \), remains constant from trial to trial.</p></li><li><p>The repeated trials are independent.</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Binomial Distribution</div><div class="box-body"><p>A <strong>Bernoulli trial</strong> results in:</p>
+<ul><li><p><strong>Success</strong> with probability \( p \)</p></li><li><p><strong>Failure</strong> with probability \( q = 1 - p \)</p></li></ul>
+<p>The probability distribution of the <strong>Binomial random variable</strong> \( X \), representing the number of successes in \( n \) independent trials, is given by:</p>
+<p>\[
+b(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x}, \quad \text{for } x = 0, 1, 2, \ldots, n
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Mean and Variance of Binomial Distribution</div><div class="box-body"><p>The mean and variance of the binomial distribution \( b(x; n, p) \) are given by:
+\[
+\mu = np \quad \text{and} \quad \sigma^2 = npq
+\]
+where \( q = 1 - p \).</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Tips to Identify Binomial Distribution Problems</strong></div><div class="box-body"><p>A probability distribution problem is likely a <strong>Binomial Distribution</strong> if the following conditions (and keywords) are present:</p>
+<ol><li><p><strong>Fixed number of trials ($n$)</strong>: Look for phrases like:</p>
+<ul><li><p>“out of 10 attempts”, “for 20 customers”, “tested 5 items”</p></li></ul></li><li><p><strong>Each trial has two possible outcomes (Success/Failure)</strong>: Keywords may include:</p>
+<ul><li><p>“defective/non-defective”, “pass/fail”, “survive/die”, “hit/miss”</p></li></ul></li><li><p><strong>Constant probability of success ($p$) in each trial</strong>: Phrases like:</p>
+<ul><li><p>“with probability 0.3”, “each has a 60% chance”</p></li></ul></li><li><p><strong>Independent trials</strong>: Often stated or implied as:</p>
+<ul><li><p>“each trial is independent”, “randomly chosen”</p></li></ul></li><li><p><strong>Questions asking “exactly $x$ successes”, “at least $x$ successes”, or “between $a$ and $b$ successes”</strong> often indicate binomial distribution.</p></li></ol>
+<p><strong>Hint:</strong> If you&#x27;re counting the number of times something happens in a fixed number of identical and independent trials with a fixed success probability, you&#x27;re likely dealing with a <strong>binomial distribution</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Tossing a Fair Coin</div><div class="box-body"><p>A fair coin is tossed 5 times. What is the probability of getting exactly 3 heads? Also compute the mean and variance of the distribution.</p>
+<p><strong>Solution:</strong> <br>
+Here, \( n = 5, p = 0.5, q = 0.5 \) <br>
+Let \( X \) be the number of heads. Then,
+\[
+P(X = 3) = \binom{5}{3} (0.5)^3 (0.5)^2 = 10 \times 0.125 \times 0.25 = 0.3125
+\]
+<strong>Mean:</strong> \( \mu = np = 5 \times 0.5 = 2.5 \) <br>
+<strong>Variance:</strong> \( \sigma^2 = npq = 5 \times 0.5 \times 0.5 = 1.25 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Defective Bulbs</div><div class="box-body"><p>A machine produces bulbs with a 10% defect rate. If 8 bulbs are chosen at random, what is the probability that exactly 2 are defective? Also find the mean and variance.</p>
+<p><strong>Solution:</strong> <br>
+Here, \( n = 8, p = 0.1, q = 0.9 \)
+\[
+P(X = 2) = \binom{8}{2} (0.1)^2 (0.9)^6 = 28 \times 0.01 \times 0.531441 = 0.1488
+\]
+<strong>Mean:</strong> \( \mu = np = 8 \times 0.1 = 0.8 \) <br>
+<strong>Variance:</strong> \( \sigma^2 = npq = 8 \times 0.1 \times 0.9 = 0.72 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 3: Multiple Choice Test</div><div class="box-body"><p>A student guesses on a multiple choice question with 4 options. If there are 10 questions, what is the probability of getting exactly 4 correct answers by guessing?</p>
+<p><strong>Solution:</strong> <br>
+Here, \( n = 10, p = \frac{1}{4} = 0.25, q = 0.75 \)
+\[
+P(X = 4) = \binom{10}{4} (0.25)^4 (0.75)^6 = 210 \times 0.00390625 \times 0.1779785 \approx 0.146
+\]
+<strong>Mean:</strong> \( \mu = np = 10 \times 0.25 = 2.5 \) <br>
+<strong>Variance:</strong> \( \sigma^2 = npq = 10 \times 0.25 \times 0.75 = 1.875 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 4: Pass Rate in Exam</div><div class="box-body"><p>The probability of a student passing an exam is 0.6. If 7 students appear for the exam, find the probability that exactly 5 pass. Also calculate mean and variance.</p>
+<p><strong>Solution:</strong> <br>
+Here, \( n = 7, p = 0.6, q = 0.4 \)
+\[
+P(X = 5) = \binom{7}{5} (0.6)^5 (0.4)^2 = 21 \times 0.07776 \times 0.16 = 0.2613
+\]
+<strong>Mean:</strong> \( \mu = np = 7 \times 0.6 = 4.2 \) <br>
+<strong>Variance:</strong> \( \sigma^2 = npq = 7 \times 0.6 \times 0.4 = 1.68 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 5: Product Quality Check</div><div class="box-body"><p>In a quality control check, the probability that an item is of good quality is 0.85. If 12 items are tested, find the probability that exactly 10 are of good quality. Also find the mean and variance.</p>
+<p><strong>Solution:</strong> <br>
+Here, \( n = 12, p = 0.85, q = 0.15 \)
+\[
+P(X = 10) = \binom{12}{10} (0.85)^{10} (0.15)^2 = 66 \times 0.19687 \times 0.0225 \approx 0.292
+\]
+<strong>Mean:</strong> \( \mu = np = 12 \times 0.85 = 10.2 \) <br>
+<strong>Variance:</strong> \( \sigma^2 = npq = 12 \times 0.85 \times 0.15 = 1.53 \)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 6</div><div class="box-body"><p>The probability that a student passes a final exam is $0.6$. If $12$ students take the exam, what is the probability that</p>
+<ol><li><p>[(a)] at least $8$ pass,</p></li><li><p>[(b)] between $4$ and $9$ pass, and</p></li><li><p>[(c)] exactly $6$ pass?</p></li></ol>
+<p><strong>Solution:</strong><br>
+Let $X$ be the number of students who pass. Then $X$ follows a binomial distribution with parameters $n = 12$, $p = 0.6$.</p>
+<p><strong>(a) Probability that at least 8 pass:</strong>
+\[
+P(X \geq 8) = 1 - P(X \leq 7) = 1 - \sum_{x=0}^{7} b(x; 12, 0.6)
+\]
+Using cumulative binomial values:
+\[
+P(X \geq 8) = 1 - 0.7831 = \boxed{0.2169}
+\]</p>
+<p><strong>(b) Probability that between 4 and 9 pass:</strong>
+\[
+P(4 \leq X \leq 9) = \sum_{x=4}^{9} b(x; 12, 0.6) = \sum_{x=0}^{9} b(x; 12, 0.6) - \sum_{x=0}^{3} b(x; 12, 0.6)
+\]
+\[
+P(4 \leq X \leq 9) = 0.9450 - 0.0635 = \boxed{0.8815}
+\]</p>
+<p><strong>(c) Probability that exactly 6 pass:</strong>
+\[
+P(X = 6) = b(6; 12, 0.6) = \sum_{x=0}^{6} b(x; 12, 0.6) - \sum_{x=0}^{5} b(x; 12, 0.6)
+\]
+\[
+P(X = 6) = 0.6100 - 0.4070 = \boxed{0.2030}
+\]</p></div></div>
+</section>
+<section id="poisson-distribution" class="content-section level-1">
+<h2 class="section-heading">Poisson Distribution</h2>
+<p>Experiments that result in <strong>numerical values of a random variable \( X \)</strong>, which counts the <strong>number of occurrences</strong> during a specific <strong>time interval</strong> or within a designated <strong>region</strong>, are referred to as <strong>Poisson experiments</strong>. The <strong>time interval</strong> can be of any duration — for instance, a <strong>minute</strong>, <strong>hour</strong>, <strong>day</strong>, <strong>week</strong>, <strong>month</strong>, or even a <strong>year</strong>.</p>
+<section id="examples" class="content-section level-2">
+<h3 class="section-heading">Examples:</h3>
+<ul><li><p>\( X \): Number of phone calls received per hour in an office.</p></li><li><p>Number of school closures due to snow in a winter season.</p></li><li><p>Number of baseball games postponed due to rain over a season.</p></li></ul>
+<p>The <strong>region</strong> could also be spatial:</p>
+<ul><li><p>Number of field mice per acre.</p></li><li><p>Number of bacteria in a culture.</p></li><li><p>Number of typing errors per page.</p></li></ul>
+<p>Such problems are modeled using a <strong>Poisson process</strong>, and the experiment satisfies the following properties:</p>
+</section>
+<section id="properties-of-the-poisson-process" class="content-section level-2">
+<h3 class="section-heading">Properties of the Poisson Process</h3>
+<ol><li><p><strong>Independence Across Disjoint Intervals or Regions:</strong> <br>
+    The number of events occurring in one time interval or region is <strong>independent</strong> of those in any <strong>non-overlapping</strong> interval or region. The process has <strong>no memory</strong>.</p></li><li><p><strong>Proportionality:</strong> <br>
+    The <strong>probability</strong> of a <strong>single event</strong> occurring in a very <strong>small time interval</strong> or <strong>tiny region</strong> is:</p>
+<ul><li><p><strong>Proportional</strong> to the length/size of the interval or region.</p></li><li><p><strong>Independent</strong> of events outside that interval or region.</p></li></ul></li><li><p><strong>Negligible Multiple Events in Small Intervals:</strong> <br>
+    The probability that <strong>more than one event</strong> occurs in a very <strong>short interval</strong> or <strong>small region</strong> is <strong>negligible</strong>.</p></li></ol>
+</section>
+<section id="poisson-random-variable-and-distribution" class="content-section level-2">
+<h3 class="section-heading">Poisson Random Variable and Distribution</h3>
+<p>The random variable \( X \), representing the <strong>number of outcomes</strong> in the given interval or region, is called a <strong>Poisson random variable</strong>. The associated probability distribution is known as the <strong>Poisson distribution</strong>.</p>
+<div class="concept-box"><div class="box-title">Poisson Distribution</div><div class="box-body"><p>The probability distribution of a <strong>Poisson random variable</strong> \( X \), representing the number of outcomes occurring in a given time interval or specified region of size \( t \), is given by:</p>
+<p>\[
+P(X = x; \lambda t) = \frac{e^{-\lambda t}(\lambda t)^x}{x!}, \quad x = 0, 1, 2, \ldots
+\]</p>
+<p><strong>Where:</strong></p>
+<ul><li><p>\( \lambda \) = average number of occurrences per unit time, area, or volume.</p></li><li><p>\( t \) = time interval or region size.</p></li><li><p>\( \lambda t \) = expected number of events in interval \( t \).</p></li><li><p>\( e \approx 2.71828 \).</p></li></ul>
+<p><strong>Mean and Variance:</strong>
+\[
+\text{Mean: } \mu = \lambda t \qquad \text{Variance: } \sigma^2 = \lambda t
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Poisson Distribution Example</div><div class="box-body"><p><strong>Problem:</strong> During a laboratory experiment, the average number of radioactive particles passing through a counter in 1 millisecond is 4.  
+What is the probability that exactly 6 particles enter the counter in a given millisecond?</p>
+<p><strong>Solution:</strong></p>
+<p>This is a Poisson distribution problem with:</p>
+<p>\[
+\lambda = 4, \quad x = 6
+\]</p>
+<p>\[
+P(X = 6) = \frac{e^{-\lambda} \lambda^x}{x!}
+= \frac{e^{-4} \cdot 4^6}{6!}
+= \frac{e^{-4} \cdot 4096}{720}
+\]</p>
+<p>\[
+e^{-4} \approx 0.0183 \quad \Rightarrow \quad P(X = 6) \approx \frac{0.0183 \cdot 4096}{720} \approx \frac{74.9568}{720} \approx 0.1041
+\]</p>
+<p><strong>Answer:</strong> The probability is approximately \( \boxed{0.1041} \).</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Tips to Identify Poisson Distribution in Word Problems</strong></div><div class="box-body"><p><strong>Look for the following keywords and features:</strong></p>
+<ul><li><p><strong>Fixed time/space/area/volume:</strong> Mentions like &quot;per minute&quot;, &quot;per km&quot;, &quot;per hour&quot;, &quot;per unit&quot;, or &quot;within an area&quot;.</p></li><li><p><strong>Rare/Random Events:</strong> Events that occur randomly, such as arrival of customers, system failures, or radioactive emissions.</p></li><li><p><strong>Average rate is known:</strong> Given as a mean number (e.g., &quot;on average 3 per hour&quot;).</p></li><li><p><strong>Discrete counts:</strong> The variable counts how many events occur (not how long or how big).</p></li><li><p><strong>Independence of events:</strong> The occurrence of one event does not affect the others.</p></li></ul>
+<p><strong>Common phrases in problems:</strong></p>
+<ul><li><p>&quot;The average number of ...&quot;</p></li><li><p>&quot;Occurs randomly over time/area&quot;</p></li><li><p>&quot;Find the probability that exactly \( x \) events happen ...&quot;</p></li><li><p>&quot;In a given time frame/region ...&quot;</p></li></ul>
+<p><strong>Key Formula:</strong> 
+\[
+P(X = x) = \frac{e^{-\lambda t} (\lambda t)^x}{x!}
+\]</p>
+<p><strong>Remember:</strong> Poisson is ideal when you&#x27;re dealing with counts of rare events in a continuous domain.</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 1: Emails Received</strong></div><div class="box-body"><p>On average, a person receives 3 emails per hour. What is the probability that they receive exactly 5 emails in an hour?</p>
+<p><strong>Given:</strong> \( \lambda = 3, x = 5 \)</p>
+<p><strong>Mean:</strong> \( \mu = \lambda = 3 \), 
+   
+<strong>Variance:</strong> \( \sigma^2 = \lambda = 3 \)</p>
+<p>\[
+P(X = 5) = \frac{e^{-3} \cdot 3^5}{5!} 
+= \frac{e^{-3} \cdot 243}{120} 
+\approx 0.1008
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 2: Typos in a Page</strong></div><div class="box-body"><p>An editor finds on average 2 typos per printed page. What is the probability that a page contains no typos?</p>
+<p><strong>Given:</strong> \( \lambda = 2, x = 0 \)</p>
+<p><strong>Mean:</strong> \( \mu = 2 \), 
+   
+<strong>Variance:</strong> \( \sigma^2 = 2 \)</p>
+<p>\[
+P(X = 0) = \frac{e^{-2} \cdot 2^0}{0!} = e^{-2} \approx 0.1353
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 3: Website Hits</strong></div><div class="box-body"><p>A website gets 10 hits per minute on average. What is the probability of getting exactly 7 hits in a minute?</p>
+<p><strong>Given:</strong> \( \lambda = 10, x = 7 \)</p>
+<p><strong>Mean:</strong> \( \mu = 10 \), 
+   
+<strong>Variance:</strong> \( \sigma^2 = 10 \)</p>
+<p>\[
+P(X = 7) = \frac{e^{-10} \cdot 10^7}{7!} 
+= \frac{e^{-10} \cdot 10000000}{5040} 
+\approx 0.0901
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 4: Machine Breakdowns</strong></div><div class="box-body"><p>A machine breaks down on average 1.5 times per month. What is the probability that it breaks down 3 times this month?</p>
+<p><strong>Given:</strong> \( \lambda = 1.5, x = 3 \)</p>
+<p><strong>Mean:</strong> \( \mu = 1.5 \), 
+   
+<strong>Variance:</strong> \( \sigma^2 = 1.5 \)</p>
+<p>\[
+P(X = 3) = \frac{e^{-1.5} \cdot 1.5^3}{3!} 
+= \frac{e^{-1.5} \cdot 3.375}{6} 
+\approx 0.1255
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 5: Car Accidents at a Junction</strong></div><div class="box-body"><p>On average, 0.8 accidents occur at a junction daily. What is the probability that exactly 2 accidents occur tomorrow?</p>
+<p><strong>Given:</strong> \( \lambda = 0.8, x = 2 \)</p>
+<p><strong>Mean:</strong> \( \mu = 0.8 \), 
+   
+<strong>Variance:</strong> \( \sigma^2 = 0.8 \)</p>
+<p>\[
+P(X = 2) = \frac{e^{-0.8} \cdot 0.8^2}{2!} 
+= \frac{e^{-0.8} \cdot 0.64}{2} 
+\approx 0.1144
+\]</p></div></div>
+</section>
+</section>
+<section id="uniform-distribution" class="content-section level-1">
+<h2 class="section-heading">Uniform Distribution</h2>
+<div class="concept-box"><div class="box-title">Discrete Uniform Distribution</div><div class="box-body"><p>A discrete uniform distribution has a finite number of outcomes that are equally likely.</p>
+<p><strong>PMF:</strong> 
+\[
+P(X = x) = \frac{1}{n}, \quad x = x_1, x_2, \dots, x_n
+\]</p>
+<p><strong>Number of outcomes:</strong> 
+\[
+n = \frac{b-a}{d} + 1, \quad d = \text{spacing between consecutive numbers}
+\]</p>
+<p><strong>Mean:</strong> 
+\[
+E[X] = \frac{a+b}{2}
+\]</p>
+<p><strong>Variance:</strong> 
+\[
+\mathrm{Var}(X) = \frac{(n^2 - 1)d^2}{12}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Tips to Identify Discrete Uniform Problems</div><div class="box-body"><ul><li><p>Problem states all outcomes are &quot;equally likely&quot;</p></li><li><p>Finite number of possible outcomes</p></li><li><p>Often includes phrases like:</p>
+<ul><li><p>&quot;Choose a number at random from 1 to n&quot;</p></li><li><p>&quot;Fair die / coin / card deck&quot;</p></li><li><p>&quot;Equally probable outcomes&quot;</p></li></ul></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Die Roll Probability</div><div class="box-body"><p><strong>Problem:</strong> A fair 12-sided die is rolled. Compute the expected value, variance, and the probability that the outcome is greater than 8.</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>Here $a=1, b=12, d=1, n=12$ (numbers 1 to 12)</p></li><li><p>Mean: $E[X] = \frac{a+b}{2} = \frac{1+12}{2} = 6.5$</p></li><li><p>Variance: $\text{Var}(X) = \frac{(n^2-1)d^2}{12} = \frac{(12^2-1)\cdot1^2}{12} = \frac{143}{12} \approx 11.92$</p></li><li><p>Probability $X&gt;8$: favorable outcomes $\{9,10,11,12\} \Rightarrow 4$ out of 12
+    \[
+    P(X&gt;8) = \frac{4}{12} = \frac{1}{3} \approx 0.333
+    \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Random Number Selection</div><div class="box-body"><p><strong>Problem:</strong> A number is chosen randomly from integers 10 to 25. Compute the expected value, variance, and the probability that the number is $\le 15$.</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>$a=10, b=25, d=1, n = b-a+1 = 16$</p></li><li><p>Mean: $E[X] = \frac{a+b}{2} = \frac{10+25}{2} = 17.5$</p></li><li><p>Variance: $\text{Var}(X) = \frac{(n^2-1)d^2}{12} = \frac{(16^2-1)\cdot1^2}{12} = \frac{255}{12} = 21.25$</p></li><li><p>Probability $X\le 15$: numbers 10 to 15 $\Rightarrow 6$ out of 16
+    \[
+    P(X\le15) = \frac{6}{16} = \frac{3}{8} = 0.375
+    \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 3: Colored Card Draw</div><div class="box-body"><p><strong>Problem:</strong> A deck contains 6 cards numbered 1 to 6. Compute the expected value, variance, and probability that the card number is $&gt;4$.</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>$a=1, b=6, d=1, n=6$</p></li><li><p>Mean: $E[X] = \frac{1+6}{2} = 3.5$</p></li><li><p>Variance: $\text{Var}(X) = \frac{(6^2-1)\cdot1^2}{12} = \frac{35}{12} \approx 2.92$</p></li><li><p>Probability $X&gt;4$: favorable outcomes $\{5,6\} \Rightarrow 2/6$
+    \[
+    P(X&gt;4) = \frac{2}{6} = \frac{1}{3} \approx 0.333
+    \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 4: Raffle Ticket Draw</div><div class="box-body"><p><strong>Problem:</strong> A raffle ticket is randomly selected from tickets numbered 20 to 60. Compute expected value, variance, and probability ticket $\ge 50$.</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>$a=20, b=60, d=1, n = b-a+1 = 41$</p></li><li><p>Mean: $E[X] = \frac{20+60}{2} = 40$</p></li><li><p>Variance: $\text{Var}(X) = \frac{(41^2-1)\cdot1^2}{12} = \frac{1680}{12} = 140$</p></li><li><p>Probability $X\ge50$: numbers 50 to 60 $\Rightarrow 11/41$
+    \[
+    P(X\ge50) = \frac{11}{41} \approx 0.268
+    \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 5: Even Numbers Selection</div><div class="box-body"><p><strong>Problem:</strong> A number is picked randomly from \(\{2,4,6,8,10,12\}\). Compute expected value, variance, probability $&lt;7$.</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>$a=2, b=12, d=2, n = \frac{b-a}{d}+1 = \frac{12-2}{2}+1 = 6$</p></li><li><p>Mean: $E[X] = \frac{2+12}{2} = 7$</p></li><li><p>Variance: $\text{Var}(X) = \frac{(6^2-1)\cdot2^2}{12} = \frac{35\cdot4}{12} \approx 11.667$</p></li><li><p>Probability $X&lt;7$: numbers 2,4,6 $\Rightarrow 3/6$
+    \[
+    P(X&lt;7) = \frac{3}{6} = 0.5
+    \]</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Mean and Variance of a Random Variable</a><span class="spacer"></span><a class="nav-btn next" href="ch07.html">Chapter 7: Continuous Probability Distributions &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Probability &amp; Statistics &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regression & Classification Models — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 6</div><h1>Regression &amp; Classification Models</h1></div>
+<section id="decision-trees" class="content-section level-1">
+<h2 class="section-heading">Decision Trees</h2>
+<p>Decision Trees are non-parametric supervised learning models used for both classification and regression tasks. They work by recursively splitting the data space into homogeneous subsets based on feature values, forming a tree-like structure.</p>
+<p>A Decision Tree consists of:</p>
+<ul><li><p><strong>Root Node:</strong> Represents the entire dataset.</p></li><li><p><strong>Internal Nodes:</strong> Represent decisions based on feature tests.</p></li><li><p><strong>Leaf Nodes:</strong> Represent class labels (in classification) or continuous values (in regression).</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig051.png" alt="diagram"></div>
+<section id="entropy-gini-index-and-information-gain" class="content-section level-2">
+<h3 class="section-heading">Entropy, Gini Index, and Information Gain</h3>
+<p>Decision Trees divide data into smaller, purer subsets.  
+To decide the best attribute for splitting, the tree evaluates impurity measures such as  
+<strong>Shannon Entropy</strong> (ID3, C4.5) and <strong>Gini Index</strong> (CART).  
+The attribute giving the maximum reduction in impurity is chosen.</p>
+<div class="concept-box"><div class="box-title">Shannon Entropy</div><div class="box-body"><p>Entropy (from information theory) quantifies the uncertainty or disorder in a dataset.</p>
+<p>\[
+H(S) = - \sum_{i=1}^{k} p_i \log_2 p_i
+\]</p>
+<p>where</p>
+<ul><li><p>$k$ = number of classes</p></li><li><p>$p_i$ = proportion of samples belonging to class $i$</p></li></ul>
+<p><strong>Interpretation:</strong></p>
+<ul><li><p>$H(S)=0$ when the dataset is pure (all samples belong to one class).</p></li><li><p>Entropy is maximum when classes are equally likely.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 41</div><div class="box-body"><p>A dataset has 8 samples: 5 belong to Class A and 3 belong to Class B.</p>
+<p>\[
+H(S) = -\left( \frac{5}{8}\log_2\frac{5}{8} + \frac{3}{8}\log_2\frac{3}{8} \right)
+\]</p>
+<p>\[
+H(S) = -(0.625 \log_2 0.625 + 0.375 \log_2 0.375) = 0.954
+\]</p>
+<p>This indicates moderate impurity.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig052.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Gini Index</div><div class="box-body"><p>Gini Index (used in CART) measures the probability of a random sample being incorrectly classified.</p>
+<p>\[
+Gini(S) = 1 - \sum_{i=1}^{k} p_i^2
+\]</p>
+<p><strong>Interpretation:</strong></p>
+<ul><li><p>$Gini = 0$ means pure node.</p></li><li><p>Lower Gini indicates a better split.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 42</div><div class="box-body"><p>Using the same dataset: 5 in Class A, 3 in Class B,</p>
+<p>\[
+Gini(S) = 1 - \left( \left(\frac{5}{8}\right)^2 + \left(\frac{3}{8}\right)^2 \right)
+\]</p>
+<p>\[
+Gini = 1 - (0.3906 + 0.1406) = 0.4688
+\]</p>
+<p>The node has moderate impurity.</p></div></div>
+<div class="concept-box"><div class="box-title">Entropy vs Gini (Key Differences)</div><div class="box-body"><ul><li><p>Entropy uses logarithmic measure, Gini uses squared probabilities.</p></li><li><p>Both rank splits similarly in most cases.</p></li><li><p>Gini is computationally simpler (preferred in CART).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Information Gain</div><div class="box-body"><p>Information Gain quantifies the reduction in impurity after splitting on a feature.</p>
+<p>\[
+IG(S, A) = Impurity(S) - \sum_{v \in Values(A)} \frac{|S_v|}{|S|} \; Impurity(S_v)
+\]</p>
+<p><strong>Notes:</strong></p>
+<ul><li><p>For ID3/C4.5: use Entropy in the formula.</p></li><li><p>For CART: use Gini Index.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 43</div><div class="box-body"><p>A dataset has 10 samples: 6 in Class 1, 4 in Class 2.</p>
+<p>\[
+H(S) = - \left( \frac{6}{10}\log_2\frac{6}{10} + \frac{4}{10}\log_2\frac{4}{10} \right) = 0.971
+\]</p>
+<p>A feature splits the dataset into two subsets:</p>
+<p>\[
+S_1: 4 \text{ samples}, \quad H_1 = 0.5
+\]
+\[
+S_2: 6 \text{ samples}, \quad H_2 = 0.811
+\]</p>
+<p>Weighted entropy:</p>
+<p>\[
+H_{\text{split}} = \frac{4}{10}\times 0.5 + \frac{6}{10}\times 0.811 = 0.847
+\]</p>
+<p>Information Gain:</p>
+<p>\[
+IG = 0.971 - 0.847 = 0.124
+\]</p>
+<p>Thus, this feature gives an improvement of 0.124 in purity.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig053.png" alt="diagram"></div>
+<p><strong>Table C: Details of cricket games between Green and Blue</strong></p>
+<div class="example-box"><div class="box-title">Example 44</div><div class="box-body"><p>Details of ten international cricket games between two teams “Green” and “Blue” 
+are given in Table C. The attribute <strong>Pitch</strong> can take one of two values: 
+spin-friendly (S) or pace-friendly (F). The attribute <strong>Format</strong> can take values: 
+one-day (O) or test (T). The target variable is the <strong>Winner</strong>.</p>
+<p>Compute the Information Gain $\text{IG(C, Pitch)}$ with respect to the Target.  
+Give the answer rounded to two decimal places.<br></p>
+<p>Total matches = 10</p>
+<p>Green wins = 4  
+Blue wins = 6</p>
+<p>\[
+H(\text{Winner}) = -\frac{4}{10}\log_2\left(\frac{4}{10}\right)
+                   -\frac{6}{10}\log_2\left(\frac{6}{10}\right)
+\]</p>
+<p>\[
+H(\text{Winner}) = -0.4\log_2(0.4) - 0.6\log_2(0.6)
+= 0.97095 \text{ bits}
+\]</p>
+<p><strong class="inline-subheading">Step 2: Entropy for each value of Pitch</strong></p>
+<p><strong>Pitch = S (Spin-friendly)</strong></p>
+<p>Matches: 1,2,4,7,10  
+Green = 3, Blue = 2</p>
+<p>\[
+H(\text{Winner}|\text{Pitch}=S)
+= -\frac{3}{5}\log_2\left(\frac{3}{5}\right)
+  -\frac{2}{5}\log_2\left(\frac{2}{5}\right)
+\]</p>
+<p>\[
+= -0.6\log_2(0.6) - 0.4\log_2(0.4)
+= 0.97095
+\]</p>
+<p><strong>Pitch = F (Pace-friendly)</strong></p>
+<p>Matches: 3,5,6,8,9  
+Green = 1, Blue = 4</p>
+<p>\[
+H(\text{Winner}|\text{Pitch}=F)
+= -\frac{1}{5}\log_2\left(\frac{1}{5}\right)
+  -\frac{4}{5}\log_2\left(\frac{4}{5}\right)
+\]</p>
+<p>\[
+= -0.2\log_2(0.2) - 0.8\log_2(0.8)
+= 0.72193
+\]</p>
+<p><strong class="inline-subheading">Step 3: Conditional Entropy</strong></p>
+<p>\[
+H(\text{Winner}|\text{Pitch}) =
+\frac{5}{10}(0.97095) + \frac{5}{10}(0.72193)
+\]</p>
+<p>\[
+= 0.84644
+\]</p>
+<p><strong class="inline-subheading">Step 4: Information Gain</strong></p>
+<p>\[
+\mathrm{IG}(C,\text{Pitch}) =
+H(\text{Winner}) - H(\text{Winner}|\text{Pitch})
+\]</p>
+<p>\[
+= 0.97095 - 0.84644 = 0.12451
+\]</p>
+<p>\[
+\boxed{\mathrm{IG}(C,\text{Pitch}) \approx 0.12}
+\]</p></div></div>
+</section>
+<section id="tree-construction-and-stopping-criteria" class="content-section level-2">
+<h3 class="section-heading">Tree Construction and Stopping Criteria</h3>
+<div class="concept-box"><div class="box-title">Algorithm for Building a Decision Tree</div><div class="box-body"><ol><li><p>Start with all training samples at the root.</p></li><li><p>Compute impurity (Entropy or Gini).</p></li><li><p>For each feature, calculate Information Gain.</p></li><li><p>Split on the feature with the highest IG.</p></li><li><p>Repeat recursively until:</p>
+<ul><li><p>Node is pure (all samples same class), or</p></li><li><p>Maximum depth reached, or</p></li><li><p>Minimum number of samples per node is met.</p></li></ul></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 45</div><div class="box-body"><p>Consider features:
+\[
+\text{Outlook: Sunny, Overcast, Rain}, \quad \text{Target: Play Tennis?}
+\]
+Compute $IG$ for each feature; the one with the highest gain (say, Outlook) becomes the root node. Repeat for child nodes recursively.</p></div></div>
+<p>—</p>
+</section>
+<section id="tree-pruning-and-overfitting" class="content-section level-2">
+<h3 class="section-heading">Tree Pruning and Overfitting</h3>
+<p>A large tree can overfit—capturing noise instead of true structure.</p>
+<div class="concept-box"><div class="box-title">Pruning Techniques</div><div class="box-body"><ul><li><p><strong>Pre-pruning:</strong> Stop growing tree early (limit depth, min samples).</p></li><li><p><strong>Post-pruning:</strong> Grow full tree, then remove branches that do not improve validation accuracy.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig054.png" alt="diagram"></div>
+<p><strong>Reasoning:</strong>  
+Pruning improves generalization by reducing variance. The goal is to find the simplest model that performs well on unseen data.</p>
+<p>—</p>
+</section>
+<section id="bias-variance-characteristics" class="content-section level-2">
+<h3 class="section-heading">Bias–Variance Characteristics</h3>
+<div class="concept-box"><div class="box-title">Bias–Variance Tradeoff in Decision Trees</div><div class="box-body"><ul><li><p><strong>Small trees:</strong> High bias, low variance (underfitting).</p></li><li><p><strong>Large trees:</strong> Low bias, high variance (overfitting).</p></li><li><p><strong>Ensemble methods (Random Forests):</strong> Reduce variance while maintaining low bias.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig055.png" alt="diagram"></div>
+<p><strong>Insight:</strong>  
+Decision Trees are powerful but unstable learners. Small changes in training data can drastically change splits. Ensembles like Random Forests or Gradient Boosted Trees help stabilize performance.</p>
+<div class="example-box"><div class="box-title">Example 46</div><div class="box-body"><p>If a Decision Tree trained on a dataset of 100 samples achieves 100% accuracy on training but only 60% on test data, it exhibits:</p>
+<ul><li><p>Low bias (fits training perfectly)</p></li><li><p>High variance (poor generalization)</p></li></ul>
+<p>Using pruning or Random Forest can reduce variance.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig056.png" alt="diagram"></div>
+<p>}<br>
+
+    <strong>Comparison of ID3, C4.5, and CART Algorithms</strong></p>
+</section>
+</section>
+<section id="support-vector-machine-svm" class="content-section level-1">
+<h2 class="section-heading">Support Vector Machine (SVM)</h2>
+
+<section id="introduction" class="content-section level-2">
+<h3 class="section-heading">Introduction</h3>
+<p>Support Vector Machine (SVM) is a supervised learning algorithm grounded in statistical learning theory and Vapnik–Chervonenkis (VC) theory, primarily used for classification and regression tasks. In its most fundamental form, SVM is designed to construct an optimal decision boundary that best separates data points belonging to different classes.</p>
+<p>SVM emphasizes the concept of <strong>margin maximization</strong>, wherein the separation boundary is chosen not merely to classify correctly, but to be as far as possible from the nearest training points of both classes, thereby enhancing generalization performance.</p>
+<p>Throughout this section, we restrict our discussion to:</p>
+<ul><li><p>Binary classification</p></li><li><p>Linear decision boundaries</p></li><li><p>Linearly separable or near-separable datasets</p></li></ul>
+<p>The SVM framework evolves through three major conceptual stages:</p>
+<ol><li><p>Maximal Margin Classifier (Hard Margin SVM)</p></li><li><p>Support Vector Classifier (Soft Margin SVM)</p></li><li><p>Kernelized SVM (Kernel Trick)</p></li></ol>
+</section>
+<section id="hyperplane" class="content-section level-2">
+<h3 class="section-heading">Hyperplane</h3>
+
+<section id="definition" class="content-section level-3">
+<h4 class="section-heading">Definition</h4>
+<p>A <em>hyperplane</em> in $\mathbb{R}^d$ is the affine set
+\[
+H=\{\mathbf{x}\in\mathbb{R}^d \mid \mathbf{w}^T\mathbf{x}+b=0\},
+\]
+where $\mathbf{w}\in\mathbb{R}^d\setminus\{\mathbf{0}\}$ is the normal vector and $b\in\mathbb{R}$ the bias. The sign of $\mathbf{w}^T\mathbf{x}+b$ determines which side of the hyperplane $\mathbf{x}$ lies on.</p>
+</section>
+<section id="1d-mathbb-r-a-point" class="content-section level-3">
+<h4 class="section-heading">1D (\,\(\mathbb{R}\)\,) -- a point</h4>
+<p>In one dimension ($d=1$) the hyperplane is a single point. With $w\neq0$ and scalar $x$,
+\[
+w x + b = 0 \qquad\Longrightarrow\qquad x = -\frac{b}{w}.
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig057.png" alt="diagram"></div>
+</section>
+<section id="2d-mathbb-r-2-a-line" class="content-section level-3">
+<h4 class="section-heading">2D (\,\(\mathbb{R}^2\)\,) -- a line</h4>
+<p>In two dimensions the hyperplane is a line. For $\mathbf{x}=(x_1,x_2)^T$ and $\mathbf{w}=(w_1,w_2)^T$:
+\[
+w_1 x_1 + w_2 x_2 + b = 0.
+\]
+The signed (orthogonal) distance from a point $\mathbf{x}$ to the line is
+\[
+\mathrm{dist}(\mathbf{x},H)=\frac{\mathbf{w}^T\mathbf{x}+b}{\|\mathbf{w}\|}.
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig058.png" alt="diagram"></div>
+</section>
+<section id="general-d-mathbb-r-d-derivation-orthogonal-projection" class="content-section level-3">
+<h4 class="section-heading">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</h4>
+<p>Take any $\mathbf{x}\in\mathbb{R}^d$. Decompose $\mathbf{x}$ into a point on the hyperplane $ \mathbf{x}_H\in H$ plus a component parallel to $\mathbf{w}$:
+\[
+\mathbf{x} = \mathbf{x}_H + t\frac{\mathbf{w}}{\|\mathbf{w}\|},\qquad t\in\mathbb{R}.
+\]
+Because $\mathbf{x}_H$ satisfies $\mathbf{w}^T\mathbf{x}_H+b=0$, substitute into that relation:
+\[
+0=\mathbf{w}^T\mathbf{x}_H+b
+=\mathbf{w}^T\!\Big(\mathbf{x}-t\frac{\mathbf{w}}{\|\mathbf{w}\|}\Big)+b
+=\mathbf{w}^T\mathbf{x}-t\|\mathbf{w}\|+b.
+\]
+Solve for $t$ to obtain the signed orthogonal distance from $\mathbf{x}$ to $H$:
+\[
+\boxed{\;t=\frac{\mathbf{w}^T\mathbf{x}+b}{\|\mathbf{w}\|}\; }.
+\]
+Hence $\mathbf{w}^T\mathbf{x}+b$ is proportional to the signed distance (scale factor $\|\mathbf{w}\|$).</p>
+</section>
+<section id="decision-function-linear-classifier" class="content-section level-3">
+<h4 class="section-heading">Decision function (linear classifier)</h4>
+<p>The linear decision function used in SVM and other linear classifiers is
+\[
+f(\mathbf{x})=\mathbf{w}^T\mathbf{x}+b,
+\]
+and the class prediction is $\hat y=\operatorname{sign}(f(\mathbf{x}))$.  
+\[
+\boxed{\,y=\mathbf{w}^T\mathbf{x}+b\,}
+\]</p>
+</section>
+</section>
+<section id="hard-margin-svm-geometry-formulation-and-solution" class="content-section level-2">
+<h3 class="section-heading">Hard-Margin SVM: geometry, formulation and solution</h3>
+
+<section id="geometric-figure-and-support-vectors-2d" class="content-section level-3">
+<h4 class="section-heading">Geometric figure and support vectors (2D)</h4>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig059.png" alt="diagram"></div>
+</section>
+<section id="concept-informal" class="content-section level-3">
+<h4 class="section-heading">Concept (informal)</h4>
+<p>The maximal margin classifier chooses the separating hyperplane so that the perpendicular distance between the two parallel margin hyperplanes
+\[
+\mathbf{w}^\top\mathbf{x}+b=+1\quad\text{and}\quad\mathbf{w}^\top\mathbf{x}+b=-1
+\]
+is maximized. Points lying exactly on these margins are the <em>support vectors</em>; they alone determine the classifier.</p>
+</section>
+<section id="derivation-of-the-optimization-problem" class="content-section level-3">
+<h4 class="section-heading">Derivation of the optimization problem</h4>
+<p>Distance between margin planes = $2/\|\mathbf{w}\|$. Maximizing this is equivalent to minimizing $\|\mathbf{w}\|^2$ subject to correct classification with margin:
+\[
+y_i(\mathbf{w}^\top\mathbf{x}_i + b)\ge 1,\qquad i=1,\dots,n.
+\]
+Thus the primal problem (hard margin) is
+\[
+\boxed{\;\min_{\mathbf{w},b}\; \frac{1}{2}\|\mathbf{w}\|^2
+\quad\text{s.t.}\quad y_i(\mathbf{w}^\top\mathbf{x}_i + b)\ge 1\; (i=1,\dots,n).\;}
+\]</p>
+</section>
+<section id="lagrangian-kkt-and-consequence" class="content-section level-3">
+<h4 class="section-heading">Lagrangian, KKT and consequence</h4>
+<p>Form Lagrangian with multipliers $\alpha_i\ge0$:
+\[
+\mathcal{L}(\mathbf{w},b,\boldsymbol{\alpha})
+=\tfrac{1}{2}\|\mathbf{w}\|^2 - \sum_{i=1}^n\alpha_i\big(y_i(\mathbf{w}^\top\mathbf{x}_i+b)-1\big).
+\]
+Stationarity conditions (set partial derivatives to zero) give
+\[
+\frac{\partial\mathcal{L}}{\partial\mathbf{w}}=0 \;\Rightarrow\; 
+\boxed{\;\mathbf{w}=\sum_{i=1}^n \alpha_i y_i \mathbf{x}_i\;},\qquad
+\frac{\partial\mathcal{L}}{\partial b}=0 \;\Rightarrow\; \sum_{i=1}^n \alpha_i y_i = 0.
+\]
+Complementary slackness states that for each $i$ either $\alpha_i=0$ (non-support) or
+\[
+y_i(\mathbf{w}^\top\mathbf{x}_i+b)=1 \quad\text{(support vector)}.
+\]
+Hence support vectors are exactly those with $\alpha_i&gt;0$.</p>
+</section>
+<section id="dual-statement-brief-and-solution-strategy" class="content-section level-3">
+<h4 class="section-heading">Dual statement (brief) and solution strategy</h4>
+<p>The dual quadratic program is
+\[
+\begin{aligned}
+&amp;\max_{\boldsymbol{\alpha}}\; \sum_{i=1}^n\alpha_i - \tfrac{1}{2}\sum_{i,j}\alpha_i\alpha_j y_i y_j \mathbf{x}_i^\top\mathbf{x}_j,\\
+&amp;\text{subject to }\; \alpha_i\ge0,\;\; \sum_{i=1}^n\alpha_i y_i=0.
+\end{aligned}
+\]
+Solve for $\alpha^*$ (QP). Recover primal weight using the boxed formula above.</p>
+</section>
+<section id="bias-b-practical-formula" class="content-section level-3">
+<h4 class="section-heading">Bias $b$ (practical formula)</h4>
+<p>For any support vector $s$ (with $\alpha_s&gt;0$) we have equality:
+\[
+y_s(\mathbf{w}^\top\mathbf{x}_s+b)=1 \;\Rightarrow\;
+\boxed{\;b = y_s - \mathbf{w}^\top\mathbf{x}_s\; }.
+\]
+In practice average over all support vectors to get a numerically stable $b$:
+\[
+b \;=\; \frac{1}{|S|}\sum_{s\in S}\big(y_s-\mathbf{w}^\top\mathbf{x}_s\big),\qquad S=\{i:\alpha_i&gt;0\}.
+\]</p>
+</section>
+<section id="summary-final-formulas" class="content-section level-3">
+<h4 class="section-heading">Summary (final formulas)</h4>
+<p>\[
+\boxed{\,\mathbf{w}=\sum_{i=1}^n \alpha_i^* y_i \mathbf{x}_i\,,\qquad
+b=\text{average}_{s\in S}\big(y_s-\mathbf{w}^\top\mathbf{x}_s\big)\,}
+\]
+Support vectors are those indices with $\alpha_i^*&gt;0$ and they alone define the classifier.
+<strong class="inline-subheading">Classifier function</strong>
+\[
+f(\mathbf{x})=\operatorname{sign}(\mathbf{w}^\top \mathbf{x}+b).
+\]</p>
+<div class="example-box"><div class="box-title">Example 47</div><div class="box-body"><p>Training data and Lagrange multipliers:
+\[
+\begin{array}{c|c|c|c}
+i &amp; \mathbf{x}_i &amp; y_i &amp; \alpha_i\\\hline
+1 &amp; (1,2) &amp; +1 &amp; 2\\
+2 &amp; (2,1) &amp; -1 &amp; 2\\
+3 &amp; (2,2) &amp; +1 &amp; 0
+\end{array}
+\qquad\text{Classify }\mathbf{x}=(1,3).
+\]</p>
+<p><strong class="inline-subheading">Step 1 — Compute weight vector \(\mathbf{w}\)</strong>
+Use the relation \(\mathbf{w}=\sum_{i}\alpha_i y_i \mathbf{x}_i\). Compute each term explicitly:</p>
+<p>\[
+\begin{aligned}
+\alpha_1 y_1 \mathbf{x}_1 &amp;= 2\cdot(+1)\cdot\begin{pmatrix}1\\2\end{pmatrix}
+= \begin{pmatrix}2\\4\end{pmatrix},\\[4pt]
+\alpha_2 y_2 \mathbf{x}_2 &amp;= 2\cdot(-1)\cdot\begin{pmatrix}2\\1\end{pmatrix}
+= \begin{pmatrix}-4\\-2\end{pmatrix},\\[4pt]
+\alpha_3 y_3 \mathbf{x}_3 &amp;= 0\cdot(+1)\cdot\begin{pmatrix}2\\2\end{pmatrix}
+= \begin{pmatrix}0\\0\end{pmatrix}.
+\end{aligned}
+\]</p>
+<p>Sum the terms:
+\[
+\mathbf{w} =
+\begin{pmatrix}2\\4\end{pmatrix}
++
+\begin{pmatrix}-4\\-2\end{pmatrix}
++
+\begin{pmatrix}0\\0\end{pmatrix}
+=
+\begin{pmatrix}-2\\2\end{pmatrix}.
+\]</p>
+<p><strong class="inline-subheading">Step 2 — Compute bias \(b\)</strong>
+For any support vector \(s\) with \(\alpha_s&gt;0\) we have
+\[
+y_s(\mathbf{w}^\top\mathbf{x}_s + b)=1 \quad\Longrightarrow\quad b = y_s - \mathbf{w}^\top\mathbf{x}_s.
+\]
+Support vectors here are indices \(1\) and \(2\) (since \(\alpha_1=2,\;\alpha_2=2,\;\alpha_3=0\)).</p>
+<p>Compute \(\mathbf{w}^\top\mathbf{x}_1\):
+\[
+\mathbf{w}^\top\mathbf{x}_1 = (-2)\cdot 1 + 2\cdot 2 = -2 + 4 = 2.
+\quad\Rightarrow\quad b_1 = y_1 - \mathbf{w}^\top\mathbf{x}_1 = 1 - 2 = -1.
+\]</p>
+<p>Compute \(\mathbf{w}^\top\mathbf{x}_2\):
+\[
+\mathbf{w}^\top\mathbf{x}_2 = (-2)\cdot 2 + 2\cdot 1 = -4 + 2 = -2.
+\quad\Rightarrow\quad b_2 = y_2 - \mathbf{w}^\top\mathbf{x}_2 = -1 -(-2) = -1 + 2 = 1.
+\]</p>
+<p>Average the two values for numerical stability:
+\[
+b = \frac{b_1 + b_2}{2} = \frac{-1 + 1}{2} = 0.
+\]</p>
+<p>(Using a single support vector would give \(b=-1\) or \(b=1\); averaging is standard practice.)</p>
+<p><strong class="inline-subheading">Step 3 — Decision function for \(\mathbf{x}=(1,3)\)</strong>
+Compute the raw decision value \(f(\mathbf{x})=\mathbf{w}^\top\mathbf{x}+b\).</p>
+<p>First the dot product:
+\[
+\mathbf{w}^\top\mathbf{x} = (-2)\cdot 1 + 2\cdot 3 = -2 + 6 = 4.
+\]
+Add \(b=0\):
+\[
+f(1,3) = 4 + 0 = 4.
+\]</p>
+<p><strong class="inline-subheading">Step 4 — Classification (sign rule)</strong>
+Apply \(\hat y = \operatorname{sign}(f(\mathbf{x}))\):
+\[
+\operatorname{sign}(4) = +1.
+\]</p>
+<p><strong class="inline-subheading">Remarks</strong>
+Support vectors are indices \(1\) and \(2\) (those with \(\alpha_i&gt;0\)). The classifier parameters are
+\[
+\mathbf{w} = \begin{pmatrix}-2\\2\end{pmatrix},\qquad b=0.
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig060.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="soft-margin-support-vector-classifier" class="content-section level-2">
+<h3 class="section-heading">Soft Margin - Support Vector Classifier</h3>
+
+<section id="motivation-why-soft-margin" class="content-section level-3">
+<h4 class="section-heading">Motivation: why soft margin</h4>
+<p>The hard-margin SVM requires exact linear separability of the training data. In practice this is brittle:
+outliers, mislabels and naturally overlapping classes make the hard-margin program infeasible or lead to poor generalization. The soft-margin SVM remedies this by introducing nonnegative slack variables $\xi_i\ge0$ which permit controlled violations of the margin constraint. The total violation is penalized in the objective with weight $C&gt;0$, which controls the trade-off between model complexity (large margin) and training error.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig061.png" alt="diagram"></div>
+</section>
+<section id="primal-formulation-soft-margin" class="content-section level-3">
+<h4 class="section-heading">Primal formulation (soft margin)</h4>
+<p>Given labeled data $\{(\mathbf{x}_i,y_i)\}_{i=1}^n$ with $y_i\in\{\pm1\}$, the soft-margin primal optimization problem is:
+\[
+\begin{aligned}
+&amp;\min_{\mathbf{w},\,b,\,\boldsymbol{\xi}}\quad 
+  \frac{1}{2}\|\mathbf{w}\|^2 + C\sum_{i=1}^n \xi_i,\\[4pt]
+&amp;\text{subject to}\qquad
+  y_i\big(\mathbf{w}^\top\mathbf{x}_i + b\big) \ge 1 - \xi_i,\qquad
+  \xi_i \ge 0,\qquad i=1,\dots,n.
+\end{aligned}
+\]
+The hyperparameter $C&gt;0$ trades off margin size against penalty for margin violations.</p>
+</section>
+<section id="lagrangian-and-stationarity" class="content-section level-3">
+<h4 class="section-heading">Lagrangian and stationarity</h4>
+<p>Introduce Lagrange multipliers $\alpha_i\ge0$ for the margin constraints and $\mu_i\ge0$ for $\xi_i\ge0$. The Lagrangian is
+\[
+\mathcal{L}(\mathbf{w},b,\boldsymbol{\xi},\boldsymbol{\alpha},\boldsymbol{\mu})
+= \tfrac12\|\mathbf{w}\|^2 + C\sum_{i=1}^n\xi_i
+- \sum_{i=1}^n \alpha_i\big(y_i(\mathbf{w}^\top\mathbf{x}_i+b)-1+\xi_i\big)
+- \sum_{i=1}^n \mu_i \xi_i.
+\]
+Stationarity conditions (set partial derivatives to zero) yield:
+\[
+\frac{\partial\mathcal{L}}{\partial\mathbf{w}}=0
+\ \Rightarrow\ \mathbf{w}=\sum_{i=1}^n \alpha_i y_i \mathbf{x}_i,
+\]
+\[
+\frac{\partial\mathcal{L}}{\partial b}=0
+\ \Rightarrow\ \sum_{i=1}^n \alpha_i y_i = 0,
+\]
+\[
+\frac{\partial\mathcal{L}}{\partial\xi_i}=0
+\ \Rightarrow\ C-\alpha_i-\mu_i = 0 \ \Rightarrow\ 0\le\alpha_i\le C.
+\]</p>
+</section>
+<section id="dual-problem" class="content-section level-3">
+<h4 class="section-heading">Dual problem</h4>
+<p>Eliminating $\mathbf{w}$ and $b$ leads to the dual quadratic program
+\[
+\begin{aligned}
+&amp;\max_{\boldsymbol{\alpha}} \quad 
+  \sum_{i=1}^n \alpha_i \;-\; \tfrac12\sum_{i,j=1}^n \alpha_i\alpha_j y_i y_j \mathbf{x}_i^\top\mathbf{x}_j,\\[4pt]
+&amp;\text{subject to}\quad 0 \le \alpha_i \le C,\quad \sum_{i=1}^n \alpha_i y_i = 0.
+\end{aligned}
+\]
+This dual is a concave quadratic program in the variables $\alpha_i$ with simple bound constraints and one linear equality.</p>
+</section>
+<section id="kkt-conditions-and-practical-consequences" class="content-section level-3">
+<h4 class="section-heading">KKT conditions and practical consequences</h4>
+<p>From complementary slackness and stationarity we derive the operational rules:</p>
+<ul><li><p><strong>Primal-dual relation (weights)</strong>:
+  \[
+  \boxed{\ \mathbf{w}=\sum_{i=1}^n \alpha_i y_i \mathbf{x}_i\ }\quad\text{(always).}
+  \]</p></li><li><p><strong>Dual feasibility:</strong> $0\le\alpha_i\le C$ for every $i$, and $\sum_i\alpha_i y_i = 0$.</p></li><li><p><strong>Complementary slackness (margin constraint):</strong>
+  \[
+  \alpha_i\big(y_i(\mathbf{w}^\top\mathbf{x}_i+b)-1+\xi_i\big)=0.
+  \]
+  Thus:</p>
+<ul><li><p>If $\alpha_i=0$, then the margin constraint may be slack (point lies strictly outside margin) and we have $y_i(\mathbf{w}^\top\mathbf{x}_i+b)&gt;1$ and $\xi_i=0$.</p></li><li><p>If $0&lt;\alpha_i&lt;C$, then necessarily $\xi_i=0$ and $y_i(\mathbf{w}^\top\mathbf{x}_i+b)=1$ (the point lies exactly on the margin boundary) — these are <em>support vectors on the margin</em>.</p></li><li><p>If $\alpha_i=C$, then $\mu_i=0$ and $\xi_i$ may be $&gt;0$; complementary slackness for $\alpha_i$ enforces
+      \[
+      y_i(\mathbf{w}^\top\mathbf{x}_i+b)=1-\xi_i \le 1,
+      \]
+      so such points lie inside the margin (or are misclassified).</p></li></ul></li><li><p><strong>Stationarity wrt $\xi_i$:</strong> $C-\alpha_i-\mu_i=0$ together with $\mu_i\xi_i=0$ implies:</p>
+<ul><li><p>If $\alpha_i&lt;C$ then $\mu_i&gt;0$ and therefore $\xi_i=0$.</p></li><li><p>If $\alpha_i=C$ then $\mu_i=0$ and $\xi_i$ may be $&gt;0$.</p></li></ul></li><li><p><strong>Bias $b$:</strong> For any $i$ with $0&lt;\alpha_i&lt;C$ (i.e. a margin support vector) we have the exact identity
+  \[
+  \boxed{\ b = y_i - \mathbf{w}^\top\mathbf{x}_i\ }.
+  \]
+  In practice average $b$ over all indices with $0&lt;\alpha_i&lt;C$ to increase numerical stability.</p></li></ul>
+</section>
+<section id="summary-table-alpha-i-xi-i-and-geometric-meaning" class="content-section level-3">
+<h4 class="section-heading">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</h4>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig062.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 48</div><div class="box-body"><p>Consider the training set and parameter:
+\[
+\begin{array}{c|c|c|c}
+i &amp; \mathbf{x}_i &amp; y_i &amp; \alpha_i \\\hline
+1 &amp; (1,\,0) &amp; +1 &amp; 0.30 \\
+2 &amp; (-1,\,0) &amp; -1 &amp; 0.60 \\
+3 &amp; (0,\,0) &amp; +1 &amp; 0.10
+\end{array}
+\qquad C = 0.6.
+\]</p>
+<p>Given the supplied vector
+\[
+\boldsymbol{\alpha} = (0.30,\;0.60,\;0.10),
+\qquad
+y = (+1,\;-1,\;+1),
+\]
+compute the primal weight vector
+\[
+\mathbf{w}=\sum_{i=1}^3 \alpha_i y_i \mathbf{x}_i.
+\]</p>
+<p>\[
+\begin{aligned}
+\alpha_1 y_1 \mathbf{x}_1 &amp;= 0.30\cdot(+1)\cdot(1,0) = (0.30,\,0),\\[6pt]
+\alpha_2 y_2 \mathbf{x}_2 &amp;= 0.60\cdot(-1)\cdot(-1,0) = 0.60\cdot(1,0) = (0.60,\,0),\\[6pt]
+\alpha_3 y_3 \mathbf{x}_3 &amp;= 0.10\cdot(+1)\cdot(0,0) = (0,0).
+\end{aligned}
+\]</p>
+<p>\[
+\boxed{\;\mathbf{w} = (0.30+0.60,\,0) = (0.90,\,0)\; }.
+\]</p>
+<p><strong class="inline-subheading">Per-support bias values (KKT equality for $0&lt;\alpha_i&lt;C$)</strong>
+For any index with $0&lt;\alpha_i&lt;C$ the KKT equality gives
+\[
+y_i(\mathbf{w}^\top\mathbf{x}_i + b) = 1
+\quad\Longrightarrow\quad
+b = y_i - \mathbf{w}^\top\mathbf{x}_i.
+\]</p>
+<p>Apply to the two non-bound support indices $i=1$ and $i=3$:
+\[
+\begin{aligned}
+b_1 &amp;= 1 - (0.90,0)\cdot(1,0) = 1 - 0.90 = 0.10,\\[6pt]
+b_3 &amp;= 1 - (0.90,0)\cdot(0,0) = 1 - 0 = 1.00.
+\end{aligned}
+\]</p>
+<p>Practical (heuristic) averaging of these two values yields
+\[
+\boxed{\;b = \frac{b_1 + b_3}{2} = \frac{0.10 + 1.00}{2} = 0.55\; }.
+\]</p>
+<p><strong class="inline-subheading">Classification of $\mathbf{x}=(1,3)$ with the chosen $(\mathbf{w},b)$</strong>
+Decision function:
+\[
+f(\mathbf{x}) = \operatorname{sign}(\mathbf{w}^\top\mathbf{x} + b).
+\]
+Compute:
+\[
+\mathbf{w}^\top(1,3) + b = (0.90,0)\cdot(1,3) + 0.55 = 0.90 + 0 + 0.55 = 1.45,
+\]
+hence
+\[
+\boxed{\,f(1,3) = \operatorname{sign}(1.45) = +1\,.}
+\]</p></div></div>
+</section>
+<section id="hinge-loss" class="content-section level-3">
+<h4 class="section-heading">Hinge Loss</h4>
+<p>In Soft Margin SVM, not all violations are treated equally. The classifier applies a penalty that increases as a point moves deeper into the margin or crosses the decision boundary. This behaviour is visually described by the hinge loss curve.</p>
+<p><strong>Conceptual interpretation:</strong></p>
+<ul><li><p>Correct and confidently classified points incur <strong>zero penalty</strong>.</p></li><li><p>Points inside the margin incur a <strong>gradual linear penalty</strong>.</p></li><li><p>Misclassified points incur the <strong>highest penalty</strong>.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig063.png" alt="diagram"></div>
+<p><strong>Figure Interpretation:</strong></p>
+<ul><li><p>The slanted segment (slope =1) represents increasing penalty for margin violations.</p></li><li><p>The flat segment (slope =0) represents regions where points are sufficiently confident and incur no cost.</p></li><li><p>The hinge point marks the transition between penalized and unpenalized zones.</p></li></ul>
+<p>This illustrates how Soft Margin SVM balances classification accuracy and robustness by tolerating controlled violations rather than enforcing strict separability.</p>
+</section>
+</section>
+<section id="kernel-trick" class="content-section level-2">
+<h3 class="section-heading">Kernel Trick</h3>
+<p>Linear SVM works by finding a hyperplane that separates classes. However, real-world data is often <strong>non-linear</strong>, as shown below:</p>
+<div class="concept-box"><div class="box-title">Non-linear Data Example</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig064.png" alt="diagram"></div></div></div>
+<p>Clearly, no straight line can separate these classes. We need a <strong>non-linear mapping</strong>.</p>
+</section>
+<section id="feature-mapping-phi-cdot" class="content-section level-2">
+<h3 class="section-heading">Feature Mapping $\phi(\cdot)$</h3>
+<p>The idea is to map input features to a higher-dimensional space where data becomes linearly separable:</p>
+<p>\[
+\phi: \mathbb{R}^n \to \mathbb{R}^m, \quad m&gt;n
+\]</p>
+<div class="concept-box"><div class="box-title">Definition: Feature Mapping</div><div class="box-body"><p>A function $\phi(x)$ transforms input $x$ to a higher-dimensional space to make the data linearly separable.</p></div></div>
+<section id="example-1d-to-2d-mapping" class="content-section level-3">
+<h4 class="section-heading">Example: 1D to 2D Mapping</h4>
+<p>Consider 1D data $x \in \mathbb{R}$ and map it to 2D using:</p>
+<p>\[
+\phi(x) = (x, x^2)
+\]</p>
+<div class="example-box"><div class="box-title">Visualization 1D $\to$ 2D</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig065.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig066.png" alt="diagram"></div></div></div>
+</section>
+<section id="kernel-function" class="content-section level-3">
+<h4 class="section-heading">Kernel Function</h4>
+<p>Instead of computing $\phi(x)$ explicitly, we use a kernel function:</p>
+<p>\[
+K(x_i, x_j) = \phi(x_i) \cdot \phi(x_j)
+\]</p>
+<div class="concept-box"><div class="box-title">Definition: Kernel Function</div><div class="box-body"><p>A kernel function computes the dot product of two vectors in the higher-dimensional space without explicitly computing the mapping $\phi(x)$.</p></div></div>
+</section>
+<section id="the-trick-with-dot-products" class="content-section level-3">
+<h4 class="section-heading">The ``Trick'' with Dot Products</h4>
+<p>We can write the SVM classifier as:</p>
+<p>\[
+f(x) = \sum_{i=1}^{N} \alpha_i y_i K(x_i, x) + b
+\]</p>
+<p>Here, $K(x_i,x)$ implicitly uses the higher-dimensional mapping. This avoids costly computations in high-dimensional space.</p>
+</section>
+<section id="common-kernel-functions" class="content-section level-3">
+<h4 class="section-heading">Common Kernel Functions</h4>
+<ul><li><p><strong>Linear Kernel:</strong> $K(x_i,x_j) = x_i \cdot x_j$</p></li><li><p><strong>Polynomial Kernel:</strong> $K(x_i,x_j) = (x_i \cdot x_j + c)^d$</p></li><li><p><strong>RBF / Gaussian Kernel:</strong> $K(x_i,x_j) = \exp\Big(-\frac{\|x_i-x_j\|^2}{2\sigma^2}\Big)$</p></li><li><p><strong>Sigmoid Kernel:</strong> $K(x_i,x_j) = \tanh(\kappa x_i \cdot x_j + c)$</p></li></ul>
+<div class="concept-box"><div class="box-title">Summary</div><div class="box-body"><p>The kernel trick allows SVM to perform non-linear classification efficiently by:</p>
+<ol><li><p>Mapping data to higher dimensions via $\phi(x)$</p></li><li><p>Using kernel functions $K(x_i,x_j)$ to compute dot products</p></li><li><p>Avoiding explicit computation in high-dimensional space</p></li></ol></div></div>
+</section>
+</section>
+</section>
+<section id="neural-network-models" class="content-section level-1">
+<h2 class="section-heading">Neural Network Models</h2>
+
+<section id="feed-forward-neural-networks-ffnn" class="content-section level-2">
+<h3 class="section-heading">Feed-Forward Neural Networks (FFNN)</h3>
+
+</section>
+<section id="network-architecture-and-notation" class="content-section level-2">
+<h3 class="section-heading">Network Architecture and Notation</h3>
+<p>A <strong>Feed-Forward Neural Network (FFNN)</strong> is a computational model inspired by the biological neuron.  
+It consists of multiple layers of interconnected nodes (neurons), where information flows in one direction — from input to output — without any feedback loops.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig067.png" alt="diagram"></div>
+<p><strong>Notation:</strong></p>
+<ul><li><p>$x_i$ : Input features ($i = 1, 2, \dots, d$)</p></li><li><p>$w_{ij}^{(l)}$ : Weight connecting neuron $j$ in layer $(l-1)$ to neuron $i$ in layer $(l)$</p></li><li><p>$b_i^{(l)}$ : Bias term for neuron $i$ in layer $(l)$</p></li><li><p>$a_i^{(l)}$ : Activation (output) of neuron $i$ in layer $(l)$</p></li></ul>
+<p>—</p>
+</section>
+<section id="activation-functions-sigmoid-relu-tanh" class="content-section level-2">
+<h3 class="section-heading">Activation Functions (Sigmoid, ReLU, Tanh)</h3>
+<p>The activation function introduces non-linearity, allowing the network to model complex relationships.</p>
+<p><strong>1. Sigmoid Function:</strong>
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</p>
+<p>It maps input values to $(0,1)$, useful for probabilities.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig068.png" alt="diagram"></div>
+<p><strong>2. Tanh Function:</strong>
+\[
+\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
+\]
+Range: $(-1,1)$ — centered around zero.</p>
+<p><strong>3. ReLU (Rectified Linear Unit):</strong>
+\[
+f(z) = \max(0, z)
+\]
+It is widely used due to faster convergence and less vanishing gradient.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig069.png" alt="diagram"></div>
+<p>—</p>
+</section>
+<section id="forward-propagation-and-loss-computation" class="content-section level-2">
+<h3 class="section-heading">Forward Propagation and Loss Computation</h3>
+<p>In forward propagation, data moves from the input layer through hidden layers to produce the output.</p>
+<p>For a single neuron:
+\[
+z_i^{(l)} = \sum_{j} w_{ij}^{(l)} a_j^{(l-1)} + b_i^{(l)}
+\]
+\[
+a_i^{(l)} = f(z_i^{(l)})
+\]</p>
+<p>For the output layer in regression:
+\[
+\hat{y} = a^{(L)} = f(z^{(L)})
+\]</p>
+<p><strong>Example:</strong>  
+Suppose input $x = [1, 2]$, weights $w = [0.5, -1]$, bias $b = 0.2$ and $f(z) = \text{ReLU}(z)$.</p>
+<p>\[
+z = (1)(0.5) + (2)(-1) + 0.2 = -1.3 \implies a = 0
+\]</p>
+<p>So the neuron output is $0$.</p>
+<p><strong>Loss Function (Mean Squared Error):</strong>
+\[
+L = \frac{1}{N} \sum_{i=1}^N (y_i - \hat{y}_i)^2
+\]</p>
+<p>—</p>
+</section>
+<section id="backpropagation-algorithm-and-gradient-flow" class="content-section level-2">
+<h3 class="section-heading">Backpropagation Algorithm and Gradient Flow</h3>
+<p><strong>Goal:</strong> Adjust weights $w$ and biases $b$ to minimize the loss.</p>
+<p>\[
+w_{ij}^{(l)} \leftarrow w_{ij}^{(l)} - \eta \frac{\partial L}{\partial w_{ij}^{(l)}}
+\]
+where $\eta$ is the learning rate.</p>
+<p><strong>Gradient computation:</strong>
+\[
+\frac{\partial L}{\partial w_{ij}^{(l)}} = \delta_i^{(l)} a_j^{(l-1)}
+\]
+\[
+\delta_i^{(l)} = f'(z_i^{(l)}) \sum_k \delta_k^{(l+1)} w_{ki}^{(l+1)}
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig070.png" alt="diagram"></div>
+<p>—</p>
+</section>
+<section id="vanishing-exploding-gradient-problem" class="content-section level-2">
+<h3 class="section-heading">Vanishing/Exploding Gradient Problem</h3>
+<p><strong>Definition:</strong>  
+When gradients become extremely small (vanish) or large (explode) during backpropagation, training becomes unstable.</p>
+<p><strong>Why it happens:</strong>
+\[
+\delta^{(l)} = f'(z^{(l)}) W^{(l+1)T} \delta^{(l+1)}
+\]
+If $|f'(z^{(l)})| &lt; 1$ repeatedly (e.g., Sigmoid), gradients shrink exponentially → vanishing.  
+If weights $&gt; 1$, gradients may explode.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig071.png" alt="diagram"></div>
+<p><strong>Remedies:</strong></p>
+<ul><li><p>Use ReLU instead of Sigmoid or Tanh.</p></li><li><p>Normalize inputs and use Batch Normalization.</p></li><li><p>Use residual connections (as in ResNet).</p></li><li><p>Initialize weights carefully (e.g., Xavier or He initialization).</p></li></ul>
+<p>—</p>
+<div class="concept-box"><div class="box-title">Summary</div><div class="box-body"><ul><li><p>FFNN learns a non-linear mapping from inputs to outputs via multiple layers.</p></li><li><p>Activation functions enable non-linearity.</p></li><li><p>Forward pass computes prediction; backward pass updates weights.</p></li><li><p>Deep networks suffer from vanishing/exploding gradients, which can be mitigated by normalization and better initialization.</p></li></ul></div></div>
+</section>
+</section>
+<section id="multi-layer-perceptron-mlp" class="content-section level-1">
+<h2 class="section-heading">Multi-Layer Perceptron (MLP)</h2>
+
+<section id="universal-approximation-theorem-conceptual-insight" class="content-section level-2">
+<h3 class="section-heading">Universal Approximation Theorem (Conceptual Insight)</h3>
+<div class="concept-box"><div class="box-title">Universal Approximation Theorem</div><div class="box-body"><p>The Universal Approximation Theorem states that a feed-forward neural network with:</p>
+<ul><li><p>at least one hidden layer,</p></li><li><p>finite number of neurons,</p></li><li><p>and a non-linear activation function (e.g., sigmoid, ReLU, tanh)</p></li></ul>
+<p>can approximate any continuous function $f: \mathbb{R}^n \to \mathbb{R}$ to an arbitrary degree of accuracy given sufficient neurons.</p>
+<p><strong>Reasoning:</strong>  
+Hidden layers provide non-linear transformations, allowing the network to capture complex mappings between inputs and outputs that linear models cannot. This theorem gives theoretical assurance of MLP's capability, although practical training may require regularization and careful weight initialization.</p></div></div>
+<div class="example-box"><div class="box-title">Example 49</div><div class="box-body"><p>Suppose we want to approximate $f(x) = \sin(x)$ over $[0, \pi]$.</p>
+<ul><li><p>Using a single hidden layer with 10 neurons and a sigmoid activation, an MLP can approximate $\sin(x)$ closely.</p></li><li><p>Increasing neurons improves accuracy but may increase overfitting risk.</p></li></ul></div></div>
+</section>
+<section id="training-and-regularization-techniques" class="content-section level-2">
+<h3 class="section-heading">Training and Regularization Techniques</h3>
+<div class="concept-box"><div class="box-title">Training MLPs</div><div class="box-body"><p>Training involves minimizing a loss function (e.g., MSE for regression, cross-entropy for classification) using:</p>
+<ul><li><p>Forward propagation to compute outputs.</p></li><li><p>Backpropagation to compute gradients w.r.t weights.</p></li><li><p>Gradient-based optimization (e.g., SGD, Adam) to update weights.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Regularization Techniques</div><div class="box-body"><p>To prevent overfitting:</p>
+<ul><li><p><strong>L2 Regularization (Weight Decay):</strong> Adds $\lambda \sum w^2$ to loss.</p></li><li><p><strong>Dropout:</strong> Randomly zeroes a fraction of hidden neurons during training.</p></li><li><p><strong>Early Stopping:</strong> Halt training when validation loss stops improving.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 50</div><div class="box-body"><p>A classification MLP with 3 hidden layers (64, 32, 16 neurons) overfits training data.  
+Applying dropout of 0.3 and L2 regularization $\lambda = 0.01$ improves validation accuracy by 8%.</p></div></div>
+</section>
+<section id="comparison-with-traditional-ml-models" class="content-section level-2">
+<h3 class="section-heading">Comparison with Traditional ML Models</h3>
+<div class="concept-box"><div class="box-title">Comparison</div><div class="box-body"><ul><li><p><strong>Linear Models:</strong> Can only capture linear relationships.</p></li><li><p><strong>Decision Trees:</strong> Non-linear, but may struggle with high-dimensional data and interactions.</p></li><li><p><strong>MLPs:</strong> Capture complex non-linear patterns and interactions, scalable with more data.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 51</div><div class="box-body"><p>Predicting housing prices:</p>
+<ul><li><p>Linear regression underfits the data due to non-linear interactions.</p></li><li><p>Random Forest captures some non-linearities but saturates at 90% R-squared.</p></li><li><p>MLP with 2 hidden layers achieves 97% R-squared by modeling complex interactions.</p></li></ul></div></div>
+</section>
+<section id="advantages-and-limitations-of-mlps" class="content-section level-2">
+<h3 class="section-heading">Advantages and Limitations of MLPs</h3>
+<div class="concept-box"><div class="box-title">Advantages</div><div class="box-body"><ul><li><p>Can approximate any continuous function (Universal Approximation).</p></li><li><p>Flexible architecture (number of layers/neurons).</p></li><li><p>Suitable for regression, classification, and complex pattern recognition.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Limitations</div><div class="box-body"><ul><li><p>Requires large amounts of labeled data.</p></li><li><p>Computationally intensive, especially with many layers.</p></li><li><p>Prone to overfitting without proper regularization.</p></li><li><p>Difficult to interpret compared to simple models.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 52</div><div class="box-body"><p>A small dataset (500 samples, 10 features) trained with a deep MLP (5 hidden layers) overfits drastically. Using a shallow MLP (2 hidden layers) with dropout maintains similar accuracy but improves generalization.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Model Evaluation and Generalization</a><span class="spacer"></span></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

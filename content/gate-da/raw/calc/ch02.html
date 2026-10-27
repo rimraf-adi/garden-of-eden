@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limits — Calculus</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Calculus</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#visualizing-a-function" class="toc-link" data-slug="visualizing-a-function">Visualizing a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graph-of-a-function" class="toc-link" data-slug="graph-of-a-function">Graph of a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-and-range" class="toc-link" data-slug="domain-and-range">Domain and Range</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#piecewise-defined-functions" class="toc-link" data-slug="piecewise-defined-functions">Piecewise-Defined Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#open-and-closed-intervals" class="toc-link" data-slug="open-and-closed-intervals">Open and Closed Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#classes-of-functions" class="toc-link" data-slug="classes-of-functions">Classes of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-linear-functions" class="toc-link" data-slug="1-linear-functions">1. Linear Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-quadratic-functions" class="toc-link" data-slug="2-quadratic-functions">2. Quadratic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-polynomial-functions" class="toc-link" data-slug="3-polynomial-functions">3. Polynomial Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-rational-functions" class="toc-link" data-slug="4-rational-functions">4. Rational Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-exponential-functions" class="toc-link" data-slug="5-exponential-functions">5. Exponential Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-logarithmic-functions" class="toc-link" data-slug="6-logarithmic-functions">6. Logarithmic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#7-trigonometric-functions" class="toc-link" data-slug="7-trigonometric-functions">7. Trigonometric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#8-absolute-value-function" class="toc-link" data-slug="8-absolute-value-function">8. Absolute Value Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#properties-of-x" class="toc-link" data-slug="properties-of-x">Properties of $|x|$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-functions" class="toc-link" data-slug="types-of-functions">Types of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-one-to-one-function-injective" class="toc-link" data-slug="1-one-to-one-function-injective">1. One-to-One Function (Injective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-onto-function-surjective" class="toc-link" data-slug="2-onto-function-surjective">2. Onto Function (Surjective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-bijective-function" class="toc-link" data-slug="3-bijective-function">3. Bijective Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-many-to-one-function" class="toc-link" data-slug="4-many-to-one-function">4. Many-to-One Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-constant-function" class="toc-link" data-slug="5-constant-function">5. Constant Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-identity-function" class="toc-link" data-slug="6-identity-function">6. Identity Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#inverse-function" class="toc-link" data-slug="inverse-function">Inverse Function</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-an-inverse-function" class="toc-link" data-slug="example-of-an-inverse-function">Example of an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#one-to-one-functions" class="toc-link" data-slug="one-to-one-functions">One-to-One Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#finding-an-inverse-function" class="toc-link" data-slug="finding-an-inverse-function">Finding an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphing-inverse-functions" class="toc-link" data-slug="graphing-inverse-functions">Graphing Inverse Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#restricting-domains" class="toc-link" data-slug="restricting-domains">Restricting Domains</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#composite-functions" class="toc-link" data-slug="composite-functions">Composite Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-composite-function" class="toc-link" data-slug="example-of-composite-function">Example of Composite Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#rules-of-composite-functions" class="toc-link" data-slug="rules-of-composite-functions">Rules of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-associative-law" class="toc-link" data-slug="example-associative-law">Example: Associative Law</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-of-composite-functions" class="toc-link" data-slug="domain-of-composite-functions">Domain of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphical-representation" class="toc-link" data-slug="graphical-representation">Graphical Representation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Limits</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction-to-calculus" class="toc-link" data-slug="introduction-to-calculus">Introduction to Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-tangent-problem-and-differential-calculus" class="toc-link" data-slug="the-tangent-problem-and-differential-calculus">The Tangent Problem and Differential Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-area-problem-and-integral-calculus" class="toc-link" data-slug="the-area-problem-and-integral-calculus">The Area Problem and Integral Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits" class="toc-link" data-slug="limits">Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#estimating-limits" class="toc-link" data-slug="estimating-limits">Estimating Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#one-sided-limits" class="toc-link" data-slug="one-sided-limits">One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#definitions-one-sided-limits" class="toc-link" data-slug="definitions-one-sided-limits">Definitions: One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fact-relating-one-sided-and-ordinary-limits" class="toc-link" data-slug="fact-relating-one-sided-and-ordinary-limits">Fact Relating One-Sided and Ordinary Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-limits" class="toc-link" data-slug="properties-of-limits">Properties of Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#infinite-limits" class="toc-link" data-slug="infinite-limits">Infinite Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits-at-infinity" class="toc-link" data-slug="limits-at-infinity">Limits at Infinity</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limit-formulas" class="toc-link" data-slug="limit-formulas">Limit Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Continuity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#continuity-of-functions" class="toc-link" data-slug="continuity-of-functions">Continuity of Functions</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#types-of-discontinuities" class="toc-link" data-slug="types-of-discontinuities">Types of Discontinuities</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#continuity-over-an-interval" class="toc-link" data-slug="continuity-over-an-interval">Continuity over an Interval</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#composite-functions-and-trigonometric-continuity" class="toc-link" data-slug="composite-functions-and-trigonometric-continuity">Composite Functions and Trigonometric Continuity</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#intermediate-value-theorem-ivt" class="toc-link" data-slug="intermediate-value-theorem-ivt">Intermediate Value Theorem (IVT)</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Differentiability</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#derivatives" class="toc-link" data-slug="derivatives">Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-of-derivatives" class="toc-link" data-slug="examples-of-derivatives">Examples of Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#differentiability" class="toc-link" data-slug="differentiability">Differentiability</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#checking-differentiability-at-a-point" class="toc-link" data-slug="checking-differentiability-at-a-point">Checking Differentiability at a Point</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#visualizing-differentiability" class="toc-link" data-slug="visualizing-differentiability">Visualizing Differentiability</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Optimization (Maxima/Minima)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#rate-of-change" class="toc-link" data-slug="rate-of-change">Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#derivatives-as-rates-of-change" class="toc-link" data-slug="derivatives-as-rates-of-change">Derivatives as Rates of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-of-rate-of-change" class="toc-link" data-slug="examples-of-rate-of-change">Examples of Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#critical-points" class="toc-link" data-slug="critical-points">Critical Points</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#minima-and-maxima" class="toc-link" data-slug="minima-and-maxima">Minima and Maxima</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#maximum-and-minimum-values-of-a-function" class="toc-link" data-slug="maximum-and-minimum-values-of-a-function">Maximum and Minimum Values of a Function</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#important-theorems" class="toc-link" data-slug="important-theorems">Important Theorems</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#absolute-extrema" class="toc-link" data-slug="absolute-extrema">Absolute Extrema</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#finding-absolute-extrema-on-a-closed-interval" class="toc-link" data-slug="finding-absolute-extrema-on-a-closed-interval">Finding Absolute Extrema on a Closed Interval</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#increasing-decreasing-and-concavity-convexity" class="toc-link" data-slug="increasing-decreasing-and-concavity-convexity">Increasing/Decreasing and Concavity/Convexity</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#mean-value-theorem" class="toc-link" data-slug="mean-value-theorem">Mean Value Theorem</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#rolle-s-theorem" class="toc-link" data-slug="rolle-s-theorem">Rolle's Theorem</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mean-value-theorem-mvt" class="toc-link" data-slug="mean-value-theorem-mvt">Mean Value Theorem (MVT)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#applications-of-mvt" class="toc-link" data-slug="applications-of-mvt">Applications of MVT</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Taylor series</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#taylor-series-expansion" class="toc-link" data-slug="taylor-series-expansion">Taylor Series Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#using-taylor-series-for-limits" class="toc-link" data-slug="using-taylor-series-for-limits">Using Taylor Series for Limits</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 6</div><h1>Limits</h1></div>
+<section id="introduction-to-calculus" class="content-section level-1">
+<h2 class="section-heading">Introduction to Calculus</h2>
+<p>Calculus emerged from the need to solve practical problems in physics and engineering. Two fundamental problems led to its development:</p>
+<ol><li><p><strong>The Tangent Problem</strong>: Determining the slope of a line tangent to a curve at a given point.</p></li><li><p><strong>The Area Problem</strong>: Calculating the area under a curve.</p></li></ol>
+</section>
+<section id="the-tangent-problem-and-differential-calculus" class="content-section level-1">
+<h2 class="section-heading">The Tangent Problem and Differential Calculus</h2>
+<p>The rate of change is a critical concept in calculus. To understand this, consider the graphs of the following linear functions:</p>
+<ul><li><p>\( f(x) = -2x - 3 \)</p></li><li><p>\( g(x) = \frac{x}{2} + 1 \)</p></li><li><p>\( h(x) = 2 \)</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig023.png" alt="diagram"><div class="figure-caption">Graphs of linear functions with constant rates of change.</div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The slope of a linear function indicates the rate of change. For example:</p>
+<ul><li><p>\( f(x) = -2x - 3 \): slope = -2</p></li><li><p>\( g(x) = \frac{x}{2} + 1 \): slope = 1/2</p></li><li><p>\( h(x) = 2 \): slope = 0</p></li></ul></div></div>
+<p>Now consider the quadratic function \( k(x) = x^2 \). Its rate of change is not constant. To approximate it, we use secant lines.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig024.png" alt="diagram"><div class="figure-caption">Graph of \( k(x) = x^2 \) with a secant line.</div></div>
+<div class="def-box"><div class="box-title">Definition</div><div class="box-body"><p>A <strong>secant line</strong> to a function \( f(x) \) through points \( (a, f(a)) \) and \( (x, f(x)) \) passes through these points. Its slope is
+\[
+m_{\text{sec}} = \frac{f(x) - f(a)}{x - a}.
+\]
+As \( x \) approaches \( a \), the secant line approaches the tangent line. Its slope approaches the derivative of \( f(x) \) at \( a \).</p></div></div>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p>Find the slope of the secant line to \( k(x) = x^2 \) through points \( (1,1) \) and \( (2,4) \):
+\[
+m_{\text{sec}} = \frac{4-1}{2-1} = 3.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The slope of the tangent line at a point gives the instantaneous rate of change, which is the derivative of the function at that point.</p></div></div>
+</section>
+<section id="the-area-problem-and-integral-calculus" class="content-section level-1">
+<h2 class="section-heading">The Area Problem and Integral Calculus</h2>
+<p>To find the area under a curve, approximate by summing rectangles.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig025.png" alt="diagram"><div class="figure-caption">Approximation of the area under \( f(x) = x^2 + 1 \) using rectangles.</div></div>
+<div class="def-box"><div class="box-title">Definition</div><div class="box-body"><p>The <strong>area under a curve</strong> is approximated by summing the areas of rectangles over subintervals. As the width of the rectangles decreases, the sum approaches the exact area. This process leads to the definite integral.</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p>Estimate the area under \( f(x) = x^2 + 1 \) over \( [0,3] \) using three rectangles:
+\[
+\text{Area} \approx \sum_{i=1}^{3} \text{Area of Rectangle}_i
+\]</p></div></div>
+</section>
+<section id="conclusion" class="content-section level-1">
+<h2 class="section-heading">Conclusion</h2>
+<p>The Tangent and Area Problems lead to the foundations of calculus:</p>
+<ul><li><p>Tangent Problem $\rightarrow$ Derivative (rate of change)</p></li><li><p>Area Problem $\rightarrow$ Integral (area under curve)</p></li></ul>
+<p>These concepts are essential for further studies in calculus and multivariable calculus.</p>
+</section>
+<section id="limits" class="content-section level-1">
+<h2 class="section-heading">Limits</h2>
+<div class="def-box"><div class="box-title">Definition of a Limit</div><div class="box-body"><p>We say the <strong>limit</strong> of \(f(x)\) is \(L\) as \(x\) approaches \(a\) and write
+\[
+\lim_{x \to a} f(x) = L
+\]
+provided we can make \(f(x)\) as close to \(L\) as we want for all \(x\) sufficiently close to \(a\), from both sides, without actually letting \(x=a\).</p></div></div>
+<div class="concept-box"><div class="box-title">Intuitive Idea</div><div class="box-body"><p>The limit describes the behavior of \(f(x)\) around \(x=a\), not necessarily the value at \(x=a\). As \(x\) approaches \(a\), \(f(x)\) must move closer and closer to \(L\). This must hold for values of \(x\) on both sides of \(a\).</p></div></div>
+</section>
+<section id="estimating-limits" class="content-section level-1">
+<h2 class="section-heading">Estimating Limits</h2>
+<p>To estimate limits, we examine the behavior of a function as \(x\) approaches a point \(a\) from both sides. The idea is to find a value \(X\) such that whenever \(|x-a| &lt; X\), the function's value \(f(x)\) stays within a desired tolerance of the limit \(L\).</p>
+<div class="example-box"><div class="box-title">Example 30</div><div class="box-body"><p>Estimate
+\[
+\lim_{x \to 3} \frac{x^2 + 5x - 18}{x^2 - 3x}.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Observation</div><div class="box-body"><p>Although the function is undefined at \(x=3\), we can study its behavior for values near 3.</p></div></div>
+<div class="example-box"><div class="box-title">Example 31</div><div class="box-body"><p>Define
+\[
+g(x) =
+\begin{cases}
+\dfrac{x^2 + 5x - 18}{x^2 - 3x}, &amp; x \neq 3\\
+7, &amp; x=3
+\end{cases}
+\]
+Estimate \(\lim_{x \to 3} g(x)\).</p>
+<p><strong>Answer:</strong> As in Example 1, the limit is 4, even though \(g(3) = 7\).  
+This shows that limits depend on nearby values of \(x\), not the function's value at the point itself.</p></div></div>
+<div class="example-box"><div class="box-title">Example 32</div><div class="box-body"><p>Estimate
+\[
+\lim_{\theta \to 0} \frac{1 - \cos(2\theta)}{\theta}.
+\]</p>
+<p><strong>Observation:</strong> The function is undefined at \(\theta = 0\), but by evaluating values close to 0, we can approximate the limit.</p></div></div>
+<div class="example-box"><div class="box-title">Example 33</div><div class="box-body"><p>Estimate
+\[
+\lim_{t \to 0} \sin(\pi t/2).
+\]</p>
+<p><strong>Observation:</strong> Tables of values may help, but they can be misleading. Graphical analysis or algebraic methods provide more reliable estimates.</p></div></div>
+<div class="example-box"><div class="box-title">Example 34</div><div class="box-body"><p>Estimate
+\[
+\lim_{t \to 0} X(t), \quad X(t) =
+\begin{cases}
+-1, &amp; t&lt;0\\
+2, &amp; t \ge 0
+\end{cases}
+\]</p>
+<p><strong>Observation:</strong> Not all limits exist. Here, the left-hand limit is \(-1\) and the right-hand limit is 2, so the limit does not exist.</p></div></div>
+</section>
+<section id="summary" class="content-section level-1">
+<h2 class="section-heading">Summary</h2>
+<div class="concept-box"><div class="box-title">Key Points</div><div class="box-body"><ul><li><p>Limits describe the behavior of a function around a point, not necessarily the function's value at that point.</p></li><li><p>Limits can exist even if the function does not exist at that point.</p></li><li><p>A function can exist at a point, but its limit at that point might be different.</p></li><li><p>Tables and graphs can help understand limits but are not always reliable for exact values.</p></li><li><p>Some limits do not exist.</p></li></ul></div></div>
+</section>
+<section id="one-sided-limits" class="content-section level-1">
+<h2 class="section-heading">One-Sided Limits</h2>
+<p>In the previous section, we saw two limits that did not exist for different reasons:</p>
+<ul><li><p>\(\displaystyle \lim_{t \to 0} \cos(\pi t)\) does not exist because the function oscillates and does not settle to a single value near \(t=0\).</p></li><li><p>\(\displaystyle \lim_{t \to 0} X(t), \quad X(t)=\begin{cases}0,&amp; t&lt;0\\1,&amp; t\ge 0\end{cases}\) does not exist because the left-hand and right-hand limits are different.</p></li></ul>
+<p>To distinguish these situations, we introduce <strong>one-sided limits</strong>.</p>
+</section>
+<section id="definitions-one-sided-limits" class="content-section level-1">
+<h2 class="section-heading">Definitions: One-Sided Limits</h2>
+<div class="def-box"><div class="box-title">Right-Hand Limit</div><div class="box-body"><p>We say
+\[
+\lim_{x \to a^+} f(x) = L
+\]
+if we can make \(f(x)\) as close to \(L\) as desired for all \(x&gt;a\) sufficiently close to \(a\), without considering \(x=a\).</p></div></div>
+<div class="def-box"><div class="box-title">Left-Hand Limit</div><div class="box-body"><p>We say
+\[
+\lim_{x \to a^-} f(x) = L
+\]
+if we can make \(f(x)\) as close to \(L\) as desired for all \(x&lt;a\) sufficiently close to \(a\), without considering \(x=a\).</p></div></div>
+<div class="concept-box"><div class="box-title">Observation</div><div class="box-body"><p>The only difference between one-sided limits and ordinary limits is the direction from which \(x\) approaches \(a\). For a one-sided limit to exist, the function must approach a unique value from that side.</p></div></div>
+</section>
+<section id="examples" class="content-section level-1">
+<h2 class="section-heading">Examples</h2>
+<div class="example-box"><div class="box-title">Example 35</div><div class="box-body"><p>Estimate:
+\[
+\lim_{t \to 0^+} H(t) \quad \text{and} \quad \lim_{t \to 0^-} H(t), \quad H(t)=\begin{cases}0,&amp; t&lt;0\\1,&amp; t\ge 0\end{cases}
+\]</p>
+<p><strong>Solution:</strong> 
+\[
+\lim_{t \to 0^+} H(t) = 1, \quad \lim_{t \to 0^-} H(t) = 0
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 36</div><div class="box-body"><p>Estimate:
+\[
+\lim_{t \to 0^+} \sin\left(\frac{1}{t}\right) \quad \text{and} \quad \lim_{t \to 0^-} \sin\left(\frac{1}{t}\right)
+\]</p>
+<p><strong>Observation:</strong> The function oscillates infinitely near \(t=0\), so the one-sided limits do not exist.</p></div></div>
+<div class="example-box"><div class="box-title">Example 37</div><div class="box-body"><p>Let
+\[
+g(x) = 
+\begin{cases}
+\dfrac{x^2 + 5x -18}{x^2 -3x}, &amp; x\neq 3\\
+7, &amp; x=3
+\end{cases}
+\]</p>
+<p>Estimate:
+\[
+\lim_{x \to 3^+} g(x) \quad \text{and} \quad \lim_{x \to 3^-} g(x)
+\]</p>
+<p><strong>Solution:</strong> Both one-sided limits exist and equal 4.</p></div></div>
+</section>
+<section id="fact-relating-one-sided-and-ordinary-limits" class="content-section level-1">
+<h2 class="section-heading">Fact Relating One-Sided and Ordinary Limits</h2>
+<div class="concept-box"><div class="box-title">Fact</div><div class="box-body"><p>For a function \(f(x)\):</p>
+<ul><li><p>If \(\lim_{x \to a^+} f(x) = \lim_{x \to a^-} f(x) = L\), then \(\lim_{x \to a} f(x) = L\).</p></li><li><p>Conversely, if \(\lim_{x \to a} f(x) = L\), both one-sided limits exist and equal \(L\).</p></li><li><p>If \(\lim_{x \to a^+} f(x) \neq \lim_{x \to a^-} f(x)\), then \(\lim_{x \to a} f(x)\) does not exist.</p></li></ul></div></div>
+</section>
+<section id="properties-of-limits" class="content-section level-1">
+<h2 class="section-heading">Properties of Limits</h2>
+<div class="concept-box"><div class="box-title">Properties of Limits</div><div class="box-body"><p>Let \(\lim_{x \to a} f(x)\) and \(\lim_{x \to a} g(x)\) exist, and let \(c\) be any constant. Then the following properties hold:</p>
+<p><strong>1. Constant Multiple:</strong>
+\[
+\lim_{x \to a} [c f(x)] = c \lim_{x \to a} f(x)
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 2} 4x^2 = 4 \cdot 4 = 16\)</p>
+<p><strong>2. Sum/Difference:</strong>
+\[
+\lim_{x \to a} [f(x) \pm g(x)] = \lim_{x \to a} f(x) \pm \lim_{x \to a} g(x)
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 1} (x^2 + 3x) = 1 + 3 = 4\)</p>
+<p><strong>3. Product:</strong>
+\[
+\lim_{x \to a} [f(x) g(x)] = \lim_{x \to a} f(x) \cdot \lim_{x \to a} g(x)
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 2} (x^2 \cdot (x+1)) = 4 \cdot 3 = 12\)</p>
+<p><strong>4. Quotient:</strong>
+\[
+\lim_{x \to a} \frac{f(x)}{g(x)} = \frac{\lim_{x \to a} f(x)}{\lim_{x \to a} g(x)}, \quad \lim_{x \to a} g(x) \neq 0
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 2} \frac{x^2-4}{x-2} = \lim_{x \to 2} (x+2) = 4\)</p>
+<p><strong>5. Power:</strong>
+\[
+\lim_{x \to a} [f(x)]^n = [\lim_{x \to a} f(x)]^n
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 3} (x-1)^3 = 2^3 = 8\)</p>
+<p><strong>6. Root:</strong>
+\[
+\lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{\lim_{x \to a} f(x)}
+\]</p>
+<p><em>Example:</em> \(\lim_{x \to 9} \sqrt{x} = 3\)</p>
+<p><strong>7. Constant Function:</strong> \(\lim_{x \to a} c = c\)</p>
+<p><strong>8. Identity Function:</strong> \(\lim_{x \to a} x = a\)</p>
+<p><strong>9. Power of Identity:</strong> \(\lim_{x \to a} x^n = a^n\)</p></div></div>
+</section>
+<section id="infinite-limits" class="content-section level-1">
+<h2 class="section-heading">Infinite Limits</h2>
+<p>In this section we study limits whose value is \(\infty\) or \(-\infty\). These limits appear frequently in calculus and other exams, so understanding them is essential.</p>
+<div class="concept-box-alt"><div class="box-title">Definition of Infinite Limits</div><div class="box-body"><p>We say
+\[
+\lim_{x \to a} f(x) = \infty
+\]
+if we can make \(f(x)\) arbitrarily large for all \(x\) sufficiently close to \(a\) (from both sides) without actually letting \(x = a\).</p>
+<p>Similarly,
+\[
+\lim_{x \to a} f(x) = -\infty
+\]
+if we can make \(f(x)\) arbitrarily large and negative for all \(x\) sufficiently close to \(a\) without letting \(x = a\).</p>
+<p>These definitions can be extended to one-sided limits as well.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Vertical Asymptote</div><div class="box-body"><p>A function \(f(x)\) has a vertical asymptote at \(x = a\) if any of the following limits is true:
+\[
+\lim_{x \to a^-} f(x) = \pm \infty, \quad
+\lim_{x \to a^+} f(x) = \pm \infty, \quad
+\lim_{x \to a} f(x) = \pm \infty
+\]</p>
+<p>Note: Only one of the above needs to hold.</p></div></div>
+<div class="fact-box"><div class="box-title">Facts About Infinite Limits</div><div class="box-body"><p>Let \(f(x)\) and \(g(x)\) be functions such that
+\[
+\lim_{x \to c} f(x) = \infty, \quad \lim_{x \to c} g(x) = L
+\]</p>
+<p>Then:
+\[
+\lim_{x \to c} [f(x) \pm g(x)] = \infty
+\]
+\[
+\lim_{x \to c} [f(x) g(x)] =
+\begin{cases}
+\infty &amp; \text{if } L &gt; 0\\
+-\infty &amp; \text{if } L &lt; 0
+\end{cases}
+\]
+\[
+\lim_{x \to c} \frac{g(x)}{f(x)} = 0
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 38</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to 0^+} \frac{1}{x}, \quad
+\lim_{x \to 0^-} \frac{1}{x}, \quad
+\lim_{x \to 0} \frac{1}{x}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to 0^+\), \(x&gt;0\) so \(\frac{1}{x} \to +\infty\).  
+- As \(x \to 0^-\), \(x&lt;0\) so \(\frac{1}{x} \to -\infty\).  
+- Since the left and right limits are not equal, \(\lim_{x \to 0} \frac{1}{x}\) does not exist.</p></div></div>
+<div class="example-box"><div class="box-title">Example 39</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to 0^+} \frac{6}{x^2}, \quad
+\lim_{x \to 0^-} \frac{6}{x^2}, \quad
+\lim_{x \to 0} \frac{6}{x^2}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to 0\), \(x^2&gt;0\) so \(\frac{6}{x^2} \to +\infty\) from both sides.  
+- Therefore, \(\lim_{x \to 0^+} \frac{6}{x^2} = \lim_{x \to 0^-} \frac{6}{x^2} = \lim_{x \to 0} \frac{6}{x^2} = +\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 40</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to -2^+} \frac{-4}{x+2}, \quad
+\lim_{x \to -2^-} \frac{-4}{x+2}, \quad
+\lim_{x \to -2} \frac{-4}{x+2}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to -2^+\), \(x+2&gt;0\) so \(\frac{-4}{x+2} \to -\infty\).  
+- As \(x \to -2^-\), \(x+2&lt;0\) so \(\frac{-4}{x+2} \to +\infty\).  
+- Left and right limits are not equal, so the limit at \(x=-2\) does not exist.</p></div></div>
+<div class="example-box"><div class="box-title">Example 41</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to 4^+} \frac{3}{(4-x)^3}, \quad
+\lim_{x \to 4^-} \frac{3}{(4-x)^3}, \quad
+\lim_{x \to 4} \frac{3}{(4-x)^3}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to 4^+\), \(4-x &lt; 0\), so \((4-x)^3 &lt;0\) and \(\frac{3}{(4-x)^3} \to -\infty\).  
+- As \(x \to 4^-\), \(4-x &gt;0\), so \(\frac{3}{(4-x)^3} \to +\infty\).  
+- Since left and right limits differ, \(\lim_{x \to 4} \frac{3}{(4-x)^3}\) does not exist.</p></div></div>
+<div class="example-box"><div class="box-title">Example 42</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to 3^+} \frac{2x}{x-3}, \quad
+\lim_{x \to 3^-} \frac{2x}{x-3}, \quad
+\lim_{x \to 3} \frac{2x}{x-3}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to 3^+\), \(x-3&gt;0\) so \(\frac{2x}{x-3} \to +\infty\).  
+- As \(x \to 3^-\), \(x-3&lt;0\) so \(\frac{2x}{x-3} \to -\infty\).  
+- Left and right limits differ, so \(\lim_{x \to 3} \frac{2x}{x-3}\) does not exist.</p></div></div>
+<div class="example-box"><div class="box-title">Example 43</div><div class="box-body"><p>Evaluate the one-sided limit:
+\[
+\lim_{x \to 0^+} \ln x
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to 0^+\), \(\ln x \to -\infty\).  
+- So, \(\lim_{x \to 0^+} \ln x = -\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 44</div><div class="box-body"><p>Evaluate the following limits:
+\[
+\lim_{x \to \pi/2^+} \tan x, \quad
+\lim_{x \to \pi/2^-} \tan x
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to \pi/2^-\), \(\tan x \to +\infty\)  
+- As \(x \to \pi/2^+\), \(\tan x \to -\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 45</div><div class="box-body"><p>Show that a vertical asymptote exists at \(x=0\) for \(f(x) = 1/x\).</p>
+<p><strong>Solution:</strong> 
+- One-sided limits: \(\lim_{x\to 0^+} 1/x = +\infty\), \(\lim_{x\to 0^-} 1/x = -\infty\)  
+- Since at least one one-sided limit goes to \(\pm\infty\), \(x=0\) is a vertical asymptote.</p></div></div>
+<div class="example-box"><div class="box-title">Example 46</div><div class="box-body"><p>Evaluate the following limit:
+\[
+\lim_{x \to 0} \frac{5x+1}{x^2}
+\]</p>
+<p><strong>Solution:</strong> 
+- Split: \(\frac{5x+1}{x^2} = \frac{5x}{x^2} + \frac{1}{x^2} = \frac{5}{x} + \frac{1}{x^2}\)  
+- As \(x \to 0^+\), \(\frac{5}{x} + \frac{1}{x^2} \to +\infty\)  
+- As \(x \to 0^-\), \(\frac{5}{x} + \frac{1}{x^2} \to -\infty + \infty = +\infty\) (dominant term \(1/x^2\))  
+- So, \(\lim_{x \to 0} \frac{5x+1}{x^2} = +\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 47</div><div class="box-body"><p>Evaluate the following limit:
+\[
+\lim_{x \to -1^+} \frac{2}{x+1}, \quad \lim_{x \to -1^-} \frac{2}{x+1}
+\]</p>
+<p><strong>Solution:</strong> 
+- As \(x \to -1^+\), \(x+1&gt;0 \implies \frac{2}{x+1} \to +\infty\)  
+- As \(x \to -1^-\), \(x+1&lt;0 \implies \frac{2}{x+1} \to -\infty\)</p></div></div>
+</section>
+<section id="limits-at-infinity" class="content-section level-1">
+<h2 class="section-heading">Limits at Infinity</h2>
+<p>By limits at infinity, we study the behavior of functions as \(x\) becomes very large:
+\[
+\lim_{x \to \infty} f(x) \quad \text{or} \quad \lim_{x \to -\infty} f(x)
+\]
+These limits may also be \(\infty\) or \(-\infty\).</p>
+<div class="concept-box"><div class="box-title">Fact 1: Constant over Power</div><div class="box-body"><p>If \(r &gt; 0\) is rational and \(c\) is a constant:
+\[
+\lim_{x \to \infty} \frac{c}{x^r} = 0, \quad
+\lim_{x \to -\infty} \frac{c}{x^r} = 0 \quad (\text{if } x^r \text{ defined for } x&lt;0)
+\]
+<strong>Explanation:</strong> As \(x \to \infty\), \(x^r\) grows, making the fraction approach 0. The sign of \(c\) only affects the approach from above or below.</p></div></div>
+<div class="concept-box"><div class="box-title">Fact 2: Polynomials at Infinity</div><div class="box-body"><p>For \(p(x) = a_n x^n + \dots + a_0\), degree \(n\), \(a_n \neq 0\):
+\[
+\lim_{x \to \infty} p(x) = \lim_{x \to \infty} a_n x^n, \quad
+\lim_{x \to -\infty} p(x) = \lim_{x \to -\infty} a_n x^n
+\]
+<strong>Explanation:</strong> Highest-degree term dominates; lower-degree terms are negligible.</p></div></div>
+<div class="def-box"><div class="box-title">Horizontal Asymptote</div><div class="box-body"><p>A function \(f(x)\) has a horizontal asymptote at \(y = L\) if:
+\[
+\lim_{x \to \infty} f(x) = L \quad \text{or} \quad \lim_{x \to -\infty} f(x) = L
+\]
+<strong>Explanation:</strong> The graph approaches \(y=L\) as \(x\) moves far from the origin.</p></div></div>
+<div class="example-box"><div class="box-title">Example 48</div><div class="box-body"><p>\[
+\lim_{x \to \infty} (2x^4 - x^2 - 8x), \quad
+\lim_{t \to -\infty} \left(\frac{1}{3} t^5 + 2 t^3 - t^2 + 8 \right)
+\]</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>\(\lim_{x \to \infty} (2x^4 - x^2 - 8x) = \infty\) (dominant \(2x^4\)).</p></li><li><p>\(\lim_{t \to -\infty} (\frac{1}{3} t^5 + \dots) = -\infty\) (dominant \(\frac{1}{3}t^5\) negative).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 49</div><div class="box-body"><p>\[
+\lim_{x \to \pm \infty} \frac{2x^4 - x^2 + 8x}{-5x^4 + 7}
+\]</p>
+<p><strong>Solution:</strong> Factor \(x^4\):
+\[
+\frac{2 - 1/x^2 + 8/x^3}{-5 + 7/x^4} \to -\frac{2}{5} \quad \text{as } x \to \pm \infty
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 50</div><div class="box-body"><p>\[
+\lim_{x \to \infty} \frac{\sqrt{3x^2 + 6}}{5 - 2x}, \quad
+\lim_{x \to -\infty} \frac{\sqrt{3x^2 + 6}}{5 - 2x}
+\]</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>\(x \to \infty: \frac{\sqrt{x^2(3 + 6/x^2)}}{x(-2 + 5/x)} \to -\frac{\sqrt{3}}{2}\)</p></li><li><p>\(x \to -\infty: \frac{-x\sqrt{3 + 6/x^2}}{x(-2 + 5/x)} \to \frac{\sqrt{3}}{2}\)</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Exponential Function Behavior</div><div class="box-body"><p>\[
+\lim_{x \to \infty} e^x = \infty, \quad 
+\lim_{x \to -\infty} e^x = 0, \quad
+\lim_{x \to \infty} e^{-x} = 0, \quad 
+\lim_{x \to -\infty} e^{-x} = \infty
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 51</div><div class="box-body"><p>\[
+\lim_{x \to \infty} e^{2 - 4x - 8x^2} = 0, \quad
+\lim_{t \to -\infty} e^{t^4 - 5 t^2 + 1} = \infty, \quad
+\lim_{z \to 0^+} e^{1/z} = \infty
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 52</div><div class="box-body"><p>\[
+\lim_{x \to \infty} \left(e^{10x} - 4 e^{6x} + \dots \right) = \infty, \quad
+\lim_{x \to -\infty} \left(e^{10x} - 4 e^{6x} + \dots \right) = -\infty
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Logarithmic Function Limits</div><div class="box-body"><p>\[
+\lim_{x \to 0^+} \ln x = -\infty, \quad \lim_{x \to \infty} \ln x = \infty
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 53</div><div class="box-body"><p>\[
+\lim_{x \to \infty} \ln(7x^3 - x^2 + 1) = \infty, \quad
+\lim_{t \to -\infty} \ln(t^2 - 5t) = \infty
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Inverse Tangent Function Limits</div><div class="box-body"><p>\[
+\lim_{x \to \infty} \tan^{-1} x = \frac{\pi}{2}, \quad 
+\lim_{x \to -\infty} \tan^{-1} x = -\frac{\pi}{2}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 54</div><div class="box-body"><p>\[
+\lim_{x \to \infty} \tan^{-1} x = \frac{\pi}{2}, \quad
+\lim_{x \to -\infty} \tan^{-1} x = -\frac{\pi}{2}, \quad
+\lim_{x \to \infty} \tan^{-1}(x^3 - 5x + 6) = \frac{\pi}{2}, \quad
+\lim_{x \to 0^-} \tan^{-1}\left(\frac{1}{x}\right) = -\frac{\pi}{2}
+\]</p></div></div>
+</section>
+<section id="limit-formulas" class="content-section level-1">
+<h2 class="section-heading">Limit Formulas</h2>
+<div class="formula-box"><div class="box-title">Basic Limit Properties</div><div class="box-body"><ul><li><p>$\lim_{x \to a} c = c$</p></li><li><p>$\lim_{x \to a} x = a$</p></li><li><p>$\lim_{x \to a} \big(f(x) \pm g(x)\big) = \lim_{x \to a} f(x) \pm \lim_{x \to a} g(x)$</p></li><li><p>$\lim_{x \to a} \big(f(x) g(x)\big) = \lim_{x \to a} f(x) \cdot \lim_{x \to a} g(x)$</p></li><li><p>$\lim_{x \to a} \dfrac{f(x)}{g(x)} = \dfrac{\lim_{x \to a} f(x)}{\lim_{x \to a} g(x)}, \; g(a)\neq 0$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Limits Involving Infinity (Rational Functions)</div><div class="box-body"><ul><li><p>$\lim_{x \to \infty} \dfrac{a_n x^n + \cdots}{b_m x^m + \cdots} =
+    \begin{cases} 
+    0, &amp; n &lt; m \\ 
+    \dfrac{a_n}{b_m}, &amp; n = m \\ 
+    \infty \text{ or } -\infty, &amp; n &gt; m
+    \end{cases}$</p></li><li><p>$\lim_{x \to a^-} \dfrac{1}{x-a} = -\infty$</p></li><li><p>$\lim_{x \to a^+} \dfrac{1}{x-a} = +\infty$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Standard Trigonometric Limits</div><div class="box-body"><ul><li><p>$\lim_{x \to 0} \dfrac{\sin x}{x} = 1$</p></li><li><p>$\lim_{x \to 0} \dfrac{\tan x}{x} = 1$</p></li><li><p>$\lim_{x \to 0} \dfrac{1 - \cos x}{x^2} = \dfrac{1}{2}$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Exponential and Logarithmic Limits</div><div class="box-body"><ul><li><p>$\lim_{x \to 0} \dfrac{e^x - 1}{x} = 1$</p></li><li><p>$\lim_{x \to 0} \dfrac{\ln(1+x)}{x} = 1$</p></li><li><p>$\lim_{x \to \infty} \left(1 + \dfrac{1}{x}\right)^x = e$</p></li><li><p>$\lim_{x \to 0^+} x^n \ln x = 0 \quad (n&gt;0)$</p></li><li><p>$\lim_{x \to \infty} \dfrac{\ln x}{x} = 0$</p></li><li><p>$\lim_{x \to \infty} \dfrac{x^n}{e^x} = 0$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Inverse Trigonometric Limits</div><div class="box-body"><ul><li><p>$\lim_{x \to \infty} \arctan x = \dfrac{\pi}{2}$</p></li><li><p>$\lim_{x \to -\infty} \arctan x = -\dfrac{\pi}{2}$</p></li><li><p>$\lim_{x \to 0} \dfrac{\arcsin x}{x} = 1$</p></li><li><p>$\lim_{x \to 0} \dfrac{\arctan x}{x} = 1$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">L'Hospital's Rule</div><div class="box-body"><ul><li><p>If $\lim_{x \to a} \dfrac{f(x)}{g(x)}$ is $\dfrac{0}{0}$ or $\dfrac{\infty}{\infty}$, then  
+    \[
+    \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}, \quad \text{if the limit exists.}
+    \]</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Squeeze Theorem</div><div class="box-body"><ul><li><p>If $f(x) \le g(x) \le h(x)$ and  
+    $\lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L$, then  
+    $\lim_{x \to a} g(x) = L$</p></li></ul></div></div>
+<div class="formula-box"><div class="box-title">Other Useful Limits</div><div class="box-body"><ul><li><p>$\lim_{x \to 0^+} x^x = 1$</p></li><li><p>$\lim_{x \to \infty} \left(1 + \frac{k}{x}\right)^{mx} = e^{km}, \quad k,m \in \mathbb{R}$</p></li><li><p>$\lim_{x \to \infty} e^{-x} = 0$</p></li><li><p>$\lim_{x \to -\infty} e^x = 0$</p></li><li><p>$\lim_{x \to \infty} e^x = \infty$</p></li><li><p>$\lim_{x \to -\infty} e^{-x} = \infty$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 55</div><div class="box-body"><p>Evaluate \( \lim_{x \to 2} (3x^2 + 5x - 1) \).</p>
+<p><strong>Solution:</strong> Using the sum and constant multiple properties of limits:
+\[
+\lim_{x \to 2} (3x^2 + 5x - 1) = 3 \lim_{x \to 2} x^2 + 5 \lim_{x \to 2} x - 1 = 3(4) + 5(2) -1 = 21
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 56</div><div class="box-body"><p>Evaluate \( \lim_{x \to -1} \frac{x^3 + 1}{x+1} \).</p>
+<p><strong>Solution:</strong> Factor numerator: \(x^3+1=(x+1)(x^2-x+1)\)
+\[
+\lim_{x \to -1} \frac{(x+1)(x^2-x+1)}{x+1} = \lim_{x \to -1} (x^2-x+1) = 3
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 57</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\sqrt{x+4} - 2}{x} \).</p>
+<p><strong>Solution:</strong> Rationalize the numerator:
+\[
+\frac{\sqrt{x+4}-2}{x} \cdot \frac{\sqrt{x+4}+2}{\sqrt{x+4}+2} = \frac{1}{\sqrt{x+4}+2} \implies \lim_{x \to 0} \frac{1}{4} = \frac{1}{4}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 58</div><div class="box-body"><p>Evaluate \( \lim_{x \to 1} \frac{x^2-1}{x-1} \).</p>
+<p><strong>Solution:</strong> Factor numerator: \(x^2-1=(x-1)(x+1)\)
+\[
+\lim_{x \to 1} \frac{(x-1)(x+1)}{x-1} = \lim_{x \to 1} (x+1) = 2
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 59</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{1-\cos x}{x^2} \) using \(1-\cos x = 2\sin^2(x/2)\).</p>
+<p><strong>Solution:</strong> 
+\[
+\lim_{x \to 0} \frac{2\sin^2(x/2)}{x^2} = \lim_{x \to 0} 2 \left(\frac{\sin(x/2)}{x}\right)^2 = 2\left(\frac{1}{2}\right)^2 = \frac{1}{2}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 60</div><div class="box-body"><p>Evaluate \( \lim_{x \to 4} \sqrt{x} \).</p>
+<p><strong>Solution:</strong> Using the root property:
+\[
+\lim_{x \to 4} \sqrt{x} = \sqrt{\lim_{x \to 4} x} = 2
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 61</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\sin 3x}{x} \).</p>
+<p><strong>Solution:</strong> Factor 3:
+\[
+\lim_{x \to 0} \frac{\sin 3x}{x} = 3 \lim_{x \to 0} \frac{\sin 3x}{3x} = 3(1) = 3
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 62</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\tan x}{x} \).</p>
+<p><strong>Solution:</strong> Standard limit property:
+\[
+\lim_{x \to 0} \frac{\tan x}{x} = 1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 63</div><div class="box-body"><p>Evaluate \( \lim_{x \to 1} \frac{x^4-1}{x-1} \).</p>
+<p><strong>Solution:</strong> Factor numerator: \(x^4-1 = (x-1)(x^3+x^2+x+1)\)
+\[
+\lim_{x \to 1} \frac{(x-1)(x^3+x^2+x+1)}{x-1} = \lim_{x \to 1} (x^3+x^2+x+1) = 4
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 64</div><div class="box-body"><p>Evaluate \( \lim_{x \to 2} \frac{x^2-4}{x^2+4} \).</p>
+<p><strong>Solution:</strong> Factor numerator: \(x^2-4=(x-2)(x+2)\)
+\[
+\lim_{x \to 2} \frac{(x-2)(x+2)}{x^2+4} = \frac{4}{8} = \frac{1}{2}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 65</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{e^x-1}{x} \).</p>
+<p><strong>Solution:</strong> Standard exponential limit:
+\[
+\lim_{x \to 0} \frac{e^x-1}{x} = 1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 66</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\ln(1+x)}{x} \).</p>
+<p><strong>Solution:</strong> Standard logarithmic limit:
+\[
+\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 67</div><div class="box-body"><p>Evaluate \( \lim_{x \to 1} \frac{\sqrt{x}-1}{x-1} \).</p>
+<p><strong>Solution:</strong> Rationalize numerator:
+\[
+\frac{\sqrt{x}-1}{x-1} \cdot \frac{\sqrt{x}+1}{\sqrt{x}+1} = \frac{1}{\sqrt{x}+1} \implies \lim_{x \to 1} \frac{1}{2} = \frac{1}{2}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 68</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\sin x + \tan x}{x} \).</p>
+<p><strong>Solution:</strong> Split limit:
+\[
+\lim_{x \to 0} \frac{\sin x}{x} + \lim_{x \to 0} \frac{\tan x}{x} = 1 + 1 = 2
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 69</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0^+} \ln x \).</p>
+<p><strong>Solution:</strong> As \(x \to 0^+\), \(\ln x \to -\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 70</div><div class="box-body"><p>Evaluate \( \lim_{x \to \infty} \frac{3x^2+2}{5x^2-7} \).</p>
+<p><strong>Solution:</strong> Divide numerator and denominator by \(x^2\):
+\[
+\lim_{x \to \infty} \frac{3+2/x^2}{5-7/x^2} = \frac{3}{5}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 71</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{1}{x} \).</p>
+<p><strong>Solution:</strong> Limit does not exist; as \(x \to 0^+\), it \(\to \infty\); as \(x \to 0^-\), it \(\to -\infty\)</p></div></div>
+<div class="example-box"><div class="box-title">Example 72</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{\sin 2x}{\sin 3x} \).</p>
+<p><strong>Solution:</strong> Rewrite:
+\[
+\lim_{x \to 0} \frac{2x}{3x} \cdot \frac{\sin 2x/(2x)}{\sin 3x/(3x)} = \frac{2}{3} \cdot 1 = \frac{2}{3}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 73</div><div class="box-body"><p>Evaluate \( \lim_{x \to 1} (x^5 - 1) \).</p>
+<p><strong>Solution:</strong> Direct substitution:
+\[
+\lim_{x \to 1} (x^5-1) = 1-1=0
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 74</div><div class="box-body"><p>Evaluate \( \lim_{x \to 0} \frac{e^{2x}-1}{\sin x} \).</p>
+<p><strong>Solution:</strong> Split and use standard limits:
+\[
+\lim_{x \to 0} \frac{e^{2x}-1}{x} \cdot \frac{x}{\sin x} = 2 \cdot 1 = 2
+\]</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Functions</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Continuity &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Calculus &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

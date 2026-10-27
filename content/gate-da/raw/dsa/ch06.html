@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hash Tables — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+
+
+
+
+
+
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 6</div><h1>Hash Tables</h1></div>
+<section id="hash-functions-and-load-factor" class="content-section level-1">
+<h2 class="section-heading">Hash Functions and Load Factor</h2>
+<div class="concept-box"><div class="box-title">Concept: What is a Hash Function</div><div class="box-body"><p>A hash function $h(k)$ takes a key $k$ and maps it to an integer in the range $[0, m-1]$, where $m$ is the size of the hash table array. A good hash function should:</p>
+<ul><li><p>Be fast to compute.</p></li><li><p>Distribute keys uniformly across the array, to avoid many keys landing at the same position.</p></li><li><p>Be deterministic, meaning the same key always gives the same index.</p></li></ul></div></div>
+<section id="division-method" class="content-section level-2">
+<h3 class="section-heading">Division Method</h3>
+<div class="concept-box"><div class="box-title">Concept: Division Method</div><div class="box-body"><p>The simplest hash function. We divide the key by the table size $m$ and take the remainder.
+\[
+h(k) = k \bmod m
+\]
+For example, if $m = 7$ and key $k = 23$, then $h(23) = 23 \bmod 7 = 2$. Key 23 goes to slot 2.</p>
+<p><strong>Choosing $m$:</strong> A prime number that is not close to a power of 2 works best for $m$. For example, if we have 1000 entries, choosing $m = 997$ (a prime) distributes better than $m = 1024 = 2^{10}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 243: Division Method: Step by Step</div><div class="box-body"><p>Table size $m = 7$. Insert keys: $\{23, 45, 12, 30, 9\}$.</p>
+<ul><li><p>$h(23) = 23 \bmod 7 = 2 \to$ slot 2</p></li><li><p>$h(45) = 45 \bmod 7 = 3 \to$ slot 3</p></li><li><p>$h(12) = 12 \bmod 7 = 5 \to$ slot 5</p></li><li><p>$h(30) = 30 \bmod 7 = 2 \to$ slot 2 <strong>(COLLISION with 23!)</strong></p></li><li><p>$h(9) = 9 \bmod 7 = 2 \to$ slot 2 <strong>(COLLISION again!)</strong></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig175.png" alt="diagram"></div>
+</section>
+<section id="multiplication-method" class="content-section level-2">
+<h3 class="section-heading">Multiplication Method</h3>
+<div class="concept-box"><div class="box-title">Concept: Multiplication Method</div><div class="box-body"><p>In the multiplication method, we multiply the key by a constant $A$ (where $0 &lt; A &lt; 1$), take the fractional part of the result, and then multiply by $m$.
+\[
+h(k) = \lfloor m \cdot (k \cdot A \bmod 1) \rfloor
+\]
+Here, $k \cdot A \bmod 1$ means we take only the fractional part of $k \cdot A$. A commonly used value is $A = \dfrac{\sqrt{5}-1}{2} \approx 0.6180$, known as the golden ratio conjugate. This method works for any value of $m$, and powers of 2 are fine for $m$ here.</p></div></div>
+<div class="example-box"><div class="box-title">Example 244: Multiplication Method: Step by Step</div><div class="box-body"><p>Let $m = 8$, $A = 0.6180$, key $k = 23$.</p>
+<ol><li><p>$k \cdot A = 23 \times 0.6180 = 14.214$</p></li><li><p>Fractional part $= 0.214$</p></li><li><p>$h(23) = \lfloor 8 \times 0.214 \rfloor = \lfloor 1.712 \rfloor = 1$</p></li></ol>
+<p>So key 23 goes to slot 1.</p></div></div>
+</section>
+<section id="load-factor" class="content-section level-2">
+<h3 class="section-heading">Load Factor</h3>
+<div class="concept-box"><div class="box-title">Concept: Load Factor $\alpha$</div><div class="box-body"><p>The load factor $\alpha$ tells us how full the hash table is.
+\[
+\alpha = \frac{n}{m}
+\]
+where $n$ is the number of keys currently stored in the table, and $m$ is the total number of slots. The load factor directly affects performance.</p>
+<ul><li><p>When $\alpha$ is small (table mostly empty), collisions are rare, and operations are fast.</p></li><li><p>When $\alpha$ is large (table mostly full), collisions are frequent, and operations become slow.</p></li><li><p>For chaining, $\alpha$ can be $&gt; 1$ (more keys than slots).</p></li><li><p>For open addressing, $\alpha$ must be $&lt; 1$ (we need at least one empty slot).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig176.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 245: Why $\alpha$ Matters</div><div class="box-body"><p>Suppose table size $m = 10$ and we insert $n = 7$ keys. Then $\alpha = 7/10 = 0.7$. This means 70\% of slots are occupied. The remaining 30\% are empty. Each new insertion is likely to find a collision, taking more time to find an empty slot. If we had $m = 20$ for the same 7 keys, $\alpha = 0.35$, and performance would be much better.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Expected $O(1)$ Time</div><div class="box-body"><p>Under the assumption of <strong>simple uniform hashing</strong> (each key is equally likely to hash to any slot, independently), the expected time for insert, search, and delete is $O(1)$ when the load factor $\alpha$ is kept constant. This is why hash tables are called $O(1)$ data structures in practice. However, in the worst case (all $n$ keys hash to the same slot), operations take $O(n)$.</p></div></div>
+</section>
+</section>
+<section id="collision-resolution" class="content-section level-1">
+<h2 class="section-heading">Collision Resolution</h2>
+<div class="concept-box"><div class="box-title">Concept: What is a Collision</div><div class="box-body"><p>A collision happens when two different keys $k_1$ and $k_2$ produce the same hash value, meaning $h(k_1) = h(k_2)$. Since there are infinitely many possible keys but only $m$ slots, collisions are unavoidable (Pigeonhole Principle). We must handle them. There are two main strategies: <strong>Chaining</strong> and <strong>Open Addressing</strong>.</p></div></div>
+<section id="chaining-separate-chaining" class="content-section level-2">
+<h3 class="section-heading">Chaining (Separate Chaining)</h3>
+<div class="concept-box"><div class="box-title">Concept: Chaining</div><div class="box-body"><p>In chaining, each slot of the hash table holds a <strong>linked list</strong> (or chain) of all keys that hash to that slot. When a collision occurs, we simply add the new key to the linked list at that slot. There is no limit on how many keys can go into the same slot.</p>
+<p><strong>Insert:</strong> Hash the key, go to that slot, add the key to the front of the linked list. $O(1)$.</p>
+<p><strong>Search:</strong> Hash the key, go to that slot, search the linked list at that slot. Average $O(1+\alpha)$.</p>
+<p><strong>Delete:</strong> Hash the key, go to that slot, find and remove from the linked list. Average $O(1+\alpha)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 246: Chaining: Step by Step</div><div class="box-body"><p>Table size $m = 5$. Insert keys: $\{12, 17, 22, 3, 7, 27\}$ using $h(k) = k \bmod 5$.</p>
+<ul><li><p>$h(12) = 2 \to$ slot 2: [12]</p></li><li><p>$h(17) = 2 \to$ slot 2: [17, 12] (collision, added to chain)</p></li><li><p>$h(22) = 2 \to$ slot 2: [22, 17, 12] (another collision)</p></li><li><p>$h(3) = 3 \to$ slot 3: [3]</p></li><li><p>$h(7) = 2 \to$ slot 2: [7, 22, 17, 12]</p></li><li><p>$h(27) = 2 \to$ slot 2: [27, 7, 22, 17, 12]</p></li></ul>
+<p>Here, $\alpha = 6/5 = 1.2 &gt; 1$ (allowed in chaining!). Slot 2 has a very long chain, which is bad.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig177.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">chaining-hash-table.py</div><pre><code>class ChainingHashTable:
+    def __init__(self, m):
+        self.m    = m
+        self.table = [[] for _ in range(m)]  # each slot is a list
+
+    def hash(self, key):
+        return key % self.m              # division method
+
+    def insert(self, key):
+        slot = self.hash(key)
+        if key not in self.table[slot]:  # avoid duplicates
+            self.table[slot].insert(0, key)  # insert at front O(1)
+
+    def search(self, key):
+        slot = self.hash(key)
+        return key in self.table[slot]   # search the chain
+
+    def delete(self, key):
+        slot = self.hash(key)
+        if key in self.table[slot]:
+            self.table[slot].remove(key)
+        else:
+            print(f&quot;{key} not found&quot;)
+
+    def display(self):
+        for i, chain in enumerate(self.table):
+            print(f&quot;Slot {i}: {chain}&quot;)
+
+
+# --- Driver Code ---
+ht = ChainingHashTable(7)
+for key in [10, 20, 15, 7, 3, 24]:
+    ht.insert(key)
+ht.display()
+# Slot 0: [7]
+# Slot 1: [15]
+# Slot 2: [2]
+# Slot 3: [10, 3]
+# Slot 4: []
+# Slot 5: []
+# Slot 6: [20]
+print(&quot;Search 10:&quot;, ht.search(10))   # True
+ht.delete(10)
+print(&quot;Search 10:&quot;, ht.search(10))   # False</code></pre></div>
+</section>
+<section id="open-addressing" class="content-section level-2">
+<h3 class="section-heading">Open Addressing</h3>
+<div class="concept-box"><div class="box-title">Concept: Open Addressing</div><div class="box-body"><p>In open addressing, all keys are stored directly in the hash table array itself. There are no linked lists. If a collision occurs at slot $h(k)$, we probe other slots in a specific sequence until we find an empty slot. The probing sequence is determined by a <strong>probe function</strong> $h(k, i)$, where $i$ is the probe number (0, 1, 2, \ldots). We always have $\alpha &lt; 1$ because every key needs its own slot.</p>
+<p><strong>The key rule:</strong> When searching for a key, we follow the same probe sequence. When we find an empty slot, we stop (key not present). When we find the key, we stop (found).</p></div></div>
+<section id="linear-probing" class="content-section level-3">
+<h4 class="section-heading">Linear Probing</h4>
+<div class="concept-box"><div class="box-title">Concept: Linear Probing</div><div class="box-body"><p>In linear probing, when a collision occurs at slot $h(k)$, we simply move to the next slot, and then the next, and so on, one step at a time.
+\[
+h(k, i) = (h(k) + i) \bmod m,    i = 0, 1, 2, \ldots
+\]
+So if $h(k) = 3$ and slot 3 is occupied, we try slot 4, then 5, then 6, and so on, wrapping around if needed.</p>
+<p><strong>Analogy:</strong> Think of looking for a parking spot in a lot. You drove to your preferred spot (your hash slot). It is taken. So you look at the next spot, then the next, going one by one until you find a free one.</p></div></div>
+<div class="example-box"><div class="box-title">Example 247: Linear Probing: Step by Step</div><div class="box-body"><p>Table size $m = 7$. Hash function $h(k) = k \bmod 7$. Insert: $\{50, 22, 15, 8, 36\}$.</p>
+<ul><li><p>$h(50) = 50\bmod7 = 1 \to$ slot 1 empty. Insert at slot 1.</p></li><li><p>$h(22) = 22\bmod7 = 1 \to$ slot 1 occupied! Try slot 2. Empty. Insert at slot 2.</p></li><li><p>$h(15) = 15\bmod7 = 1 \to$ slot 1 occupied! Try slot 2. Occupied! Try slot 3. Empty. Insert at slot 3.</p></li><li><p>$h(8) = 8\bmod7 = 1 \to$ slots 1,2,3 occupied! Try slot 4. Empty. Insert at slot 4.</p></li><li><p>$h(36) = 36\bmod7 = 1 \to$ slots 1,2,3,4 occupied! Try slot 5. Empty. Insert at slot 5.</p></li></ul>
+<p>Notice how all keys pile up around slot 1. This is called <strong>primary clustering</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig178.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Primary Clustering</div><div class="box-body"><p>Primary clustering is the main problem with linear probing. When many keys hash to the same slot and create a cluster (a long continuous run of filled slots), future keys that hash anywhere in that cluster will have to probe past the entire cluster to find an empty slot. The cluster keeps growing, making future insertions and searches slower. This is a snowball effect: the larger the cluster, the more likely new keys land in it, making it even larger.</p></div></div>
+</section>
+<section id="quadratic-probing" class="content-section level-3">
+<h4 class="section-heading">Quadratic Probing</h4>
+<div class="concept-box"><div class="box-title">Concept: Quadratic Probing</div><div class="box-body"><p>In quadratic probing, instead of moving one step at a time, we move by quadratic distances.
+\[
+h(k, i) = (h(k) + c_1 i + c_2 i^2) \bmod m,    i = 0, 1, 2, \ldots
+\]
+A common simple form is $h(k, i) = (h(k) + i^2) \bmod m$.</p>
+<p>So if $h(k) = 3$: try slot 3, then $3 + 1 = 4$, then $3 + 4 = 7$, then $3 + 9 = 12$, and so on (all modulo $m$).</p>
+<p>This spreads out keys much better than linear probing, reducing primary clustering. But quadratic probing can still cause <strong>secondary clustering</strong>: two keys with the same initial hash always follow the same probe sequence.</p></div></div>
+<div class="example-box"><div class="box-title">Example 248: Quadratic Probing: Step by Step</div><div class="box-body"><p>Table size $m = 11$. $h(k) = k \bmod 11$. Insert keys $\{18, 26, 35, 9\}$.</p>
+<ul><li><p>$h(18) = 7 \to$ slot 7 empty. Insert at 7.</p></li><li><p>$h(26) = 4 \to$ slot 4 empty. Insert at 4.</p></li><li><p>$h(35) = 2 \to$ slot 2 empty. Insert at 2.</p></li><li><p>$h(9) = 9 \to$ slot 9 empty. Insert at 9.</p>
+<p>Now insert 44: $h(44) = 0 \to$ slot 0 empty. Insert at 0.</p>
+<p>Now insert 55: $h(55) = 0 \to$ slot 0 occupied! Try $i=1$: $(0 + 1) \bmod 11 = 1 \to$ empty. Insert at 1.</p>
+<p>Now insert 66: $h(66) = 0 \to$ slot 0 occupied! Try $i=1$: slot 1 occupied. Try $i=2$: $(0+4)\bmod 11 = 4 \to$ occupied! Try $i=3$: $(0+9)\bmod 11 = 9 \to$ occupied! Try $i=4$: $(0+16)\bmod 11 = 5 \to$ empty. Insert at 5.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Secondary Clustering</div><div class="box-body"><p>Secondary clustering occurs in quadratic probing. Two different keys that hash to the same initial slot $h(k)$ will follow the exact same probe sequence. So they always compete for the same set of slots. However, two keys with different initial hashes never follow the same sequence. This is less severe than primary clustering but still an issue.</p></div></div>
+</section>
+<section id="double-hashing" class="content-section level-3">
+<h4 class="section-heading">Double Hashing</h4>
+<div class="concept-box"><div class="box-title">Concept: Double Hashing</div><div class="box-body"><p>Double hashing uses a second hash function to determine the step size.
+\[
+h(k, i) = (h_1(k) + i \cdot h_2(k)) \bmod m,    i = 0, 1, 2, \ldots
+\]
+where $h_1$ and $h_2$ are two different hash functions. The step size $h_2(k)$ is different for different keys, so two keys that have the same $h_1(k)$ will likely have different $h_2(k)$ values, meaning they follow completely different probe sequences. This eliminates both primary and secondary clustering, and gives the best performance among open addressing methods.</p>
+<p><strong>Common choice:</strong> $h_1(k) = k \bmod m$ and $h_2(k) = 1 + (k \bmod (m-1))$. We ensure $h_2(k) \ne 0$ so we actually move forward.</p></div></div>
+<div class="example-box"><div class="box-title">Example 249: Double Hashing: Step by Step</div><div class="box-body"><p>Table size $m = 7$. $h_1(k) = k \bmod 7$, $h_2(k) = 1 + (k \bmod 6)$. Insert $\{18, 25, 35\}$.</p>
+<ul><li><p>Insert 18: $h_1(18) = 4 \to$ slot 4 empty. Insert at 4.</p></li><li><p>Insert 25: $h_1(25) = 4 \to$ slot 4 occupied! $h_2(25) = 1 + 25\bmod6 = 1+1 = 2$. Try $(4 + 1\times2)\bmod7 = 6 \to$ slot 6 empty. Insert at 6.</p></li><li><p>Insert 35: $h_1(35) = 0 \to$ slot 0 empty. Insert at 0.</p></li></ul>
+<p>Now insert 11: $h_1(11) = 4 \to$ occupied. $h_2(11) = 1+11\bmod6 = 1+5 = 6$. Try $(4+6)\bmod7 = 3 \to$ empty. Insert at 3. A different probe sequence from key 25 (even though both first went to slot 4).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig179.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">open-addressing-hash-table.py</div><pre><code>class OpenAddressingHT:
+    def __init__(self, m, method=&#x27;linear&#x27;):
+        self.m       = m
+        self.table   = [None] * m
+        self.deleted = [False] * m   # lazy deletion marker
+        self.method  = method
+
+    def h1(self, key):
+        return key % self.m
+
+    def h2(self, key):
+        return 1 + (key % (self.m - 1))  # for double hashing
+
+    def probe(self, key, i):
+        if self.method == &#x27;linear&#x27;:
+            return (self.h1(key) + i) % self.m
+        elif self.method == &#x27;quadratic&#x27;:
+            return (self.h1(key) + i*i) % self.m
+        else:  # double hashing
+            return (self.h1(key) + i * self.h2(key)) % self.m
+
+    def insert(self, key):
+        for i in range(self.m):
+            slot = self.probe(key, i)
+            if self.table[slot] is None or self.deleted[slot]:
+                self.table[slot]   = key
+                self.deleted[slot] = False
+                return True
+        print(&quot;Hash table is FULL&quot;)
+        return False
+
+    def search(self, key):
+        for i in range(self.m):
+            slot = self.probe(key, i)
+            if self.table[slot] is None and not self.deleted[slot]:
+                return False        # empty slot means key not present
+            if self.table[slot] == key and not self.deleted[slot]:
+                return True
+        return False
+
+    def delete(self, key):
+        for i in range(self.m):
+            slot = self.probe(key, i)
+            if self.table[slot] is None and not self.deleted[slot]:
+                return False
+            if self.table[slot] == key and not self.deleted[slot]:
+                self.deleted[slot] = True   # lazy deletion
+                return True
+        return False
+
+    def display(self):
+        for i, val in enumerate(self.table):
+            status = &quot;DEL&quot; if self.deleted[i] else str(val)
+            print(f&quot;Slot {i}: {status}&quot;)
+
+
+# --- Driver Code ---
+print(&quot;=== Linear Probing ===&quot;)
+ht = OpenAddressingHT(7, &#x27;linear&#x27;)
+for key in [50, 22, 15, 8, 36]:
+    ht.insert(key)
+ht.display()
+
+print(&quot;\n=== Double Hashing ===&quot;)
+ht2 = OpenAddressingHT(7, &#x27;double&#x27;)
+for key in [50, 22, 15, 8, 36]:
+    ht2.insert(key)
+ht2.display()</code></pre></div>
+</section>
+</section>
+</section>
+<section id="performance-analysis" class="content-section level-1">
+<h2 class="section-heading">Performance Analysis</h2>
+<div class="concept-box"><div class="box-title">Concept: Expected Number of Probes</div><div class="box-body"><p>The performance of open addressing depends on the load factor $\alpha$. Under the assumption of uniform hashing, the expected number of probes for:</p>
+<p><strong>Unsuccessful Search</strong> (looking for a key that is NOT in the table):
+\[
+\text{Expected probes} \le \frac{1}{1 - \alpha}
+\]</p>
+<p><strong>Successful Search</strong> (looking for a key that IS in the table):
+\[
+\text{Expected probes} \le \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
+\]</p>
+<p>These formulas assume open addressing with uniform probing. For chaining, the analysis is different.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Performance Analysis for Chaining</div><div class="box-body"><p>For chaining with load factor $\alpha = n/m$:</p>
+<p><strong>Unsuccessful Search:</strong> Expected number of elements examined = $\alpha$ (length of a randomly chosen chain), plus 1 for computing the hash. So total work is $\Theta(1 + \alpha)$.</p>
+<p><strong>Successful Search:</strong> Expected work is $\Theta(1 + \alpha)$.</p>
+<p><strong>Insert:</strong> $O(1)$ (insert at front of chain, plus computing hash).</p>
+<p><strong>Delete:</strong> $O(1 + \alpha)$ (find the element first, then delete).</p>
+<p>When $\alpha = O(1)$ (load factor kept constant by resizing), all operations are $O(1)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig180.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 250: Numerical Example: Expected Probes</div><div class="box-body"><p>Consider a hash table with $m = 10$ slots and $n = 7$ keys inserted. So $\alpha = 7/10 = 0.7$.</p>
+<p><strong>Open Addressing:</strong></p>
+<ul><li><p>Expected probes for unsuccessful search $= \dfrac{1}{1-0.7} = \dfrac{1}{0.3} \approx 3.33$</p></li><li><p>Expected probes for successful search $\approx \dfrac{1}{0.7} \ln\dfrac{1}{0.3} \approx 1.43 \times 1.20 \approx 1.72$</p></li></ul>
+<p><strong>Chaining:</strong></p>
+<ul><li><p>Expected work $= \Theta(1 + 0.7) = \Theta(1.7)$, roughly 1.7 operations per search.</p></li></ul>
+<p>So at $\alpha = 0.7$, chaining is significantly more efficient than open addressing for unsuccessful search.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Effect of Load Factor on Performance</div><div class="box-body"><p>The load factor is the single most important tuning parameter of a hash table. Key observations:</p>
+<ul><li><p>For $\alpha \le 0.5$: open addressing is fast, with expected probes close to 2 or less.</p></li><li><p>For $\alpha &gt; 0.7$: open addressing degrades significantly.</p></li><li><p>Chaining degrades gracefully because chains simply get longer, but the overhead is just the chain length.</p></li><li><p>Real-world hash tables are resized (rehashed) when $\alpha$ crosses a threshold, typically 0.7 for open addressing and around 1.0 for chaining.</p></li><li><p>Resizing means creating a new larger array and reinserting all keys. This costs $O(n)$ but happens infrequently, so amortized cost remains $O(1)$ per operation.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig181.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">hash-table-performance.py</div><pre><code>import math
+
+def expected_probes_open_addressing(alpha):
+    &quot;&quot;&quot;Expected probes for open addressing (uniform hashing)&quot;&quot;&quot;
+    if alpha &gt;= 1:
+        return float(&#x27;inf&#x27;)
+    unsuccessful = 1 / (1 - alpha)
+    successful   = (1 / alpha) * math.log(1 / (1 - alpha))
+    return unsuccessful, successful
+
+
+def expected_probes_chaining(alpha):
+    &quot;&quot;&quot;Expected probes for chaining&quot;&quot;&quot;
+    unsuccessful = 1 + alpha
+    successful   = 1 + alpha / 2
+    return unsuccessful, successful
+
+
+print(f&quot;{&#x27;alpha&#x27;:&gt;6} | {&#x27;OA-Unsucc&#x27;:&gt;10} | {&#x27;OA-Succ&#x27;:&gt;9} | {&#x27;Chain-Unsucc&#x27;:&gt;12} | {&#x27;Chain-Succ&#x27;:&gt;10}&quot;)
+print(&quot;-&quot; * 65)
+for alpha in [0.1, 0.25, 0.50, 0.75, 0.90, 0.95]:
+    oa_u, oa_s   = expected_probes_open_addressing(alpha)
+    ch_u, ch_s   = expected_probes_chaining(alpha)
+    print(f&quot;{alpha:&gt;6.2f} | {oa_u:&gt;10.2f} | {oa_s:&gt;9.2f} | {ch_u:&gt;12.2f} | {ch_s:&gt;10.2f}&quot;)
+
+# Output:
+# alpha | OA-Unsucc |   OA-Succ | Chain-Unsucc | Chain-Succ
+# ----------------------------------------------------------------
+#  0.10 |      1.11 |      1.05 |         1.10 |       1.05
+#  0.25 |      1.33 |      1.15 |         1.25 |       1.12
+#  0.50 |      2.00 |      1.39 |         1.50 |       1.25
+#  0.75 |      4.00 |      1.85 |         1.75 |       1.38
+#  0.90 |     10.00 |      2.56 |         1.90 |       1.45
+#  0.95 |     20.00 |      3.15 |         1.95 |       1.48</code></pre></div>
+<div class="example-box"><div class="box-title">Example 251: Quick Summary: Which Method to Choose</div><div class="box-body"><ul><li><p><strong>Division method</strong> for hash function: simple, works well if $m$ is a prime not close to a power of 2.</p></li><li><p><strong>Multiplication method</strong>: works well for any $m$, including powers of 2.</p></li><li><p><strong>Chaining</strong>: easy to implement, handles $\alpha &gt; 1$, graceful degradation, but uses extra memory for pointers.</p></li><li><p><strong>Linear probing</strong>: best cache performance (sequential access), but primary clustering makes it slow at high $\alpha$.</p></li><li><p><strong>Quadratic probing</strong>: reduces primary clustering, but secondary clustering remains, and not all slots guaranteed to be probed.</p></li><li><p><strong>Double hashing</strong>: best performance among open addressing methods, avoids both types of clustering, but needs two hash functions.</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Trees</a><span class="spacer"></span><a class="nav-btn next" href="ch07.html">Chapter 7: Graph Theory- Introduction &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+    
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

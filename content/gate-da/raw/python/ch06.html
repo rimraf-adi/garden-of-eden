@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Object-Oriented Programming — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 6</div><h1>Object-Oriented Programming</h1></div>
+<section id="classes-objects" class="content-section level-1">
+<h2 class="section-heading">Classes &amp; Objects</h2>
+
+<section id="class-definition" class="content-section level-2">
+<h3 class="section-heading">Class Definition</h3>
+
+</section>
+<section id="what-is-a-class" class="content-section level-2">
+<h3 class="section-heading">What is a Class?</h3>
+<div class="concept-box"><div class="box-title">Class --- What It Is</div><div class="box-body"><p>A <strong>class</strong> is like a <strong>blueprint or template</strong>.
+Just like a house blueprint tells you what every house built from it will have
+(rooms, doors, windows), a class tells Python what every <em>object</em>
+made from it will have.</p>
+<p>An <strong>object</strong> (also called an <strong>instance</strong>) is one real thing built
+from that blueprint. You can build many objects from one class, just like you
+can build many houses from one blueprint.</p>
+<p><strong>Syntax:</strong>
+
+<code>class ClassName(Base):</code><br>
+<code>\ \ \ \ # body: attributes and methods</code></p>
+<p>The class body is run <strong>once</strong> at definition time. A class object is created
+and stored under the name <code>ClassName</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig137.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 140: Your First Class</div><div class="box-body"><div class="code-box"><pre><code># Define a class (blueprint)
+class Dog:
+    # This runs when we create a Dog object
+    def __init__(self, name, breed):
+        self.name  = name    # store name on this object
+        self.breed = breed   # store breed on this object
+
+    # A method (a function inside a class)
+    def bark(self):
+        return f&quot;{self.name} says: Woof!&quot;
+
+    def info(self):
+        return f&quot;{self.name} is a {self.breed}&quot;
+
+# Create objects (instances) from the class
+dog1 = Dog(&quot;Rex&quot;,   &quot;Labrador&quot;)
+dog2 = Dog(&quot;Max&quot;,   &quot;Pug&quot;)
+dog3 = Dog(&quot;Bella&quot;, &quot;Husky&quot;)
+
+# Use the objects
+print(dog1.bark())    # Rex says: Woof!
+print(dog2.info())    # Max is a Pug
+print(dog3.name)      # Bella
+
+# Each object is independent
+dog1.name = &quot;Rocky&quot;   # only dog1 changes
+print(dog1.name)      # Rocky
+print(dog2.name)      # Max   (unchanged)
+
+# Check type
+print(type(dog1))               # &lt;class &#x27;__main__.Dog&#x27;&gt;
+print(isinstance(dog1, Dog))    # True</code></pre></div></div></div>
+</section>
+<section id="init-and-self" class="content-section level-2">
+<h3 class="section-heading">__init__ and self</h3>
+
+<section id="setting-up-an-object" class="content-section level-3">
+<h4 class="section-heading">Setting Up an Object</h4>
+<div class="concept-box"><div class="box-title">__init__ and self --- Simple Explanation</div><div class="box-body"><ul><li><p><strong><code>__init__</code></strong> is the <strong>setup method</strong>. Python calls it
+        automatically right after a new object is created.  Think of it as the
+        “fill in the details” step.</p></li><li><p><strong><code>self</code></strong> is the name for “<strong>this exact object</strong>”.
+        When you write <code>self.name = name</code>, you are saving the value
+        <em>on this object</em>.</p></li><li><p><code>self</code> is always the <strong>first parameter</strong> of every instance
+        method. Python passes the object automatically — you do not pass it
+        yourself.</p></li><li><p><strong><code>__new__</code></strong> actually <em>creates</em> the object (allocates
+        memory); <code>__init__</code> just fills in the values.
+        For most purposes you only need <code>__init__</code>.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig138.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 141: __init__ --- Setting Up Objects</div><div class="box-body"><div class="code-box"><pre><code>class Student:
+    def __init__(self, name, roll, marks):
+        # &#x27;self&#x27; means &#x27;this student object&#x27;
+        self.name  = name    # save name on this student
+        self.roll  = roll    # save roll number
+        self.marks = marks   # save marks
+
+    def grade(self):
+        if self.marks &gt;= 90:
+            return &quot;A&quot;
+        elif self.marks &gt;= 75:
+            return &quot;B&quot;
+        else:
+            return &quot;C&quot;
+
+    def introduce(self):
+        return (f&quot;I am {self.name}, &quot;
+                f&quot;Roll #{self.roll}, &quot;
+                f&quot;Grade: {self.grade()}&quot;)
+
+# Create students -- __init__ runs automatically
+s1 = Student(&quot;Alice&quot;, 101, 92)
+s2 = Student(&quot;Bob&quot;,   102, 78)
+s3 = Student(&quot;Carol&quot;, 103, 65)
+
+print(s1.introduce())   # I am Alice, Roll #101, Grade: A
+print(s2.introduce())   # I am Bob, Roll #102, Grade: B
+print(s3.grade())       # C
+
+# self.marks is different for each student
+print(s1.marks, s2.marks, s3.marks)   # 92 78 65
+
+# __init__ is called again for each new object
+s4 = Student(&quot;Dave&quot;, 104, 85)
+print(s4.grade())   # B</code></pre></div></div></div>
+</section>
+</section>
+<section id="class-variables-vs-instance-variables" class="content-section level-2">
+<h3 class="section-heading">Class Variables vs Instance Variables</h3>
+
+<section id="shared-vs-per-object-data" class="content-section level-3">
+<h4 class="section-heading">Shared vs Per-Object Data</h4>
+<div class="concept-box"><div class="box-title">Class Variable vs Instance Variable</div><div class="box-body"><ul><li><p><strong>Class variable</strong>: written <em>inside the class but outside any
+        method</em>. <strong>Shared by all objects</strong> of that class.
+        Like a notice board that every student in a class can see.</p></li><li><p><strong>Instance variable</strong>: written using <code>self.attr</code> inside a
+        method. <strong>Belongs to one specific object</strong>.
+        Like each student's personal notebook.</p></li></ul>
+<p><strong>Lookup order</strong>: Python first looks in the object's own storage
+(<code>__dict__</code>); if not found, it looks in the class's storage.</p>
+<p><strong>Important traps:</strong></p>
+<ul><li><p><strong>Assignment through instance</strong>: <code>obj.class_var = x</code>
+        creates a <em>new instance variable</em> that <strong>shadows</strong> the class
+        variable — it does NOT change the class variable.</p></li><li><p><strong>Mutation through instance</strong>: if the class variable is a
+        <em>mutable</em> object (list, dict), doing
+        <code>obj.class_var.append(x)</code> changes the shared object — all
+        instances see the change.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig139.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 142: Class vs Instance Variables --- The Key Differences</div><div class="box-body"><div class="code-box"><pre><code>class Student:
+    school  = &quot;GateHS&quot;    # class variable: shared by ALL students
+    count   = 0           # class variable: how many students created
+    history = []          # class variable: MUTABLE -- careful!
+
+    def __init__(self, name, marks):
+        Student.count += 1         # update shared counter
+        self.name  = name          # instance variable: per student
+        self.marks = marks         # instance variable: per student
+
+s1 = Student(&quot;Alice&quot;, 92)
+s2 = Student(&quot;Bob&quot;,   78)
+
+# Both share the same class variable
+print(s1.school)          # GateHS
+print(s2.school)          # GateHS
+print(Student.school)     # GateHS  (access via class name)
+print(Student.count)      # 2  (both students counted)
+
+# Instance variables are different for each
+print(s1.name, s1.marks)  # Alice 92
+print(s2.name, s2.marks)  # Bob   78
+
+# ── TRAP 1: assigning via instance creates a new instance variable ──
+s1.school = &quot;NewSchool&quot;   # creates s1&#x27;s OWN &#x27;school&#x27; (shadows class var!)
+print(s1.school)          # NewSchool   (s1&#x27;s own copy)
+print(s2.school)          # GateHS      (class var unchanged)
+print(Student.school)     # GateHS      (class var unchanged)
+print(&quot;school&quot; in s1.__dict__)  # True  (now s1 has its own &#x27;school&#x27;)
+
+# ── TRAP 2: mutating a mutable class variable affects ALL instances ──
+s1.history.append(&quot;joined&quot;)    # mutates the SHARED list!
+print(s1.history)   # [&#x27;joined&#x27;]
+print(s2.history)   # [&#x27;joined&#x27;]  s2 also sees it -- same list!
+print(Student.history)  # [&#x27;joined&#x27;]</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="dunder-magic-methods" class="content-section level-1">
+<h2 class="section-heading">Dunder (Magic) Methods</h2>
+
+<section id="string-representation-str-and-repr" class="content-section level-2">
+<h3 class="section-heading">String Representation: __str__ and __repr__</h3>
+<div class="concept-box"><div class="box-title">__str__ vs __repr__</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig140.png" alt="diagram"></div>
+<p><strong>Simple rule</strong>: if you only define one, define <code>__repr__</code> —
+Python uses it as a fallback for <code>__str__</code> too.</p></div></div>
+<div class="example-box"><div class="box-title">Example 143: __str__ and __repr__</div><div class="box-body"><div class="code-box"><pre><code>class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        # For humans: nice and clean
+        return f&quot;Point({self.x}, {self.y})&quot;
+
+    def __repr__(self):
+        # For developers: shows how to recreate it
+        return f&quot;Point(x={self.x}, y={self.y})&quot;
+
+p = Point(3, 4)
+
+# __str__ used by print and f-strings
+print(p)              # Point(3, 4)
+print(f&quot;Location: {p}&quot;)   # Location: Point(3, 4)
+print(str(p))         # Point(3, 4)
+
+# __repr__ used in REPL and repr()
+print(repr(p))        # Point(x=3, y=4)
+
+# Without __str__, Python falls back to __repr__
+class Bare:
+    def __repr__(self):
+        return &quot;I am Bare&quot;
+
+b = Bare()
+print(b)              # I am Bare  (__repr__ used as fallback)
+print(repr(b))        # I am Bare
+
+# In a list, __repr__ is used for each item
+pts = [Point(1,2), Point(3,4)]
+print(pts)
+# [Point(x=1, y=2), Point(x=3, y=4)]  -- uses __repr__ inside list</code></pre></div></div></div>
+</section>
+</section>
+<section id="inheritance" class="content-section level-1">
+<h2 class="section-heading">Inheritance</h2>
+
+<section id="single-inheritance" class="content-section level-2">
+<h3 class="section-heading">Single Inheritance</h3>
+
+<section id="child-getting-everything-from-parent" class="content-section level-3">
+<h4 class="section-heading">Child Getting Everything from Parent</h4>
+<div class="concept-box"><div class="box-title">Inheritance --- What It Means</div><div class="box-body"><p><strong>Inheritance</strong> means a <strong>child class</strong> gets all the methods and
+attributes of a <strong>parent class</strong> for free. The child can also:</p>
+<ul><li><p><strong>Add</strong> new methods and attributes</p></li><li><p><strong>Override</strong> (replace) a parent method with its own version</p></li><li><p><strong>Call the parent's version</strong> using <code>super()</code></p></li></ul>
+<p>Think of it like this: a <code>Dog</code> is an <code>Animal</code>.
+Every animal can eat and sleep. A dog can also bark.
+Instead of writing “eat” and “sleep” again for Dog,
+we <em>inherit</em> them from Animal.</p></div></div>
+</section>
+</section>
+<section id="hierarchical-inheritance" class="content-section level-2">
+<h3 class="section-heading">Hierarchical Inheritance</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig141.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 144: Inheritance and super()</div><div class="box-body"><div class="code-box"><pre><code>class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def eat(self):
+        return f&quot;{self.name} is eating&quot;
+
+    def sleep(self):
+        return f&quot;{self.name} is sleeping&quot;
+
+    def sound(self):
+        return f&quot;{self.name} makes a sound&quot;
+
+class Dog(Animal):   # Dog inherits from Animal
+    def __init__(self, name, breed):
+        super().__init__(name)   # call Animal&#x27;s __init__
+        self.breed = breed       # add extra attribute
+
+    def bark(self):              # new method (only for Dog)
+        return f&quot;{self.name} says: Woof!&quot;
+
+    def sound(self):             # OVERRIDE: replace Animal&#x27;s version
+        return f&quot;{self.name} says: Woof!&quot;
+
+class Cat(Animal):
+    def __init__(self, name, indoor):
+        super().__init__(name)
+        self.indoor = indoor
+
+    def sound(self):             # OVERRIDE: Cat&#x27;s own version
+        return f&quot;{self.name} says: Meow!&quot;
+
+dog = Dog(&quot;Rex&quot;, &quot;Lab&quot;)
+cat = Cat(&quot;Whiskers&quot;, True)
+
+# Inherited methods work
+print(dog.eat())     # Rex is eating
+print(cat.sleep())   # Whiskers is sleeping
+
+# Overridden method: each uses its own version
+print(dog.sound())   # Rex says: Woof!
+print(cat.sound())   # Whiskers says: Meow!
+
+# New method only in Dog
+print(dog.bark())    # Rex says: Woof!
+# cat.bark()         # AttributeError: Cat has no bark()
+
+# isinstance check
+print(isinstance(dog, Dog))     # True
+print(isinstance(dog, Animal))  # True (Dog IS an Animal)
+print(isinstance(cat, Dog))     # False</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 145: super() --- Calling Parent from Child</div><div class="box-body"><div class="code-box"><pre><code>class Shape:
+    def __init__(self, colour):
+        self.colour = colour
+
+    def describe(self):
+        return f&quot;I am a {self.colour} shape&quot;
+
+class Circle(Shape):
+    def __init__(self, colour, radius):
+        super().__init__(colour)   # runs Shape&#x27;s __init__
+        self.radius = radius
+
+    def describe(self):
+        # Call parent&#x27;s describe, then add more info
+        base = super().describe()  # &quot;I am a red shape&quot;
+        return f&quot;{base} (circle, radius={self.radius})&quot;
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+class Square(Shape):
+    def __init__(self, colour, side):
+        super().__init__(colour)
+        self.side = side
+
+    def area(self):
+        return self.side ** 2
+
+c = Circle(&quot;red&quot;, 5)
+s = Square(&quot;blue&quot;, 4)
+
+print(c.describe())   # I am a red shape (circle, radius=5)
+print(s.describe())   # I am a blue shape  (from parent)
+print(c.area())       # 78.53975
+print(s.area())       # 16</code></pre></div></div></div>
+</section>
+<section id="method-overriding" class="content-section level-2">
+<h3 class="section-heading">Method Overriding</h3>
+<div class="concept-box"><div class="box-title">Method Overriding --- Core Concepts</div><div class="box-body"><p><strong>Method overriding</strong> occurs when a <strong>child class</strong> provides a specialized implementation for a method that is already defined in its <strong>parent class</strong>. This allows subclasses to customize behavior while maintaining a consistent interface.</p>
+<ul><li><p><strong>Exact Match:</strong> The child method must use the exact same name and signature as the parent method.</p></li><li><p><strong>Dynamic Routing:</strong> When invoked on a child object, Python bypasses the parent implementation and executes the child version immediately.</p></li><li><p><strong>Extension via super():</strong> Overriding does not mean abandoning parent logic. You can augment the parent's code by calling <code>super().method()</code> inside the child's version.</p></li></ul>
+<p>Think of it like tax systems or reporting frameworks: every report can “generate,” but an encrypted report will call the default generation mechanism first and then wrap the result in security tags.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig142.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 146: Method Overriding and Behavioral Extension</div><div class="box-body"><div class="code-box"><pre><code>class TaxRate:
+    def calculate(self, amount):
+        return amount * 0.05  # Base default rate (5%)
+
+class LuxuryTaxRate(TaxRate):
+    def calculate(self, amount):
+        return amount * 0.18  # OVERRIDE: Replace parent rate entirely
+
+# --------------------------------------------------------------
+# Framework Extension using super()
+# --------------------------------------------------------------
+class Report:
+    def generate(self):
+        return &quot;Base Report Content&quot;
+
+class EncryptedReport(Report):
+    def generate(self):
+        # 1. Fetch data from base parent framework using super()
+        raw_data = super().generate()
+        # 2. Add specific child modification layer
+        return f&quot;[ENCRYPTED] {raw_data}&quot;
+
+# --- Testing Replacement Overriding ---
+standard = TaxRate()
+luxury = LuxuryTaxRate()
+
+print(standard.calculate(1000))  # Output: 50.0
+print(luxury.calculate(1000))    # Output: 180.0 (Parent calculation is skipped)
+
+# --- Testing Extended Overriding ---
+secure_doc = EncryptedReport()
+print(secure_doc.generate())      # Output: [ENCRYPTED] Base Report Content</code></pre></div></div></div>
+</section>
+<section id="multilevel-inheritance" class="content-section level-2">
+<h3 class="section-heading">Multilevel Inheritance</h3>
+<div class="concept-box"><div class="box-title">Multilevel Inheritance --- Core Concepts</div><div class="box-body"><p><strong>Multilevel inheritance</strong> occurs when a child class inherits from a parent class, which in turn inherits from another parent class, creating a linear, multi-tiered chain (<strong>Grandparent $\rightarrow$ Parent $\rightarrow$ Child</strong>).</p>
+<ul><li><p><strong>Linear Accumulation:</strong> The lowest-level child class automatically inherits all attributes and methods across every structural tier above it.</p></li><li><p><strong>The super() Forwarder:</strong> Using <code>super().__init__()</code> allows constructors to pass arguments cleanly up to the immediate parent layer without explicitly hardcoding class names.</p></li><li><p><strong>One-Way Visibility:</strong> Lower classes can seamlessly see and call methods from higher-up tiers, but higher classes have absolutely no visibility down the chain.</p></li></ul>
+<p>Think of it like a vehicle manufacturing line: a basic <code>Vehicle</code> establishes tracking, a <code>Car</code> adds doors, and an <code>ElectricCar</code> adds battery specifications.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig143.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 147: Three-Tier Linear Inheritance Chain</div><div class="box-body"><div class="code-box"><pre><code>class Vehicle:
+    &quot;&quot;&quot;Tier 1: The Grandparent Class&quot;&quot;&quot;
+    def __init__(self, brand):
+        self.brand = brand
+
+    def start(self):
+        return f&quot;{self.brand} engine started.&quot;
+
+class Car(Vehicle):
+    &quot;&quot;&quot;Tier 2: The Parent Class&quot;&quot;&quot;
+    def __init__(self, brand, doors):
+        super().__init__(brand) # Forward to Vehicle constructor
+        self.doors = doors
+
+    def drive(self):
+        return f&quot;Driving the {self.brand} car with {self.doors} doors.&quot;
+
+class ElectricCar(Car):
+    &quot;&quot;&quot;Tier 3: The Child Class&quot;&quot;&quot;
+    def __init__(self, brand, doors, battery_kwh):
+        super().__init__(brand, doors) # Forward to Car constructor
+        self.battery_kwh = battery_kwh
+
+    def charge(self):
+        return f&quot;Charging the {self.battery_kwh}kWh battery pack.&quot;
+
+# --- Testing the Multi-Tier Blueprint ---
+tesla = ElectricCar(brand=&quot;Tesla&quot;, doors=4, battery_kwh=75)
+
+# Accessing methods accumulated from all 3 structural tiers
+print(tesla.start())   # Tier 1 Grandparent Method
+print(tesla.drive())   # Tier 2 Parent Method
+print(tesla.charge())  # Tier 3 Child Method
+
+# --- Verifying Method Resolution Order (MRO) ---
+print([cls.__name__ for cls in ElectricCar.__mro__])
+# Output: [&#x27;ElectricCar&#x27;, &#x27;Car&#x27;, &#x27;Vehicle&#x27;, &#x27;object&#x27;]</code></pre></div></div></div>
+</section>
+<section id="multiple-inheritance-and-mro" class="content-section level-2">
+<h3 class="section-heading">Multiple Inheritance and MRO</h3>
+
+<section id="getting-from-two-parents-diamond-problem" class="content-section level-3">
+<h4 class="section-heading">Getting from Two Parents, Diamond Problem</h4>
+<div class="concept-box"><div class="box-title">Multiple Inheritance and MRO</div><div class="box-body"><p>Python allows a class to inherit from <strong>more than one parent</strong>:
+\[\texttt{class C(A, B):}\]</p>
+<p><strong>The diamond problem</strong>: if both <code>A</code> and <code>B</code> have a method
+with the same name, which one does <code>C</code> use?</p>
+<p>Python uses the <strong>MRO (Method Resolution Order)</strong> to decide.
+The MRO is computed using the <strong>C3 algorithm</strong> (left-to-right, no repeats).</p>
+<p><strong>Simple rule</strong>: Python searches left-to-right through the parents listed
+in the class definition, going through each parent's own parents.
+<code>super()</code> follows this same order.</p>
+<p>Check the MRO with <code>ClassName.__mro__</code> or <code>ClassName.mro()</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig144.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Multiple Inheritance --- MRO Search Order</div><div class="box-body"><p>When a class inherits from multiple parents, Python determines method execution using the <strong>C3 Linearization / MRO (Method Resolution Order)</strong> algorithm. It follows strict layout principles:</p>
+<ul><li><p><strong>Left-to-Right Priority:</strong> For a class defined as <code>Child(Left, Right)</code>, Python evaluates the immediate parents from left to right.</p></li><li><p><strong>Subclass First Rule:</strong> A parent class (<code>Right</code>) will always be searched before a grandparent class (<code>Root</code>), even if <code>Left</code> is a direct child of <code>Root</code>.</p></li><li><p><strong>Early Termination:</strong> The search stops immediately at the first class that provides an implementation of the requested method.</p></li></ul>
+<p>Think of it as a depth-first search that is intentionally blocked from hitting the very top root until all local, lower-level subclass branches have been fully exhausted.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig145.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 148: Verifying the Python MRO Lookup Flow</div><div class="box-body"><div class="code-box"><pre><code>class Root:
+    def action(self):
+        return &quot;Root action&quot;
+
+class Left(Root):
+    def action(self):
+        return &quot;Left action&quot;  # Python hits this first and stops
+
+class Right(Root):
+    def action(self):
+        return &quot;Right action&quot; # Saved for step 3 if Left didn&#x27;t implement it
+
+class Child(Left, Right):
+    pass # Child doesn&#x27;t define the action, forcing an MRO search
+
+# --- Execution Output ---
+obj = Child()
+print(obj.action())  # Output: Left action
+
+# --- Inspecting the True Resolution Order Path ---
+# Python explicitly lists out the lookup sequence in the __mro__ attribute:
+print([cls.__name__ for cls in Child.__mro__])
+# Output: [&#x27;Child&#x27;, &#x27;Left&#x27;, &#x27;Right&#x27;, &#x27;Root&#x27;, &#x27;object&#x27;]</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="polymorphism" class="content-section level-1">
+<h2 class="section-heading">Polymorphism</h2>
+<div class="concept-box"><div class="box-title">Polymorphism --- Core Concepts</div><div class="box-body"><p><strong>Polymorphism</strong> literally means <strong>"many forms."</strong> In object-oriented programming, it allows different classes to be treated as if they were the same type through a shared, uniform interface.</p>
+<ul><li><p><strong>Unified Interface:</strong> It allows a single function, loop, or method to work seamlessly with different types of objects.</p></li><li><p><strong>Customized Response:</strong> Each individual object responds to the exact same method call in its own specific way.</p></li><li><p><strong>Reduced Complexity:</strong> It decouples your code from explicit type checks, letting you focus entirely on actions rather than underlying identity.</p></li></ul>
+<p>Think of it like an interface action: a <code>Car</code>, a <code>Plane</code>, and a <code>Boat</code> can all execute a <code>move()</code> action. The caller doesn't care <em>how</em> they move—the car drives, the plane flies, and the boat sails.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig146.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Polymorphism Types</div><div class="box-body"><ul><li><p><strong>Compile-Time (Overloading):</strong> Python does not support native method overloading. It is simulated using default arguments (<code>None</code>) or variable arguments (<code>*args</code>).</p></li><li><p><strong>Runtime (Overriding):</strong> Subclasses redefine a parent method. The correct execution path is chosen dynamically at runtime based on the object instance.</p></li><li><p><strong>Duck Typing:</strong> Structural typing based on behaviors instead of inheritance. If an object has a required method at runtime, Python executes it without type-checking.</p></li><li><p><strong>Operator Overloading</strong>: Operator overloading allows the same operator to perform different actions depending on the objects it works with. Python supports operator overloading for both built-in data types and user-defined classes.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 149: Four Types of Pythonic Polymorphism</div><div class="box-body"><div class="code-box"><pre><code># 1. COMPILE-TIME OVERLOADING SIMULATION (Asset Depreciation)
+class Asset:
+    def depreciate(self, value, rate=None):
+        if rate is not None:
+            return value * rate       # Custom rate tracking
+        return value * 0.10            # Standard default rate (10%)
+
+# 2. RUNTIME METHOD OVERRIDING (Payment Processing Architecture)
+class Payment:
+    def pay(self): return &quot;Standard processing pipeline&quot;
+
+class UPI(Payment):
+    def pay(self): return &quot;Redirecting to secure QR gateway&quot;
+
+class Wallet(Payment):
+    def pay(self): return &quot;Deducting tokens from application balance&quot;
+
+# 3. FUNCTION-BASED DUCK TYPING (File Export Subsystem)
+class PDFExporter:
+    def export(self): return &quot;Writing byte streams to disk&quot;
+
+class CSVExporter:
+    def export(self): return &quot;Writing comma-separated strings&quot;
+
+def run_export_pipeline(engine):
+    print(engine.export()) # No subclass dependency; checks for .export() method
+
+# --- Execution Output Verification ---
+# Overloading Check
+asset = Asset()
+print(asset.depreciate(1000))        # Output: 100.0
+print(asset.depreciate(1000, 0.25))  # Output: 250.0
+
+# Overriding Check
+transactions = [UPI(), Wallet(), Payment()]
+for txn in transactions:
+    print(txn.pay())
+
+# Duck Typing Check
+run_export_pipeline(PDFExporter())   # Output: Writing byte streams to disk
+run_export_pipeline(CSVExporter())   # Output: Writing comma-separated strings
+
+# 4. BUILT-IN OPERATOR &amp; FUNCTION POLYMORPHISM
+print(100 + 50)             # Operator: Numeric addition (150)
+print(&quot;Data&quot; + &quot;base&quot;)      # Operator: String concatenation (Database)
+print(len(&quot;Python&quot;))        # Function: Character count (6)
+print(len([5, 10, 15]))     # Function: Item count (3)
+print(&quot;GATE&quot; * 3)           # GATEGATEGATE</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 150: Polymorphism and Pythonic Duck Typing</div><div class="box-body"><div class="code-box"><pre><code>class Dog:
+    def speak(self):
+        return &quot;Woof!&quot;
+
+class Cat:
+    def speak(self):
+        return &quot;Meow!&quot;
+
+# A polymorphic function that does not care about the underlying class type
+def animal_sound(animal):
+    print(animal.speak())
+
+dog = Dog()
+cat = Cat()
+
+animal_sound(dog)  # Output: Woof!
+animal_sound(cat)  # Output: Meow!
+
+# --------------------------------------------------------------
+# Duck Typing: Focus on Behavior over Type Identity
+# --------------------------------------------------------------
+class Bird:
+    def fly(self):
+        return &quot;Flapping wings&quot;
+
+class Airplane:
+    def fly(self):
+        return &quot;Using jet engines&quot;
+
+# Both work inside the same loop because they both possess the .fly() method
+entities = [Bird(), Airplane()]
+
+for item in entities:
+    print(item.fly())
+# Output:
+# Flapping wings
+# Using jet engines</code></pre></div></div></div>
+</section>
+<section id="encapsulation-name-mangling" class="content-section level-1">
+<h2 class="section-heading">Encapsulation &amp; Name Mangling</h2>
+
+<section id="hiding-data-inside-a-class" class="content-section level-2">
+<h3 class="section-heading">Hiding Data Inside a Class</h3>
+<div class="concept-box"><div class="box-title">Encapsulation and Name Mangling</div><div class="box-body"><p><strong>Encapsulation</strong> means keeping data inside a class and controlling how
+it is accessed or changed. Python uses <strong>naming conventions</strong> (not strict
+access control like Java's <code>private</code>):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig147.png" alt="diagram"></div>
+<p><strong>Name mangling</strong>: <code>self.__pin</code> inside class <code>BankAccount</code>
+is stored as <code>self._BankAccount__pin</code>. This stops child classes from
+accidentally overwriting the same name.</p>
+<p><strong>Python is not truly private</strong> — anyone can still access
+<code>obj._BankAccount__pin</code> if they really want to.
+The double underscore is a <em>safety guard</em>, not a lock.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig148.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 151: Encapsulation --- Bank Account Example</div><div class="box-body"><div class="code-box"><pre><code>class BankAccount:
+    def __init__(self, owner, balance, pin):
+        self.owner    = owner          # public: ok to read
+        self._balance = balance        # &quot;please don&#x27;t touch&quot;
+        self.__pin    = pin            # name mangled: hard to access
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self._balance += amount
+            return f&quot;Deposited {amount}. Balance: {self._balance}&quot;
+
+    def withdraw(self, amount, pin):
+        if pin != self.__pin:
+            return &quot;Wrong PIN!&quot;
+        if amount &gt; self._balance:
+            return &quot;Not enough money&quot;
+        self._balance -= amount
+        return f&quot;Withdrew {amount}. Balance: {self._balance}&quot;
+
+    @property
+    def balance(self):               # read-only access via property
+        return self._balance
+
+acc = BankAccount(&quot;Alice&quot;, 10000, 1234)
+
+# Public attribute: accessible
+print(acc.owner)           # Alice
+
+# Protected: accessible but convention says don&#x27;t
+print(acc._balance)        # 10000  (works but bad style)
+
+# Name-mangled: acc.__pin fails
+try:
+    print(acc.__pin)       # AttributeError!
+except AttributeError as e:
+    print(e)               # &#x27;BankAccount&#x27; object has no attribute &#x27;__pin&#x27;
+
+# But you can still reach it this way (don&#x27;t do this!)
+print(acc._BankAccount__pin)   # 1234  (mangled name)
+
+# Use the methods properly
+print(acc.deposit(5000))       # Deposited 5000. Balance: 15000
+print(acc.withdraw(2000, 9999)) # Wrong PIN!
+print(acc.withdraw(2000, 1234)) # Withdrew 2000. Balance: 13000
+print(acc.balance)              # 13000  (via property)
+
+# Name mangling prevents child class collision
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance, pin, interest_rate):
+        super().__init__(owner, balance, pin)
+        self.__pin = &quot;child_pin&quot;    # stored as _SavingsAccount__pin
+                                     # does NOT overwrite BankAccount&#x27;s __pin!
+
+sa = SavingsAccount(&quot;Bob&quot;, 5000, 5678, 0.05)
+print(sa.withdraw(1000, 5678))   # Withdrew 1000... (uses BankAccount&#x27;s __pin)</code></pre></div></div></div>
+</section>
+</section>
+<section id="abstract-base-classes" class="content-section level-1">
+<h2 class="section-heading">Abstract Base Classes</h2>
+
+<section id="forcing-child-classes-to-implement-methods" class="content-section level-2">
+<h3 class="section-heading">Forcing Child Classes to Implement Methods</h3>
+<div class="concept-box"><div class="box-title">Abstract Base Classes --- What and Why</div><div class="box-body"><p>An <strong>Abstract Base Class (ABC)</strong> is a class that says:
+<em>“I am an incomplete template. Any class that inherits from me
+<strong>must</strong> define certain methods, or Python will not let you create objects
+from it.”</em></p>
+<p>You mark methods as <strong>abstract</strong> with <code>@abstractmethod</code>.
+If a child class does not define all abstract methods, trying to create an object
+from it raises a <code>TypeError</code>.</p>
+<p><strong>Why use it</strong>: it is a <strong>contract</strong>. If you have many different
+classes (e.g.\ <code>Circle</code>, <code>Square</code>, <code>Triangle</code>) that
+should all have an <code>area()</code> method, define <code>Shape</code> as an ABC
+with abstract <code>area()</code>. Now Python enforces the contract.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig149.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 152: Abstract Base Class --- Shape Example</div><div class="box-body"><div class="code-box"><pre><code>from abc import ABC, abstractmethod
+import math
+
+class Shape(ABC):   # ABC makes this an abstract class
+    &quot;&quot;&quot;Every shape must have area() and perimeter().&quot;&quot;&quot;
+
+    @abstractmethod
+    def area(self):
+        pass   # no body needed -- child must provide it
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+    # Non-abstract method: shared by all shapes
+    def describe(self):
+        return (f&quot;{self.__class__.__name__}: &quot;
+                f&quot;area={self.area():.2f}, &quot;
+                f&quot;perimeter={self.perimeter():.2f}&quot;)
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):              # MUST define
+        return math.pi * self.radius ** 2
+
+    def perimeter(self):         # MUST define
+        return 2 * math.pi * self.radius
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width  = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+class Triangle(Shape):
+    def __init__(self, a, b, c):
+        self.a, self.b, self.c = a, b, c
+
+    def area(self):
+        s = (self.a + self.b + self.c) / 2   # semi-perimeter
+        return math.sqrt(s*(s-self.a)*(s-self.b)*(s-self.c))
+
+    def perimeter(self):
+        return self.a + self.b + self.c
+
+# Cannot create Shape directly
+try:
+    s = Shape()   # TypeError!
+except TypeError as e:
+    print(e)      # Can&#x27;t instantiate abstract class Shape
+
+# Can create concrete subclasses
+c = Circle(5)
+r = Rectangle(4, 6)
+t = Triangle(3, 4, 5)
+
+print(c.describe())   # Circle: area=78.54, perimeter=31.42
+print(r.describe())   # Rectangle: area=24.00, perimeter=20.00
+print(t.describe())   # Triangle: area=6.00, perimeter=12.00
+
+# Use polymorphism: list of shapes
+shapes = [Circle(3), Rectangle(2,5), Triangle(3,4,5)]
+total_area = sum(s.area() for s in shapes)
+print(f&quot;Total area: {total_area:.2f}&quot;)   # Total area: 48.27
+
+# Class that misses an abstract method
+class BadShape(Shape):
+    def area(self):
+        return 0
+    # forgot perimeter()!
+
+try:
+    b = BadShape()   # TypeError!
+except TypeError as e:
+    print(e)   # Can&#x27;t instantiate abstract class BadShape
+               # without an implementation for abstract method &#x27;perimeter&#x27;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 153: OOP --- Quick Reference</div><div class="box-body"><div class="code-box"><pre><code># Q1: Class variable shared -- what prints?
+class Counter:
+    count = 0
+    def __init__(self):
+        Counter.count += 1
+
+a = Counter()
+b = Counter()
+c = Counter()
+print(Counter.count)   # 3  (shared across all instances)
+
+# Q2: Instance variable shadows class variable
+class Dog:
+    legs = 4
+d = Dog()
+d.legs = 3             # creates instance var, shadows class var
+print(d.legs)          # 3
+print(Dog.legs)        # 4  (class var unchanged)
+
+# Q3: MRO -- which method runs?
+class A:
+    def hello(self): return &quot;A&quot;
+class B(A):
+    def hello(self): return &quot;B&quot;
+class C(A):
+    def hello(self): return &quot;C&quot;
+class D(B, C):
+    pass
+
+print(D().hello())     # B  (MRO: D -&gt; B -&gt; C -&gt; A)
+print(D.__mro__)       # D, B, C, A, object
+
+# Q4: super() chain
+class X:
+    def go(self): print(&quot;X&quot;)
+class Y(X):
+    def go(self): print(&quot;Y&quot;); super().go()
+class Z(Y):
+    def go(self): print(&quot;Z&quot;); super().go()
+Z().go()   # Z / Y / X
+
+# Q5: Property vs plain method
+class Circle:
+    def __init__(self, r): self.r = r
+    @property
+    def area(self): return 3.14 * self.r**2
+
+c = Circle(5)
+print(c.area)      # 78.5  (no parentheses -- it&#x27;s a property)
+# print(c.area())  # TypeError: &#x27;float&#x27; is not callable</code></pre></div></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Comprehensions &amp; Generators</a><span class="spacer"></span></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

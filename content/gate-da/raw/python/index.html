@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python for GATE DA — Concept Notes</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; Python Concept Notes</div>
+      <h1>Python for GATE Data Science &amp; AI</h1>
+
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">Python Basics</div>
+      <div class="chapter-card-meta">38 sections</div>
+      <div class="chapter-card-preview">Language Overview, Variables &amp; Assignment, Data Types...</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Built-in Data Structures</div>
+      <div class="chapter-card-meta">58 sections</div>
+      <div class="chapter-card-preview">Strings, Lists, Tuples...</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Control Flow</div>
+      <div class="chapter-card-meta">17 sections</div>
+      <div class="chapter-card-preview">Conditional Statements, Loops</div>
+    </a>
+    <a class="chapter-card" href="ch04.html">
+      <div class="chapter-card-num">Chapter 4</div>
+      <div class="chapter-card-title">Functions</div>
+      <div class="chapter-card-meta">67 sections</div>
+      <div class="chapter-card-preview">Defining &amp; Calling Functions, Arguments &amp; Parameters, Pass-by-Object-Reference...</div>
+    </a>
+    <a class="chapter-card" href="ch05.html">
+      <div class="chapter-card-num">Chapter 5</div>
+      <div class="chapter-card-title">Comprehensions &amp; Generators</div>
+      <div class="chapter-card-meta">11 sections</div>
+      <div class="chapter-card-preview">List Comprehensions, Dictionary Comprehensions, Set Comprehensions...</div>
+    </a>
+    <a class="chapter-card" href="ch06.html">
+      <div class="chapter-card-num">Chapter 6</div>
+      <div class="chapter-card-title">Object-Oriented Programming</div>
+      <div class="chapter-card-meta">22 sections</div>
+      <div class="chapter-card-preview">Classes &amp; Objects, Dunder (Magic) Methods, Inheritance...</div>
+    </a>
+    </div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes
+    
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

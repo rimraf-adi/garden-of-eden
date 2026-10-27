@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Singular Value Decomposition (SVD) — Vector Spaces & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        R: "\\mathbb{R}",
+        norm: ["\\left\\lVert#1\\right\\rVert", 1]
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Vector Spaces &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Vector Spaces</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#vectors-concept" class="toc-link" data-slug="vectors-concept">Vectors Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-a-vector" class="toc-link" data-slug="what-is-a-vector">What is a Vector?</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#geometric-picture-and-basic-diagrams" class="toc-link" data-slug="geometric-picture-and-basic-diagrams">Geometric picture and basic diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#length-or-magnitude-of-a-vector" class="toc-link" data-slug="length-or-magnitude-of-a-vector">Length or Magnitude of a Vector</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#vector-arithmetic" class="toc-link" data-slug="vector-arithmetic">Vector arithmetic</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dot-product-inner-product-and-properties" class="toc-link" data-slug="dot-product-inner-product-and-properties">Dot product (Inner product) and properties</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#norms-and-distances" class="toc-link" data-slug="norms-and-distances">Norms and distances</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#cross-product-3d-and-properties" class="toc-link" data-slug="cross-product-3d-and-properties">Cross product (3D) and properties</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#vector-space" class="toc-link" data-slug="vector-space">Vector Space</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#concept-of-a-vector-space" class="toc-link" data-slug="concept-of-a-vector-space">Concept of a Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#generalization-to-higher-dimensions" class="toc-link" data-slug="generalization-to-higher-dimensions">Generalization to Higher Dimensions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#definition-of-a-real-vector-space" class="toc-link" data-slug="definition-of-a-real-vector-space">Definition of a Real Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#eight-basic-axioms-of-vector-spaces" class="toc-link" data-slug="eight-basic-axioms-of-vector-spaces">Eight Basic Axioms of Vector Spaces</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#subspaces" class="toc-link" data-slug="subspaces">Subspaces</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#linear-independence-basis-and-dimension" class="toc-link" data-slug="linear-independence-basis-and-dimension">Linear Independence, Basis, and Dimension</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-vector-spaces" class="toc-link" data-slug="applications-of-vector-spaces">Applications of Vector Spaces</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#orthogonal-vectors-and-their-length" class="toc-link" data-slug="orthogonal-vectors-and-their-length">Orthogonal Vectors and Their Length</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-subspaces-and-complements" class="toc-link" data-slug="orthogonal-subspaces-and-complements">Orthogonal Subspaces and Complements</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-and-symmetric-matrices" class="toc-link" data-slug="orthogonal-and-symmetric-matrices">Orthogonal and Symmetric Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-orthogonality-and-projections" class="toc-link" data-slug="applications-of-orthogonality-and-projections">Applications of Orthogonality and Projections</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Quadratic Forms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#definition-and-basic-properties" class="toc-link" data-slug="definition-and-basic-properties">Definition and Basic Properties</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-quadratic-forms" class="toc-link" data-slug="diagonalization-of-quadratic-forms">Diagonalization of Quadratic Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#positive-definite-negative-definite-and-indefinite-forms" class="toc-link" data-slug="positive-definite-negative-definite-and-indefinite-forms">Positive Definite, Negative Definite, and Indefinite Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#canonical-form-using-orthogonal-transformation" class="toc-link" data-slug="canonical-form-using-orthogonal-transformation">Canonical Form Using Orthogonal Transformation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#geometric-interpretation" class="toc-link" data-slug="geometric-interpretation">Geometric Interpretation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Singular Value Decomposition (SVD)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#definition-and-concept" class="toc-link" data-slug="definition-and-concept">Definition and Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#reading-the-axes-u-sigma-and-v" class="toc-link" data-slug="reading-the-axes-u-sigma-and-v">Reading the Axes: $U$, $\Sigma$, and $V$</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#orthogonality" class="toc-link" data-slug="orthogonality">Orthogonality</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#eigenvalues-eigenvectors-and-the-origin-of-svd" class="toc-link" data-slug="eigenvalues-eigenvectors-and-the-origin-of-svd">Eigenvalues, Eigenvectors, and the Origin of SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#computing-the-svd" class="toc-link" data-slug="computing-the-svd">Computing the SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#low-rank-approximation" class="toc-link" data-slug="low-rank-approximation">Low-Rank Approximation</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#shortcut-rules-for-special-matrices" class="toc-link" data-slug="shortcut-rules-for-special-matrices">Shortcut Rules for Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 4</div><h1>Singular Value Decomposition (SVD)</h1></div>
+<section id="definition-and-concept" class="content-section level-1">
+<h2 class="section-heading">Definition and Concept</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For any real $m \times n$ matrix $A$, there exist orthogonal matrices $U \in \mathbb{R}^{m \times m}$ and $V \in \mathbb{R}^{n \times n}$, and a diagonal matrix $\Sigma \in \mathbb{R}^{m \times n}$ such that:
+\[
+A = U \Sigma V^T
+\]
+where</p>
+<ul><li><p>Columns of $U$ are called <strong>left singular vectors</strong>.</p></li><li><p>Columns of $V$ are called <strong>right singular vectors</strong>.</p></li><li><p>Diagonal entries $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r \ge 0$ of $\Sigma$ are called <strong>singular values</strong> of $A$, where $r = \text{rank}(A)$.</p></li></ul>
+<p>SVD works for <em>any</em> matrix, regardless of shape — square, rectangular, invertible, or singular. It decomposes $A$ into a rotation, followed by a scaling, followed by another rotation. This is what makes SVD more general than eigen-decomposition, which is only defined for square matrices.</p></div></div>
+<p>SVD reveals the underlying structure of a matrix while filtering out noise. This is why it is widely used in compression, recommender systems, and dimensionality reduction.</p>
+<div class="example-box"><div class="box-title">Example 48</div><div class="box-body"><p>Consider a table of movie ratings by users, where rows represent users and columns represent movies:</p>
+<p>\[
+A = \begin{bmatrix}
+5 &amp; 1 &amp; 5 \\
+1 &amp; 5 &amp; 1 \\
+4 &amp; 1 &amp; 4 \\
+1 &amp; 4 &amp; 2
+\end{bmatrix}
+\quad
+\begin{array}{l}
+\text{(rows: Ann, Bob, Cid, Dee)} \\
+\text{(columns: Titanic, Rambo, Notebook)}
+\end{array}
+\]</p>
+<p>Ann and Cid both rate Titanic and Notebook highly while rating Rambo low; Bob shows the opposite pattern. SVD decomposes $A$ as $A = U\Sigma V^T$, where $U \in \mathbb{R}^{4\times 2}$, $\Sigma \in \mathbb{R}^{2\times 2}$, and $V^T \in \mathbb{R}^{2\times 3}$, automatically discovering this “Action vs.\ Romance” pattern purely from the numbers, without ever being told what a genre is.</p></div></div>
+<section id="reading-the-axes-u-sigma-and-v" class="content-section level-2">
+<h3 class="section-heading">Reading the Axes: $U$, $\Sigma$, and $V$</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>An <strong>axis</strong> in this context is a direction that SVD discovers in the data, not something labeled in advance. Every user (or movie) is assigned a number along this axis, called its <strong>projection</strong>. The sign of the number indicates which side of the axis an item falls on, and the magnitude indicates how strongly it leans that way.</p></div></div>
+<div class="concept-box"><div class="box-title">Left Singular Vectors ($U$)</div><div class="box-body"><p>$U$ is an orthogonal matrix: its columns form an orthonormal set (mutually perpendicular, unit length). Each column of $U$ represents one preference direction across users.</p>
+<ul><li><p><strong>Sign</strong> indicates direction (e.g., negative $\to$ romance side, positive $\to$ action side).</p></li><li><p><strong>Magnitude</strong> indicates strength of that preference.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 49</div><div class="box-body"><p>Continuing the movie ratings example, the first column of $U$ (the dominant genre axis) might be:
+\[
+U_{:,1} = \begin{pmatrix} -0.60 \\ +0.53 \\ -0.48 \\ +0.35 \end{pmatrix}
+\quad \text{(Ann, Bob, Cid, Dee)}
+\]
+Ann's value of $-0.60$ places her strongly on the romance side, consistent with her ratings $(5,1,5)$. Bob's $+0.53$ places him on the action side, consistent with $(1,5,1)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Singular Values ($\Sigma$)</div><div class="box-body"><p>$\Sigma$ is diagonal, with non-negative entries arranged in <strong>descending</strong> order: $\sigma_1 \ge \sigma_2 \ge \dots \ge 0$.</p>
+<ul><li><p>A <strong>large</strong> $\sigma_i$ means the corresponding pattern explains a lot of the variance in the data.</p></li><li><p>A <strong>small</strong> $\sigma_i$ means the pattern contributes little — often just noise.</p></li></ul>
+<p>In practice, only the top few singular values are retained, since they capture most of the structure using far fewer dimensions.</p></div></div>
+<div class="example-box"><div class="box-title">Example 50</div><div class="box-body"><p>For the movie ratings matrix, suppose $\sigma_1 = 10.8$ and $\sigma_2 = 3.4$ (with $\sigma_3 \approx 0$). Since $\sigma_1$ is over three times larger than $\sigma_2$, the Action-vs-Romance split accounts for most of why ratings vary between users. Keeping only $\sigma_1$ still reconstructs most of the original ratings — this is the basis of dimensionality reduction.</p></div></div>
+<div class="concept-box"><div class="box-title">Right Singular Vectors ($V$)</div><div class="box-body"><p>$V$ is also an orthogonal matrix, with orthonormal columns. Each column of $V$ represents a distinct latent theme direction for the <em>movies</em> (columns of $A$), rather than the users. A movie's coordinate along an axis shows how strongly it aligns with that theme: a high positive value indicates strong association with one extreme (e.g., action), while a large negative value indicates the opposite extreme (e.g., romance).</p></div></div>
+<div class="example-box"><div class="box-title">Example 51</div><div class="box-body"><p>Continuing the example, the first column of $V$ might be:
+\[
+V_{:,1} = \begin{pmatrix} -0.58 \\ +0.60 \\ -0.55 \end{pmatrix}
+\quad \text{(Titanic, Rambo, Notebook)}
+\]
+Rambo's $+0.60$ places it firmly on the action side. Titanic and Notebook both score negative, placing them on the romance side. This axis <em>is</em> the romance-vs-action split, discovered purely from ratings with no genre label ever supplied to the algorithm.</p></div></div>
+</section>
+<section id="orthogonality" class="content-section level-2">
+<h3 class="section-heading">Orthogonality</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A set of vectors $\{v_1, v_2, \dots\}$ is <strong>orthonormal</strong> if it satisfies two conditions simultaneously:</p>
+<ul><li><p><strong>Orthogonal:</strong> every pair is perpendicular, $v_i \cdot v_j = 0$ for $i \ne j$.</p></li><li><p><strong>Normalized:</strong> every vector has unit length, $\|v_i\| = 1$.</p></li></ul>
+<p>The columns of $U$ and the columns of $V$ are always orthonormal sets. Geometrically, in three dimensions, this means three mutually perpendicular unit vectors — like the $x$, $y$, $z$ axes of a coordinate system, but oriented in whatever direction best captures the data's structure.</p></div></div>
+</section>
+</section>
+<section id="eigenvalues-eigenvectors-and-the-origin-of-svd" class="content-section level-1">
+<h2 class="section-heading">Eigenvalues, Eigenvectors, and the Origin of SVD</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>When a matrix transforms a vector, the result is usually rotated, stretched, and mixed all at once. However, every matrix has special directions — called <strong>eigenvectors</strong> — along which the transformation acts simply: the vector is only stretched or shrunk, never redirected. The scale factor along that direction is the <strong>eigenvalue</strong> $\lambda$.</p>
+<p>A large eigenvalue means the matrix strongly amplifies data along that direction; a small or near-zero eigenvalue means that direction is barely affected or flattened entirely.</p></div></div>
+<div class="concept-box"><div class="box-title">Connection to SVD</div><div class="box-body"><p>SVD is built directly on this idea, generalized to matrices that are not necessarily square:</p>
+<ul><li><p>$V$ consists of the eigenvectors of $A^TA$.</p></li><li><p>$U$ consists of the eigenvectors of $AA^T$.</p></li><li><p>$\sigma_i = \sqrt{\lambda_i}$, where $\lambda_i$ are the (shared, non-zero) eigenvalues of $A^TA$ and $AA^T$.</p></li></ul>
+<p>This is what allows SVD to work even on rectangular matrices, where ordinary eigenvalues are not defined.</p></div></div>
+<div class="concept-box"><div class="box-title">Why ``Singular''?</div><div class="box-body"><p>A matrix is called <strong>singular</strong> if it is not invertible. If any singular value $\sigma_i = 0$, the matrix collapses (squashes to zero) along that direction — this is exactly the condition under which the matrix is singular. The term “singular value” is named after this connection.</p></div></div>
+</section>
+<section id="computing-the-svd" class="content-section level-1">
+<h2 class="section-heading">Computing the SVD</h2>
+<div class="concept-box"><div class="box-title">Procedure</div><div class="box-body"><p>Given $A \in \mathbb{R}^{m\times n}$, the SVD is computed as follows:</p>
+<ol><li><p>Compute $A^TA$, an $n \times n$ symmetric matrix.</p></li><li><p>Find the eigenvalues $\lambda_i$ of $A^TA$; these give $\sigma_i^2 = \lambda_i$.</p></li><li><p>Find the eigenvectors of $A^TA$, and <strong>normalize</strong> them to unit length — these become the columns of $V$.</p></li><li><p>Set $\sigma_i = \sqrt{\lambda_i}$, sorted from largest to smallest, and place them along the diagonal of $\Sigma$.</p></li><li><p>Compute $u_i = \dfrac{1}{\sigma_i}Av_i$ for each non-zero $\sigma_i$, and normalize — these become the columns of $U$.</p></li></ol>
+<p>Eigenvectors obtained by solving $(A^TA - \lambda I)v = 0$ are not automatically unit length; always divide by $\|v\|$ before placing a vector into $V$ or $U$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 52</div><div class="box-body"><p>Compute the SVD of
+\[
+A = \begin{bmatrix} 3 &amp; 1 \\ 1 &amp; 3 \\ 0 &amp; 0 \end{bmatrix}.
+\]</p>
+<p><strong>Step 1.</strong> Compute $A^TA$:
+\[
+A^TA = \begin{bmatrix} 9+1 &amp; 3+3 \\ 3+3 &amp; 1+9 \end{bmatrix} = \begin{bmatrix} 10 &amp; 6 \\ 6 &amp; 10 \end{bmatrix}.
+\]</p>
+<p><strong>Step 2.</strong> Find the eigenvalues. Solving $\det(A^TA - \lambda I) = 0$:
+\[
+(10-\lambda)^2 - 36 = 0 \implies 10 - \lambda = \pm 6 \implies \lambda_1 = 16,\ \lambda_2 = 4.
+\]</p>
+<p><strong>Step 3.</strong> Find and normalize the eigenvectors. For $\lambda_1 = 16$: solving $(A^TA - 16I)v = 0$ gives $v_1 = (1,1)$, normalized to $\frac{1}{\sqrt2}(1,1)$. For $\lambda_2 = 4$: $v_2 = (1,-1)$, normalized to $\frac{1}{\sqrt2}(1,-1)$. Hence
+\[
+V = \frac{1}{\sqrt2}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}.
+\]</p>
+<p><strong>Step 4.</strong> Singular values:
+\[
+\sigma_1 = \sqrt{16} = 4, \qquad \sigma_2 = \sqrt{4} = 2, \qquad
+\Sigma = \begin{bmatrix} 4 &amp; 0 \\ 0 &amp; 2 \\ 0 &amp; 0 \end{bmatrix}.
+\]</p>
+<p><strong>Step 5.</strong> Compute $U$:
+\[
+u_1 = \frac{1}{\sigma_1}Av_1 = \frac{1}{4}\cdot\frac{1}{\sqrt2}(4,4,0) = \frac{1}{\sqrt2}(1,1,0),
+\]
+\[
+u_2 = \frac{1}{\sigma_2}Av_2 = \frac{1}{2}\cdot\frac{1}{\sqrt2}(2,-2,0) = \frac{1}{\sqrt2}(1,-1,0).
+\]
+Since $U$ must be $3\times 3$ and orthogonal, the third column $u_3$ is any unit vector orthogonal to $u_1$ and $u_2$; here $u_3 = (0,0,1)$ works directly.</p>
+<p><strong>Result:</strong>
+\[
+U = \begin{bmatrix} 1/\sqrt2 &amp; 1/\sqrt2 &amp; 0 \\ 1/\sqrt2 &amp; -1/\sqrt2 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}, \qquad
+\Sigma = \begin{bmatrix} 4 &amp; 0 \\ 0 &amp; 2 \\ 0 &amp; 0 \end{bmatrix}, \qquad
+V = \frac{1}{\sqrt2}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}.
+\]
+One can verify by direct multiplication that $U\Sigma V^T = A$.</p></div></div>
+</section>
+<section id="low-rank-approximation" class="content-section level-1">
+<h2 class="section-heading">Low-Rank Approximation</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Every matrix $A$ can be written as a sum of rank-1 pieces:
+\[
+A = \sum_{i=1}^{r} \sigma_i\, u_i v_i^T,
+\]
+where $r = \text{rank}(A)$. Since $\sigma_1 \ge \sigma_2 \ge \dots$, the earlier terms in this sum capture the most important structure in $A$. The <strong>best rank-$k$ approximation</strong> of $A$, for $k &lt; r$, is obtained by keeping only the first $k$ terms:
+\[
+A_k = \sum_{i=1}^{k} \sigma_i\, u_i v_i^T.
+\]
+Discarding the terms with small singular values loses very little information, since those terms correspond to weak or noisy patterns in the data.</p></div></div>
+<div class="example-box"><div class="box-title">Example 53</div><div class="box-body"><p>For $A = \begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}$, suppose $\sigma_1 = \sqrt3$, $u_1 = \frac{1}{\sqrt6}(1,2,1)$, and $v_1 = \frac{1}{\sqrt2}(1,1)$. The rank-1 approximation is:
+\[
+A_1 = \sigma_1\, u_1 v_1^T =
+\begin{bmatrix} 1/\sqrt6 \\ 2/\sqrt6 \\ 1/\sqrt6 \end{bmatrix}
+\begin{bmatrix}\sqrt3\end{bmatrix}
+\begin{bmatrix} 1/\sqrt2 &amp; 1/\sqrt2 \end{bmatrix}
+=
+\begin{bmatrix} 0.5 &amp; 0.5 \\ 1.0 &amp; 1.0 \\ 0.5 &amp; 0.5 \end{bmatrix}.
+\]
+Comparing $A_1$ to the original $A = \begin{bmatrix}1&amp;0\\1&amp;1\\0&amp;1\end{bmatrix}$: every row of $A_1$ is a scalar multiple of a single vector, confirming $\text{rank}(A_1)=1$, and $A_1$ captures the dominant structure of $A$ using only one term instead of two.</p></div></div>
+</section>
+<section id="shortcut-rules-for-special-matrices" class="content-section level-1">
+<h2 class="section-heading">Shortcut Rules for Special Matrices</h2>
+<div class="concept-box"><div class="box-title">General Formula</div><div class="box-body"><p>For any real $m\times n$ matrix $A$:
+\[
+A = U\Sigma V^T, \qquad \sigma_i = \sqrt{\lambda_i(A^TA)} = \sqrt{\lambda_i(AA^T)}.
+\]
+The singular values are sorted $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r &gt; 0$, where $r = \text{rank}(A)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 54</div><div class="box-body"><p>For $A = \begin{bmatrix}1&amp;0\\1&amp;1\\0&amp;1\end{bmatrix}$: $A^TA = \begin{bmatrix}2&amp;1\\1&amp;2\end{bmatrix}$ has eigenvalues $3, 1$, so $\sigma_1 = \sqrt3$ and $\sigma_2 = 1$. Since $\text{rank}(A) = 2$, there are exactly two non-zero singular values.</p></div></div>
+<div class="concept-box"><div class="box-title">Symmetric Matrices: Two Cases</div><div class="box-body"><p>Let $A = A^T$ with eigenvalues $\lambda_i$.</p>
+<p><strong>Rule A (Positive Semi-Definite, $\lambda_i \ge 0$ for all $i$):</strong>
+\[
+\sigma_i = \lambda_i(A), \qquad \sum_i \sigma_i = \sum_i \lambda_i = \text{Trace}(A).
+\]</p>
+<p><strong>Rule B (General Symmetric Matrix):</strong>
+\[
+\sigma_i = |\lambda_i(A)|.
+\]
+Rule A is a special case of Rule B; use Rule B whenever any eigenvalue could be negative.</p></div></div>
+<div class="example-box"><div class="box-title">Example 55</div><div class="box-body"><p>Let $A = \begin{bmatrix}4&amp;0\\0&amp;9\end{bmatrix}$. Since $A$ is symmetric with eigenvalues $4, 9$ (both $\ge 0$), Rule A applies directly: $\sigma_1 + \sigma_2 = 4 + 9 = 13$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 56</div><div class="box-body"><p>Let $A = \begin{bmatrix}-5&amp;0\\0&amp;2\end{bmatrix}$. $A$ is symmetric, but its eigenvalues $-5, 2$ are not both non-negative, so Rule A does not apply; Rule B must be used instead:
+\[
+\sigma_1 + \sigma_2 = |-5| + |2| = 5 + 2 = 7.
+\]
+Note that this differs from simply summing the eigenvalues, which would incorrectly give $-3$.</p></div></div>
+<div class="concept-box"><div class="box-title">Outer Product (Rank-1) Shortcuts</div><div class="box-body"><p>For vectors $u \in \mathbb{R}^m$, $v \in \mathbb{R}^n$:</p>
+<p><strong>Case 1 — $A = uv^T$ (general rank-1):</strong> $\text{rank}(A) = 1$, so only $\sigma_1$ is non-zero:
+\[
+\sigma_1 = \|u\|_2 \cdot \|v\|_2 = \sqrt{\textstyle\sum u_i^2}\cdot\sqrt{\textstyle\sum v_i^2}.
+\]</p>
+<p><strong>Case 2 — $M = uu^T$ (symmetric rank-1):</strong> again only $\sigma_1$ is non-zero:
+\[
+\sigma_1 = \|u\|_2^2 = u^Tu = \text{Trace}(M).
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 57</div><div class="box-body"><p>Let $u = (1,2)$, $v = (3,4)$, and $A = uv^T$. Then $\|u\|_2 = \sqrt5$ and $\|v\|_2 = \sqrt{25} = 5$, so
+\[
+\sigma_1 = \sqrt5 \cdot 5 = 5\sqrt5.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 58</div><div class="box-body"><p>Let $u = (1,2,2)$, and let $M = uu^T$ be the resulting $3\times 3$ rank-1 matrix. Then
+\[
+\sigma_1 = u^Tu = 1 + 4 + 4 = 9 = \text{Trace}(M).
+\]</p></div></div>
+</section>
+<section id="applications" class="content-section level-1">
+<h2 class="section-heading">Applications</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><ul><li><p>Solving <strong>linear systems</strong>: $Ax = b$, including least squares for rank-deficient matrices.</p></li><li><p><strong>Low-rank approximation</strong> in data compression.</p></li><li><p>Computing <strong>pseudoinverse</strong>:
+    \[
+    A^+ = V \Sigma^+ U^T
+    \]
+    where $\Sigma^+$ is obtained by taking reciprocal of non-zero singular values.</p></li><li><p><strong>Principal Component Analysis (PCA)</strong>.</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Quadratic Forms</a><span class="spacer"></span></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Vector Spaces &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

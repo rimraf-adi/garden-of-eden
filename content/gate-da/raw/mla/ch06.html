@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Matrices — Matrices & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Matrices &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Matrices and Determinants</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-matrices" class="toc-link" data-slug="types-of-matrices">Types of Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#row-matrix" class="toc-link" data-slug="row-matrix">Row Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#column-matrix" class="toc-link" data-slug="column-matrix">Column Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#square-matrix" class="toc-link" data-slug="square-matrix">Square Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#zero-matrix" class="toc-link" data-slug="zero-matrix">Zero Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-matrix" class="toc-link" data-slug="identity-matrix">Identity Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#diagonal-matrix" class="toc-link" data-slug="diagonal-matrix">Diagonal Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#triangular-matrix" class="toc-link" data-slug="triangular-matrix">Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#upper-triangular-matrix" class="toc-link" data-slug="upper-triangular-matrix">Upper Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#lower-triangular-matrix" class="toc-link" data-slug="lower-triangular-matrix">Lower Triangular Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#matrix-operations" class="toc-link" data-slug="matrix-operations">Matrix Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#addition" class="toc-link" data-slug="addition">Addition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#scalar-multiplications" class="toc-link" data-slug="scalar-multiplications">Scalar Multiplications</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#matrix-multiplication" class="toc-link" data-slug="matrix-multiplication">Matrix Multiplication</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#transpose" class="toc-link" data-slug="transpose">Transpose</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#square-matrices" class="toc-link" data-slug="square-matrices">Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#diagonal-and-trace" class="toc-link" data-slug="diagonal-and-trace">Diagonal and Trace</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#identity-and-scalar-matrices" class="toc-link" data-slug="identity-and-scalar-matrices">Identity and Scalar Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#powers-of-matrices" class="toc-link" data-slug="powers-of-matrices">Powers of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#polynomials-in-matrices" class="toc-link" data-slug="polynomials-in-matrices">Polynomials in Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#definition-of-determinant" class="toc-link" data-slug="definition-of-determinant">Definition of Determinant</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#cofactor-expansion" class="toc-link" data-slug="cofactor-expansion">Cofactor Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#properties-of-determinants" class="toc-link" data-slug="properties-of-determinants">Properties of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#invertible-nonsingular-matrices" class="toc-link" data-slug="invertible-nonsingular-matrices">Invertible (Nonsingular) Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#inverse-of-a-2-times-2-matrix" class="toc-link" data-slug="inverse-of-a-2-times-2-matrix">Inverse of a $2 \times 2$ Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#inverse-of-an-n-times-n-matrix" class="toc-link" data-slug="inverse-of-an-n-times-n-matrix">Inverse of an $n \times n$ Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-determinants" class="toc-link" data-slug="applications-of-determinants">Applications of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#special-square-matrices" class="toc-link" data-slug="special-square-matrices">Special Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#symmetric-and-skew-symmetric" class="toc-link" data-slug="symmetric-and-skew-symmetric">Symmetric and Skew-Symmetric</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Rank and Nullity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#vectors-from-matrices" class="toc-link" data-slug="vectors-from-matrices">Vectors from Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#row-space-column-space-and-null-space" class="toc-link" data-slug="row-space-column-space-and-null-space">Row Space, Column Space, and Null Space</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#prerequisites-echelon-forms" class="toc-link" data-slug="prerequisites-echelon-forms">Prerequisites: Echelon Forms</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#finding-the-spaces" class="toc-link" data-slug="finding-the-spaces">Finding the Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-1-row-column-and-null-spaces" class="toc-link" data-slug="example-1-row-column-and-null-spaces">Example 1: Row, Column, and Null Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-2-already-in-row-echelon-form" class="toc-link" data-slug="example-2-already-in-row-echelon-form">Example 2: Already in Row Echelon Form</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-of-a-matrix" class="toc-link" data-slug="rank-of-a-matrix">Rank of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-rank" class="toc-link" data-slug="properties-of-rank">Properties of Rank</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#nullity-of-a-matrix" class="toc-link" data-slug="nullity-of-a-matrix">Nullity of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-nullity-theorem" class="toc-link" data-slug="rank-nullity-theorem">Rank-Nullity Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-rank-and-nullity" class="toc-link" data-slug="applications-of-rank-and-nullity">Applications of Rank and Nullity</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Eigenvalues and Eigenvectors</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#characteristic-polynomial" class="toc-link" data-slug="characteristic-polynomial">Characteristic Polynomial</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#finding-eigenvalues-and-eigenvectors" class="toc-link" data-slug="finding-eigenvalues-and-eigenvectors">Finding Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#properties-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="properties-of-eigenvalues-and-eigenvectors">Properties of Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-matrices" class="toc-link" data-slug="diagonalization-of-matrices">Diagonalization of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="applications-of-eigenvalues-and-eigenvectors">Applications of Eigenvalues and Eigenvectors</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Systems of Linear Equations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#matrix-representation-of-linear-systems" class="toc-link" data-slug="matrix-representation-of-linear-systems">Matrix Representation of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#homogeneous-and-non-homogeneous-systems" class="toc-link" data-slug="homogeneous-and-non-homogeneous-systems">Homogeneous and Non-Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#consistency-of-systems" class="toc-link" data-slug="consistency-of-systems">Consistency of Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gaussian-elimination" class="toc-link" data-slug="gaussian-elimination">Gaussian Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gauss-jordan-elimination" class="toc-link" data-slug="gauss-jordan-elimination">Gauss-Jordan Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#solution-using-inverse-of-a-matrix" class="toc-link" data-slug="solution-using-inverse-of-a-matrix">Solution using Inverse of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#properties-and-shortcuts-in-linear-systems" class="toc-link" data-slug="properties-and-shortcuts-in-linear-systems">Properties and Shortcuts in Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications-of-linear-systems" class="toc-link" data-slug="applications-of-linear-systems">Applications of Linear Systems</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Matrix Factorizations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#lu-decomposition" class="toc-link" data-slug="lu-decomposition">LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#applications-of-lu-factorization" class="toc-link" data-slug="applications-of-lu-factorization">Applications of LU Factorization</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Special Matrices</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal" class="toc-link" data-slug="orthogonal">Orthogonal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal" class="toc-link" data-slug="normal">Normal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#idempotent-matrices" class="toc-link" data-slug="idempotent-matrices">Idempotent Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#partition-block-matrices" class="toc-link" data-slug="partition-block-matrices">Partition (Block) Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#properties-of-special-matrices" class="toc-link" data-slug="properties-of-special-matrices">Properties of Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#applications-of-special-matrices" class="toc-link" data-slug="applications-of-special-matrices">Applications of Special Matrices</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Summary - Very Important</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#1-types-of-linear-systems" class="toc-link" data-slug="1-types-of-linear-systems">1. Types of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#2-rank-and-nullity" class="toc-link" data-slug="2-rank-and-nullity">2. Rank and Nullity</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#3-rouch-capelli-theorem-consistency" class="toc-link" data-slug="3-rouch-capelli-theorem-consistency">3. Rouché–Capelli Theorem (Consistency)</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#4-homogeneous-systems" class="toc-link" data-slug="4-homogeneous-systems">4. Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#5-determinants-and-invertibility" class="toc-link" data-slug="5-determinants-and-invertibility">5. Determinants and Invertibility</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#6-lu-decomposition" class="toc-link" data-slug="6-lu-decomposition">6. LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#7-eigenvalues-and-eigenvectors" class="toc-link" data-slug="7-eigenvalues-and-eigenvectors">7. Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#8-underdetermined-and-overdetermined-systems" class="toc-link" data-slug="8-underdetermined-and-overdetermined-systems">8. Underdetermined and Overdetermined Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#9-free-variables-and-infinite-solutions" class="toc-link" data-slug="9-free-variables-and-infinite-solutions">9. Free Variables and Infinite Solutions</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#10-parameter-dependent-systems" class="toc-link" data-slug="10-parameter-dependent-systems">10. Parameter-Dependent Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#11-linear-dependence-of-columns" class="toc-link" data-slug="11-linear-dependence-of-columns">11. Linear Dependence of Columns</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#12-key-tricks-and-observations" class="toc-link" data-slug="12-key-tricks-and-observations">12. Key Tricks and Observations</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 7</div><h1>Special Matrices</h1></div>
+<section id="projection-matrices" class="content-section level-1">
+<h2 class="section-heading">Projection Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <strong>projection matrix</strong> $P$ is a square matrix that satisfies
+\[
+P^2 = P.
+\]  
+It "projects" a vector onto a subspace. If $v$ is any vector, $Pv$ is the projection of $v$ onto the subspace.  
+Properties:</p>
+<ol><li><p>Eigenvalues of $P$ are 0 or 1.</p></li><li><p>$I - P$ is also a projection matrix.</p></li><li><p>If $P$ is symmetric ($P^T = P$), it is an orthogonal projection.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 101</div><div class="box-body"><p>Let 
+\[
+P = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 0\end{bmatrix}.
+\]  
+Check if $P$ is a projection matrix: $P^2 = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 0\end{bmatrix} = P$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 102</div><div class="box-body"><p>For 
+\[
+P = \begin{bmatrix}0.5 &amp; 0.5 \\ 0.5 &amp; 0.5\end{bmatrix}, 
+\] 
+compute $P^2 = \begin{bmatrix}0.5 &amp; 0.5 \\ 0.5 &amp; 0.5\end{bmatrix} = P$. So $P$ is a projection matrix.</p></div></div>
+<div class="example-box"><div class="box-title">Example 103</div><div class="box-body"><p>Check if $I-P$ is also a projection:
+\[
+I-P = \begin{bmatrix}0.5 &amp; -0.5 \\ -0.5 &amp; 0.5\end{bmatrix}, \quad (I-P)^2 = I-P.
+\]  
+Thus, $I-P$ is a projection onto orthogonal subspace.</p></div></div>
+<p>—</p>
+</section>
+<section id="orthogonal-matrices" class="content-section level-1">
+<h2 class="section-heading">Orthogonal Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A square matrix $Q$ is <strong>orthogonal</strong> if
+\[
+Q^T Q = QQ^T = I.
+\]  
+Properties:</p>
+<ol><li><p>$Q^{-1} = Q^T$.</p></li><li><p>Determinant: $\det(Q) = \pm 1$.</p></li><li><p>Columns (and rows) of $Q$ form an orthonormal set.</p></li><li><p>Eigenvalues satisfy $|\lambda| = 1$.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 104</div><div class="box-body"><p>\[
+Q = \begin{bmatrix}0 &amp; 1 \\ -1 &amp; 0\end{bmatrix}, \quad Q^T Q = I. 
+\]  
+So $Q$ is orthogonal.</p></div></div>
+<div class="example-box"><div class="box-title">Example 105</div><div class="box-body"><p>\[
+Q = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; 1 \\ -1 &amp; 1\end{bmatrix}, \quad Q^T Q = I. 
+\]  
+Columns are orthonormal, determinant = 1.</p></div></div>
+<div class="example-box"><div class="box-title">Example 106</div><div class="box-body"><p>Check inverse: $Q^{-1} = Q^T = \frac{1}{\sqrt{2}}\begin{bmatrix}1 &amp; -1 \\ 1 &amp; 1\end{bmatrix}$.</p></div></div>
+<p>—</p>
+</section>
+<section id="orthogonal" class="content-section level-1">
+<h2 class="section-heading">Orthogonal</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A real square matrix $A$ is called <strong>orthogonal</strong> if 
+\[
+A^T = A^{-1}, \quad \text{or equivalently } AA^T = A^T A = I.
+\]  
+Thus, $A$ must be invertible and its rows and columns form orthonormal sets of vectors.</p></div></div>
+<div class="example-box"><div class="box-title">Example 107</div><div class="box-body"><p>\[
+A = \frac{1}{9}
+\begin{bmatrix}
+8 &amp; 4 &amp; 9 \\
+4 &amp; 9 &amp; -9 \\
+9 &amp; -9 &amp; -4
+\end{bmatrix}
+\]</p>
+<p>It can be verified that $AA^T = I = A^T A$.  
+Hence, $A^T = A^{-1}$ and $A$ is orthogonal.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Properties of Orthogonal Matrices:</strong></p>
+<ul><li><p>The rows of an orthogonal matrix form an orthonormal set.</p></li><li><p>The columns of an orthogonal matrix form an orthonormal set.</p></li><li><p>If $A$ is orthogonal, then $\det(A) = \pm 1$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 108</div><div class="box-body"><p>For $n=2$, every real orthogonal matrix has the form
+\[
+A = \begin{bmatrix}
+\cos \theta &amp; \sin \theta \\
+-\sin \theta &amp; \cos \theta
+\end{bmatrix}
+\quad \text{or} \quad
+A = \begin{bmatrix}
+\cos \theta &amp; \sin \theta \\
+\sin \theta &amp; -\cos \theta
+\end{bmatrix}.
+\]
+Both are orthogonal since $AA^T = I$.</p></div></div>
+</section>
+<section id="normal" class="content-section level-1">
+<h2 class="section-heading">Normal</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A real square matrix $A$ is called <strong>normal</strong> if it commutes with its transpose:
+\[
+AA^T = A^T A.
+\]  
+Every symmetric, skew-symmetric, and orthogonal matrix is normal.</p></div></div>
+<div class="example-box"><div class="box-title">Example 109</div><div class="box-body"><p>\[
+A =
+\begin{bmatrix}
+3 &amp; -3 \\
+-3 &amp; 3
+\end{bmatrix}
+\]</p>
+<p>Then
+\[
+AA^T =
+\begin{bmatrix}
+45 &amp; 0 \\
+0 &amp; 45
+\end{bmatrix},
+\quad
+A^T A =
+\begin{bmatrix}
+45 &amp; 0 \\
+0 &amp; 45
+\end{bmatrix}.
+\]</p>
+<p>Since $AA^T = A^T A$, the matrix $A$ is normal.</p></div></div>
+</section>
+<section id="idempotent-matrices" class="content-section level-1">
+<h2 class="section-heading">Idempotent Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A matrix $A$ is <strong>idempotent</strong> if
+\[
+A^2 = A.
+\]  
+Properties:</p>
+<ol><li><p>Eigenvalues are 0 or 1.</p></li><li><p>$I-A$ is also idempotent.</p></li><li><p>Rank$(A) = \text{tr}(A)$ if $A$ is symmetric.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 110</div><div class="box-body"><p>\[
+A = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 0\end{bmatrix}, \quad A^2 = A.
+\]  
+So $A$ is idempotent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 111</div><div class="box-body"><p>\[
+A = \begin{bmatrix}0.5 &amp; 0.5 \\ 0.5 &amp; 0.5\end{bmatrix}, \quad A^2 = A.
+\]  
+Hence idempotent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 112</div><div class="box-body"><p>Check $I-A$:
+\[
+I-A = \begin{bmatrix}0.5 &amp; -0.5 \\ -0.5 &amp; 0.5\end{bmatrix}, \quad (I-A)^2 = I-A.
+\]</p></div></div>
+<p>—</p>
+</section>
+<section id="partition-block-matrices" class="content-section level-1">
+<h2 class="section-heading">Partition (Block) Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Matrices can be partitioned into submatrices (blocks):
+\[
+A = \begin{bmatrix}A_{11} &amp; A_{12} \\ A_{21} &amp; A_{22}\end{bmatrix}.
+\]  
+Block properties:</p>
+<ol><li><p>Block multiplication: conformable sizes.</p></li><li><p>Determinant of block-diagonal: $\det(A) = \det(A_{11})\det(A_{22})$.</p></li><li><p>Useful for LU decomposition or large systems.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 113</div><div class="box-body"><p>\[
+A = \begin{bmatrix}\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix} &amp; \begin{bmatrix}1\\2\end{bmatrix} \\ \begin{bmatrix}3 &amp; 4\end{bmatrix} &amp; \begin{bmatrix}5\end{bmatrix} \end{bmatrix}.
+\]  
+Matrix is partitioned into 4 blocks.</p></div></div>
+<div class="example-box"><div class="box-title">Example 114</div><div class="box-body"><p>For block-diagonal 
+\[
+A = \begin{bmatrix}B &amp; 0 \\ 0 &amp; C\end{bmatrix}, \quad \det(A) = \det(B)\det(C).
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 115</div><div class="box-body"><p>Block multiplication:
+\[
+\begin{bmatrix}A &amp; B \\ C &amp; D\end{bmatrix} \begin{bmatrix}X &amp; Y \\ Z &amp; W\end{bmatrix} = \begin{bmatrix}AX + BZ &amp; AY + BW \\ CX + DZ &amp; CY + DW\end{bmatrix}.
+\]</p></div></div>
+<p>—</p>
+</section>
+<section id="properties-of-special-matrices" class="content-section level-1">
+<h2 class="section-heading">Properties of Special Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Summary of key properties:</p>
+<ol><li><p>Projection and idempotent: $P^2 = P$, eigenvalues = 0 or 1.</p></li><li><p>Orthogonal: $Q^T Q = I$, inverse = transpose, determinant = ±1.</p></li><li><p>Block matrices: useful in partitioned operations, determinant of block-diagonal = product of determinants.</p></li><li><p>Symmetric idempotent: rank = trace.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 116</div><div class="box-body"><p>Symmetric idempotent: 
+\[
+A = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 0\end{bmatrix}, \quad \text{rank}(A) = \text{tr}(A) = 1.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 117</div><div class="box-body"><p>Orthogonal check: 
+\[
+Q = \begin{bmatrix}0 &amp; 1 \\ -1 &amp; 0\end{bmatrix}, \quad Q^T Q = I, \det(Q)=-1.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 118</div><div class="box-body"><p>Projection matrix property:
+\[
+P = \begin{bmatrix}0.5 &amp; 0.5 \\ 0.5 &amp; 0.5\end{bmatrix}, \quad I-P = \begin{bmatrix}0.5 &amp; -0.5 \\ -0.5 &amp; 0.5\end{bmatrix}, \quad (I-P)^2 = I-P.
+\]</p></div></div>
+<p>—</p>
+</section>
+<section id="applications-of-special-matrices" class="content-section level-1">
+<h2 class="section-heading">Applications of Special Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Applications:</p>
+<ol><li><p>Projection matrices: least squares, computer graphics.</p></li><li><p>Orthogonal matrices: rotations, reflections, numerical stability.</p></li><li><p>Idempotent matrices: statistics (hat matrices), regression analysis.</p></li><li><p>Block matrices: large-scale computation, parallel processing, solving partitioned systems.</p></li></ol></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Matrix Factorizations</a><span class="spacer"></span><a class="nav-btn next" href="ch07.html">Chapter 7: Summary - Very Important &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Matrices &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

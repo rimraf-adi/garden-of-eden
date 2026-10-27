@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classification Models - I — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 6</div><h1>Classification Models - I</h1></div>
+<section id="logistic-regression" class="content-section level-1">
+<h2 class="section-heading">Logistic Regression</h2>
+
+<section id="sigmoid-function-and-log-odds-interpretation" class="content-section level-2">
+<h3 class="section-heading">Sigmoid Function and Log-Odds Interpretation</h3>
+<div class="concept-box"><div class="box-title"><strong>Concept: Logistic Regression</strong></div><div class="box-body"><p>Logistic Regression is used when the dependent variable $Y$ is <strong>categorical (binary)</strong>, i.e., it takes only two possible values — typically 0 or 1.  
+It models the probability that $Y = 1$ as a function of input features $X_1, X_2, \dots, X_p$.</p></div></div>
+<p>Unlike linear regression, where the output can take any real value, in classification we need outputs between 0 and 1, representing probabilities.  
+Thus, the model uses the sigmoid (logistic) function to map real-valued predictions into the range $(0,1)$.</p>
+<p>\[
+p = P(Y = 1 \mid X) = \frac{1}{1 + e^{-z}}
+\]
+where $z = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p$</p>
+<div class="concept-box"><div class="box-title"><strong>Sigmoid Function Properties</strong></div><div class="box-body"><ul><li><p>$\sigma(z) = \frac{1}{1 + e^{-z}}$</p></li><li><p>$\sigma(z)$ is bounded between 0 and 1.</p></li><li><p>$\sigma'(z) = \sigma(z)(1 - \sigma(z))$ (important for gradient derivations)</p></li></ul></div></div>
+<p><strong>Log-Odds Interpretation:</strong>  
+The odds of an event are defined as $\dfrac{p}{1-p}$.  
+Taking the logarithm gives the <strong>logit</strong> (log-odds):</p>
+<p>\[
+\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p
+\]</p>
+<p>This means that logistic regression assumes the <strong>log-odds of the probability</strong> are linearly related to the predictors.</p>
+<div class="example-box"><div class="box-title">Example 19</div><div class="box-body"><p>A model for disease prediction is:
+\[
+\log\left(\frac{p}{1-p}\right) = -3 + 0.05 \times (\text{Age}) + 1.2 \times (\text{weight})
+\]
+For a 40-year-old weight:
+\[
+z = -3 + 0.05(40) + 1.2(1) = 0.2
+\]
+\[
+p = \frac{1}{1+e^{-0.2}} = 0.5498
+\]
+Hence, the model predicts a 54.98% probability of having the disease.</p></div></div>
+<div class="example-box"><div class="box-title">Example 20</div><div class="box-body"><p>Suppose $\beta_1 = 0.7$ for the predictor “Study Hours.”  
+Then, increasing study hours by 1 increases the <strong>log-odds</strong> of passing by 0.7.  
+In terms of odds:
+\[
+e^{0.7} \approx 2.01
+\]
+This means the odds of passing roughly double for each additional study hour.</p></div></div>
+</section>
+<section id="decision-boundary-analysis" class="content-section level-2">
+<h3 class="section-heading">Decision Boundary Analysis</h3>
+<p>The decision boundary separates predicted classes 0 and 1.</p>
+<p>At boundary: $p = 0.5$</p>
+<p>\[
+\Rightarrow \frac{1}{1 + e^{-z}} = 0.5 \implies z = 0
+\]
+\[
+\beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p = 0
+\]</p>
+<div class="concept-box"><div class="box-title"><strong>Concept: Decision Boundary</strong></div><div class="box-body"><p>The decision boundary is linear in the input space for logistic regression.  
+However, applying non-linear transformations to features (like polynomial terms) can produce non-linear boundaries.</p></div></div>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p>For a 2D feature space:
+\[
+z = -3 + 2x_1 + x_2
+\]
+Decision boundary:
+\[
+-3 + 2x_1 + x_2 = 0 \implies x_2 = 3 - 2x_1
+\]
+This is a straight line dividing the classes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p>If a polynomial term is added:
+\[
+z = 1 + 0.5x_1^2 + x_2
+\]
+Then, the decision boundary:
+\[
+x_2 = -1 - 0.5x_1^2
+\]
+is <strong>non-linear</strong>, showing the flexibility of logistic regression with feature transformations.</p></div></div>
+</section>
+</section>
+<section id="k-nearest-neighbour-k-nn" class="content-section level-1">
+<h2 class="section-heading">k-Nearest Neighbour (k-NN)</h2>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig036.png" alt="diagram"></div>
+<section id="distance-metrics-in-k-nn" class="content-section level-2">
+<h3 class="section-heading">Distance Metrics in k-NN</h3>
+<div class="concept-box"><div class="box-title">Distance Metrics in k-NN</div><div class="box-body"><p>k-NN classification/regression relies on the notion of distance to identify nearest neighbors. Common distance metrics:</p>
+<ul><li><p><strong>Euclidean Distance (L2 norm):</strong> 
+    \[
+    d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}
+    \]
+    Most common; sensitive to scale and outliers.</p></li><li><p><strong>Manhattan Distance (L1 norm):</strong> 
+    \[
+    d(\mathbf{x}, \mathbf{y}) = \sum_{i=1}^{n} |x_i - y_i|
+    \]
+    Less sensitive to outliers; distances are sum of absolute differences.</p></li><li><p><strong>Minkowski Distance:</strong> Generalized metric: 
+    \[
+    d(\mathbf{x}, \mathbf{y}) = \left(\sum_{i=1}^{n} |x_i - y_i|^p\right)^{1/p}
+    \]
+    Special cases: \(p=1\) → Manhattan, \(p=2\) → Euclidean.</p></li></ul>
+<p><strong>Key Point:</strong> Feature scaling is important because large-magnitude features dominate Euclidean distance.</p></div></div>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p>Compute distances between points \(A=(1,2)\) and \(B=(4,6)\):</p>
+<ul><li><p>Euclidean: \(\sqrt{(4-1)^2 + (6-2)^2} = \sqrt{9+16} = \sqrt{25} = 5\)</p></li><li><p>Manhattan: \(|4-1| + |6-2| = 3 + 4 = 7\)</p></li><li><p>Minkowski with \(p=3\): \(((3)^3 + (4)^3)^{1/3} = (27+64)^{1/3} = 91^{1/3} \approx 4.48\)</p></li></ul></div></div>
+</section>
+<section id="choice-of-k-and-model-complexity" class="content-section level-2">
+<h3 class="section-heading">Choice of k and Model Complexity</h3>
+<div class="concept-box"><div class="box-title">Choice of k and Model Complexity</div><div class="box-body"><ul><li><p><strong>Small \(k\) (e.g., 1)</strong>: Model follows data closely, low bias, high variance, sensitive to noise.</p></li><li><p><strong>Large \(k\)</strong>: Smoother decision boundaries, higher bias, lower variance, may underfit.</p></li><li><p><strong>Trade-off:</strong> Choose \(k\) using cross-validation to balance bias and variance.</p></li></ul>
+<p><strong>Graphical Intuition:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig037.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p>Given 9 points in 2D with two classes (0 and 1). Test point at center:</p>
+<ul><li><p>For \(k=1\): Closest neighbor is class 0 → prediction 0</p></li><li><p>For \(k=5\): 3 neighbors class 1, 2 neighbors class 0 → prediction 1</p></li></ul>
+<p><strong>Observation:</strong> Increasing \(k\) can change prediction and smooth decision boundary.</p></div></div>
+</section>
+<section id="effect-of-dimensionality-on-performance" class="content-section level-2">
+<h3 class="section-heading">Effect of Dimensionality on Performance</h3>
+<div class="concept-box"><div class="box-title">Effect of Dimensionality on k-NN Performance</div><div class="box-body"><ul><li><p>As the number of features (dimensions) increases:</p>
+<ul><li><p>Distances between points become similar (<em>curse of dimensionality</em>)</p></li><li><p>Nearest neighbors may be far away → poor generalization</p></li></ul></li><li><p>Feature scaling becomes critical.</p></li><li><p>Dimensionality reduction (PCA, feature selection) improves performance.</p></li></ul>
+<p><strong>Intuition:</strong> In high dimensions, most points lie near the corners of a hypercube; Euclidean distance loses discriminative power.</p></div></div>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p>Consider points in 10D: \(x_1=(1,1,...,1), x_2=(2,2,...,2)\). Compute Euclidean distance:</p>
+<p>\[
+d = \sqrt{\sum_{i=1}^{10} (2-1)^2} = \sqrt{10} \approx 3.16
+\]</p>
+<p>If all 100 points are randomly distributed in 10D cube $[0,10]^10$, nearest neighbor distances are around 7-8 units. Distances become similar → difficulty in distinguishing neighbors → accuracy drops.</p></div></div>
+</section>
+</section>
+<section id="naive-bayes-classifier" class="content-section level-1">
+<h2 class="section-heading">Naive Bayes Classifier</h2>
+
+<section id="bayes-theorem-and-conditional-independence" class="content-section level-2">
+<h3 class="section-heading">Bayes’ Theorem and Conditional Independence</h3>
+<div class="concept-box"><div class="box-title">Bayes' Theorem</div><div class="box-body"><p>Bayes’ theorem provides a way to update our belief about a class $C$ given observed features $X = (X_1, X_2, \dots, X_n)$:</p>
+<p>\[
+P(C \mid X) = \frac{P(X \mid C) P(C)}{P(X)}
+\]</p>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>$P(C)$ is the prior probability of class $C$, representing our knowledge before seeing data.</p></li><li><p>$P(X \mid C)$ is the likelihood: probability of observing $X$ assuming class $C$.</p></li><li><p>$P(X)$ is the marginal probability of features: ensures probabilities sum to 1.</p></li><li><p>$P(C \mid X)$ is the posterior: updated probability of class $C$ after observing features.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Conditional Independence Assumption</div><div class="box-body"><p>Naive Bayes assumes features are conditionally independent given the class:</p>
+<p>\[
+P(X \mid C) = \prod_{i=1}^n P(X_i \mid C)
+\]</p>
+<p>This reduces the exponential complexity of joint probability estimation to linear, making computation feasible.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig038.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p>A weather dataset for predicting <strong>PlayTennis</strong> has features <code>Outlook</code> and <code>Humidity</code>. Suppose:</p>
+<ul><li><p>$P(\text{Yes}) = 0.6$, $P(\text{No}) = 0.4$</p></li><li><p>$P(\text{Sunny} \mid \text{Yes}) = 0.3$, $P(\text{High} \mid \text{Yes}) = 0.4$</p></li></ul>
+<p>Then posterior for $C=\text{Yes}$:</p>
+<p>\[
+P(\text{Yes} \mid X) \propto 0.6 \cdot 0.3 \cdot 0.4 = 0.072
+\]</p>
+<p>Compute similarly for No and select the class with higher posterior.</p></div></div>
+</section>
+<section id="gaussian-multinomial-and-bernoulli-naive-bayes" class="content-section level-2">
+<h3 class="section-heading">Gaussian, Multinomial, and Bernoulli Naive Bayes</h3>
+<div class="concept-box"><div class="box-title">Gaussian Naive Bayes</div><div class="box-body"><p>For continuous features $X_i \in \mathbb{R}$, model the likelihood as a Gaussian:</p>
+<p>\[
+P(X_i \mid C) = \frac{1}{\sqrt{2\pi \sigma_{iC}^2}} \exp\Bigg[-\frac{(X_i - \mu_{iC})^2}{2\sigma_{iC}^2}\Bigg]
+\]</p>
+<p>Posterior:</p>
+<p>\[
+P(C \mid X) \propto P(C) \prod_{i=1}^n P(X_i \mid C)
+\]</p>
+<p><strong>Reasoning:</strong> This allows modeling continuous features without discretization.</p></div></div>
+<div class="concept-box"><div class="box-title">Multinomial Naive Bayes</div><div class="box-body"><p>Used for discrete count data (e.g., word frequencies in documents):</p>
+<p>\[
+P(X \mid C) = \frac{(\sum_i X_i)!}{\prod_i X_i!} \prod_i \theta_{iC}^{X_i}
+\]</p>
+<p>where $\theta_{iC} = P(\text{word}_i \mid C)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Bernoulli Naive Bayes</div><div class="box-body"><p>For binary features $X_i \in \{0,1\}$:</p>
+<p>\[
+P(X_i \mid C) = \theta_{iC}^{X_i} (1-\theta_{iC})^{1-X_i}
+\]</p>
+<p>Useful when modeling presence/absence of features.</p></div></div>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p>Email spam classification with binary features:
+\[
+X_1 = \text{“contains ‘offer’”}, X_2 = \text{“contains ‘free’”}
+\]</p>
+<p>Given $P(\text{Spam})=0.4$, $P(X_1=1\mid \text{Spam})=0.7$, $P(X_2=1\mid \text{Spam})=0.6$, test email: $X_1=1, X_2=0$.</p>
+<p>\[
+P(\text{Spam} \mid X) \propto 0.4 \cdot 0.7 \cdot (1-0.6) = 0.112
+\]</p>
+<p>Similarly compute $P(\text{Ham} \mid X)$ and choose higher.</p></div></div>
+</section>
+<section id="parameter-estimation-and-map-decision-rule" class="content-section level-2">
+<h3 class="section-heading">Parameter Estimation and MAP Decision Rule</h3>
+<div class="concept-box"><div class="box-title">Maximum A Posteriori (MAP) Decision Rule</div><div class="box-body"><p><strong>Definition:</strong>  
+The MAP decision rule selects the class \(C\) that is most probable given the observed features \(X = (X_1, X_2, \dots, X_n)\). Formally:</p>
+<p>\[
+\hat{C} = \arg \max_C P(C \mid X)
+\]</p>
+<p><strong>Using Bayes' Theorem:</strong></p>
+<p>\[
+P(C \mid X) = \frac{P(X \mid C) P(C)}{P(X)}
+\]</p>
+<p>Since \(P(X)\) is the same for all classes, the MAP decision reduces to:</p>
+<p>\[
+\hat{C} = \arg \max_C P(C) P(X \mid C)
+\]</p>
+<p><strong>Assuming conditional independence of features (Naive Bayes assumption):</strong></p>
+<p>\[
+P(X \mid C) = \prod_{i=1}^n P(X_i \mid C) \quad \Rightarrow \quad
+\hat{C} = \arg \max_C P(C) \prod_{i=1}^n P(X_i \mid C)
+\]</p>
+<p><strong>Reasoning:</strong></p>
+<ul><li><p>The MAP rule balances <strong>prior knowledge</strong> \(P(C)\) with the <strong>likelihood</strong> of the observed features \(P(X \mid C)\).</p></li><li><p>It chooses the class that is most likely given the evidence, not just the one with the highest prior probability.</p></li></ul>
+<p><strong>Example:</strong>  
+Suppose a dataset has two classes, \(C_1\) and \(C_2\), with priors \(P(C_1)=0.4, P(C_2)=0.6\). For a new observation \(X\), the likelihoods are \(P(X\mid C_1)=0.5\) and \(P(X\mid C_2)=0.3\).</p>
+<p>\[
+\text{MAP decision: } \hat{C} = \arg \max_C P(C) P(X\mid C)
+= \arg \max \{0.4 \cdot 0.5, 0.6 \cdot 0.3\} 
+= \arg \max \{0.2, 0.18\} = C_1
+\]</p>
+<p>Hence, the new observation is classified as \(C_1\) even though \(C_2\) had higher prior probability.</p></div></div>
+<div class="concept-box"><div class="box-title">Parameter Estimation (MLE)</div><div class="box-body"><p><strong>Goal:</strong> Estimate the parameters of the Naive Bayes model from data using Maximum Likelihood Estimation (MLE).</p>
+<ul><li><p><strong>1. Multinomial Naive Bayes (word counts):</strong>
+\[
+\hat{\theta}_{iC} = P(\text{word}_i \mid C)
+= \frac{\text{count(word}_i \text{ in class } C)}{\sum_j \text{count(word}_j \text{ in class } C)}
+\]</p>
+<ul><li><p>$\hat{\theta}_{iC}$ = probability of word \(i\) appearing in class \(C\)</p></li><li><p>Used in text classification (Bag-of-Words, TF–IDF)</p></li></ul></li><li><p><strong>2. Bernoulli Naive Bayes (binary presence/absence):</strong>
+\[
+\hat{\theta}_{iC} = P(X_i = 1 \mid C)
+= \frac{\text{count}(X_i=1 \text{ and } C)}{\text{count}(C)}
+\]</p>
+<ul><li><p>$\hat{\theta}_{iC}$ = probability that feature \(i\) is present in class \(C\)</p></li><li><p>Features are Yes/No, Present/Absent, 0/1</p></li></ul></li><li><p><strong>3. Gaussian Naive Bayes (continuous features):</strong></p>
+<p>\[
+\hat{\mu}_{iC} = \frac{1}{n_C} \sum_{j:X_j \in C} X_{ij},
+\qquad
+\hat{\sigma}_{iC}^2 = \frac{1}{n_C} \sum_{j:X_j \in C} (X_{ij}-\hat{\mu}_{iC})^2
+\]</p>
+<ul><li><p>$\hat{\mu}_{iC}$ = mean of feature \(i\) in class \(C\)</p></li><li><p>$\hat{\sigma}_{iC}^2$ = variance of feature \(i\) in class \(C\)</p></li></ul></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p>Weather dataset for tennis decision:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig039.png" alt="diagram"></div>
+<p>Estimate $P(\text{PlayTennis=Yes} \mid X=\text{Sunny, Hot})$:</p>
+<p>\[
+P(\text{Yes} \mid X) \propto P(\text{Yes}) P(\text{Sunny}\mid \text{Yes}) P(\text{Hot}\mid \text{Yes})
+= \frac{7}{10} \cdot \frac{3}{7} \cdot \frac{3}{7} \approx 0.184
+\]</p>
+<p>Similarly compute $P(\text{No} \mid X)$ and choose class with higher posterior.</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p>A medical dataset has patients with a symptom \(S\) and a disease \(D\). Suppose:</p>
+<p>\[
+P(D=\text{Yes}) = 0.1, \quad P(D=\text{No}) = 0.9
+\]
+\[
+P(S=\text{Present}\mid D=\text{Yes}) = 0.8, \quad P(S=\text{Present}\mid D=\text{No}) = 0.2
+\]</p>
+<p>Compute \(P(D=\text{Yes}\mid S=\text{Present})\).</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+P(D=\text{Yes}\mid S) = \frac{P(S\mid D=\text{Yes})P(D=\text{Yes})}{P(S)}
+\]</p>
+<p>First, compute marginal \(P(S)\):</p>
+<p>\[
+P(S) = P(S\mid D=\text{Yes})P(D=\text{Yes}) + P(S\mid D=\text{No})P(D=\text{No}) 
+= 0.8 \cdot 0.1 + 0.2 \cdot 0.9 = 0.26
+\]</p>
+<p>\[
+\Rightarrow P(D=\text{Yes}\mid S) = \frac{0.8 \cdot 0.1}{0.26} \approx 0.308
+\]</p>
+<p>Interpretation: Even though the symptom is present, the probability of disease is only 30.8%.</p></div></div>
+<div class="example-box"><div class="box-title">Example 30</div><div class="box-body"><p>Suppose we have a dataset of students with features: hours studied \(X_1\) and marks obtained \(X_2\), and class \(C = \{\text{Pass}, \text{Fail}\}\).</p>
+<p>Data statistics:
+\[
+\text{Pass: } \mu_{X_1}=5, \sigma_{X_1}=1.5, \mu_{X_2}=60, \sigma_{X_2}=10
+\]
+\[
+\text{Fail: } \mu_{X_1}=2, \sigma_{X_1}=1, \mu_{X_2}=40, \sigma_{X_2}=5
+\]</p>
+<p>A student studied 4 hours and scored 55 marks. Using Gaussian NB, compute posterior probabilities (assume \(P(\text{Pass})=0.7, P(\text{Fail})=0.3\)).</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+P(X_1=4 \mid \text{Pass}) = \frac{1}{\sqrt{2\pi (1.5)^2}} e^{-(4-5)^2/(2\cdot1.5^2)} \approx 0.219
+\]</p>
+<p>\[
+P(X_2=55 \mid \text{Pass}) = \frac{1}{\sqrt{2\pi 10^2}} e^{-(55-60)^2/(2\cdot10^2)} \approx 0.038
+\]</p>
+<p>\[
+P(\text{Pass} \mid X_1=4,X_2=55) \propto 0.7 \cdot 0.219 \cdot 0.038 \approx 0.00583
+\]</p>
+<p>Similarly for Fail:</p>
+<p>\[
+P(X_1=4 \mid \text{Fail}) \approx 0.054, \quad P(X_2=55 \mid \text{Fail}) \approx 0.00027
+\]</p>
+<p>\[
+P(\text{Fail} \mid X_1,X_2) \propto 0.3 \cdot 0.054 \cdot 0.00027 \approx 0.0000044
+\]</p>
+<p><strong>Decision:</strong> Classify as Pass because posterior is higher.</p></div></div>
+<div class="example-box"><div class="box-title">Example 31</div><div class="box-body"><p>Suppose we have 2 classes: Spam and Ham, and vocabulary: {“win”, “free”, “offer”}. Training counts:</p>
+<p>\[
+\text{Spam: } \text{win}=3, \text{free}=4, \text{offer}=2, \text{total words}=9
+\]
+\[
+\text{Ham: } \text{win}=1, \text{free}=0, \text{offer}=1, \text{total words}=4
+\]</p>
+<p>Compute probability that a new message containing “win free” is Spam (assume \(P(\text{Spam})=0.6, P(\text{Ham})=0.4\)).</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+P(\text{win free}\mid \text{Spam}) = \frac{3}{9} \cdot \frac{4}{9} = 0.148
+\]</p>
+<p>\[
+P(\text{win free}\mid \text{Ham}) = \frac{1}{4} \cdot \frac{0}{4} = 0
+\]</p>
+<p>\[
+P(\text{Spam}\mid \text{message}) \propto 0.6 \cdot 0.148 = 0.0888
+\]</p>
+<p><strong>Decision:</strong> Message classified as Spam.</p></div></div>
+<div class="example-box"><div class="box-title">Example 32</div><div class="box-body"><p>Email classification with 2 features: \(X_1=\) contains “offer”, \(X_2=\) contains “free” (binary). Training statistics:</p>
+<p>\[
+P(X_1=1\mid \text{Spam})=0.7, P(X_2=1\mid \text{Spam})=0.6
+\]
+\[
+P(X_1=1\mid \text{Ham})=0.1, P(X_2=1\mid \text{Ham})=0.05
+\]
+\[
+P(\text{Spam})=0.4, P(\text{Ham})=0.6
+\]</p>
+<p>Test email: \(X_1=1, X_2=0\)</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+P(\text{Spam}\mid X) \propto 0.4 \cdot 0.7 \cdot (1-0.6) = 0.112
+\]</p>
+<p>\[
+P(\text{Ham}\mid X) \propto 0.6 \cdot 0.1 \cdot (1-0.05) = 0.057
+\]</p>
+<p><strong>Decision:</strong> Classify as Spam.</p></div></div>
+<div class="example-box"><div class="box-title">Example 33</div><div class="box-body"><p>Weather dataset with features: Outlook (Sunny, Rainy) and Temperature (Hot, Mild). Counts:</p>
+<p>\[
+P(\text{PlayTennis=Yes}) = 0.7, \quad P(\text{PlayTennis=No}) = 0.3
+\]</p>
+<p>\[
+P(\text{Sunny}\mid \text{Yes})=0.5, P(\text{Hot}\mid \text{Yes})=0.6
+\]</p>
+<p>\[
+P(\text{Sunny}\mid \text{No})=0.2, P(\text{Hot}\mid \text{No})=0.5
+\]</p>
+<p>Test instance: \(X = (\text{Sunny, Hot})\)</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+P(\text{Yes}\mid X) \propto 0.7 \cdot 0.5 \cdot 0.6 = 0.21
+\]</p>
+<p>\[
+P(\text{No}\mid X) \propto 0.3 \cdot 0.2 \cdot 0.5 = 0.03
+\]</p>
+<p><strong>Decision:</strong> Predict PlayTennis = Yes (MAP estimate).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig040.png" alt="diagram"></div>
+<p><br>
+<strong>Naive Bayes variants with reasons for bias/variance/sample-size behavior and independence effects.</strong></p>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Regression Models</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Classification Models - II &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

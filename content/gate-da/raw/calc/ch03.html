@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Continuity — Calculus</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Calculus</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#visualizing-a-function" class="toc-link" data-slug="visualizing-a-function">Visualizing a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graph-of-a-function" class="toc-link" data-slug="graph-of-a-function">Graph of a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-and-range" class="toc-link" data-slug="domain-and-range">Domain and Range</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#piecewise-defined-functions" class="toc-link" data-slug="piecewise-defined-functions">Piecewise-Defined Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#open-and-closed-intervals" class="toc-link" data-slug="open-and-closed-intervals">Open and Closed Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#classes-of-functions" class="toc-link" data-slug="classes-of-functions">Classes of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-linear-functions" class="toc-link" data-slug="1-linear-functions">1. Linear Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-quadratic-functions" class="toc-link" data-slug="2-quadratic-functions">2. Quadratic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-polynomial-functions" class="toc-link" data-slug="3-polynomial-functions">3. Polynomial Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-rational-functions" class="toc-link" data-slug="4-rational-functions">4. Rational Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-exponential-functions" class="toc-link" data-slug="5-exponential-functions">5. Exponential Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-logarithmic-functions" class="toc-link" data-slug="6-logarithmic-functions">6. Logarithmic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#7-trigonometric-functions" class="toc-link" data-slug="7-trigonometric-functions">7. Trigonometric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#8-absolute-value-function" class="toc-link" data-slug="8-absolute-value-function">8. Absolute Value Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#properties-of-x" class="toc-link" data-slug="properties-of-x">Properties of $|x|$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-functions" class="toc-link" data-slug="types-of-functions">Types of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-one-to-one-function-injective" class="toc-link" data-slug="1-one-to-one-function-injective">1. One-to-One Function (Injective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-onto-function-surjective" class="toc-link" data-slug="2-onto-function-surjective">2. Onto Function (Surjective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-bijective-function" class="toc-link" data-slug="3-bijective-function">3. Bijective Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-many-to-one-function" class="toc-link" data-slug="4-many-to-one-function">4. Many-to-One Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-constant-function" class="toc-link" data-slug="5-constant-function">5. Constant Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-identity-function" class="toc-link" data-slug="6-identity-function">6. Identity Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#inverse-function" class="toc-link" data-slug="inverse-function">Inverse Function</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-an-inverse-function" class="toc-link" data-slug="example-of-an-inverse-function">Example of an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#one-to-one-functions" class="toc-link" data-slug="one-to-one-functions">One-to-One Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#finding-an-inverse-function" class="toc-link" data-slug="finding-an-inverse-function">Finding an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphing-inverse-functions" class="toc-link" data-slug="graphing-inverse-functions">Graphing Inverse Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#restricting-domains" class="toc-link" data-slug="restricting-domains">Restricting Domains</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#composite-functions" class="toc-link" data-slug="composite-functions">Composite Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-composite-function" class="toc-link" data-slug="example-of-composite-function">Example of Composite Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#rules-of-composite-functions" class="toc-link" data-slug="rules-of-composite-functions">Rules of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-associative-law" class="toc-link" data-slug="example-associative-law">Example: Associative Law</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-of-composite-functions" class="toc-link" data-slug="domain-of-composite-functions">Domain of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphical-representation" class="toc-link" data-slug="graphical-representation">Graphical Representation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Limits</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction-to-calculus" class="toc-link" data-slug="introduction-to-calculus">Introduction to Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-tangent-problem-and-differential-calculus" class="toc-link" data-slug="the-tangent-problem-and-differential-calculus">The Tangent Problem and Differential Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-area-problem-and-integral-calculus" class="toc-link" data-slug="the-area-problem-and-integral-calculus">The Area Problem and Integral Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits" class="toc-link" data-slug="limits">Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#estimating-limits" class="toc-link" data-slug="estimating-limits">Estimating Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#one-sided-limits" class="toc-link" data-slug="one-sided-limits">One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#definitions-one-sided-limits" class="toc-link" data-slug="definitions-one-sided-limits">Definitions: One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fact-relating-one-sided-and-ordinary-limits" class="toc-link" data-slug="fact-relating-one-sided-and-ordinary-limits">Fact Relating One-Sided and Ordinary Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-limits" class="toc-link" data-slug="properties-of-limits">Properties of Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#infinite-limits" class="toc-link" data-slug="infinite-limits">Infinite Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits-at-infinity" class="toc-link" data-slug="limits-at-infinity">Limits at Infinity</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limit-formulas" class="toc-link" data-slug="limit-formulas">Limit Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Continuity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#continuity-of-functions" class="toc-link" data-slug="continuity-of-functions">Continuity of Functions</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#types-of-discontinuities" class="toc-link" data-slug="types-of-discontinuities">Types of Discontinuities</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#continuity-over-an-interval" class="toc-link" data-slug="continuity-over-an-interval">Continuity over an Interval</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#composite-functions-and-trigonometric-continuity" class="toc-link" data-slug="composite-functions-and-trigonometric-continuity">Composite Functions and Trigonometric Continuity</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#intermediate-value-theorem-ivt" class="toc-link" data-slug="intermediate-value-theorem-ivt">Intermediate Value Theorem (IVT)</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Differentiability</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#derivatives" class="toc-link" data-slug="derivatives">Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-of-derivatives" class="toc-link" data-slug="examples-of-derivatives">Examples of Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#differentiability" class="toc-link" data-slug="differentiability">Differentiability</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#checking-differentiability-at-a-point" class="toc-link" data-slug="checking-differentiability-at-a-point">Checking Differentiability at a Point</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#visualizing-differentiability" class="toc-link" data-slug="visualizing-differentiability">Visualizing Differentiability</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Optimization (Maxima/Minima)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#rate-of-change" class="toc-link" data-slug="rate-of-change">Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#derivatives-as-rates-of-change" class="toc-link" data-slug="derivatives-as-rates-of-change">Derivatives as Rates of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-of-rate-of-change" class="toc-link" data-slug="examples-of-rate-of-change">Examples of Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#critical-points" class="toc-link" data-slug="critical-points">Critical Points</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#minima-and-maxima" class="toc-link" data-slug="minima-and-maxima">Minima and Maxima</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#maximum-and-minimum-values-of-a-function" class="toc-link" data-slug="maximum-and-minimum-values-of-a-function">Maximum and Minimum Values of a Function</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#important-theorems" class="toc-link" data-slug="important-theorems">Important Theorems</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#absolute-extrema" class="toc-link" data-slug="absolute-extrema">Absolute Extrema</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#finding-absolute-extrema-on-a-closed-interval" class="toc-link" data-slug="finding-absolute-extrema-on-a-closed-interval">Finding Absolute Extrema on a Closed Interval</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#increasing-decreasing-and-concavity-convexity" class="toc-link" data-slug="increasing-decreasing-and-concavity-convexity">Increasing/Decreasing and Concavity/Convexity</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#mean-value-theorem" class="toc-link" data-slug="mean-value-theorem">Mean Value Theorem</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#rolle-s-theorem" class="toc-link" data-slug="rolle-s-theorem">Rolle's Theorem</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mean-value-theorem-mvt" class="toc-link" data-slug="mean-value-theorem-mvt">Mean Value Theorem (MVT)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#applications-of-mvt" class="toc-link" data-slug="applications-of-mvt">Applications of MVT</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Taylor series</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#taylor-series-expansion" class="toc-link" data-slug="taylor-series-expansion">Taylor Series Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#using-taylor-series-for-limits" class="toc-link" data-slug="using-taylor-series-for-limits">Using Taylor Series for Limits</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 6</div><h1>Continuity</h1></div>
+<section id="continuity-of-functions" class="content-section level-1">
+<h2 class="section-heading">Continuity of Functions</h2>
+<div class="concept-box-alt"><div class="box-title">Continuity at a Point</div><div class="box-body"><p>A function $f(x)$ is <strong>continuous at a point $a$</strong> if the following three conditions hold:</p>
+<ol><li><p>$f(a)$ is defined.</p></li><li><p>$\lim_{x \to a} f(x)$ exists.</p></li><li><p>$\lim_{x \to a} f(x) = f(a)$.</p></li></ol>
+<p>If any condition fails, $f$ is <strong>discontinuous</strong> at $a$.</p></div></div>
+<div class="concept-box"><div class="box-title">Procedure to Check Continuity</div><div class="box-body"><ol><li><p>Verify that $f(a)$ exists.</p></li><li><p>Compute $\lim_{x \to a} f(x)$, including left- and right-hand limits if needed.</p></li><li><p>Compare $f(a)$ with the limit. Equality confirms continuity.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 75</div><div class="box-body"><p>{Continuity at a Point}
+Determine if $f(x) = \frac{x^2-1}{x-1}$ is continuous at $x=1$.</p>
+<p><strong>Solution:</strong>  
+$f(1)$ is undefined since denominator $x-1=0$.</p>
+<p><strong>Conclusion:</strong> $f$ is discontinuous at $x=1$ (removable discontinuity).</p></div></div>
+<div class="example-box"><div class="box-title">Example 76</div><div class="box-body"><p>{Continuity at a Point}
+Determine if 
+\[
+f(x) = 
+\begin{cases} 
+x^2, &amp; x \neq 2 \\
+5, &amp; x = 2
+\end{cases}
+\]
+is continuous at $x=2$.</p>
+<p><strong>Solution:</strong>  
+$\lim_{x \to 2} f(x) = \lim_{x \to 2} x^2 = 4$.  
+$f(2) = 5 \neq 4$.</p>
+<p><strong>Conclusion:</strong> $f$ is discontinuous at $x=2$ (removable discontinuity).</p></div></div>
+</section>
+<section id="types-of-discontinuities" class="content-section level-1">
+<h2 class="section-heading">Types of Discontinuities</h2>
+<div class="concept-box-alt"><div class="box-title">Classification</div><div class="box-body"><ul><li><p><strong>Removable:</strong> Limit exists but $f(a) \neq \lim_{x \to a} f(x)$.</p></li><li><p><strong>Jump:</strong> $\lim_{x \to a^-} f(x) \neq \lim_{x \to a^+} f(x)$.</p></li><li><p><strong>Infinite:</strong> $\lim_{x \to a^-} f(x) = \pm \infty$ or $\lim_{x \to a^+} f(x) = \pm \infty$.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Graphical Representation</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig026.png" alt="diagram"></div></div></div>
+</section>
+<section id="continuity-over-an-interval" class="content-section level-1">
+<h2 class="section-heading">Continuity over an Interval</h2>
+<div class="concept-box-alt"><div class="box-title">Continuity on Intervals</div><div class="box-body"><ul><li><p><strong>Continuous from right at $a$:</strong> $\lim_{x \to a^+} f(x) = f(a)$</p></li><li><p><strong>Continuous from left at $a$:</strong> $\lim_{x \to a^-} f(x) = f(a)$</p></li><li><p><strong>Continuous on $(a,b)$:</strong> Continuous at every point in $(a,b)$</p></li><li><p><strong>Continuous on $[a,b]$:</strong> Continuous on $(a,b)$, right-continuous at $a$, left-continuous at $b$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 77</div><div class="box-body"><p>{Continuity on Interval}
+Find intervals of continuity for $f(x) = \frac{x+2}{x^2-1}$.</p>
+<p><strong>Solution:</strong>  
+Denominator zero when $x^2-1 = 0 \implies x = \pm 1$.</p>
+<p><strong>Answer:</strong> $(-\infty,-1) \cup (-1,1) \cup (1,\infty)$</p></div></div>
+<div class="example-box"><div class="box-title">Example 78</div><div class="box-body"><p>{Continuity on Interval}
+Find intervals of continuity for $f(x) = \sqrt{9-x^2}$.</p>
+<p><strong>Solution:</strong>  
+Inside square root $\ge 0 \implies 9-x^2 \ge 0 \implies -3 \le x \le 3$.</p>
+<p><strong>Answer:</strong> $[-3,3]$</p></div></div>
+</section>
+<section id="composite-functions-and-trigonometric-continuity" class="content-section level-1">
+<h2 class="section-heading">Composite Functions and Trigonometric Continuity</h2>
+<div class="concept-box-alt"><div class="box-title">Composite Function Theorem</div><div class="box-body"><p>If $f(x)$ is continuous at $L$ and $\lim_{x \to a} g(x) = L$, then
+\[
+\lim_{x \to a} f(g(x)) = f\left(\lim_{x \to a} g(x)\right) = f(L)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 79</div><div class="box-body"><p>{Limit of a Composite Function}
+Evaluate $\lim_{x \to 0} \sin(3x)$.</p>
+<p><strong>Solution:</strong>  
+Let $g(x)=3x$, $\lim_{x\to 0} g(x)=0$, and $\sin$ is continuous at 0.  
+\[
+\lim_{x \to 0} \sin(3x) = \sin(0) = 0
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Continuity of Trigonometric Functions</div><div class="box-body"><p>$\sin x$, $\cos x$, $\tan x$, $\cot x$, $\sec x$, $\csc x$ are continuous on their domains.</p></div></div>
+</section>
+<section id="intermediate-value-theorem-ivt" class="content-section level-1">
+<h2 class="section-heading">Intermediate Value Theorem (IVT)</h2>
+<div class="concept-box-alt"><div class="box-title">Intermediate Value Theorem</div><div class="box-body"><p>If $f$ is continuous on $[a,b]$ and $z$ lies between $f(a)$ and $f(b)$, then $\exists c \in (a,b)$ such that $f(c)=z$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 80</div><div class="box-body"><p>{Application of IVT}
+Show that $f(x) = x^3 - x - 2$ has a root in $[1,2]$.</p>
+<p><strong>Solution:</strong>  
+\[
+f(1) = 1 -1 -2 = -2 &lt; 0, \quad f(2) = 8 -2 -2 = 4 &gt;0
+\]  
+$f$ is continuous (polynomial). By IVT, $\exists c \in (1,2)$ with $f(c)=0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 81</div><div class="box-body"><p>{Root Existence Using IVT}
+Show that $f(x) = \cos x - x$ has a root in $[0,1]$.</p>
+<p><strong>Solution:</strong>  
+\[
+f(0) = 1 - 0 = 1 &gt; 0, \quad f(1) = \cos 1 -1 \approx 0.5403 -1 = -0.4597 &lt;0
+\]  
+$f$ is continuous (trig function). IVT guarantees $\exists c \in (0,1)$ with $f(c)=0$.</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Limits</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Differentiability &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Calculus &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

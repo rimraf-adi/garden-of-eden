@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Machine Learning — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 6</div><h1>Introduction to Machine Learning</h1></div>
+<section id="what-is-machine-learning" class="content-section level-1">
+<h2 class="section-heading">What is Machine Learning</h2>
+<div class="concept-box-alt"><div class="box-title">What is Machine Learning?</div><div class="box-body"><p>Machine Learning (ML) is the practice of building systems that improve their behaviour through experience (data). Instead of encoding exact rules for every case, ML systems detect patterns, form general rules from examples, and apply those rules to new situations. In simple terms: ML finds useful patterns in data and uses them to make predictions, decisions, or generate useful outputs.</p></div></div>
+<div class="concept-box"><div class="box-title">Core Intuition</div><div class="box-body"><ul><li><p><strong>Learning from examples:</strong> Provide examples that show input and desired output or let the system find structure in inputs alone.</p></li><li><p><strong>Generalization:</strong> The ability to perform well on new, unseen examples that come from the same kind of data.</p></li><li><p><strong>Feedback loop:</strong> The system improves when it receives signals telling it how well it did (explicit labels, rewards, or implicit signals like clicks).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">A classroom analogy</div><div class="box-body"><p>Think of teaching a child to recognize apples. Rather than giving a strict rule ("red and round equals apple"), you show many examples (red apples, green apples, sliced apples). The child learns a flexible concept from examples and can correctly identify new apples despite differences in color, shape, or lighting.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+</section>
+<section id="overview-of-machine-learning-paradigm" class="content-section level-1">
+<h2 class="section-heading">Overview of Machine Learning Paradigm</h2>
+<div class="concept-box"><div class="box-title">Big-picture learning loop</div><div class="box-body"><p>ML development typically follows a repeatable loop:</p>
+<ol><li><p><strong>Collect data</strong> relevant to the problem.</p></li><li><p><strong>Preprocess and explore</strong> data to understand its structure.</p></li><li><p><strong>Select or design</strong> an appropriate model architecture.</p></li><li><p><strong>Train</strong> the model on the data (learn patterns).</p></li><li><p><strong>Validate and evaluate</strong> on held-out examples.</p></li><li><p><strong>Deploy and monitor</strong> in production and iterate with new data.</p></li></ol></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div>
+<div class="fact-box"><div class="box-title">Why this loop matters</div><div class="box-body"><p>Iterating the loop allows improvement. Real-world ML rarely works on the first try — understanding data quirks, evaluating fairness, and updating models as environments change are essential steps in practical ML.</p></div></div>
+</section>
+<section id="types-supervised-unsupervised-and-reinforcement-learning" class="content-section level-1">
+<h2 class="section-heading">Types: supervised, unsupervised, and reinforcement learning</h2>
+<div class="concept-box-alt"><div class="box-title">High-level categories</div><div class="box-body"><p><strong>Supervised learning:</strong> Learn from examples where the desired outcome is given. Useful when labeled examples are available. <br>
+<strong>Unsupervised learning:</strong> Find structure in unlabeled data (grouping, representations). <br>
+<strong>Reinforcement learning:</strong> Learn to act through trial-and-error interactions with an environment using feedback in the form of rewards.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Quick relatable examples</div><div class="box-body"><ul><li><p><strong>Supervised:</strong> Email labelled as "spam" or "not spam" → train a spam filter.</p></li><li><p><strong>Unsupervised:</strong> Customer purchase histories → group (cluster) customers into segments for marketing.</p></li><li><p><strong>Reinforcement:</strong> Robot learns to walk by trying actions and receiving rewards for forward progress and penalties for falling.</p></li></ul></div></div>
+</section>
+<section id="data" class="content-section level-1">
+<h2 class="section-heading">Data</h2>
+
+<section id="basic-types-of-data" class="content-section level-2">
+<h3 class="section-heading">Basic Types of Data</h3>
+<div class="concept-box-alt"><div class="box-title">Kinds of data you will meet</div><div class="box-body"><ul><li><p><strong>Tabular:</strong> Rows and columns (structured) — common in business data.</p></li><li><p><strong>Text:</strong> Documents, chat logs, reviews — sequential and high-dimensional.</p></li><li><p><strong>Images:</strong> Pixel grids with spatial structure.</p></li><li><p><strong>Audio:</strong> Waveforms and spectrograms, temporal patterns.</p></li><li><p><strong>Time-series:</strong> Measurements over time (stock prices, sensor readings).</p></li><li><p><strong>Graphs:</strong> Entities connected by edges (social networks, molecules).</p></li></ul></div></div>
+<div class="fact-box"><div class="box-title">Implications of data type</div><div class="box-body"><p>Different data types require different methods and preprocessing. For example, images benefit from convolutional approaches that exploit spatial locality; text needs tokenization and representations that handle order; graphs require methods that use connectivity structure.</p></div></div>
+</section>
+<section id="exploring-structure-of-data" class="content-section level-2">
+<h3 class="section-heading">Exploring Structure of Data</h3>
+<div class="concept-box"><div class="box-title">Why exploration matters</div><div class="box-body"><p>Before building models you must understand:</p>
+<ul><li><p>What features exist and their distributions.</p></li><li><p>Which features are noisy, missing, or correlated.</p></li><li><p>Whether labels (if any) are balanced or skewed.</p></li><li><p>Which exploratory visualizations reveal structure (histograms, scatter plots, example images).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+</section>
+<section id="data-quality" class="content-section level-2">
+<h3 class="section-heading">Data Quality</h3>
+<div class="concept-box-alt"><div class="box-title">Key dimensions of data quality</div><div class="box-body"><ul><li><p><strong>Completeness:</strong> Are important values missing?</p></li><li><p><strong>Consistency:</strong> Do records contradict each other?</p></li><li><p><strong>Accuracy:</strong> Do values reflect reality or measurement error?</p></li><li><p><strong>Timeliness:</strong> Are data current and relevant?</p></li><li><p><strong>Representativeness:</strong> Does the data capture the population you care about?</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Practical check-list for quality</div><div class="box-body"><ol><li><p>Inspect missing values and patterns of missingness.</p></li><li><p>Check for duplicated records.</p></li><li><p>Validate ranges (dates, values) and enforce constraints.</p></li><li><p>Sample labels for human verification if labels are noisy.</p></li><li><p>Consider whether historical data reflects the present.</p></li></ol></div></div>
+</section>
+<section id="data-pre-processing" class="content-section level-2">
+<h3 class="section-heading">Data Pre-Processing</h3>
+<div class="concept-box-alt"><div class="box-title">Common preprocessing steps</div><div class="box-body"><p>Before training, data is commonly cleaned and transformed:</p>
+<ul><li><p><strong>Cleaning:</strong> remove or fix corrupted records, handle missing values.</p></li><li><p><strong>Normalization / scaling:</strong> make ranges consistent where needed.</p></li><li><p><strong>Encoding:</strong> transform categorical variables into numerical representations.</p></li><li><p><strong>Feature creation:</strong> derive higher-level features from raw inputs.</p></li><li><p><strong>Splitting:</strong> keep holdout data for fair evaluation (validation / test).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+</section>
+</section>
+<section id="parametric-and-non-parametric-functions" class="content-section level-1">
+<h2 class="section-heading">Parametric and Non-Parametric Functions</h2>
+
+<section id="parametric-functions" class="content-section level-2">
+<h3 class="section-heading">Parametric Functions</h3>
+<div class="concept-box"><div class="box-title">Parametric Functions</div><div class="box-body"><p>Parametric models assume a specific functional form for the relationship between input features $X$ and output $Y$, characterized by a finite set of parameters $\theta$.</p>
+<p>\[
+Y = f(X; \theta)
+\]</p>
+<p><strong>Key Points:</strong></p>
+<ul><li><p>Requires assumption about the underlying distribution or functional form (e.g., linear, polynomial).</p></li><li><p>Number of parameters is fixed and does not depend on the number of training samples.</p></li><li><p>Learning reduces to estimating the parameters $\theta$ from data.</p></li><li><p>Examples: Linear regression, Logistic regression, Polynomial regression.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 1</div><div class="box-body"><p>Simple linear regression:</p>
+<p>\[
+Y = \beta_0 + \beta_1 X + \epsilon
+\]</p>
+<p>Here, the model is linear, and we estimate only $\beta_0$ (intercept) and $\beta_1$ (slope). Predictions for new $X$ values are made using these parameters.</p></div></div>
+<div class="example-box"><div class="box-title">Example 2</div><div class="box-body"><p>Logistic regression:</p>
+<p>\[
+P(Y=1 \mid X) = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X)}}
+\]</p>
+<p>The model is parametric, with parameters $\beta_0$ and $\beta_1$ controlling the sigmoid function shape.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"><div class="figure-caption"><strong>Parametric model: Linear regression line fitting the data.</strong></div></div>
+</section>
+<section id="non-parametric-functions" class="content-section level-2">
+<h3 class="section-heading">Non-Parametric Functions</h3>
+<div class="concept-box"><div class="box-title">Non-Parametric Functions</div><div class="box-body"><p>Non-parametric models do not assume a fixed functional form. Instead, they learn the function directly from data.</p>
+<p><strong>Key Points:</strong></p>
+<ul><li><p>Model complexity can grow with the dataset.</p></li><li><p>Often requires more data to avoid overfitting.</p></li><li><p>Can capture complex, nonlinear relationships.</p></li><li><p>Examples: k-Nearest Neighbors (k-NN), Decision Trees, Kernel Density Estimation.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p>k-NN regression predicts the value at $X=x$ as the average of $Y$ values of the $k$ nearest neighbors:</p>
+<p>\[
+\hat{Y}(x) = \frac{1}{k} \sum_{i \in \mathcal{N}_k(x)} Y_i
+\]</p>
+<p>No explicit parameters are estimated; predictions depend entirely on the data points.</p></div></div>
+<div class="example-box"><div class="box-title">Example 4</div><div class="box-body"><p>Decision trees split the feature space into regions. For features $X_1$ and $X_2$:</p>
+<p>\[
+Y = \begin{cases}
+5 &amp; \text{if } X_1 &lt; 3 \text{ and } X_2 &gt; 2 \\
+7 &amp; \text{if } X_1 \ge 3 \\
+\end{cases}
+\]</p>
+<p>The function form emerges from the splits, not predefined parameters.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"><div class="figure-caption"><strong>Non-parametric model: k-NN regression curve adapting to data points.</strong></div></div>
+</section>
+<section id="comparison-parametric-vs-non-parametric" class="content-section level-2">
+<h3 class="section-heading">Comparison: Parametric vs Non-Parametric</h3>
+<div class="concept-box"><div class="box-title">Comparison</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="issues-in-ml" class="content-section level-1">
+<h2 class="section-heading">Issues in ML</h2>
+
+<section id="accuracy-and-precision" class="content-section level-2">
+<h3 class="section-heading">Accuracy and Precision</h3>
+<ul><li><p><strong>Accuracy:</strong> Is the model giving the correct results overall (close to true value)?</p></li><li><p><strong>Precision:</strong> MIs the model consistent in giving the same correct result each time (consistent results)?</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div>
+</section>
+<section id="issues" class="content-section level-2">
+<h3 class="section-heading">Issues</h3>
+<div class="concept-box"><div class="box-title">When <strong>not</strong> to use ML</div><div class="box-body"><p>ML is powerful, but it is not always the best tool. Avoid ML when:</p>
+<ul><li><p>The task can be solved reliably with deterministic rules or simple logic.</p></li><li><p>You lack sufficient, representative data covering real-world variability.</p></li><li><p>You need fully explainable, provably-correct behaviour for safety-critical tasks (unless the ML system has been heavily validated).</p></li><li><p>Data privacy, legal, or ethical constraints prevent the collection or usage of the required data.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div>
+<div class="fact-box"><div class="box-title">Common issues in practice</div><div class="box-body"><ul><li><p><strong>Bias in data:</strong> Historical biases in training data lead to biased outputs.</p></li><li><p><strong>Concept drift:</strong> Data distributions change over time; models must be updated.</p></li><li><p><strong>Overfitting:</strong> Model learns noise or dataset quirks that don't generalize.</p></li><li><p><strong>Underfitting:</strong> Model is too simple to capture important structure.</p></li><li><p><strong>Interpretability:</strong> Some models (deep nets) are harder to explain.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Bias in Data</div><div class="box-body"><p><strong>Definition:</strong>  
+Data bias occurs when the training data does not fairly represent the real-world population.  
+This leads the model to make systematically unfair or inaccurate predictions.</p>
+<p><strong>Example:</strong>  
+A hiring model is trained mostly on male applicants.  
+When used for new applicants, it prefers male candidates even with identical qualifications.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div>
+<p><strong>Consequence:</strong>  
+The model generalizes poorly across groups, causing unfair treatment or legal risks.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept Drift</div><div class="box-body"><p><strong>Definition:</strong>  
+Concept drift occurs when the relationship between input features and output labels changes over time.</p>
+<p><strong>Example:</strong>  
+A credit card fraud detection system trained in 2018 fails in 2025 because fraud patterns evolve.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div>
+<p><strong>Consequence:</strong>  
+Models degrade unless retrained periodically with new data.</p></div></div>
+<div class="concept-box"><div class="box-title">Overfitting</div><div class="box-body"><p><strong>Definition:</strong>  
+Overfitting happens when the model learns both the true pattern <em>and</em> the noise of the training set, performing poorly on unseen data.</p>
+<p><strong>Example:</strong>  
+A decision tree memorizes every training example, achieving 100% accuracy on training but 60% on test data.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div>
+<p><strong>Consequence:</strong>  
+Model appears perfect during training but fails in real applications.</p></div></div>
+<div class="concept-box"><div class="box-title">Underfitting</div><div class="box-body"><p><strong>Definition:</strong>  
+Underfitting occurs when a model is too simple to capture the true underlying pattern in data.</p>
+<p><strong>Example:</strong>  
+Using a straight line to model a quadratic relationship \( y = x^2 \).</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div>
+<p><strong>Consequence:</strong>  
+Both training and test accuracy remain poor due to model simplicity.</p></div></div>
+<div class="concept-box"><div class="box-title">Interpretability</div><div class="box-body"><p><strong>Definition:</strong>  
+Interpretability means understanding <em>why</em> a model makes certain predictions.  
+Complex models like deep neural networks are powerful but often opaque.</p>
+<p><strong>Example:</strong>  
+A CNN classifies an image as “dog”, but we don’t know which pixels or regions influenced the decision.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"></div>
+<p><strong>Consequence:</strong>  
+Lack of interpretability makes debugging, fairness evaluation, and trust difficult.</p></div></div>
+</section>
+<section id="bias-and-variance" class="content-section level-2">
+<h3 class="section-heading">Bias and Variance</h3>
+<div class="concept-box"><div class="box-title">Bias</div><div class="box-body"><p>In any predictive task, the model's error can be understood as a combination of three components:</p>
+<ul><li><p><strong>Bias:</strong> The systematic error introduced by approximating a complex problem with a simplified model.  
+        High bias implies the model consistently misses the target in a certain direction.</p></li><li><p><strong>Variance:</strong> The error due to sensitivity to small changes in the training data.  
+        High variance implies the model's predictions fluctuate a lot when data changes.</p></li><li><p><strong>Irreducible noise:</strong> Random variability in the system or inherent unpredictability.</p></li></ul>
+<p>The total expected error at a point $x$ can be decomposed as:</p>
+<p>\[
+\mathbb{E}[(\hat{f}(x) - f(x))^2] = \underbrace{(\text{Bias}[\hat{f}(x)])^2}_{\text{Squared Bias}} + 
+\underbrace{\text{Var}[\hat{f}(x)]}_{\text{Variance}} + 
+\underbrace{\sigma^2}_{\text{Irreducible Noise}}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example: Bias and Variance in Predictions</div><div class="box-body"><p>Suppose we try to predict a quantity $y$ multiple times using a model and obtain these predictions:</p>
+<p>\[
+\hat{y}_1 = 5.2, \quad \hat{y}_2 = 4.9, \quad \hat{y}_3 = 5.1
+\]</p>
+<p>The true value is $y = 5$.</p>
+<ul><li><p><strong>Bias:</strong> Average difference between predictions and true value:
+  \[
+  \text{Bias} = \bar{\hat{y}} - y = \frac{5.2 + 4.9 + 5.1}{3} - 5 = 5.067 - 5 = 0.067
+  \]</p></li><li><p><strong>Variance:</strong> Spread of predictions around their mean:
+  \[
+  \text{Variance} = \frac{(5.2-5.067)^2 + (4.9-5.067)^2 + (5.1-5.067)^2}{3} \approx 0.0089
+  \]</p></li><li><p><strong>Total Error:</strong> Bias$^2$ + Variance:
+  \[
+  \text{Error} \approx 0.067^2 + 0.0089 \approx 0.0133
+  \]</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Bias-Variance Tradeoff</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Practical Scenarios for Bias and Variance</div><div class="box-body"><ol><li><p>A simple constant model predicting the average: High bias, low variance.</p></li><li><p>A model that outputs random predictions: Low bias on average, high variance.</p></li><li><p>Averaging several independent models: Reduces variance without increasing bias.</p></li><li><p>Overly simplistic formula for forecasting: High bias, may underfit data.</p></li><li><p>Highly sensitive formula reacting to every minor fluctuation: Low bias, high variance.</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Visualization of Bias and Variance</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="evaluation-metrics-for-classification" class="content-section level-1">
+<h2 class="section-heading">Evaluation Metrics for  Classification</h2>
+<div class="concept-box"><div class="box-title">Classification Metrics</div><div class="box-body"><p>Classification metrics evaluate the performance of supervised learning models by measuring how well predicted labels match actual labels.</p>
+<p>They are derived from the <strong>confusion matrix</strong>, which summarizes predictions:</p>
+<ul><li><p><strong>True Positive (TP)</strong>: Correctly predicted positive class.</p></li><li><p><strong>False Positive (FP)</strong>: Incorrectly predicted positive class.</p></li><li><p><strong>True Negative (TN)</strong>: Correctly predicted negative class.</p></li><li><p><strong>False Negative (FN)</strong>: Incorrectly predicted negative class.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Confusion Matrix</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div>
+<p>This matrix forms the basis for computing all classification metrics.</p></div></div>
+<div class="fact-box"><div class="box-title">Accuracy</div><div class="box-body"><p><strong>Accuracy</strong> measures the overall correctness of the model:</p>
+<p>\[
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\]</p>
+<p><strong>Example:</strong>  
+TP=40, TN=50, FP=5, FN=5</p>
+<p>\[
+\text{Accuracy} = \frac{40+50}{40+50+5+5} = 0.9 = 90\%
+\]</p></div></div>
+<div class="fact-box"><div class="box-title">Precision</div><div class="box-body"><p><strong>Precision</strong> measures how many predicted positives are actually positive:</p>
+<p>\[
+\text{Precision} = \frac{TP}{TP + FP}
+\]</p>
+<p><strong>Example:</strong> TP=40, FP=5</p>
+<p>\[
+\text{Precision} = \frac{40}{40+5} \approx 0.8889 = 88.89\%
+\]</p>
+<p>High precision indicates few false positives.</p></div></div>
+<div class="fact-box"><div class="box-title">Recall (Sensitivity)</div><div class="box-body"><p><strong>Recall</strong> measures how many actual positives were correctly predicted:</p>
+<p>\[
+\text{Recall} = \frac{TP}{TP + FN}
+\]</p>
+<p><strong>Example:</strong> TP=40, FN=5</p>
+<p>\[
+\text{Recall} = \frac{40}{40+5} \approx 0.8889 = 88.89\%
+\]</p>
+<p>High recall indicates few false negatives.</p></div></div>
+<div class="fact-box"><div class="box-title">F1-Score</div><div class="box-body"><p><strong>F1-Score</strong> is the harmonic mean of Precision and Recall:</p>
+<p>\[
+\text{F1} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+\]</p>
+<p><strong>Example:</strong> Precision=0.8889, Recall=0.8889</p>
+<p>\[
+\text{F1} = 2 \cdot \frac{0.8889 \cdot 0.8889}{0.8889+0.8889} = 0.8889 = 88.89\%
+\]
+It balances Precision and Recall.</p></div></div>
+<div class="fact-box"><div class="box-title">Specificity</div><div class="box-body"><p><strong>Specificity</strong> measures how many actual negatives were correctly predicted:</p>
+<p>\[
+\text{Specificity} = \frac{TN}{TN + FP}
+\]</p>
+<p><strong>Example:</strong> TN=50, FP=5</p>
+<p>\[
+\text{Specificity} = \frac{50}{50+5} \approx 0.909 = 90.9\%
+\]</p></div></div>
+<div class="fact-box"><div class="box-title">False Positive Rate (FPR)</div><div class="box-body"><p><strong>FPR</strong> measures incorrect positive predictions:</p>
+<p>\[
+\text{FPR} = \frac{FP}{FP + TN} = 1 - \text{Specificity}
+\]</p>
+<p><strong>Example:</strong> FP=5, TN=50</p>
+<p>\[
+\text{FPR} = \frac{5}{50+5} \approx 0.0909 = 9.09\%
+\]</p></div></div>
+<div class="fact-box"><div class="box-title">Matthews Correlation Coefficient (MCC)</div><div class="box-body"><p>MCC combines TP, TN, FP, FN into a single metric:</p>
+<p>\[
+\text{MCC} = \frac{TP \cdot TN - FP \cdot FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}
+\]</p>
+<p><strong>Example:</strong> TP=40, TN=50, FP=5, FN=5</p>
+<p>\[
+\text{MCC} = \frac{40\cdot50 - 5\cdot5}{\sqrt{(40+5)(40+5)(50+5)(50+5)}} \approx 0.889
+\]</p>
+<p>MCC ranges from -1 (worst) to 1 (perfect prediction).</p></div></div>
+<div class="example-box"><div class="box-title">Numerical Example of Classification Metrics</div><div class="box-body"><p>Suppose we have a dataset of 20 patients where a model predicts whether each patient has a disease (Positive) or not (Negative).</p>
+<p>The predictions vs actual outcomes are summarized as:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig019.png" alt="diagram"></div>
+<p>From this confusion matrix:</p>
+<ul><li><p>True Positives (TP) = 6</p></li><li><p>False Negatives (FN) = 2</p></li><li><p>False Positives (FP) = 3</p></li><li><p>True Negatives (TN) = 9</p></li></ul>
+<p>Now we calculate the common metrics:</p>
+<p>\[
+\text{Accuracy} = \frac{TP+TN}{TP+TN+FP+FN} = \frac{6+9}{6+9+3+2} = \frac{15}{20} = 0.75 = 75\%
+\]</p>
+<p>\[
+\text{Precision} = \frac{TP}{TP+FP} = \frac{6}{6+3} = \frac{6}{9} \approx 0.667 = 66.7\%
+\]</p>
+<p>\[
+\text{Recall (Sensitivity)} = \frac{TP}{TP+FN} = \frac{6}{6+2} = \frac{6}{8} = 0.75 = 75\%
+\]</p>
+<p>\[
+\text{F1-Score} = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} 
+= 2 \cdot \frac{0.667 \cdot 0.75}{0.667+0.75} \approx 0.706 = 70.6\%
+\]</p>
+<p>\[
+\text{Specificity} = \frac{TN}{TN+FP} = \frac{9}{9+3} = \frac{9}{12} = 0.75 = 75\%
+\]</p>
+<p>\[
+\text{False Positive Rate (FPR)} = \frac{FP}{FP+TN} = \frac{3}{3+9} = \frac{3}{12} = 0.25 = 25\%
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig020.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 5</div><div class="box-body"><p>A multi-class classifier (4 classes) is evaluated on 400 samples. The confusion matrix is partially given:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig021.png" alt="diagram"></div>
+<p>Fill missing entries assuming total samples per class: A=100, B=100, C=100, D=100. Compute per-class Precision, Recall, and macro-F1.</p>
+<p><strong>Solution:</strong></p>
+<p>We are given each row's total = 100. We'll fill missing entries by distributing each row's remaining misclassifications across the unknown predicted columns. (Any reasonable integer allocation that makes each row sum to 100 is acceptable — here we use a simple balanced distribution; explainable choices are fine in exam settings.)</p>
+<p><strong>Fill rows (one possible integer allocation):</strong></p>
+<ul><li><p>Row A: known 90 (Pred A) + 5 (Pred B) = 95, remainder 5 → distribute as Pred C = 3, Pred D = 2.</p></li><li><p>Row B: known 10 (Pred A) + 80 (Pred B) = 90, remainder 10 → Pred C = 5, Pred D = 5.</p></li><li><p>Row C: known 70 (Pred C), remainder 30 → distribute Pred A = 10, Pred B = 10, Pred D = 10.</p></li><li><p>Row D: known 50 (Pred D), remainder 50 → distribute Pred A = 17, Pred B = 17, Pred C = 16 (sums to 50).</p></li></ul>
+<p>So the completed confusion matrix (Actual rows, Predicted columns):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig022.png" alt="diagram"></div>
+<p><strong>Column sums (predicted counts)</strong>:
+\[
+\text{Pred A} = 90+10+10+17 = 127
+\]
+\[
+\text{Pred B} = 5+80+10+17 = 112
+\]
+\[
+\text{Pred C} = 3+5+70+16 = 94
+\]
+\[
+\text{Pred D} = 2+5+10+50 = 67
+\]</p>
+<p>Now compute per-class metrics (for class \(\text{X}\): TP = diagonal entry, Precision = TP / (predicted X column sum), Recall = TP / 100 (actual class size)).</p>
+<p><strong>Class A:</strong>
+\[
+\text{TP}_A = 90,\quad \text{Precision}_A = \frac{90}{127}\approx 0.7087 \; (70.87\%),\quad
+\text{Recall}_A = \frac{90}{100}=0.9\; (90\%).
+\]
+F1\(_A\) \(= 2\cdot \frac{0.7087\cdot 0.9}{0.7087+0.9}\approx 0.7930\) (79.30%).</p>
+<p><strong>Class B:</strong>
+\[
+\text{TP}_B = 80,\quad \text{Precision}_B = \frac{80}{112}\approx 0.7143\; (71.43\%),\quad
+\text{Recall}_B = \frac{80}{100}=0.8\; (80\%).
+\]
+F1\(_B\) \(\approx 0.7547\) (75.47%).</p>
+<p><strong>Class C:</strong>
+\[
+\text{TP}_C = 70,\quad \text{Precision}_C = \frac{70}{94}\approx 0.7447\; (74.47\%),\quad
+\text{Recall}_C = \frac{70}{100}=0.7\; (70\%).
+\]
+F1\(_C\) \(\approx 0.7216\) (72.16%).</p>
+<p><strong>Class D:</strong>
+\[
+\text{TP}_D = 50,\quad \text{Precision}_D = \frac{50}{67}\approx 0.7463\; (74.63\%),\quad
+\text{Recall}_D = \frac{50}{100}=0.5\; (50\%).
+\]
+F1\(_D\) \(\approx 0.5988\) (59.88%).</p>
+<p><strong>Macro-F1:</strong> average of per-class F1s:
+\[
+\text{Macro-F1} = \frac{0.7930 + 0.7547 + 0.7216 + 0.5988}{4} \approx 0.7170 \; (71.70\%).
+\]</p>
+<p><strong>Interpretation:</strong>  
+- Recalls show class A is recognized very well (90%), class D lags (50%).  
+- Precision values are roughly similar (71–75%), but class D’s low recall penalizes its F1.  
+- If you need to prioritize a particular class (say D), adjust model or collect more data for that class.</p></div></div>
+<div class="example-box"><div class="box-title">Example 6</div><div class="box-body"><p>A machine learning model classifies emails as spam or ham. Out of 1000 emails: 300 spam, 700 ham. The model predicts 280 spam correctly, 40 ham as spam, 20 spam as ham, and remaining correctly as ham. Compute Accuracy, Precision, Recall, F1, Specificity, and MCC.</p>
+<p><strong>Solution:</strong></p>
+<p>First derive confusion-matrix entries:</p>
+<ul><li><p>Actual positive (spam) = 300. Model predicts 280 correctly \(\Rightarrow\) TP = 280.</p></li><li><p>Among spam, 20 predicted ham \(\Rightarrow\) FN = 20.</p></li><li><p>Model mislabels 40 ham as spam \(\Rightarrow\) FP = 40.</p></li><li><p>Remaining ham correctly predicted: TN = total ham - FP = 700 - 40 = 660.</p></li></ul>
+<p>Confusion matrix:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig023.png" alt="diagram"></div>
+<p>Now compute metrics:</p>
+<p>\[
+\text{Accuracy} = \frac{TP + TN}{\text{Total}} = \frac{280 + 660}{1000} = \frac{940}{1000} = 0.94 = 94\%.
+\]</p>
+<p>\[
+\text{Precision} = \frac{TP}{TP + FP} = \frac{280}{280 + 40} = \frac{280}{320} = 0.875 = 87.5\%.
+\]</p>
+<p>\[
+\text{Recall} = \frac{TP}{TP + FN} = \frac{280}{280 + 20} = \frac{280}{300} \approx 0.9333 = 93.33\%.
+\]</p>
+<p>\[
+\text{F1} = 2\cdot\frac{\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}
+= 2\cdot\frac{0.875\cdot 0.9333}{0.875 + 0.9333} \approx 0.9032 = 90.32\%.
+\]</p>
+<p>\[
+\text{Specificity} = \frac{TN}{TN + FP} = \frac{660}{660 + 40} = \frac{660}{700} \approx 0.9429 = 94.29\%.
+\]</p>
+<p>\[
+\text{MCC} = \frac{TP\cdot TN - FP\cdot FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}
+= \frac{280\cdot660 - 40\cdot20}{\sqrt{(320)(300)(700)(680)}} \approx 0.8608.
+\]</p>
+<p><strong>Interpretation:</strong> High accuracy and recall show the model catches most spam; precision &lt; recall means of all predicted spam, some fraction are false alarms. MCC \(\approx 0.86\) indicates strong overall classification quality accounting for all four cells.</p></div></div>
+<div class="example-box"><div class="box-title">Example 7</div><div class="box-body"><p>A rare event detection model evaluates 50{,}000 events. Only 100 are positive. The model flags 120 events as positive, including 90 true positives. Compute FPR, Precision, Recall, and discuss the effect of class imbalance.</p>
+<p><strong>Solution:</strong></p>
+<p>From problem statement:
+\[
+\text{Total positives} = 100,\quad TP = 90,\quad \text{model flagged positives} = 120 \Rightarrow FP = 120 - 90 = 30.
+\]
+\[
+\text{Total negatives} = 50{,}000 - 100 = 49{,}900,\quad TN = 49{,}900 - FP = 49{,}900 - 30 = 49{,}870.
+\]</p>
+<p>Compute metrics:</p>
+<p>\[
+\text{Precision} = \frac{TP}{TP+FP} = \frac{90}{90+30} = \frac{90}{120} = 0.75 = 75\%.
+\]</p>
+<p>\[
+\text{Recall} = \frac{TP}{TP+FN} = \frac{90}{100} = 0.9 = 90\%.
+\]</p>
+<p>\[
+\text{False Positive Rate (FPR)} = \frac{FP}{FP+TN} = \frac{30}{30 + 49{,}870} = \frac{30}{49{,}900} \approx 0.0006012 \approx 0.06012\%.
+\]</p>
+<p><strong>Discussion (class imbalance):</strong></p>
+<ul><li><p>The recall (90%) and precision (75%) are fairly good. However, even a tiny FPR (0.06%) can produce many false positives when the dataset is huge. Here FP=30 is small in absolute terms — but if the negative population were even larger or the FPR slightly higher, false positives would grow quickly.</p></li><li><p>In rare-event detection, Precision and FPR are critical: a low FPR is necessary to avoid an overwhelming number of false alarms. Also consider metrics like Precision-Recall curve or use specialized loss/thresholding to control FP.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 8</div><div class="box-body"><p>A medical imaging system detects tumors in CT scans. Out of 500 scans, 120 contain tumors. The system correctly identifies 100 tumors and misclassifies 30 healthy scans. Compute Accuracy, Precision, Recall, F1, and suggest which metric should guide deployment.</p>
+<p><strong>Solution:</strong></p>
+<p>Given:
+\[
+\text{Total scans} = 500,\quad \text{Positives (tumor)} = 120,\quad TP = 100,\quad FP = 30.
+\]
+Compute remaining cells:
+\[
+FN = 120 - 100 = 20,
+\]
+\[
+\text{Negatives} = 500 - 120 = 380,\quad TN = 380 - FP = 380 - 30 = 350.
+\]</p>
+<p>Confusion matrix:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig024.png" alt="diagram"></div>
+<p>Metrics:</p>
+<p>\[
+\text{Accuracy} = \frac{TP + TN}{500} = \frac{100 + 350}{500} = \frac{450}{500} = 0.9 = 90\%.
+\]</p>
+<p>\[
+\text{Precision} = \frac{100}{100 + 30} = \frac{100}{130} \approx 0.7692 = 76.92\%.
+\]</p>
+<p>\[
+\text{Recall (Sensitivity)} = \frac{100}{100 + 20} = \frac{100}{120} \approx 0.8333 = 83.33\%.
+\]</p>
+<p>\[
+\text{F1} = 2\cdot \frac{0.7692 \cdot 0.8333}{0.7692 + 0.8333} \approx 0.8000 = 80.00\%.
+\]</p>
+<p><strong>Which metric should guide deployment?</strong></p>
+<ul><li><p>In medical detection tasks, missing a true positive (i.e., a tumor) can have severe consequences. Thus <strong>Recall (sensitivity)</strong> is often the top priority — we want to minimize FN. An acceptable approach is to maximize recall while keeping precision at an operationally acceptable level (to avoid overwhelming radiologists with false positives).</p></li><li><p>However, extremely low precision (many false positives) will create excessive follow-ups and costs; so balance is needed — use recall as priority with constraints on acceptable precision. Use ROC / Precision-Recall curves for threshold selection, and engage clinical stakeholders to set acceptable trade-offs.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 9</div><div class="box-body"><p>A social media model detects offensive posts. Out of 10{,}000 posts, 200 are offensive. The model flags 180 correctly, but 400 normal posts as offensive. Compute confusion matrix, Precision, Recall, F1-score, and MCC.</p>
+<p><strong>Solution:</strong></p>
+<p>Given:
+\[
+\text{Total} = 10{,}000,\quad \text{Positives (offensive)} = 200,\quad TP = 180,\quad FP = 400.
+\]
+Then:
+\[
+FN = 200 - 180 = 20.
+\]
+Negatives:
+\[
+\text{Negatives} = 10{,}000 - 200 = 9{,}800,\quad TN = 9{,}800 - 400 = 9{,}400.
+\]</p>
+<p>Confusion matrix:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig025.png" alt="diagram"></div>
+<p>Compute metrics:</p>
+<p>\[
+\text{Precision} = \frac{TP}{TP+FP} = \frac{180}{180 + 400} = \frac{180}{580} \approx 0.3103 = 31.03\%.
+\]</p>
+<p>\[
+\text{Recall} = \frac{TP}{TP+FN} = \frac{180}{180 + 20} = \frac{180}{200} = 0.9 = 90\%.
+\]</p>
+<p>\[
+\text{F1} = 2\cdot\frac{0.3103 \cdot 0.9}{0.3103 + 0.9} \approx 0.4615 = 46.15\%.
+\]</p>
+<p>\[
+\text{MCC} = \frac{TP\cdot TN - FP\cdot FN}{\sqrt{(TP+FP)(TP+FN)(TN+FP)(TN+FN)}}
+= \frac{180\cdot9400 - 400\cdot20}{\sqrt{(580)(200)(9800)(9200)}} \approx 0.5146.
+\]</p>
+<p><strong>Interpretation:</strong></p>
+<ul><li><p>High recall (90%) — the model catches most offensive posts.</p></li><li><p>Low precision (31%) — many false positives, so moderation teams will see many normal posts flagged.</p></li><li><p>F1 around 46% shows overall balance is poor due to low precision. MCC \(\approx 0.51\) indicates moderate classification performance accounting for imbalance.</p></li><li><p>For production, consider raising threshold, filtering, or a human-in-loop to reduce false positives; also consider cost of false positives vs false negatives for policy decisions.</p></li></ul></div></div>
+</section>
+<section id="applications" class="content-section level-1">
+<h2 class="section-heading">Applications</h2>
+<div class="concept-box-alt"><div class="box-title">Where ML is applied today</div><div class="box-body"><p>Machine Learning powers many modern services and systems: search, recommendations, voice assistants, medical imaging, fraud detection, personalized education, robotics, weather forecasting, and many more. The value comes from converting raw or structured data into predictions, insights, or actions that support human decisions or automate tasks.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig026.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Selected use-cases</div><div class="box-body"><ul><li><p><strong>Computer Vision:</strong> Detect objects in images to help autonomous vehicles or medical image analysis to highlight abnormal tissue.</p></li><li><p><strong>NLP:</strong> Translate languages, summarize documents, or extract information from text.</p></li><li><p><strong>Recommendations:</strong> Suggest relevant products, songs, or videos by learning user preferences.</p></li><li><p><strong>Healthcare:</strong> Predict patient risk and assist diagnostics (requires domain validation).</p></li><li><p><strong>Finance:</strong> Detect fraudulent transactions or forecast market signals (with caution).</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Regression Models &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

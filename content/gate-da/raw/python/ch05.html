@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensions & Generators — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch05.html" class="chapter-link active">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 5 of 6</div><h1>Comprehensions &amp; Generators</h1></div>
+<section id="list-comprehensions" class="content-section level-1">
+<h2 class="section-heading">List Comprehensions</h2>
+
+<section id="syntax-multiple-for-clauses-nesting" class="content-section level-2">
+<h3 class="section-heading">Syntax, Multiple for Clauses, Nesting</h3>
+<div class="concept-box"><div class="box-title">List Comprehension --- Syntax and Semantics</div><div class="box-body"><p>A <strong>list comprehension</strong> builds a new list by applying an expression to each
+element of an iterable, optionally filtering with a condition:</p>
+<p>\[\texttt{[}\ \underbrace{\textit{expr}}_{\text{output}}
+  \ \texttt{for}\ \underbrace{x}_{\text{variable}}
+  \ \texttt{in}\ \underbrace{\textit{iterable}}_{\text{source}}
+  \ \underbrace{\texttt{if}\ \textit{condition}}_{\text{optional filter}}
+  \ \texttt{]}\]</p>
+<p><strong>Equivalent <code>for</code> loop</strong>:
+
+<code>result = []</code>\ \ <code>for x in iterable:</code>\ \ <code>\ \ if condition: result.append(expr)</code></p>
+<p><strong>Multiple <code>for</code> clauses</strong>: evaluated left-to-right like nested
+<code>for</code> loops:
+\[\texttt{[f(x,y)\ for\ x\ in\ A\ for\ y\ in\ B]}
+  \;\equiv\; \texttt{for x in A: for y in B: append(f(x,y))}\]</p>
+<p><strong>Produces a new list</strong>, evaluated <strong>eagerly</strong> (immediately).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig133.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">List Comprehension Patterns</div><div class="box-body"><ul><li><p><strong>Simple transform</strong>: <code>[f(x) for x in it]</code></p></li><li><p><strong>Filtered transform</strong>: <code>[f(x) for x in it if p(x)]</code></p></li><li><p><strong>Conditional value</strong>: <code>[a if cond else b for x in it]</code>
+        (ternary in expression position, not filter)</p></li><li><p><strong>Cartesian product</strong>: <code>[(x,y) for x in A for y in B]</code>
+        — outer loop first</p></li><li><p><strong>Flatten 2D</strong>: <code>[x for row in matrix for x in row]</code></p></li><li><p><strong>Nested list comp</strong>: <code>[[f(x) for x in row] for row in matrix]</code>
+        — creates 2D result; outer loop is the outer <code>for</code></p></li><li><p><strong>Walrus in filter</strong>: <code>[y for x in it if (y:=f(x)) &gt; 0]</code>
+        — compute once, use in both filter and output</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 135: List Comprehensions --- All Patterns</div><div class="box-body"><div class="code-box"><pre><code># 1. Basic transform
+squares = [x**2 for x in range(1, 6)]
+print(squares)      # [1, 4, 9, 16, 25]
+
+# 2. Filter
+evens = [x for x in range(20) if x % 2 == 0]
+print(evens)        # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+# 3. Conditional expression (ternary in output, NOT a filter)
+clipped = [x if x &gt; 0 else 0 for x in [-3,-1,0,2,5,-4,8]]
+print(clipped)      # [0, 0, 0, 2, 5, 0, 8]
+
+# 4. Cartesian product: both for clauses
+pairs = [(x,y) for x in [1,2,3] for y in [&#x27;a&#x27;,&#x27;b&#x27;]]
+print(pairs)
+# [(1,&#x27;a&#x27;),(1,&#x27;b&#x27;),(2,&#x27;a&#x27;),(2,&#x27;b&#x27;),(3,&#x27;a&#x27;),(3,&#x27;b&#x27;)]
+
+# 5. Flatten 2D matrix
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+flat   = [x for row in matrix for x in row]
+print(flat)         # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# 6. Multiple conditions
+nums = [x for x in range(100) if x % 3 == 0 if x % 5 == 0]
+print(nums)         # [0, 15, 30, 45, 60, 75, 90]
+
+# 7. Nested list comprehension (2D result)
+transposed = [[row[i] for row in matrix] for i in range(3)]
+print(transposed)   # [[1,4,7],[2,5,8],[3,6,9]]
+
+# 8. Walrus operator: avoid double computation
+import math
+results = [root for x in range(20) if (root := math.sqrt(x)) &gt; 3.5]
+print(results[:4])  # [3.872..., 4.0, 4.123..., ...]
+
+# 9. String processing
+words  = [&quot;hello&quot;, &quot;world&quot;, &quot;python&quot;, &quot;gate&quot;, &quot;exam&quot;]
+titled = [w.title() for w in words if len(w) &gt; 4]
+print(titled)       # [&#x27;Hello&#x27;, &#x27;World&#x27;, &#x27;Python&#x27;]
+
+# 10. Dict/set from comprehension intermediary
+matrix2 = [[1,0,3],[0,5,0],[7,0,9]]
+non_zero = [(i,j) for i,row in enumerate(matrix2)
+                  for j,v  in enumerate(row) if v != 0]
+print(non_zero)    # [(0,0),(0,2),(1,1),(2,0),(2,2)]</code></pre></div></div></div>
+</section>
+</section>
+<section id="dictionary-comprehensions" class="content-section level-1">
+<h2 class="section-heading">Dictionary Comprehensions</h2>
+
+<section id="key-value-mapping-expressions" class="content-section level-2">
+<h3 class="section-heading">Key-Value Mapping Expressions</h3>
+<div class="concept-box"><div class="box-title">Dictionary Comprehension --- Syntax</div><div class="box-body"><p>\[\texttt{\{}\ \underbrace{k\texttt{:}v}_{\text{key:value}}
+  \ \texttt{for}\ \langle\textit{vars}\rangle
+  \ \texttt{in}\ \langle\textit{iterable}\rangle
+  \ [\texttt{if}\ \langle\textit{condition}\rangle]
+  \ \texttt{\}}\]</p>
+<p>Produces a <strong>new dict</strong>; if the same key appears more than once, the
+<em>last</em> value wins (later iteration overwrites earlier).</p></div></div>
+<div class="example-box"><div class="box-title">Example 136: Dictionary Comprehensions --- Transform, Filter, Invert</div><div class="box-body"><div class="code-box"><pre><code># 1. Transform values
+nums = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+squared = {k: v**2 for k, v in nums.items()}
+print(squared)       # {&#x27;a&#x27;: 1, &#x27;b&#x27;: 4, &#x27;c&#x27;: 9}
+
+# 2. Filter entries
+passing = {k: v for k, v in nums.items() if v &gt; 1}
+print(passing)       # {&#x27;b&#x27;: 2, &#x27;c&#x27;: 3}
+
+# 3. Invert: value -&gt; key (assumes unique values)
+orig = {&quot;a&quot;: 1, &quot;b&quot;: 2, &quot;c&quot;: 3}
+inv  = {v: k for k, v in orig.items()}
+print(inv)           # {1: &#x27;a&#x27;, 2: &#x27;b&#x27;, 3: &#x27;c&#x27;}
+
+# 4. From two lists (zip)
+keys   = [&quot;name&quot;, &quot;age&quot;, &quot;city&quot;]
+values = [&quot;Alice&quot;,  25,  &quot;Delhi&quot;]
+d = {k: v for k, v in zip(keys, values)}
+print(d)   # {&#x27;name&#x27;: &#x27;Alice&#x27;, &#x27;age&#x27;: 25, &#x27;city&#x27;: &#x27;Delhi&#x27;}
+
+# 5. Character frequency
+text = &quot;abracadabra&quot;
+freq = {ch: text.count(ch) for ch in set(text)}
+print(freq)   # {&#x27;r&#x27;:2,&#x27;c&#x27;:1,&#x27;a&#x27;:5,&#x27;d&#x27;:1,&#x27;b&#x27;:2}
+
+# 6. Conditional key transformation
+words = [&quot;hello&quot;, &quot;WORLD&quot;, &quot;Python&quot;, &quot;GATE&quot;]
+normalised = {w.lower(): len(w) for w in words}
+print(normalised)  # {&#x27;hello&#x27;:5,&#x27;world&#x27;:5,&#x27;python&#x27;:6,&#x27;gate&#x27;:4}
+
+# 7. Nested dict comprehension
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+indexed = {(i,j): matrix[i][j]
+           for i in range(3) for j in range(3)}
+print(indexed[(1,2)])   # 6
+
+# 8. Duplicate key: last wins
+data = [(&quot;a&quot;,1),(&quot;b&quot;,2),(&quot;a&quot;,3),(&quot;b&quot;,4)]
+d2 = {k: v for k, v in data}
+print(d2)   # {&#x27;a&#x27;: 3, &#x27;b&#x27;: 4}  (last &#x27;a&#x27; and &#x27;b&#x27; values win)</code></pre></div></div></div>
+</section>
+</section>
+<section id="set-comprehensions" class="content-section level-1">
+<h2 class="section-heading">Set Comprehensions</h2>
+
+<section id="unique-element-expressions" class="content-section level-2">
+<h3 class="section-heading">Unique-Element Expressions</h3>
+<div class="concept-box"><div class="box-title">Set Comprehension --- Syntax</div><div class="box-body"><p>\[\texttt{\{}\ \langle\textit{expr}\rangle
+  \ \texttt{for}\ \langle\textit{var}\rangle
+  \ \texttt{in}\ \langle\textit{iterable}\rangle
+  \ [\texttt{if}\ \langle\textit{condition}\rangle]
+  \ \texttt{\}}\]</p>
+<p><strong>Automatically deduplicates</strong>: equivalent to <code>set([...\ comprehension\ ...])</code>.
+<strong>Unordered</strong>: iteration order is not guaranteed.
+<strong>Note</strong>: <code>{expr}</code> without <code>for</code> is a <em>set literal</em>; empty
+set must be <code>set()</code>, not <code>{}</code>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 137: Set Comprehensions</div><div class="box-body"><div class="code-box"><pre><code># 1. Unique squares
+sq = {x**2 for x in range(-4, 5)}
+print(sorted(sq))    # [0, 1, 4, 9, 16]  (deduped: (-2)^2 == 2^2)
+
+# 2. Unique first letters
+words = [&quot;apple&quot;,&quot;ant&quot;,&quot;banana&quot;,&quot;blueberry&quot;,&quot;avocado&quot;]
+initials = {w[0] for w in words}
+print(initials)      # {&#x27;a&#x27;, &#x27;b&#x27;}
+
+# 3. Common elements (set comprehension on two lists)
+a = [1,2,3,4,5,3,2]
+b = [3,4,5,6,7,4,3]
+common = {x for x in a if x in b}
+print(common)        # {3, 4, 5}
+
+# 4. Characters appearing in both strings
+s1, s2 = &quot;abcde&quot;, &quot;cdefg&quot;
+shared = {c for c in s1 if c in s2}
+print(shared)        # {&#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27;}
+
+# 5. Deduplication with transformation
+data = [3, -3, 1, -1, 2, -2, 1]
+unique_abs = {abs(x) for x in data}
+print(unique_abs)    # {1, 2, 3}</code></pre></div></div></div>
+</section>
+</section>
+<section id="generator-expressions" class="content-section level-1">
+<h2 class="section-heading">Generator Expressions</h2>
+
+<section id="lazy-iterators-from-expressions" class="content-section level-2">
+<h3 class="section-heading">Lazy Iterators from Expressions</h3>
+<div class="concept-box"><div class="box-title">Generator Expression --- Syntax and Laziness</div><div class="box-body"><p>A <strong>generator expression</strong> has the same syntax as a list comprehension but
+uses <strong>parentheses</strong> (or no delimiters when the sole argument to a function):</p>
+<p>\[\texttt{(}\ \langle\textit{expr}\rangle\ \texttt{for}\ x\ \texttt{in}
+  \ \langle\textit{iterable}\rangle\ [\texttt{if}\ \langle\textit{cond}\rangle]
+  \ \texttt{)}\]</p>
+<p><strong>Key differences from list comprehension</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig134.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig135.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 138: Generator Expressions --- Memory, Pipeline, Exhaustion</div><div class="box-body"><div class="code-box"><pre><code>import sys
+
+# Memory: generator vs list comprehension
+lst = [x**2 for x in range(1000)]
+gen = (x**2 for x in range(1000))
+print(sys.getsizeof(lst))   # ~8056 bytes
+print(sys.getsizeof(gen))   # ~104 bytes (just the generator object)
+
+# Generator as argument (no extra parens needed)
+total = sum(x**2 for x in range(1001))    # sum of squares 0..1000
+print(total)    # 333833500
+
+any_neg = any(x &lt; 0 for x in [1, 2, -3, 4])
+print(any_neg)  # True  (short-circuits at -3!)
+
+all_pos = all(x &gt; 0 for x in [1, 2, 3, 4])
+print(all_pos)  # True
+
+# Lazy pipeline: large file simulation
+def read_lines():
+    for i in range(1, 6):
+        yield f&quot;line {i}: data={i*10}&quot;
+
+lines   = (line for line in read_lines())         # lazy source
+numbers = (int(line.split(&quot;=&quot;)[1]) for line in lines)  # lazy parse
+big     = (n for n in numbers if n &gt; 20)               # lazy filter
+result  = list(big)                                    # materialise
+print(result)   # [30, 40, 50]
+
+# Exhaustion: generator can only be iterated ONCE
+g = (x for x in range(3))
+print(list(g))   # [0, 1, 2]
+print(list(g))   # []  EMPTY -- generator exhausted!
+
+# Compare with list (reusable)
+lst2 = [x for x in range(3)]
+print(list(lst2))   # [0, 1, 2]
+print(list(lst2))   # [0, 1, 2]  still works!
+
+# next() on generator
+g2 = (x**2 for x in range(5))
+print(next(g2))   # 0
+print(next(g2))   # 1
+print(next(g2))   # 4
+print(list(g2))   # [9, 16]  rest consumed</code></pre></div></div></div>
+</section>
+</section>
+<section id="generator-functions" class="content-section level-1">
+<h2 class="section-heading">Generator Functions</h2>
+
+<section id="yield-statement" class="content-section level-2">
+<h3 class="section-heading">yield Statement</h3>
+
+</section>
+<section id="suspending-and-resuming-execution" class="content-section level-2">
+<h3 class="section-heading">Suspending and Resuming Execution</h3>
+<div class="concept-box"><div class="box-title">yield --- Suspending a Function</div><div class="box-body"><p>Any function containing a <strong><code>yield</code></strong> statement becomes a
+<strong>generator function</strong>. Calling it returns a <strong>generator object</strong>
+(an iterator) without executing any of the function body.</p>
+<p><strong>Execution model:</strong></p>
+<ol><li><p>Calling <code>gen_func()</code> returns a generator object; body not run yet</p></li><li><p><code>next(gen)</code> runs until the next <code>yield</code>, suspends, and
+        returns the yielded value</p></li><li><p><code>next(gen)</code> again resumes from after the <code>yield</code></p></li><li><p>When the function <strong>returns</strong> (or falls off the end), a
+        <code>StopIteration</code> is raised; <code>return value</code> sets
+        <code>StopIteration.value</code></p></li></ol>
+<p><strong>State preserved between calls</strong>: local variables, loop counters,
+execution pointer — the frame is kept alive, not torn down.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig136.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 139: Generator Functions --- Basics and Infinite Streams</div><div class="box-body"><div class="code-box"><pre><code># Basic generator
+def gen123():
+    print(&quot;start&quot;)
+    yield 1
+    print(&quot;after 1&quot;)
+    yield 2
+    print(&quot;after 2&quot;)
+    yield 3
+    print(&quot;done&quot;)
+
+g = gen123()
+print(type(g))       # &lt;class &#x27;generator&#x27;&gt;
+print(next(g))       # start / 1
+print(next(g))       # after 1 / 2
+print(next(g))       # after 2 / 3
+try:
+    next(g)          # done / StopIteration
+except StopIteration:
+    print(&quot;exhausted&quot;)
+
+# for loop consumes automatically
+for v in gen123():
+    print(v)         # start / 1 / after 1 / 2 / after 2 / 3 / done
+
+# return in generator: sets StopIteration.value
+def gen_with_return():
+    yield 1
+    yield 2
+    return &quot;final&quot;   # StopIteration.value = &quot;final&quot;
+
+g2 = gen_with_return()
+print(next(g2))      # 1
+print(next(g2))      # 2
+try:
+    next(g2)
+except StopIteration as e:
+    print(e.value)   # final
+
+# Infinite generator (only possible with generator; not with list!)
+def natural_numbers(start=1):
+    n = start
+    while True:
+        yield n
+        n += 1
+
+gen = natural_numbers()
+print([next(gen) for _ in range(7)])   # [1, 2, 3, 4, 5, 6, 7]
+
+# Fibonacci generator
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+fib = fibonacci()
+print([next(fib) for _ in range(10)])
+# [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+# Practical: large file reading without loading all into memory
+def read_chunks(text, size=5):
+    for i in range(0, len(text), size):
+        yield text[i:i+size]
+
+for chunk in read_chunks(&quot;Hello World Python GATE&quot;, size=5):
+    print(repr(chunk), end=&quot; &quot;)
+# &#x27;Hello&#x27; &#x27; Worl&#x27; &#x27;d Pyt&#x27; &#x27;hon G&#x27; &#x27;ATE&#x27;</code></pre></div></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch04.html">&larr; Chapter 4: Functions</a><span class="spacer"></span><a class="nav-btn next" href="ch06.html">Chapter 6: Object-Oriented Programming &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

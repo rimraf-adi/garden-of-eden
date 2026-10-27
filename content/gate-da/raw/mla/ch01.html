@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrices and Determinants — Matrices & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Matrices &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Matrices and Determinants</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-matrices" class="toc-link" data-slug="types-of-matrices">Types of Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#row-matrix" class="toc-link" data-slug="row-matrix">Row Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#column-matrix" class="toc-link" data-slug="column-matrix">Column Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#square-matrix" class="toc-link" data-slug="square-matrix">Square Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#zero-matrix" class="toc-link" data-slug="zero-matrix">Zero Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-matrix" class="toc-link" data-slug="identity-matrix">Identity Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#diagonal-matrix" class="toc-link" data-slug="diagonal-matrix">Diagonal Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#triangular-matrix" class="toc-link" data-slug="triangular-matrix">Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#upper-triangular-matrix" class="toc-link" data-slug="upper-triangular-matrix">Upper Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#lower-triangular-matrix" class="toc-link" data-slug="lower-triangular-matrix">Lower Triangular Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#matrix-operations" class="toc-link" data-slug="matrix-operations">Matrix Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#addition" class="toc-link" data-slug="addition">Addition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#scalar-multiplications" class="toc-link" data-slug="scalar-multiplications">Scalar Multiplications</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#matrix-multiplication" class="toc-link" data-slug="matrix-multiplication">Matrix Multiplication</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#transpose" class="toc-link" data-slug="transpose">Transpose</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#square-matrices" class="toc-link" data-slug="square-matrices">Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#diagonal-and-trace" class="toc-link" data-slug="diagonal-and-trace">Diagonal and Trace</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#identity-and-scalar-matrices" class="toc-link" data-slug="identity-and-scalar-matrices">Identity and Scalar Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#powers-of-matrices" class="toc-link" data-slug="powers-of-matrices">Powers of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#polynomials-in-matrices" class="toc-link" data-slug="polynomials-in-matrices">Polynomials in Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#definition-of-determinant" class="toc-link" data-slug="definition-of-determinant">Definition of Determinant</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#cofactor-expansion" class="toc-link" data-slug="cofactor-expansion">Cofactor Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#properties-of-determinants" class="toc-link" data-slug="properties-of-determinants">Properties of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#invertible-nonsingular-matrices" class="toc-link" data-slug="invertible-nonsingular-matrices">Invertible (Nonsingular) Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#inverse-of-a-2-times-2-matrix" class="toc-link" data-slug="inverse-of-a-2-times-2-matrix">Inverse of a $2 \times 2$ Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#inverse-of-an-n-times-n-matrix" class="toc-link" data-slug="inverse-of-an-n-times-n-matrix">Inverse of an $n \times n$ Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-determinants" class="toc-link" data-slug="applications-of-determinants">Applications of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#special-square-matrices" class="toc-link" data-slug="special-square-matrices">Special Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#symmetric-and-skew-symmetric" class="toc-link" data-slug="symmetric-and-skew-symmetric">Symmetric and Skew-Symmetric</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Rank and Nullity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#vectors-from-matrices" class="toc-link" data-slug="vectors-from-matrices">Vectors from Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#row-space-column-space-and-null-space" class="toc-link" data-slug="row-space-column-space-and-null-space">Row Space, Column Space, and Null Space</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#prerequisites-echelon-forms" class="toc-link" data-slug="prerequisites-echelon-forms">Prerequisites: Echelon Forms</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#finding-the-spaces" class="toc-link" data-slug="finding-the-spaces">Finding the Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-1-row-column-and-null-spaces" class="toc-link" data-slug="example-1-row-column-and-null-spaces">Example 1: Row, Column, and Null Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-2-already-in-row-echelon-form" class="toc-link" data-slug="example-2-already-in-row-echelon-form">Example 2: Already in Row Echelon Form</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-of-a-matrix" class="toc-link" data-slug="rank-of-a-matrix">Rank of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-rank" class="toc-link" data-slug="properties-of-rank">Properties of Rank</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#nullity-of-a-matrix" class="toc-link" data-slug="nullity-of-a-matrix">Nullity of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-nullity-theorem" class="toc-link" data-slug="rank-nullity-theorem">Rank-Nullity Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-rank-and-nullity" class="toc-link" data-slug="applications-of-rank-and-nullity">Applications of Rank and Nullity</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Eigenvalues and Eigenvectors</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#characteristic-polynomial" class="toc-link" data-slug="characteristic-polynomial">Characteristic Polynomial</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#finding-eigenvalues-and-eigenvectors" class="toc-link" data-slug="finding-eigenvalues-and-eigenvectors">Finding Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#properties-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="properties-of-eigenvalues-and-eigenvectors">Properties of Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-matrices" class="toc-link" data-slug="diagonalization-of-matrices">Diagonalization of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="applications-of-eigenvalues-and-eigenvectors">Applications of Eigenvalues and Eigenvectors</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Systems of Linear Equations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#matrix-representation-of-linear-systems" class="toc-link" data-slug="matrix-representation-of-linear-systems">Matrix Representation of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#homogeneous-and-non-homogeneous-systems" class="toc-link" data-slug="homogeneous-and-non-homogeneous-systems">Homogeneous and Non-Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#consistency-of-systems" class="toc-link" data-slug="consistency-of-systems">Consistency of Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gaussian-elimination" class="toc-link" data-slug="gaussian-elimination">Gaussian Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gauss-jordan-elimination" class="toc-link" data-slug="gauss-jordan-elimination">Gauss-Jordan Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#solution-using-inverse-of-a-matrix" class="toc-link" data-slug="solution-using-inverse-of-a-matrix">Solution using Inverse of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#properties-and-shortcuts-in-linear-systems" class="toc-link" data-slug="properties-and-shortcuts-in-linear-systems">Properties and Shortcuts in Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications-of-linear-systems" class="toc-link" data-slug="applications-of-linear-systems">Applications of Linear Systems</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Matrix Factorizations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#lu-decomposition" class="toc-link" data-slug="lu-decomposition">LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#applications-of-lu-factorization" class="toc-link" data-slug="applications-of-lu-factorization">Applications of LU Factorization</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Special Matrices</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal" class="toc-link" data-slug="orthogonal">Orthogonal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal" class="toc-link" data-slug="normal">Normal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#idempotent-matrices" class="toc-link" data-slug="idempotent-matrices">Idempotent Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#partition-block-matrices" class="toc-link" data-slug="partition-block-matrices">Partition (Block) Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#properties-of-special-matrices" class="toc-link" data-slug="properties-of-special-matrices">Properties of Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#applications-of-special-matrices" class="toc-link" data-slug="applications-of-special-matrices">Applications of Special Matrices</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Summary - Very Important</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#1-types-of-linear-systems" class="toc-link" data-slug="1-types-of-linear-systems">1. Types of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#2-rank-and-nullity" class="toc-link" data-slug="2-rank-and-nullity">2. Rank and Nullity</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#3-rouch-capelli-theorem-consistency" class="toc-link" data-slug="3-rouch-capelli-theorem-consistency">3. Rouché–Capelli Theorem (Consistency)</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#4-homogeneous-systems" class="toc-link" data-slug="4-homogeneous-systems">4. Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#5-determinants-and-invertibility" class="toc-link" data-slug="5-determinants-and-invertibility">5. Determinants and Invertibility</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#6-lu-decomposition" class="toc-link" data-slug="6-lu-decomposition">6. LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#7-eigenvalues-and-eigenvectors" class="toc-link" data-slug="7-eigenvalues-and-eigenvectors">7. Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#8-underdetermined-and-overdetermined-systems" class="toc-link" data-slug="8-underdetermined-and-overdetermined-systems">8. Underdetermined and Overdetermined Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#9-free-variables-and-infinite-solutions" class="toc-link" data-slug="9-free-variables-and-infinite-solutions">9. Free Variables and Infinite Solutions</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#10-parameter-dependent-systems" class="toc-link" data-slug="10-parameter-dependent-systems">10. Parameter-Dependent Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#11-linear-dependence-of-columns" class="toc-link" data-slug="11-linear-dependence-of-columns">11. Linear Dependence of Columns</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#12-key-tricks-and-observations" class="toc-link" data-slug="12-key-tricks-and-observations">12. Key Tricks and Observations</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 7</div><h1>Matrices and Determinants</h1></div>
+<section id="introduction" class="content-section level-1">
+<h2 class="section-heading">Introduction</h2>
+<p>A <strong>matrix</strong> is a rectangular arrangement of numbers in rows and columns. 
+It is usually enclosed within square or round brackets. If a matrix has $m$ rows and $n$ columns, it is called an $m \times n$ (“$m$ by $n$”) matrix.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>An $m \times n$ matrix $A$ is written as:
+\[
+A = [a_{ij}]_{m \times n}, \quad \text{where } a_{ij} \text{ is the element in the $i^{th}$ row and $j^{th}$ column.}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 1</div><div class="box-body"><p>A $2 \times 3$ matrix:
+\[
+A = \begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="types-of-matrices" class="content-section level-1">
+<h2 class="section-heading">Types of Matrices</h2>
+
+<section id="row-matrix" class="content-section level-2">
+<h3 class="section-heading">Row Matrix</h3>
+<p>A matrix with only one row is called a <strong>row matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A$ is a $1 \times n$ matrix, then $A$ is a row matrix.</p></div></div>
+<div class="example-box"><div class="box-title">Example 2</div><div class="box-body"><p>\[
+A = \begin{bmatrix} 2 &amp; 5 &amp; -3 &amp; 7 \end{bmatrix}
+\]
+is a row matrix of order $1 \times 4$.</p></div></div>
+</section>
+<section id="column-matrix" class="content-section level-2">
+<h3 class="section-heading">Column Matrix</h3>
+<p>A matrix with only one column is called a <strong>column matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A$ is an $m \times 1$ matrix, then $A$ is a column matrix.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p>\[
+B = \begin{bmatrix}
+4 \\
+-2 \\
+7
+\end{bmatrix}
+\]
+is a column matrix of order $3 \times 1$.</p></div></div>
+</section>
+<section id="square-matrix" class="content-section level-2">
+<h3 class="section-heading">Square Matrix</h3>
+<p>A matrix with the same number of rows and columns is called a <strong>square matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>An $n \times n$ matrix is called a square matrix of order $n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 4</div><div class="box-body"><p>\[
+C = \begin{bmatrix}
+2 &amp; 1 &amp; 0 \\
+-3 &amp; 4 &amp; 5 \\
+6 &amp; 7 &amp; 8
+\end{bmatrix}
+\]
+is a square matrix of order $3$.</p></div></div>
+</section>
+<section id="zero-matrix" class="content-section level-2">
+<h3 class="section-heading">Zero Matrix</h3>
+<p>A matrix in which all elements are zero is called a <strong>zero matrix</strong> or <strong>null matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $O = [0]_{m \times n}$, then $O$ is a zero matrix of order $m \times n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 5</div><div class="box-body"><p>\[
+D = \begin{bmatrix}
+0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+\]
+is a zero matrix of order $2 \times 3$.</p></div></div>
+</section>
+<section id="identity-matrix" class="content-section level-2">
+<h3 class="section-heading">Identity Matrix</h3>
+<p>A square matrix in which all diagonal elements are 1 and all other elements are 0 is called an <strong>identity matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The identity matrix of order $n$ is denoted by $I_n$, where
+\[
+(I_n)_{ij} = \begin{cases}
+1 &amp; \text{if } i=j \\
+0 &amp; \text{if } i\neq j
+\end{cases}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 6</div><div class="box-body"><p>\[
+I_3 = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]
+is the $3 \times 3$ identity matrix.</p></div></div>
+</section>
+<section id="diagonal-matrix" class="content-section level-2">
+<h3 class="section-heading">Diagonal Matrix</h3>
+<p>A square matrix in which all non-diagonal elements are zero is called a <strong>diagonal matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A = [a_{ij}]_{n \times n}$ and $a_{ij} = 0$ for all $i \neq j$, then $A$ is a diagonal matrix.</p></div></div>
+<div class="example-box"><div class="box-title">Example 7</div><div class="box-body"><p>\[
+E = \begin{bmatrix}
+5 &amp; 0 &amp; 0 \\
+0 &amp; -3 &amp; 0 \\
+0 &amp; 0 &amp; 7
+\end{bmatrix}
+\]
+is a diagonal matrix of order $3$.</p></div></div>
+</section>
+<section id="triangular-matrix" class="content-section level-2">
+<h3 class="section-heading">Triangular Matrix</h3>
+<p>A <strong>triangular matrix</strong> is a square matrix in which all the entries either 
+below or above the main diagonal are zero.</p>
+</section>
+<section id="upper-triangular-matrix" class="content-section level-2">
+<h3 class="section-heading">Upper Triangular Matrix</h3>
+<p>A square matrix $A=[a_{ij}]_{n\times n}$ is called an <strong>upper triangular matrix</strong> 
+if $a_{ij} = 0$ for all $i &gt; j$ (all elements below the main diagonal are zero).</p>
+<div class="example-box"><div class="box-title">Example 8</div><div class="box-body"><p>An upper triangular matrix of order $3$:
+\[
+U = \begin{bmatrix}
+2 &amp; -1 &amp; 4 \\
+0 &amp; 3 &amp; 5 \\
+0 &amp; 0 &amp; 7
+\end{bmatrix}
+\]
+Here, all elements below the main diagonal are $0$.</p></div></div>
+</section>
+<section id="lower-triangular-matrix" class="content-section level-2">
+<h3 class="section-heading">Lower Triangular Matrix</h3>
+<p>A square matrix $A=[a_{ij}]_{n\times n}$ is called a <strong>lower triangular matrix</strong> 
+if $a_{ij} = 0$ for all $i &lt; j$ (all elements above the main diagonal are zero).</p>
+<div class="example-box"><div class="box-title">Example 9</div><div class="box-body"><p>A lower triangular matrix of order $3$:
+\[
+L = \begin{bmatrix}
+4 &amp; 0 &amp; 0 \\
+-2 &amp; 5 &amp; 0 \\
+7 &amp; 1 &amp; 6
+\end{bmatrix}
+\]
+Here, all elements above the main diagonal are $0$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Every diagonal matrix is both an upper triangular and a lower triangular matrix.  
+That is, diagonal matrices are a special case of triangular matrices.</p></div></div>
+</section>
+</section>
+<section id="matrix-operations" class="content-section level-1">
+<h2 class="section-heading">Matrix Operations</h2>
+
+<section id="addition" class="content-section level-2">
+<h3 class="section-heading">Addition</h3>
+<p>Two matrices of the same order can be added by adding their corresponding elements.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A = [a_{ij}]_{m \times n}$ and $B = [b_{ij}]_{m \times n}$, then
+\[
+A + B = [a_{ij} + b_{ij}]_{m \times n}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 10</div><div class="box-body"><p>\[
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}
++
+\begin{bmatrix}
+5 &amp; 6 \\
+7 &amp; 8
+\end{bmatrix}
+=
+\begin{bmatrix}
+6 &amp; 8 \\
+10 &amp; 12
+\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="scalar-multiplications" class="content-section level-2">
+<h3 class="section-heading">Scalar Multiplications</h3>
+<p>Multiplying a matrix by a scalar means multiplying each entry of the matrix by that scalar.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $k$ is a scalar and $A = [a_{ij}]_{m \times n}$, then
+\[
+kA = [k \cdot a_{ij}]_{m \times n}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 11</div><div class="box-body"><p>\[
+3 \cdot 
+\begin{bmatrix}
+1 &amp; -2 \\
+0 &amp; 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 &amp; -6 \\
+0 &amp; 12
+\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="matrix-multiplication" class="content-section level-2">
+<h3 class="section-heading">Matrix Multiplication</h3>
+<p>Matrix multiplication is defined only when the number of columns of the first matrix equals the number of rows of the second.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A$ is an $m \times n$ matrix and $B$ is an $n \times p$ matrix, then $AB$ is an $m \times p$ matrix given by:
+\[
+(AB)_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 12</div><div class="box-body"><p>\[
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+5 &amp; 6 \\
+7 &amp; 8
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\cdot5+2\cdot7 &amp; 1\cdot6+2\cdot8 \\
+3\cdot5+4\cdot7 &amp; 3\cdot6+4\cdot8
+\end{bmatrix}
+=
+\begin{bmatrix}
+19 &amp; 22 \\
+43 &amp; 50
+\end{bmatrix}
+\]</p></div></div>
+</section>
+</section>
+<section id="transpose" class="content-section level-1">
+<h2 class="section-heading">Transpose</h2>
+<p>The transpose of a matrix is obtained by interchanging its rows and columns.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A = [a_{ij}]_{m \times n}$, then its transpose is 
+\[
+A^T = [a_{ji}]_{n \times m}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 13</div><div class="box-body"><p>\[
+A = \begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{bmatrix}, \quad
+A^T = \begin{bmatrix}
+1 &amp; 4 \\
+2 &amp; 5 \\
+3 &amp; 6
+\end{bmatrix}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Let $A$ and $B$ be matrices and let $k$ be a scalar. Then, whenever the sum and product are
+defined, the following properties hold:</p>
+<ol><li><p>$(A + B)^T = A^T + B^T$</p></li><li><p>$(A^T)^T = A$</p></li><li><p>$(kA)^T = kA^T$</p></li><li><p>$(AB)^T = B^T A^T$</p></li></ol></div></div>
+<p><strong>Note:</strong> In (4), the transpose of a product is the product of the transposes, but in the
+<em>reverse order</em>.</p>
+</section>
+<section id="square-matrices" class="content-section level-1">
+<h2 class="section-heading">Square Matrices</h2>
+<p>A <strong>square matrix</strong> is a matrix with the same number of rows and columns.  
+An $n \times n$ square matrix is said to be of <strong>order $n$</strong> and is sometimes called an <strong>$n$-square matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For square matrices of order $n$, the operations of addition, multiplication, scalar multiplication, and transpose are always defined, and the result is again an $n \times n$ matrix.</p></div></div>
+<div class="example-box"><div class="box-title">Example 14</div><div class="box-body"><p>The following are square matrices of order $3$:
+\[
+A = \begin{bmatrix}
+1 &amp; 2 &amp; -4 \\
+5 &amp; 6 &amp; 3 \\
+3 &amp; -4 &amp; 7
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+2 &amp; -5 &amp; 0 \\
+3 &amp; 1 &amp; 2 \\
+3 &amp; 1 &amp; -4
+\end{bmatrix}
+\]</p>
+<p>Examples of operations:
+\[
+A^T = \begin{bmatrix}
+1 &amp; 5 &amp; 3 \\
+2 &amp; 6 &amp; -4 \\
+-4 &amp; 3 &amp; 7
+\end{bmatrix}, \quad
+2A = \begin{bmatrix}
+2 &amp; 4 &amp; -8 \\
+10 &amp; 12 &amp; 6 \\
+6 &amp; -8 &amp; 14
+\end{bmatrix}
+\]</p>
+<p>\[
+A+B = \begin{bmatrix}
+3 &amp; -3 &amp; -4 \\
+8 &amp; 7 &amp; 5 \\
+6 &amp; -3 &amp; 3
+\end{bmatrix}, \quad
+AB = \begin{bmatrix}
+-12 &amp; 0 &amp; 20 \\
+-27 &amp; -30 &amp; -33 \\
+17 &amp; 7 &amp; -35
+\end{bmatrix}
+\]
+\[
+BA = \begin{bmatrix}
+-22 &amp; -24 &amp; -26 \\
+10 &amp; 12 &amp; 14 \\
+27 &amp; 30 &amp; 33
+\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="diagonal-and-trace" class="content-section level-1">
+<h2 class="section-heading">Diagonal and Trace</h2>
+<p>The <strong>diagonal</strong> or <strong>main diagonal</strong> of an $n \times n$ matrix $A=[a_{ij}]$ consists of the elements $a_{11}, a_{22}, \dots, a_{nn}$.</p>
+<p>The <strong>trace</strong> of $A$, written $\operatorname{tr}(A)$, is the sum of the diagonal elements:
+\[
+\operatorname{tr}(A) = a_{11} + a_{22} + \cdots + a_{nn}
+\]</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Suppose $A=[a_{ij}]$ and $B=[b_{ij}]$ are $n \times n$ matrices, and $k$ is a scalar. Then:
+\begin{align*}
+(i) &amp;    \operatorname{tr}(A+B) = \operatorname{tr}(A) + \operatorname{tr}(B), <br>
+(ii) &amp;    \operatorname{tr}(kA) = k \, \operatorname{tr}(A), <br>
+(iii) &amp;    \operatorname{tr}(A^T) = \operatorname{tr}(A), <br>
+(iv) &amp;    \operatorname{tr}(AB) = \operatorname{tr}(BA).
+\end{align*}</p></div></div>
+<div class="example-box"><div class="box-title">Example 15</div><div class="box-body"><p>For matrices $A$ and $B$ 
+\[
+A = \begin{bmatrix}
+1 &amp; 2 &amp; -4 \\
+5 &amp; 6 &amp; 3 \\
+3 &amp; -4 &amp; 7
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+2 &amp; -5 &amp; 0 \\
+3 &amp; 1 &amp; 2 \\
+3 &amp; 1 &amp; -4
+\end{bmatrix}
+\]</p>
+<p>Diagonal of $A$: $\{1,-4,7\}$, so $\operatorname{tr}(A) = 1 + (-4) + 7 = 4$.</p>
+<p>Diagonal of $B$: $\{2,1,-4\}$, so $\operatorname{tr}(B) = 2 + 1 - 4 = -1$.</p>
+<p>Now:
+\[
+\operatorname{tr}(A+B) = \operatorname{tr}(A) + \operatorname{tr}(B) = 4 + (-1) = 3
+\]
+\[
+\operatorname{tr}(2A) = 2 \cdot \operatorname{tr}(A) = 8
+\]
+\[
+\operatorname{tr}(A^T) = \operatorname{tr}(A) = 4
+\]
+\[
+\operatorname{tr}(AB) = \operatorname{tr}(BA) = -30
+\]</p></div></div>
+</section>
+<section id="identity-and-scalar-matrices" class="content-section level-1">
+<h2 class="section-heading">Identity and Scalar Matrices</h2>
+<p>The $n \times n$ <strong>identity matrix</strong>, denoted $I_n$, has 1's on the diagonal and 0's elsewhere:
+\[
+(I_n)_{ij} = \begin{cases}
+1 &amp; \text{if } i=j \\
+0 &amp; \text{if } i \ne j
+\end{cases}
+\]</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For any $n \times n$ matrix $A$,  
+\[
+AI_n = I_n A = A
+\]</p></div></div>
+<p>More generally, for any scalar $k$, the matrix $kI$ with $k$'s on the diagonal and 0's elsewhere is called a <strong>scalar matrix</strong>.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Multiplying a matrix $A$ by $kI$ is equivalent to multiplying $A$ by $k$:
+\[
+(kI)A = k(IA) = kA
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 16</div><div class="box-body"><p>Identity and scalar matrices:
+\[
+I_3 = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}, \quad
+5I_3 = \begin{bmatrix}
+5 &amp; 0 &amp; 0 \\
+0 &amp; 5 &amp; 0 \\
+0 &amp; 0 &amp; 5
+\end{bmatrix}
+\]</p>
+<p>\[
+I_4 = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}, \quad
+5I_4 = \begin{bmatrix}
+5 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 5 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 5 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 5
+\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="powers-of-matrices" class="content-section level-1">
+<h2 class="section-heading">Powers of Matrices</h2>
+<p>Let $A$ be an $n \times n$ matrix over a field $K$. The powers of $A$ are defined as:
+\[
+A^2 = A \cdot A, \quad A^3 = A^2 \cdot A, \quad \dots, \quad A^{n+1} = A^n \cdot A
+\]
+Additionally, the zeroth power is defined as:
+\[
+A^0 = I_n
+\]
+where $I_n$ is the identity matrix of order $n$.</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For any square matrix $A$:
+\[
+A^m \cdot A^n = A^{m+n}, \qquad (A^m)^n = A^{mn}, \qquad A^0 = I
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 17</div><div class="box-body"><p>Let 
+\[
+A = \begin{bmatrix}
+1 &amp; 3 \\
+2 &amp; -4
+\end{bmatrix}
+\]</p>
+<p>Compute $A^2$ and $A^3$.</p>
+<p>\[
+A^2 = A \cdot A =
+\begin{bmatrix}
+1 &amp; 3 \\
+2 &amp; -4
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 3 \\
+2 &amp; -4
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\cdot1 + 3\cdot2 &amp; 1\cdot3 + 3\cdot(-4) \\
+2\cdot1 + (-4)\cdot2 &amp; 2\cdot3 + (-4)\cdot(-4)
+\end{bmatrix}
+=
+\begin{bmatrix}
+7 &amp; -9 \\
+-6 &amp; 22
+\end{bmatrix}
+\]</p>
+<p>Now,
+\[
+A^3 = A^2 \cdot A =
+\begin{bmatrix}
+7 &amp; -9 \\
+-6 &amp; 22
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 3 \\
+2 &amp; -4
+\end{bmatrix}
+=
+\begin{bmatrix}
+7\cdot1 + (-9)\cdot2 &amp; 7\cdot3 + (-9)\cdot(-4) \\
+-6\cdot1 + 22\cdot2 &amp; -6\cdot3 + 22\cdot(-4)
+\end{bmatrix}
+\]</p>
+<p>\[
+= \begin{bmatrix}
+7 - 18 &amp; 21 + 36 \\
+-6 + 44 &amp; -18 - 88
+\end{bmatrix}
+=
+\begin{bmatrix}
+-11 &amp; 57 \\
+38 &amp; -106
+\end{bmatrix}
+\]</p>
+<p>Thus,
+\[
+A^2 = \begin{bmatrix} 7 &amp; -9 \\ -6 &amp; 22 \end{bmatrix}, 
+\quad
+A^3 = \begin{bmatrix} -11 &amp; 57 \\ 38 &amp; -106 \end{bmatrix}.
+\]</p></div></div>
+</section>
+<section id="polynomials-in-matrices" class="content-section level-1">
+<h2 class="section-heading">Polynomials in Matrices</h2>
+<p>Let $f(x)$ be a polynomial in one variable:
+\[
+f(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_m x^m
+\]
+Then for a square matrix $A$, the polynomial in $A$ is defined as:
+\[
+f(A) = a_0 I + a_1 A + a_2 A^2 + \cdots + a_m A^m
+\]</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Matrix polynomials are obtained by replacing the variable $x$ with the matrix $A$, and replacing the scalar $1$ with the identity matrix $I$ of the same order.</p></div></div>
+<div class="example-box"><div class="box-title">Example 18</div><div class="box-body"><p>Let 
+\[
+A = \begin{bmatrix}
+1 &amp; 3 \\
+2 &amp; -4
+\end{bmatrix}, 
+\quad f(x) = 2 + x + x^2
+\]</p>
+<p>Then,
+\[
+f(A) = 2I + A + A^2
+\]</p>
+<p>We already know:
+\[
+A = \begin{bmatrix} 1 &amp; 3 \\ 2 &amp; -4 \end{bmatrix}, \quad 
+A^2 = \begin{bmatrix} 7 &amp; -9 \\ -6 &amp; 22 \end{bmatrix}, \quad
+I = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\]</p>
+<p>So,
+\[
+f(A) = 2\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}
++ \begin{bmatrix} 1 &amp; 3 \\ 2 &amp; -4 \end{bmatrix}
++ \begin{bmatrix} 7 &amp; -9 \\ -6 &amp; 22 \end{bmatrix}
+\]</p>
+<p>\[
+= \begin{bmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{bmatrix}
++ \begin{bmatrix} 1 &amp; 3 \\ 2 &amp; -4 \end{bmatrix}
++ \begin{bmatrix} 7 &amp; -9 \\ -6 &amp; 22 \end{bmatrix}
+= \begin{bmatrix} 10 &amp; -6 \\ -4 &amp; 20 \end{bmatrix}
+\]</p>
+<p>Thus,
+\[
+f(A) = \begin{bmatrix} 10 &amp; -6 \\ -4 &amp; 20 \end{bmatrix}.
+\]</p></div></div>
+</section>
+<section id="definition-of-determinant" class="content-section level-1">
+<h2 class="section-heading">Definition of Determinant</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The <strong>determinant</strong> of a square matrix $A = [a_{ij}] \in \mathbb{R}^{n \times n}$ is a scalar value, denoted by $\det(A)$ or $|A|$, which gives important information about the matrix, such as invertibility and volume scaling factor of the linear transformation defined by $A$.</p></div></div>
+</section>
+<section id="cofactor-expansion" class="content-section level-1">
+<h2 class="section-heading">Cofactor Expansion</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The <strong>cofactor</strong> of an element $a_{ij}$ in matrix $A$ is defined as:
+\[
+C_{ij} = (-1)^{i+j} M_{ij},
+\]
+where $M_{ij}$ is the determinant of the $(n-1)\times(n-1)$ matrix obtained by deleting the $i$-th row and $j$-th column of $A$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The determinant of $A$ can be computed by cofactor expansion along any row $i$ or column $j$:
+\[
+\det(A) = \sum_{j=1}^{n} a_{ij} C_{ij} \quad \text{(expansion along row $i$)}
+\]
+\[
+\det(A) = \sum_{i=1}^{n} a_{ij} C_{ij} \quad \text{(expansion along column $j$)}
+\]</p></div></div>
+<p>For $n=1$, $A = [a_{11}]$, we define:
+\[
+\det(A) = a_{11}.
+\]</p>
+<p>For $n=2$, $A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}$, we define:
+\[
+\det(A) = ad - bc.
+\]</p>
+<p>For $n=3$, $A = \begin{bmatrix} a &amp; b &amp; c \\ d &amp; e &amp; f \\ g &amp; h &amp; i \end{bmatrix}$, we define:
+\[
+\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg).
+\]</p>
+<div class="example-box"><div class="box-title">Example 19</div><div class="box-body"><p>Compute the determinant of
+\[
+A = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 0 &amp; 4 &amp; 5 \\ 1 &amp; 0 &amp; 6 \end{bmatrix}
+\]
+using cofactor expansion along the first row.
+\[
+\det(A) = 1 \cdot \det\begin{bmatrix} 4 &amp; 5 \\ 0 &amp; 6 \end{bmatrix}
+- 2 \cdot \det\begin{bmatrix} 0 &amp; 5 \\ 1 &amp; 6 \end{bmatrix}
++ 3 \cdot \det\begin{bmatrix} 0 &amp; 4 \\ 1 &amp; 0 \end{bmatrix}.
+\]
+\[
+= 1(24 - 0) - 2(0-5) + 3(0-4) = 24 + 10 - 12 = 22.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 20</div><div class="box-body"><p>Compute the determinant of 
+\[
+A = \begin{bmatrix} 2 &amp; 3 \\ 1 &amp; 4 \end{bmatrix}.
+\]
+<strong>Solution:</strong>
+\[
+\det(A) = 2 \cdot 4 - 3 \cdot 1 = 8 - 3 = 5.
+\]</p></div></div>
+</section>
+<section id="properties-of-determinants" class="content-section level-1">
+<h2 class="section-heading">Properties of Determinants</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Some key properties of determinants are:</p>
+<ol><li><p>$\det(I_n) = 1$, where $I_n$ is the $n \times n$ identity matrix.</p></li><li><p>Swapping two rows (or columns) of a matrix multiplies its determinant by $-1$.</p></li><li><p>Multiplying a row (or column) by a scalar $k$ multiplies the determinant by $k$.</p></li><li><p>The determinant is linear in each row (or column) separately.</p></li><li><p>If a matrix has two identical rows (or columns), its determinant is zero.</p></li><li><p>$\det(A^\mathsf{T}) = \det(A)$.</p></li><li><p>$\det(AB) = \det(A)\det(B)$.</p></li><li><p>$A$ is invertible if and only if $\det(A) \neq 0$.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p><strong>Property 1: $\det(I_n) = 1$.</strong></p>
+<p>For $I_3 = \begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}$,  
+\[
+\det(I_3) = 1\cdot1\cdot1 = 1.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p><strong>Property 2: Swapping rows changes the sign.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}1&amp;2\\3&amp;4\end{bmatrix},\quad 
+\det(A) = 1\cdot4 - 2\cdot3 = -2.
+\]</p>
+<p>Swap row 1 and row 2:
+\[
+B=\begin{bmatrix}3&amp;4\\1&amp;2\end{bmatrix},\quad 
+\det(B) = 3\cdot2 - 4\cdot1 = 2.
+\]</p>
+<p>So $\det(B) = -\det(A)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p><strong>Property 3: Multiplying a row scales the determinant.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}1&amp;2\\3&amp;4\end{bmatrix},\quad \det(A)=-2.
+\]</p>
+<p>Multiply the first row by $5$:
+\[
+B=\begin{bmatrix}5&amp;10\\3&amp;4\end{bmatrix},\quad 
+\det(B)=5\cdot4 - 10\cdot3 = 20 - 30 = -10.
+\]</p>
+<p>Thus $\det(B) = 5 \cdot \det(A)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p><strong>Property 4: Determinant is linear in a row.</strong></p>
+<p>Let the first row be the sum of two row vectors: $[3,3]=[1,3]+[2,0]$. Consider
+\[
+A=\begin{bmatrix}3 &amp; 3\\[4pt] 4 &amp; 5\end{bmatrix}
+=\begin{bmatrix}1+2 &amp; 3+0\\[4pt] 4 &amp; 5\end{bmatrix}.
+\]
+By linearity of the first row,
+\[
+\det(A)
+= \det\begin{bmatrix}1 &amp; 3\\[4pt] 4 &amp; 5\end{bmatrix}
++ \det\begin{bmatrix}2 &amp; 0\\[4pt] 4 &amp; 5\end{bmatrix}.
+\]
+Compute each term:
+\[
+\det\begin{bmatrix}1 &amp; 3\\[4pt] 4 &amp; 5\end{bmatrix} = 1\cdot5 - 3\cdot4 = -7,
+\qquad
+\det\begin{bmatrix}2 &amp; 0\\[4pt] 4 &amp; 5\end{bmatrix} = 2\cdot5 - 0\cdot4 = 10.
+\]
+Therefore
+\[
+\det(A) = -7 + 10 = 3,
+\]
+which agrees with the direct computation
+\[
+\det\begin{bmatrix}3 &amp; 3\\[4pt] 4 &amp; 5\end{bmatrix} = 3\cdot5 - 3\cdot4 = 15-12 = 3.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p><strong>Property 5: Two identical rows $\implies$ determinant $=0$.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}1&amp;2&amp;3\\1&amp;2&amp;3\\4&amp;5&amp;6\end{bmatrix}.
+\]</p>
+<p>Rows 1 and 2 are identical. Expanding:
+\[
+\det(A)=1(2\cdot6-3\cdot5) -2(1\cdot6-3\cdot4) + 3(1\cdot5-2\cdot4).
+\]</p>
+<p>\[
+= 1(12-15) -2(6-12) + 3(5-8) = -3 -2(-6) + 3(-3).
+\]</p>
+<p>\[
+= -3 +12 -9 = 0.
+\]</p>
+<p>Hence determinant is $0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p><strong>Property 6: $\det(A^T) = \det(A)$.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}1&amp;2&amp;3\\0&amp;4&amp;5\\0&amp;0&amp;6\end{bmatrix},\quad 
+\det(A) = 1\cdot4\cdot6 = 24.
+\]</p>
+<p>Transpose:
+\[
+A^T=\begin{bmatrix}1&amp;0&amp;0\\2&amp;4&amp;0\\3&amp;5&amp;6\end{bmatrix},\quad 
+\det(A^T)=24.
+\]</p>
+<p>Thus $\det(A^T)=\det(A)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p><strong>Property 7: $\det(AB) = \det(A)\det(B)$.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}1&amp;2\\3&amp;4\end{bmatrix},\quad \det(A)=-2.
+\]</p>
+<p>\[
+B=\begin{bmatrix}0&amp;1\\1&amp;0\end{bmatrix},\quad \det(B)=-1.
+\]</p>
+<p>Then 
+\[
+AB=\begin{bmatrix}2&amp;1\\4&amp;3\end{bmatrix},\quad \det(AB)=2\cdot3-1\cdot4=6-4=2.
+\]</p>
+<p>Also $\det(A)\det(B)=(-2)(-1)=2$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p><strong>Property 8: $A$ invertible $\iff \det(A)\neq0$.</strong></p>
+<p>Let 
+\[
+A=\begin{bmatrix}2&amp;1\\4&amp;2\end{bmatrix}.
+\]</p>
+<p>Compute determinant:
+\[
+\det(A)=2\cdot2 - 1\cdot4 = 0.
+\]</p>
+<p>Since $\det(A)=0$, $A$ is singular, hence not invertible.</p>
+<p>Now take 
+\[
+B=\begin{bmatrix}1&amp;2\\3&amp;5\end{bmatrix},\quad \det(B)=1\cdot5 - 2\cdot3 = -1 \neq 0.
+\]</p>
+<p>So $B$ is invertible.</p></div></div>
+</section>
+<section id="invertible-nonsingular-matrices" class="content-section level-1">
+<h2 class="section-heading">Invertible (Nonsingular) Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A square matrix $A$ is said to be <strong>invertible</strong> or <strong>nonsingular</strong> if there exists a matrix $B$ such that
+\[
+AB = BA = I,
+\]
+where $I$ is the identity matrix of the same order.  
+Such a matrix $B$ is called the <strong>inverse</strong> of $A$, and is denoted by $A^{-1}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Uniqueness of the Inverse:</strong>  
+If $AB_1 = B_1A = I$ and $AB_2 = B_2A = I$, then
+\[
+B_1 = B_1I = B_1(AB_2) = (B_1A)B_2 = IB_2 = B_2.
+\]
+Hence, the inverse of a matrix is unique.</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p>Suppose 
+\[
+A = \begin{bmatrix}
+6 &amp; -5 \\
+3 &amp; -3
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+1 &amp; 0 \\
+-5 &amp; 6
+\end{bmatrix}.
+\]
+Then
+\[
+AB = \begin{bmatrix}
+6 &amp; -5 \\
+3 &amp; -3
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0 \\
+-5 &amp; 6
+\end{bmatrix}
+= \begin{bmatrix}
+31 &amp; -30 \\
+18 &amp; -18
+\end{bmatrix}.
+\]
+After simplification (scaling), this reduces to the identity matrix $I_2$. Similarly, one can verify that $BA = I_2$.  
+Thus, $A$ and $B$ are inverses of each other.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property:</strong> For two invertible matrices $A$ and $B$, the product $AB$ is invertible and
+\[
+(AB)^{-1} = B^{-1} A^{-1}.
+\]
+More generally, if $A_1, A_2, \dots, A_k$ are invertible, then
+\[
+(A_1 A_2 \cdots A_k)^{-1} = A_k^{-1} \cdots A_2^{-1} A_1^{-1}.
+\]</p></div></div>
+<section id="inverse-of-a-2-times-2-matrix" class="content-section level-2">
+<h3 class="section-heading">Inverse of a $2 \times 2$ Matrix</h3>
+<p>Let
+\[
+A = \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}.
+\]
+The determinant of $A$ is
+\[
+|A| = ad - bc.
+\]</p>
+<p>If $|A| \neq 0$, then $A$ is invertible and
+\[
+A^{-1} = \frac{1}{ad - bc}
+\begin{bmatrix}
+d &amp; -b \\
+-c &amp; a
+\end{bmatrix}.
+\]</p>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>To find $A^{-1}$:</p>
+<ol><li><p>Interchange the diagonal elements $a$ and $d$.</p></li><li><p>Change the signs of the off-diagonal elements $b$ and $c$.</p></li><li><p>Divide each entry by the determinant $ad - bc$.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 30</div><div class="box-body"><p>Find the inverses of the following matrices:
+\[
+A = \begin{bmatrix}
+2 &amp; 4 \\
+3 &amp; 5
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 6
+\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+First, compute $\det(A) = 2(5) - 3(4) = 10 - 12 = -2 \neq 0$.  
+Thus $A$ is invertible and
+\[
+A^{-1} = \frac{1}{-2} \begin{bmatrix}
+5 &amp; -4 \\
+-3 &amp; 2
+\end{bmatrix}
+= \begin{bmatrix}
+-2.5 &amp; 2 \\
+1.5 &amp; -1
+\end{bmatrix}.
+\]</p>
+<p>Now, compute $\det(B) = 1(6) - 3(2) = 6 - 6 = 0$.  
+Since $\det(B) = 0$, $B$ is <strong>not invertible</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Remark:</strong>  
+A square matrix $A$ is invertible if and only if $\det(A) \neq 0$.  
+This fact is valid for matrices of any order.</p></div></div>
+</section>
+<section id="inverse-of-an-n-times-n-matrix" class="content-section level-2">
+<h3 class="section-heading">Inverse of an $n \times n$ Matrix</h3>
+<p>For an arbitrary square matrix $A$ of order $n$, the inverse $A^{-1}$ can be obtained by solving $n$ systems of $n$ linear equations or, equivalently, by using the <strong>adjoint formula:</strong>
+\[
+A^{-1} = \frac{1}{\det(A)} \, \text{adj}(A), \quad \text{if } \det(A) \neq 0.
+\]</p>
+<div class="example-box"><div class="box-title">Example 31</div><div class="box-body"><p>Find the inverse of 
+\[
+B = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 0 &amp; 1 &amp; 4 \\ 5 &amp; 6 &amp; 0 \end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+Step 1: Compute the determinant.
+\[
+\det(B) = 1 \cdot \begin{vmatrix} 1 &amp; 4 \\ 6 &amp; 0 \end{vmatrix}
+- 2 \cdot \begin{vmatrix} 0 &amp; 4 \\ 5 &amp; 0 \end{vmatrix}
++ 3 \cdot \begin{vmatrix} 0 &amp; 1 \\ 5 &amp; 6 \end{vmatrix}.
+\]</p>
+<p>\[
+= 1(1\cdot 0 - 4\cdot 6) - 2(0\cdot 0 - 5\cdot 4) + 3(0\cdot 6 - 1\cdot 5).
+\]</p>
+<p>\[
+= 1(-24) - 2(-20) + 3(-5) = -24 + 40 - 15 = 1.
+\]</p>
+<p>So $\det(B)=1$, hence $B$ is invertible.</p>
+<p>Step 2: Compute cofactors.  
+\[
+C = \begin{bmatrix}
+\begin{vmatrix} 1 &amp; 4 \\ 6 &amp; 0 \end{vmatrix} &amp; -\begin{vmatrix} 0 &amp; 4 \\ 5 &amp; 0 \end{vmatrix} &amp; \begin{vmatrix} 0 &amp; 1 \\ 5 &amp; 6 \end{vmatrix} \\[8pt]
+-\begin{vmatrix} 2 &amp; 3 \\ 6 &amp; 0 \end{vmatrix} &amp; \begin{vmatrix} 1 &amp; 3 \\ 5 &amp; 0 \end{vmatrix} &amp; -\begin{vmatrix} 1 &amp; 2 \\ 5 &amp; 6 \end{vmatrix} \\[8pt]
+\begin{vmatrix} 2 &amp; 3 \\ 1 &amp; 4 \end{vmatrix} &amp; -\begin{vmatrix} 1 &amp; 3 \\ 0 &amp; 4 \end{vmatrix} &amp; \begin{vmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{vmatrix}
+\end{bmatrix}.
+\]</p>
+<p>\[
+C = \begin{bmatrix}
+-24 &amp; 20 &amp; -5 \\
+-18 &amp; -15 &amp; -7 \\
+5 &amp; -4 &amp; 1
+\end{bmatrix}.
+\]</p>
+<p>Step 3: Transpose to get the adjoint:
+\[
+\text{adj}(B) = \begin{bmatrix}
+-24 &amp; -18 &amp; 5 \\
+20 &amp; -15 &amp; -4 \\
+-5 &amp; -7 &amp; 1
+\end{bmatrix}.
+\]</p>
+<p>Step 4: Compute inverse:
+\[
+B^{-1} = \frac{1}{\det(B)} \, \text{adj}(B) = \text{adj}(B).
+\]</p>
+<p>\[
+B^{-1} = \begin{bmatrix}
+-24 &amp; -18 &amp; 5 \\
+20 &amp; -15 &amp; -4 \\
+-5 &amp; -7 &amp; 1
+\end{bmatrix}.
+\]</p></div></div>
+</section>
+</section>
+<section id="applications-of-determinants" class="content-section level-1">
+<h2 class="section-heading">Applications of Determinants</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Determinants have several applications in linear algebra:</p>
+<ol><li><p><strong>Solving linear systems:</strong> Using Cramer's rule.</p></li><li><p><strong>Volume scaling:</strong> The absolute value of $\det(A)$ represents the scaling factor of volume under the transformation $x \mapsto Ax$.</p></li><li><p><strong>Eigenvalues:</strong> Roots of $\det(A - \lambda I) = 0$ give eigenvalues.</p></li><li><p><strong>Invertibility check:</strong> Quick test for non-singular matrices.</p></li><li><p><strong>Area/Volume computation:</strong> Determinants of 2D/3D vectors give area/volume of parallelograms/parallelepipeds.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 32</div><div class="box-body"><p>Find the area of the parallelogram formed by vectors $\mathbf{u} = (1,2)$ and $\mathbf{v} = (3,4)$.
+\[
+\text{Area} = |\det \begin{bmatrix} 1 &amp; 3 \\ 2 &amp; 4 \end{bmatrix}| = |1\cdot4 - 3\cdot2| = |-2| = 2.
+\]</p></div></div>
+</section>
+<section id="special-square-matrices" class="content-section level-1">
+<h2 class="section-heading">Special Square Matrices</h2>
+
+</section>
+<section id="symmetric-and-skew-symmetric" class="content-section level-1">
+<h2 class="section-heading">Symmetric and Skew-Symmetric</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A square matrix $A$ is called <strong>symmetric</strong> if $A^T = A$.  
+Equivalently, $A = [a_{ij}]$ is symmetric if $a_{ij} = a_{ji}$ for all $i,j$.</p>
+<p>A square matrix $A$ is called <strong>skew-symmetric</strong> if $A^T = -A$.  
+Equivalently, $a_{ij} = -a_{ji}$ for all $i,j$.  
+Note that in a skew-symmetric matrix, all diagonal entries must be zero since $a_{ii} = -a_{ii}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 33</div><div class="box-body"><p>\[
+A = \begin{bmatrix}
+4 &amp; -3 &amp; 5 \\
+-3 &amp; 6 &amp; 7 \\
+5 &amp; 7 &amp; 2
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+0 &amp; 3 &amp; -4 \\
+-3 &amp; 0 &amp; 5 \\
+4 &amp; -5 &amp; 0
+\end{bmatrix}, \quad
+C = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 5 &amp; 5
+\end{bmatrix}
+\]</p>
+<p>- $A$ is symmetric because $A^T = A$.  
+- $B$ is skew-symmetric because $B^T = -B$.  
+- $C$ is neither symmetric nor skew-symmetric (not square).</p></div></div>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Rank and Nullity &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Matrices &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

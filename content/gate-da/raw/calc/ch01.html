@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Functions — Calculus</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Calculus</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#visualizing-a-function" class="toc-link" data-slug="visualizing-a-function">Visualizing a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graph-of-a-function" class="toc-link" data-slug="graph-of-a-function">Graph of a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-and-range" class="toc-link" data-slug="domain-and-range">Domain and Range</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#piecewise-defined-functions" class="toc-link" data-slug="piecewise-defined-functions">Piecewise-Defined Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#open-and-closed-intervals" class="toc-link" data-slug="open-and-closed-intervals">Open and Closed Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#classes-of-functions" class="toc-link" data-slug="classes-of-functions">Classes of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-linear-functions" class="toc-link" data-slug="1-linear-functions">1. Linear Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-quadratic-functions" class="toc-link" data-slug="2-quadratic-functions">2. Quadratic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-polynomial-functions" class="toc-link" data-slug="3-polynomial-functions">3. Polynomial Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-rational-functions" class="toc-link" data-slug="4-rational-functions">4. Rational Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-exponential-functions" class="toc-link" data-slug="5-exponential-functions">5. Exponential Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-logarithmic-functions" class="toc-link" data-slug="6-logarithmic-functions">6. Logarithmic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#7-trigonometric-functions" class="toc-link" data-slug="7-trigonometric-functions">7. Trigonometric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#8-absolute-value-function" class="toc-link" data-slug="8-absolute-value-function">8. Absolute Value Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#properties-of-x" class="toc-link" data-slug="properties-of-x">Properties of $|x|$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-functions" class="toc-link" data-slug="types-of-functions">Types of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-one-to-one-function-injective" class="toc-link" data-slug="1-one-to-one-function-injective">1. One-to-One Function (Injective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-onto-function-surjective" class="toc-link" data-slug="2-onto-function-surjective">2. Onto Function (Surjective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-bijective-function" class="toc-link" data-slug="3-bijective-function">3. Bijective Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-many-to-one-function" class="toc-link" data-slug="4-many-to-one-function">4. Many-to-One Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-constant-function" class="toc-link" data-slug="5-constant-function">5. Constant Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-identity-function" class="toc-link" data-slug="6-identity-function">6. Identity Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#inverse-function" class="toc-link" data-slug="inverse-function">Inverse Function</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-an-inverse-function" class="toc-link" data-slug="example-of-an-inverse-function">Example of an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#one-to-one-functions" class="toc-link" data-slug="one-to-one-functions">One-to-One Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#finding-an-inverse-function" class="toc-link" data-slug="finding-an-inverse-function">Finding an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphing-inverse-functions" class="toc-link" data-slug="graphing-inverse-functions">Graphing Inverse Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#restricting-domains" class="toc-link" data-slug="restricting-domains">Restricting Domains</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#composite-functions" class="toc-link" data-slug="composite-functions">Composite Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-composite-function" class="toc-link" data-slug="example-of-composite-function">Example of Composite Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#rules-of-composite-functions" class="toc-link" data-slug="rules-of-composite-functions">Rules of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-associative-law" class="toc-link" data-slug="example-associative-law">Example: Associative Law</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-of-composite-functions" class="toc-link" data-slug="domain-of-composite-functions">Domain of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphical-representation" class="toc-link" data-slug="graphical-representation">Graphical Representation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Limits</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction-to-calculus" class="toc-link" data-slug="introduction-to-calculus">Introduction to Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-tangent-problem-and-differential-calculus" class="toc-link" data-slug="the-tangent-problem-and-differential-calculus">The Tangent Problem and Differential Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-area-problem-and-integral-calculus" class="toc-link" data-slug="the-area-problem-and-integral-calculus">The Area Problem and Integral Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits" class="toc-link" data-slug="limits">Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#estimating-limits" class="toc-link" data-slug="estimating-limits">Estimating Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#one-sided-limits" class="toc-link" data-slug="one-sided-limits">One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#definitions-one-sided-limits" class="toc-link" data-slug="definitions-one-sided-limits">Definitions: One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fact-relating-one-sided-and-ordinary-limits" class="toc-link" data-slug="fact-relating-one-sided-and-ordinary-limits">Fact Relating One-Sided and Ordinary Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-limits" class="toc-link" data-slug="properties-of-limits">Properties of Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#infinite-limits" class="toc-link" data-slug="infinite-limits">Infinite Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits-at-infinity" class="toc-link" data-slug="limits-at-infinity">Limits at Infinity</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limit-formulas" class="toc-link" data-slug="limit-formulas">Limit Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Continuity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#continuity-of-functions" class="toc-link" data-slug="continuity-of-functions">Continuity of Functions</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#types-of-discontinuities" class="toc-link" data-slug="types-of-discontinuities">Types of Discontinuities</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#continuity-over-an-interval" class="toc-link" data-slug="continuity-over-an-interval">Continuity over an Interval</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#composite-functions-and-trigonometric-continuity" class="toc-link" data-slug="composite-functions-and-trigonometric-continuity">Composite Functions and Trigonometric Continuity</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#intermediate-value-theorem-ivt" class="toc-link" data-slug="intermediate-value-theorem-ivt">Intermediate Value Theorem (IVT)</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Differentiability</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#derivatives" class="toc-link" data-slug="derivatives">Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-of-derivatives" class="toc-link" data-slug="examples-of-derivatives">Examples of Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#differentiability" class="toc-link" data-slug="differentiability">Differentiability</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#checking-differentiability-at-a-point" class="toc-link" data-slug="checking-differentiability-at-a-point">Checking Differentiability at a Point</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#visualizing-differentiability" class="toc-link" data-slug="visualizing-differentiability">Visualizing Differentiability</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Optimization (Maxima/Minima)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#rate-of-change" class="toc-link" data-slug="rate-of-change">Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#derivatives-as-rates-of-change" class="toc-link" data-slug="derivatives-as-rates-of-change">Derivatives as Rates of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-of-rate-of-change" class="toc-link" data-slug="examples-of-rate-of-change">Examples of Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#critical-points" class="toc-link" data-slug="critical-points">Critical Points</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#minima-and-maxima" class="toc-link" data-slug="minima-and-maxima">Minima and Maxima</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#maximum-and-minimum-values-of-a-function" class="toc-link" data-slug="maximum-and-minimum-values-of-a-function">Maximum and Minimum Values of a Function</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#important-theorems" class="toc-link" data-slug="important-theorems">Important Theorems</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#absolute-extrema" class="toc-link" data-slug="absolute-extrema">Absolute Extrema</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#finding-absolute-extrema-on-a-closed-interval" class="toc-link" data-slug="finding-absolute-extrema-on-a-closed-interval">Finding Absolute Extrema on a Closed Interval</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#increasing-decreasing-and-concavity-convexity" class="toc-link" data-slug="increasing-decreasing-and-concavity-convexity">Increasing/Decreasing and Concavity/Convexity</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#mean-value-theorem" class="toc-link" data-slug="mean-value-theorem">Mean Value Theorem</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#rolle-s-theorem" class="toc-link" data-slug="rolle-s-theorem">Rolle's Theorem</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mean-value-theorem-mvt" class="toc-link" data-slug="mean-value-theorem-mvt">Mean Value Theorem (MVT)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#applications-of-mvt" class="toc-link" data-slug="applications-of-mvt">Applications of MVT</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Taylor series</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#taylor-series-expansion" class="toc-link" data-slug="taylor-series-expansion">Taylor Series Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#using-taylor-series-for-limits" class="toc-link" data-slug="using-taylor-series-for-limits">Using Taylor Series for Limits</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 6</div><h1>Functions</h1></div>
+<section id="introduction" class="content-section level-1">
+<h2 class="section-heading">Introduction</h2>
+<p>Given two sets $A$ and $B$, a <strong>relation</strong> from $A$ to $B$ is a set of ordered pairs $(x, y)$, where $x \in A$ and $y \in B$. A relation from $A$ to $B$ defines a relationship between these two sets.</p>
+<p>A <strong>function</strong> is a special type of relation in which each element of the first set is related to <strong>exactly one</strong> element of the second set. The element of the first set is called the <strong>input</strong>, and the element of the second set is called the <strong>output</strong>. Functions are used extensively in mathematics to describe relationships between sets.</p>
+<p>For any function, when we know the input, the output is determined, so we say that the output is a <strong>function of the input</strong>. For example:</p>
+<ul><li><p>The area of a square is determined by its side length. Area (output) is a function of side length (input).</p></li><li><p>The velocity of a ball thrown in the air can be described as a function of the amount of time the ball is in the air.</p></li><li><p>The cost of mailing a package is a function of the weight of the package.</p></li></ul>
+<div class="def-box"><div class="box-title">Definition</div><div class="box-body"><p>A <strong>function</strong> $f$ consists of a set of inputs, a set of outputs, and a rule for assigning each input to exactly one output. The set of inputs is called the <strong>domain</strong> of the function. The set of outputs is called the <strong>range</strong> of the function.</p></div></div>
+<div class="example-box"><div class="box-title">Example 1: Squaring function</div><div class="box-body"><p>Consider the function $f$ where the domain is the set of all real numbers and the rule is to square the input. Then, the input $x=3$ is assigned to the output $3^2 = 9$.</p>
+<p>Since every nonnegative real number has a real square root, every nonnegative number is in the range of this function. Negative numbers are not in the range. Hence, the range is the set of nonnegative real numbers.</p></div></div>
+<p>For a general function $f$ with domain $D$, we often denote:</p>
+<p>\[
+x = \text{input (independent variable)}, \quad y = \text{output (dependent variable)}, \quad y = f(x)
+\]</p>
+<p>For example, the squaring function can be written as $f(x) = x^2$.</p>
+<section id="visualizing-a-function" class="content-section level-2">
+<h3 class="section-heading">Visualizing a Function</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+<p><strong>A function can be visualized as an input/output device.</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div>
+<p><strong>A function maps every element in the domain to exactly one element in the range. Two inputs may map to the same output.</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+<p><strong>Graph of a function $f$ with domain $\{1,2,3\}$ and range $\{1,2\}$.</strong></p>
+</section>
+<section id="graph-of-a-function" class="content-section level-2">
+<h3 class="section-heading">Graph of a Function</h3>
+<p>A function can also be visualized by plotting points $(x, y)$ where $y=f(x)$ in the coordinate plane.</p>
+<div class="example-box"><div class="box-title">Example 2</div><div class="box-body"><p>Consider $f(x) = 3 - x$ with domain $D = \{1,2,3\}$. The graph consists of points $(x, f(x))$:</p>
+<p>\[
+(1,2), (2,1), (3,0)
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"><div class="figure-caption">Graph of the function $f$ with $f(x)=3-x$ and domain $\{1,2,3\}$.</div></div></div></div>
+</section>
+<section id="domain-and-range" class="content-section level-2">
+<h3 class="section-heading">Domain and Range</h3>
+<p>Every function has a domain. If a function is given by an equation with no specified domain, the domain is taken to be all real numbers for which $f(x)$ is real.</p>
+<ul><li><p>For $f(x)=x^2$, the domain is all real numbers.</p></li><li><p>For $f(x)=\sqrt{x}$, the domain is all nonnegative real numbers.</p></li></ul>
+<p>We can describe infinite sets using <strong>set-builder</strong> or <strong>interval notation</strong>:</p>
+<p>\[
+\{x \mid 1 &lt; x &lt; 5\} = (1,5)
+\]</p>
+<p>\[
+[1,5] = \{x \mid 1 \le x \le 5\}
+\]</p>
+<p>\[
+[0,\infty) = \{x \mid 0 \le x\}
+\]</p>
+<p>\[
+(-\infty,0] = \{x \mid x \le 0\}
+\]</p>
+<p>\[
+(-\infty, \infty) = \{x \mid x \text{ is any real number}\}
+\]</p>
+</section>
+<section id="piecewise-defined-functions" class="content-section level-2">
+<h3 class="section-heading">Piecewise-Defined Functions</h3>
+<p>Some functions are defined by different rules for different parts of the domain. These are called piecewise-defined functions:</p>
+<p>\[
+f(x) =
+\begin{cases}
+3x+1, &amp; x \ge 2 \\
+x^2, &amp; x &lt; 2
+\end{cases}
+\]</p>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p>Evaluate $f(x)$ for $x=5$ and $x=-1$:</p>
+<p>\[
+f(5) = 3(5)+1 = 16, \quad f(-1) = (-1)^2 = 1
+\]</p></div></div>
+</section>
+<section id="open-and-closed-intervals" class="content-section level-2">
+<h3 class="section-heading">Open and Closed Intervals</h3>
+<div class="concept-box"><div class="box-title">Open and Closed Intervals</div><div class="box-body"><p>In mathematics, an <strong>interval</strong> is a set of real numbers lying between two endpoints. Intervals can be classified as:</p>
+<ul><li><p><strong>Open interval</strong> $(a,b)$: Includes all numbers strictly between $a$ and $b$, but <strong>does not include</strong> the endpoints $a$ and $b$.  
+    Example: $(1,5) = \{ x \mid 1 &lt; x &lt; 5 \}$.</p></li><li><p><strong>Closed interval</strong> $[a,b]$: Includes all numbers between $a$ and $b$, <strong>including</strong> the endpoints $a$ and $b$.  
+    Example: $[1,5] = \{ x \mid 1 \le x \le 5 \}$.</p></li><li><p><strong>Half-open (or half-closed) intervals</strong>:</p>
+<ul><li><p>$[a,b)$ includes $a$ but not $b$.</p></li><li><p>$(a,b]$ includes $b$ but not $a$.</p></li></ul></li></ul></div></div>
+</section>
+</section>
+<section id="classes-of-functions" class="content-section level-1">
+<h2 class="section-heading">Classes of Functions</h2>
+<p>Functions can be categorized into several types depending on their properties and rules of assignment. Understanding these classes helps in analyzing functions effectively.</p>
+<div class="concept-box"><div class="box-title">Concept: Classes of Functions</div><div class="box-body"><p>Some common classes of functions include:</p></div></div>
+<section id="1-linear-functions" class="content-section level-2">
+<h3 class="section-heading">1. Linear Functions</h3>
+<p>A <strong>linear function</strong> has the form:
+\[
+f(x) = mx + b
+\]
+where $m$ and $b$ are real constants. The graph of a linear function is a straight line.</p>
+<div class="example-box"><div class="box-title">Example 4</div><div class="box-body"><p>{}
+Consider $f(x) = 2x + 1$.</p>
+<p><strong>Domain:</strong> all real numbers $\mathbb{R}$  
+<strong>Range:</strong> all real numbers $\mathbb{R}$</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div></div></div>
+</section>
+<section id="2-quadratic-functions" class="content-section level-2">
+<h3 class="section-heading">2. Quadratic Functions</h3>
+<p>A <strong>quadratic function</strong> has the form:
+\[
+f(x) = ax^2 + bx + c, \quad a \neq 0
+\]
+Its graph is a parabola.</p>
+<div class="example-box"><div class="box-title">Example 5</div><div class="box-body"><p>{}
+Consider $f(x) = x^2 - 2x + 1$.  
+<strong>Domain:</strong> all real numbers $\mathbb{R}$  
+<strong>Range:</strong> $[0, \infty)$  <br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div></div></div>
+</section>
+<section id="3-polynomial-functions" class="content-section level-2">
+<h3 class="section-heading">3. Polynomial Functions</h3>
+<p>A <strong>polynomial function</strong> is of the form:
+\[
+f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+\]
+where $a_i$ are constants and $n$ is a non-negative integer.</p>
+<div class="example-box"><div class="box-title">Example 6</div><div class="box-body"><p>{}
+Consider $f(x) = x^3 - 3x^2 + 2x$.</p>
+<p><strong>Domain:</strong> all real numbers $\mathbb{R}$  
+<strong>Range:</strong> all real numbers $\mathbb{R}$</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div></div></div>
+</section>
+<section id="4-rational-functions" class="content-section level-2">
+<h3 class="section-heading">4. Rational Functions</h3>
+<p>A <strong>rational function</strong> is the ratio of two polynomials:
+\[
+f(x) = \frac{P(x)}{Q(x)}, \quad Q(x) \neq 0
+\]</p>
+<div class="example-box"><div class="box-title">Example 7</div><div class="box-body"><p>{}
+Consider $f(x) = \frac{x+1}{x-1}$.</p>
+<p><strong>Domain:</strong> all real numbers except $x=1$  
+<strong>Range:</strong> all real numbers except $y=1$</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div></div></div>
+</section>
+<section id="5-exponential-functions" class="content-section level-2">
+<h3 class="section-heading">5. Exponential Functions</h3>
+<p>An <strong>exponential function</strong> has the form:
+\[
+f(x) = a^x, \quad a &gt; 0, a \neq 1
+\]</p>
+<div class="example-box"><div class="box-title">Example 8</div><div class="box-body"><p>{}
+Consider $f(x) = 2^x$.  
+<strong>Domain:</strong> all real numbers $\mathbb{R}$  
+<strong>Range:</strong> $(0, \infty)$  <br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div></div></div>
+</section>
+<section id="6-logarithmic-functions" class="content-section level-2">
+<h3 class="section-heading">6. Logarithmic Functions</h3>
+<p>A <strong>logarithmic function</strong> is the inverse of an exponential function:
+\[
+f(x) = \log_a x, \quad a &gt; 0, a \neq 1
+\]</p>
+<div class="example-box"><div class="box-title">Example 9</div><div class="box-body"><p>{}
+Consider $f(x) = \log_2 x$.  
+<strong>Domain:</strong> $(0, \infty)$  
+<strong>Range:</strong> all real numbers $\mathbb{R}$  <br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div></div></div>
+</section>
+<section id="7-trigonometric-functions" class="content-section level-2">
+<h3 class="section-heading">7. Trigonometric Functions</h3>
+<p>Trigonometric functions like sine, cosine, and tangent are fundamental periodic functions.</p>
+<div class="example-box"><div class="box-title">Example 10</div><div class="box-body"><p>{}
+Consider $f(x) = \sin x$.  
+<strong>Domain:</strong> all real numbers $\mathbb{R}$  
+<strong>Range:</strong> $[-1,1]$  <br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div></div></div>
+</section>
+<section id="8-absolute-value-function" class="content-section level-2">
+<h3 class="section-heading">8. Absolute Value Function</h3>
+<div class="def-box"><div class="box-title">Definition: Absolute Value Function</div><div class="box-body"><p>The <strong>absolute value function</strong> $f(x) = |x|$ is defined as
+\[
+f(x) =
+\begin{cases}
+-x, &amp; x &lt; 0,\\
+x, &amp; x \ge 0.
+\end{cases}
+\]</p></div></div>
+<ul><li><p>The function outputs the distance of $x$ from 0 on the real number line.</p></li><li><p>For negative inputs, it returns $-x$ (makes it positive).</p></li><li><p>For zero and positive inputs, it returns $x$ (same value).</p></li></ul>
+<div class="example-box"><div class="box-title">Example 11</div><div class="box-body"><p>{}
+Graphing $f(x) = |x|$<br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div></div></div>
+</section>
+<section id="properties-of-x" class="content-section level-2">
+<h3 class="section-heading">Properties of $|x|$</h3>
+<div class="concept-box"><div class="box-title">Properties</div><div class="box-body"><ul><li><p>$|x| \ge 0$ for all $x \in \mathbb{R}$.</p></li><li><p>$|x| = 0$ if and only if $x = 0$.</p></li><li><p>$|ab| = |a||b|$, $|a/b| = |a|/|b|$ for $b\neq 0$.</p></li><li><p>$|a+b| \le |a| + |b|$ (Triangle Inequality).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 12</div><div class="box-body"><p>{Evaluating $|x|$}
+\[
+f(-5) = |-5| = 5, \quad f(3) = |3| = 3, \quad f(0) = |0| = 0
+\]</p></div></div>
+</section>
+</section>
+<section id="types-of-functions" class="content-section level-1">
+<h2 class="section-heading">Types of Functions</h2>
+<p>Functions can be classified based on how elements in the domain and range are related. Here are some important types:</p>
+<div class="concept-box"><div class="box-title">Concept: Types of Functions</div><div class="box-body"><ul><li><p><strong>One-to-One (Injective)</strong>: Each element of the domain maps to a <em>unique</em> element of the range.</p></li><li><p><strong>Onto (Surjective)</strong>: Every element of the range has at least one element of the domain mapping to it.</p></li><li><p><strong>Bijective</strong>: Function is both one-to-one and onto. Such functions have inverses.</p></li><li><p><strong>Many-to-One</strong>: Two or more elements of the domain map to the same element in the range.</p></li><li><p><strong>Constant Function</strong>: All inputs map to the same output.</p></li><li><p><strong>Identity Function</strong>: Each element maps to itself.</p></li></ul></div></div>
+<section id="1-one-to-one-function-injective" class="content-section level-2">
+<h3 class="section-heading">1. One-to-One Function (Injective)</h3>
+<div class="example-box"><div class="box-title">Example 13</div><div class="box-body"><p>{One-to-One Function}
+Consider $f(x) = 2x + 1$.</p>
+<p><strong>Domain:</strong> $\mathbb{R}$, <strong>Range:</strong> $\mathbb{R}$</p>
+<p>Check horizontal line test: every horizontal line intersects the graph exactly once, so $f$ is one-to-one.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div></div></div>
+</section>
+<section id="2-onto-function-surjective" class="content-section level-2">
+<h3 class="section-heading">2. Onto Function (Surjective)</h3>
+<div class="example-box"><div class="box-title">Example 14</div><div class="box-body"><p>{Onto Function}
+Consider $f(x) = x^3$.</p>
+<p><strong>Domain:</strong> $\mathbb{R}$, <strong>Range:</strong> $\mathbb{R}$  
+Every $y \in \mathbb{R}$ has a solution $x = \sqrt[3]{y}$, so $f$ is onto.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div></div></div>
+</section>
+<section id="3-bijective-function" class="content-section level-2">
+<h3 class="section-heading">3. Bijective Function</h3>
+<div class="example-box"><div class="box-title">Example 15</div><div class="box-body"><p>{Bijective Function}
+Consider $f(x) = x + 3$.</p>
+<p>- One-to-one: Yes, each input gives unique output.  
+- Onto: Yes, every $y \in \mathbb{R}$ is covered.</p>
+<p>Hence, $f$ is bijective and has an inverse $f^{-1}(x) = x - 3$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"></div></div></div>
+</section>
+<section id="4-many-to-one-function" class="content-section level-2">
+<h3 class="section-heading">4. Many-to-One Function</h3>
+<div class="example-box"><div class="box-title">Example 16</div><div class="box-body"><p>{Many-to-One Function}
+Consider $f(x) = x^2$.</p>
+<p>- $f(2) = f(-2) = 4$  
+- Multiple inputs map to same output, so it is many-to-one.  
+- Graph fails horizontal line test.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div></div></div>
+</section>
+<section id="5-constant-function" class="content-section level-2">
+<h3 class="section-heading">5. Constant Function</h3>
+<div class="example-box"><div class="box-title">Example 17</div><div class="box-body"><p>{Constant Function}
+Consider $f(x) = 5$.</p>
+<p>- All inputs map to the same output.  
+- Graph is a horizontal line.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div></div></div>
+</section>
+<section id="6-identity-function" class="content-section level-2">
+<h3 class="section-heading">6. Identity Function</h3>
+<div class="example-box"><div class="box-title">Example 18</div><div class="box-body"><p>{Identity Function}
+Consider $f(x) = x$.</p>
+<p>- Each input maps to itself.  
+- Graph is a straight line passing through the origin with slope 1.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="inverse-function" class="content-section level-1">
+<h2 class="section-heading">Inverse Function</h2>
+<p>An inverse function reverses the operation done by a particular function. Whatever a function does, the inverse function undoes it.</p>
+<div class="def-box"><div class="box-title">Definition: Inverse Function</div><div class="box-body"><p>Given a function $f$ with domain $D$ and range $R$, its <strong>inverse function</strong> (if it exists) is the function $f^{-1}$ with domain $R$ and range $D$ such that
+\[
+f^{-1}(y) = x \quad \text{if and only if} \quad f(x) = y.
+\]
+Equivalently,
+\[
+f^{-1}(f(x)) = x \quad \text{for all } x \in D, \quad f(f^{-1}(y)) = y \quad \text{for all } y \in R.
+\]</p></div></div>
+<section id="example-of-an-inverse-function" class="content-section level-2">
+<h3 class="section-heading">Example of an Inverse Function</h3>
+<div class="example-box"><div class="box-title">Example 19</div><div class="box-body"><p>{Finding an Inverse}
+Let $f(x) = x^3 + 4$. Solve $y = x^3 + 4$ for $x$:
+\[
+x = \sqrt[3]{y - 4}
+\]
+Define $f^{-1}(y) = \sqrt[3]{y - 4}$.</p>
+<p>Verification:
+\[
+f^{-1}(f(x)) = \sqrt[3]{(x^3 + 4) - 4} = x
+\]</p></div></div>
+</section>
+<section id="one-to-one-functions" class="content-section level-2">
+<h3 class="section-heading">One-to-One Functions</h3>
+<div class="def-box"><div class="box-title">Definition: One-to-One Function</div><div class="box-body"><p>A function $f$ is <strong>one-to-one</strong> if
+\[
+f(x_1) \neq f(x_2) \quad \text{whenever} \quad x_1 \neq x_2
+\]</p></div></div>
+<p><strong>Horizontal Line Test:</strong> A function is one-to-one if every horizontal line intersects its graph at most once.</p>
+<div class="example-box"><div class="box-title">Example 20</div><div class="box-body"><p>{}</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig019.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig020.png" alt="diagram"></div></div></div>
+</section>
+<section id="finding-an-inverse-function" class="content-section level-2">
+<h3 class="section-heading">Finding an Inverse Function</h3>
+<p><strong>Strategy:</strong> Solve $y=f(x)$ for $x$, then interchange $x$ and $y$:
+\[
+y = f^{-1}(x)
+\]</p>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p>{Finding an Inverse}
+Find the inverse of $f(x) = 3x - 4$.</p>
+<p><strong>Solution:</strong>
+\[
+y = 3x - 4 \implies x = \frac{y+4}{3} \implies f^{-1}(x) = \frac{x+4}{3}
+\]</p>
+<p><strong>Domain and Range:</strong> Both are $\mathbb{R}$. Verification:
+\[
+f^{-1}(f(x)) = \frac{3x-4+4}{3} = x
+\]</p></div></div>
+</section>
+<section id="graphing-inverse-functions" class="content-section level-2">
+<h3 class="section-heading">Graphing Inverse Functions</h3>
+<div class="concept-box"><div class="box-title">Concept: Graph of Inverse Function</div><div class="box-body"><p>The graph of $f^{-1}$ is the reflection of the graph of $f$ about the line $y=x$.</p>
+<p>If $(a,b)$ is on $f$, then $(b,a)$ is on $f^{-1}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p>{Sketching Graph of an Inverse}</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig021.png" alt="diagram"></div></div></div>
+</section>
+<section id="restricting-domains" class="content-section level-2">
+<h3 class="section-heading">Restricting Domains</h3>
+<p>Some functions are not one-to-one over their entire domain. By restricting the domain, we can define an inverse.</p>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p>{Restricting Domain of $f(x)=x^2$}
+\[
+g(x) = x^2, \quad x \ge 0 \implies g^{-1}(x) = \sqrt{x}, \quad \text{Domain } [0, \infty)
+\]</p>
+<p>\[
+h(x) = x^2, \quad x \le 0 \implies h^{-1}(x) = -\sqrt{x}, \quad \text{Domain } (-\infty, 0]
+\]</p></div></div>
+</section>
+</section>
+<section id="composite-functions" class="content-section level-1">
+<h2 class="section-heading">Composite Functions</h2>
+<div class="def-box"><div class="box-title">Definition: Composite Function</div><div class="box-body"><p>Given two functions $f$ and $g$, the <strong>composite function</strong> $f \circ g$ is defined by
+\[
+(f \circ g)(x) = f(g(x))
+\]
+for all $x$ in the domain of $g$ such that $g(x)$ lies in the domain of $f$.</p></div></div>
+<section id="example-of-composite-function" class="content-section level-2">
+<h3 class="section-heading">Example of Composite Function</h3>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p>{Composite Function Example}
+Let $f(x) = x^2$ and $g(x) = x+1$. Then,
+\[
+(f \circ g)(x) = f(g(x)) = f(x+1) = (x+1)^2
+\]
+\[
+(g \circ f)(x) = g(f(x)) = g(x^2) = x^2 + 1
+\]
+Notice that in general, $f \circ g \neq g \circ f$.</p></div></div>
+</section>
+<section id="rules-of-composite-functions" class="content-section level-2">
+<h3 class="section-heading">Rules of Composite Functions</h3>
+<div class="concept-box"><div class="box-title">Rules of Composite Functions</div><div class="box-body"><ol><li><p><strong>Associative Law:</strong> $(f \circ g) \circ h = f \circ (g \circ h)$</p></li><li><p><strong>Domain Rule:</strong> The domain of $f \circ g$ consists of all $x$ in the domain of $g$ such that $g(x)$ is in the domain of $f$.</p></li><li><p><strong>Non-commutative:</strong> In general, $f \circ g \neq g \circ f$.</p></li></ol></div></div>
+</section>
+<section id="example-associative-law" class="content-section level-2">
+<h3 class="section-heading">Example: Associative Law</h3>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p>{Associativity}
+Let $f(x) = x^2$, $g(x) = x+1$, and $h(x) = 2x$.</p>
+<p>Compute $(f \circ g) \circ h$:
+\[
+(f \circ g) \circ h (x) = f(g(h(x))) = f((2x)+1) = (2x+1)^2
+\]</p>
+<p>Compute $f \circ (g \circ h)$:
+\[
+f \circ (g \circ h)(x) = f(g(h(x))) = f((2x)+1) = (2x+1)^2
+\]</p>
+<p>Hence, $(f \circ g) \circ h = f \circ (g \circ h)$</p></div></div>
+</section>
+<section id="domain-of-composite-functions" class="content-section level-2">
+<h3 class="section-heading">Domain of Composite Functions</h3>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p>{Domain Example}
+Let $f(x) = \sqrt{x}$, $g(x) = x-1$.</p>
+<p>Then $(f \circ g)(x) = f(g(x)) = \sqrt{x-1}$.</p>
+<p><strong>Domain:</strong> $x-1 \ge 0 \implies x \ge 1$, so the domain is $[1, \infty)$</p></div></div>
+</section>
+<section id="graphical-representation" class="content-section level-2">
+<h3 class="section-heading">Graphical Representation</h3>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p>{Graph of Composite Function}</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig022.png" alt="diagram"></div>
+<ul><li><p>Blue: $(f \circ g)(x) = (x+1)^2$</p></li><li><p>Green dashed: $g(x) = x+1$</p></li><li><p>Red dashed: $f(x) = x^2$</p></li></ul></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Limits &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Calculus &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

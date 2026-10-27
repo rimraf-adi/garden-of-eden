@@ -83,32 +83,25 @@ export default async function PathPage({ params }: Props) {
             </div>
 
             {book && (
-              <div className="space-y-4">
-                {book.chapters.map((ch) => (
-                  <Link
-                    key={ch.slug}
-                    href={`/books/${book.id}/${ch.slug}`}
-                    className="group block p-6 rounded-2xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 backdrop-blur-md shadow-lg shadow-zinc-950/5 hover:border-amber-400/60 transition-all space-y-3"
-                  >
-                    <div className="flex items-center justify-between font-mono text-xs">
-                      <span className="font-bold text-amber-700 dark:text-amber-400">
-                        {/^[A-Z]$/.test(ch.label) ? `APPENDIX ${ch.label}` : `CHAPTER ${ch.label.padStart(2, '0')}`}
-                        {ch.tag ? <span className="ml-2 font-normal text-zinc-400">· {ch.tag}</span> : null}
+              <div className="space-y-1.5">
+                {book.chapters.map((ch, i) => (
+                  <div key={ch.slug}>
+                    {ch.tag && ch.tag !== book.chapters[i - 1]?.tag && (
+                      <h2 className={`font-mono text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 ${i > 0 ? 'pt-6' : ''} pb-2`}>{ch.tag}</h2>
+                    )}
+                    <Link
+                      href={`/books/${book.id}/${ch.slug}`}
+                      className="group flex items-baseline gap-4 rounded-xl border border-white/80 dark:border-white/10 bg-white/70 dark:bg-zinc-900/50 px-5 py-3.5 transition-colors hover:border-amber-400/60"
+                    >
+                      <span className="w-8 shrink-0 font-mono text-xs font-bold text-amber-700 dark:text-amber-400">
+                        {/^[A-Z]$/.test(ch.label) ? ch.label : ch.label.padStart(2, '0')}
                       </span>
-                      <span className="text-zinc-400">{ch.readingTimeMin} min read</span>
-                    </div>
-                    <h3 className="font-serif text-xl font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
-                      <MathText x={ch.title} />
-                    </h3>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2"><MathText x={ch.summary} /></p>
-                    <div className="pt-1 flex flex-wrap gap-1.5 font-mono text-[11px]">
-                      {ch.sections.slice(0, 4).map((sec) => (
-                        <span key={sec.id + sec.title} className="px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/30 text-zinc-700 dark:text-zinc-300">
-                          {sec.id} <MathText x={sec.title} />
-                        </span>
-                      ))}
-                    </div>
-                  </Link>
+                      <span className="flex-1 font-serif text-lg text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-amber-700 dark:group-hover:text-amber-300">
+                        <MathText x={ch.title} />
+                      </span>
+                      <span className="shrink-0 font-mono text-xs text-zinc-400">{ch.readingTimeMin} min</span>
+                    </Link>
+                  </div>
                 ))}
               </div>
             )}

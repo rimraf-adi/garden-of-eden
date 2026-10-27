@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dimensionality Reduction — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Unsupervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Unsupervised Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-unsupervised-learning" class="toc-link" data-slug="types-of-unsupervised-learning">Types of Unsupervised Learning</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#clustering-example" class="toc-link" data-slug="clustering-example">Clustering Example</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dimensionality-reduction-example" class="toc-link" data-slug="dimensionality-reduction-example">Dimensionality Reduction Example</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Clustering Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#example-customer-purchase-data" class="toc-link" data-slug="example-customer-purchase-data">Example: Customer Purchase Data</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering" class="toc-link" data-slug="types-of-clustering">Types of Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-hard-clustering" class="toc-link" data-slug="1-hard-clustering">1. Hard Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-soft-clustering" class="toc-link" data-slug="2-soft-clustering">2. Soft Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering-methods" class="toc-link" data-slug="types-of-clustering-methods">Types of Clustering Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-centroid-based-clustering-partitioning-methods" class="toc-link" data-slug="1-centroid-based-clustering-partitioning-methods">1. Centroid-based Clustering (Partitioning Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-density-based-clustering-model-based-methods" class="toc-link" data-slug="2-density-based-clustering-model-based-methods">2. Density-based Clustering (Model-based Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#3-connectivity-based-clustering-hierarchical-clustering" class="toc-link" data-slug="3-connectivity-based-clustering-hierarchical-clustering">3. Connectivity-based Clustering (Hierarchical Clustering)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#4-distribution-based-clustering" class="toc-link" data-slug="4-distribution-based-clustering">4. Distribution-based Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#5-fuzzy-clustering" class="toc-link" data-slug="5-fuzzy-clustering">5. Fuzzy Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#partition-based-clustering" class="toc-link" data-slug="partition-based-clustering">Partition-based Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#k-means-clustering" class="toc-link" data-slug="k-means-clustering">K-means Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#k-medoids-clustering" class="toc-link" data-slug="k-medoids-clustering">K-medoids Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#hierarchical-clustering" class="toc-link" data-slug="hierarchical-clustering">Hierarchical Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#agglomerative-bottom-up-approach" class="toc-link" data-slug="agglomerative-bottom-up-approach">Agglomerative (Bottom-Up) Approach</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#single-linkage-method" class="toc-link" data-slug="single-linkage-method">Single-Linkage Method</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#complete-multiple-linkage-method" class="toc-link" data-slug="complete-multiple-linkage-method">Complete/Multiple-Linkage Method</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#divisive-top-down-approach" class="toc-link" data-slug="divisive-top-down-approach">Divisive (Top-Down) Approach</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Dimensionality Reduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#principal-component-analysis-pca" class="toc-link" data-slug="principal-component-analysis-pca">Principal Component Analysis (PCA)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#introduction-and-motivation" class="toc-link" data-slug="introduction-and-motivation">Introduction and Motivation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#visualization-of-pca-projection" class="toc-link" data-slug="visualization-of-pca-projection">Visualization of PCA Projection</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#mathematical-formulation" class="toc-link" data-slug="mathematical-formulation">Mathematical Formulation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 3</div><h1>Dimensionality Reduction</h1></div>
+<section id="principal-component-analysis-pca" class="content-section level-1">
+<h2 class="section-heading">Principal Component Analysis (PCA)</h2>
+
+<section id="introduction-and-motivation" class="content-section level-2">
+<h3 class="section-heading">Introduction and Motivation</h3>
+<p>Dimensionality reduction is crucial in machine learning when dealing with high-dimensional datasets. High dimensions lead to several challenges:</p>
+<ul><li><p><strong>Curse of dimensionality:</strong> Distances become less meaningful as dimensionality increases.</p></li><li><p><strong>Visualization:</strong> Difficult to visualize data beyond 3 dimensions.</p></li><li><p><strong>Computational cost:</strong> More features mean more computation in ML models.</p></li><li><p><strong>Redundancy:</strong> Many features are correlated and carry overlapping information.</p></li></ul>
+<div class="concept-box"><div class="box-title">PCA Concept</div><div class="box-body"><p><strong>Idea:</strong> PCA transforms the original correlated features into a smaller set of uncorrelated variables called <strong>principal components (PCs)</strong> while retaining most of the variance in the data.</p>
+<p><strong>Benefits:</strong></p>
+<ul><li><p>Reduces dimensionality and computational cost.</p></li><li><p>Removes feature correlations.</p></li><li><p>Preserves maximum variance.</p></li></ul></div></div>
+</section>
+<section id="visualization-of-pca-projection" class="content-section level-2">
+<h3 class="section-heading">Visualization of PCA Projection</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div>
+</section>
+<section id="mathematical-formulation" class="content-section level-2">
+<h3 class="section-heading">Mathematical Formulation</h3>
+<p><strong>Setup Assuming population data:</strong><br>
+Let there be $n$ data points and $d$ features.<br></p>
+<p>\[
+X =
+\begin{bmatrix}
+x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1d} \\
+x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2d} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1} &amp; x_{n2} &amp; \cdots &amp; x_{nd}
+\end{bmatrix}
+\in \mathbb{R}^{n \times d}
+\]</p>
+<p>Here,
+\[
+i = 1,\dots,n \quad (\text{samples}), \qquad
+j = 1,\dots,d \quad (\text{features})
+\]</p>
+<p>—</p>
+<p><strong>Step 1: Data Standardization (Zero Mean, Unit Variance)</strong></p>
+<p>Mean of feature $j$:
+\[
+\mu_j = \frac{1}{n} \sum_{i=1}^{n} x_{ij}
+\]</p>
+<p>Standard deviation of feature $j$:
+\[
+\sigma_j = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_{ij} - \mu_j)^2}
+\]</p>
+<p>Standardized data:
+\[
+z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j}
+\]</p>
+<p>—</p>
+<p><strong>Step 2: Standardized Data Matrix</strong></p>
+<p>\[
+Z =
+\begin{bmatrix}
+z_{11} &amp; z_{12} &amp; \cdots &amp; z_{1d} \\
+z_{21} &amp; z_{22} &amp; \cdots &amp; z_{2d} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+z_{n1} &amp; z_{n2} &amp; \cdots &amp; z_{nd}
+\end{bmatrix}
+\in \mathbb{R}^{n \times d}
+\]</p>
+<p>—</p>
+<p><strong>Step 3: Covariance Matrix</strong></p>
+<p>\[
+C = \frac{1}{n} Z^{T} Z
+\quad \in \mathbb{R}^{d \times d}
+\]</p>
+<p>Properties:
+\[
+C = C^T \quad (\text{symmetric})
+\]
+\[
+\lambda_i \ge 0 \quad (\text{positive semi-definite})
+\]</p>
+<p>—</p>
+<p><strong>Step 4: Eigenvalues and Eigenvectors</strong></p>
+<p>Solve:
+\[
+|C - \lambda I| = 0
+\]</p>
+<p>\[
+C v_i = \lambda_i v_i
+\]</p>
+<p>Eigenvalues ordered as:
+\[
+\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_d \ge 0
+\]</p>
+<p>Interpretation:
+\[
+\lambda_i \rightarrow \text{variance along direction } v_i
+\]
+\[
+v_i \rightarrow \text{principal axis}
+\]</p>
+<p>—</p>
+<p><strong>Step 5: Selection of Principal Components</strong></p>
+<p>Choose top $k$ eigenvectors corresponding to largest eigenvalues.</p>
+<p>\[
+W = [v_1 \; v_2 \; \cdots \; v_k] \in \mathbb{R}^{d \times k}
+\]</p>
+<p>Explained variance ratio:
+\[
+\text{Variance explained by } \lambda_i
+=
+\frac{\lambda_i}{\sum_{j=1}^{d} \lambda_j}
+\]</p>
+<p>—</p>
+<p><strong>Step 6: Projection (Dimensionality Reduction)</strong></p>
+<p>\[
+Y = Z W
+\]</p>
+<p>\[
+Y \in \mathbb{R}^{n \times k}
+\]</p>
+<p>This gives the representation of data in the new principal component space.</p>
+<div class="concept-box"><div class="box-title">Key Notes</div><div class="box-body"><ul><li><p>Principal components are orthogonal.</p></li><li><p>First PC captures maximum variance.</p></li><li><p>Total variance in data = sum of eigenvalues.</p></li><li><p>Fraction of variance captured by $i$-th PC: $\lambda_i / \sum_j \lambda_j$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 9</div><div class="box-body"><p><strong>Given Data</strong></p>
+<p>\[
+X =
+\begin{bmatrix}
+2 &amp; 0 \\
+0 &amp; 1 \\
+3 &amp; 1 \\
+4 &amp; 3
+\end{bmatrix}
+\in \mathbb{R}^{4 \times 2}
+\]</p>
+<p>Here, $n = 4$ samples and $d = 2$ features.</p>
+<p>—</p>
+<p><strong>Step 1: Compute Mean and Standard Deviation</strong></p>
+<p>Mean of each feature:
+\[
+\mu_1 = \frac{2+0+3+4}{4} = 2.25,
+\quad
+\mu_2 = \frac{0+1+1+3}{4} = 1.25
+\]</p>
+<p>Standard deviation:
+\[
+\sigma_1 = \sqrt{\frac{1}{4}\left[(2-2.25)^2 + (0-2.25)^2 + (3-2.25)^2 + (4-2.25)^2\right]} = 1.479
+\]</p>
+<p>\[
+\sigma_2 = \sqrt{\frac{1}{4}\left[(0-1.25)^2 + (1-1.25)^2 + (1-1.25)^2 + (3-1.25)^2\right]} = 1.090
+\]</p>
+<p>—</p>
+<p><strong>Step 2: Standardization</strong></p>
+<p>\[
+z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j}
+\]</p>
+<p>\[
+Z =
+\begin{bmatrix}
+-0.17 &amp; -1.15 \\
+-1.52 &amp; -0.23 \\
+0.51 &amp; -0.23 \\
+1.18 &amp; 1.61
+\end{bmatrix}
+\in \mathbb{R}^{4 \times 2}
+\]</p>
+<p>—</p>
+<p><strong>Step 3: Covariance Matrix</strong></p>
+<p>\[
+C = \frac{1}{n} Z^T Z
+\]</p>
+<p>\[
+C =
+\begin{bmatrix}
+1.00 &amp; 0.69 \\
+0.69 &amp; 1.00
+\end{bmatrix}
+\]</p>
+<p>—</p>
+<p><strong>Step 4: Eigenvalues and Eigenvectors</strong></p>
+<p>\[
+|C - \lambda I| = 0
+\]</p>
+<p>\[
+\lambda_1 = 1.69, \quad \lambda_2 = 0.31
+\]</p>
+<p>Corresponding eigenvectors:
+\[
+v_1 = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix},
+\quad
+v_2 = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\ -1
+\end{bmatrix}
+\]</p>
+<p>—</p>
+<p><strong>Step 5: Selection of Principal Component</strong></p>
+<p>\[
+\frac{\lambda_1}{\lambda_1 + \lambda_2} = \frac{1.69}{2} = 84.5\%
+\]</p>
+<p>Select $k = 1$ principal component.</p>
+<p>\[
+W = v_1 =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+1 \\ 1
+\end{bmatrix}
+\]</p>
+<p>—</p>
+<p><strong>Step 6: Projection</strong></p>
+<p>\[
+Y = Z W
+\]</p>
+<p>\[
+Y =
+\begin{bmatrix}
+-0.93 \\
+-1.23 \\
+0.20 \\
+1.96
+\end{bmatrix}
+\in \mathbb{R}^{4 \times 1}
+\]</p>
+<p>—</p>
+<p><strong>Final Result</strong></p>
+<p>The original 2D data is reduced to 1D while preserving maximum variance.</p></div></div>
+<div class="example-box"><div class="box-title">Example 10</div><div class="box-body"><p><strong>Given Data</strong></p>
+<p>\[
+X =
+\begin{bmatrix}
+2 &amp; 2 &amp; 3 \\
+3 &amp; 3 &amp; 4 \\
+4 &amp; 4 &amp; 5 \\
+5 &amp; 5 &amp; 6
+\end{bmatrix}
+\in \mathbb{R}^{4 \times 3}
+\]</p>
+<p>The three features $X_1, X_2, X_3$ are highly correlated.</p>
+<p>—</p>
+<p><strong>Step 1: Standardization (Mean Centering)</strong></p>
+<p>Compute the mean of each feature:
+\[
+\mu =
+\begin{bmatrix}
+3.5 &amp; 3.5 &amp; 4.5
+\end{bmatrix}
+\]</p>
+<p>Centered data matrix:
+\[
+Z = X - \mu =
+\begin{bmatrix}
+-1.5 &amp; -1.5 &amp; -1.5 \\
+-0.5 &amp; -0.5 &amp; -0.5 \\
+0.5 &amp; 0.5 &amp; 0.5 \\
+1.5 &amp; 1.5 &amp; 1.5
+\end{bmatrix}
+\]</p>
+<p>—</p>
+<p><strong>Step 2: Covariance Matrix</strong></p>
+<p>\[
+C = \frac{1}{n} Z^T Z
+\]</p>
+<p>Since all features move together, the covariance matrix has large off-diagonal entries:
+\[
+C =
+\begin{bmatrix}
+\sigma^2 &amp; \sigma^2 &amp; \sigma^2 \\
+\sigma^2 &amp; \sigma^2 &amp; \sigma^2 \\
+\sigma^2 &amp; \sigma^2 &amp; \sigma^2
+\end{bmatrix}
+\]</p>
+<p>This indicates strong positive correlation among $X_1, X_2, X_3$.</p>
+<p>—</p>
+<p><strong>Step 3: Eigenvalue Decomposition</strong></p>
+<p>Solve:
+\[
+C v = \lambda v
+\]</p>
+<p>The dominant eigenvector is:
+\[
+v_1 = \frac{1}{\sqrt{3}}
+\begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}
+\]</p>
+<p>This direction captures maximum variance.</p>
+<p>Remaining eigenvectors are orthogonal to $v_1$ and correspond to very small eigenvalues, capturing negligible variance.</p>
+<p>—</p>
+<p><strong>Interpretation</strong></p>
+<p>\[
+\lambda_1 \gg \lambda_2, \lambda_3
+\]</p>
+<p>Most of the variance lies along the direction $(1,1,1)$.</p>
+<p>Therefore, the original 3D data can be projected onto a single principal component:</p>
+<p>\[
+Y = Z v_1
+\]</p>
+<p>This reduces the data from $\mathbb{R}^3$ to $\mathbb{R}^1$ while preserving most of the information.</p>
+<p>—</p>
+<p><strong>Conclusion</strong></p>
+<p>PCA effectively reduces the dimensionality from 3 to 1 due to high correlation among features.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Clustering Algorithms</a><span class="spacer"></span></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Unsupervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

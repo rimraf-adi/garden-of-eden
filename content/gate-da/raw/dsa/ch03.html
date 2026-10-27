@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queues — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 6</div><h1>Queues</h1></div>
+<section id="core-operations" class="content-section level-1">
+<h2 class="section-heading">Core Operations</h2>
+<div class="concept-box"><div class="box-title">Queue and the FIFO Principle</div><div class="box-body"><p>A queue is a linear data structure where elements are added at one end and removed from the other end. The rule followed is <strong>First In, First Out (FIFO)</strong>, which means the element that entered the queue first is the one that leaves first. Think of people standing in a line at a ticket counter. The person who joined the line first gets the ticket first. New people join at the back of the line. Nobody cuts in from the front.</p></div></div>
+<div class="example-box"><div class="box-title">Example 199: Real World Example of FIFO</div><div class="box-body"><p>Think of a printer queue in an office. Document $A$ is sent first, then document $B$, then document $C$. The printer prints $A$ first, then $B$, then $C$. This is exactly FIFO. The first document sent is the first one printed, no matter what.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig053.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Core Queue Operations</div><div class="box-body"><p>A queue supports four main operations. All four take constant time, $O(1)$.</p>
+<ul><li><p><strong>Enqueue(x):</strong> Add element $x$ at the REAR of the queue.</p></li><li><p><strong>Dequeue():</strong> Remove and return the element at the FRONT of the queue.</p></li><li><p><strong>Front():</strong> Look at the element at FRONT, without removing it.</p></li><li><p><strong>Rear():</strong> Look at the element at REAR, without removing it.</p></li><li><p><strong>IsEmpty():</strong> Check if the queue has no elements.</p></li><li><p><strong>IsFull():</strong> Check if the queue has no more room (for array implementation).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig054.png" alt="diagram"></div>
+<section id="array-implementation-of-queue" class="content-section level-2">
+<h3 class="section-heading">Array Implementation of Queue</h3>
+<div class="concept-box"><div class="box-title">Queue Using an Array</div><div class="box-body"><p>We implement a queue using a fixed-size array. We keep two variables, <strong>FRONT</strong> and <strong>REAR</strong>. Initially, both are set to $-1$, which means the queue is empty. When we enqueue the first element, both FRONT and REAR become $0$. After that, each enqueue increases REAR by $1$ and stores the element there. Each dequeue reads the element at FRONT and increases FRONT by $1$. The queue is empty when FRONT $&gt;$ REAR, and full when REAR $=$ MAXSIZE $- 1$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 200: Step by Step Trace</div><div class="box-body"><p>Maximum size = 5. Perform: Enqueue(10), Enqueue(20), Enqueue(30), Dequeue(), Enqueue(40), Front().</p>
+<ul><li><p>Start: FRONT = $-1$, REAR = $-1$, array = [\_, \_, \_, \_, \_]</p></li><li><p>Enqueue(10): FRONT = 0, REAR = 0, array = [10, \_, \_, \_, \_]</p></li><li><p>Enqueue(20): FRONT = 0, REAR = 1, array = [10, 20, \_, \_, \_]</p></li><li><p>Enqueue(30): FRONT = 0, REAR = 2, array = [10, 20, 30, \_, \_]</p></li><li><p>Dequeue(): returns 10, FRONT = 1, array = [\_, 20, 30, \_, \_]</p></li><li><p>Enqueue(40): FRONT = 1, REAR = 3, array = [\_, 20, 30, 40, \_]</p></li><li><p>Front(): returns 20 (element at FRONT = 1), FRONT stays at 1</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig055.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Problem with Linear Array Queue</div><div class="box-body"><p>In a simple array implementation, even after dequeue, the slots at the beginning are empty but we never reuse them, because FRONT keeps moving right. Eventually, REAR reaches the last index, and even if there are empty slots at the beginning, we report the queue as full. This wastes memory. The solution is the <strong>Circular Queue</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig056.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig057.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig058.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 201: Pseudocode: Linear Queue</div><div class="box-body"><p><strong>Initialize(Q, maxsize):</strong></p>
+<ol><li><p>Q.arr = array of size maxsize</p></li><li><p>Q.FRONT = -1</p></li><li><p>Q.REAR = -1</p></li><li><p>Q.MAXSIZE = maxsize</p></li></ol>
+<p><strong>Enqueue(Q, x):</strong></p>
+<ol><li><p>if Q.REAR == Q.MAXSIZE - 1:</p></li><li><p>   print “Queue Overflow” and return</p></li><li><p>if Q.FRONT == -1 and Q.REAR == -1:</p></li><li><p>   Q.FRONT = 0, Q.REAR = 0</p></li><li><p>else:</p></li><li><p>   Q.REAR = Q.REAR + 1</p></li><li><p>Q.arr[Q.REAR] = x</p></li></ol>
+<p><strong>Dequeue(Q):</strong></p>
+<ol><li><p>if Q.FRONT == -1: print “Queue Underflow” and return -1</p></li><li><p>x = Q.arr[Q.FRONT]</p></li><li><p>if Q.FRONT == Q.REAR: Q.FRONT = -1, Q.REAR = -1</p></li><li><p>else: Q.FRONT = Q.FRONT + 1</p></li><li><p>return x</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">queue-linear.py</div><pre><code>class Queue:
+    def __init__(self, maxsize):
+        self.arr     = [None] * maxsize
+        self.FRONT   = -1
+        self.REAR    = -1
+        self.MAXSIZE = maxsize
+
+    def is_empty(self):
+        return self.FRONT == -1
+
+    def is_full(self):
+        return self.REAR == self.MAXSIZE - 1
+
+    def enqueue(self, x):
+        if self.is_full():
+            print(&quot;Queue Overflow&quot;)
+            return
+        if self.FRONT == -1 and self.REAR == -1:
+            self.FRONT = 0
+            self.REAR  = 0
+        else:
+            self.REAR += 1
+        self.arr[self.REAR] = x
+
+    def dequeue(self):
+        if self.is_empty():
+            print(&quot;Queue Underflow&quot;)
+            return -1
+        x = self.arr[self.FRONT]
+        if self.FRONT == self.REAR:  # last element
+            self.FRONT = -1
+            self.REAR  = -1
+        else:
+            self.FRONT += 1
+        return x
+
+    def front(self):
+        if self.is_empty():
+            print(&quot;Queue is Empty&quot;)
+            return -1
+        return self.arr[self.FRONT]
+
+    def rear(self):
+        if self.is_empty():
+            print(&quot;Queue is Empty&quot;)
+            return -1
+        return self.arr[self.REAR]
+
+
+# --- Driver Code ---
+q = Queue(5)
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+print(&quot;FRONT:&quot;, q.front())   # Output: 10
+print(&quot;Dequeue:&quot;, q.dequeue())  # Output: 10
+print(&quot;FRONT:&quot;, q.front())   # Output: 20</code></pre></div>
+</section>
+<section id="circular-queue" class="content-section level-2">
+<h3 class="section-heading">Circular Queue</h3>
+<div class="concept-box"><div class="box-title">Circular Queue</div><div class="box-body"><p>A circular queue fixes the problem of wasted slots. Instead of letting FRONT and REAR just move forward, we connect the end of the array back to the beginning, like a circle. When REAR reaches the last index, the next enqueue wraps REAR around to index $0$, if that slot is free. We use the modulo operator for this. REAR moves as $(REAR + 1) \bmod MAXSIZE$, and FRONT moves as $(FRONT + 1) \bmod MAXSIZE$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig059.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 202: How Circular Wrapping Works</div><div class="box-body"><p>Suppose MAXSIZE = 5, and after several operations REAR is at index 4 (the last slot). The next enqueue would fail in a linear queue. But in a circular queue,
+\[
+\text{new REAR} = (4 + 1) \bmod 5 = 0
+\]
+So the element is placed at index 0, if it is free. Similarly, when FRONT is at index 4,
+\[
+\text{new FRONT} = (4 + 1) \bmod 5 = 0
+\]
+FRONT wraps back to the beginning.</p></div></div>
+<div class="example-box"><div class="box-title">Example 203: Full vs Empty Condition in Circular Queue</div><div class="box-body"><p>In a circular queue, distinguishing between full and empty needs care, because both can cause FRONT $=$ REAR.</p>
+<ul><li><p><strong>Empty:</strong> FRONT $= -1$</p></li><li><p><strong>Full:</strong> $(REAR + 1) \bmod MAXSIZE = FRONT$</p></li></ul>
+<p>This means we always keep one slot empty intentionally, so the full condition can be detected correctly.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig060.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig061.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig062.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">queue-circular.py</div><pre><code>class CircularQueue:
+    def __init__(self, maxsize):
+        self.arr     = [None] * maxsize
+        self.FRONT   = -1
+        self.REAR    = -1
+        self.MAXSIZE = maxsize
+
+    def is_empty(self):
+        return self.FRONT == -1
+
+    def is_full(self):
+        return (self.REAR + 1) % self.MAXSIZE == self.FRONT
+
+    def enqueue(self, x):
+        if self.is_full():
+            print(&quot;Queue Full&quot;)
+            return
+        if self.FRONT == -1:       # first element
+            self.FRONT = 0
+            self.REAR  = 0
+        else:
+            self.REAR = (self.REAR + 1) % self.MAXSIZE
+        self.arr[self.REAR] = x
+
+    def dequeue(self):
+        if self.is_empty():
+            print(&quot;Queue Empty&quot;)
+            return -1
+        x = self.arr[self.FRONT]
+        if self.FRONT == self.REAR:   # last element
+            self.FRONT = -1
+            self.REAR  = -1
+        else:
+            self.FRONT = (self.FRONT + 1) % self.MAXSIZE
+        return x
+
+    def front(self):
+        if self.is_empty():
+            return -1
+        return self.arr[self.FRONT]
+
+    def rear(self):
+        if self.is_empty():
+            return -1
+        return self.arr[self.REAR]
+
+    def display(self):
+        if self.is_empty():
+            print(&quot;Queue is Empty&quot;)
+            return
+        print(&quot;Queue (FRONT to REAR):&quot;, end=&quot; &quot;)
+        i = self.FRONT
+        while True:
+            print(self.arr[i], end=&quot; &quot;)
+            if i == self.REAR:
+                break
+            i = (i + 1) % self.MAXSIZE
+        print()
+
+
+# --- Driver Code ---
+cq = CircularQueue(5)
+cq.enqueue(10)
+cq.enqueue(20)
+cq.enqueue(30)
+cq.enqueue(40)
+cq.display()              # 10 20 30 40
+print(cq.dequeue())       # 10
+print(cq.dequeue())       # 20
+cq.enqueue(50)            # wraps around
+cq.enqueue(60)            # wraps around
+cq.display()              # 30 40 50 60</code></pre></div>
+</section>
+<section id="deque-double-ended-queue" class="content-section level-2">
+<h3 class="section-heading">Deque (Double-Ended Queue)</h3>
+<div class="concept-box"><div class="box-title">Deque</div><div class="box-body"><p>A Deque (pronounced "deck"), short for Double-Ended Queue, is a queue where we can add and remove elements from <strong>both ends</strong>, the FRONT as well as the REAR. It is a more general structure than both a stack and a simple queue. A stack only allows operations at one end. A queue allows enqueue at REAR and dequeue at FRONT only. A deque allows all four combinations, add at FRONT, add at REAR, remove from FRONT, remove from REAR.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig063.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Two Types of Deque</div><div class="box-body"><ul><li><p><strong>Input Restricted Deque:</strong> Insertion is allowed only at REAR, but deletion is allowed at both FRONT and REAR. This is like a queue with extra deletion ability at REAR.</p></li><li><p><strong>Output Restricted Deque:</strong> Deletion is allowed only at FRONT, but insertion is allowed at both FRONT and REAR. This is like a queue with extra insertion ability at FRONT.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig064.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 204: Pseudocode: Deque using Circular Array</div><div class="box-body"><p><strong>Insert-Front(D, x):</strong></p>
+<ol><li><p>if IsFull(D): print “Deque Full” and return</p></li><li><p>if IsEmpty(D): FRONT = 0, REAR = 0</p></li><li><p>else: FRONT = (FRONT - 1 + MAXSIZE) mod MAXSIZE</p></li><li><p>arr[FRONT] = x</p></li></ol>
+<p><strong>Insert-Rear(D, x):</strong></p>
+<ol><li><p>if IsFull(D): print “Deque Full” and return</p></li><li><p>if IsEmpty(D): FRONT = 0, REAR = 0</p></li><li><p>else: REAR = (REAR + 1) mod MAXSIZE</p></li><li><p>arr[REAR] = x</p></li></ol>
+<p><strong>Delete-Front(D):</strong></p>
+<ol><li><p>if IsEmpty(D): print “Deque Empty” and return -1</p></li><li><p>x = arr[FRONT]</p></li><li><p>if FRONT == REAR: FRONT = -1, REAR = -1</p></li><li><p>else: FRONT = (FRONT + 1) mod MAXSIZE</p></li><li><p>return x</p></li></ol>
+<p><strong>Delete-Rear(D):</strong></p>
+<ol><li><p>if IsEmpty(D): print “Deque Empty” and return -1</p></li><li><p>x = arr[REAR]</p></li><li><p>if FRONT == REAR: FRONT = -1, REAR = -1</p></li><li><p>else: REAR = (REAR - 1 + MAXSIZE) mod MAXSIZE</p></li><li><p>return x</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">deque-array.py</div><pre><code>class Deque:
+    def __init__(self, maxsize):
+        self.arr     = [None] * maxsize
+        self.FRONT   = -1
+        self.REAR    = -1
+        self.MAXSIZE = maxsize
+
+    def is_empty(self):
+        return self.FRONT == -1
+
+    def is_full(self):
+        return (self.REAR + 1) % self.MAXSIZE == self.FRONT
+
+    def insert_front(self, x):
+        if self.is_full():
+            print(&quot;Deque Full&quot;)
+            return
+        if self.is_empty():
+            self.FRONT = 0
+            self.REAR  = 0
+        else:
+            # move FRONT one step back (wrap around)
+            self.FRONT = (self.FRONT - 1 + self.MAXSIZE) % self.MAXSIZE
+        self.arr[self.FRONT] = x
+
+    def insert_rear(self, x):
+        if self.is_full():
+            print(&quot;Deque Full&quot;)
+            return
+        if self.is_empty():
+            self.FRONT = 0
+            self.REAR  = 0
+        else:
+            self.REAR = (self.REAR + 1) % self.MAXSIZE
+        self.arr[self.REAR] = x
+
+    def delete_front(self):
+        if self.is_empty():
+            print(&quot;Deque Empty&quot;)
+            return -1
+        x = self.arr[self.FRONT]
+        if self.FRONT == self.REAR:
+            self.FRONT = -1
+            self.REAR  = -1
+        else:
+            self.FRONT = (self.FRONT + 1) % self.MAXSIZE
+        return x
+
+    def delete_rear(self):
+        if self.is_empty():
+            print(&quot;Deque Empty&quot;)
+            return -1
+        x = self.arr[self.REAR]
+        if self.FRONT == self.REAR:
+            self.FRONT = -1
+            self.REAR  = -1
+        else:
+            self.REAR = (self.REAR - 1 + self.MAXSIZE) % self.MAXSIZE
+        return x
+
+    def get_front(self):
+        return -1 if self.is_empty() else self.arr[self.FRONT]
+
+    def get_rear(self):
+        return -1 if self.is_empty() else self.arr[self.REAR]
+
+
+# --- Driver Code ---
+d = Deque(6)
+d.insert_rear(10)
+d.insert_rear(20)
+d.insert_rear(30)
+d.insert_front(5)       # insert at FRONT
+print(&quot;FRONT:&quot;, d.get_front())   # Output: 5
+print(&quot;REAR:&quot;, d.get_rear())     # Output: 30
+print(&quot;Delete REAR:&quot;, d.delete_rear())   # Output: 30
+print(&quot;Delete FRONT:&quot;, d.delete_front()) # Output: 5
+print(&quot;FRONT:&quot;, d.get_front())           # Output: 10</code></pre></div>
+</section>
+</section>
+<section id="applications-of-queues" class="content-section level-1">
+<h2 class="section-heading">Applications of Queues</h2>
+<div class="concept-box"><div class="box-title">Where Queues are Used</div><div class="box-body"><p>Queues appear naturally in any situation where items are processed in the order they arrived. The FIFO property makes queues the right tool for scheduling, traversal, and buffering tasks.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig065.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Application: Breadth-First Search (BFS)</div><div class="box-body"><p>BFS uses a queue to explore all nodes level by level in a graph. Starting from a source node, we enqueue it, then repeatedly dequeue a node, visit it, and enqueue all its unvisited neighbours. The FIFO property ensures we explore nodes in the order they were discovered, which gives level-by-level traversal.</p></div></div>
+<div class="concept-box"><div class="box-title">Application: Level-Order Traversal of a Tree</div><div class="box-body"><p>In a binary tree, level-order traversal visits all nodes level by level, from left to right. We enqueue the root, then repeatedly dequeue a node, print it, and enqueue its left and right children. The queue ensures that all nodes at level $k$ are processed before any node at level $k+1$.</p></div></div>
+<div class="concept-box"><div class="box-title">Application: CPU Scheduling</div><div class="box-body"><p>Operating systems use queues to manage processes waiting for CPU time. Processes are added to the ready queue in arrival order, and the CPU picks the next process from the FRONT of the queue, following FIFO scheduling. This ensures fairness and prevents starvation of processes.</p></div></div>
+<div class="concept-box"><div class="box-title">Application: Printer Spooler</div><div class="box-body"><p>When multiple users send print jobs to the same printer, each job is added to a print queue. The printer processes jobs in the order they were received. This is a classic real-world queue, where FIFO ensures fairness.</p></div></div>
+<div class="concept-box"><div class="box-title">Application: I/O Buffering and Web Server Request Handling</div><div class="box-body"><p>Queues are used to buffer input and output data between a fast processor and a slow device. In web servers, incoming client requests are queued and handled one at a time in order of arrival, so no request is lost even if the server is momentarily busy.</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Stacks</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Linked Lists &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

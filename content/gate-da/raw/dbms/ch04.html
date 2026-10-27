@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relational Algebra & Tuple Calculus — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 7</div><h1>Relational Algebra &amp; Tuple Calculus</h1></div>
+<section id="relational-algebra" class="content-section level-1">
+<h2 class="section-heading">Relational Algebra</h2>
+<div class="concept-box"><div class="box-title">What is Relational Algebra?</div><div class="box-body"><p>Relational Algebra is a <strong>procedural query language</strong> used in DBMS to operate on relations (tables).
+It defines a set of <strong>formal operations</strong> to retrieve and manipulate data. It is important because it
+forms the <strong>theoretical foundation of SQL</strong> and query optimization in relational databases.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Relational Operations &amp; Symbols</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig110.png" alt="diagram"></div></div></div>
+<section id="selection-operation-sigma" class="content-section level-2">
+<h3 class="section-heading">Selection Operation ($\sigma$)</h3>
+<div class="concept-box"><div class="box-title">The Select Operation ($\sigma$) — Definition and Purpose</div><div class="box-body"><p>The <strong>Select operation</strong> in Relational Algebra is used to <strong>filter rows (tuples)</strong> from a relation
+that satisfy a given condition called a <strong>predicate</strong>. It does not change the attributes (columns);
+it only reduces the number of tuples (rows).</p>
+<p>It is denoted by the lowercase Greek letter <strong>sigma</strong> $(\sigma)$.</p>
+<p><strong>General form:</strong>
+\[
+\sigma_{\text{predicate}}(\text{Relation})
+\]</p>
+<p>The predicate is written as a subscript to $\sigma$, and the relation name is written in parentheses.</p></div></div>
+<div class="example-box"><div class="box-title">Example 75: Instructor Relation — Base Table</div><div class="box-body"><p>Assume the relation <strong>instructor</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig111.png" alt="diagram"></div>
+<p>To select tuples where an attribute equals a specific value, we use the equality operator.</p>
+<p>\[
+\sigma_{\text{dept\_name = “Physics”}}(\text{instructor})
+\]</p>
+<p>This returns only those instructors who belong to the Physics department.
+Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig112.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Selection Using Comparison Operators</div><div class="box-body"><p>Selection predicates may use comparison operators:</p>
+<p>\[
+=,\ \neq,\ &lt;,\ \le,\ &gt;,\ \ge
+\]</p>
+<p>Example form:</p>
+<p>\[
+\sigma_{{salary &gt; 90000}}(\text{instructor})
+\]</p>
+<p>This filters tuples based on numeric comparison.</p></div></div>
+<div class="example-box"><div class="box-title">Example 76: Select instructors with salary greater than 90000</div><div class="box-body"><p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig113.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Combining Conditions with Logical Connectives</div><div class="box-body"><p>Multiple predicates can be combined using logical connectives:</p>
+<p>\[
+\land \ (\text{AND}), \quad \lor \ (\text{OR}), \quad \lnot \ (\text{NOT})
+\]</p>
+<p>Example:</p>
+<p>\[
+\sigma_{\text{dept\_name = “Physics”} \land {salary &gt; 90000}}(\text{instructor})
+\]</p>
+<p>Only tuples satisfying <strong>all</strong> conditions are selected when AND is used.</p></div></div>
+<div class="example-box"><div class="box-title">Example 77: Physics instructors with salary $&gt;$ 90000</div><div class="box-body"><p>Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig114.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Comparison Between Two Attributes</div><div class="box-body"><p>The selection predicate can also compare <strong>two attributes</strong> of the same relation.</p>
+<p>Form:</p>
+<p>\[
+\sigma_{\text{Attribute1 = Attribute2}}(\text{Relation})
+\]</p>
+<p>This selects tuples where the two attribute values are equal.</p></div></div>
+<div class="example-box"><div class="box-title">Example 78: Department table — attribute comparison</div><div class="box-body"><p>Assume relation <strong>department</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig115.png" alt="diagram"></div>
+<p>Query:</p>
+<p>\[
+\sigma_{\text{dept\_name = building}}(\text{department})
+\]</p>
+<p>Result keeps only rows where both attributes match.</p></div></div>
+</section>
+<section id="projection-operation-pi" class="content-section level-2">
+<h3 class="section-heading">Projection Operation ($\Pi$)</h3>
+<div class="concept-box"><div class="box-title">The Project Operation ($\Pi$) — Definition and Purpose</div><div class="box-body"><p>The <strong>Project operation</strong> is used to <strong>select specific attributes (columns)</strong> from a relation
+and discard the remaining attributes. It is a <strong>unary operation</strong> that works on a single relation.</p>
+<p>Projection does not filter rows based on conditions — instead, it reduces the number of
+columns in the result.</p>
+<p>Since a relation is a <strong>set of tuples</strong>, any <strong>duplicate rows are automatically removed</strong>
+after projection.</p>
+<p>Projection is denoted by the uppercase Greek letter <strong>Pi</strong> $(\Pi)$.</p>
+<p><strong>General form:</strong>
+\[
+\Pi_{A_1, A_2, \dots, A_n}(\text{Relation})
+\]</p>
+<p>Only the listed attributes appear in the output relation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 79: Instructor Relation — Base Table</div><div class="box-body"><p>Assume the relation <strong>instructor</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig116.png" alt="diagram"></div>
+<p>Suppose we want only <strong>ID, Name, and Salary</strong> and do not care about department.
+We use projection to keep only these attributes.</p>
+<p>\[
+\Pi_{\text{ID, Name, Salary}}(\text{instructor})
+\]</p>
+<p>The Dept_name column is removed in the result.
+Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig117.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Duplicate Elimination in Projection</div><div class="box-body"><p>After projection, if two or more tuples become identical on the selected attributes,
+only <strong>one copy</strong> is kept because relations do not allow duplicate tuples.</p>
+<p>Projection therefore performs <strong>duplicate elimination automatically</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 80: Projection causing duplicates to be removed</div><div class="box-body"><p>\[
+\Pi_{\text{Salary}}(\text{instructor})
+\]</p>
+<p>Result (note that salary 65000 appears once even if multiple instructors have it):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig118.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Generalized Projection with Expressions</div><div class="box-body"><p>The basic projection operator allows only attribute names.
+A <strong>generalized projection</strong> allows <strong>expressions on attributes</strong>.</p>
+<p>This is useful when computed values are required in the result.</p>
+<p>Example:
+\[
+\Pi_{\text{ID, Name, Salary/12}}(\text{instructor})
+\]</p>
+<p>This computes derived attributes during projection.</p></div></div>
+<div class="example-box"><div class="box-title">Example 81: Projection with computed monthly salary</div><div class="box-body"><p>\[
+\Pi_{\text{ID, Name, Salary/12}}(\text{instructor})
+\]</p>
+<p>Result (monthly salary):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig119.png" alt="diagram"></div></div></div>
+</section>
+<section id="composition-of-relational-operations" class="content-section level-2">
+<h3 class="section-heading">Composition of Relational Operations</h3>
+<div class="concept-box"><div class="box-title">Composition of Relational Operations — Meaning and Need</div><div class="box-body"><p>A key property of Relational Algebra is that the <strong>result of every operation is itself a relation</strong>.
+Because of this closure property, the output of one operation can be used directly as the
+input to another operation.</p>
+<p>This ability to combine multiple relational operations into a single expression is called
+<strong>composition of relational operations</strong>.</p>
+<p>It allows us to build <strong>complex queries step by step</strong> using simpler operations.</p></div></div>
+<div class="concept-box"><div class="box-title">Composed Expression Form</div><div class="box-body"><p>In a composed relational-algebra expression, instead of giving a base relation name as
+input to an operator, we can give a <strong>relational expression</strong> that evaluates to a relation.</p>
+<p>General pattern:
+\[
+\text{OuterOp}(\text{InnerOp}(\text{Relation}))
+\]</p>
+<p>This is similar to arithmetic composition such as:
+\[
+(3 + 5) \times 2
+\]
+where the result of one operation becomes the input to another.</p></div></div>
+<div class="example-box"><div class="box-title">Example 82: Instructor Relation</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig120.png" alt="diagram"></div>
+<p>Query: <strong>Find the names of all instructors in the Physics department.</strong></p>
+<p>This requires two steps:</p>
+<ul><li><p>First select Physics department tuples</p></li><li><p>Then project only the Name attribute</p></li></ul>
+<p>Relational algebra expression:</p>
+<p>\[
+\Pi_{\text{Name}}
+\big(
+\sigma_{\text{dept\_name = “Physics”}}(\text{instructor})
+\big)
+\]</p>
+<p>Inner operation: selection <br>
+Outer operation: projection<br></p>
+<p>Step 1 — Selection:
+\[
+\sigma_{\text{dept\_name = “Physics”}}(\text{instructor})
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig121.png" alt="diagram"></div>
+<p>Step 2 — Projection on result:
+\[
+\Pi_{\text{Name}}(\cdot)
+\]</p>
+<p>Final Result:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig122.png" alt="diagram"></div></div></div>
+<div class="concept-box-alt"><div class="box-title">Why Composition Matters</div><div class="box-body"><p>Composition is powerful because it enables:</p>
+<ul><li><p>Multi-step query construction</p></li><li><p>Reuse of intermediate results</p></li><li><p>Formal query optimization by DBMS</p></li><li><p>Direct mapping to nested SQL queries</p></li></ul>
+<p>All complex relational queries are built by composing basic operations like
+$\sigma$, $\Pi$, $\bowtie$, $\times$, and set operations.</p></div></div>
+</section>
+<section id="the-cartesian-product-operation-times" class="content-section level-2">
+<h3 class="section-heading">The Cartesian-Product Operation ($\times$)</h3>
+<div class="concept-box"><div class="box-title">The Cartesian-Product Operation ($\times$)</div><div class="box-body"><p>The <strong>Cartesian-product operation</strong> combines tuples from two relations in
+<strong>all possible pairs</strong>. It is denoted by the cross symbol $\times$.</p>
+<p>If $r_1$ and $r_2$ are two relations, their Cartesian product is written as:</p>
+<p>\[
+r_1 \times r_2
+\]</p>
+<p>Each tuple of $r_1$ is concatenated with every tuple of $r_2$ to form a new tuple.
+Thus, the result relation contains attributes from <strong>both</strong> relations.</p></div></div>
+<div class="concept-box"><div class="box-title">Size of Cartesian Product</div><div class="box-body"><p>If relation $r_1$ has $n_1$ tuples and relation $r_2$ has $n_2$ tuples, then:</p>
+<p>\[
+|r_1 \times r_2| = n_1 \times n_2
+\]</p>
+<p>So the result can become very large. Because of this, Cartesian product is usually
+followed by a <strong>selection</strong> condition (which leads to a join).</p></div></div>
+<div class="concept-box"><div class="box-title">Tuple Construction Rule</div><div class="box-body"><p>Unlike the mathematical Cartesian product that produces ordered pairs $(t_1,t_2)$,
+relational algebra <strong>concatenates</strong> the two tuples into a single longer tuple
+containing attributes of both relations.</p>
+<p>Schema of result is the <strong>concatenation of schemas</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 83: Base Relations — instructor and teaches</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig123.png" alt="diagram"></div>
+<p><strong>teaches</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig124.png" alt="diagram"></div>
+<p>Result of instructor $\times$ teaches</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig125.png" alt="diagram"></div>
+<p>Number of tuples = $3 \times 2 = 6$</p></div></div>
+<div class="concept-box"><div class="box-title">Attribute Name Conflicts and Prefixing</div><div class="box-body"><p>If both relations contain attributes with the same name (like ID),
+we must <strong>prefix</strong> them with relation names to avoid ambiguity.</p>
+<p>Example schema:</p>
+<p>\[
+(\text{instructor.ID}, \text{Name}, \text{Dept}, \text{teaches.ID}, \text{Course})
+\]</p>
+<p>If an attribute appears in only one relation, the prefix may be dropped when no
+confusion arises.</p></div></div>
+<div class="concept-box"><div class="box-title">Requirement of Distinct Relation Names</div><div class="box-body"><p>The two operand relations must have <strong>distinct names</strong>. Problems arise when:</p>
+<ul><li><p>A relation is multiplied with itself</p></li><li><p>A derived expression has no relation name</p></li></ul>
+<p>This is handled using the <strong>rename operation</strong> ($\rho$), which assigns a new
+temporary name to a relation before applying Cartesian product.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Practical Use</div><div class="box-body"><p>Cartesian product alone is rarely used in queries because it produces many unrelated
+tuple combinations. In practice it is almost always followed by a
+<strong>selection condition</strong>, forming a <strong>join</strong> operation.</p></div></div>
+</section>
+<section id="rename-operator-rho" class="content-section level-2">
+<h3 class="section-heading">Rename Operator ($\rho$)</h3>
+<div class="concept-box"><div class="box-title">The Rename Operation ($\rho$)</div><div class="box-body"><p>The <strong>Rename operation</strong> assigns a new name to:</p>
+<ul><li><p>a relation (result of an expression), or</p></li><li><p>the attributes of a relation</p></li></ul>
+<p>Relational-algebra expressions normally produce unnamed intermediate results.
+The rename operator $\rho$ allows us to reference them later.</p>
+<p>Symbol: lowercase Greek rho — $\rho$</p>
+<p><strong>Two forms exist:</strong></p>
+<p><strong>(1) Rename Relation Only</strong>
+\[
+\rho_{X}(E)
+\]
+Result of expression $E$ is given relation name $X$.</p>
+<p><strong>(2) Rename Relation + Attributes</strong>
+\[
+\rho_{X(A_1,A_2,\dots,A_n)}(E)
+\]
+Result is named $X$ and its attributes are renamed.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Why Rename is Needed</div><div class="box-body"><p>Rename is required when:</p>
+<ul><li><p>Same relation is used multiple times (self join)</p></li><li><p>Intermediate results must be referenced</p></li><li><p>Attribute names clash</p></li><li><p>Derived attributes need meaningful names</p></li></ul>
+<p>Most common use: <strong>self joins and comparison queries.</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 84: Instructor Relation — Comparison Query</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig126.png" alt="diagram"></div>
+<p><strong>Query:</strong> Find ID and Name of instructors who earn more than the instructor with ID = 12121.</p>
+<p><strong>Strategy:</strong></p>
+<ul><li><p>Create two copies of the relation via renaming.</p></li><li><p>Let $I1$ represent all instructors.</p></li><li><p>Let $I2$ represent the specific instructor with ID 12121.</p></li><li><p>Perform a Cartesian product and filter where $I1.Salary &gt; I2.Salary$.</p></li></ul>
+<p><strong>Relational Algebra Expression:</strong>
+\[
+I2 \leftarrow \sigma_{ID=12121}(\text{Instructor})
+\]
+\[
+\Pi_{I1.ID, I1.Name} (\sigma_{I1.Salary &gt; I2.Salary} (\rho_{I1}(\text{Instructor}) \times I2))
+\]</p>
+<p><strong>Final Query Result:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig127.png" alt="diagram"></div></div></div>
+</section>
+<section id="assignment-operator-leftarrow" class="content-section level-2">
+<h3 class="section-heading">Assignment Operator ($\leftarrow$)</h3>
+<div class="concept-box"><div class="box-title">Assignment Operation ($\leftarrow$)</div><div class="box-body"><p>The <strong>Assignment operation</strong> allows us to store the result of a relational-algebra
+expression into a <strong>temporary relation variable</strong>.</p>
+<p>Symbol used: $\leftarrow$</p>
+<p>It works like variable assignment in programming languages.</p>
+<p>Syntax:
+\[
+X \leftarrow E
+\]</p>
+<p>where:</p>
+<ul><li><p>$E$ = relational algebra expression</p></li><li><p>$X$ = temporary relation name</p></li></ul>
+<p>The assigned relation can be reused in later expressions.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Why Assignment is Used</div><div class="box-body"><p>Assignment improves query writing by:</p>
+<ul><li><p>Breaking complex queries into steps</p></li><li><p>Improving readability</p></li><li><p>Avoiding repeated expressions</p></li><li><p>Enabling modular query construction</p></li><li><p>Supporting intermediate result reuse</p></li></ul>
+<p>Assignment itself does <strong>not display output</strong>. Only the final expression result is shown.</p></div></div>
+<div class="example-box"><div class="box-title">Example 85: Assignment Operation — Stepwise Query Using Cartesian Product</div><div class="box-body"><p><strong>Employee(EmpID, Name, DeptID)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig128.png" alt="diagram"></div>
+<p><strong>Department(DeptID, DeptName)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig129.png" alt="diagram"></div>
+<p>[Step 1 — Assignment with Cartesian Product]</p>
+<p>\[
+T \leftarrow Employee \times Department
+\]</p>
+<p>Temporary relation $T$ stores the Cartesian product.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig130.png" alt="diagram"></div>
+<p>[Step 2 — Assignment with Selection]</p>
+<p>\[
+M \leftarrow \sigma_{E.DeptID = D.DeptID}(T)
+\]</p>
+<p>Keep only matching department rows.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig131.png" alt="diagram"></div>
+<p>[Step 3 — Assignment with Projection]</p>
+<p>\[
+Result \leftarrow \Pi_{Name, DeptName}(M)
+\]</p>
+<p>Final projected result.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig132.png" alt="diagram"></div></div></div>
+</section>
+<section id="join-operation-bowtie" class="content-section level-2">
+<h3 class="section-heading">Join Operation ($\bowtie$)</h3>
+<div class="concept-box"><div class="box-title">The Join Operation ($\bowtie$)</div><div class="box-body"><p>The <strong>Join operation</strong> is used to combine related tuples from two relations
+based on a <strong>matching condition</strong>. It brings together information stored in
+different tables using a common attribute.</p>
+<p>Join is needed because a plain Cartesian product pairs every tuple with every other tuple,
+which creates many incorrect combinations.</p>
+<p>Join keeps only those tuple pairs that satisfy a specified condition.</p></div></div>
+<div class="concept-box"><div class="box-title">Join as Selection on Cartesian Product</div><div class="box-body"><p>A join can be formally defined using Cartesian product followed by selection.</p>
+<p>For relations $r(R)$ and $s(S)$ with condition $\theta$:</p>
+<p>\[
+r \bowtie_{\theta} s \;=\; \sigma_{\theta}(r \times s)
+\]</p>
+<p>So join is a <strong>derived operation</strong>:</p>
+<ul><li><p>First compute Cartesian product</p></li><li><p>Then apply selection condition</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 86: Base Relations — instructor and teaches</div><div class="box-body"><p><strong>instructor</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig133.png" alt="diagram"></div>
+<p><strong>teaches</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig134.png" alt="diagram"></div>
+<p>Query: <strong>Find instructor information together with course ids of courses they taught.</strong></p>
+<p>Cartesian product alone is incorrect because it pairs every instructor with every course.</p>
+<p>Correct pairs occur only where:
+\[
+\text{instructor.ID = teaches.ID}
+\]
+Using selection on product:</p>
+<p>\[
+\sigma_{\text{instructor.ID = teaches.ID}}
+(\text{instructor} \times \text{teaches})
+\]</p>
+<p>Using join operator:</p>
+<p>\[
+\text{instructor}
+\;\bowtie_{\text{instructor.ID = teaches.ID}}\;
+\text{teaches}
+\]</p>
+<p>Both expressions are equivalent.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig135.png" alt="diagram"></div>
+<p>Instructor 102 and 104 do not appear because they have no matching tuple in
+<strong>teaches</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Duplicate Attribute Columns After Join</div><div class="box-body"><p>After join, common attributes (like ID from both relations) may appear twice.
+We usually remove redundancy using projection.</p>
+<p>Example:</p>
+<p>\[
+\Pi_{\text{Name, Dept, Course\_id}}
+(\text{instructor} \bowtie_{\text{instructor.ID = teaches.ID}} \text{teaches})
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Join Types</div><div class="box-body"><ul><li><p>Theta Join — any comparison condition</p></li><li><p>Equi Join — equality condition only</p></li><li><p>Natural Join — equi join + duplicate column removal</p></li><li><p>Left Outer — keep all left tuples</p></li><li><p>Right Outer — keep all right tuples</p></li><li><p>Full Outer — keep all tuples from both sides</p></li><li><p>Self Join — relation joined with itself</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 87: Base Relations Used in All Join Examples</div><div class="box-body"><p><strong>Employee(EmpID, Name, DeptID)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig136.png" alt="diagram"></div>
+<p><strong>Department(DeptID, DeptName)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig137.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">1. Theta Join ($\bowtie_{\theta}$)</div><div class="box-body"><p>Theta join uses <strong>any comparison operator</strong>
+$(=, \neq, &lt;, &gt;, \le, \ge)$ in the join condition.</p>
+<p>General form:
+\[
+R \bowtie_{\theta} S
+\]</p>
+<p>Definition:
+\[
+R \bowtie_{\theta} S = \sigma_{\theta}(R \times S)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 88: Theta Join with equality condition</div><div class="box-body"><p>\[
+\text{Employee} \;\bowtie_{\text{Employee.DeptID = Department.DeptID}}\; \text{Department}
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig138.png" alt="diagram"></div>
+<p>Non-matching tuples are removed.</p></div></div>
+<div class="concept-box"><div class="box-title">2. Equi Join</div><div class="box-body"><p>Equi join is a <strong>special case of theta join</strong> where the condition uses
+<strong>only equality (=)</strong> comparisons.</p>
+<p>Duplicate join columns are <strong>not automatically removed</strong>.</p>
+<p>Symbol is still $\bowtie_{\text{condition}}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 89: Equi Join Output Table</div><div class="box-body"><p>Equi join condition:</p>
+<p>\[
+\text{Employee} \;\bowtie_{\text{Employee.DeptID = Department.DeptID}}\; \text{Department}
+\]</p>
+<p>Output relation (both join attributes are retained):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig139.png" alt="diagram"></div>
+<p>Notice that:</p>
+<ul><li><p>Meera (DeptID 30) is excluded — no matching department</p></li><li><p>John (NULL DeptID) is excluded — no match</p></li><li><p>DeptID 40 (Math) is excluded — no matching employee</p></li><li><p>Both DeptID columns appear — projection can remove one if needed</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">3. Natural Join ($\bowtie$)</div><div class="box-body"><p>Natural join:</p>
+<ul><li><p>automatically joins on attributes with the <strong>same name</strong></p></li><li><p>uses equality comparison</p></li><li><p><strong>removes duplicate join columns</strong> in the output</p></li></ul>
+<p>No explicit condition is written.</p>
+<p>\[
+Employee \;\bowtie\; Department
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 90: Natural Join Result</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig140.png" alt="diagram"></div>
+<p>Only one DeptID column appears.</p></div></div>
+<div class="concept-box"><div class="box-title">4. Left Outer Join ($\leftouterjoin$)</div><div class="box-body"><p>Left outer join keeps:</p>
+<ul><li><p>all matching tuples</p></li><li><p><strong>all tuples from left relation</strong></p></li><li><p>fills NULLs where right side has no match</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 91: Left Outer Join</div><div class="box-body"><p>\[
+Employee \;\leftouterjoin\; Department
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig141.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">5. Right Outer Join ($\rightouterjoin$)</div><div class="box-body"><p>Right outer join keeps:</p>
+<ul><li><p>all matching tuples</p></li><li><p>all tuples from right relation</p></li><li><p>NULLs where left side has no match</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 92: Right Outer Join — Full Output Table</div><div class="box-body"><p>Right outer join expression:</p>
+<p>\[
+Employee \;\rightouterjoin\; Department
+\]</p>
+<p>All departments are preserved even if no employee belongs to them.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig142.png" alt="diagram"></div>
+<p>Explanation:</p>
+<ul><li><p>Dept 10 → matched with Asha</p></li><li><p>Dept 20 → matched with Ravi</p></li><li><p>Dept 40 → no employee → Employee attributes become NULL</p></li><li><p>Meera (DeptID 30) and John (NULL DeptID) are excluded — not preserved in right outer join</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">6. Full Outer Join ($\fullouterjoin$)</div><div class="box-body"><p>Full outer join keeps:</p>
+<ul><li><p>all matching tuples</p></li><li><p>all non-matching tuples from both relations</p></li><li><p>fills NULLs on whichever side is missing</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 93: Full Outer Join — Full Output Table</div><div class="box-body"><p>Full outer join expression:</p>
+<p>\[
+Employee \;\fullouterjoin\; Department
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig143.png" alt="diagram"></div>
+<p>Explanation:</p>
+<ul><li><p>Asha and Ravi — matching rows</p></li><li><p>Meera — no department match → DeptName = NULL</p></li><li><p>John — DeptID is NULL → no match → DeptName = NULL</p></li><li><p>DeptID 40 (Math) — no employee → Employee columns are NULL</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">7. Self Join</div><div class="box-body"><p>A self join joins a relation with itself.
+Rename operator $\rho$ is used to create aliases.</p>
+<p>Used for hierarchical or comparison queries.</p></div></div>
+<div class="example-box"><div class="box-title">Example 94: Self Join — Employees in Same Department (Output)</div><div class="box-body"><p>\[
+\rho_{E1}(Employee) \;\bowtie_{E1.DeptID = E2.DeptID}\; \rho_{E2}(Employee)
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig144.png" alt="diagram"></div>
+<p>Notes:</p>
+<ul><li><p>Each employee matches with themselves (same DeptID)</p></li><li><p>No cross pairs appear because no two employees share a DeptID</p></li><li><p>John is excluded because NULL does not match with NULL in join condition</p></li></ul></div></div>
+</section>
+<section id="set-operations-cap-cup" class="content-section level-2">
+<h3 class="section-heading">SET Operations ($\cap \cup -$)</h3>
+<div class="concept-box"><div class="box-title">Union Operation ($\cup$)</div><div class="box-body"><p>The <strong>union</strong> operation combines tuples from two relations and removes duplicates.</p>
+<p>Rules for union:</p>
+<ol><li><p>Both relations must have the same number of attributes (same arity).</p></li><li><p>Corresponding attributes must have the same type.</p></li><li><p>Result contains all tuples that appear in either relation.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 95: Union Example — Students in Two Clubs</div><div class="box-body"><p><strong>Data:</strong></p>
+<p><strong>ChessClub(StudentID, Name)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig145.png" alt="diagram"></div>
+<p><strong>DramaClub(StudentID, Name)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig146.png" alt="diagram"></div>
+<p><strong>Query:</strong> Find all students who are in either Chess or Drama Club:</p>
+<p>\[
+AllStudents \leftarrow ChessClub \cup DramaClub
+\]</p>
+<p><strong>Result:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig147.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Intersection Operation ($\cap$)</div><div class="box-body"><p>The <strong>intersection</strong> operation finds tuples common to both relations.</p>
+<p>Rules for intersection:</p>
+<ol><li><p>Both relations must have the same number of attributes (same arity).</p></li><li><p>Corresponding attributes must have the same type.</p></li><li><p>Result contains only tuples present in both relations.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 96: Intersection Example — Students in Both Clubs</div><div class="box-body"><p><strong>Using the same data as above:</strong></p>
+<p>\[
+CommonStudents \leftarrow ChessClub \cap DramaClub
+\]</p>
+<p><strong>Result:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig148.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Set Difference Operation ($-$)</div><div class="box-body"><p>The <strong>set difference</strong> operation finds tuples in one relation but not in the other.</p>
+<p>Rules for difference:</p>
+<ol><li><p>Both relations must have the same number of attributes (same arity).</p></li><li><p>Corresponding attributes must have the same type.</p></li><li><p>Result contains tuples in the first relation that are not in the second.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 97: Difference Example — Students only in Chess Club</div><div class="box-body"><p><strong>Using the same data as above:</strong></p>
+<p>\[
+ChessOnly \leftarrow ChessClub - DramaClub
+\]</p>
+<p><strong>Result:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig149.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Handling Duplicates in Set Operations</div><div class="box-body"><p>In relational algebra, relations are <strong>sets of tuples</strong>, not multisets.  
+This means:</p>
+<ul><li><p><strong>Duplicates are automatically removed</strong> in all set operations: Union ($\cup$), Intersection ($\cap$), and Difference ($-$).</p></li><li><p>Even if a tuple appears multiple times in a relation, it is considered only once.</p></li><li><p>The result of a set operation will contain each distinct tuple at most once.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 98: Duplicates in Union, Intersection, and Difference</div><div class="box-body"><p><strong>Relations:</strong></p>
+<p><strong>A(StudentID, Name)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig150.png" alt="diagram"></div>
+<p><strong>B(StudentID, Name)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig151.png" alt="diagram"></div>
+<p><strong>Union:</strong> \( A \cup B \)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig152.png" alt="diagram"></div>
+<p><strong>Intersection:</strong> \( A \cap B \)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig153.png" alt="diagram"></div>
+<p><strong>Difference:</strong> \( A - B \)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig154.png" alt="diagram"></div>
+<p><strong>Note:</strong> Even though Bob appears twice in relation A, duplicates are removed automatically in all operations.</p></div></div>
+</section>
+<section id="division-operator" class="content-section level-2">
+<h3 class="section-heading">Division Operator</h3>
+<div class="concept-box"><div class="box-title">Division Operator ($\div$) — Meaning and Use</div><div class="box-body"><p>The division operator is used to answer queries of the form:</p>
+<p><em>"Find all X such that X is related to <strong>all</strong> Y."</em></p>
+<p>Formally, given two relations:</p>
+<ul><li><p>\(R(A, B)\) — the dividend</p></li><li><p>\(S(B)\) — the divisor</p></li></ul>
+<p>The expression:</p>
+<p>\[
+R \div S
+\]</p>
+<p>returns a relation with attribute(s) \(A\) containing all values of \(A\) that are associated with <strong>every value of \(B\) in \(S\)</strong>.</p>
+<p><strong>Rules / Requirements:</strong></p>
+<ul><li><p>The attributes of \(S\) must be a subset of the attributes of \(R\).</p></li><li><p>The resulting relation will have attributes \(R - S\).</p></li><li><p>Duplicates are removed automatically (relations are sets).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 99: Division Operator — Simple Example</div><div class="box-body"><p><strong>Relations:</strong></p>
+<p><strong>Enrolled(Student, Course)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig155.png" alt="diagram"></div>
+<p><strong>Required Courses:</strong></p>
+<p><strong>Required(Course)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig156.png" alt="diagram"></div>
+<p><strong>Query:</strong> Find students who are enrolled in <strong>all required courses</strong>.</p>
+<p>\[
+\text{Enrolled} \div \text{Required}
+\]</p>
+<p><strong>Result:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig157.png" alt="diagram"></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>Alice is enrolled in Math &amp; Physics - satisfies all required courses.</p></li><li><p>Bob is enrolled in Math &amp; Physics &amp; Chemistry - satisfies all required courses.</p></li><li><p>Carol is enrolled in Math &amp; Physics - satisfies all required courses.</p></li><li><p>Only courses in the <strong>Required</strong> relation are considered.</p></li></ul></div></div>
+</section>
+<section id="operators-min-max-tuples-in-relational-algebra" class="content-section level-2">
+<h3 class="section-heading">Operators: Min/Max Tuples in Relational Algebra</h3>
+<p>\begin{tabularx}{\textwidth}{|l|c|c|X|}
+\hline
+\rowcolor{cyan!25}
+<strong>Operator</strong> &amp; <strong>Min Tuples</strong> &amp; <strong>Max Tuples</strong> &amp; <strong>Explanation</strong> <br>
+\hline
+Cartesian ($\times$) &amp; $|R| \cdot |S|$ &amp; $|R| \cdot |S|$ &amp; Every tuple of R pairs with every tuple of S, fixed number. <br>
+\hline
+Theta / Equi Join ($\bowtie_\theta$) &amp; 0 &amp; $|R| \cdot |S|$ &amp; Min zero if no match; max all pairs satisfy join condition. <br>
+\hline
+Natural Join ($\bowtie$) &amp; 0 &amp; $\sum_{v \in V} (\text{count of } v \text{ in R} \cdot \text{count of } v \text{ in S})$ &amp; Min zero if no common values; max depends on multiplicities of join attributes. <br>
+\hline
+Left Outer Join ($\leftouterjoin$) &amp; $|R|$ &amp; $|R| \cdot |S|$ &amp; All R tuples appear at least once; max if all R × S match. <br>
+\hline
+Right Outer Join ($\rightouterjoin$) &amp; $|S|$ &amp; $|R| \cdot |S|$ &amp; All S tuples appear at least once; max if all R × S match. <br>
+\hline
+Full Outer Join ($\fullouterjoin$) &amp; $\max(|R|,|S|)$ &amp; $|R| \cdot |S|$ &amp; All tuples from both sides appear at least once; max if all R × S match. <br>
+\hline
+\end{tabularx}</p>
+</section>
+</section>
+<section id="examples-on-relation-algebra" class="content-section level-1">
+<h2 class="section-heading">Examples on Relation Algebra</h2>
+<div class="example-box"><div class="box-title">Example 100: Suppliers-Parts-Catalog Relational Algebra Queries</div><div class="box-body"><p><strong>Schema:</strong></p>
+<ul><li><p><strong>Suppliers</strong>(<u>sid</u>: integer, sname: string, address: string)</p></li><li><p><strong>Parts</strong>(<u>pid</u>: integer, pname: string, color: string)</p></li><li><p><strong>Catalog</strong>(<u>sid</u>: integer, <u>pid</u>: integer, cost: real)</p></li></ul>
+<p><strong>Queries and Solutions:</strong></p>
+<ol><li><p><strong>Find the names of suppliers who supply some red part.</strong>
+    \[
+    \Pi_{sname}\Big((\sigma_{color='Red'}(Parts)) \;\bowtie\; Catalog \;\bowtie\; Suppliers\Big)
+    \]
+    <strong>Result:</strong> Anil, Balu, Deepak</p></li><li><p><strong>Find the sids of suppliers who supply some red or green part.</strong>
+    \[
+    \Pi_{sid}\Big((\sigma_{color='Red' \lor color='Green'}(Parts)) \;\bowtie\; Catalog\Big)
+    \]
+    <strong>Result:</strong> 1, 2, 3, 4</p></li><li><p><strong>Find the sids of suppliers who supply some red part or are at Bengaluru.</strong>
+    \[
+    \Pi_{sid}(\sigma_{color='Red'}(Parts) \;\bowtie\; Catalog) \;\cup\; \Pi_{sid}(\sigma_{address='Bengaluru'}(Suppliers))
+    \]
+    <strong>Result:</strong> 1, 2, 4</p></li><li><p><strong>Find the sids of suppliers who supply some red part and some green part.</strong>
+    \[
+    (\Pi_{sid}(\sigma_{color='Red'}(Parts) \;\bowtie\; Catalog)) \;\cap\; (\Pi_{sid}(\sigma_{color='Green'}(Parts) \;\bowtie\; Catalog))
+    \]
+    <strong>Result:</strong> 1</p></li><li><p><strong>Find the sids of suppliers who supply every part.</strong>
+    \[
+    \Pi_{sid, pid}(Catalog) \div \Pi_{pid}(Parts)
+    \]
+    <strong>Result:</strong> None</p></li><li><p><strong>Find the sids of suppliers who supply every red part.</strong>
+    \[
+    \Pi_{sid, pid}(Catalog) \div \Pi_{pid}(\sigma_{color='Red'}(Parts))
+    \]
+    <strong>Result:</strong> 2 (Supplies 101 and 103)</p></li><li><p><strong>Find the sids of suppliers who supply every red or green part.</strong>
+    \[
+    \Pi_{sid, pid}(Catalog) \div \Pi_{pid}(\sigma_{color='Red' \lor color='Green'}(Parts))
+    \]
+    <strong>Result:</strong> None (No supplier provides 101, 102, and 103)</p></li><li><p><strong>Find the sids of suppliers who supply every red part or supply every green part.</strong>
+    \[
+    (\Pi_{sid, pid}(Catalog) \div \Pi_{pid}(\sigma_{color='Red'}(Parts))) \;\cup\; (\Pi_{sid, pid}(Catalog) \div \Pi_{pid}(\sigma_{color='Green'}(Parts)))
+    \]
+    <strong>Result:</strong> 1, 2, 3</p></li><li><p><strong>Find pairs of sids $(s_1, s_2)$ such that $s_1$ charges more for some part than $s_2$ for that same part.</strong>
+    \[
+    \Pi_{C1.sid, C2.sid}(\sigma_{C1.pid = C2.pid \land C1.cost &gt; C2.cost}( \rho_{C1}(Catalog) \times \rho_{C2}(Catalog) ))
+    \]</p></li><li><p><strong>Find the pids of parts supplied by every supplier at less than $200.</strong></p>
+<p>\[ \Pi_{pid}(Catalog) - \Pi_{pid}(\sigma_{cost \ge 200}(Catalog)) \]
+    <strong>Result:</strong> 101, 102, 103, 104</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 101: Author Book and Publication Queries</div><div class="box-body"><p><strong>Schema:</strong></p>
+<ul><li><p><strong>author</strong>(<u>author_id</u>, first_name, last_name)</p></li><li><p><strong>author_pub</strong>(<u>author_id, pub_id</u>, author_position)</p>
+<ul><li><p>author_id $\rightarrow$ author(author_id)</p></li><li><p>pub_id $\rightarrow$ pub(pub_id)</p></li></ul></li><li><p><strong>book</strong>(<u>book_id</u>, book_title, month, year, editor)</p>
+<ul><li><p>editor $\rightarrow$ author(author_id)</p></li></ul></li><li><p><strong>pub</strong>(<u>pub_id</u>, title, book_id)</p>
+<ul><li><p>book_id $\rightarrow$ book(book_id)</p></li></ul></li></ul>
+<p><strong>Questions and Solutions:</strong></p>
+<ol><li><p><strong>Query:</strong> $\Pi_{book\_title}(book)$ <br>
+    <strong>Solution:</strong> 
+    Projection returns all distinct book titles. 
+    \[
+    \text{tuples returned} = |\text{distinct book\_title values in book}|
+    \]</p></li><li><p><strong>Query:</strong> $|\Pi_{author\_id}(author) - \Pi_{editor}(book)|$ <br>
+    <strong>Solution:</strong> 
+    Set difference finds authors who are not editors.  
+    Cardinality counts them.  
+    \[
+    \text{Answer: Number of authors who have never acted as a book editor.}
+    \]</p></li><li><p><strong>Query:</strong> Names of all authors who are book editors <br>
+    <strong>Solution:</strong> 
+    \[
+    \Pi_{first\_name, last\_name} (author \;\bowtie_{author.author\_id = book.editor}\; book)
+    \]
+    This joins authors with books where they are listed as editors, and returns their names.</p></li><li><p><strong>Query:</strong> Find author_ids of authors who have a publication in <strong>every</strong> book. <br>
+    <strong>Solution (Division):</strong>
+    First, we need a relation matching authors to books via their publications, then divide by all book IDs.
+    \[
+    \text{Let } R = \Pi_{author\_id, book\_id} (author\_pub \bowtie pub)
+    \]
+    \[
+    \text{Let } S = \Pi_{book\_id} (book)
+    \]
+    \[
+    \text{Final Query: } R \div S
+    \]
+    <em>Note: The dividend $R$ must contain both author_id and book_id so the result is ({author_id, book_id} - {book_id}) = {author_id}.</em></p></li><li><p><strong>Query:</strong> Find names of authors who have published in every book edited by 'John Doe'. <br>
+    <strong>Solution:</strong>
+    \[
+    \text{TargetBooks} = \Pi_{book\_id} (\sigma_{first\_name='John' \land last\_name='Doe'} (author \bowtie_{author\_id=editor} book))
+    \]
+    \[
+    \text{AuthorBookMap} = \Pi_{author\_id, book\_id} (author\_pub \bowtie pub)
+    \]
+    \[
+    \text{Final Result: } \Pi_{first\_name, last\_name} (author \bowtie (AuthorBookMap \div TargetBooks))
+    \]</p></li></ol></div></div>
+</section>
+<section id="tuple-relational-calculus" class="content-section level-1">
+<h2 class="section-heading">Tuple Relational Calculus</h2>
+<div class="concept-box"><div class="box-title">Tuple Relational Calculus</div><div class="box-body"><p>Tuple Relational Calculus (TRC) is a <strong>non-procedural (declarative) query language</strong> where queries are written as
+logical formulas that describe <strong>what result is required</strong> rather than how to compute it.
+It is important because it provides the <strong>formal logical basis</strong> for declarative query languages like SQL.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Concept</div><div class="box-body"><ul><li><p>TRC is a <strong>nonprocedural</strong> query language: it specifies <em>what</em> information is desired rather than <em>how</em> to compute it (unlike relational algebra).</p></li><li><p>A TRC query is expressed as:
+    \[
+    \{ t \mid P(t) \}
+    \]
+    where $t$ is a tuple variable and $P(t)$ is a predicate (condition) that must hold true.</p></li><li><p>Notation:</p>
+<ul><li><p>$t[A]$ denotes the value of attribute $A$ in tuple $t$.</p></li><li><p>$t \in r$ denotes that tuple $t$ belongs to relation $r$.</p></li></ul></li><li><p>Logical constructs in TRC:</p>
+<ul><li><p>$\exists t \in r (Q(t))$: There exists a tuple $t$ in relation $r$ such that predicate $Q(t)$ is true.</p></li><li><p>$\forall t \in r (Q(t))$: For all tuples $t$ in relation $r$, predicate $Q(t)$ is true.</p></li><li><p>$\neg P$: Logical NOT (negation)</p></li><li><p>$P \wedge Q$: Logical AND</p></li><li><p>$P \vee Q$: Logical OR</p></li><li><p>$P \Rightarrow Q$: Implication (equivalent to $\neg P \vee Q$)</p></li></ul></li><li><p><strong>Resulting relation attributes:</strong> A tuple variable $t$ only contains the attributes explicitly mentioned in the query. TRC respects set semantics, so duplicates are automatically removed.</p></li><li><p>TRC expressions can involve multiple relations, connected with logical operators.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Operators and Symbols</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig158.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 102</div><div class="box-body"><p><strong>Example 1: Find instructors with salary greater than $80,000</strong></p>
+<p><strong>Relation schema:</strong></p>
+<ul><li><p><strong>instructor</strong>(ID, name, dept_name, salary)</p></li></ul>
+<p><strong>Sample data:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig159.png" alt="diagram"></div>
+<p><strong>TRC query:</strong>
+\[
+\{ t \mid \exists s \in instructor (t[ID] = s[ID] \wedge s[salary] &gt; 80000) \}
+\]</p>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>$t$ is a tuple variable defined only on ID.</p></li><li><p>$s$ ranges over all tuples of instructor.</p></li><li><p>Only instructors with salary $&gt; 80000$ satisfy the predicate.</p></li></ul>
+<p><strong>Result:</strong>
+\[
+\{ (101), (102) \}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 103</div><div class="box-body"><p><strong>Example 2: Find names of instructors whose department is in Watson building</strong></p>
+<p><strong>Relation schemas:</strong></p>
+<ul><li><p><strong>instructor</strong>(ID, name, dept_name, salary)</p></li><li><p><strong>department</strong>(dept_name, building)</p></li></ul>
+<p><strong>Sample data:</strong></p>
+<p><strong>instructor:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig160.png" alt="diagram"></div>
+<p><strong>department:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig161.png" alt="diagram"></div>
+<p><strong>TRC query:</strong>
+\begin{align*}
+\Bigl\{ t \;\Big|\; &amp; 
+\exists s \in \text{instructor} \;\big(
+    t[\text{name}] = s[\text{name}] \;\wedge\; \\
+&amp; \exists u \in \text{department} \;\big(
+        u[\text{dept\_name}] = s[\text{dept\_name}] \;\wedge\; 
+        u[\text{building}] = 'Watson'
+    \big)
+\big)
+\Bigr\}
+\end{align*}</p>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>$t$ is defined only on name.</p></li><li><p>$s$ ranges over instructors; $u$ ranges over departments.</p></li><li><p>Select instructors whose dept_name matches a department in Watson building.</p></li></ul>
+<p><strong>Result:</strong>
+\[
+\{ \text{Einstein}, \text{Gold} \}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 104</div><div class="box-body"><p><strong>Example 3: Courses taught in Fall 2017 or Spring 2018</strong></p>
+<p><strong>Relation schema:</strong></p>
+<ul><li><p><strong>section</strong>(course_id, semester, year)</p></li></ul>
+<p><strong>Sample data:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig162.png" alt="diagram"></div>
+<p><strong>TRC query (union / OR):</strong>
+\begin{align*}
+\Bigl\{ t \;\Big|\; &amp;
+\big( \exists s \in \text{section} \; ( 
+    t[\text{course\_id}] = s[\text{course\_id}] \;\wedge\; 
+    s[\text{semester}] = 'Fall' \;\wedge\; 
+    s[\text{year}] = 2017 
+) \big) \\
+&amp; \vee 
+\big( \exists u \in \text{section} \; ( 
+    t[\text{course\_id}] = u[\text{course\_id}] \;\wedge\; 
+    u[\text{semester}] = 'Spring' \;\wedge\; 
+    u[\text{year}] = 2018 
+) \big)
+\Bigr\}
+\end{align*}</p>
+<p><strong>Result:</strong>
+\[
+\{ \text{CS-101}, \text{CS-315}, \text{CS-319}, \text{CS-347} \}
+\]</p>
+<p><strong>TRC query (intersection / AND):</strong>  
+Courses offered in both Fall 2017 and Spring 2018:
+\begin{align*}
+\Bigl\{ t \;\Big|\; &amp;
+\exists s \in \text{section} \; (
+    t[\text{course\_id}] = s[\text{course\_id}] \;\wedge\; 
+    s[\text{semester}] = 'Fall' \;\wedge\; 
+    s[\text{year}] = 2017
+) \\
+&amp; \wedge \;
+\exists u \in \text{section} \; (
+    t[\text{course\_id}] = u[\text{course\_id}] \;\wedge\; 
+    u[\text{semester}] = 'Spring' \;\wedge\; 
+    u[\text{year}] = 2018
+)
+\Bigr\}
+\end{align*}</p>
+<p><strong>Result:</strong>
+\[
+\{ \text{CS-101} \}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 105</div><div class="box-body"><p><strong>Example 4: Students who have taken all courses in Biology</strong></p>
+<p><strong>Relation schemas:</strong></p>
+<ul><li><p><strong>student</strong>(ID, name)</p></li><li><p><strong>course</strong>(course_id, dept_name)</p></li><li><p><strong>takes</strong>(ID, course_id)</p></li></ul>
+<p><strong>TRC query:</strong>
+\begin{align*}
+\Bigl\{ t \;\Big|\; &amp;
+\exists r \in \text{student} \; ( r[\text{ID}] = t[\text{ID}] ) \\
+&amp; \wedge \;
+\forall u \in \text{course} \; \big(
+    u[\text{dept\_name}] = 'Biology' \;\Rightarrow\; 
+    \exists s \in \text{takes} \; (
+        t[\text{ID}] = s[\text{ID}] \;\wedge\; 
+        s[\text{course\_id}] = u[\text{course\_id}]
+    ) 
+\big)
+\Bigr\}
+\end{align*}</p>
+<p><strong>Explanation:</strong></p>
+<ul><li><p>$t$ ranges over students (ID only).</p></li><li><p>For every Biology course $u$, there must exist a tuple $s$ in takes showing that $t$ has taken it.</p></li><li><p>Subtlety: If no Biology courses exist, all student IDs satisfy the condition (hence first $\exists r$ clause is needed).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Safety of Tuple Relational Calculus Expressions</div><div class="box-body"><p>A tuple-relational-calculus expression may generate an infinite relation if unrestricted. For example:</p>
+<p>\[
+\{ t \mid \neg (t \in \text{instructor}) \}
+\]</p>
+<p>produces infinitely many tuples not in instructor, many of which contain values that do not appear in the database. Such expressions are <strong>unsafe</strong>.</p>
+<p>To formally define safe expressions, we introduce the <strong>domain of a tuple relational formula</strong> $P$, denoted $\text{dom}(P)$.</p>
+<ul><li><p>$\text{dom}(P)$ is the set of all values referenced by $P$, including:</p>
+<ul><li><p>Constants explicitly mentioned in $P$, and</p></li><li><p>Values appearing in tuples of any relation mentioned in $P$.</p></li></ul></li><li><p>An expression $\{t \mid P(t)\}$ is <strong>safe</strong> if all values that appear in the result are from $\text{dom}(P)$.</p></li></ul>
+<p><strong>Examples:</strong></p>
+<ul><li><p>$\text{dom}(t \in \text{instructor} \wedge t[\text{salary}] &gt; 80000)$ is the set containing $80000$ and all values appearing in the instructor relation.</p></li><li><p>$\text{dom}(\neg (t \in \text{instructor}))$ is also the set of all values appearing in instructor, but the expression itself is unsafe because it could generate tuples containing values outside $\text{dom}(\neg (t \in \text{instructor}))$.</p></li></ul>
+<p><strong>Key Point:</strong> Safe expressions are guaranteed to produce finite results, whereas unsafe expressions may produce infinite results. Therefore, the class of allowed tuple-relational-calculus expressions is restricted to safe expressions.</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Relational Model</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Structured Query Language (SQL) &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

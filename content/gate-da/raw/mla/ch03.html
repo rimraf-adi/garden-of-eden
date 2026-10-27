@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eigenvalues and Eigenvectors — Matrices & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Matrices &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Matrices and Determinants</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-matrices" class="toc-link" data-slug="types-of-matrices">Types of Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#row-matrix" class="toc-link" data-slug="row-matrix">Row Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#column-matrix" class="toc-link" data-slug="column-matrix">Column Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#square-matrix" class="toc-link" data-slug="square-matrix">Square Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#zero-matrix" class="toc-link" data-slug="zero-matrix">Zero Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-matrix" class="toc-link" data-slug="identity-matrix">Identity Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#diagonal-matrix" class="toc-link" data-slug="diagonal-matrix">Diagonal Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#triangular-matrix" class="toc-link" data-slug="triangular-matrix">Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#upper-triangular-matrix" class="toc-link" data-slug="upper-triangular-matrix">Upper Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#lower-triangular-matrix" class="toc-link" data-slug="lower-triangular-matrix">Lower Triangular Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#matrix-operations" class="toc-link" data-slug="matrix-operations">Matrix Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#addition" class="toc-link" data-slug="addition">Addition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#scalar-multiplications" class="toc-link" data-slug="scalar-multiplications">Scalar Multiplications</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#matrix-multiplication" class="toc-link" data-slug="matrix-multiplication">Matrix Multiplication</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#transpose" class="toc-link" data-slug="transpose">Transpose</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#square-matrices" class="toc-link" data-slug="square-matrices">Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#diagonal-and-trace" class="toc-link" data-slug="diagonal-and-trace">Diagonal and Trace</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#identity-and-scalar-matrices" class="toc-link" data-slug="identity-and-scalar-matrices">Identity and Scalar Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#powers-of-matrices" class="toc-link" data-slug="powers-of-matrices">Powers of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#polynomials-in-matrices" class="toc-link" data-slug="polynomials-in-matrices">Polynomials in Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#definition-of-determinant" class="toc-link" data-slug="definition-of-determinant">Definition of Determinant</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#cofactor-expansion" class="toc-link" data-slug="cofactor-expansion">Cofactor Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#properties-of-determinants" class="toc-link" data-slug="properties-of-determinants">Properties of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#invertible-nonsingular-matrices" class="toc-link" data-slug="invertible-nonsingular-matrices">Invertible (Nonsingular) Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#inverse-of-a-2-times-2-matrix" class="toc-link" data-slug="inverse-of-a-2-times-2-matrix">Inverse of a $2 \times 2$ Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#inverse-of-an-n-times-n-matrix" class="toc-link" data-slug="inverse-of-an-n-times-n-matrix">Inverse of an $n \times n$ Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-determinants" class="toc-link" data-slug="applications-of-determinants">Applications of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#special-square-matrices" class="toc-link" data-slug="special-square-matrices">Special Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#symmetric-and-skew-symmetric" class="toc-link" data-slug="symmetric-and-skew-symmetric">Symmetric and Skew-Symmetric</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Rank and Nullity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#vectors-from-matrices" class="toc-link" data-slug="vectors-from-matrices">Vectors from Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#row-space-column-space-and-null-space" class="toc-link" data-slug="row-space-column-space-and-null-space">Row Space, Column Space, and Null Space</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#prerequisites-echelon-forms" class="toc-link" data-slug="prerequisites-echelon-forms">Prerequisites: Echelon Forms</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#finding-the-spaces" class="toc-link" data-slug="finding-the-spaces">Finding the Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-1-row-column-and-null-spaces" class="toc-link" data-slug="example-1-row-column-and-null-spaces">Example 1: Row, Column, and Null Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-2-already-in-row-echelon-form" class="toc-link" data-slug="example-2-already-in-row-echelon-form">Example 2: Already in Row Echelon Form</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-of-a-matrix" class="toc-link" data-slug="rank-of-a-matrix">Rank of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-rank" class="toc-link" data-slug="properties-of-rank">Properties of Rank</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#nullity-of-a-matrix" class="toc-link" data-slug="nullity-of-a-matrix">Nullity of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-nullity-theorem" class="toc-link" data-slug="rank-nullity-theorem">Rank-Nullity Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-rank-and-nullity" class="toc-link" data-slug="applications-of-rank-and-nullity">Applications of Rank and Nullity</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Eigenvalues and Eigenvectors</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#characteristic-polynomial" class="toc-link" data-slug="characteristic-polynomial">Characteristic Polynomial</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#finding-eigenvalues-and-eigenvectors" class="toc-link" data-slug="finding-eigenvalues-and-eigenvectors">Finding Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#properties-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="properties-of-eigenvalues-and-eigenvectors">Properties of Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-matrices" class="toc-link" data-slug="diagonalization-of-matrices">Diagonalization of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="applications-of-eigenvalues-and-eigenvectors">Applications of Eigenvalues and Eigenvectors</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Systems of Linear Equations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#matrix-representation-of-linear-systems" class="toc-link" data-slug="matrix-representation-of-linear-systems">Matrix Representation of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#homogeneous-and-non-homogeneous-systems" class="toc-link" data-slug="homogeneous-and-non-homogeneous-systems">Homogeneous and Non-Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#consistency-of-systems" class="toc-link" data-slug="consistency-of-systems">Consistency of Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gaussian-elimination" class="toc-link" data-slug="gaussian-elimination">Gaussian Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gauss-jordan-elimination" class="toc-link" data-slug="gauss-jordan-elimination">Gauss-Jordan Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#solution-using-inverse-of-a-matrix" class="toc-link" data-slug="solution-using-inverse-of-a-matrix">Solution using Inverse of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#properties-and-shortcuts-in-linear-systems" class="toc-link" data-slug="properties-and-shortcuts-in-linear-systems">Properties and Shortcuts in Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications-of-linear-systems" class="toc-link" data-slug="applications-of-linear-systems">Applications of Linear Systems</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Matrix Factorizations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#lu-decomposition" class="toc-link" data-slug="lu-decomposition">LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#applications-of-lu-factorization" class="toc-link" data-slug="applications-of-lu-factorization">Applications of LU Factorization</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Special Matrices</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal" class="toc-link" data-slug="orthogonal">Orthogonal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal" class="toc-link" data-slug="normal">Normal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#idempotent-matrices" class="toc-link" data-slug="idempotent-matrices">Idempotent Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#partition-block-matrices" class="toc-link" data-slug="partition-block-matrices">Partition (Block) Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#properties-of-special-matrices" class="toc-link" data-slug="properties-of-special-matrices">Properties of Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#applications-of-special-matrices" class="toc-link" data-slug="applications-of-special-matrices">Applications of Special Matrices</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Summary - Very Important</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#1-types-of-linear-systems" class="toc-link" data-slug="1-types-of-linear-systems">1. Types of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#2-rank-and-nullity" class="toc-link" data-slug="2-rank-and-nullity">2. Rank and Nullity</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#3-rouch-capelli-theorem-consistency" class="toc-link" data-slug="3-rouch-capelli-theorem-consistency">3. Rouché–Capelli Theorem (Consistency)</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#4-homogeneous-systems" class="toc-link" data-slug="4-homogeneous-systems">4. Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#5-determinants-and-invertibility" class="toc-link" data-slug="5-determinants-and-invertibility">5. Determinants and Invertibility</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#6-lu-decomposition" class="toc-link" data-slug="6-lu-decomposition">6. LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#7-eigenvalues-and-eigenvectors" class="toc-link" data-slug="7-eigenvalues-and-eigenvectors">7. Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#8-underdetermined-and-overdetermined-systems" class="toc-link" data-slug="8-underdetermined-and-overdetermined-systems">8. Underdetermined and Overdetermined Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#9-free-variables-and-infinite-solutions" class="toc-link" data-slug="9-free-variables-and-infinite-solutions">9. Free Variables and Infinite Solutions</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#10-parameter-dependent-systems" class="toc-link" data-slug="10-parameter-dependent-systems">10. Parameter-Dependent Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#11-linear-dependence-of-columns" class="toc-link" data-slug="11-linear-dependence-of-columns">11. Linear Dependence of Columns</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#12-key-tricks-and-observations" class="toc-link" data-slug="12-key-tricks-and-observations">12. Key Tricks and Observations</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 7</div><h1>Eigenvalues and Eigenvectors</h1></div>
+<section id="characteristic-polynomial" class="content-section level-1">
+<h2 class="section-heading">Characteristic Polynomial</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Let $A$ be an $n \times n$ square matrix. An <strong>eigenvalue</strong> $\lambda$ of $A$ is a scalar such that there exists a nonzero vector $v$ (called the eigenvector) satisfying
+\[
+A v = \lambda v.
+\]</p>
+<p>The <strong>characteristic polynomial</strong> of $A$ is defined as
+\[
+p_A(\lambda) = \det(A - \lambda I_n),
+\]
+where $I_n$ is the $n \times n$ identity matrix. The roots of this polynomial are the eigenvalues of $A$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 56</div><div class="box-body"><p>Find the characteristic polynomial of 
+\[
+A = \begin{bmatrix}2 &amp; 1 \\ 1 &amp; 2\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> 
+\[
+p_A(\lambda) = \det\begin{bmatrix}2-\lambda &amp; 1 \\ 1 &amp; 2-\lambda\end{bmatrix} 
+= (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 57</div><div class="box-body"><p>Find the eigenvalues of 
+\[
+B = \begin{bmatrix}0 &amp; 1 \\ -2 &amp; -3\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> Characteristic polynomial:
+\[
+p_B(\lambda) = \det(B - \lambda I) = 
+\det\begin{bmatrix}-\lambda &amp; 1 \\ -2 &amp; -3-\lambda\end{bmatrix} 
+= (-\lambda)(-3-\lambda) - (-2)(1) = \lambda^2 + 3\lambda + 2.
+\]</p>
+<p>Factorizing: $\lambda^2 + 3\lambda + 2 = (\lambda+1)(\lambda+2) = 0$  
+Hence eigenvalues: $\lambda = -1, -2$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 58</div><div class="box-body"><p>Compute the characteristic polynomial of
+\[
+C = \begin{bmatrix}1 &amp; 0 &amp; 2 \\ -1 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; 4\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> 
+\[
+p_C(\lambda) = \det\begin{bmatrix}1-\lambda &amp; 0 &amp; 2 \\ -1 &amp; 3-\lambda &amp; 1 \\ 0 &amp; 0 &amp; 4-\lambda\end{bmatrix}.
+\]</p>
+<p>Expanding along third row (or use upper-triangular property):
+\[
+p_C(\lambda) = (4-\lambda) \det\begin{bmatrix}1-\lambda &amp; 0 \\ -1 &amp; 3-\lambda\end{bmatrix} = (4-\lambda)((1-\lambda)(3-\lambda) - 0) = (4-\lambda)(\lambda^2 -4\lambda +3).
+\]</p>
+<p>So characteristic polynomial: $p_C(\lambda) = (\lambda^2 -4\lambda +3)(4-\lambda)$.</p></div></div>
+</section>
+<section id="finding-eigenvalues-and-eigenvectors" class="content-section level-1">
+<h2 class="section-heading">Finding Eigenvalues and Eigenvectors</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>To find the eigenvalues of a square matrix $A$:</p>
+<ol><li><p>Compute the characteristic polynomial: $p_A(\lambda) = \det(A - \lambda I)$.</p></li><li><p>Solve $p_A(\lambda) = 0$ to find all eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_n$.</p></li></ol>
+<p>To find an eigenvector corresponding to a given eigenvalue $\lambda$:</p>
+<ol><li><p>Solve the system $(A - \lambda I)v = 0$ for a nonzero vector $v$.</p></li><li><p>Any nonzero solution $v$ is an eigenvector corresponding to $\lambda$.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 59</div><div class="box-body"><p>Find the eigenvalues and eigenvectors of 
+\[
+A = \begin{bmatrix}2 &amp; 1 \\ 1 &amp; 2\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> Characteristic polynomial:
+\[
+\det(A - \lambda I) = \det\begin{bmatrix}2-\lambda &amp; 1 \\ 1 &amp; 2-\lambda\end{bmatrix} = (\lambda - 1)(\lambda - 3).
+\]
+Eigenvalues: $\lambda_1 = 1$, $\lambda_2 = 3$.</p>
+<p>For $\lambda_1 = 1$:
+\[
+(A - I)v = \begin{bmatrix}1 &amp; 1 \\ 1 &amp; 1\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = 0 \implies x + y = 0 \implies v = k\begin{bmatrix}1 \\ -1\end{bmatrix}.
+\]</p>
+<p>For $\lambda_2 = 3$:
+\[
+(A - 3I)v = \begin{bmatrix}-1 &amp; 1 \\ 1 &amp; -1\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = 0 \implies x - y = 0 \implies v = k\begin{bmatrix}1 \\ 1\end{bmatrix}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 60</div><div class="box-body"><p>Find eigenvalues and eigenvectors of 
+\[
+B = \begin{bmatrix}0 &amp; 1 \\ -2 &amp; -3\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> Characteristic polynomial:
+\[
+\det(B - \lambda I) = \lambda^2 + 3\lambda + 2 = (\lambda + 1)(\lambda + 2) \implies \lambda_1 = -1, \lambda_2 = -2.
+\]</p>
+<p>For $\lambda_1=-1$:
+\[
+(B + I)v = \begin{bmatrix}1 &amp; 1 \\ -2 &amp; -2\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = 0 \implies x + y = 0 \implies v = k\begin{bmatrix}1 \\ -1\end{bmatrix}.
+\]</p>
+<p>For $\lambda_2=-2$:
+\[
+(B + 2I)v = \begin{bmatrix}2 &amp; 1 \\ -2 &amp; -1\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = 0 \implies 2x + y = 0 \implies v = k\begin{bmatrix}-1/2 \\ 1\end{bmatrix} \sim k\begin{bmatrix}-1 \\ 2\end{bmatrix}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 61</div><div class="box-body"><p>Find the eigenvalues and an eigenvector of
+\[
+C = \begin{bmatrix}3 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 1 \\ 0 &amp; 0 &amp; 2\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> Characteristic polynomial:
+\[
+\det(C - \lambda I) = (3-\lambda)\det\begin{bmatrix}2-\lambda &amp; 1 \\ 0 &amp; 2-\lambda\end{bmatrix} = (3-\lambda)(2-\lambda)^2.
+\]
+Eigenvalues: $\lambda = 3$ (simple), $\lambda = 2$ (double).</p>
+<p>For $\lambda=3$: 
+\[
+(C-3I)v = \begin{bmatrix}0 &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; -1\end{bmatrix}v = 0 \implies v = k\begin{bmatrix}1\\0\\0\end{bmatrix}.
+\]</p>
+<p>For $\lambda=2$:
+\[
+(C-2I)v = \begin{bmatrix}1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0\end{bmatrix}v = 0 \implies v = k\begin{bmatrix}0\\1\\0\end{bmatrix} + l\begin{bmatrix}0\\0\\1\end{bmatrix}.
+\]</p></div></div>
+</section>
+<section id="properties-of-eigenvalues-and-eigenvectors" class="content-section level-1">
+<h2 class="section-heading">Properties of Eigenvalues and Eigenvectors</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Some key properties of eigenvalues and eigenvectors of a square matrix $A$ are:</p>
+<p>1. <strong>Trace and determinant relation:</strong>  
+The sum of the eigenvalues of $A$ equals $\text{tr}(A)$ (sum of diagonal elements), and the product of eigenvalues equals $\det(A)$.</p>
+<p>2. <strong>Eigenvalues of triangular matrices:</strong>  
+If $A$ is upper or lower triangular, the eigenvalues of $A$ are exactly the diagonal entries.</p>
+<p>3. <strong>Eigenvalues of powers:</strong>  
+If $\lambda$ is an eigenvalue of $A$ with eigenvector $v$, then $\lambda^k$ is an eigenvalue of $A^k$ with the same eigenvector $v$.</p>
+<p>4. <strong>Eigenvalues of inverse:</strong>  
+If $A$ is invertible, then $1/\lambda$ is an eigenvalue of $A^{-1}$ for each eigenvalue $\lambda$ of $A$.</p>
+<p>5. <strong>Eigenvalues of transpose:</strong>  
+$A$ and $A^T$ have the same eigenvalues.</p>
+<p>6. <strong>Eigenvectors corresponding to distinct eigenvalues are linearly independent.</strong></p>
+<p>7. <strong>Similarity invariance:</strong>  
+If $B = P^{-1}AP$, then $A$ and $B$ have the same eigenvalues.</p></div></div>
+<div class="example-box"><div class="box-title">Example 62</div><div class="box-body"><p><strong>Trace and determinant relation:</strong>  
+Let $A = \begin{bmatrix}2 &amp; 1 \\ 0 &amp; 3\end{bmatrix}$.  
+Eigenvalues: $\lambda_1=2$, $\lambda_2=3$.  
+Check: $\text{tr}(A) = 2+3 = 5$, sum of eigenvalues = 2+3=5.  
+$\det(A)=6$, product of eigenvalues = 2*3=6.</p></div></div>
+<div class="example-box"><div class="box-title">Example 63</div><div class="box-body"><p><strong>Eigenvalues of a triangular matrix:</strong>  
+Let $B = \begin{bmatrix}1 &amp; 4 &amp; 2 \\ 0 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; -2\end{bmatrix}$ (upper triangular).  
+Eigenvalues are the diagonal entries: $\lambda = 1, 3, -2$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 64</div><div class="box-body"><p><strong>Eigenvalues of a power:</strong>  
+Let $A = \begin{bmatrix}2 &amp; 0 \\ 0 &amp; 3\end{bmatrix}$, eigenvalues $\lambda_1=2$, $\lambda_2=3$.  
+Then $A^2 = \begin{bmatrix}4 &amp; 0 \\ 0 &amp; 9\end{bmatrix}$, eigenvalues = $2^2=4$, $3^2=9$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 65</div><div class="box-body"><p><strong>Eigenvalues of the inverse:</strong>  
+If $A = \begin{bmatrix}2 &amp; 0 \\ 0 &amp; 3\end{bmatrix}$, eigenvalues = 2, 3.  
+$A^{-1} = \begin{bmatrix}1/2 &amp; 0 \\ 0 &amp; 1/3\end{bmatrix}$, eigenvalues = 1/2, 1/3.</p></div></div>
+<div class="example-box"><div class="box-title">Example 66</div><div class="box-body"><p><strong>Eigenvalues of transpose:</strong>  
+$A = \begin{bmatrix}1 &amp; 2 \\ 0 &amp; 3\end{bmatrix}$, eigenvalues: 1, 3.  
+$A^T = \begin{bmatrix}1 &amp; 0 \\ 2 &amp; 3\end{bmatrix}$, eigenvalues still 1, 3.</p></div></div>
+<div class="example-box"><div class="box-title">Example 67</div><div class="box-body"><p><strong>Linear independence of eigenvectors:</strong>  
+$A = \begin{bmatrix}2 &amp; 0 \\ 0 &amp; 3\end{bmatrix}$, eigenvectors for $\lambda=2$: $[1,0]^T$, $\lambda=3$: $[0,1]^T$.  
+They are clearly linearly independent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 68</div><div class="box-body"><p><strong>Similarity invariance:</strong>  
+Let $A = \begin{bmatrix}2 &amp; 1 \\ 0 &amp; 3\end{bmatrix}$, $P = \begin{bmatrix}1 &amp; 1 \\ 0 &amp; 1\end{bmatrix}$, then  
+$B = P^{-1}AP = \begin{bmatrix}2 &amp; -1 \\ 0 &amp; 3\end{bmatrix}$.  
+Eigenvalues of $B$ are still 2, 3 (same as $A$).</p></div></div>
+</section>
+<section id="diagonalization-of-matrices" class="content-section level-1">
+<h2 class="section-heading">Diagonalization of Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A square matrix $A$ of order $n$ is said to be <strong>diagonalizable</strong> if there exists an invertible matrix $P$ and a diagonal matrix $D$ such that
+\[
+A = P D P^{-1}.
+\]</p>
+<p>Here:</p>
+<ul><li><p>The diagonal entries of $D$ are the eigenvalues of $A$.</p></li><li><p>The columns of $P$ are the corresponding eigenvectors of $A$.</p></li></ul>
+<p><strong>Steps to diagonalize a matrix:</strong></p>
+<ol><li><p>Find all eigenvalues of $A$.</p></li><li><p>For each eigenvalue, find a basis for its eigenspace (eigenvectors).</p></li><li><p>Form $P$ with eigenvectors as columns.</p></li><li><p>Form $D$ as a diagonal matrix with eigenvalues along the diagonal (matching the order of eigenvectors in $P$).</p></li></ol>
+<p><strong>Note:</strong> A matrix is diagonalizable if and only if it has $n$ linearly independent eigenvectors.</p></div></div>
+<div class="example-box"><div class="box-title">Example 69</div><div class="box-body"><p>Diagonalize 
+\[
+A = \begin{bmatrix}2 &amp; 0 \\ 0 &amp; 3\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+Eigenvalues: $\lambda_1=2$, $\lambda_2=3$  
+Eigenvectors: $v_1=[1,0]^T$, $v_2=[0,1]^T$</p>
+<p>Form $P = [v_1 \, v_2] = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}$, $D = \begin{bmatrix}2 &amp; 0 \\ 0 &amp; 3\end{bmatrix}$</p>
+<p>Check: $A = P D P^{-1}$</p></div></div>
+<div class="example-box"><div class="box-title">Example 70</div><div class="box-body"><p>Diagonalize 
+\[
+B = \begin{bmatrix}4 &amp; 1 \\ 0 &amp; 2\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+Eigenvalues: $\lambda_1=4$, $\lambda_2=2$</p>
+<p>Eigenvectors:
+\[
+\lambda_1=4: (B-4I)v=0 \implies \begin{bmatrix}0 &amp; 1 \\ 0 &amp; -2\end{bmatrix}v=0 \implies v_1=[1,0]^T
+\]
+\[
+\lambda_2=2: (B-2I)v=0 \implies \begin{bmatrix}2 &amp; 1 \\ 0 &amp; 0\end{bmatrix}v=0 \implies 2x + y=0 \implies v_2=[1,-2]^T
+\]</p>
+<p>Form $P = [v_1 \, v_2] = \begin{bmatrix}1 &amp; 1 \\ 0 &amp; -2\end{bmatrix}$, $D = \begin{bmatrix}4 &amp; 0 \\ 0 &amp; 2\end{bmatrix}$</p>
+<p>Then $A = P D P^{-1}$</p></div></div>
+<div class="example-box"><div class="box-title">Example 71</div><div class="box-body"><p>Diagonalize 
+\[
+C = \begin{bmatrix}1 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 2\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+Eigenvalues: $\lambda=1$ (multiplicity 2), $\lambda=2$</p>
+<p>For $\lambda=1$: $(C-I)v=0 \implies \begin{bmatrix}0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1\end{bmatrix}v=0 \implies v=[x,0,0]^T$ (choose $v_1=[1,0,0]^T$), $v_2=[0,0,1]^T$</p>
+<p>For $\lambda=2$: $v_3=[0,0,1]^T$ (already chosen, can pick linearly independent vector for multiplicity)</p>
+<p>Form $P$ from independent eigenvectors and $D = \text{diag}(1,1,2)$</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Notes on diagonalization:</strong></p>
+<ul><li><p>A matrix with $n$ distinct eigenvalues is always diagonalizable.</p></li><li><p>If an eigenvalue has multiplicity $m$, the dimension of its eigenspace must also be $m$ for diagonalization.</p></li><li><p>Symmetric matrices are always diagonalizable and have orthogonal eigenvectors.</p></li></ul></div></div>
+</section>
+<section id="applications-of-eigenvalues-and-eigenvectors" class="content-section level-1">
+<h2 class="section-heading">Applications of Eigenvalues and Eigenvectors</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Eigenvalues and eigenvectors have numerous practical applications in mathematics, engineering, and data science. Some key applications are:</p>
+<p>1. <strong>Powers of a matrix:</strong>  
+If a matrix $A$ is diagonalizable as $A = P D P^{-1}$, computing $A^k$ for large $k$ is simplified as $A^k = P D^k P^{-1}$. The eigenvalues along the diagonal of $D$ are raised to the power $k$.</p>
+<p>2. <strong>Solving systems of linear differential equations:</strong>  
+For systems of the form $\frac{d\mathbf{x}}{dt} = A \mathbf{x}$, eigenvalues determine the growth/decay rates, and eigenvectors determine the directions of solutions.</p>
+<p>3. <strong>Quadratic form diagonalization:</strong>  
+Eigenvectors are used to rotate coordinate axes to diagonalize a quadratic form, facilitating analysis in optimization, physics, and statistics.</p>
+<p>4. <strong>Stability analysis in dynamical systems:</strong>  
+In discrete or continuous systems, the eigenvalues of the system matrix determine whether equilibrium points are stable or unstable.</p>
+<p>5. <strong>Principal Component Analysis (PCA):</strong>  
+Eigenvectors of the covariance matrix identify the directions of maximum variance in data, while eigenvalues indicate the magnitude of variance along those directions.</p>
+<p>6. <strong>Markov chains and steady-state distributions:</strong>  
+The eigenvector corresponding to the eigenvalue $\lambda = 1$ of a stochastic matrix represents the steady-state probabilities.</p>
+<p>7. <strong>Vibration analysis and mechanical systems:</strong>  
+Eigenvalues correspond to natural frequencies, and eigenvectors indicate mode shapes of vibrating systems.</p>
+<p>8. <strong>Google PageRank algorithm:</strong>  
+Eigenvectors of the link matrix are used to rank the importance of web pages.</p>
+<p>9. <strong>Image compression and signal processing:</strong>  
+Eigenvectors (or singular vectors in SVD) are used to reduce dimensionality while preserving significant information.</p>
+<p>10. <strong>Control theory and system design:</strong>  
+Eigenvalues of system matrices are used to design stable and controllable systems.</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Rank and Nullity</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Systems of Linear Equations &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Matrices &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

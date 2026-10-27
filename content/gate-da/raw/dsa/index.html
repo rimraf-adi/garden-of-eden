@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GATE Data Structures &amp; Algorithms — Concept Notes</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; DSA Concept Notes</div>
+      <h1>Data Structures &amp; Algorithms</h1>
+      <p style="color:#64748B;font-size:15.5px;max-width:640px;">
+        Pure concept notes for Chapters 1&ndash;10 (Algorithm Analysis through Searching &amp; Sorting) &mdash;
+        definitions, worked examples, diagrams and Python code, with GATE PYQs and practice
+        problems left out. Pick a chapter from the sidebar or below.
+      </p>
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">Algorithm Analysis</div>
+      <div class="chapter-card-meta">31 sections</div>
+      <div class="chapter-card-preview">Introduction, Core Algorithmic Paradigms, Analysis Framework...</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Stacks</div>
+      <div class="chapter-card-meta">14 sections</div>
+      <div class="chapter-card-preview">Core Operations, Applications of Stacks</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Queues</div>
+      <div class="chapter-card-meta">5 sections</div>
+      <div class="chapter-card-preview">Core Operations, Applications of Queues</div>
+    </a>
+    <a class="chapter-card" href="ch04.html">
+      <div class="chapter-card-num">Chapter 4</div>
+      <div class="chapter-card-title">Linked Lists</div>
+      <div class="chapter-card-meta">44 sections</div>
+      <div class="chapter-card-preview">Singly Linked List, Doubly Linked List, Circular Linked List...</div>
+    </a>
+    <a class="chapter-card" href="ch05.html">
+      <div class="chapter-card-num">Chapter 5</div>
+      <div class="chapter-card-title">Trees</div>
+      <div class="chapter-card-meta">26 sections</div>
+      <div class="chapter-card-preview">Terminology and Structure, Binary Tree Formulas, Theorems and Structural Properties of Binary Trees...</div>
+    </a>
+    <a class="chapter-card" href="ch06.html">
+      <div class="chapter-card-num">Chapter 6</div>
+      <div class="chapter-card-title">Hash Tables</div>
+      <div class="chapter-card-meta">11 sections</div>
+      <div class="chapter-card-preview">Hash Functions and Load Factor, Collision Resolution, Performance Analysis</div>
+    </a>
+    <a class="chapter-card" href="ch07.html">
+      <div class="chapter-card-num">Chapter 7</div>
+      <div class="chapter-card-title">Graph Theory — Introduction</div>
+      <div class="chapter-card-meta">17 sections</div>
+      <div class="chapter-card-preview">Basic Definitions, Graph Representations</div>
+    </a>
+    <a class="chapter-card" href="ch08.html">
+      <div class="chapter-card-num">Chapter 8</div>
+      <div class="chapter-card-title">Graph Traversals</div>
+      <div class="chapter-card-meta">14 sections</div>
+      <div class="chapter-card-preview">Breadth-First Search (BFS), Depth-First Search (DFS), Topological Sort</div>
+    </a>
+    <a class="chapter-card" href="ch09.html">
+      <div class="chapter-card-num">Chapter 9</div>
+      <div class="chapter-card-title">Shortest Path Algorithms</div>
+      <div class="chapter-card-meta">8 sections</div>
+      <div class="chapter-card-preview">Single-Source: Dijkstra&#x27;s Algorithm, Single-Source: Bellman-Ford Algorithm, All-Pairs: Floyd-Warshall Algorithm...</div>
+    </a>
+    <a class="chapter-card" href="ch10.html">
+      <div class="chapter-card-num">Chapter 10</div>
+      <div class="chapter-card-title">Searching and Sorting</div>
+      <div class="chapter-card-meta">20 sections</div>
+      <div class="chapter-card-preview">Search Algorithms, Basic (Quadratic) Sorting, Divide and Conquer Sorting...</div>
+    </a>
+    </div>
+    <footer class="page-footer">
+      GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

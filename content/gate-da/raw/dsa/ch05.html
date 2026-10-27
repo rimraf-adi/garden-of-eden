@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trees — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch05.html" class="chapter-link active">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 5 of 6</div><h1>Trees</h1></div>
+<section id="terminology-and-structure" class="content-section level-1">
+<h2 class="section-heading">Terminology and Structure</h2>
+<div class="concept-box"><div class="box-title">Concept: Root Node</div><div class="box-body"><p>The root is the topmost node of the tree. It is the starting point. There is exactly one root in any tree. It has no parent. In the company analogy, the CEO is the root.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Leaf Node</div><div class="box-body"><p>A leaf node is a node that has no children. It is at the bottom of the tree. In the company analogy, employees who manage nobody are the leaves.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Internal Node</div><div class="box-body"><p>An internal node is any node that has at least one child. It is not a leaf. The root is also an internal node (unless the tree has only one node). All managers and VPs are internal nodes in our analogy.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Parent, Child, and Sibling</div><div class="box-body"><ul><li><p><strong>Parent:</strong> The node directly above a given node is its parent. Every node except the root has exactly one parent.</p></li><li><p><strong>Child:</strong> Nodes directly below a given node are its children. A node can have zero or more children.</p></li><li><p><strong>Sibling:</strong> Two nodes are siblings if they share the same parent. Brothers and sisters in a family tree.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig128.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Depth of a Node</div><div class="box-body"><p>The depth of a node is the number of edges from the root to that node. The root has depth $0$. A child of the root has depth $1$, and so on. Depth tells us how far down a node is from the top.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Height of a Node and Height of a Tree</div><div class="box-body"><p>The height of a node is the number of edges on the longest path from that node down to a leaf. A leaf node has height $0$. The height of the tree is the height of the root node, which equals the maximum depth of any leaf.</p></div></div>
+<div class="example-box"><div class="box-title">Example 209: Height and Depth: Easy to Remember</div><div class="box-body"><p>Think of a building. Depth is like the floor number counting from the ground floor. Ground floor (root) is floor 0. Going deeper means going higher floor number. Height of a floor is how many floors are still above it (looking downward from that floor). Height of the building is the total number of floors above ground.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig129.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Degree of a Node</div><div class="box-body"><p>The degree of a node is the number of children that node has. A leaf node has degree $0$. In a binary tree, degree can be 0, 1, or 2 at most. The degree of the tree is the maximum degree of any node in the tree.</p></div></div>
+<section id="full-complete-and-perfect-binary-tree" class="content-section level-2">
+<h3 class="section-heading">Full, Complete, and Perfect Binary Tree</h3>
+<div class="concept-box"><div class="box-title">Concept: Full Binary Tree</div><div class="box-body"><p>A full binary tree is a binary tree where every node has either $0$ children or exactly $2$ children. No node has exactly $1$ child. Think of it as, every internal node must be completely paired, like a bracket tournament where every match has exactly two players.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Complete Binary Tree</div><div class="box-body"><p>A complete binary tree is a binary tree where all levels are completely filled, except possibly the last level. The last level must be filled from left to right, with no gaps in the middle. Think of filling seats in a cinema row by row, from left to right, without leaving any empty seat between occupied ones.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Perfect Binary Tree</div><div class="box-body"><p>A perfect binary tree is a binary tree where all internal nodes have exactly 2 children, and all leaf nodes are at the same level. It is the most regular shape. A perfect binary tree with height $h$ has exactly $2^{h+1} - 1$ total nodes.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig130.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Relation Between Leaves and Internal Nodes in a Full Binary Tree</div><div class="box-body"><p>In a full binary tree, if the number of internal nodes is $I$ and the number of leaf nodes is $L$, then
+\[
+L = I + 1
+\]
+This is a very useful and frequently tested property. No matter what shape the full binary tree is, the number of leaves is always exactly one more than the number of internal nodes. Intuition: every time we add an internal node (which contributes 2 children but removes itself from being a leaf), the leaf count increases by exactly 1.</p></div></div>
+<div class="example-box"><div class="box-title">Example 210: Verifying: $L = I + 1$</div><div class="box-body"><p>In the full binary tree above with nodes A, B, C, D, E, F, G:</p>
+<ul><li><p>Internal nodes (have children): A, B, C. So $I = 3$.</p></li><li><p>Leaf nodes (no children): D, E, F, G. So $L = 4$.</p></li><li><p>Check: $L = I + 1 \Rightarrow 4 = 3 + 1$. Correct.</p></li></ul></div></div>
+</section>
+<section id="array-representation-of-a-binary-tree" class="content-section level-2">
+<h3 class="section-heading">Array Representation of a Binary Tree</h3>
+<div class="concept-box"><div class="box-title">Concept: Array Representation (1-Indexed)</div><div class="box-body"><p>A binary tree can be stored in a plain array without using any pointers. We number the nodes level by level, left to right, starting from index 1. The root is at index 1. For any node at index $i$:</p>
+<ul><li><p>Its <strong>parent</strong> is at index $\lfloor i/2 \rfloor$</p></li><li><p>Its <strong>left child</strong> is at index $2i$</p></li><li><p>Its <strong>right child</strong> is at index $2i + 1$</p></li></ul>
+<p>This is exactly the structure used in heaps, and it works best for complete or perfect binary trees, because sparse trees waste many array slots.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig131.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 211: Verifying Array Index Formulas</div><div class="box-body"><p>For node at index 4 (value 40):</p>
+<ul><li><p>Parent: $\lfloor 4/2 \rfloor = 2$ $\to$ index 2 has value 20. Correct, 40's parent is 20.</p></li><li><p>Left child: $2 \times 4 = 8$ $\to$ index 8 has value 80. Correct.</p></li><li><p>Right child: $2 \times 4 + 1 = 9$ $\to$ index 9 has value 90. Correct.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">tree-array-representation.py</div><pre><code>class BinaryTreeArray:
+    def __init__(self, maxsize):
+        self.arr     = [None] * (maxsize + 1)  # 1-indexed
+        self.maxsize = maxsize
+
+    def get_parent(self, i):
+        if i &lt;= 1:
+            return None         # root has no parent
+        return self.arr[i // 2]
+
+    def get_left_child(self, i):
+        if 2 * i &gt; self.maxsize:
+            return None
+        return self.arr[2 * i]
+
+    def get_right_child(self, i):
+        if 2 * i + 1 &gt; self.maxsize:
+            return None
+        return self.arr[2 * i + 1]
+
+
+# --- Driver Code ---
+t = BinaryTreeArray(9)
+vals = [None, 10, 20, 30, 40, 50, 60, 70, 80, 90]
+for i in range(1, 10):
+    t.arr[i] = vals[i]
+
+print(&quot;Parent of index 4:&quot;, t.get_parent(4))         # 20
+print(&quot;Left child of index 2:&quot;, t.get_left_child(2)) # 40
+print(&quot;Right child of index 2:&quot;, t.get_right_child(2)) # 50</code></pre></div>
+</section>
+</section>
+<section id="binary-tree-formulas" class="content-section level-1">
+<h2 class="section-heading">Binary Tree Formulas</h2>
+<div class="concept-box"><div class="box-title">Concept: Depth of a Node</div><div class="box-body"><p>The <strong>depth</strong> of a node is the number of edges from the root down to that node. The root itself has depth $0$. A child of the root has depth $1$. Each step downward increases depth by $1$.</p>
+<p>Simple rule: depth of a node = number of edges you travel starting from the root to reach that node.</p></div></div>
+<div class="example-box"><div class="box-title">Example 212: Depth Examples on the Tree Below</div><div class="box-body"><p>Consider the tree with root A, children B and C, where B has children D and E, C has children F and G, D has children H and I, E has child J, F has child K, J has children M and N, H has child L, K has child O, O has child P.</p>
+<ul><li><p>A (root): depth = 0</p></li><li><p>B, C: depth = 1</p></li><li><p>D, E, F, G: depth = 2</p></li><li><p>H, I, J, K: depth = 3</p></li><li><p>L, M, N, O: depth = 4</p></li><li><p>P: depth = 5</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig132.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig133.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Level of a Node</div><div class="box-body"><p>The <strong>level</strong> of a node is the same as its depth. A level of a tree consists of all nodes that share the same depth value.</p>
+<ul><li><p>Root is at level 0.</p></li><li><p>All direct children of the root are at level 1.</p></li><li><p>Their children are at level 2, and so on.</p></li></ul>
+<p>The terms depth and level are used interchangeably for nodes in a binary tree.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Height of a Node and Height of a Tree</div><div class="box-body"><p>The <strong>height</strong> of a node is the number of edges on the <strong>longest path going downward</strong> from that node to any leaf below it.</p>
+<ul><li><p>A leaf node has height $= 0$ (no edges going down from it).</p></li><li><p>The <strong>height of the tree</strong> is the height of the root node.</p></li><li><p>Height of tree = maximum depth of any leaf in the tree.</p></li></ul>
+<p>Think of it this way: depth measures how far down you are from the top. Height measures how far down you can still go from a given node.</p></div></div>
+<div class="example-box"><div class="box-title">Example 213: Height Examples on the Same Tree</div><div class="box-body"><p>Using the same tree as before:</p>
+<ul><li><p>P (a leaf): height = 0</p></li><li><p>O (parent of P): height = 1</p></li><li><p>K (parent of O): height = 2</p></li><li><p>F (parent of K): height = 3</p></li><li><p>C (parent of F and G): height = 4</p></li><li><p>A (root): height = 5 (longest path: A $\to$ C $\to$ F $\to$ K $\to$ O $\to$ P)</p></li></ul>
+<p>Height of this tree = 5.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Number of Levels vs Height</div><div class="box-body"><p>If a tree has height $h$, then the root is at level 0 and the deepest leaf is at level $h$. So the total number of levels is:
+\[
+\text{Total levels } L = h + 1
+\]
+Equivalently, if we know the number of levels $L$, then the height is $h = L - 1$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 214: Levels and Height</div><div class="box-body"><p>The tree above has height $h = 5$. Total levels $= 5 + 1 = 6$ (levels 0, 1, 2, 3, 4, 5). If someone says a tree has 8 levels, the height is $8 - 1 = 7$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Maximum Nodes at a Given Level</div><div class="box-body"><p>In a binary tree, each node can have at most 2 children. So the number of nodes at each level can at most double compared to the level above it.</p>
+<ul><li><p>Level 0 (root): at most $1 = 2^0$ node</p></li><li><p>Level 1: at most $2 = 2^1$ nodes</p></li><li><p>Level 2: at most $4 = 2^2$ nodes</p></li><li><p>Level $l$: at most $2^l$ nodes</p></li></ul>
+<p>\[
+\boxed{\text{Maximum nodes at level } l = 2^l}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 215: Max Nodes at Level Examples</div><div class="box-body"><ul><li><p>At level 0: max $2^0 = 1$ node (the root).</p></li><li><p>At level 3: max $2^3 = 8$ nodes.</p></li><li><p>At level 10: max $2^{10} = 1024$ nodes.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Maximum Total Nodes for Height $h$</div><div class="box-body"><p>To get the maximum total nodes in a binary tree of height $h$, we sum the maximum nodes over all levels from 0 to $h$:
+\[
+\sum_{l=0}^{h} 2^l = 2^0 + 2^1 + \cdots + 2^h = 2^{h+1} - 1
+\]
+\[
+\boxed{\text{Maximum total nodes for height } h = 2^{h+1} - 1}
+\]
+If the total number of levels is $L = h+1$, this can also be written as $2^L - 1$.</p>
+<p>This maximum is achieved only by a <strong>perfect binary tree</strong>, where every level is completely filled.</p></div></div>
+<div class="example-box"><div class="box-title">Example 216: Max Total Nodes Example</div><div class="box-body"><ul><li><p>Height $h = 2$: max nodes $= 2^{2+1} - 1 = 7$.</p></li><li><p>Height $h = 4$: max nodes $= 2^{4+1} - 1 = 31$.</p></li><li><p>Height $h = 10$: max nodes $= 2^{11} - 1 = 2047$.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Minimum Total Nodes for Height $h$</div><div class="box-body"><p>The minimum number of nodes in a binary tree of height $h$ occurs when the tree is as sparse as possible. This happens in a <strong>skewed (degenerate) tree</strong>, where every internal node has exactly one child, making the tree look like a chain. In this case, each level has exactly one node, so:
+\[
+\boxed{\text{Minimum total nodes for height } h = h + 1}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 217: Min Total Nodes Example</div><div class="box-body"><ul><li><p>Height $h = 3$: min nodes $= 3 + 1 = 4$ (a straight chain of 4 nodes).</p></li><li><p>Height $h = 7$: min nodes $= 7 + 1 = 8$.</p></li></ul>
+<p>A right-skewed tree with 4 nodes: root $\to$ child $\to$ grandchild $\to$ great-grandchild. Each node has only one child. Height = 3, nodes = 4.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig134.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Height Range for $n$ Nodes</div><div class="box-body"><p>Given $n$ nodes in a binary tree, the height $h$ is constrained from both sides:</p>
+<p><strong>Minimum height</strong> (achieved by a complete/perfect-shaped tree, packed as wide as possible):
+\[
+h_{\min} = \lceil \log_2(n+1) \rceil - 1
+\]</p>
+<p><strong>Maximum height</strong> (achieved by a fully skewed tree, one node per level):
+\[
+h_{\max} = n - 1
+\]</p>
+<p>So for any binary tree with $n$ nodes:
+\[
+\lceil \log_2(n+1) \rceil - 1 \;\le\; h \;\le\; n - 1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 218: Height Range for $n = 7$ Nodes</div><div class="box-body"><ul><li><p>$h_{\min} = \lceil \log_2(7+1) \rceil - 1 = \lceil 3 \rceil - 1 = 2$ (a perfect tree with 7 nodes has height 2).</p></li><li><p>$h_{\max} = 7 - 1 = 6$ (a skewed tree with 7 nodes has height 6).</p></li></ul>
+<p>So for 7 nodes: $2 \le h \le 6$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig135.png" alt="diagram"></div>
+<section id="formula-practice-problems" class="content-section level-2">
+<h3 class="section-heading">Formula Practice Problems</h3>
+<div class="example-box"><div class="box-title">Example 219: Q1: Max Nodes at a Level</div><div class="box-body"><p>In a binary tree (root at level 0), level 5 is completely full. How many nodes are present at level 5 alone?</p>
+<p><strong>Solution:</strong> Maximum nodes at level $l = 2^l$. So at level 5: $2^5 = 32$ nodes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 220: Q2: Max Total Nodes for a Given Height</div><div class="box-body"><p>What is the maximum number of nodes possible in a binary tree of height 6?</p>
+<p><strong>Solution:</strong> Max total nodes $= 2^{h+1} - 1 = 2^{6+1} - 1 = 2^7 - 1 = 128 - 1 = 127$ nodes. This is achieved only by a perfect binary tree.</p></div></div>
+<div class="example-box"><div class="box-title">Example 221: Q3: Min Total Nodes for a Given Height</div><div class="box-body"><p>A binary tree has height 5. What is the minimum number of nodes it can have?</p>
+<p><strong>Solution:</strong> Min total nodes $= h + 1 = 5 + 1 = 6$ nodes. This occurs in a fully skewed tree where each internal node has exactly one child.</p></div></div>
+<div class="example-box"><div class="box-title">Example 222: Q4: Min Height for a Given Node Count</div><div class="box-body"><p>A complete binary tree has 511 nodes. What is its height?</p>
+<p><strong>Solution:</strong>
+\[
+h_{\min} = \lceil \log_2(511 + 1) \rceil - 1 = \lceil \log_2(512) \rceil - 1 = \lceil 9 \rceil - 1 = 9 - 1 = 8
+\]
+We can verify: $2^{8+1} - 1 = 2^9 - 1 = 511$. So 511 nodes form a perfect binary tree of height 8.</p></div></div>
+<div class="example-box"><div class="box-title">Example 223: Q5: Max Height for a Given Node Count</div><div class="box-body"><p>A binary tree has 12 nodes. What is the maximum possible height of this tree?</p>
+<p><strong>Solution:</strong> Max height $= n - 1 = 12 - 1 = 11$. This occurs in a fully skewed tree where every node has only one child, forming a chain of 12 nodes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 224: Q6: Total Levels and Max Nodes</div><div class="box-body"><p>A binary tree has exactly 7 levels (root at level 0 through level 6). What is its height, and what is the maximum number of nodes it can contain?</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>Height $= L - 1 = 7 - 1 = 6$.</p></li><li><p>Max nodes $= 2^L - 1 = 2^7 - 1 = 128 - 1 = 127$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 225: Q7: Bounds on Height</div><div class="box-body"><p>A binary tree has $n = 100$ nodes. Which of the following statements about its height $h$ is always true?</p>
+<p>(A) $h = 99$ always    (B) $6 \le h \le 99$    (C) $h \ge 100$    (D) $h \le 6$ always</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>$h_{\min} = \lceil \log_2(101) \rceil - 1 = \lceil 6.66 \rceil - 1 = 7 - 1 = 6$.</p></li><li><p>$h_{\max} = n - 1 = 99$.</p></li></ul>
+<p>So height $h$ satisfies $6 \le h \le 99$. The correct answer is <strong>(B)</strong>.</p>
+<p>Option A is wrong because $h = 99$ is only the maximum, not always true. Option D is wrong because $h$ can be much larger than 6. Option C is impossible since $h$ can never exceed $n-1 = 99$.</p></div></div>
+</section>
+</section>
+<section id="theorems-and-structural-properties-of-binary-trees" class="content-section level-1">
+<h2 class="section-heading">Theorems and Structural Properties of Binary Trees</h2>
+<div class="concept-box"><div class="box-title">Concept: Notation Used Throughout This Section</div><div class="box-body"><ul><li><p><strong>Level ($l$):</strong> Distance from the root node. Root is at level $l = 0$.</p></li><li><p><strong>Height ($h$):</strong> Maximum level of any leaf node in the tree. $h = L - 1$.</p></li><li><p><strong>Levels Count ($L$):</strong> Total number of levels present. $L = h + 1$.</p></li><li><p><strong>$n$:</strong> Total number of nodes in the tree.</p></li><li><p><strong>$I$:</strong> Number of internal nodes (nodes with at least one child).</p></li><li><p><strong>$n_{\text{leaf}}$:</strong> Number of leaf nodes (nodes with no children).</p></li><li><p>Always: $n = I + n_{\text{leaf}}$.</p></li></ul></div></div>
+<section id="full-binary-tree" class="content-section level-2">
+<h3 class="section-heading">Full Binary Tree</h3>
+<div class="concept-box"><div class="box-title">Concept: What is a Full Binary Tree</div><div class="box-body"><p>A <strong>full binary tree</strong> (also called a strictly binary tree or proper binary tree) is a binary tree where every node has either <strong>exactly 0 children</strong> or <strong>exactly 2 children</strong>. No node in a full binary tree has exactly 1 child.</p>
+<p>Think of a tournament bracket: every match either ends (leaf) or produces two more matches (internal node). There is never a match with only one continuation.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig136.png" alt="diagram"></div>
+<section id="derivation-of-full-binary-tree-formulas" class="content-section level-3">
+<h4 class="section-heading">Derivation of Full Binary Tree Formulas</h4>
+<div class="concept-box"><div class="box-title">Theorem: Leaf Count and Internal Node Count</div><div class="box-body"><p>In any full binary tree: $n_{\text{leaf}} = I + 1$.</p>
+<p><strong>Proof using handshaking on edges:</strong> In a binary tree with $n$ nodes, there are $n - 1$ edges total (tree property). Each internal node contributes exactly 2 edges going downward (since every internal node in a full binary tree has exactly 2 children). So total edges $= 2I$. But total edges $= n - 1$. Therefore $2I = n - 1$, which gives $n = 2I + 1$. Since $n = I + n_{\text{leaf}}$, we get $I + n_{\text{leaf}} = 2I + 1$, so $n_{\text{leaf}} = I + 1$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 226: Verifying $n_{\text{leaf}} = I + 1$</div><div class="box-body"><p>In the full binary tree above: nodes A, B, C, D are internal ($I = 4$). Nodes E, F, G, H, I are leaves ($n_{\text{leaf}} = 5$). Check: $n_{\text{leaf}} = I + 1 \Rightarrow 5 = 4 + 1$. Correct. Also $n = 2I + 1 = 9$ and $I = (n-1)/2 = 4$.</p></div></div>
+<div class="concept-box"><div class="box-title">Formula: Nodes in terms of Levels ($L$)</div><div class="box-body"><p>For a full binary tree with $L$ levels:</p>
+<ul><li><p><strong>Minimum nodes:</strong> When the tree is a skewed-but-full structure. The minimum has 1 internal node per level except the last, giving a chain of paired leaves. The minimum is $n_{\min} = 2L - 1$. (Each internal level adds 1 internal node and we have $L-1$ internal levels, plus $L$ leaf nodes... actually derived as: $L-1$ internal nodes plus $L$ leaves = $2L - 1$.)</p></li><li><p><strong>Maximum nodes:</strong> When the tree is a perfect binary tree. $n_{\max} = 2^L - 1$.</p></li></ul>
+<p>\[
+2L - 1 \;\le\; n \;\le\; 2^L - 1
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Formula: Nodes in terms of Height ($h$)</div><div class="box-body"><p>Since $L = h + 1$:
+\[
+2(h+1) - 1 \;\le\; n \;\le\; 2^{h+1} - 1    \Rightarrow    2h + 1 \;\le\; n \;\le\; 2^{h+1} - 1
+\]</p>
+<ul><li><p>Minimum total nodes = $2h + 1$ (minimum full binary tree: a left-skewed full tree where each internal node has two children but only the rightmost path is long).</p></li><li><p>Maximum total nodes = $2^{h+1} - 1$ (perfect binary tree).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Formula: Internal Nodes in terms of $L$ and $h$</div><div class="box-body"><ul><li><p>Since $n_{\text{leaf}} = I + 1$ and $n = 2I + 1$:</p></li><li><p>When $n = 2L-1$ (minimum): $I = L - 1$ (minimum internal nodes).</p></li><li><p>When $n = 2^L - 1$ (maximum): $I = 2^{L-1} - 1$ (maximum internal nodes).</p></li></ul>
+<p>\[
+L - 1 \;\le\; I \;\le\; 2^{L-1} - 1      \text{or equivalently}      h \;\le\; I \;\le\; 2^h - 1
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig137.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig138.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 227: Full Binary Tree: Worked Examples</div><div class="box-body"><p><strong>Example 1:</strong> A full binary tree has 15 nodes. Find $I$ and $n_{\text{leaf}}$.
+\[
+I = \frac{n-1}{2} = \frac{15-1}{2} = 7,      n_{\text{leaf}} = I+1 = 8
+\]</p>
+<p><strong>Example 2:</strong> A full binary tree has height $h = 3$. What are the minimum and maximum possible total nodes?
+\[
+n_{\min} = 2h+1 = 7,      n_{\max} = 2^{h+1}-1 = 15
+\]</p>
+<p><strong>Example 3:</strong> A full binary tree has 9 leaf nodes. How many internal nodes does it have?
+\[
+n_{\text{leaf}} = I + 1 \Rightarrow 9 = I + 1 \Rightarrow I = 8,      n = 2I+1 = 17
+\]</p></div></div>
+</section>
+</section>
+<section id="perfect-binary-tree" class="content-section level-2">
+<h3 class="section-heading">Perfect Binary Tree</h3>
+<div class="concept-box"><div class="box-title">Concept: What is a Perfect Binary Tree</div><div class="box-body"><p>A <strong>perfect binary tree</strong> is a binary tree where:</p>
+<ul><li><p>Every internal node has <strong>exactly 2 children</strong> (full condition), AND</p></li><li><p>All leaf nodes are at the <strong>same level</strong> (complete and symmetric).</p></li></ul>
+<p>A perfect binary tree of height $h$ has exactly $h+1$ levels, all levels are completely filled. It is the most regular and most densely packed binary tree shape.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig139.png" alt="diagram"></div>
+<section id="derivation-of-perfect-binary-tree-formulas" class="content-section level-3">
+<h4 class="section-heading">Derivation of Perfect Binary Tree Formulas</h4>
+<div class="concept-box"><div class="box-title">Theorem: Total Nodes in Perfect Binary Tree</div><div class="box-body"><p>In a perfect binary tree of height $h$ (or $L$ levels), every level is full. The number of nodes at level $l$ is exactly $2^l$. Summing all levels:
+\[
+n = \sum_{l=0}^{h} 2^l = 2^0 + 2^1 + \cdots + 2^h = 2^{h+1} - 1
+\]
+Or equivalently in terms of levels $L = h+1$:
+\[
+\boxed{n = 2^{h+1} - 1 = 2^L - 1}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Leaf Nodes in Perfect Binary Tree</div><div class="box-body"><p>All leaf nodes are at the last level $h$. Number of nodes at level $h$ is $2^h$.
+\[
+\boxed{n_{\text{leaf}} = 2^h = 2^{L-1}}
+\]
+Since $n = 2^{h+1} - 1$ and $n_{\text{leaf}} = 2^h$:
+\[
+n_{\text{leaf}} = \frac{n+1}{2}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Internal Nodes in Perfect Binary Tree</div><div class="box-body"><p>$I = n - n_{\text{leaf}} = (2^{h+1} - 1) - 2^h = 2^h - 1$. Also from the full binary tree result ($n = 2I + 1$):
+\[
+I = \frac{n-1}{2} = \frac{2^{h+1} - 2}{2} = 2^h - 1 = 2^{L-1} - 1
+\]
+\[
+\boxed{I = 2^h - 1 = 2^{L-1} - 1}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Height from $n$ in Perfect Binary Tree</div><div class="box-body"><p>From $n = 2^{h+1} - 1$, solving for $h$:
+\[
+n + 1 = 2^{h+1} \Rightarrow h + 1 = \log_2(n+1) \Rightarrow h = \log_2(n+1) - 1
+\]
+This is only valid when $n+1$ is a power of 2 (i.e., the tree is perfect).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig140.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 228: Perfect Binary Tree: Worked Examples</div><div class="box-body"><p><strong>Example 1:</strong> A perfect binary tree has height $h = 4$. Find $n$, $I$, $n_{\text{leaf}}$.
+\[
+n = 2^{4+1} - 1 = 31,      n_{\text{leaf}} = 2^4 = 16,      I = 2^4 - 1 = 15
+\]
+Verify: $n_{\text{leaf}} = I + 1 \Rightarrow 16 = 15 + 1$ \checkmark, $n = I + n_{\text{leaf}} = 15 + 16 = 31$ \checkmark</p>
+<p><strong>Example 2:</strong> A perfect binary tree has 63 nodes. What is its height?
+\[
+h = \log_2(63+1) - 1 = \log_2(64) - 1 = 6 - 1 = 5
+\]</p>
+<p><strong>Example 3:</strong> A perfect binary tree has 5 levels ($L = 5$). Find $n$, $n_{\text{leaf}}$, $I$.
+\[
+n = 2^5 - 1 = 31,      n_{\text{leaf}} = 2^{5-1} = 16,      I = 2^{5-1} - 1 = 15
+\]</p></div></div>
+</section>
+</section>
+<section id="complete-binary-tree" class="content-section level-2">
+<h3 class="section-heading">Complete Binary Tree</h3>
+<div class="concept-box"><div class="box-title">Concept: What is a Complete Binary Tree</div><div class="box-body"><p>A <strong>complete binary tree</strong> is a binary tree where:</p>
+<ul><li><p>All levels except possibly the last level are <strong>completely filled</strong>.</p></li><li><p>The last level has nodes filled from <strong>left to right</strong> with no gaps in between.</p></li></ul>
+<p>A perfect binary tree is always also a complete binary tree. But a complete binary tree is not always perfect (the last level may be partially filled). Complete binary trees are important because they are efficiently stored in arrays using index formulas.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig141.png" alt="diagram"></div>
+<section id="derivation-of-complete-binary-tree-formulas" class="content-section level-3">
+<h4 class="section-heading">Derivation of Complete Binary Tree Formulas</h4>
+<div class="concept-box"><div class="box-title">Theorem: Range of Total Nodes for Height $h$</div><div class="box-body"><p>A complete binary tree of height $h$ has all levels 0 to $h-1$ completely filled ($2^h - 1$ nodes in them), and level $h$ has at least 1 node and at most $2^h$ nodes. Therefore:
+\[
+\underbrace{(2^h - 1) + 1}_{=\;2^h} \;\le\; n \;\le\; \underbrace{(2^h - 1) + 2^h}_{=\;2^{h+1}-1}
+\]
+\[
+\boxed{2^h \;\le\; n \;\le\; 2^{h+1} - 1}
+\]
+Equivalently in terms of levels $L$:
+\[
+\boxed{2^{L-1} \;\le\; n \;\le\; 2^L - 1}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Height from $n$ in Complete Binary Tree</div><div class="box-body"><p>From $2^h \le n \le 2^{h+1} - 1$, taking $\log_2$ of the lower bound:
+\[
+h = \lfloor \log_2 n \rfloor
+\]
+This is the exact height formula for any complete binary tree with $n$ nodes.</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Leaf Nodes and Internal Nodes in Complete Binary Tree</div><div class="box-body"><p>For a complete binary tree with $n$ nodes:
+\[
+\boxed{n_{\text{leaf}} = \left\lceil \frac{n}{2} \right\rceil}
+\]
+\[
+\boxed{I = \left\lfloor \frac{n}{2} \right\rfloor}
+\]</p>
+<p><strong>Derivation:</strong> Using the array representation (1-indexed), nodes $\lfloor n/2 \rfloor + 1$ through $n$ are leaves (they have no children since their left child would be at index $&gt; n$). That is $n - \lfloor n/2 \rfloor = \lceil n/2 \rceil$ leaves. The remaining $\lfloor n/2 \rfloor$ nodes are internal.</p>
+<p><strong>Checking the formula:</strong></p>
+<ul><li><p>If $n = 9$: $n_{\text{leaf}} = \lceil 9/2 \rceil = 5$, $I = \lfloor 9/2 \rfloor = 4$.</p></li><li><p>If $n = 10$: $n_{\text{leaf}} = \lceil 10/2 \rceil = 5$, $I = \lfloor 10/2 \rfloor = 5$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 229: Why $n_{\text{leaf}} = \lceil n/2 \rceil$ in Complete Binary Tree</div><div class="box-body"><p>In a complete binary tree stored in a 1-indexed array of size $n$:</p>
+<ul><li><p>Node at index $i$ has left child at $2i$ and right child at $2i+1$.</p></li><li><p>A node at index $i$ is a leaf if $2i &gt; n$ (its left child doesn't exist).</p></li><li><p>Largest non-leaf index: $\lfloor n/2 \rfloor$.</p></li><li><p>Indices $\lfloor n/2 \rfloor + 1$ to $n$ are all leaves: that is $n - \lfloor n/2 \rfloor = \lceil n/2 \rceil$ leaf nodes.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig142.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Formula: Internal Nodes in Terms of Levels</div><div class="box-body"><p>All levels $0$ to $L-2$ are completely full in a complete binary tree. So the minimum number of internal nodes includes all of level $L-2$ and above:</p>
+<ul><li><p>Minimum $I$: when the last level has only 1 node (leftmost), then $I = (2^{L-1} - 1)$ from filled levels... actually the range comes from the range of $n$:</p></li><li><p>Since $I = \lfloor n/2 \rfloor$ and $2^{L-1} \le n \le 2^L - 1$:</p></li></ul>
+<p>\[
+\left\lfloor \frac{2^{L-1}}{2} \right\rfloor \;\le\; I \;\le\; \left\lfloor \frac{2^L - 1}{2} \right\rfloor
+   \Rightarrow   
+2^{L-2} \;\le\; I \;\le\; 2^{L-1} - 1
+\]
+In terms of height $h$:
+\[
+\boxed{2^{h-1} \;\le\; I \;\le\; 2^h - 1}
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig143.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 230: Complete Binary Tree: Worked Examples</div><div class="box-body"><p><strong>Example 1:</strong> A complete binary tree has 20 nodes. Find $h$, $n_{\text{leaf}}$, $I$.
+\[
+h = \lfloor \log_2 20 \rfloor = \lfloor 4.32 \rfloor = 4
+\]
+\[
+n_{\text{leaf}} = \lceil 20/2 \rceil = 10,      I = \lfloor 20/2 \rfloor = 10
+\]
+Verify: $n_{\text{leaf}} + I = 10 + 10 = 20 = n$ \checkmark</p>
+<p><strong>Example 2:</strong> A complete binary tree has height $h = 3$. What are the minimum and maximum nodes?
+\[
+n_{\min} = 2^3 = 8,      n_{\max} = 2^{3+1} - 1 = 15
+\]</p>
+<p><strong>Example 3:</strong> A complete binary tree has 100 nodes. Find $n_{\text{leaf}}$ and $I$.
+\[
+n_{\text{leaf}} = \lceil 100/2 \rceil = 50,      I = \lfloor 100/2 \rfloor = 50
+\]</p>
+<p><strong>Example 4:</strong> A complete binary tree has 7 nodes (hence perfect). Find $n_{\text{leaf}}$ using the complete tree formula.
+\[
+n_{\text{leaf}} = \lceil 7/2 \rceil = 4 = 2^2 = 2^{h} \text{ (since } h = \lfloor \log_2 7 \rfloor = 2\text{)}
+\]
+Both complete and perfect formulas agree here. \checkmark</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig144.png" alt="diagram"></div>
+</section>
+</section>
+</section>
+<section id="binary-tree-traversals" class="content-section level-1">
+<h2 class="section-heading">Binary Tree Traversals</h2>
+<div class="concept-box"><div class="box-title">Concept: What is Traversal</div><div class="box-body"><p>Traversal means visiting every node of the tree exactly once, in some specific order. Unlike arrays where we always go from index 0 to $n-1$, trees can be traversed in many different orders. The four common traversals are Inorder, Preorder, Postorder, and Level-order. Each gives a different sequence of nodes, and each is useful for different purposes.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig145.png" alt="diagram"></div>
+<section id="inorder-traversal-left-root-right" class="content-section level-2">
+<h3 class="section-heading">Inorder Traversal (Left, Root, Right)</h3>
+<div class="concept-box"><div class="box-title">Concept: Inorder Traversal</div><div class="box-body"><p>In inorder traversal, we visit nodes in the order: Left subtree, then Root, then Right subtree, recursively. Think of it as reading a book: go all the way to the leftmost page first, read it, come back, read the current chapter, then go to the right. For a BST, inorder traversal gives nodes in sorted order, which is a very important property.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig146.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig147.png" alt="diagram"></div>
+</section>
+<section id="preorder-traversal-root-left-right" class="content-section level-2">
+<h3 class="section-heading">Preorder Traversal (Root, Left, Right)</h3>
+<div class="concept-box"><div class="box-title">Concept: Preorder Traversal</div><div class="box-body"><p>In preorder traversal, we visit nodes in the order: Root first, then Left subtree, then Right subtree. Think of it as copying a directory structure: you first note down the current folder name, then copy everything inside the left subfolder, then copy everything inside the right subfolder. Preorder is used to create a copy of the tree.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig148.png" alt="diagram"></div>
+</section>
+<section id="postorder-traversal-left-right-root" class="content-section level-2">
+<h3 class="section-heading">Postorder Traversal (Left, Right, Root)</h3>
+<div class="concept-box"><div class="box-title">Concept: Postorder Traversal</div><div class="box-body"><p>In postorder traversal, we visit nodes in the order: Left subtree, then Right subtree, then Root last. Think of it as cleaning up: you clean all the stuff inside a folder first, and only then delete the folder itself. Postorder is used to delete a tree, or to evaluate expression trees where operators come after operands.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig149.png" alt="diagram"></div>
+</section>
+<section id="reconstructing-a-tree-from-two-traversals" class="content-section level-2">
+<h3 class="section-heading">Reconstructing a Tree from Two Traversals</h3>
+<div class="concept-box"><div class="box-title">Concept: Tree Reconstruction</div><div class="box-body"><p>Given two traversals, we can reconstruct the unique binary tree, but only if one of them is Inorder. This is because Inorder tells us which nodes are on the left and which are on the right of each root. The other traversal (Preorder or Postorder) tells us which node is the root.</p>
+<ul><li><p><strong>Inorder + Preorder</strong> $\to$ can reconstruct unique tree.</p></li><li><p><strong>Inorder + Postorder</strong> $\to$ can reconstruct unique tree.</p></li><li><p><strong>Preorder + Postorder alone</strong> $\to$ cannot always reconstruct unique tree.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 231: Step by Step: Reconstruct from Inorder + Preorder (Example 1)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [3, 9, 20, 15, 7]</p></li><li><p>Inorder: [9, 3, 15, 20, 7]</p></li></ul>
+<p><strong>Step 1:</strong> First element of Preorder is always the root. So root = 3.</p>
+<p><strong>Step 2:</strong> Find root (3) in Inorder. Everything to its left in Inorder ([9]) is in the left subtree. Everything to its right ([15, 20, 7]) is in the right subtree.</p>
+<p><strong>Step 3:</strong> Left subtree has 1 node (9). Right subtree has 3 nodes (15, 20, 7). Take next 1 element from Preorder for left subtree: [9]. Take next 3 for right subtree: [20, 15, 7].</p>
+<p><strong>Step 4:</strong> Recurse. For right subtree: Preorder [20, 15, 7], Inorder [15, 20, 7]. Root = 20. Left of 20 in Inorder = [15]. Right = [7].</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig150.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 232: Step by Step: Reconstruct from Inorder + Preorder (Example 2)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [1, 2, 4, 5, 3, 6]</p></li><li><p>Inorder: [4, 2, 5, 1, 3, 6]</p></li></ul>
+<p><strong>Step 1:</strong> Preorder[0] = 1 is the main root.</p>
+<p><strong>Step 2:</strong> In Inorder, elements left of 1 are [4, 2, 5] (Left subtree), and right of 1 are [3, 6] (Right subtree).</p>
+<p><strong>Step 3:</strong> For Left subtree: Preorder is [2, 4, 5] and Inorder is [4, 2, 5]. Root = 2. Left of 2 is [4], right of 2 is [5].</p>
+<p><strong>Step 4:</strong> For Right subtree: Preorder is [3, 6] and Inorder is [3, 6]. Root = 3. Left of 3 is empty, right of 3 is [6].</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig151.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 233: Step by Step: Reconstruct from Inorder + Preorder (Example 3)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [A, B, D, E, C]</p></li><li><p>Inorder: [D, B, E, A, C]</p></li></ul>
+<p><strong>Step 1:</strong> Preorder[0] = A is the root.</p>
+<p><strong>Step 2:</strong> Inorder splits into Left: [D, B, E] and Right: [C].</p>
+<p><strong>Step 3:</strong> For Left subtree: Preorder is [B, D, E], Inorder is [D, B, E]. Root = B. Left of B is [D], right of B is [E].</p>
+<p><strong>Step 4:</strong> For Right subtree: Only node [C] remains as the right child of A.</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig152.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 234: Step by Step: Reconstruct from Inorder + Postorder (Example 1)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Inorder: [9, 3, 15, 20, 7]</p></li><li><p>Postorder: [9, 15, 7, 20, 3]</p></li></ul>
+<p><strong>Step 1:</strong> Last element of Postorder is always the root. So root = 3.</p>
+<p><strong>Step 2:</strong> Locate 3 in Inorder. Left subtree nodes = [9], Right subtree nodes = [15, 20, 7].</p>
+<p><strong>Step 3:</strong> Process Postorder from right to left. Left subtree gets Postorder [9], Right subtree gets Postorder [15, 7, 20].</p>
+<p><strong>Step 4:</strong> For Right subtree: Last element in Postorder [15, 7, 20] is 20. Root = 20. Left of 20 in Inorder = [15], Right = [7].</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig153.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 235: Step by Step: Reconstruct from Inorder + Postorder (Example 2)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Inorder: [4, 2, 5, 1, 6, 3]</p></li><li><p>Postorder: [4, 5, 2, 6, 3, 1]</p></li></ul>
+<p><strong>Step 1:</strong> Postorder[-1] = 1 is the main root.</p>
+<p><strong>Step 2:</strong> Inorder splits into Left: [4, 2, 5] and Right: [6, 3].</p>
+<p><strong>Step 3:</strong> For Right subtree ([6, 3]): Postorder slice is [6, 3]. Last element = 3 (Right child of 1). In Inorder, 6 is to the left of 3.</p>
+<p><strong>Step 4:</strong> For Left subtree ([4, 2, 5]): Postorder slice is [4, 5, 2]. Last element = 2 (Left child of 1). Left of 2 is [4], Right of 2 is [5].</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig154.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 236: Step by Step: Reconstruct from Inorder + Postorder (Example 3)</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Inorder: [D, B, A, E, C, F]</p></li><li><p>Postorder: [D, B, E, F, C, A]</p></li></ul>
+<p><strong>Step 1:</strong> Postorder[-1] = A is the root.</p>
+<p><strong>Step 2:</strong> Inorder splits into Left: [D, B] and Right: [E, C, F].</p>
+<p><strong>Step 3:</strong> For Left subtree: Postorder is [D, B]. Root = B. Inorder shows D is on the left of B.</p>
+<p><strong>Step 4:</strong> For Right subtree: Postorder is [E, F, C]. Root = C. Inorder shows E is to the left of C, and F is to the right of C.</p>
+<p><strong>Final Tree:</strong></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig155.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Why Preorder + Postorder Cannot Guarantee Uniqueness</div><div class="box-body"><p>When given Preorder and Postorder traversals without Inorder, we can identify the main root (first element of Preorder, last element of Postorder). However, whenever a node has <strong>only one child</strong>, it is impossible to determine whether that child is a <strong>left child</strong> or a <strong>right child</strong>.</p>
+<p><strong>General Attempt Method:</strong></p>
+<ul><li><p>Preorder[0] (or Postorder[-1]) is the root.</p></li><li><p>Preorder[1] is assumed to be the root of the left subtree.</p></li><li><p>We locate Preorder[1] in Postorder to find the boundary of the left subtree.</p></li><li><p><strong>Ambiguity:</strong> If a parent node has only one child, that child appears immediately after the parent in Preorder and right before it in Postorder, giving no boundary information to distinguish left from right.</p></li></ul>
+<p><strong>Formula for Number of Possible Trees:</strong>
+$$\text{Number of Trees} = 2^k$$
+where $k$ is the number of internal nodes with <strong>exactly one child</strong>. Since each single-child node provides 2 independent choices (Left or Right), $k$ single-child nodes yield $2^k$ possible tree topologies.</p>
+<p><strong>Example:</strong>
+Given Preorder: [1, 2, 3] and Postorder: [3, 2, 1].</p>
+<ul><li><p>Node 1 has only child 2 $\to$ Choice of Left or Right.</p></li><li><p>Node 2 has only child 3 $\to$ Choice of Left or Right.</p></li><li><p>Here $k = 2$ single-child nodes, so total trees = $2^2 = 4$ distinct topologies.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 237: Ambiguity Case 1: Two-Node Tree</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [1, 2]</p></li><li><p>Postorder: [2, 1]</p></li></ul>
+<p>Both structures below generate identical Preorder [1, 2] and Postorder [2, 1] sequences:</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig156.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 238: Ambiguity Case 2: Three-Node Skewed vs Mixed Trees</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [1, 2, 3]</p></li><li><p>Postorder: [3, 2, 1]</p></li></ul>
+<p>Multiple distinct tree topologies satisfy these exact sequences:</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig157.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 239: Ambiguity Case 3: Four-Node Internal Single-Child Tree</div><div class="box-body"><p>Given:</p>
+<ul><li><p>Preorder: [1, 2, 4, 3]</p></li><li><p>Postorder: [4, 2, 3, 1]</p></li></ul>
+<p>Root is 1. Left subtree contains 2 and 4; Right subtree contains 3. However, whether node 4 is a left child or right child of node 2 cannot be determined:</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig158.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Reconstruction Under Special Binary Tree Constraints</div><div class="box-body"><p>If additional structural constraints are known, Preorder + Postorder <strong>can</strong> uniquely reconstruct the tree:</p>
+<ul><li><p><strong>Full / Strict Binary Tree ($k = 0$):</strong> Since every internal node has 2 children, no single-child ambiguity exists.
+$$\text{Number of Trees} = 2^0 = 1    \text{(Unique)}$$</p></li><li><p><strong>Perfect Binary Tree:</strong> A restricted subset of Full Binary Trees.
+$$\text{Number of Trees} = 1    \text{(Unique)}$$</p></li><li><p><strong>Complete Binary Tree:</strong> Structural position rules force any degree-1 node's single child to be on the left.
+$$\text{Number of Trees} = 1    \text{(Unique)}$$</p></li></ul></div></div>
+</section>
+</section>
+<section id="binary-search-tree-bst" class="content-section level-1">
+<h2 class="section-heading">Binary Search Tree (BST)</h2>
+<div class="concept-box"><div class="box-title">Concept: BST Property</div><div class="box-body"><p>A Binary Search Tree is a binary tree with a very useful ordering property. For every node in the tree:</p>
+<ul><li><p>All values in the <strong>left subtree</strong> are <strong>strictly less than</strong> the node's value.</p></li><li><p>All values in the <strong>right subtree</strong> are <strong>strictly greater than</strong> the node's value.</p></li></ul>
+<p>This property holds recursively for every node, not just the root. This ordering makes searching, insertion, and deletion much faster than in a plain binary tree, in the average case.</p></div></div>
+<div class="example-box"><div class="box-title">Example 240: Analogy: Dictionary Search</div><div class="box-body"><p>Think of searching for a word in a dictionary. You open to the middle page. If your word comes before the middle word alphabetically, you look in the left half. Otherwise, you look in the right half. A BST works the same way. At each node, you decide to go left (smaller) or right (larger), eliminating half the remaining nodes each time.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig159.png" alt="diagram"></div>
+<section id="construct-a-bst-from-a-given-insertion-sequence" class="content-section level-2">
+<h3 class="section-heading">Construct a BST from a Given Insertion Sequence</h3>
+<div class="concept-box"><div class="box-title">Concept: BST from Insertion Sequence</div><div class="box-body"><p>To construct a BST from a given sequence of keys, we insert them one by one in the given order. The first key becomes the root. Each subsequent key is inserted using the standard BST insert procedure. The shape of the final BST depends entirely on the order of insertion, even if the set of keys is the same.</p></div></div>
+<div class="example-box"><div class="box-title">Example 241: Step by Step: Insert [5, 3, 7, 1, 4, 6, 8]</div><div class="box-body"><p>We insert each number one by one.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig160.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">bst-from-sequence.py</div><pre><code>def build_bst(sequence):
+    root = None
+    for val in sequence:
+        root = bst_insert(root, val)
+    return root
+
+
+def print_tree(root, level=0, prefix=&quot;Root: &quot;):
+    if root:
+        print(&quot; &quot; * (level * 4) + prefix + str(root.data))
+        if root.left or root.right:
+            if root.left:
+                print_tree(root.left, level + 1, &quot;L: &quot;)
+            else:
+                print(&quot; &quot; * ((level+1)*4) + &quot;L: None&quot;)
+            if root.right:
+                print_tree(root.right, level + 1, &quot;R: &quot;)
+            else:
+                print(&quot; &quot; * ((level+1)*4) + &quot;R: None&quot;)
+
+
+# --- Driver Code ---
+seq  = [5, 3, 7, 1, 4, 6, 8]
+root = build_bst(seq)
+
+print(&quot;BST built from:&quot;, seq)
+print_tree(root)
+print(&quot;\nInorder (sorted):&quot;, end=&quot; &quot;)
+inorder(root)
+# Output:
+# Root: 5
+#     L: 3
+#         L: 1
+#         R: 4
+#     R: 7
+#         L: 6
+#         R: 8
+# Inorder (sorted): 1 3 4 5 6 7 8</code></pre></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig161.png" alt="diagram"></div>
+</section>
+<section id="search-in-bst" class="content-section level-2">
+<h3 class="section-heading">Search in BST</h3>
+<div class="concept-box"><div class="box-title">Concept: BST Search in $O(h)$</div><div class="box-body"><p>To search for a value in a BST, we start at the root. If the value equals the root, we found it. If the value is less, we go to the left subtree. If more, we go right. We keep doing this until we find the node or reach NULL. At each step, we eliminate one entire subtree from consideration. The time taken is $O(h)$, where $h$ is the height of the tree.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig162.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig163.png" alt="diagram"></div>
+</section>
+<section id="insert-in-bst" class="content-section level-2">
+<h3 class="section-heading">Insert in BST</h3>
+<div class="concept-box"><div class="box-title">Concept: BST Insertion in $O(h)$</div><div class="box-body"><p>Inserting a new key follows the same path as search. We search for the key. When we reach NULL (a position where the key would be if it existed), we insert the new node there. We never change existing nodes. We only attach a new leaf. This also takes $O(h)$ time.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig164.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig165.png" alt="diagram"></div>
+</section>
+<section id="inorder-successor-and-predecessor" class="content-section level-2">
+<h3 class="section-heading">Inorder Successor and Predecessor</h3>
+<div class="concept-box"><div class="box-title">Concept: Inorder Successor</div><div class="box-body"><p>The inorder successor of a node is the node that comes immediately after it in the inorder traversal. In BST terms, it is the smallest value that is still greater than the node's value.</p>
+<ul><li><p><strong>Case 1: Node has a right subtree.</strong> The inorder successor is the <strong>leftmost node</strong> in the right subtree. We go right once, then keep going left until we cannot go further.</p></li><li><p><strong>Case 2: Node has no right subtree.</strong> The inorder successor is the <strong>lowest ancestor</strong> for which this node lies in the ancestor's left subtree. We go up the tree until we take a left turn.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Inorder Predecessor</div><div class="box-body"><p>The inorder predecessor of a node is the node that comes immediately before it in inorder traversal. It is the largest value still smaller than the node's value.</p>
+<ul><li><p><strong>Case 1: Node has a left subtree.</strong> The inorder predecessor is the <strong>rightmost node</strong> in the left subtree. We go left once, then keep going right until we cannot go further.</p></li><li><p><strong>Case 2: Node has no left subtree.</strong> The inorder predecessor is the <strong>lowest ancestor</strong> for which this node lies in the ancestor's right subtree. We go up the tree until we take a right turn.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig166.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 242: More Examples on the Same BST</div><div class="box-body"><p>Using the BST with inorder sequence: 20, 30, 35, 40, 50, 60, 70, 80.</p>
+<p><strong>Inorder Successors:</strong></p>
+<ul><li><p>Successor of 20: 20 has no right child. Go up. 30 is an ancestor and 20 is in 30's left subtree. So successor of 20 = <strong>30</strong>.</p></li><li><p>Successor of 50: 50 is root and has right subtree. Leftmost in right subtree (rooted at 70): go right to 70, then left to 60. No more left. Successor of 50 = <strong>60</strong>.</p></li><li><p>Successor of 80: 80 has no right child. Go up. 80 is in 70's right subtree. Go up more. 70 is in 50's right subtree. Go up more. 50 is root, no more ancestors. Successor of 80 = <strong>NULL</strong> (80 is the largest).</p></li></ul>
+<p><strong>Inorder Predecessors:</strong></p>
+<ul><li><p>Predecessor of 50: 50 has left subtree. Rightmost in left subtree (rooted at 30): go left to 30, then right to 40, then right would be... 40 has no right child. Predecessor of 50 = <strong>40</strong>.</p></li><li><p>Predecessor of 20: 20 has no left child. Go up. 20 is in 30's left subtree, so 30 is NOT the answer (we need a right-turn ancestor). Go up more. 30 is in 50's left subtree. Still no. 50 has no parent. Predecessor of 20 = <strong>NULL</strong> (20 is the smallest).</p></li><li><p>Predecessor of 60: 60 has no left child. Go up. 60 is in 70's left subtree, so 70 is NOT the answer. Go up. 70 is in 50's right subtree. So predecessor of 60 = <strong>50</strong>.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig167.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig168.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">bst-successor-predecessor.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data  = data
+        self.left  = None
+        self.right = None
+
+
+def inorder_successor(root, target_val):
+    &quot;&quot;&quot;
+    Returns the node with the smallest value
+    greater than target_val in the BST.
+    Returns None if no successor exists.
+    &quot;&quot;&quot;
+    curr      = root
+    successor = None
+
+    while curr:
+        if curr.data &gt; target_val:
+            successor = curr        # curr is a valid candidate
+            curr      = curr.left   # try to find smaller valid one
+        elif curr.data &lt; target_val:
+            curr = curr.right
+        else:                       # found the target node
+            if curr.right:
+                # Case 1: right subtree exists
+                # successor = leftmost node in right subtree
+                temp = curr.right
+                while temp.left:
+                    temp = temp.left
+                return temp
+            break                   # Case 2: use the stored successor
+
+    return successor
+
+
+def inorder_predecessor(root, target_val):
+    &quot;&quot;&quot;
+    Returns the node with the largest value
+    less than target_val in the BST.
+    Returns None if no predecessor exists.
+    &quot;&quot;&quot;
+    curr        = root
+    predecessor = None
+
+    while curr:
+        if curr.data &lt; target_val:
+            predecessor = curr      # curr is a valid candidate
+            curr        = curr.right  # try to find larger valid one
+        elif curr.data &gt; target_val:
+            curr = curr.left
+        else:                       # found the target node
+            if curr.left:
+                # Case 1: left subtree exists
+                # predecessor = rightmost node in left subtree
+                temp = curr.left
+                while temp.right:
+                    temp = temp.right
+                return temp
+            break                   # Case 2: use the stored predecessor
+
+    return predecessor
+
+
+# ============================================================
+# Helper: build BST from insertion sequence
+# ============================================================
+def insert(root, val):
+    if root is None:
+        return Node(val)
+    if val &lt; root.data:
+        root.left  = insert(root.left, val)
+    elif val &gt; root.data:
+        root.right = insert(root.right, val)
+    return root
+
+
+# --- Driver Code ---
+# Build BST: 50, 30, 70, 20, 40, 60, 80, 35
+root = None
+for val in [50, 30, 70, 20, 40, 60, 80, 35]:
+    root = insert(root, val)
+
+# Inorder: 20, 30, 35, 40, 50, 60, 70, 80
+
+# Successors
+for val in [20, 30, 40, 50, 80]:
+    s = inorder_successor(root, val)
+    print(f&quot;Successor of {val}: {s.data if s else &#x27;NULL&#x27;}&quot;)
+
+print()
+
+# Predecessors
+for val in [20, 30, 50, 60, 80]:
+    p = inorder_predecessor(root, val)
+    print(f&quot;Predecessor of {val}: {p.data if p else &#x27;NULL&#x27;}&quot;)
+
+# Output:
+# Successor of 20: 30
+# Successor of 30: 35
+# Successor of 40: 50
+# Successor of 50: 60
+# Successor of 80: NULL
+#
+# Predecessor of 20: NULL
+# Predecessor of 30: 20
+# Predecessor of 50: 40
+# Predecessor of 60: 50
+# Predecessor of 80: 70</code></pre></div>
+<div class="concept-box"><div class="box-title">Concept: Time Complexity Analysis</div><div class="box-body"><p>Both inorder successor and inorder predecessor algorithms follow a single root-to-node path in the BST, then at most one more root-to-leaf path inside a subtree.</p>
+<p><strong>Time Complexity: $O(h)$</strong> where $h$ is the height of the BST.</p>
+<ul><li><p><strong>Case 1 (subtree exists):</strong> We first search for the target node going down the BST: $O(h)$ steps. Then we find the leftmost (or rightmost) node in the subtree: at most $O(h)$ additional steps. Total: $O(h)$.</p></li><li><p><strong>Case 2 (no subtree):</strong> We traverse from root to the target node while recording ancestor candidates. This is a single top-down pass: $O(h)$ steps.</p></li></ul>
+<p><strong>Space Complexity: $O(1)$</strong> for the iterative version (only a few pointer variables used). $O(h)$ for a recursive version due to the call stack.</p>
+<p><strong>In terms of $n$ (number of nodes):</strong></p>
+<ul><li><p>Best case (balanced BST): $h = O(\log n)$, so time $= O(\log n)$.</p></li><li><p>Worst case (skewed BST): $h = O(n)$, so time $= O(n)$.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig169.png" alt="diagram"></div>
+</section>
+<section id="delete-in-bst-three-cases" class="content-section level-2">
+<h3 class="section-heading">Delete in BST: Three Cases</h3>
+<div class="concept-box"><div class="box-title">Concept: BST Deletion --- Three Cases</div><div class="box-body"><p>Deleting a node from a BST is the trickiest operation. There are three cases depending on how many children the node to be deleted has.</p>
+<p><strong>Case 1: Leaf node (0 children).</strong> Simply remove it. Set the parent's pointer to NULL.</p>
+<p><strong>Case 2: One child.</strong> Replace the node with its only child. Connect the parent directly to the child.</p>
+<p><strong>Case 3: Two children.</strong> Find the inorder successor (smallest node in the right subtree). Copy the inorder successor's value into the current node. Then delete the inorder successor (which has at most one child, so it falls into Case 1 or Case 2).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig170.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig171.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">bst-operations.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data  = data
+        self.left  = None
+        self.right = None
+
+
+def bst_insert(root, key):
+    if root is None:
+        return Node(key)
+    if key &lt; root.data:
+        root.left  = bst_insert(root.left, key)
+    elif key &gt; root.data:
+        root.right = bst_insert(root.right, key)
+    return root
+
+
+def bst_search(root, key):
+    if root is None or root.data == key:
+        return root
+    if key &lt; root.data:
+        return bst_search(root.left, key)
+    return bst_search(root.right, key)
+
+
+def find_min(node):
+    while node.left:
+        node = node.left
+    return node
+
+
+def bst_delete(root, key):
+    if root is None:
+        return None
+    if key &lt; root.data:
+        root.left  = bst_delete(root.left, key)
+    elif key &gt; root.data:
+        root.right = bst_delete(root.right, key)
+    else:
+        if root.left is None:       # Case 1 and 2
+            return root.right
+        if root.right is None:      # Case 2
+            return root.left
+        succ       = find_min(root.right)   # Case 3
+        root.data  = succ.data
+        root.right = bst_delete(root.right, succ.data)
+    return root
+
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.data, end=&quot; &quot;)
+        inorder(root.right)
+
+
+# --- Driver Code ---
+root = None
+for val in [50, 30, 70, 20, 40, 60, 80]:
+    root = bst_insert(root, val)
+
+print(&quot;Inorder (sorted):&quot;, end=&quot; &quot;)
+inorder(root)   # 20 30 40 50 60 70 80
+print()
+
+root = bst_delete(root, 30)
+print(&quot;After deleting 30:&quot;, end=&quot; &quot;)
+inorder(root)   # 20 40 50 60 70 80
+print()
+
+node = bst_search(root, 60)
+print(&quot;Search 60:&quot;, node.data if node else &quot;Not found&quot;)   # 60</code></pre></div>
+</section>
+<section id="inorder-traversal-of-bst-gives-sorted-order" class="content-section level-2">
+<h3 class="section-heading">Inorder Traversal of BST Gives Sorted Order</h3>
+<div class="concept-box"><div class="box-title">Concept: Why Inorder of BST is Sorted</div><div class="box-body"><p>In a BST, for any node, all left descendants are smaller and all right descendants are larger. Inorder traversal visits left subtree first, then root, then right subtree. Since left is always smaller than root, and root is always smaller than right, the inorder sequence comes out in increasing order automatically. This property is used to sort a list using a BST.</p></div></div>
+</section>
+<section id="height-of-bst-best-and-worst-case" class="content-section level-2">
+<h3 class="section-heading">Height of BST: Best and Worst Case</h3>
+<div class="concept-box"><div class="box-title">Concept: Best and Worst Case Height</div><div class="box-body"><p>The height of a BST determines the time for search, insert, and delete, all of which are $O(h)$.</p>
+<ul><li><p><strong>Best case</strong> (balanced BST): height $= O(\log n)$. This happens when keys are inserted in a way that the tree stays balanced. Operations are $O(\log n)$.</p></li><li><p><strong>Worst case</strong> (skewed BST): height $= O(n)$. This happens when keys are inserted in sorted order (ascending or descending), making the tree degenerate into a linked list. Operations become $O(n)$.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig172.png" alt="diagram"></div>
+</section>
+<section id="number-of-distinct-bsts-catalan-numbers" class="content-section level-2">
+<h3 class="section-heading">Number of Distinct BSTs: Catalan Numbers</h3>
+<div class="concept-box"><div class="box-title">Concept: Catalan Number $C_n$</div><div class="box-body"><p>The number of structurally distinct BSTs that can be formed with $n$ distinct keys is the $n$th Catalan number, given by
+\[
+C_n = \frac{1}{n+1}\binom{2n}{n} = \frac{(2n)!}{(n+1)!\; n!}
+\]
+The first few Catalan numbers are: $C_0 = 1, C_1 = 1, C_2 = 2, C_3 = 5, C_4 = 14, C_5 = 42$.</p>
+<p>For $n = 3$ keys $\{1, 2, 3\}$, there are $C_3 = 5$ distinct BSTs.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig173.png" alt="diagram"></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch04.html">&larr; Chapter 4: Linked Lists</a><span class="spacer"></span><a class="nav-btn next" href="ch06.html">Chapter 6: Hash Tables &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

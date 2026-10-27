@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning (Unsupervised) — Concept Notes</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Unsupervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Unsupervised Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-unsupervised-learning" class="toc-link" data-slug="types-of-unsupervised-learning">Types of Unsupervised Learning</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#clustering-example" class="toc-link" data-slug="clustering-example">Clustering Example</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dimensionality-reduction-example" class="toc-link" data-slug="dimensionality-reduction-example">Dimensionality Reduction Example</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Clustering Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#example-customer-purchase-data" class="toc-link" data-slug="example-customer-purchase-data">Example: Customer Purchase Data</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering" class="toc-link" data-slug="types-of-clustering">Types of Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-hard-clustering" class="toc-link" data-slug="1-hard-clustering">1. Hard Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-soft-clustering" class="toc-link" data-slug="2-soft-clustering">2. Soft Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering-methods" class="toc-link" data-slug="types-of-clustering-methods">Types of Clustering Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-centroid-based-clustering-partitioning-methods" class="toc-link" data-slug="1-centroid-based-clustering-partitioning-methods">1. Centroid-based Clustering (Partitioning Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-density-based-clustering-model-based-methods" class="toc-link" data-slug="2-density-based-clustering-model-based-methods">2. Density-based Clustering (Model-based Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#3-connectivity-based-clustering-hierarchical-clustering" class="toc-link" data-slug="3-connectivity-based-clustering-hierarchical-clustering">3. Connectivity-based Clustering (Hierarchical Clustering)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#4-distribution-based-clustering" class="toc-link" data-slug="4-distribution-based-clustering">4. Distribution-based Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#5-fuzzy-clustering" class="toc-link" data-slug="5-fuzzy-clustering">5. Fuzzy Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#partition-based-clustering" class="toc-link" data-slug="partition-based-clustering">Partition-based Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#k-means-clustering" class="toc-link" data-slug="k-means-clustering">K-means Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#k-medoids-clustering" class="toc-link" data-slug="k-medoids-clustering">K-medoids Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#hierarchical-clustering" class="toc-link" data-slug="hierarchical-clustering">Hierarchical Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#agglomerative-bottom-up-approach" class="toc-link" data-slug="agglomerative-bottom-up-approach">Agglomerative (Bottom-Up) Approach</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#single-linkage-method" class="toc-link" data-slug="single-linkage-method">Single-Linkage Method</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#complete-multiple-linkage-method" class="toc-link" data-slug="complete-multiple-linkage-method">Complete/Multiple-Linkage Method</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#divisive-top-down-approach" class="toc-link" data-slug="divisive-top-down-approach">Divisive (Top-Down) Approach</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Dimensionality Reduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#principal-component-analysis-pca" class="toc-link" data-slug="principal-component-analysis-pca">Principal Component Analysis (PCA)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#introduction-and-motivation" class="toc-link" data-slug="introduction-and-motivation">Introduction and Motivation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#visualization-of-pca-projection" class="toc-link" data-slug="visualization-of-pca-projection">Visualization of PCA Projection</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#mathematical-formulation" class="toc-link" data-slug="mathematical-formulation">Mathematical Formulation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; ML Concept Notes</div>
+      <h1>Machine Learning: Unsupervised Learning</h1>
+
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">Unsupervised Learning</div>
+      <div class="chapter-card-meta">5 sections</div>
+      <div class="chapter-card-preview">Introduction, Types of Unsupervised Learning</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Clustering Algorithms</div>
+      <div class="chapter-card-meta">19 sections</div>
+      <div class="chapter-card-preview">Introduction, Types of Clustering, Types of Clustering Methods...</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Dimensionality Reduction</div>
+      <div class="chapter-card-meta">4 sections</div>
+      <div class="chapter-card-preview">Principal Component Analysis (PCA)</div>
+    </a>
+    </div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Unsupervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

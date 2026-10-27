@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graph Traversals &mdash; GATE DSA</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch08.html" class="chapter-link active">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 8 of 10</div><h1>Graph Traversals</h1></div>
+<div class="concept-box"><div class="box-title">Concept: What is Graph Traversal</div><div class="box-body"><p>Graph traversal means visiting every vertex of a graph in a systematic way, making sure no vertex is missed and no vertex is visited twice. Unlike arrays or linked lists where there is only one natural order to visit elements, a graph can be traversed in many different ways depending on the strategy used. The two most fundamental and important traversal strategies are <strong>Breadth-First Search (BFS)</strong> and <strong>Depth-First Search (DFS)</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 269: Why Traversal Matters</div><div class="box-body"><p>Traversal is the foundation for solving many graph problems: finding shortest paths, detecting cycles, topological sorting, finding connected components, and many more. Mastering BFS and DFS step-by-step tracing is the single highest-yield graph topic in competitive exams.</p></div></div>
+<section id="breadth-first-search-bfs" class="content-section level-1">
+<h2 class="section-heading">Breadth-First Search (BFS)</h2>
+
+<section id="introduction-to-bfs" class="content-section level-2">
+<h3 class="section-heading">Introduction to BFS</h3>
+<div class="concept-box"><div class="box-title">Concept: What is BFS</div><div class="box-body"><p>Breadth-First Search (BFS) explores a graph <strong>level by level</strong>, outward from a chosen source vertex. It visits <strong>all neighbours</strong> of the current vertex before moving any deeper into the graph. BFS uses a <strong>FIFO queue</strong> to control the order of traversal, which is exactly what guarantees the level-by-level behaviour.</p></div></div>
+<div class="example-box"><div class="box-title">Example 270: Where BFS is Used</div><div class="box-body"><ul><li><p>Finding the shortest path (fewest edges) in an <strong>unweighted</strong> graph.</p></li><li><p>Finding all connected components of a graph.</p></li><li><p>Level-order traversal of a tree (BFS applied to a tree is exactly level-order traversal).</p></li></ul></div></div>
+</section>
+<section id="bfs-algorithm" class="content-section level-2">
+<h3 class="section-heading">BFS Algorithm</h3>
+<div class="concept-box"><div class="box-title">Concept: Colors and Labels Used in BFS</div><div class="box-body"><p>Each vertex is given a color to track its traversal state:</p>
+<ul><li><p><strong>WHITE:</strong> not yet discovered.</p></li><li><p><strong>GRAY:</strong> discovered, but still has unexplored neighbours (currently in the queue).</p></li><li><p><strong>BLACK:</strong> fully explored, all its neighbours have been looked at.</p></li></ul>
+<p>Along with color, we track $d[v]$ (distance from source $s$) and $\pi[v]$ (the parent of $v$ in the BFS tree).</p></div></div>
+<p><strong>Algorithm: BFS(G, s)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_001.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Time Complexity</div><div class="box-body"><p>With an adjacency list, each vertex is enqueued and dequeued exactly once ($O(V)$ total), and each edge is examined at most twice across the whole run ($O(E)$ total). So BFS runs in $O(V + E)$ time. With an adjacency matrix, finding the neighbours of a vertex takes $O(V)$ each time, giving $O(V^2)$ total.</p></div></div>
+</section>
+<section id="bfs-trace-example-graph" class="content-section level-2">
+<h3 class="section-heading">BFS Trace: Example Graph</h3>
+<div class="example-box"><div class="box-title">Example 271: Worked Trace: BFS on an Undirected Graph</div><div class="box-body"><p>Consider the undirected graph with vertices $\{A, B, C, D, E\}$ and edges $\{(A,B), (A,C), (B,C), (C,D), (C,E)\}$. Adjacency lists (alphabetical order): $A:[B,C]$, $B:[A,C]$, $C:[A,B,D,E]$, $D:[C]$, $E:[C]$. BFS starts from source $A$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_002.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_003.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 272: Filled BFS Table (Final State)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/d08_004.png" alt="diagram"></div>
+<p><strong>BFS order (dequeue order):</strong> $A, B, C, D, E$</p></div></div>
+</section>
+<section id="bfs-on-directed-graphs" class="content-section level-2">
+<h3 class="section-heading">BFS on Directed Graphs</h3>
+<div class="concept-box"><div class="box-title">Concept: BFS on Directed Graphs</div><div class="box-body"><p>The core logic and the $O(V+E)$ complexity are <strong>identical</strong> for directed graphs. BFS simply follows the <strong>outbound</strong> edges listed in $Adj[u]$; it never looks at incoming edges.</p></div></div>
+<div class="example-box"><div class="box-title">Example 273: Worked Trace: BFS on the Directed Version of the Same Graph</div><div class="box-body"><p>Take the same 5 vertices, but now the edges are directed: $A\to B$, $A\to C$, $B\to C$, $C\to D$, $C\to E$. BFS from source $A$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_005.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 274: Filled BFS Table for the Directed Graph</div><div class="box-body"><p>Since $B$&#x27;s only out-neighbour $C$ is already discovered (via $A$) by the time $B$ is processed, the resulting distances and parents come out exactly the same as the undirected case here.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_006.png" alt="diagram"></div></div></div>
+</section>
+<section id="bfs-on-disconnected-graph-connected-components" class="content-section level-2">
+<h3 class="section-heading">BFS on Disconnected Graph — Connected Components</h3>
+<div class="concept-box"><div class="box-title">Concept: Detecting Connected Components with BFS</div><div class="box-body"><p>If the graph is disconnected, a single BFS from one source will not reach all vertices. To find all connected components, we run BFS from every unvisited vertex. Each BFS run that starts fresh (from an unvisited vertex) discovers one complete connected component.</p>
+<p>The number of times we start BFS from an unvisited source = the number of connected components.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_007.png" alt="diagram"></div>
+</section>
+<section id="properties-of-bfs" class="content-section level-2">
+<h3 class="section-heading">Properties of BFS</h3>
+<div class="concept-box"><div class="box-title">Property 1: Multiple BFS Traversals</div><div class="box-body"><p>Multiple valid BFS orderings can exist for the <strong>same</strong> graph, depending on:</p>
+<ul><li><p>which vertex is <strong>chosen as the source</strong>,</p></li><li><p>the <strong>order in which neighbours appear</strong> in the adjacency list.</p></li></ul>
+<p>Changing either of these can give a different but equally valid BFS sequence.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 2: Distance as Level Number</div><div class="box-body"><p>$d[u]$ equals the exact <strong>level</strong> of $u$ in the BFS tree. In our example graph: $d[A] = 0$ (Level 0), $d[B] = d[C] = 1$ (Level 1), $d[D] = d[E] = 2$ (Level 2).</p></div></div>
+<div class="concept-box"><div class="box-title">Property 3: Dequeued Order Defines the BFS Order</div><div class="box-body"><p>The sequence in which vertices are removed from the queue (DEQUEUE calls) <strong>is</strong> the BFS traversal order. For our example:
+\[
+A, B, C, D, E
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Property 4: Shortest Path Length in Unweighted Graphs</div><div class="box-body"><p>In an unweighted graph, $d[u]$ gives the <strong>minimum number of edges</strong> on any path from $s$ to $u$. In our example, $d[D] = 2$ means the shortest path from $A$ to $D$ uses exactly 2 edges: $A \to C \to D$.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 5: Level-Order Traversal on Trees</div><div class="box-body"><p>BFS applied to a <strong>tree</strong> is exactly the same thing as <strong>level-order traversal</strong>. No cycle detection or visited array is even needed, because a tree has no cycles, so a vertex can never be reached a second time.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_008.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Property 6: Finding Connected Components</div><div class="box-body"><p>Run BFS from any unvisited (WHITE) vertex. Each full BFS call discovers exactly <strong>one entire connected component</strong>. Repeating this until every vertex has been visited, and counting how many times BFS was started, gives the total number of connected components.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_009.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 275: Applying Property 6</div><div class="box-body"><p>2 calls to BFS are needed to cover every vertex here, so the graph has <strong>2 connected components</strong>: $\{A, B\}$ and $\{C, D, E\}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 7: Tree Edges</div><div class="box-body"><p>A <strong>tree edge</strong> is an edge $(u,v)$ that <strong>first discovers</strong> a new WHITE vertex $v$. The collection of all tree edges forms the <strong>BFS spanning tree</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_010.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 276: Applying Property 7</div><div class="box-body"><p>In this graph, the solid green edges $(A,B)$, $(A,C)$, $(C,D)$ are tree edges, since each one first discovers a new vertex. The dashed edge $(B,C)$ connects two vertices that are both already discovered, so it is <strong>not</strong> a tree edge.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 8: Cross Edges</div><div class="box-body"><p>A <strong>cross edge</strong> is a non-tree edge connecting two vertices that are <strong>both already discovered</strong>. In an undirected BFS tree, a cross edge always satisfies:
+\[
+|d[u] - d[v]| \le 1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 277: Applying Property 8</div><div class="box-body"><p>Edge $(B, C)$ from the previous diagram is a cross edge. Here $d[B] = 1$ and $d[C] = 1$, so $|d[B] - d[C]| = 0 \le 1$, which confirms it is a valid cross edge.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 9: Back Edges</div><div class="box-body"><p>A <strong>back edge</strong> is a directed edge from a <strong>descendant</strong> back to an <strong>ancestor</strong> in the BFS tree. Back edges can only occur in <strong>directed</strong> graphs that contain a cycle; they <strong>never</strong> occur in an undirected BFS tree.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_011.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 278: Applying Property 9</div><div class="box-body"><p>Edge $(C, A)$ (red, directed back to the root) is a back edge. This situation <strong>cannot</strong> happen in an undirected BFS tree, because if $A \to C$ exists, then $(A,C)$ already becomes a tree edge the moment $C$ is first discovered, which would make $C \to A$ redundant rather than a separate back edge.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 10: Forward Edges Never Exist in BFS</div><div class="box-body"><p>A <strong>forward edge</strong> would be a hypothetical edge from an ancestor to a <strong>non-child descendant</strong> further down the tree. Such edges <strong>never appear</strong> in any BFS tree, directed or undirected.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_012.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 279: Why Forward Edges Never Occur in BFS</div><div class="box-body"><p>BFS always discovers the <strong>shallowest</strong> reachable vertices first. If an edge $A \to D$ really existed, then $D$ would have been discovered directly from $A$ at Level 1, not through $B$ at Level 2. So this hypothetical dashed edge (a &quot;forward edge&quot;) is a contradiction, and it simply cannot occur in a BFS tree.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 11: Maximum Queue Size</div><div class="box-body"><p>The maximum size the queue ever reaches during BFS equals the <strong>widest level</strong> of the BFS tree:
+\[
+\text{Max Queue Size} = \max_{k} \left| \{v \in V : d[v] = k\} \right|
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_013.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 280: Applying Property 11</div><div class="box-body"><p>Level 1 contains 3 vertices ($B$, $C$, $D$), which is the widest level in this graph (Level 0 has only $A$, Level 2 has only $E$). So the maximum queue size reached during this BFS run is $\boxed{3}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 12: Queue Level Monotonicity Invariant</div><div class="box-body"><p>At any point during BFS, if the queue contains $Q = \langle v_1, v_2, \ldots, v_r \rangle$ (front to back), then:
+\[
+d[v_1] \le d[v_2] \le \cdots \le d[v_r], \qquad d[v_r] - d[v_1] \le 1
+\]
+In other words, the queue is always sorted by distance, and it never spans more than <strong>two consecutive levels</strong> at once. You can never have two vertices whose distances differ by 2 or more sitting in the queue at the same time.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 13: Odd Cycle Detection via BFS</div><div class="box-body"><p>If, while running BFS, we find an edge $(u,v)$ such that
+\[
+d[u] \equiv d[v] \pmod{2}
+\]
+(both distances have the same parity), then the graph contains an <strong>odd-length cycle</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_014.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 281: Applying Property 13</div><div class="box-body"><p>Here $d[C] = 1$ and $d[D] = 1$ (discovered via $B$). The edge $(C,D)$, shown in red, connects two vertices at the <strong>same</strong> distance (both odd). By the rule, this forces an odd cycle to exist: following $A \to B \to D \to C \to A$ traces out a cycle of length 4 through the tree plus this cross edge; more precisely, the presence of an edge joining two same-parity levels is what certifies an odd cycle exists somewhere in the graph.</p></div></div>
+<div class="concept-box"><div class="box-title">Property 14: Tree Diameter via 2-Pass BFS</div><div class="box-body"><p>To find the <strong>diameter</strong> of a tree (the length of the longest path between any two vertices), we do not need to try all pairs. A clever shortcut works:</p>
+<ol><li><p>Run BFS from any arbitrary vertex $x$. Find the vertex $u$ that is <strong>farthest</strong> from $x$.</p></li><li><p>Run BFS again, this time from $u$. Find the vertex $v$ that is farthest from $u$.</p></li></ol>
+<p>The distance $d[v]$ found in the second BFS pass is exactly the <strong>diameter</strong> of the tree.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_015.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Property 15: Cycle Detection via Parent Check</div><div class="box-body"><p>While BFS explores neighbour $v$ of the current vertex $u$: if $v$ is already <strong>visited</strong> AND $v \ne \pi[u]$ (i.e., $v$ is not the parent of $u$), then a <strong>cycle</strong> has been detected.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_016.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 282: Applying Property 15</div><div class="box-body"><p>BFS from $A$: visit $B$, set $\pi[B] = A$. Visit $C$, set $\pi[C] = A$. When $B$ later checks its neighbour $C$ (the red edge), $C$ is already visited, and $C \ne \pi[B] = A$. This confirms a <strong>cycle</strong> exists: $A$–$B$–$C$–$A$.</p></div></div>
+<div class="code-box"><div class="code-title">bfs-full-implementation.py</div><pre><code>from collections import deque
+
+WHITE, GRAY, BLACK = 0, 1, 2
+
+def bfs(graph, s, vertices):
+    color = {v: WHITE for v in vertices}
+    d     = {v: float(&#x27;inf&#x27;) for v in vertices}
+    pi    = {v: None for v in vertices}
+
+    color[s] = GRAY
+    d[s]     = 0
+    order    = []
+
+    Q = deque([s])
+    while Q:
+        u = Q.popleft()
+        order.append(u)
+        for v in graph[u]:
+            if color[v] == WHITE:
+                color[v] = GRAY
+                d[v]     = d[u] + 1
+                pi[v]    = u
+                Q.append(v)
+        color[u] = BLACK
+
+    return order, d, pi
+
+
+def count_components(graph, vertices):
+    visited = {v: False for v in vertices}
+    count   = 0
+    for v in vertices:
+        if not visited[v]:
+            count += 1
+            Q = deque([v])
+            visited[v] = True
+            while Q:
+                u = Q.popleft()
+                for w in graph[u]:
+                    if not visited[w]:
+                        visited[w] = True
+                        Q.append(w)
+    return count
+
+
+def tree_diameter(graph, vertices):
+    &quot;&quot;&quot;Two-pass BFS to find the diameter of a tree.&quot;&quot;&quot;
+    _, d1, _ = bfs(graph, vertices[0], vertices)
+    u = max(d1, key=d1.get)          # farthest vertex from arbitrary start
+    _, d2, _ = bfs(graph, u, vertices)
+    v = max(d2, key=d2.get)          # farthest vertex from u
+    return d2[v]                      # diameter
+
+
+# --- Driver Code ---
+vertices = [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;]
+graph = {
+    &#x27;A&#x27;: [&#x27;B&#x27;, &#x27;C&#x27;],
+    &#x27;B&#x27;: [&#x27;A&#x27;, &#x27;C&#x27;],
+    &#x27;C&#x27;: [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;D&#x27;, &#x27;E&#x27;],
+    &#x27;D&#x27;: [&#x27;C&#x27;],
+    &#x27;E&#x27;: [&#x27;C&#x27;],
+}
+
+order, d, pi = bfs(graph, &#x27;A&#x27;, vertices)
+print(&quot;BFS order:&quot;, order)   # [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;]
+print(&quot;Distances:&quot;, d)       # {&#x27;A&#x27;:0,&#x27;B&#x27;:1,&#x27;C&#x27;:1,&#x27;D&#x27;:2,&#x27;E&#x27;:2}
+print(&quot;Parents:&quot;, pi)        # {&#x27;A&#x27;:None,&#x27;B&#x27;:&#x27;A&#x27;,&#x27;C&#x27;:&#x27;A&#x27;,&#x27;D&#x27;:&#x27;C&#x27;,&#x27;E&#x27;:&#x27;C&#x27;}</code></pre></div>
+</section>
+</section>
+<section id="depth-first-search-dfs" class="content-section level-1">
+<h2 class="section-heading">Depth-First Search (DFS)</h2>
+<div class="concept-box"><div class="box-title">Concept: DFS — The Idea</div><div class="box-body"><p>DFS explores a graph by going as <strong>deep as possible</strong> along each path before backtracking. Starting from a source vertex, it visits one neighbour, then one of that neighbour&#x27;s neighbours, and keeps going deeper until it reaches a vertex with no unvisited neighbours. Then it backtracks and tries another direction.</p>
+<p>DFS uses a <strong>stack</strong> (or recursion, which uses the call stack implicitly). Think of exploring a maze by always taking the first available turn, going as far as you can, then backing up when you hit a dead end.</p></div></div>
+<div class="example-box"><div class="box-title">Example 283: Analogy: Exploring a Cave System</div><div class="box-body"><p>Imagine exploring a cave with many tunnels branching off. You always take the first unexplored tunnel and go as deep as possible. When you hit a dead end, you back up to the last junction and take the next unexplored tunnel. DFS works exactly this way.</p></div></div>
+<section id="dfs-discovery-and-finish-timestamps" class="content-section level-2">
+<h3 class="section-heading">DFS Discovery and Finish Timestamps</h3>
+<div class="concept-box"><div class="box-title">Concept: Discovery and Finish Times</div><div class="box-body"><p>In DFS, we maintain a global counter (clock). Two timestamps are recorded for each vertex $v$:</p>
+<ul><li><p><strong>Discovery time</strong> $d[v]$: the clock value when $v$ is first visited (entered).</p></li><li><p><strong>Finish time</strong> $f[v]$: the clock value when DFS has finished exploring all of $v$&#x27;s descendants (exited).</p></li></ul>
+<p>For any vertex $v$, $d[v] &lt; f[v]$. If $u$ is an ancestor of $v$ in the DFS tree, then $d[u] &lt; d[v] &lt; f[v] &lt; f[u]$, meaning the interval $[d[v], f[v]]$ is completely inside $[d[u], f[u]]$.</p>
+<p>This <strong>parenthesis theorem</strong> is very important for classifying edges.</p></div></div>
+</section>
+<section id="dfs-step-by-step-trace-with-timestamps" class="content-section level-2">
+<h3 class="section-heading">DFS Step-by-Step Trace with Timestamps</h3>
+<div class="example-box"><div class="box-title">Example 284: DFS Trace on Directed Graph</div><div class="box-body"><p>Graph with 6 vertices, edges: $0\to1, 0\to2, 1\to3, 1\to4, 2\to5, 3\to2$. Start from vertex 0. Neighbours visited in increasing order.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_017.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_018.png" alt="diagram"></div>
+</section>
+<section id="dfs-edge-classification" class="content-section level-2">
+<h3 class="section-heading">DFS Edge Classification</h3>
+<div class="concept-box"><div class="box-title">Concept: Four Types of Edges in DFS</div><div class="box-body"><p>During DFS on a <strong>directed graph</strong>, every edge $(u, v)$ falls into exactly one of four categories:</p>
+<ul><li><p><strong>Tree Edge:</strong> $(u, v)$ is a tree edge if $v$ was discovered for the first time through $u$. It is the edge used to discover a new vertex. It appears in the DFS tree.</p></li><li><p><strong>Back Edge:</strong> $(u, v)$ is a back edge if $v$ is an <strong>ancestor</strong> of $u$ in the DFS tree (i.e., $v$ is still on the recursion stack when we see this edge). Back edges indicate a <strong>cycle</strong> in a directed graph.</p></li><li><p><strong>Forward Edge:</strong> $(u, v)$ is a forward edge if $v$ is a <strong>descendant</strong> of $u$ in the DFS tree, but $v$ was not discovered directly through $u$ (it was discovered through some other path). Identified by $d[u] &lt; d[v]$ and $v$ already finished.</p></li><li><p><strong>Cross Edge:</strong> $(u, v)$ is a cross edge if $v$ is in a different DFS subtree (not an ancestor or descendant of $u$). Identified by $d[v] &lt; d[u]$ and $v$ already finished.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 285: Quick Identification Rule</div><div class="box-body"><p>When DFS is exploring vertex $u$ and encounters edge $(u, v)$:</p>
+<ul><li><p>If $v$ is <strong>unvisited</strong>: Tree Edge.</p></li><li><p>If $v$ is <strong>currently on the DFS stack</strong> (visited but not finished): Back Edge.</p></li><li><p>If $v$ is <strong>already finished</strong> and $d[u] &lt; d[v]$: Forward Edge.</p></li><li><p>If $v$ is <strong>already finished</strong> and $d[u] &gt; d[v]$: Cross Edge.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_019.png" alt="diagram"></div>
+<p><strong>Algorithm: DFS(G)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_020.png" alt="diagram"></div>
+<p><strong>Algorithm: DFS-Visit(u)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_021.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">dfs.py</div><pre><code>def dfs_full(graph, n):
+    visited  = [False] * n
+    on_stack = [False] * n   # currently in recursion stack
+    d        = [0] * n       # discovery time
+    f        = [0] * n       # finish time
+    parent   = [-1] * n
+    clock    = [0]           # use list so nested function can modify it
+    order    = []
+    has_cycle = [False]
+
+    def dfs_visit(u):
+        visited[u]  = True
+        on_stack[u] = True
+        clock[0]   += 1
+        d[u]        = clock[0]
+        order.append(u)
+
+        for v in graph[u]:
+            if not visited[v]:
+                parent[v] = u
+                dfs_visit(v)
+            elif on_stack[v]:
+                has_cycle[0] = True   # back edge = cycle
+
+        clock[0]   += 1
+        f[u]        = clock[0]
+        on_stack[u] = False
+
+    for i in range(n):
+        if not visited[i]:
+            dfs_visit(i)
+
+    return order, d, f, parent, has_cycle[0]
+
+
+# --- Driver Code ---
+# Directed graph: 0-&gt;1, 0-&gt;2, 1-&gt;3, 1-&gt;4, 2-&gt;5, 3-&gt;2
+n     = 6
+graph = {0:[1,2], 1:[3,4], 2:[5], 3:[2], 4:[], 5:[]}
+
+order, d, f, parent, cycle = dfs_full(graph, n)
+print(&quot;DFS order:&quot;, order)
+print(&quot;Discovery:&quot;, d)
+print(&quot;Finish:   &quot;, f)
+print(&quot;Has cycle:&quot;, cycle)
+
+# Output:
+# DFS order: [0, 1, 3, 2, 5, 4]
+# Discovery: [1, 2, 4, 3, 9, 5]
+# Finish:    [12, 11, 8, 8, 10, 6]
+# Has cycle: False</code></pre></div>
+</section>
+</section>
+<section id="topological-sort" class="content-section level-1">
+<h2 class="section-heading">Topological Sort</h2>
+<div class="concept-box"><div class="box-title">Concept: What is Topological Sort</div><div class="box-body"><p>A <strong>topological sort</strong> (or topological ordering) of a <strong>DAG</strong> (Directed Acyclic Graph) is a linear ordering of all its vertices such that for every directed edge $(u, v)$, vertex $u$ appears before vertex $v$ in the ordering.</p>
+<p>Think of scheduling tasks where some tasks must be completed before others. For example, you must wear socks before shoes, wear shirt before jacket. A topological sort gives a valid sequence of completing all tasks.</p>
+<p>Topological sort is only defined for DAGs. If the graph has a cycle, no topological ordering exists.</p></div></div>
+<div class="example-box"><div class="box-title">Example 286: Course Prerequisites Example</div><div class="box-body"><p>Suppose courses have prerequisites: Math before DS, Math before Algo, DS before OS, Algo before Compiler. A topological sort gives a valid order to take these courses without violating any prerequisite.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_022.png" alt="diagram"></div>
+<section id="method-1-dfs-based-topological-sort" class="content-section level-2">
+<h3 class="section-heading">Method 1: DFS-Based Topological Sort</h3>
+<div class="concept-box"><div class="box-title">Concept: DFS Topological Sort</div><div class="box-body"><p>When DFS finishes a vertex $u$ (assigns finish time), we push $u$ onto a stack. After DFS completes for all vertices, we pop the stack to get the topological order. The vertex with the largest finish time comes first in the topological order.</p>
+<p><strong>Why it works:</strong> If there is an edge $(u, v)$, then DFS on $u$ must complete all of $v$&#x27;s work before $u$ finishes. So $f[v] &lt; f[u]$, meaning $u$ finishes after $v$, so $u$ appears before $v$ when we output in decreasing finish time order.</p></div></div>
+<div class="example-box"><div class="box-title">Example 287: DFS Topological Sort Trace</div><div class="box-body"><p>Graph: $0 \to 1, 0 \to 2, 1 \to 3, 2 \to 3$. This is a DAG.</p>
+<p>DFS from 0: discover 0, then 1, then 3. Finish 3 (push 3). Back to 1, finish 1 (push 1). Back to 0, go to 2, discover 2. Finish 2 (wait, 3 already finished). Finish 2 (push 2). Finish 0 (push 0).</p>
+<p>Stack (top to bottom): 0, 2, 1, 3. Pop gives: <strong>0, 2, 1, 3</strong>.</p>
+<p>Verify: edge $0\to1$: 0 before 1 $\checkmark$, edge $0\to2$: 0 before 2 $\checkmark$, edge $1\to3$: 1 before 3 $\checkmark$, edge $2\to3$: 2 before 3 $\checkmark$.</p></div></div>
+<p><strong>Algorithm: Topological-Sort-DFS(G)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_023.png" alt="diagram"></div>
+<p><strong>Algorithm: Topo-DFS-Visit(u, S)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_024.png" alt="diagram"></div>
+</section>
+<section id="method-2-kahn-s-algorithm-bfs-with-in-degree" class="content-section level-2">
+<h3 class="section-heading">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</h3>
+<div class="concept-box"><div class="box-title">Concept: Kahn&#x27;s Algorithm</div><div class="box-body"><p>Kahn&#x27;s algorithm is an iterative BFS-based method. The key insight is: in a topological ordering, the first vertex must have in-degree 0 (no prerequisites). After removing it, the next vertex with in-degree 0 can come next, and so on.</p>
+<p>Steps:</p>
+<ol><li><p>Compute the in-degree of every vertex.</p></li><li><p>Add all vertices with in-degree 0 to a queue.</p></li><li><p>While the queue is not empty:</p>
+<ol><li><p>Dequeue vertex $u$, add it to the topological order.</p></li><li><p>For each neighbour $v$ of $u$: decrease $v$&#x27;s in-degree by 1. If $v$&#x27;s in-degree becomes 0, enqueue $v$.</p></li></ol></li><li><p>If the topological order contains fewer than $|V|$ vertices, the graph has a cycle.</p></li></ol>
+<p>This also detects cycles: if we cannot empty the queue before visiting all vertices, a cycle exists.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_025.png" alt="diagram"></div>
+<p><strong>Algorithm: Kahn-Topological-Sort(G)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_026.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 288: Multiple Valid Topological Orderings</div><div class="box-body"><p>A DAG may have many valid topological orderings. The order in which we add zero-in-degree vertices to the queue (and which queue we use) determines the specific ordering produced. For the graph $0\to2, 0\to1, 1\to3, 2\to3$:</p>
+<ul><li><p>If we process 1 before 2 at step 2: order is 0, 1, 2, 3.</p></li><li><p>If we process 2 before 1 at step 2: order is 0, 2, 1, 3.</p></li></ul>
+<p>Both are valid. The DAG does not have a unique topological ordering unless it is a Hamiltonian path (each vertex has at most one zero-in-degree vertex at any time during Kahn&#x27;s).</p></div></div>
+<div class="code-box"><div class="code-title">topological-sort.py</div><pre><code>from collections import deque
+
+# ============================================================
+# Method 1: DFS-Based Topological Sort
+# ============================================================
+def topo_sort_dfs(graph, n):
+    visited = [False] * n
+    stack   = []
+
+    def dfs_visit(u):
+        visited[u] = True
+        for v in graph[u]:
+            if not visited[v]:
+                dfs_visit(v)
+        stack.append(u)   # push AFTER all descendants
+
+    for i in range(n):
+        if not visited[i]:
+            dfs_visit(i)
+
+    return stack[::-1]   # reverse = topological order
+
+
+# ============================================================
+# Method 2: Kahn&#x27;s Algorithm (BFS with in-degree)
+# ============================================================
+def kahn_topo_sort(graph, n):
+    indegree = [0] * n
+    for u in range(n):
+        for v in graph[u]:
+            indegree[v] += 1
+
+    queue = deque()
+    for v in range(n):
+        if indegree[v] == 0:
+            queue.append(v)
+
+    result = []
+    while queue:
+        u = queue.popleft()
+        result.append(u)
+        for v in graph[u]:
+            indegree[v] -= 1
+            if indegree[v] == 0:
+                queue.append(v)
+
+    if len(result) != n:
+        print(&quot;Cycle detected! No topological sort possible.&quot;)
+        return []
+    return result
+
+
+# --- Driver Code ---
+# DAG: 0-&gt;2, 0-&gt;1, 1-&gt;3, 2-&gt;3, 3-&gt;4
+n     = 5
+graph = {0:[1,2], 1:[3], 2:[3], 3:[4], 4:[]}
+
+print(&quot;DFS Topo Sort:&quot;, topo_sort_dfs(graph, n))
+# Output: [0, 2, 1, 3, 4] or [0, 1, 2, 3, 4]
+
+print(&quot;Kahn&#x27;s Topo Sort:&quot;, kahn_topo_sort(graph, n))
+# Output: [0, 1, 2, 3, 4]
+
+# Test with cycle
+graph_cycle = {0:[1], 1:[2], 2:[0]}
+print(&quot;Cycle graph:&quot;, kahn_topo_sort(graph_cycle, 3))
+# Output: Cycle detected! []</code></pre></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d08_027.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 289: GATE Exam Tips</div><div class="box-body"><ul><li><p><strong>BFS/DFS tracing:</strong> Always maintain a queue/stack carefully. Follow the adjacency list order strictly. Commonly asked: what is the BFS/DFS order, what are the timestamps, what type is each edge.</p></li><li><p><strong>Edge classification:</strong> On a directed graph DFS, a back edge means a cycle. On an undirected graph DFS, there are no forward or cross edges, only tree and back edges.</p></li><li><p><strong>Topological sort:</strong> Only on DAGs. Multiple valid orderings may exist. Kahn&#x27;s algorithm also detects cycles. DFS-based gives reverse of finish time.</p></li><li><p><strong>Complexity:</strong> $O(V+E)$ on adjacency list, $O(V^2)$ on adjacency matrix. Always specify which representation.</p></li><li><p><strong>BFS shortest path:</strong> Only gives shortest in terms of edge count (unweighted graphs). Not for weighted graphs.</p></li></ul></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch07.html">&larr; Chapter 7: Graph Theory — Introduction</a><span class="spacer"></span><a class="nav-btn next" href="ch09.html">Chapter 9: Shortest Path Algorithms &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ER Model — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 7</div><h1>ER Model</h1></div>
+<section id="entity-relationship-e-r-data-model" class="content-section level-1">
+<h2 class="section-heading">Entity–Relationship (E–R) Data Model</h2>
+<div class="concept-box"><div class="box-title">tile=E-R Model</div><div class="box-body"><p>The Entity–Relationship (E–R) data model was introduced to simplify database design by providing a structured method to define an enterprise schema. This schema represents the overall logical structure of a database.</p>
+<p>The E–R model helps convert real-world objects, their properties, and their interactions into a conceptual database design. Due to its clarity and effectiveness, many database design tools are based on E–R modeling concepts.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Primary Components</div><div class="box-body"><p>The model is built on three primary components:</p>
+<ul><li><p>Entity sets</p></li><li><p>Relationship sets</p></li><li><p>Attributes</p></li></ul></div></div>
+<p>The conceptual design created using this model is typically represented using an <strong>E–R diagram</strong>, which gives a graphical view of entities, relationships, and their attributes.</p>
+<section id="symbols-used-in-er-diagrams" class="content-section level-2">
+<h3 class="section-heading">Symbols used in ER Diagrams</h3>
+<p>ER Model is used to model the logical view of the system from a data perspective which consists of these symbols:</p>
+<ul><li><p><strong>Rectangles:</strong> Rectangles represent Entities in the ER Model.</p></li><li><p><strong>Ellipses:</strong> Ellipses represent Attributes in the ER Model.</p></li><li><p><strong>Diamond:</strong> Diamonds represent Relationships among Entities.</p></li><li><p><strong>Lines:</strong> Lines represent attributes to entities and entity sets with other relationship types.</p>
+<ul><li><p><strong>Single Lines:</strong> Single lines represent the partial participation from the entity in an relationship.</p></li><li><p><strong>Double Lines:</strong> Double lines represent the total participation from the entity in an relationship.</p></li></ul></li><li><p><strong>Double Ellipse:</strong> Double Ellipses represent Multi-Valued Attributes.</p></li><li><p><strong>Double Rectangle:</strong> Double Rectangle represents a Weak Entity.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div>
+</section>
+<section id="components-of-er-diagram" class="content-section level-2">
+<h3 class="section-heading">Components of ER Diagram</h3>
+<div class="concept-box-alt"><div class="box-title">Components</div><div class="box-body"><p>ER diagram has three core components: <strong>Entities</strong>, <strong>Attributes</strong>, and <strong>Relationships</strong>.  
+Entities represent real-world objects (like Student or Course).  
+Attributes describe properties of entities (like RollNo, Name, Age).  
+Relationships define how entities are connected to each other (like Enrolls, Works_In).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div>
+</section>
+</section>
+<section id="entity-and-entity-sets" class="content-section level-1">
+<h2 class="section-heading">Entity and Entity Sets</h2>
+<div class="concept-box"><div class="box-title">Entity</div><div class="box-body"><p><strong>Entity</strong> means a real-world object or concept that can be uniquely identified.</p>
+<ul><li><p>It can be <strong>physical</strong> — such as a person, book, laptop.</p></li><li><p>It can be <strong>abstract</strong> — such as a course, bank account, reservation.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Attributes</div><div class="box-body"><p>Every entity has a set of properties called <strong>attributes</strong>.  
+At least one attribute (or a combination) must uniquely identify each entity.</p>
+<p><strong>Example: Person Entity</strong></p>
+<ul><li><p>Attributes: PersonID, Name, Email</p></li><li><p>PersonID is unique → used for identification</p></li><li><p>Even if two people have the same name, PersonID is different</p></li></ul>
+<p><strong>Example: Course Entity</strong></p>
+<ul><li><p>Attributes: CourseID, Title, Credits</p></li><li><p>CourseID uniquely identifies each course</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Entity Set</div><div class="box-body"><p>An entity set is a <strong>collection of similar entities</strong> that share the same attributes.</p>
+<ul><li><p>All students in a university → entity set <strong>Student</strong></p></li><li><p>All instructors → entity set <strong>Instructor</strong></p></li><li><p>All courses → entity set <strong>Course</strong></p></li></ul>
+<p>Each entity set defines:</p>
+<ul><li><p>What type of objects are stored</p></li><li><p>What attributes describe them</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Explanation with Example</div><div class="box-body"><ul><li><p><strong>Entity Set (definition)</strong> → structure description  
+      Example: Student(ID, Name, TotalCredits)</p></li><li><p><strong>Entity Set Data (instances)</strong> → actual stored rows  
+      Example: (101, Ravi, 84), (102, Meena, 72)</p></li></ul>
+<p><strong>Entity Sets Need Not Be Disjoint</strong></p>
+<p>One entity can belong to multiple entity sets.</p>
+<ul><li><p>A person may be both a <strong>Student</strong> and an <strong>Instructor</strong></p></li><li><p>So entity sets can overlap</p></li></ul>
+<p><strong>Attributes</strong></p>
+<p>Attributes are descriptive properties of entities.</p>
+<ul><li><p>Each entity has one value for each attribute</p></li><li><p>Different entities → different values</p></li></ul>
+<p><strong>Example: Instructor Attributes</strong></p>
+<ul><li><p>ID = 12121</p></li><li><p>Name = Dr.\ Virat</p></li><li><p>Department = Finance</p></li><li><p>Salary = 90000</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"><div class="figure-caption"><strong>Entity Sets with Attributes (Primary keys underlined)</strong></div></div>
+<section id="weak-entity-set" class="content-section level-2">
+<h3 class="section-heading">Weak Entity Set</h3>
+<div class="concept-box"><div class="box-title">Weak Entity Set</div><div class="box-body"><p>A <strong>weak entity set</strong> is an entity set that does not have a complete primary key
+of its own. It cannot be uniquely identified using only its attributes.</p>
+<p>To uniquely identify a weak entity, we must use:</p>
+<ul><li><p>its own partial key, and</p></li><li><p>the primary key of a related strong (owner) entity.</p></li></ul>
+<p>Because of this dependency, a weak entity:</p>
+<ul><li><p>cannot exist independently</p></li><li><p>must be associated with a strong entity</p></li><li><p>is connected using an <strong>identifying relationship</strong></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Key Terms</div><div class="box-body"><ul><li><p>Strong Entity → has full primary key</p></li><li><p>Weak Entity → has only partial key</p></li><li><p>Partial Key → uniquely identifies weak entity within owner</p></li><li><p>Identifying Relationship → links weak entity to strong entity</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 2: Library and Book Copies</div><div class="box-body"><p>Consider a library system.</p>
+<p><strong>LibraryBook</strong> is a strong entity:</p>
+<ul><li><p>BookID (primary key)</p></li><li><p>Title</p></li><li><p>Author</p></li></ul>
+<p>Each physical copy of a book is stored as <strong>BookCopy</strong>.</p>
+<p>But CopyNumber alone is not unique globally:</p>
+<ul><li><p>CopyNumber = 1 exists for many books</p></li></ul>
+<p>So BookCopy is a weak entity.</p>
+<p>It is uniquely identified using:
+\[
+(BookID + CopyNumber)
+\]</p>
+<p><strong>ER Diagram Notation Rules for Weak Entity</strong></p>
+<ul><li><p>Weak entity → double rectangle</p></li><li><p>Identifying relationship → double diamond</p></li><li><p>Partial key → dashed underline</p></li><li><p>Total participation → double line to relationship</p></li></ul></div></div>
+<p><strong>ER Diagram — Weak Entity Example</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"><div class="figure-caption"><br>
+<strong>Weak Entity BookCopy identified by LibraryBook</strong></div></div>
+</section>
+<section id="identifying-the-entity" class="content-section level-2">
+<h3 class="section-heading">Identifying the Entity</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The process of identifying entities involves analyzing the requirements of the database system and identifying the <strong>nouns</strong> present in the problem statement or domain description. These nouns represent the entities that need to be represented and managed within the database. By extracting and listing these nouns, designers can establish a foundational understanding of the entities that will form the basis of the database schema.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p>Consider the goal statement for a hypothetical student enrollment database:</p>
+<p><strong>Goal:</strong> To assist <strong>universities</strong> in tracking enrolled <strong>students</strong>, their chosen <strong>subjects</strong>, and the <strong>instructors</strong> of those subjects.</p>
+<p>From this statement, the following nouns can be identified as entities:</p>
+<ul><li><p>University</p></li><li><p>Student</p></li><li><p>Subject</p></li><li><p>Teacher</p></li></ul>
+<p>These entities represent the primary objects or concepts that the database will manage and track information about. It's important to note that entities are typically named using singular nouns for consistency and clarity. Additionally, the list of entities may evolve as the database design process progresses, allowing for the addition of new entities as needed to meet the requirements of the system.</p></div></div>
+</section>
+</section>
+<section id="relationship-sets" class="content-section level-1">
+<h2 class="section-heading">Relationship Sets</h2>
+<div class="concept-box"><div class="box-title">Relationship Sets</div><div class="box-body"><p>A <strong>relationship</strong> describes how two or more entities are connected in the real world.  
+While entities represent <em>objects</em>, relationships represent <em>associations between those objects</em>.</p>
+<p>Think of entities as nouns and relationships as verbs.</p>
+<ul><li><p>Entity → Customer, Product, Employee</p></li><li><p>Relationship → buys, manages, assigned_to</p></li></ul>
+<p>A single connection between specific entities is called a <strong>relationship instance</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 4: Online Store</div><div class="box-body"><p>Assume we have two entity sets:</p>
+<ul><li><p>Customer</p></li><li><p>Product</p></li></ul>
+<p>If customer <strong>Anita</strong> buys product <strong>Laptop</strong>, that is one relationship instance of
+the relationship <strong>purchases</strong>.</p>
+<p>If many customers buy many products, all such connections together form the
+<strong>relationship set purchases</strong>.</p>
+<p><strong>Key Idea:</strong>
+
+Entity Set = collection of objects <br>
+Relationship Set = collection of connections between objects</p></div></div>
+<div class="concept-box"><div class="box-title">Relationship Set — Formal Definition</div><div class="box-body"><p>A relationship set can be defined formally as a mathematical relation involving 
+$n \ge 2$ entity sets (the sets need not be distinct).  
+If the entity sets are $E_1, E_2, \dots, E_n$, then a relationship set $R$ consists of 
+tuples formed by selecting one entity from each set.</p>
+<p>In other words, $R$ is a subset of all possible combinations:
+\[
+(e_1, e_2, \dots, e_n) \text{ where } e_1 \in E_1,\; e_2 \in E_2,\; \dots,\; e_n \in E_n
+\]</p>
+<p>Each such tuple is called a <strong>relationship instance</strong>.  
+When entities from these sets appear in the relationship set, we say the entity sets 
+<strong>participate</strong> in that relationship.</p></div></div>
+<section id="degree-or-arity-of-a-relationship-set" class="content-section level-2">
+<h3 class="section-heading">Degree (or arity) of a Relationship Set</h3>
+<div class="concept-box"><div class="box-title">Degree/Arity of a Relationship Set</div><div class="box-body"><p>The number of different entity sets participating in a relationship set is called the degree of a relationship set.</p></div></div>
+<div class="concept-box"><div class="box-title">Unary OR Recursive Relationship (Degree 1)</div><div class="box-body"><p>A <strong>unary relationship</strong> (also called a recursive relationship) occurs when an 
+entity set is related to itself.  
+Here, different instances of the same entity type participate in a relationship 
+with different roles.</p></div></div>
+<div class="example-box"><div class="box-title">Example 5: Company Employees</div><div class="box-body"><p>Employees can supervise other employees.</p>
+<ul><li><p>Entity set: Employee</p></li><li><p>Relationship: supervises</p></li><li><p>Roles: Supervisor and Subordinate</p></li></ul>
+<p>Without role labels, the meaning becomes ambiguous.</p></div></div>
+<p><strong>E–R Diagram — Recursive Relationship</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"><div class="figure-caption"><br>
+<strong>Recursive Relationship — Role-Based Representation</strong></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"><div class="figure-caption"><br>
+<strong>Recursive Relationship — Single Entity Representation</strong></div></div>
+<div class="concept-box"><div class="box-title">Binary Relationship (Degree 2)</div><div class="box-body"><p><strong>Binary Relationship (Two Entity Sets)</strong>
+When exactly two entity sets are involved, it is called a <strong>binary relationship</strong>.  
+This is the most common case in database design.</p></div></div>
+<div class="example-box"><div class="box-title">Example 6: Hospital System</div><div class="box-body"><ul><li><p>Entity sets: Doctor, Patient</p></li><li><p>Relationship: treats</p></li></ul>
+<p>Meaning: A doctor treats a patient.</p>
+<p>Each doctor–patient pair is one relationship instance.</p>
+<p><strong>Participation Meaning</strong></p>
+<p>If an entity set is connected to a relationship, we say it
+<strong>participates</strong> in that relationship.</p>
+<p>In the example:</p>
+<ul><li><p>Doctor participates in Treats</p></li><li><p>Patient participates in Treats</p></li></ul>
+<p>Participation simply means “takes part in the association.”</p></div></div>
+<p><strong>E–R Diagram — Binary Relationship</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"><div class="figure-caption"><br>
+<strong>Binary Relationship: Doctor treats Patient</strong></div></div>
+<div class="concept-box"><div class="box-title">Ternary Relationship  (Degree 3)</div><div class="box-body"><p><strong>Relationship Involving Three Entity Sets</strong></p>
+<p>Some real-world facts depend on three entities together.  
+These are modeled using a <strong>ternary relationship</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 7: Training System</div><div class="box-body"><p>We want to store:</p>
+<ul><li><p>which Trainer</p></li><li><p>teaches which Course</p></li><li><p>to which Batch</p></li></ul>
+<p>This cannot be correctly represented using only pairs — all three must appear together.</p></div></div>
+<p><strong>E–R Diagram — Ternary Relationship</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"><div class="figure-caption"><br>
+<strong>Ternary Relationship Example</strong></div></div>
+<div class="concept-box"><div class="box-title">N-ary Relationship (Degree N)</div><div class="box-body"><p><strong>Relationship Involving N Entity Sets</strong></p>
+<p>When a relationship depends on <strong>more than two entities together</strong>, it is called an <strong>N-ary relationship</strong>.  
+The relationship instance is defined only when all participating entities are considered simultaneously.  
+Binary decomposition may lose semantic constraints in such cases.</p></div></div>
+<div class="example-box"><div class="box-title">Example 8: Supply System</div><div class="box-body"><p>We want to store:</p>
+<ul><li><p>which Supplier</p></li><li><p>supplies which Part</p></li><li><p>to which Project</p></li><li><p>using which Contract</p></li></ul>
+<p>This fact depends on all entities together — so it must be modeled as an N-ary relationship.</p></div></div>
+<p><strong>E–R Diagram — N-ary Relationship</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"><div class="figure-caption"><br>
+<strong>N-ary Relationship Example</strong></div></div>
+<div class="concept-box-alt"><div class="box-title">Summary</div><div class="box-body"><ul><li><p>Relationship = association between entities</p></li><li><p>Relationship instance = one specific connection</p></li><li><p>Relationship set = all similar connections</p></li><li><p>Binary = two entity sets</p></li><li><p>Recursive = same entity set appears twice (use roles)</p></li><li><p>Ternary = three entity sets participate together</p></li><li><p>Diagram symbol for relationship = diamond</p></li></ul></div></div>
+</section>
+</section>
+<section id="attributes" class="content-section level-1">
+<h2 class="section-heading">Attributes</h2>
+<div class="concept-box"><div class="box-title">Attributes in ER Diagram</div><div class="box-body"><p>Attributes are the descriptive properties that tell us more about an entity type.  
+They specify what information we store about each entity instance.  
+For example, for the entity <em>Student</em>, attributes can include Roll_No, Name, DOB, Age, Address, and Mobile_No.  
+In an ER diagram, attributes are drawn using an <strong>oval</strong> connected to the entity rectangle.</p>
+<p>Attributes are classified based on structure and behavior into key, composite, multivalued, and derived attributes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 9: Basic Attribute — Student</div><div class="box-body"><p>Entity: Student with simple attributes.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Key Attribute</div><div class="box-body"><p>A key attribute is an attribute whose value is <strong>unique for every entity instance</strong>.  
+It is used to distinguish one entity from all others in the same entity set.  
+No two entities can share the same key value.  
+In ER diagrams, a key attribute is shown by <strong>underlining</strong> the attribute name.</p></div></div>
+<div class="example-box"><div class="box-title">Example 10: Key Attribute — Roll Number</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Composite Attribute</div><div class="box-body"><p>A composite attribute is an attribute that can be broken into smaller meaningful sub-attributes.  
+Instead of storing it as one single value, it is modeled as a group of related parts.  
+This helps in better structuring and querying of data.  
+In ER diagrams, it is drawn as an oval connected to multiple sub-ovals.</p></div></div>
+<div class="example-box"><div class="box-title">Example 11: Composite Attribute — Address</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Multivalued Attribute</div><div class="box-body"><p>A multivalued attribute can hold <strong>more than one value</strong> for a single entity instance.  
+For example, a student may have multiple phone numbers.  
+In ER diagrams, it is represented using a <strong>double oval</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 12: Multivalued Attribute — Phone Numbers</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig019.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Derived Attribute</div><div class="box-body"><p>A <strong>derived attribute</strong> is an attribute whose value is calculated from other stored data 
+instead of being stored directly in the database.  
+In an ER diagram, it is always shown using a <strong>dashed oval</strong>.  
+A derived attribute can be attached to either an <strong>entity set</strong> or a 
+<strong>relationship set</strong>, depending on what it is computed from.</p>
+<p><strong>Rule:</strong></p>
+<ul><li><p>If the value is computed from attributes of one entity → attach to the <strong>entity</strong>.</p></li><li><p>If the value is computed from relationship data (or multiple entities) → attach to the <strong>relationship</strong>.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 13: Derived Attribute on Entity — Age</div><div class="box-body"><p>Age is computed from DOB, so Age is derived and connected to the entity.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig020.png" alt="diagram"></div>
+<p>Here the dashed oval shows Age is derived from DOB.</p></div></div>
+<div class="example-box"><div class="box-title">Example 14: Derived Attribute on Relationship — Total_Payment</div><div class="box-body"><p><strong>Total_Payment</strong> is a <strong>derived attribute</strong> computed as:
+\[
+\textbf{Total\_Payment} = \textbf{Hours} \times \textbf{Rate}
+\]
+Since it depends on relationship attributes, it is attached to the relationship diamond.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig021.png" alt="diagram"></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p><strong>Hours</strong> and <strong>Rate</strong> are attributes of the <strong>Works_On</strong> relationship.</p></li><li><p><strong>Total_Payment</strong> is derived as <strong>Hours × Rate</strong>.</p></li><li><p>Therefore, the dashed oval is connected to the <strong>relationship</strong>, not to an entity.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Understanding Null Values in ER Modeling</div><div class="box-body"><p>A <strong>Null Value</strong> is a special marker used in a database to indicate that a data value does not exist in the database. It is important to distinguish between the different semantic meanings of a null value:</p>
+<ul><li><p><strong>Not Applicable:</strong> The attribute does not apply to this specific entity. 
+    <em>Example:</em> A <code>middle_initial</code> attribute for a person who does not have a middle name, or an <code>apt_number</code> (Apartment Number) for a single-family house.</p></li><li><p><strong>Unknown (Missing):</strong> The value exists in the real world, but it has not been recorded in the system.
+    <em>Example:</em> Every <code>instructor</code> must have a <code>name</code>; if the field is null, the data is simply missing.</p></li><li><p><strong>Unknown (Not Known):</strong> It is currently unknown whether a value even exists for the entity.
+    <em>Example:</em> If an instructor's <code>apt_number</code> is null, it could mean they don't live in an apartment (<em>not applicable</em>) OR they do live in one but we don't have the number (<em>missing</em>).</p></li></ul>
+<p>In ER diagrams, null values are not explicitly drawn as nodes; rather, they are handled by defining the <strong>Participation Constraints</strong> and <strong>Nullability</strong> of the attributes during the schema mapping phase.</p></div></div>
+</section>
+<section id="cardinality" class="content-section level-1">
+<h2 class="section-heading">Cardinality</h2>
+<div class="concept-box"><div class="box-title">Cardinality in ER Diagram</div><div class="box-body"><p><strong>Cardinality</strong> specifies how many instances of one entity can be associated 
+with instances of another entity through a relationship.  
+It captures the numeric participation constraint between entity sets in a relationship.  
+In ER diagrams, cardinality is shown using labels such as 1, N, or M on the connecting lines.</p>
+<p>The four standard cardinality types are: One–to–One, One–to–Many, Many–to–One, and Many–to–Many.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Cardinality Notations Used in ER Diagrams</div><div class="box-body"><p><strong>1. Numeric (Ratio) Notation — Chen Style:</strong></p>
+<ul><li><p>One-to-One: 1 : 1</p></li><li><p>One-to-Many: 1 : N</p></li><li><p>Many-to-One: N : 1</p></li><li><p>Many-to-Many: M : N</p></li></ul>
+<p><strong>2. Min–Max (Participation / Multiplicity) Notation:</strong></p>
+<ul><li><p><strong>Exactly one:</strong> $(1, 1)$ or $1..1$ (often simplified to just $1$)</p></li><li><p><strong>Zero or one:</strong> $(0, 1)$ or $0..1$</p></li><li><p><strong>One or many:</strong> $(1, N)$ or $1..*$ (or $1..N$)</p></li><li><p><strong>Zero or many:</strong> $(0, N)$ or $0..*$ (or $0..N$)</p></li></ul>
+<p><strong>3. Crow’s Foot Notation:</strong></p>
+<ul><li><p>$|$ = one (mandatory)</p></li><li><p>$||$ = exactly one</p></li><li><p>$\circ$ = zero (optional)</p></li><li><p>crow foot = many</p></li></ul></div></div>
+<section id="crow-s-foot-notation" class="content-section level-2">
+<h3 class="section-heading">Crow's Foot Notation</h3>
+<p>Zero: 
+The symbol above denotes zero in , indicated by the circle at the right side of the line.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig022.png" alt="diagram"></div>
+<p>One: 
+The symbol above denotes one, shown by a short vertical line crossing the horizontal line.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig023.png" alt="diagram"></div>
+<p>Many: 
+The symbol above denotes many; it looks like a crow's foot.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig024.png" alt="diagram"></div>
+<p>Zero or Many: 
+This symbol combines zero and many indicators.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig025.png" alt="diagram"></div>
+<p>One or Many: 
+This symbol combines one and many indicators.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig026.png" alt="diagram"></div>
+<p>One and Only One: 
+This symbol indicates exactly one.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig027.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">One-to-One (1:1) Cardinality</div><div class="box-body"><p>In a one-to-one relationship, each entity in set A is related to at most one entity 
+in set B, and vice versa.  
+This model is used when the pairing is exclusive on both sides.</p>
+<p><strong>Mapping note:</strong> Usually implemented using two tables with a foreign key 
+(or sometimes merged into one table).</p></div></div>
+<div class="example-box"><div class="box-title">Example 15: Person — Passport : Alternate Cardinality Notations</div><div class="box-body"><p>Each Person has exactly one Passport and each Passport belongs to exactly one Person.  
+Below are equivalent ER representations using different cardinality notations.</p>
+<p><strong>(1) Numeric Ratio Notation — 1 : 1</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig028.png" alt="diagram"></div>
+<p><strong>(2) Min–Max Notation — (1,1) : (1,1)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig029.png" alt="diagram"></div>
+<p><strong>(3) Crow’s Foot Style — exactly one on both sides</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig030.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">One-to-Many (1:N) Cardinality</div><div class="box-body"><p>In a one-to-many relationship, one entity from set A can be related to many entities 
+in set B, but each entity in set B is related to only one entity in set A.</p>
+<p><strong>Mapping note:</strong> Implemented using two tables — foreign key placed on the 
+“many” side.</p></div></div>
+<div class="example-box"><div class="box-title">Example 16: Department — Doctor : Alternate Cardinality Notations</div><div class="box-body"><p>One Department has many Doctors, but each Doctor belongs to only one Department.
+Below are equivalent ER representations using different cardinality notations.</p>
+<p><strong>(1) Numeric Ratio Notation — 1 : N</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig031.png" alt="diagram"></div>
+<p><strong>(2) Min–Max Notation — (1,N) : (1,1)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig032.png" alt="diagram"></div>
+<p><strong>(3) Crow’s Foot Style — One-to-Many</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig033.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Many-to-One (N:1) Cardinality</div><div class="box-body"><p>Many-to-one is the reverse view of one-to-many.  
+Many entities in set A are related to one entity in set B.  
+Each A chooses only one B, but B can be linked with many A’s.</p>
+<p><strong>Mapping note:</strong> Also implemented using two tables with foreign key on the many side.</p></div></div>
+<div class="example-box"><div class="box-title">Example 17: Student — Advisor : Alternate Cardinality Notations</div><div class="box-body"><p>Many Students are assigned to one Advisor, but each Student has only one Advisor.
+Below are equivalent ER representations using different cardinality notations.</p>
+<p><strong>(1) Numeric Ratio Notation — N : 1</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig034.png" alt="diagram"></div>
+<p><strong>(2) Min–Max Notation — (1,1) : (1,N)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig035.png" alt="diagram"></div>
+<p><strong>(3) Crow’s Foot Style — Many-to-One</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig036.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Many-to-Many (M:N) Cardinality</div><div class="box-body"><p>In a many-to-many relationship, entities on both sides can participate multiple times.  
+Each entity in A can relate to many in B, and each in B can relate to many in A.</p>
+<p><strong>Mapping note:</strong> Requires a separate relationship table (junction table),  
+so total tables become three.</p></div></div>
+<div class="example-box"><div class="box-title">Example 18: Student — Course : Alternate Cardinality Notations</div><div class="box-body"><p>A Student can enroll in many Courses, and each Course can have many Students.
+Below are equivalent ER representations using different cardinality notations.</p>
+<p><strong>(1) Numeric Ratio Notation — M : N (or * : *)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig037.png" alt="diagram"></div>
+<p><strong>(2) Min–Max Notation — (1,N) : (1,M)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig038.png" alt="diagram"></div>
+<p><strong>(3) Crow’s Foot Style — Many-to-Many (Mandatory Many)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig039.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="participation-constraints" class="content-section level-1">
+<h2 class="section-heading">Participation Constraints</h2>
+<div class="concept-box"><div class="box-title">Participation</div><div class="box-body"><p>In the Entity-Relationship (E-R) model, the <strong>participation</strong> of an entity set in a relationship set specifies whether all or only some entities in that entity set are involved in the relationship.</p>
+<ul><li><p>If every entity in an entity set $E$ must participate in at least one relationship in $R$, the participation is called <strong>total</strong>.</p></li><li><p>If it is possible that some entities in $E$ do not participate in any relationship in $R$, the participation is called <strong>partial</strong>.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Total Participation</div><div class="box-body"><p>Total participation occurs when <strong>every entity</strong> in an entity set must participate in at least one relationship in the relationship set. Total participation is represented by a double line in ER diagrams.</p></div></div>
+<div class="example-box"><div class="box-title">Example 19: Total Participation — Student and Advisor</div><div class="box-body"><p>In a university, every <strong>Student</strong> must have at least one <strong>Advisor</strong>. Therefore, the participation of the <em>Student</em> entity set in the <em>Assigned</em> relationship is total.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig040.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Partial Participation</div><div class="box-body"><p>Entities may or may not participate in the relationship. Partial participation is represented as single line.</p></div></div>
+<div class="example-box"><div class="box-title">Example 20: Partial Participation</div><div class="box-body"><p>In this scenario, enrollment is optional for both parties: a <strong>Student</strong> may exist without being enrolled in any <strong>Course</strong>, and a <strong>Course</strong> may exist without any <strong>Students</strong>.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig041.png" alt="diagram"></div></div></div>
+</section>
+<section id="solved-examples" class="content-section level-1">
+<h2 class="section-heading">Solved Examples</h2>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p><strong>Problem Statement:</strong>
+A University wants to manage its research projects. Design an ER diagram based on the following business rules:</p>
+<ol><li><p><strong>Professors</strong> are identified by a <em>StaffId</em>, <em>Name</em>, and <em>Dept</em>.</p></li><li><p><strong>Research Projects</strong> are identified by a <em>ProjectId</em>, <em>Title</em>, and <em>Budget</em>.</p></li><li><p>Each Project must be managed by exactly one Professor. A Professor may manage multiple projects, but some professors may not manage any projects at all.</p></li></ol>
+<p><strong>Solution Analysis:</strong></p>
+<ul><li><p><strong>Cardinality:</strong> $1:N$ (One Professor manages many Projects).</p></li><li><p><strong>Participation:</strong> <strong>Total</strong> on the Project side (Every project needs a manager), <strong>Partial</strong> on the Professor side.</p></li></ul>
+<p><strong>ER Diagram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig042.png" alt="diagram"></div>
+<p><strong>Explanation:</strong> 
+The $1$ is placed near Professor and $N$ near Project to show the 1-to-many relationship. The double line is on the Project side because a Project cannot exist without a Professor managing it (Total Participation).</p></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p><strong>Problem Statement:</strong>
+A hospital requires a database to track its operations. Based on the following requirements, identify the entities, relationships, cardinalities, and participation constraints, and provide an ER diagram:</p>
+<ol><li><p><strong>Patients</strong> are identified by a <em>PatientID</em>, <em>Name</em>, and <em>BloodGroup</em>.</p></li><li><p><strong>Doctors</strong> are identified by a <em>DoctorID</em>, <em>Name</em>, and <em>Specialization</em>.</p></li><li><p>Each patient is assigned to exactly one primary doctor for their stay. A doctor can be the primary doctor for many patients, but some doctors might not have any primary patients assigned to them.</p></li><li><p>A patient must have at least one doctor assigned to them to be admitted.</p></li></ol>
+<p><strong>Solution:</strong></p>
+<p><strong>1. Constraint Analysis:</strong></p>
+<ul><li><p><strong>Cardinality:</strong> $N:1$ (Many Patients to one Doctor).</p></li><li><p><strong>Participation:</strong> <strong>Total</strong> for Patient (Double line), <strong>Partial</strong> for Doctor (Single line).</p></li></ul>
+<p><strong>2. ER Diagram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig043.png" alt="diagram"></div>
+<p><strong>Explanation:</strong> 
+The double line connects <em>Patient</em> to the relationship because the problem states every patient <strong>must</strong> have a doctor. The single line for <em>Doctor</em> reflects that some doctors do not have assigned patients.</p></div></div>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p><strong>Problem Statement:</strong>
+A Software Company needs a database to manage its employees. Design an ER diagram based on the following requirements:</p>
+<ol><li><p><strong>Employees</strong> have an <em>EmployeeID</em> (unique), a <em>Salary</em>, and a <em>Name</em>. The Name consists of a <em>First Name</em> and a <em>Last Name</em>.</p></li><li><p>We track the <em>Phone Numbers</em> of employees; an employee can have more than one phone number.</p></li><li><p>We store the <em>Date of Birth</em> of each employee and need to display their <em>Age</em> in the system.</p></li><li><p>Employees work in <strong>Departments</strong>. A department has a <em>DeptID</em> and a <em>DeptName</em>.</p></li><li><p>Every employee must belong to exactly one department. A department must have at least one employee to exist in the system.</p></li></ol>
+<p><strong>Solution Analysis:</strong></p>
+<ul><li><p><strong>Composite Attribute:</strong> <em>Name</em> (split into First and Last Name).</p></li><li><p><strong>Multi-valued Attribute:</strong> <em>Phone Number</em> (represented by a double ellipse).</p></li><li><p><strong>Derived Attribute:</strong> <em>Age</em> (calculated from Date of Birth, represented by a dashed ellipse).</p></li><li><p><strong>Cardinality:</strong> $1:N$ (One Department has many Employees).</p></li><li><p><strong>Participation:</strong> <strong>Total</strong> on both sides (Every employee needs a department, and every department needs at least one employee).</p></li></ul>
+<p><strong>ER Diagram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig044.png" alt="diagram"></div>
+<p><strong>Explanation:</strong></p>
+<ul><li><p><strong>Double Ellipse (Phone):</strong> Indicates a multi-valued attribute.</p></li><li><p><strong>Dashed Ellipse (Age):</strong> Indicates a derived attribute because age changes over time and is calculated from the Date of Birth.</p></li><li><p><strong>Hierarchical Attributes (Name):</strong> Represents a composite attribute.</p></li><li><p><strong>Double Lines:</strong> Indicates that the relationship is mandatory for both entities (Total Participation).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p><strong>Problem Statement:</strong>
+A Bank manages customer accounts. Design an ER diagram based on the following rules:</p>
+<ol><li><p><strong>Customers</strong> have a <em>SSN</em> (unique), a <em>Name</em>.</p></li><li><p><strong>Accounts</strong> have an <em>AccountNumber</em> and a <em>Balance</em>.</p></li><li><p>Every <strong>Account</strong> must be owned by exactly one <strong>Customer</strong>.</p></li><li><p>A <strong>Customer</strong> can own multiple accounts, but a person can be a customer of the bank without having an account yet (e.g., they just have a loan or a profile).</p></li></ol>
+<p><strong>Solution Analysis:</strong></p>
+<ul><li><p><strong>Cardinality:</strong> $1:N$ (One Customer can have many Accounts).</p></li><li><p><strong>Customer Participation (Partial):</strong> A Customer can exist with zero accounts. We use a <strong>Single Line</strong>.</p></li><li><p><strong>Account Participation (Total):</strong> An Account cannot exist without an owner. We use a <strong>Double Line</strong>.</p></li></ul>
+<p><strong>ER Diagram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig045.png" alt="diagram"></div>
+<p><strong>Why the lines are drawn this way:</strong></p>
+<ul><li><p><strong>The '1' and 'N':</strong> These tell us the <strong>Maximums</strong>. One customer $\rightarrow$ Many accounts (N). One account $\rightarrow$ One customer (1).</p></li><li><p><strong>The Double Line (on Account side):</strong> This tells us the <strong>Minimum</strong>. Every account <em>must</em> have at least one owner. It is a "Mandatory" relationship for the Account.</p></li><li><p><strong>The Single Line (on Customer side):</strong> Participation is <strong>Optional</strong>. A Customer <em>can</em> exist in the database without being linked to an account.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p><strong>Problem Statement:</strong>
+An Insurance Company tracks employees and their dependents.</p>
+<ol><li><p><strong>Employees</strong> have an <em>EmpID</em> (unique) and a <em>Name</em>.</p></li><li><p><strong>Dependents</strong> (family members) have a <em>FirstName</em> and <em>BirthDate</em>.</p></li><li><p>Dependents do not have a unique ID of their own; they are identified by their <em>FirstName</em> combined with their specific Employee's ID.</p></li><li><p>Each Dependent belongs to exactly one Employee. An Employee can have zero or more dependents.</p></li></ol>
+<p><strong>Solution Analysis:</strong></p>
+<ul><li><p><strong>Weak Entity:</strong> <em>Dependent</em> is a weak entity because it lacks a primary key.</p></li><li><p><strong>Identifying Relationship:</strong> The link between Employee and Dependent is an "Identifying Relationship" (drawn with a double diamond).</p></li><li><p><strong>Partial Key:</strong> <em>FirstName</em> is a partial key (discriminator), drawn with a dashed underline.</p></li><li><p><strong>Participation:</strong> Total on the Dependent side (A dependent must have an employee to exist).</p></li></ul>
+<p><strong>ER Diagram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig046.png" alt="diagram"></div></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Introduction</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Relational Model &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

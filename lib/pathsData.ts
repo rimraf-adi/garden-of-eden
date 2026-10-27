@@ -45,6 +45,30 @@ function bookModules(id: string) {
 
 const ALL_PATHS: LearningPath[] = [
   {
+    id: 'gate-da',
+    slug: 'gate-da',
+    title: 'GATE DA',
+    folderTitle: 'GATE DA',
+    folderSubtitle: 'GATE_DA',
+    folderGraphic: 'network-graph',
+    accentColor: {
+      folderBg: '#f1d9b8',
+      folderBorder: '#e2bf8d',
+      folderText: '#6b3f12',
+      tagBg: '#fbf1e2',
+      chipBg: '#f5e2c6',
+    },
+    bullets: [
+      'Probability, linear algebra, calculus and optimization',
+      'Python, data structures, algorithms and databases',
+      'Data warehousing, supervised and unsupervised machine learning',
+    ],
+    stats: { modules: BOOK_INDEX['gate-da'].chapters.length, lessons: BOOK_INDEX['gate-da'].chapters.reduce((a, c) => a + c.sectionCount, 0), interactiveCount: 0 },
+    href: '/paths/gate-da',
+    description: 'Complete notes for the GATE Data Science and Artificial Intelligence paper: every subject in the official syllabus, with worked examples and diagrams, from the GateXAIML notes.',
+    modules: bookModules('gate-da'),
+  },
+  {
     id: 'inferential-statistics',
     slug: 'inferential-statistics',
     title: 'Inferential Statistics',

@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Normalization — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch06.html" class="chapter-link active">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 6 of 7</div><h1>Normalization</h1></div>
+<section id="functional-dependencies" class="content-section level-1">
+<h2 class="section-heading">Functional Dependencies</h2>
+<div class="concept-box-alt"><div class="box-title">Functional Dependency (FD) — Definition</div><div class="box-body"><p>A functional dependency $\alpha \rightarrow \beta$ holds on a relation $R$ if, 
+for any two tuples $t_1$ and $t_2$ in $R$, whenever $t_1[\alpha] = t_2[\alpha]$, it must also be the case that $t_1[\beta] = t_2[\beta]$.</p>
+<p><strong>Key points:</strong></p>
+<ul><li><p>$\alpha$ determines $\beta$ uniquely.</p></li><li><p>If $\alpha$ is a superkey, then $\alpha \rightarrow R$ holds.</p></li><li><p>Trivial FDs: $\beta \subseteq \alpha$, e.g., $A \rightarrow A$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 221</div><div class="box-body"><p>Consider $r(A,B)$ with the following instance of $r$.
+On this instance, $B \rightarrow A$ holds; $A \rightarrow B$ does NOT hold,
+\[
+\begin{array}{|c|c|}
+\hline
+A &amp; B \\ \hline
+1 &amp; 4 \\
+1 &amp; 5 \\
+3 &amp; 7 \\
+\hline
+\end{array}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 222: Sample Relation</div><div class="box-body"><p>Consider the following instance of relation $r(A,B,C,D)$:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig280.png" alt="diagram"></div>
+<p><strong>Step-by-step FD analysis:</strong></p>
+<ul><li><p>Check if $A \rightarrow C$ holds:</p>
+<ul><li><p>Tuples with $A = a1$: $c1, c1$ → same → OK</p></li><li><p>Tuples with $A = a2$: $c2, c2$ → same → OK</p></li><li><p>$A = a3$: only one tuple → trivially OK</p></li><li><p>Conclusion: $A \rightarrow C$ <strong>holds</strong></p></li></ul></li><li><p>Check if $C \rightarrow A$ holds:</p>
+<ul><li><p>Tuples with $C = c2$: $A = a2, a2, a3$ → different → violates FD</p></li><li><p>Conclusion: $C \rightarrow A$ <strong>does not hold</strong></p></li></ul></li><li><p>Check if $B \rightarrow D$ holds:</p>
+<ul><li><p>$B = b2$: tuples $(a1,b2,c1,d2)$ and $(a2,b2,c2,d2)$ → D = d2 in both → holds</p></li><li><p>$B = b3$: tuples $(a2,b3,c2,d3)$ and $(a3,b3,c2,d4)$ → D = d3, d4 → violates FD</p></li><li><p>Conclusion: $B \rightarrow D$ <strong>does not hold</strong></p></li></ul></li><li><p>Trivial FDs:</p>
+<ul><li><p>$A \rightarrow A$, $B \rightarrow B$, $C \rightarrow C$, $D \rightarrow D$ always hold</p></li><li><p>Any FD $\alpha \rightarrow \beta$ where $\beta \subseteq \alpha$ is trivial</p></li></ul></li></ul>
+<p><strong>Summary:</strong></p>
+<ul><li><p>Non-trivial FD that holds: $A \rightarrow C$</p></li><li><p>Non-trivial FDs that do not hold: $C \rightarrow A$, $B \rightarrow D$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 223: Finding FDs — Student Table</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig281.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>sNo uniquely identifies student name and department → FD: $sNo \rightarrow sName, dNo$.</p></li><li><p>dNo uniquely identifies department name → FD: $dNo \rightarrow dName$.</p></li><li><p>Combination $sNo, dNo$ is a superkey → $sNo, dNo \rightarrow sName, dName$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 224: Employee Table FDs</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig282.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>empID is unique → $empID \rightarrow empName, dept, salary$</p></li><li><p>dept does not determine salary (Sales has multiple salaries) → no FD $dept \rightarrow salary$</p></li><li><p>Combination empID, dept → still determines all attributes (superkey)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 225: Course Table FDs</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig283.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>cNo uniquely identifies course → $cNo \rightarrow cName, credits$</p></li><li><p>cName does not determine credits (Math appears twice, same credits here, but could vary in other instances)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 226: Register Table FDs</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig284.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>Combination (sNo, cNo) determines grade → $(sNo, cNo) \rightarrow grade$</p></li><li><p>sNo alone does not determine grade (student has multiple courses)</p></li><li><p>cNo alone does not determine grade (multiple students take the same course)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 227: Classroom Table FDs</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig285.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>(building, roomNo) uniquely identifies capacity and type → $(building, roomNo) \rightarrow capacity, type$</p></li><li><p>roomNo alone does not determine capacity (room 101 exists in both buildings with different capacities)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 228: Composite Keys and FDs</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig286.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>Composite key (orderID, productID) → quantity, price</p></li><li><p>orderID alone does not determine quantity or price</p></li><li><p>productID alone does not determine quantity or price</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">FDs — Key Takeaways</div><div class="box-body"><ul><li><p>Identify superkeys: sets of attributes that uniquely identify tuples.</p></li><li><p>Determine FDs by checking if a value of attribute(s) consistently determines other attribute(s) across all tuples.</p></li><li><p>Trivial FDs always hold: $\alpha \rightarrow \beta$ is trivial if $\beta \subseteq \alpha$.</p></li><li><p>Non-trivial FDs indicate constraints and guide normalization.</p></li><li><p>Use tables to verify candidate keys and dependent attributes.</p></li></ul></div></div>
+<section id="types-of-functional-dependency" class="content-section level-2">
+<h3 class="section-heading">Types of Functional Dependency</h3>
+<div class="concept-box"><div class="box-title">Trivial Functional Dependency</div><div class="box-body"><p>Every dependent in trivial functional dependency is a subset of the determinant.  
+If $Y$ is a subset of $X$, the functional relationship $X \rightarrow Y$ is referred to as trivial.</p></div></div>
+<div class="example-box"><div class="box-title">Example 229: Example — Employee Table</div><div class="box-body"><p>\[
+\begin{array}{ccc}
+\text{Employee\_Id} &amp; \text{Name} &amp; \text{Age} \\
+1 &amp; \text{Zayn} &amp; 24 \\
+2 &amp; \text{Phobe} &amp; 34 \\
+3 &amp; \text{Hikki} &amp; 26 \\
+4 &amp; \text{David} &amp; 29 \\
+\end{array}
+\]
+Given that the dependent Name is a subset of the determinant Employee_Id, Name, the functional dependency between $\{ \text{Employee\_Id, Name} \}$ and $\{ \text{Name} \}$ is trivial.  
+Additionally, Name, Age, and Employee_Id are also trivial.</p></div></div>
+<div class="concept-box"><div class="box-title">Non-Trivial Functional Dependency</div><div class="box-body"><p>The non-trivial functional dependency is opposed to the trivial one. Formally, the dependent is not a subset of the determinant.  
+If $Y$ is not a subset of $X$, the relationship $X \rightarrow Y$ is non-trivial.</p></div></div>
+<div class="example-box"><div class="box-title">Example 230: Example — Employee Table</div><div class="box-body"><p>\[
+\begin{array}{ccc}
+\text{Employee\_Id} &amp; \text{Name} &amp; \text{Age} \\
+1 &amp; \text{Zayn} &amp; 24 \\
+2 &amp; \text{Phobe} &amp; 34 \\
+3 &amp; \text{Hikki} &amp; 26 \\
+4 &amp; \text{David} &amp; 29 \\
+5 &amp; \text{Phobe} &amp; 24 \\
+\end{array}
+\]
+Because Name (dependent) is not a subset of Employee_Id, there is a non-trivial functional dependency between Employee_Id and Name.  
+The functional dependencies $\{ \text{Employee\_Id, Name} \} \rightarrow \{ \text{Age} \}$ are also non-trivial.</p></div></div>
+<div class="concept-box"><div class="box-title">Multi-Valued Functional Dependency</div><div class="box-body"><p>Attributes in the dependent set are not reliant on each other in multi-valued dependency.  
+If there is no functional dependency between $Y$ and $Z$, the relationship $X \rightarrow Y, Z$ is referred to as multi-valued functional dependency.</p></div></div>
+<div class="example-box"><div class="box-title">Example 231: Example — Employee Table</div><div class="box-body"><p>\[
+\begin{array}{ccc}
+\text{Employee\_Id} &amp; \text{Name} &amp; \text{Age} \\
+1 &amp; \text{Zayn} &amp; 24 \\
+2 &amp; \text{Phobe} &amp; 34 \\
+3 &amp; \text{Hikki} &amp; 26 \\
+4 &amp; \text{David} &amp; 29 \\
+4 &amp; \text{Phobe} &amp; 24 \\
+\end{array}
+\]
+Since the dependent attributes Name and Age are not functionally dependent, $\{ \text{Employee\_Id} \} \rightarrow \{ \text{Name, Age} \}$ is a multi-valued functional dependency.</p></div></div>
+<div class="concept-box"><div class="box-title">Transitive Functional Dependency</div><div class="box-body"><p>Given two functional dependencies $A \rightarrow B$ and $B \rightarrow C$, $A \rightarrow C$ must also exist according to the transitivity principle.  
+In transitive functional dependency, the dependent is indirectly reliant on the determinant.</p></div></div>
+<div class="example-box"><div class="box-title">Example 232: Example — Employee Table</div><div class="box-body"><p>\[
+\begin{array}{cccc}
+\text{Employee\_Id} &amp; \text{Name} &amp; \text{Department} &amp; \text{Street Number} \\
+1 &amp; \text{Zayn} &amp; \text{CD} &amp; 11 \\
+2 &amp; \text{Phobe} &amp; \text{AB} &amp; 24 \\
+3 &amp; \text{Hikki} &amp; \text{CD} &amp; 11 \\
+4 &amp; \text{David} &amp; \text{PQ} &amp; 71 \\
+5 &amp; \text{Phobe} &amp; \text{LM} &amp; 21 \\
+\end{array}
+\]
+The relationships between Employee_Id, Department, and Street Number are valid.  
+Consequently, $\{ \text{Employee\_Id} \}$ and $\{ \text{Street Number} \}$ are both valid functional dependencies according to the axiom of transitivity.</p></div></div>
+</section>
+</section>
+<section id="armstrong-s-axioms-inference-rules" class="content-section level-1">
+<h2 class="section-heading">Armstrong’s axioms (Inference rules)</h2>
+<p>Armstrong’s Axioms are a set of rules that, when applied repeatedly, generate a closure of functional dependencies.</p>
+<div class="concept-box"><div class="box-title">Axiom of Reflexivity</div><div class="box-body"><p>If $B \subseteq A$, then $A \rightarrow B$.  
+This property is trivial: every set of attributes functionally determines its subsets.</p></div></div>
+<div class="example-box"><div class="box-title">Example 233: Example — Reflexivity</div><div class="box-body"><p>Let $A = \{ \text{EmpID, Name} \}$ and $B = \{ \text{Name} \}$.  
+Since $B \subseteq A$, by reflexivity:
+\[
+\{ \text{EmpID, Name} \} \rightarrow \{ \text{Name} \}
+\]
+is a valid functional dependency.</p></div></div>
+<div class="concept-box"><div class="box-title">Axiom of Augmentation</div><div class="box-body"><p>If $A \rightarrow B$ holds and $C$ is any attribute set, then $AC \rightarrow BC$ also holds.  
+Adding attributes to both sides preserves the dependency.</p></div></div>
+<div class="example-box"><div class="box-title">Example 234: Example — Augmentation</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \text{Name}$, then by augmentation:
+\[
+\{ \text{EmpID, Dept} \} \rightarrow \{ \text{Name, Dept} \}
+\]
+also holds.</p></div></div>
+<div class="concept-box"><div class="box-title">Axiom of Transitivity</div><div class="box-body"><p>If $A \rightarrow B$ and $B \rightarrow C$, then $A \rightarrow C$.  
+This is similar to the transitive property in algebra.</p></div></div>
+<div class="example-box"><div class="box-title">Example 235: Example — Transitivity</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \text{Dept}$ and $\text{Dept} \rightarrow \text{Manager}$,  
+then $\text{EmpID} \rightarrow \text{Manager}$ also holds.</p></div></div>
+<div class="concept-box"><div class="box-title">Union Rule</div><div class="box-body"><p>If $A \rightarrow B$ and $A \rightarrow C$, then $A \rightarrow BC$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 236: Example — Union</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \text{Name}$ and $\text{EmpID} \rightarrow \text{Dept}$,  
+then $\text{EmpID} \rightarrow \text{Name, Dept}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Composition Rule</div><div class="box-body"><p>If $A \rightarrow B$ and $X \rightarrow Y$, then $AX \rightarrow BY$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 237: Example — Composition</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \text{Name}$ and $\text{DeptID} \rightarrow \text{DeptName}$,  
+then $\{\text{EmpID, DeptID}\} \rightarrow \{\text{Name, DeptName}\}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Decomposition Rule</div><div class="box-body"><p>If $A \rightarrow BC$, then $A \rightarrow B$ and $A \rightarrow C$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 238: Example — Decomposition</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \{\text{Name, Dept}\}$,  
+then $\text{EmpID} \rightarrow \text{Name}$ and $\text{EmpID} \rightarrow \text{Dept}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Pseudo Transitivity</div><div class="box-body"><p>If $A \rightarrow B$ and $BC \rightarrow D$, then $AC \rightarrow D$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 239: Example — Pseudo Transitivity</div><div class="box-body"><p>If $\text{EmpID} \rightarrow \text{Dept}$ and $\{\text{Dept, Location}\} \rightarrow \text{Manager}$,  
+then $\{\text{EmpID, Location}\} \rightarrow \text{Manager}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Self Determination</div><div class="box-body"><p>Every attribute set functionally determines itself: $A \rightarrow A$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 240: Example — Self Determination</div><div class="box-body"><p>$\text{EmpID} \rightarrow \text{EmpID}$ is always true.</p></div></div>
+<div class="concept-box"><div class="box-title">Extensivity</div><div class="box-body"><p>If $AC \rightarrow A$ and $A \rightarrow B$, then $AC \rightarrow B$.  
+Also leads to $AC \rightarrow BC$ and $ABC \rightarrow BC$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 241: Example — Extensivity</div><div class="box-body"><p>If $\{\text{EmpID, Dept}\} \rightarrow \text{EmpID}$ and $\text{EmpID} \rightarrow \text{Name}$,  
+then $\{\text{EmpID, Dept}\} \rightarrow \text{Name}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 242: Reflexivity — MCQ</div><div class="box-body"><p>When an FD is reflexive, $Y$ is a subset of $X$ and $X$ refers to the set of attributes, then:</p>
+<ol><li><p>$Y \rightarrow X$ holds</p></li><li><p>$X \rightarrow Y$ holds</p></li><li><p>$XY \rightarrow Z$ holds</p></li><li><p>None of the above</p></li></ol>
+<p><strong>Answer:</strong> B. $X \rightarrow Y$ holds</p>
+<p>Explanation: When an FD is reflexive, $Y \subseteq X$, so $X \rightarrow Y$ always holds according to Armstrong's reflexivity axiom.</p></div></div>
+<div class="example-box"><div class="box-title">Example 243: Union — MCQ</div><div class="box-body"><p>If $P \rightarrow Q$ and $P \rightarrow R$, then which of these would be true?</p>
+<ol><li><p>$P \rightarrow QR$</p></li><li><p>$P \rightarrow Q$</p></li><li><p>$P \rightarrow R$</p></li><li><p>All of the above</p></li></ol>
+<p><strong>Answer:</strong> D. All of the above</p>
+<p>Explanation: By the union rule, if $P \rightarrow Q$ and $P \rightarrow R$, then $P \rightarrow QR$ holds. Individual dependencies also hold.</p></div></div>
+</section>
+<section id="closure-of-attributes-finding-candidate-keys" class="content-section level-1">
+<h2 class="section-heading">Closure of attributes &amp; Finding Candidate Keys</h2>
+
+<section id="closure-of-an-attribute" class="content-section level-2">
+<h3 class="section-heading">Closure of an Attribute</h3>
+<div class="concept-box-alt"><div class="box-title">Closure of an Attribute</div><div class="box-body"><p>The <strong>closure</strong> of an attribute (or attribute set) is the set of all attributes that can be functionally determined from it, given a set of functional dependencies.</p>
+<p><strong>Purpose:</strong></p>
+<ul><li><p>Determine candidate keys</p></li><li><p>Test dependency preservation</p></li><li><p>Normalize relations</p></li></ul></div></div>
+<p><strong>Algorithm to Compute $X^+$ (Closure of $X$):</strong>
+
+<strong>Corrected Closure Calculation</strong>
+<strong>Input:</strong> A set \(F\) of functional dependencies on a relation schema \(R\), and a set of attributes \(X \subseteq R\).</p>
+<ol><li><p>$X^+ \gets X$    // Initialize closure with \(X\) itself</p></li><li><p><strong>Repeat</strong></p></li><li><p>   $\text{oldX}^+ \gets X^+$    // Snapshot current set at the start of the loop</p></li><li><p>   <strong>For each</strong> functional dependency \(Y \rightarrow Z\) in \(F\):</p></li><li><p>      <strong>If</strong> $X^+ \supseteq Y$, <strong>then</strong> $X^+ \gets X^+ \cup Z$    // Add new attributes</p></li><li><p>   <strong>End For</strong></p></li><li><p><strong>Until</strong> $X^+ = \text{oldX}^+$    // If no changes occurred in this pass, STOP</p></li><li><p><strong>Return</strong> $X^+$</p></li></ol>
+<div class="example-box"><div class="box-title">Example 244: Closure of Single Attribute</div><div class="box-body"><p>Consider relation \(R(A,B,C,D,E,F)\) with FDs:
+\[ F: E \rightarrow A, \; E \rightarrow D, \; A \rightarrow C, \; A \rightarrow D, \; AE \rightarrow F, \; AG \rightarrow K \]</p>
+<p>Find \(E^+\):</p>
+<p>\[
+\begin{aligned}
+E^+ &amp; = E \\
+&amp; = EA \quad \text{(from } E \rightarrow A\text{)} \\
+&amp; = EAD \quad \text{(from } E \rightarrow D\text{)} \\
+&amp; = EADC \quad \text{(from } A \rightarrow C\text{)} \\
+&amp; = EADCF \quad \text{(from } AE \rightarrow F\text{)} \\
+&amp; = EADCF \quad \text{(from } AG \rightarrow K \text{, not added since } AG \nsubseteq E^+)
+\end{aligned}
+\]</p>
+<p>Thus, \(E^+ = \{E, A, D, C, F\}\).</p></div></div>
+<div class="example-box"><div class="box-title">Example 245: Closure of Multiple Attributes</div><div class="box-body"><p>Consider relation \(R(A,B,C,D,E,F,G)\) with FDs:
+\[ F: E \rightarrow A, \; E \rightarrow D, \; A \rightarrow C, \; A \rightarrow D, \; AE \rightarrow F, \; AG \rightarrow K, \; BC \rightarrow DE, \; D \rightarrow F, \; CF \rightarrow G \]</p>
+<p>Compute closures:</p>
+<p><strong>Closure of attribute A:</strong>
+\[
+\begin{aligned}
+A^+ &amp; = \{A\} \\
+&amp; = \{A, B, C\} \quad (\text{Using } A \rightarrow BC) \\
+&amp; = \{A, B, C, D, E\} \quad (\text{Using } BC \rightarrow DE) \\
+&amp; = \{A, B, C, D, E, F\} \quad (\text{Using } D \rightarrow F) \\
+&amp; = \{A, B, C, D, E, F, G\} \quad (\text{Using } CF \rightarrow G)
+\end{aligned}
+\]</p>
+<p><strong>Closure of attribute D:</strong>
+\[
+D^+ = \{D, F\} \quad (\text{Using } D \rightarrow F)
+\]</p>
+<p><strong>Closure of attribute set \(\{B,C\}\):</strong>
+\[
+\begin{aligned}
+\{B,C\}^+ &amp; = \{B, C\} \\
+&amp; = \{B, C, D, E\} \quad (\text{Using } BC \rightarrow DE) \\
+&amp; = \{B, C, D, E, F\} \quad (\text{Using } D \rightarrow F) \\
+&amp; = \{B, C, D, E, F, G\} \quad (\text{Using } CF \rightarrow G)
+\end{aligned}
+\]</p>
+<p>Thus, \(\{B,C\}^+ = \{B,C,D,E,F,G\}\).</p></div></div>
+</section>
+<section id="finding-candidate-keys" class="content-section level-2">
+<h3 class="section-heading">Finding Candidate Keys</h3>
+<div class="concept-box-alt"><div class="box-title">Candidate Key — Definition and Steps</div><div class="box-body"><p>A <strong>candidate key</strong> is defined as:</p>
+<ul><li><p>A <strong>minimal set of attributes</strong> that can uniquely identify each tuple in a relation.</p></li><li><p>Equivalently, a <strong>minimal superkey</strong> is a candidate key.</p></li></ul>
+<p><strong>Steps to find candidate keys:</strong></p>
+<ol><li><p><strong>Step 1: Find essential attributes</strong></p>
+<ul><li><p>Essential attributes are <strong>not present on the RHS</strong> of any functional dependency OR Attributes that do not appear in any dependency at all.</p></li><li><p>Essential attributes <strong>must be in every candidate key</strong>.</p></li></ul></li><li><p><strong>Step 2: Identify non-essential attributes</strong></p>
+<ul><li><p>Remaining attributes that appear on RHS of some FD.</p></li><li><p>If essential attributes <strong>alone</strong> can determine all non-essential attributes, they form the only candidate key.</p></li><li><p>Otherwise, combine essential attributes with some non-essential attributes to form all possible candidate keys.</p></li></ul></li></ol></div></div>
+<div class="concept-box"><div class="box-title">No. of Super Keys</div><div class="box-body"><p>Let $|R| = n$ (total attributes) and $CK$ be a Candidate Key of size $k$.</p>
+<ul><li><p><strong>Case 1: Single Candidate Key</strong> <br>
+    The number of superkeys is given by: $N = 2^{n-k}$</p></li><li><p><strong>Case 2: Two Candidate Keys ($K_1$ and $K_2$)</strong> <br>
+    Using the Principle of Inclusion-Exclusion:
+    \[ |S_1 \cup S_2| = |S_1| + |S_2| - |S_1 \cap S_2| \]
+    In terms of attributes:
+    \[ N = 2^{n-|K_1|} + 2^{n-|K_2|} - 2^{n-|K_1 \cup K_2|} \]</p></li><li><p><strong>Case 3: Three Candidate Keys ($K_1, K_2, K_3$)</strong> <br>
+    Applying the Principle of Inclusion-Exclusion (PIE):
+    \[ N = \sum |S_i| - \sum |S_i \cap S_j| + |S_1 \cap S_2 \cap S_3| \]
+    In terms of attributes:
+    \[ N = (2^{n-|K_1|} + 2^{n-|K_2|} + 2^{n-|K_3|}) - (2^{n-|K_1 \cup K_2|} + 2^{n-|K_2 \cup K_3|} + 2^{n-|K_1 \cup K_3|}) + 2^{n-|K_1 \cup K_2 \cup K_3|} \]</p></li><li><p><strong>Special Case (All attributes are Essential)</strong> <br>
+    If all $n$ attributes are essential, then the only candidate key is the set of all attributes ($k=n$):
+    \[ N = 2^{n-n} = 2^0 = 1 \]
+    <em>In this case, the only superkey is the Relation $R$ itself.</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 246: Finding Candidate Key — Simple Closure</div><div class="box-body"><p><strong>Relation:</strong> $R(A, B, C, D, E, F)$</p>
+<p><strong>Functional Dependencies:</strong>
+\[
+C \rightarrow F, \quad E \rightarrow A, \quad EC \rightarrow D, \quad A \rightarrow B
+\]</p>
+<p><strong>Step 1: Essential attributes</strong>
+\[
+\text{Attributes not on RHS: } C, E \quad \Rightarrow \text{Essential attributes} = \{C, E\}
+\]</p>
+<p><strong>Step 2: Compute closure of essential attributes</strong>
+\[
+\{ CE \}^+ = \{ C, E \} \xrightarrow{C \rightarrow F} \{ C, E, F \} 
+\xrightarrow{E \rightarrow A} \{ A, C, E, F \} 
+\xrightarrow{EC \rightarrow D} \{ A, C, D, E, F \} 
+\xrightarrow{A \rightarrow B} \{ A, B, C, D, E, F \}
+\]</p>
+<p><strong>Conclusion:</strong> $CE$ can determine all attributes.</p>
+<p><strong>Candidate Key:</strong> $CE$ (only one)</p>
+<p><strong>Super Keys:</strong> Essential attributes = 2, Non-essential = 4</p>
+<p>\[
+\text{Number of super keys} = 2^4 = 16
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 247: Candidate Key — Another Example</div><div class="box-body"><p><strong>Relation:</strong> $R(A, B, C, D, E)$</p>
+<p><strong>Functional Dependencies:</strong>
+\[
+AB \rightarrow C, \quad C \rightarrow D, \quad B \rightarrow E
+\]</p>
+<p><strong>Step 1: Essential attributes</strong>
+\[
+\text{Attributes not on RHS: } A, B \quad \Rightarrow \text{Essential attributes} = \{A, B\}
+\]</p>
+<p><strong>Step 2: Compute closure of essential attributes</strong>
+\[
+\{ AB \}^+ = \{ A, B \} \xrightarrow{AB \rightarrow C} \{ A, B, C \} 
+\xrightarrow{C \rightarrow D} \{ A, B, C, D \} 
+\xrightarrow{B \rightarrow E} \{ A, B, C, D, E \}
+\]</p>
+<p><strong>Conclusion:</strong> $AB$ can determine all attributes.</p>
+<p><strong>Candidate Key:</strong> $AB$ (only one)</p>
+<p><strong>Super Keys:</strong> Essential = 2, Non-essential = 3  
+\[
+\text{Number of super keys} = 2^3 = 8
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 248: Candidate Key — Multiple Attributes</div><div class="box-body"><p><strong>Relation:</strong> $R(E, F, G, H, I, J, K, L, M, N)$</p>
+<p><strong>Functional Dependencies:</strong>
+\[
+\{ E, F \} \rightarrow G, \quad F \rightarrow I, J, \quad \{ E, H \} \rightarrow K, L, \quad K \rightarrow M, \quad L \rightarrow N
+\]</p>
+<p><strong>Step 1: Essential attributes</strong>  
+\[
+\text{Attributes not on RHS: } E, F, H \quad \Rightarrow \text{Essential attributes} = \{ E, F, H \}
+\]</p>
+<p><strong>Step 2: Compute closure of essential attributes</strong>
+\begin{align*}
+\{ EFH \}^+ &amp;= \{ E, F, H \} 
+  &amp;&amp;\xrightarrow{EF \rightarrow G} \{ E, F, G, H \} \\
+  &amp;&amp;\xrightarrow{F \rightarrow I, J} \{ E, F, G, H, I, J \} \\
+  &amp;&amp;\xrightarrow{EH \rightarrow K, L} \{ E, F, G, H, I, J, K, L \} \\
+  &amp;&amp;\xrightarrow{K \rightarrow M} \{ E, F, G, H, I, J, K, L, M \} \\
+  &amp;&amp;\xrightarrow{L \rightarrow N} \{ E, F, G, H, I, J, K, L, M, N \}
+\end{align*}</p>
+<p><strong>Candidate Key:</strong> $EFH$ (only one)</p>
+<p><strong>Super Keys:</strong> Essential = 3, Non-essential = 7  
+\[
+\text{Number of super keys} = 2^7 = 128
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 249: Candidate Key — Optional Attributes</div><div class="box-body"><p><strong>Relation:</strong> $R(A, B, C, D, E, H)$</p>
+<p><strong>Functional Dependencies:</strong>
+\[
+A \rightarrow B, \quad BC \rightarrow D, \quad E \rightarrow C, \quad D \rightarrow A
+\]</p>
+<p><strong>Essential attributes:</strong> $E, H$</p>
+<p><strong>Candidate Keys:</strong> All options containing essential attributes that determine remaining attributes:  
+\[
+\text{Candidate Keys: } AEH, BEH, DEH
+\]</p>
+<p><strong>Answer:</strong> Option (D)</p></div></div>
+</section>
+</section>
+<section id="canonical-cover" class="content-section level-1">
+<h2 class="section-heading">Canonical Cover</h2>
+
+<section id="equivalence-of-functional-dependencies" class="content-section level-2">
+<h3 class="section-heading">Equivalence of Functional Dependencies</h3>
+<div class="concept-box"><div class="box-title">Equivalence of Functional Dependencies</div><div class="box-body"><p>Two sets of functional dependencies $E$ and $F$ are said to be 
+<strong>equivalent</strong> if</p>
+<p>\[
+E^+ = F^+
+\]</p>
+<p>Equivalently,</p>
+<p>\[
+E \equiv F
+\]</p>
+<p>iff</p>
+<ul><li><p>$E$ covers $F$</p></li><li><p>$F$ covers $E$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 250</div><div class="box-body"><p>Let</p>
+<p>\[
+F = \{A \rightarrow C,\ AC \rightarrow D,\ E \rightarrow AD,\ E \rightarrow H\}
+\]</p>
+<p>\[
+G = \{A \rightarrow CD,\ E \rightarrow AH\}
+\]</p>
+<p><strong>Step 1: Check $F$ covers $G$</strong></p>
+<p><strong>Check </strong> $A \rightarrow CD$</p>
+<p>Compute $A^+$ using $F$</p>
+<p>\[
+A^+ = \{A\}
+\]</p>
+<p>Using $A \rightarrow C$</p>
+<p>\[
+A^+ = \{A,C\}
+\]</p>
+<p>Using $AC \rightarrow D$</p>
+<p>\[
+A^+ = \{A,C,D\}
+\]</p>
+<p>Hence</p>
+<p>\[
+A \rightarrow CD
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $E \rightarrow AH$</p>
+<p>Compute $E^+$ using $F$</p>
+<p>\[
+E^+ = \{E\}
+\]</p>
+<p>Using $E \rightarrow AD$</p>
+<p>\[
+E^+ = \{E,A,D\}
+\]</p>
+<p>Using $A \rightarrow C$</p>
+<p>\[
+E^+ = \{E,A,D,C\}
+\]</p>
+<p>Using $E \rightarrow H$</p>
+<p>\[
+E^+ = \{E,A,D,C,H\}
+\]</p>
+<p>Hence</p>
+<p>\[
+E \rightarrow AH
+\]</p>
+<p>holds.</p>
+<p>\[
+\therefore F \text{ covers } G
+\]</p>
+<p><strong>Step 2: Check $G$ covers $F$</strong></p>
+<p><strong>Check </strong> $A \rightarrow C$</p>
+<p>Compute $A^+$ using $G$</p>
+<p>\[
+A^+ = \{A\}
+\]</p>
+<p>Using $A \rightarrow CD$</p>
+<p>\[
+A^+ = \{A,C,D\}
+\]</p>
+<p>Hence</p>
+<p>\[
+A \rightarrow C
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $AC \rightarrow D$</p>
+<p>Since $A \rightarrow CD$</p>
+<p>\[
+AC \rightarrow D
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $E \rightarrow AD$</p>
+<p>Compute $E^+$ using $G$</p>
+<p>\[
+E^+ = \{E\}
+\]</p>
+<p>Using $E \rightarrow AH$</p>
+<p>\[
+E^+ = \{E,A,H\}
+\]</p>
+<p>Using $A \rightarrow CD$</p>
+<p>\[
+E^+ = \{E,A,H,C,D\}
+\]</p>
+<p>Hence</p>
+<p>\[
+E \rightarrow AD
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $E \rightarrow H$</p>
+<p>Directly given.</p>
+<p>\[
+\therefore G \text{ covers } F
+\]</p>
+<p><strong>Conclusion</strong></p>
+<p>\[
+F \equiv G
+\]</p>
+<p>Hence the two sets of functional dependencies are <strong>equivalent</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 251</div><div class="box-body"><p>Let</p>
+<p>\[
+F = \{a \rightarrow b,\ b \rightarrow c,\ c \rightarrow d\}
+\]</p>
+<p>\[
+G = \{a \rightarrow bc,\ c \rightarrow d\}
+\]
+<strong class="inline-subheading">Step 1: Check if $F$ covers $G$</strong>
+We check each FD in $G$ using the rules in $F$:</p>
+<ul><li><p><strong>Check $a \to bc$:</strong> 
+    Compute $a^+$ using $F$: $a^+ = \{a, b, c, d\}$. 
+    Since $\{b, c\} \subseteq a^+$, $a \to bc$ is <strong>Covered</strong>.</p></li><li><p><strong>Check $c \to d$:</strong> 
+    Compute $c^+$ using $F$: $c^+ = \{c, d\}$. 
+    Since $d \in c^+$, $c \to d$ is <strong>Covered</strong>.</p></li></ul>
+<p>$\therefore F$ covers $G$.</p>
+<p><strong class="inline-subheading">Step 2: Check if $G$ covers $F$</strong>
+We check each FD in $F$ using the rules in $G$:</p>
+<ul><li><p><strong>Check $a \to b$:</strong> 
+    Compute $a^+$ using $G$: $a^+ = \{a, b, c, d\}$. 
+    Since $b \in a^+$, $a \to b$ is <strong>Covered</strong>.</p></li><li><p><strong>Check $b \to c$:</strong> 
+    Compute $b^+$ using $G$: $b^+ = \{b\}$. 
+    Since $c \notin b^+$, $b \to c$ is <strong>NOT Covered</strong>.</p></li><li><p><strong>Check $c \to d$:</strong> 
+    Compute $c^+$ using $G$: $c^+ = \{c, d\}$. 
+    Since $d \in c^+$, $c \to d$ is <strong>Covered</strong>.</p></li></ul>
+<p>$\therefore G$ does not cover $F$ (specifically due to $b \to c$).</p></div></div>
+<div class="example-box"><div class="box-title">Example 252</div><div class="box-body"><p>Let</p>
+<p>\[
+F = \{a \rightarrow b,\; ab \rightarrow c,\; d \rightarrow ac,\; d \rightarrow e\}
+\]</p>
+<p>\[
+G = \{a \rightarrow bc,\; d \rightarrow ab\}
+\]</p>
+<p><strong>Step 1: Check whether $F$ covers $G$</strong></p>
+<p><strong>Check </strong> $a \rightarrow bc$</p>
+<p>Compute $a^+$ using $F$</p>
+<p>\[
+a^+ = \{a\}
+\]</p>
+<p>Using $a \rightarrow b$</p>
+<p>\[
+a^+ = \{a,b\}
+\]</p>
+<p>Using $ab \rightarrow c$</p>
+<p>\[
+a^+ = \{a,b,c\}
+\]</p>
+<p>Hence</p>
+<p>\[
+a \rightarrow bc
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $d \rightarrow ab$</p>
+<p>Compute $d^+$ using $F$</p>
+<p>\[
+d^+ = \{d\}
+\]</p>
+<p>Using $d \rightarrow ac$</p>
+<p>\[
+d^+ = \{d,a,c\}
+\]</p>
+<p>Using $a \rightarrow b$</p>
+<p>\[
+d^+ = \{d,a,c,b\}
+\]</p>
+<p>Using $d \rightarrow e$</p>
+<p>\[
+d^+ = \{d,a,c,b,e\}
+\]</p>
+<p>Hence</p>
+<p>\[
+d \rightarrow ab
+\]</p>
+<p>holds.</p>
+<p>\[
+\therefore F \text{ covers } G
+\]</p>
+<p><strong>Step 2: Check whether $G$ covers $F$</strong></p>
+<p><strong>Check </strong> $a \rightarrow b$</p>
+<p>Compute $a^+$ using $G$</p>
+<p>\[
+a^+ = \{a\}
+\]</p>
+<p>Using $a \rightarrow bc$</p>
+<p>\[
+a^+ = \{a,b,c\}
+\]</p>
+<p>Hence $a \rightarrow b$ holds.</p>
+<p><strong>Check </strong> $ab \rightarrow c$</p>
+<p>Since $a \rightarrow bc$</p>
+<p>\[
+ab \rightarrow c
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $d \rightarrow ac$</p>
+<p>Compute $d^+$ using $G$</p>
+<p>\[
+d^+ = \{d\}
+\]</p>
+<p>Using $d \rightarrow ab$</p>
+<p>\[
+d^+ = \{d,a,b\}
+\]</p>
+<p>Using $a \rightarrow bc$</p>
+<p>\[
+d^+ = \{d,a,b,c\}
+\]</p>
+<p>Hence $d \rightarrow ac$ holds.</p>
+<p><strong>Check </strong> $d \rightarrow e$</p>
+<p>Compute $d^+$ using $G$</p>
+<p>\[
+d^+ = \{d,a,b,c\}
+\]</p>
+<p>Attribute $e$ cannot be derived.</p>
+<p>Hence</p>
+<p>\[
+d \rightarrow e
+\]</p>
+<p>does not hold.</p>
+<p>\[
+\therefore G \text{ does not cover } F
+\]</p>
+<p><strong>Conclusion</strong></p>
+<p>\[
+F \not\equiv G
+\]</p>
+<p>Hence the two FD sets are <strong>not equivalent</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 253</div><div class="box-body"><p>Let</p>
+<p>\[
+F = \{pq \rightarrow r,\; p \rightarrow q,\; s \rightarrow pq,\; s \rightarrow t\}
+\]</p>
+<p>\[
+G = \{p \rightarrow qr,\; s \rightarrow pt\}
+\]</p>
+<p><strong>Step 1: Check whether $F$ covers $G$</strong></p>
+<p><strong>Check </strong> $p \rightarrow qr$</p>
+<p>Compute $p^+$ using $F$</p>
+<p>\[
+p^+ = \{p\}
+\]</p>
+<p>Using $p \rightarrow q$</p>
+<p>\[
+p^+ = \{p,q\}
+\]</p>
+<p>Using $pq \rightarrow r$</p>
+<p>\[
+p^+ = \{p,q,r\}
+\]</p>
+<p>Hence</p>
+<p>\[
+p \rightarrow qr
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $s \rightarrow pt$</p>
+<p>Compute $s^+$ using $F$</p>
+<p>\[
+s^+ = \{s\}
+\]</p>
+<p>Using $s \rightarrow pq$</p>
+<p>\[
+s^+ = \{s,p,q\}
+\]</p>
+<p>Using $pq \rightarrow r$</p>
+<p>\[
+s^+ = \{s,p,q,r\}
+\]</p>
+<p>Using $s \rightarrow t$</p>
+<p>\[
+s^+ = \{s,p,q,r,t\}
+\]</p>
+<p>Hence</p>
+<p>\[
+s \rightarrow pt
+\]</p>
+<p>holds.</p>
+<p>\[
+\therefore F \text{ covers } G
+\]</p>
+<p><strong>Step 2: Check whether $G$ covers $F$</strong></p>
+<p><strong>Check </strong> $pq \rightarrow r$</p>
+<p>Compute $pq^+$ using $G$</p>
+<p>\[
+pq^+ = \{p,q\}
+\]</p>
+<p>Using $p \rightarrow qr$</p>
+<p>\[
+pq^+ = \{p,q,r\}
+\]</p>
+<p>Hence</p>
+<p>\[
+pq \rightarrow r
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $p \rightarrow q$</p>
+<p>Compute $p^+$ using $G$</p>
+<p>\[
+p^+ = \{p,q,r\}
+\]</p>
+<p>Hence it holds.</p>
+<p><strong>Check </strong> $s \rightarrow pq$</p>
+<p>Compute $s^+$ using $G$</p>
+<p>\[
+s^+ = \{s\}
+\]</p>
+<p>Using $s \rightarrow pt$</p>
+<p>\[
+s^+ = \{s,p,t\}
+\]</p>
+<p>Using $p \rightarrow qr$</p>
+<p>\[
+s^+ = \{s,p,t,q,r\}
+\]</p>
+<p>Hence</p>
+<p>\[
+s \rightarrow pq
+\]</p>
+<p>holds.</p>
+<p><strong>Check </strong> $s \rightarrow t$</p>
+<p>Directly given in $G$.</p>
+<p>\[
+\therefore G \text{ covers } F
+\]</p>
+<p><strong>Conclusion</strong></p>
+<p>\[
+F \equiv G
+\]</p>
+<p>Hence the two sets of functional dependencies are <strong>equivalent</strong>.</p></div></div>
+</section>
+<section id="minimal-cover-of-functional-dependencies" class="content-section level-2">
+<h3 class="section-heading">Minimal Cover of Functional Dependencies</h3>
+<div class="concept-box"><div class="box-title">Minimal Cover Procedure</div><div class="box-body"><p>The Minimal Cover for a set of FDs $E$ is a set of FDs $F$ that satisfies the property that every dependency in $E$ is in the closure $F^+$, and $F$ contains no redundancies.</p>
+<p><strong>Procedure:</strong><br></p>
+<p><strong class="inline-subheading">Step 1: Ensure every functional dependency (FD) has only a single attribute on the right-hand side.</strong></p>
+<ul><li><p><strong>Example:</strong> $A \to BC$ becomes $\{ A \to B, \; A \to C \}$.</p></li></ul>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+Check each FD against the remaining set to see if it can be inferred.</p>
+<ul><li><p><strong>Action:</strong> For an FD $A \to B$, compute $A^+$ using all other FDs in the set.</p></li><li><p><strong>Decision:</strong> If $B \in A^+$, the FD is <strong>Redundant</strong> and is deleted.</p></li></ul>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+For FDs with multiple attributes on the left (e.g., $AB \to C$), check if one attribute is a "passenger."</p>
+<p><strong class="inline-subheading">Testing if $B$ is Extraneous in $AB \to C$:</strong>
+Compare the closure of the survivor ($A$) <strong>before</strong> and <strong>after</strong> removing $B$ from that specific FD.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig287.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 254: Finding Minimal Cover</div><div class="box-body"><p>Given Relation $R(A, B, C, D)$ and $FDs = \{A \to B, C \to B, D \to ABC, AC \to D\}$.</p>
+<p><strong class="inline-subheading">Step 1: Standard Form (Right-side Decomposition)</strong>
+1) $A \to B$ <br>
+2) $C \to B$ <br>
+3) $D \to A$ <br>
+4) $D \to B$ <br>
+5) $D \to C$ <br>
+6) $AC \to D$</p>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+We check each FD against the remaining set:</p>
+<ul><li><p><strong>Check $A \to B$:</strong> Compute $A^+$ from $\{2, 3, 4, 5, 6\}$. $A^+ = \{A\}$. $B \notin A^+$. (Keep)</p></li><li><p><strong>Check $C \to B$:</strong> Compute $C^+$ from $\{1, 3, 4, 5, 6\}$. $C^+ = \{C\}$. $B \notin C^+$. (Keep)</p></li><li><p><strong>Check $D \to B$:</strong> Compute $D^+$ from $\{1, 2, 3, 5, 6\}$. 
+    $D^+ = \{D, A, C\}$ (using 3 and 5), then $\{D, A, C, B\}$ (using 1 or 2).
+    Since $B \in D^+$, <strong>$D \to B$ is Redundant</strong> and is deleted.</p></li><li><p><strong>Check $D \to A$:</strong> $D^+$ from $\{1, 2, 5, 6\}$. $D^+ = \{D, C, B\}$. $A \notin D^+$. (Keep)</p></li><li><p><strong>Check $D \to C$:</strong> $D^+$ from $\{1, 2, 3, 6\}$. $D^+ = \{D, A, B\}$. $C \notin D^+$. (Keep)</p></li></ul>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+Check $AC \to D$ to see if $A$ or $C$ is redundant.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig288.png" alt="diagram"></div>
+<p><strong class="inline-subheading">Final Irreducible Set (Minimal Cover)</strong>
+The resulting set of FDs is:
+
+
+
+$A \to B$ <br>
+$C \to B$ <br>
+$D \to AC$ <br>
+$AC \to D$
+
+}</p></div></div>
+<div class="example-box"><div class="box-title">Example 255: Finding Canonical Cover</div><div class="box-body"><p>Given: $F = \{ X \to YZ, \; Y \to Z, \; X \to Y, \; XY \to Z \}$</p>
+<p><strong class="inline-subheading">Step 1: Standard Form (Right-side Decomposition)</strong>
+1) $X \to Y$ <br>
+2) $X \to Z$ <br>
+3) $Y \to Z$ <br>
+4) $XY \to Z$</p>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+Check each FD against the remaining set to see if it can be inferred:</p>
+<ul><li><p><strong>Check $X \to Y$:</strong> $X^+$ from $\{2, 3, 4\}$. $X^+ = \{X, Z\}$. $Y \notin X^+$. (Keep)</p></li><li><p><strong>Check $X \to Z$:</strong> $X^+$ from $\{1, 3, 4\}$. 
+    $X^+ = \{X, Y\}$ (using $X \to Y$), then $\{X, Y, Z\}$ (using $Y \to Z$).
+    Since $Z \in X^+$, <strong>$X \to Z$ is Redundant</strong> and is deleted.</p></li><li><p><strong>Check $Y \to Z$:</strong> $Y^+$ from $\{1, 4\}$. $Y^+ = \{Y\}$. $Z \notin Y^+$. (Keep)</p></li><li><p><strong>Check $XY \to Z$:</strong> $(XY)^+$ from $\{1, 3\}$.
+    $(XY)^+ = \{X, Y, Z\}$ (using $X \to Y$ and $Y \to Z$).
+    Since $Z \in (XY)^+$, <strong>$XY \to Z$ is Redundant</strong> and is deleted.</p></li></ul>
+<p><em>Updated Set:</em> $\{ X \to Y, \; Y \to Z \}$</p>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+In the updated set $\{ X \to Y, \; Y \to Z \}$, all dependencies have only a single attribute on the left side. No further minimization is required.</p>
+<p><strong class="inline-subheading">Final Irreducible Set (Minimal Cover)</strong>
+The resulting set of FDs is:
+
+
+
+$X \to Y$ <br>
+$Y \to Z$
+
+}</p></div></div>
+<div class="example-box"><div class="box-title">Example 256: Finding Canonical Cover</div><div class="box-body"><p>Given: $F = \{ A \to BC, \; CD \to E, \; B \to D, \; E \to A \}$</p>
+<p><strong class="inline-subheading">Step 1: Standard Form (Right-side Decomposition)</strong>
+1) $A \to B$ <br>
+2) $A \to C$ <br>
+3) $CD \to E$ <br>
+4) $B \to D$ <br>
+5) $E \to A$</p>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+We check each FD against the remaining set:</p>
+<ul><li><p><strong>Check $A \to B$:</strong> $A^+$ from $\{2, 3, 4, 5\}$. $A^+ = \{A, C\}$. $B \notin A^+$. (Keep)</p></li><li><p><strong>Check $A \to C$:</strong> $A^+$ from $\{1, 3, 4, 5\}$. $A^+ = \{A, B, D\}$. $C \notin A^+$. (Keep)</p></li><li><p><strong>Check $B \to D$:</strong> $B^+$ from $\{1, 2, 3, 5\}$. $B^+ = \{B\}$. $D \notin B^+$. (Keep)</p></li><li><p><strong>Check $E \to A$:</strong> $E^+$ from $\{1, 2, 3, 4\}$. $E^+ = \{E\}$. $A \notin E^+$. (Keep)</p></li><li><p><strong>Check $CD \to E$:</strong> $CD^+$ from $\{1, 2, 4, 5\}$. $CD^+ = \{C, D\}$. $E \notin CD^+$. (Keep)</p></li></ul>
+<p><em>Current Set:</em> $\{ A \to B, \; A \to C, \; B \to D, \; E \to A, \; CD \to E \}$</p>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+Check $CD \to E$ to see if $C$ or $D$ is redundant.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig289.png" alt="diagram"></div>
+<p><strong class="inline-subheading">Final Irreducible Set (Minimal Cover)</strong>
+The set remains unchanged as no redundancies were found.
+
+
+
+$A \to BC$ <br>
+$CD \to E$ <br>
+$B \to D$ <br>
+$E \to A$
+
+}</p></div></div>
+<div class="example-box"><div class="box-title">Example 257: Finding Canonical Cover - Redundancy First</div><div class="box-body"><p>Given Relation $R(A, B, C, D)$ and $FDs = \{ AB \to C, \; A \to C, \; C \to D, \; B \to D \}$</p>
+<p><strong class="inline-subheading">Step 1: Standard Form (Right-side Decomposition)</strong>
+1) $AB \to C$ <br>
+2) $A \to C$ <br>
+3) $C \to D$ <br>
+4) $B \to D$</p>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+Check each FD against the remaining set to see if it can be inferred:</p>
+<ul><li><p><strong>Check $AB \to C$:</strong> Compute $(AB)^+$ using $\{2, 3, 4\}$. 
+    $(AB)^+ = \{A, B, C, D\}$. Since $C \in (AB)^+$, <strong>$AB \to C$ is Redundant</strong> and is deleted.</p></li><li><p><strong>Check $A \to C$:</strong> Compute $A^+$ using $\{3, 4\}$. $A^+ = \{A\}$. $C \notin A^+$. (Keep)</p></li><li><p><strong>Check $C \to D$:</strong> Compute $C^+$ using $\{2, 4\}$. $C^+ = \{C\}$. $D \notin C^+$. (Keep)</p></li><li><p><strong>Check $B \to D$:</strong> Compute $B^+$ using $\{2, 3\}$. $B^+ = \{B\}$. $D \notin B^+$. (Keep)</p></li></ul>
+<p><em>Updated Set:</em> $\{ A \to C, \; C \to D, \; B \to D \}$</p>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+We examine the FDs in the updated set for multi-attribute left sides:</p>
+<ul><li><p>$A \to C$: Single attribute LHS. No check needed.</p></li><li><p>$C \to D$: Single attribute LHS. No check needed.</p></li><li><p>$B \to D$: Single attribute LHS. No check needed.</p></li></ul>
+<p><em>Note: Since the only multi-attribute FD ($AB \to C$) was removed in Step 2, no further minimization is required.</em></p>
+<p><strong class="inline-subheading">Final Irreducible Set (Minimal Cover)</strong>
+The resulting set of FDs is:
+
+
+
+$A \to C$ <br>
+$C \to D$ <br>
+$B \to D$
+
+}</p></div></div>
+<div class="example-box"><div class="box-title">Example 258: Canonical Cover: Step 3 is Mandatory</div><div class="box-body"><p>Given Relation $R(A, B, C, D)$ and $F = \{ A \to B, \; B \to C, \; AB \to D \}$.</p>
+<p><strong class="inline-subheading">Step 1: Standard Form (RHS Decomposition)</strong>
+1) $A \to B$ <br>
+2) $B \to C$ <br>
+3) $AB \to D$</p>
+<p><strong class="inline-subheading">Step 2: Delete Redundant FDs</strong>
+Check if any entire FD can be inferred from the others:</p>
+<ul><li><p><strong>Check $AB \to D$:</strong> $(AB)^+$ from $\{A \to B, B \to C\}$. 
+    $(AB)^+ = \{A, B, C\}$.
+    Since $D \notin (AB)^+$, <strong>$AB \to D$ is NOT Redundant</strong>. It survives Step 2.</p></li></ul>
+<p><strong class="inline-subheading">Step 3: Minimize Left Side (Extraneous Attributes)</strong>
+We check $AB \to D$ to see if $B$ is extraneous.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig290.png" alt="diagram"></div>
+<p><em>Note: After removing $B$, the FD $AB \to D$ simplifies to $A \to D$.</em></p>
+<p><strong class="inline-subheading">Final Irreducible Set (Minimal Cover)</strong>
+
+
+
+$A \to B$ <br>
+$B \to C$ <br>
+$A \to D$
+
+}</p></div></div>
+</section>
+</section>
+<section id="decomposition" class="content-section level-1">
+<h2 class="section-heading">Decomposition</h2>
+<div class="concept-box"><div class="box-title">Decomposition — Definition</div><div class="box-body"><p>Decomposition is the process of breaking a relation \(R\) into two or more sub-relations \(R_1, R_2, \dots\).</p>
+<p><strong>Properties of good decomposition:</strong></p>
+<ol><li><p><strong>Lossless Decomposition:</strong>  
+    Joining the decomposed relations gives back the original relation; no information is lost.</p></li><li><p><strong>Dependency Preservation:</strong>  
+    All functional dependencies in the original relation can be enforced by the decomposed relations.</p></li></ol></div></div>
+<section id="lossless-lossy-join-decomposition" class="content-section level-2">
+<h3 class="section-heading">Lossless/Lossy Join Decomposition</h3>
+<div class="concept-box"><div class="box-title">Lossless Join Decomposition</div><div class="box-body"><p>Consider a relation \(R\) which is decomposed into sub-relations \(R_1, R_2, \ldots, R_n\).</p>
+<p>This decomposition is called <strong>lossless join decomposition</strong> when the join of the sub-relations results in the same relation \(R\) that was decomposed.</p>
+<p>For lossless join decomposition, we always have:
+\[
+R_1 \bowtie R_2 \bowtie R_3 \ldots \bowtie R_n = R
+\]
+where \(\bowtie\) is the natural join operator.</p></div></div>
+<div class="example-box"><div class="box-title">Example 259: Lossless Join Decomposition</div><div class="box-body"><p>Consider the relation \(R(A, B, C)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig291.png" alt="diagram"></div>
+<p>Decompose \(R\) into \(R_1(A, B)\) and \(R_2(B, C)\):</p>
+<p>\(R_1(A, B)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig292.png" alt="diagram"></div>
+<p>\(R_2(B, C)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig293.png" alt="diagram"></div>
+<p>Performing the natural join \(R_1 \bowtie R_2\) gives:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig294.png" alt="diagram"></div>
+<p>This is the same as the original relation \(R\), hence the decomposition is <strong>lossless</strong>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Note on Lossless Join Decomposition</div><div class="box-body"><p>Lossless join decomposition is also known as <strong>non-additive join decomposition</strong> because no extraneous tuples appear after joining the sub-relations.</p></div></div>
+<div class="concept-box"><div class="box-title">Lossy Join Decomposition</div><div class="box-body"><p>Consider a relation \(R\) which is decomposed into sub-relations \(R_1, R_2, \ldots, R_n\).</p>
+<p>This decomposition is called <strong>lossy join decomposition</strong> when the join of the sub-relations does not result in the same relation \(R\).</p>
+<p>For lossy join decomposition:
+\[
+R_1 \bowtie R_2 \bowtie R_3 \ldots \bowtie R_n \supseteq R
+\]
+where \(\bowtie\) is the natural join operator. Some extraneous tuples appear in the join result.</p></div></div>
+<div class="example-box"><div class="box-title">Example 260: Lossy Join Decomposition</div><div class="box-body"><p>Consider the relation \(R(A, B, C)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig295.png" alt="diagram"></div>
+<p>Decompose \(R\) into \(R_1(A, C)\) and \(R_2(B, C)\):</p>
+<p>\(R_1(A, C)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig296.png" alt="diagram"></div>
+<p>\(R_2(B, C)\):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig297.png" alt="diagram"></div>
+<p>Performing the natural join \(R_1 \bowtie R_2\) gives:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig298.png" alt="diagram"></div>
+<p>This relation is not the same as \(R\) and contains extraneous tuples. Hence, the decomposition is <strong>lossy</strong>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Note on Lossy Join Decomposition</div><div class="box-body"><p>Lossy join decomposition is also known as <strong>careless decomposition</strong> because extraneous tuples make identification of original tuples difficult.</p></div></div>
+<div class="concept-box"><div class="box-title">Determining Whether Decomposition Is Lossless Or Lossy</div><div class="box-body"><p>Consider a relation \(R\) decomposed into two sub-relations \(R_1\) and \(R_2\):</p>
+<ol><li><p><strong>Condition 1:</strong> Union of both sub-relations must contain all attributes of \(R\):
+    \[
+    R_1 \cup R_2 = R
+    \]</p></li><li><p><strong>Condition 2:</strong> Intersection of both sub-relations must not be null:
+    \[
+    R_1 \cap R_2 \neq \emptyset
+    \]</p></li><li><p><strong>Condition 3:</strong> Intersection of both sub-relations must be a super key of \(R_1\), \(R_2\), or both:
+    \[
+    R_1 \cap R_2 = \text{Super key of } R_1 \text{ or } R_2
+    \]</p></li></ol>
+<p>If all three conditions are satisfied, the decomposition is lossless.  
+If any condition fails, the decomposition is lossy.</p></div></div>
+<div class="example-box"><div class="box-title">Example 261: Lossy Decomposition Verification</div><div class="box-body"><p>Consider \(R(A, B, C, D)\) with functional dependencies \(A \rightarrow B\) and \(C \rightarrow D\). Decompose into \(R_1(A, B)\) and \(R_2(C, D)\).</p>
+<p><strong>Solution:</strong></p>
+<ul><li><p>Condition-01: \(R_1 \cup R_2 = \{A, B, C, D\} = R\) \(\rightarrow\) satisfied</p></li><li><p>Condition-02: \(R_1 \cap R_2 = \emptyset\) \(\rightarrow\) fails</p></li><li><p>Condition-03: Not checked as Condition-02 failed</p></li></ul>
+<p>Hence, decomposition is <strong>lossy</strong>.</p></div></div>
+<section id="the-chase-algorithm" class="content-section level-3">
+<h4 class="section-heading">The Chase Algorithm</h4>
+<div class="concept-box-alt"><div class="box-title">The Chase Algorithm</div><div class="box-body"><p>To determine if a decomposition $\{R_1, R_2, \dots, R_n\}$ is lossless:</p>
+<ul><li><p><strong>Initialize:</strong> Build a tableau (Rows: $R_i$, Cols: Attributes).</p></li><li><p><strong>Fill:</strong> Use <strong>real symbols</strong> ($a, b, c, \dots$) if attribute is present in $R_i$; otherwise use <strong>dummies</strong> ($a_i, b_i, c_i, \dots$).</p></li><li><p><strong>Equate:</strong> If two rows match on an FD's <strong>LHS</strong>, equate their <strong>RHS</strong>.</p>
+<ul><li><p><em>Note: Always promote a dummy to a real symbol if possible.</em></p></li></ul></li><li><p><strong>Converge:</strong> Stop when no more changes can be made.</p></li></ul>
+<p><strong>Any row is all real symbols</strong> $\implies$ <strong>Lossless</strong> <br>
+<strong>Otherwise</strong> $\implies$ <strong>Lossy</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 262: Lossless Case: Chain Dependency</div><div class="box-body"><p>Consider $R(A, B, C, D)$ with FDs: $A \rightarrow B, B \rightarrow C, C \rightarrow D$. Decomposed into $R_1(A, B), R_2(B, C), R_3(C, D)$.</p>
+<p><strong>Step 1: Initial Tableau</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig299.png" alt="diagram"></div>
+<p><strong>Step 2: Apply $B \rightarrow C$</strong> <br>
+Rows $R_1$ and $R_2$ match on $B$ ($b$). Promote $c_1$ in $R_1$ to real symbol $c$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig300.png" alt="diagram"></div>
+<p><strong>Step 3: Apply $C \rightarrow D$</strong> <br>
+Now $R_1$ and $R_3$ match on $C$ ($c$). Promote $d_1$ in $R_1$ to real symbol $d$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig301.png" alt="diagram"></div>
+<p>Row 1 is all real symbols $\implies$ <strong>Lossless</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 263: Lossy Case: Disconnected Attributes</div><div class="box-body"><p>Consider $R(A, B, C, D)$ with FDs: $A \rightarrow B, C \rightarrow D$. Decomposed into $R_1(A, B), R_2(B, C), R_3(C, D)$.</p>
+<p><strong>Step 1: Initial Tableau</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig302.png" alt="diagram"></div>
+<p><strong>Step 2: Apply $C \rightarrow D$</strong> <br>
+$R_2$ and $R_3$ match on $C$ ($c$). Promote $d_2$ in $R_2$ to $d$.
+<strong>Step 3: Apply $A \rightarrow B$</strong> <br>
+No rows match on $A$. No further changes possible. Since no row is $(a, b, c, d)$, it is <strong>Lossy</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 264: Lossless Case: Converging FDs</div><div class="box-body"><p>$R(A, B, C)$ with $A \rightarrow B, B \rightarrow A$. Decomposed into $R_1(A, C), R_2(B, C)$.</p>
+<p><strong>Initial Tableau:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig303.png" alt="diagram"></div>
+<p><strong>Execution:</strong> 
+No rows match on $A$ or $B$. However, if we added $C \rightarrow B$:
+Rows $R_1, R_2$ match on $C$. Promote $b_1 \rightarrow b$. Now $R_1$ is $(a, b, c) \implies$ <strong>Lossless</strong>.</p></div></div>
+</section>
+</section>
+<section id="dependency-preserving-decomposition" class="content-section level-2">
+<h3 class="section-heading">Dependency Preserving Decomposition</h3>
+<div class="concept-box"><div class="box-title">Definition</div><div class="box-body"><p>A decomposition of a relation \(R\) into sub-relations \(R_1, R_2, \dots, R_n\) is called <strong>dependency preserving</strong> if all functional dependencies of \(R\) satisfy at least one of the following:</p>
+<ol><li><p>The dependency is fully contained in one of the sub-relations \(R_i\), or</p></li><li><p>The dependency can be derived from the FDs of the sub-relations without performing any joins.</p></li></ol>
+<p>In other words, all constraints of the original relation can be enforced locally in the sub-relations.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Why Dependency Preservation Matters</div><div class="box-body"><ul><li><p>Ensures <strong>data integrity</strong> after decomposition.</p></li><li><p>Avoids <strong>expensive joins</strong> for enforcing constraints.</p></li><li><p>Desired in normalization (3NF or BCNF) to combine lossless join and dependency preservation.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Step-by-Step Method to Check Dependency Preservation</div><div class="box-body"><p>Suppose a relation \(R\) with functional dependencies \(F\) is decomposed into sub-relations \(R_1, R_2, \dots, R_n\). To check if the decomposition is dependency preserving:</p>
+<ol><li><p>Find the functional dependencies \(F_i\) that hold in each sub-relation \(R_i\).</p></li><li><p>Compute \(F' = F_1 \cup F_2 \cup \dots \cup F_n\).</p></li><li><p>Compare \(F'\) with the original dependency set \(F\):</p>
+<ul><li><p>If all dependencies in \(F\) are in \(F'\) or derivable from \(F'\), the decomposition is <strong>dependency preserving</strong>.</p></li><li><p>If any dependency in \(F\) is missing and cannot be derived, the decomposition is <strong>not dependency preserving</strong>.</p></li></ul></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 265: Simple Dependency Preserving Decomposition</div><div class="box-body"><p>Let \(R(A, B, C, D)\) with FD set:
+\[
+F = \{A \rightarrow B, A \rightarrow C, C \rightarrow D\}
+\]</p>
+<p>Decompose \(R\) into:
+\[
+R_1(A, B, C), \quad R_2(C, D)
+\]</p>
+<p><strong>Step 1: Find FDs in sub-relations</strong></p>
+<ul><li><p>\(F_1 = \{A \rightarrow B, A \rightarrow C\}\) in \(R_1\)</p></li><li><p>\(F_2 = \{C \rightarrow D\}\) in \(R_2\)</p></li></ul>
+<p><strong>Step 2: Combine FDs:</strong>
+\[
+F' = F_1 \cup F_2 = \{A \rightarrow B, A \rightarrow C, C \rightarrow D\} = F
+\]</p>
+<p><strong>Conclusion:</strong> All original FDs are preserved. Hence, the decomposition is <strong>dependency preserving</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 266: Non-Dependency Preserving Decomposition</div><div class="box-body"><p>Let \(R(P, Q, R, S)\) with FD set:
+\[
+F = \{PQ \rightarrow R, R \rightarrow S, S \rightarrow P\}
+\]</p>
+<p>Decompose \(R\) into:
+\[
+R_1(P, Q, R), \quad R_2(R, S)
+\]</p>
+<p><strong>Step 1: Find FDs in sub-relations</strong></p>
+<ul><li><p>\(F_1 = \{PQ \rightarrow R, R \rightarrow P\}\) in \(R_1\)</p></li><li><p>\(F_2 = \{R \rightarrow S\}\) in \(R_2\)</p></li></ul>
+<p><strong>Step 2: Combine FDs:</strong>
+\[
+F' = F_1 \cup F_2 = \{PQ \rightarrow R, R \rightarrow S, R \rightarrow P\}
+\]</p>
+<p><strong>Step 3: Check original FDs</strong></p>
+<ul><li><p>\(PQ \rightarrow R\) → present in \(F'\)</p></li><li><p>\(R \rightarrow S\) → present in \(F'\)</p></li><li><p>\(S \rightarrow P\) → <strong>missing</strong>, cannot be derived from \(F'\)</p></li></ul>
+<p><strong>Conclusion:</strong> Not all original FDs are preserved. Hence, the decomposition is <strong>not dependency preserving</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 267: Dependency Preserving Decomposition - Example 3</div><div class="box-body"><p>Consider relation \(R(A, B, C, D, E)\) with functional dependencies:
+\[
+F = \{A \rightarrow B, B \rightarrow C, C \rightarrow D, D \rightarrow E\}
+\]</p>
+<p>Decompose \(R\) into:
+\[
+R_1(A, B, C), \quad R_2(C, D, E)
+\]</p>
+<p><strong>Step 1: Find FDs in sub-relations</strong></p>
+<ul><li><p>\(F_1 = \{A \rightarrow B, B \rightarrow C\}\) in \(R_1\)</p></li><li><p>\(F_2 = \{C \rightarrow D, D \rightarrow E\}\) in \(R_2\)</p></li></ul>
+<p><strong>Step 2: Combine FDs:</strong>
+\[
+F' = F_1 \cup F_2 = \{A \rightarrow B, B \rightarrow C, C \rightarrow D, D \rightarrow E\} = F
+\]</p>
+<p><strong>Step 3: Check all original FDs:</strong> All are present in \(F'\).</p>
+<p><strong>Conclusion:</strong> The decomposition is <strong>dependency preserving</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 268: Non-Dependency Preserving Decomposition - Example 4</div><div class="box-body"><p>Consider relation \(R(P, Q, R, S, T)\) with functional dependencies:
+\[
+F = \{P \rightarrow Q, Q \rightarrow R, R \rightarrow S, S \rightarrow T, T \rightarrow P\}
+\]</p>
+<p>Decompose \(R\) into:
+\[
+R_1(P, Q, R), \quad R_2(R, S, T)
+\]</p>
+<p><strong>Step 1: Find FDs in sub-relations</strong></p>
+<ul><li><p>\(F_1 = \{P \rightarrow Q, Q \rightarrow R\}\) in \(R_1\)</p></li><li><p>\(F_2 = \{R \rightarrow S, S \rightarrow T\}\) in \(R_2\)</p></li></ul>
+<p><strong>Step 2: Combine FDs:</strong>
+\[
+F' = F_1 \cup F_2 = \{P \rightarrow Q, Q \rightarrow R, R \rightarrow S, S \rightarrow T\}
+\]</p>
+<p><strong>Step 3: Check original FDs:</strong> The dependency \(T \rightarrow P\) is missing and cannot be derived from \(F'\).</p>
+<p><strong>Conclusion:</strong> The decomposition is <strong>not dependency preserving</strong>.</p></div></div>
+</section>
+</section>
+<section id="normal-forms" class="content-section level-1">
+<h2 class="section-heading">Normal Forms</h2>
+<div class="concept-box"><div class="box-title">Introduction to Normalization</div><div class="box-body"><p>The main reason for normalizing relations is to remove anomalies in the database.  
+Failure to eliminate anomalies can lead to data redundancy, data inconsistency, and other integrity problems as the database grows.</p>
+<p>Normalization consists of a series of guidelines that help in creating a well-structured database.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Data Modification Anomalies</div><div class="box-body"><p>Data modification anomalies can be categorized into three types:</p>
+<ul><li><p><strong>Insertion Anomaly:</strong> Occurs when one cannot insert a new tuple into a relation due to lack of required data.</p></li><li><p><strong>Deletion Anomaly:</strong> Occurs when the deletion of data unintentionally results in loss of other important data.</p></li><li><p><strong>Update Anomaly:</strong> Occurs when updating a single data value requires multiple rows to be updated.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Definitions of Normal Forms</div><div class="box-body"><p>The standard normal forms in database design are defined as follows:</p>
+<ul><li><p><strong>First Normal Form (1NF):</strong> A relation is in 1NF if all attributes contain atomic (indivisible) values.</p></li><li><p><strong>Second Normal Form (2NF):</strong> A relation is in 2NF if it is in 1NF and all non-key attributes are fully functionally dependent on the candidate key.</p></li><li><p><strong>Third Normal Form (3NF):</strong> A relation is in 3NF if it is in 2NF and has no transitive dependencies (i.e., non-key attributes depend only on candidate keys).</p></li><li><p><strong>Boyce-Codd Normal Form (BCNF):</strong> A relation is in BCNF if it is in 3NF and for every functional dependency \(X \rightarrow Y\), \(X\) is a superkey.</p></li><li><p><strong>Fourth Normal Form (4NF):</strong> A relation is in 4NF if it is in BCNF and does not contain any multi-valued dependencies.</p></li><li><p><strong>Fifth Normal Form (5NF or Project-Join Normal Form):</strong> A relation is in 5NF if it is in 4NF and every join dependency is implied by the candidate keys.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig304.png" alt="diagram"></div>
+<section id="first-normal-form-1nf" class="content-section level-2">
+<h3 class="section-heading">First Normal Form (1NF)</h3>
+<div class="concept-box"><div class="box-title">Concept of 1NF</div><div class="box-body"><p>A relation is said to be in First Normal Form (1NF) if:</p>
+<ol><li><p>Each attribute of every tuple contains only an <strong>atomic value</strong>, i.e., indivisible value.</p></li><li><p>Multi-valued attributes are not allowed; a single cell cannot contain a set, list, or nested table.</p></li><li><p>Attributes can be null, but must not be non-atomic (e.g., a list of values).</p></li></ol>
+<p><strong>OR</strong></p>
+<p>A relation is in 1NF if the value of every attribute in each tuple is either single-valued or null.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Notes on 1NF</div><div class="box-body"><ul><li><p>By default, every relation in a relational database is considered to be in 1NF, because atomicity is part of the definition of a relation.</p></li><li><p>1NF is the <strong>first step in normalization</strong>, and all higher normal forms assume the relation is already in 1NF.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 269: 1NF - Step-by-Step</div><div class="box-body"><p><strong>Problem:</strong> Check if the following relation is in 1NF and convert it if necessary.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig305.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>The <strong>Subjects</strong> attribute contains multiple values for some students.</p></li><li><p>This violates the atomicity requirement of 1NF.</p></li></ul>
+<p><strong>Solution: Convert to 1NF</strong>  
+Rewrite the relation so that each cell contains a single value:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig306.png" alt="diagram"></div>
+<p><strong>Conclusion:</strong> The above relation is now in 1NF because each attribute contains atomic values only.</p></div></div>
+<div class="example-box"><div class="box-title">Example 270: 1NF</div><div class="box-body"><p><strong>Problem:</strong> Consider a relation storing employee skills:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig307.png" alt="diagram"></div>
+<p><strong>Analysis:</strong></p>
+<ul><li><p>The <strong>Skills</strong> attribute contains multiple values for some employees.</p></li><li><p>This violates the 1NF requirement of atomic values.</p></li></ul>
+<p><strong>Solution: Convert to 1NF</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig308.png" alt="diagram"></div>
+<p><strong>Conclusion:</strong> Each cell now contains a single atomic value, so the relation is in 1NF.</p></div></div>
+</section>
+<section id="second-normal-form-2nf" class="content-section level-2">
+<h3 class="section-heading">Second Normal Form (2NF)</h3>
+<div class="concept-box"><div class="box-title">Partial Dependency</div><div class="box-body"><p>A partial dependency occurs when a non-prime attribute is functionally dependent on a part (subset) of a candidate key rather than the whole key.</p>
+<p><strong>Formal Definition:</strong>  
+Let \(A \rightarrow B\) be a functional dependency in relation \(R\). It is a partial dependency if:</p>
+<ul><li><p>\(A\) is a proper subset of some candidate key, and</p></li><li><p>\(B\) is a non-prime attribute.</p></li></ul>
+<p><strong>Note:</strong>  
+- To avoid partial dependency, an incomplete candidate key must not determine any non-prime attribute.  
+- An incomplete candidate key can determine prime attributes without violating 2NF.</p></div></div>
+<div class="concept-box"><div class="box-title">Definition of 2NF</div><div class="box-body"><p>A relation \(R\) is in Second Normal Form (2NF) if and only if:</p>
+<ol><li><p>\(R\) is already in 1NF.</p></li><li><p>There are no partial dependencies in \(R\).</p></li></ol></div></div>
+<section id="procedure-to-decompose-a-relation-into-2nf" class="content-section level-3">
+<h4 class="section-heading">Procedure to Decompose a Relation into 2NF</h4>
+<div class="concept-box"><div class="box-title">Steps to Achieve 2NF</div><div class="box-body"><p>To decompose a relation \(R\) into Second Normal Form (2NF), follow these steps:</p>
+<ol><li><p><strong>Ensure 1NF:</strong>  
+    Verify that \(R\) is already in First Normal Form (1NF), i.e., all attributes contain atomic values.</p></li><li><p><strong>Identify Candidate Keys:</strong>  
+    Determine all candidate keys of \(R\). Identify <strong>prime attributes</strong> (attributes in any candidate key) and <strong>non-prime attributes</strong> (attributes not in any candidate key).</p></li><li><p><strong>Identify Partial Dependencies:</strong>  
+    Find all functional dependencies where a non-prime attribute is dependent on a part (subset) of a candidate key. These are partial dependencies.</p></li><li><p><strong>Create New Relations for Partial Dependencies:</strong>  
+    For each partial dependency \(X \rightarrow Y\), create a separate relation containing:</p>
+<ul><li><p>The determinant \(X\) (subset of candidate key)</p></li><li><p>All attributes functionally dependent on \(X\) (\(Y\))</p></li></ul></li><li><p><strong>Retain Remaining Attributes:</strong>  
+    Create a relation containing:</p>
+<ul><li><p>All candidate key attributes</p></li><li><p>Remaining non-prime attributes not included in the new relations</p></li></ul></li><li><p><strong>Verify 2NF:</strong>  
+    Check that in each resulting relation:</p>
+<ul><li><p>No non-prime attribute is partially dependent on any candidate key.</p></li><li><p>Each relation is in 1NF.</p></li></ul></li></ol>
+<p><strong>Result:</strong> The original relation \(R\) is now decomposed into a set of relations that are in 2NF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 271: Procedure Illustration</div><div class="box-body"><p>Consider relation $R(A, B, C, D, E)$ with functional dependencies:
+\[ A \rightarrow B, \quad B \rightarrow E, \quad C \rightarrow D \]</p>
+<p><strong>Step 1: Identify Candidate Key</strong> <br>
+$(AC)^+ = \{A, C, B, E, D\}$. Candidate key = <strong>AC</strong>. <br>
+Prime attributes = $\{A, C\}$; Non-prime = $\{B, D, E\}$.</p>
+<p><strong>Step 2: Identify Partial Dependencies (Prime $\rightarrow$ Non-Prime)</strong> <br>
+- $A \rightarrow B$: <strong>Partial Dependency</strong> ($A \subset AC$).
+- $C \rightarrow D$: <strong>Partial Dependency</strong> ($C \subset AC$).
+- $B \rightarrow E$: <strong>NOT</strong> a partial dependency (Non-prime $\rightarrow$ Non-prime).</p>
+<p><strong>Step 3: Create New Relations for Partial Dependencies</strong> <br>
+- $R_1(A, B, E)$: Handles partial key $A$. $E$ moves here because $B \rightarrow E$ must follow $B$.
+- $R_2(C, D)$: Handles partial key $C$.</p>
+<p><strong>Step 4: Retain the Full Candidate Key</strong> <br>
+- $R_3(A, C)$: To act as the bridge/link.</p>
+<p><strong>Conclusion:</strong> Decomposition $\{R_1, R_2, R_3\}$ is in 2NF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 272: Relation already in 2NF</div><div class="box-body"><p>Consider the relation $R(V, W, X, Y, Z)$ with functional dependencies:
+\[ VW \rightarrow XY, \quad Y \rightarrow V, \quad WX \rightarrow YZ \]</p>
+<p><strong>Step 1: Identify Candidate Keys</strong> <br>
+Candidate keys = <strong>VW, WX, WY</strong>. <br>
+Prime attributes = $\{V, W, X, Y\}$; Non-prime = $\{Z\}$.</p>
+<p><strong>Step 2: Identify Partial Dependencies</strong> <br>
+Check if any non-prime attribute depends on a <em>proper subset</em> of a key: <br>
+- $Z$ depends on $WX$ (Full Key). <br>
+- No non-prime attribute depends on $V, W, X,$ or $Y$ individually.</p>
+<p><strong>Conclusion:</strong> No partial dependency exists. Relation is in 2NF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 273: Non-Prime dependencies</div><div class="box-body"><p>Consider relation $R(A, B, C, D, E)$ with functional dependencies:
+\[ A \rightarrow B, \quad B \rightarrow E, \quad C \rightarrow D \]</p>
+<p><strong>Step 1: Analysis</strong> <br>
+Candidate key = <strong>AC</strong>. Prime = $\{A, C\}$; Non-prime = $\{B, D, E\}$.</p>
+<p><strong>Step 2: Identify Violations</strong> <br>
+- $A \rightarrow B$: <strong>Partial Dependency</strong> ($A$ is prime, $B$ is non-prime).
+- $B \rightarrow E$: <strong>Transitive Dependency</strong> (Non-prime $\rightarrow$ Non-prime). Not a 2NF violation, but must be preserved.</p>
+<p><strong>Step 3: Decomposition (Lossless &amp; DP)</strong> <br>
+- $R_1(A, B, E)$ (Fixes $A \rightarrow B$ and preserves $B \rightarrow E$).
+- $R_2(C, D)$ (Fixes $C \rightarrow D$).
+- $R_3(A, C)$ (Bridge table for the Full Key).</p>
+<p><strong>Conclusion:</strong> Each sub-relation is now in 2NF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 274: Complex Relation</div><div class="box-body"><p>Consider $R(A, B, C, D, E, F, G, H, I, J)$ with functional dependencies:
+\[ AB \rightarrow C, \quad AD \rightarrow GH, \quad BD \rightarrow EF, \quad A \rightarrow I, \quad H \rightarrow J \]</p>
+<p><strong>Step 1: Analysis</strong> <br>
+Candidate key = <strong>ABD</strong>. <br>
+Prime = $\{A, B, D\}$; Non-prime = $\{C, E, F, G, H, I, J\}$.</p>
+<p><strong>Step 2: Identify Partial Dependencies</strong> <br>
+- $AB \rightarrow C, \ AD \rightarrow GH, \ BD \rightarrow EF, \ A \rightarrow I$ are <strong>Partial</strong> ($AB, AD, BD, A \subset ABD$).
+- $H \rightarrow J$ is <strong>Transitive</strong> (Non-prime $\rightarrow$ Non-prime).</p>
+<p><strong>Step 3: Create New Relations</strong> <br>
+- $R_1(A, B, C)$ 
+- $R_2(A, D, G, H, J)$: $J$ moves here with $H$ to preserve dependency $H \rightarrow J$.
+- $R_3(B, D, E, F)$
+- $R_4(A, I)$
+- $R_5(A, B, D)$: The Full Key Bridge.</p>
+<p><strong>Conclusion:</strong> This decomposition is Lossless, Dependency Preserving, and in 2NF.</p></div></div>
+</section>
+</section>
+<section id="third-normal-form-3nf" class="content-section level-2">
+<h3 class="section-heading">Third Normal Form (3NF)</h3>
+<div class="concept-box"><div class="box-title">Transitive Dependency</div><div class="box-body"><p>A transitive dependency $A \rightarrow B$ exists if and only if:</p>
+<ul><li><p>$A$ is <strong>not a super key</strong>, and</p></li><li><p>$B$ is a <strong>non-prime attribute</strong>.</p></li></ul>
+<p><strong>NOTE:</strong> Transitive dependency must not exist for non-prime attributes. Transitive dependency can exist for prime attributes.</p></div></div>
+<div class="concept-box"><div class="box-title">Definition of 3NF</div><div class="box-body"><p>A relation is in <strong>Third Normal Form (3NF)</strong> if and only if:</p>
+<ol><li><p>The relation is already in <strong>2NF</strong>, and</p></li><li><p>No non-prime attribute is transitively dependent on any candidate key.</p></li></ol></div></div>
+<div class="concept-box-alt"><div class="box-title">Alternative Definition of 3NF</div><div class="box-body"><p>A relation $R$ is in 3NF if for every non-trivial functional dependency $A \rightarrow B$:</p>
+<ul><li><p>$A$ is a <strong>super key</strong>, or</p></li><li><p>$B$ is a <strong>prime attribute</strong>.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Procedure to Decompose a Relation into 3NF</div><div class="box-body"><p>To decompose a relation into 3NF, follow these steps:</p>
+<ol><li><p>Identify all <strong>candidate keys</strong> of the relation.</p></li><li><p>Identify <strong>prime attributes</strong> (attributes that are part of any candidate key) and <strong>non-prime attributes</strong>.</p></li><li><p>Examine each functional dependency $A \rightarrow B$:</p>
+<ul><li><p>If $A$ is not a super key and $B$ is a non-prime attribute, it is a transitive dependency.</p></li></ul></li><li><p>For each transitive dependency, create a separate relation containing the determinant and the dependent attribute(s).</p></li><li><p>Remove the transitive dependencies from the original relation.</p></li><li><p>Repeat until no relation has transitive dependencies, ensuring all resulting relations are in 3NF.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 275: 3NF - Stepwise Example 1: Relation already in 3NF</div><div class="box-body"><p>Consider relation $R(A, B, C, D, E)$ with functional dependencies:
+\[
+A \rightarrow BC, \quad CD \rightarrow E, \quad B \rightarrow D, \quad E \rightarrow A
+\]</p>
+<p><strong>Step 1: Identify candidate keys</strong></p>
+<p>Check which attribute sets determine all other attributes:  
+\[
+\text{Candidate keys: } A, E, CD, BC
+\]</p>
+<p><strong>Step 2: Identify prime and non-prime attributes</strong></p>
+<ul><li><p>Prime attributes = $\{A, B, C, D, E\}$ (all part of some candidate key)</p></li><li><p>Non-prime attributes = $\{\}$ (none)</p></li></ul>
+<p><strong>Step 3: Check for transitive dependency</strong></p>
+<p>Transitive dependency exists if $A \rightarrow B$ (A not super key) and $B$ is non-prime. Here:</p>
+<ul><li><p>No non-prime attributes exist.</p></li><li><p>Therefore, no transitive dependency exists.</p></li></ul>
+<p><strong>Step 4: Decomposition</strong></p>
+<p>Not required, as the relation has no transitive dependencies.</p>
+<p><strong>Step 5: Remove transitive dependencies</strong></p>
+<p>Not applicable.</p>
+<p><strong>Step 6: Verify 3NF</strong></p>
+<p>All non-prime attributes (none) are directly dependent on candidate keys.</p>
+<p><strong>Conclusion:</strong> Relation is in 3NF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 276: 3NF - Stepwise Example 2: Relation not in 3NF</div><div class="box-body"><p>Consider relation $R(A, B, C, D)$ with functional dependencies:
+\[
+AB \rightarrow CD, \quad A \rightarrow B, \quad B \rightarrow C
+\]</p>
+<p><strong>Step 1: Identify candidate keys</strong></p>
+<p>- $AB$ determines $CD$  
+- $A$ alone does not determine all attributes  
+- $B$ alone does not determine all attributes</p>
+<p>\[
+\text{Candidate key: } AB
+\]</p>
+<p><strong>Step 2: Identify prime and non-prime attributes</strong></p>
+<ul><li><p>Prime attributes = $\{A, B\}$</p></li><li><p>Non-prime attributes = $\{C, D\}$</p></li></ul>
+<p><strong>Step 3: Check for transitive dependency</strong></p>
+<p>- $A \rightarrow B$ (A is subset of candidate key AB) and $B \rightarrow C$  
+- $C$ is non-prime → transitive dependency exists ($A \rightarrow C$ indirectly)</p>
+<p><strong>Step 4: Decompose relation</strong></p>
+<p>Create separate relations for transitive dependencies:</p>
+<ul><li><p>$R_1(A, B)$ (key $A$)</p></li><li><p>$R_2(B, C, D)$ (key $B$)</p></li></ul>
+<p><strong>Step 5: Remove transitive dependencies</strong></p>
+<p>- Now, $C$ and $D$ are directly dependent on $B$ in $R_2$  
+- $B$ is fully dependent on $A$ in $R_1$</p>
+<p><strong>Step 6: Verify 3NF</strong></p>
+<p>- $R_1(A, B)$: $A$ is super key → 3NF satisfied  
+- $R_2(B, C, D)$: $B$ is super key → 3NF satisfied</p>
+<p><strong>Conclusion:</strong> Original relation violated 3NF, decomposition produces 3NF relations.</p></div></div>
+<div class="example-box"><div class="box-title">Example 277: 3NF - Stepwise Example 3: Complex Relation</div><div class="box-body"><p>Consider relation $R(A, B, C, D, E)$ with functional dependencies:
+\[
+A \rightarrow B, \quad B \rightarrow E, \quad C \rightarrow D
+\]</p>
+<p><strong>Step 1: Identify candidate keys</strong></p>
+<p>- $A$ determines $B$, $B$ determines $E$ → $A$ can determine $B$ and $E$  
+- $C$ determines $D$  
+- To cover all attributes: candidate keys = $A, C$</p>
+<p><strong>Step 2: Identify prime and non-prime attributes</strong></p>
+<p>- Prime attributes = $\{A, C\}$  
+- Non-prime attributes = $\{B, D, E\}$</p>
+<p><strong>Step 3: Check for transitive dependency</strong></p>
+<p>- $A \rightarrow B$ and $B \rightarrow E$ → $A \rightarrow E$ (transitive)  
+- $E$ is non-prime → violates 3NF</p>
+<p><strong>Step 4: Decompose relation</strong></p>
+<p>- $R_1(A, B, E)$ with key $A$  
+- $R_2(C, D)$ with key $C$</p>
+<p><strong>Step 5: Remove transitive dependencies</strong></p>
+<p>- $R_1$: $B$ and $E$ are now fully dependent on $A$  
+- $R_2$: no transitive dependencies</p>
+<p><strong>Step 6: Verify 3NF</strong></p>
+<p>- $R_1(A, B, E)$: $A$ is super key → 3NF satisfied  
+- $R_2(C, D)$: $C$ is super key → 3NF satisfied</p>
+<p><strong>Conclusion:</strong> Decomposition successfully converts relation into 3NF.</p></div></div>
+</section>
+<section id="boyce-codd-normal-form-bcnf" class="content-section level-2">
+<h3 class="section-heading">Boyce-Codd Normal Form (BCNF)</h3>
+<p>A relation is in <strong>BCNF</strong> if and only if:</p>
+<ol><li><p>The relation is already in 3NF.</p></li><li><p>For every non-trivial functional dependency \(A \rightarrow B\), \(A\) is a super key of the relation.</p></li></ol>
+<div class="concept-box"><div class="box-title">Procedure to Decompose a Relation into BCNF</div><div class="box-body"><p>To decompose a relation \(R\) into BCNF:</p>
+<ol><li><p>Identify all candidate keys of \(R\).</p></li><li><p>Check each functional dependency \(A \rightarrow B\):</p>
+<ul><li><p>If \(A\) is a super key, it satisfies BCNF.</p></li><li><p>If \(A\) is not a super key, BCNF is violated.</p></li></ul></li><li><p>For each violating dependency \(A \rightarrow B\), decompose \(R\) into:</p>
+<ul><li><p>\(R_1(A, B)\) — containing the violating dependency.</p></li><li><p>\(R_2(R - B)\) — the remaining attributes.</p></li></ul></li><li><p>Repeat steps 1–3 for all decomposed relations until all relations satisfy BCNF.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 278: BCNF - Example 1: Relation Already in BCNF</div><div class="box-body"><p>Consider a relation \( R (A, B, C) \) with functional dependencies:
+\[
+A \rightarrow B, \quad B \rightarrow C, \quad C \rightarrow A
+\]</p>
+<p><strong>Step 1: Identify candidate keys:</strong> \(A, B, C\)</p>
+<p><strong>Step 2: Check BCNF condition:</strong>  
+Each determinant (\(A, B, C\)) is a candidate key.</p>
+<p><strong>Conclusion:</strong> The relation already satisfies BCNF.</p></div></div>
+<div class="example-box"><div class="box-title">Example 279: BCNF - Example 2: Relation Not in BCNF</div><div class="box-body"><p>Consider a relation \(R(A, B, C)\) with functional dependencies:
+\[
+AB \rightarrow C, \quad C \rightarrow B
+\]</p>
+<p><strong>Step 1: Identify candidate keys:</strong>  
+\((AB)^+ = ABC\), \((AC)^+ = ABC\)  
+Candidate keys: \(AB, AC\)  
+Prime attributes: \(A, B, C\)  
+Non-prime attributes: None</p>
+<p><strong>Step 2: Check BCNF condition:</strong></p>
+<ul><li><p>\(AB \rightarrow C\) is fine (AB is a super key)</p></li><li><p>\(C \rightarrow B\) violates BCNF because \(C\) is not a super key</p></li></ul>
+<p><strong>Step 3: Decompose violating relation:</strong></p>
+<ul><li><p>\(R_1(C, B)\) with key \(C\)</p></li><li><p>\(R_2(A, C)\) with key \(AC\)</p></li></ul>
+<p><strong>Step 4: Check BCNF for new relations:</strong>  
+Both \(R_1\) and \(R_2\) now satisfy BCNF.</p>
+<p><strong>Conclusion:</strong> Original relation decomposed into BCNF:
+\[
+R_1(C, B), \quad R_2(A, C)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 280: BCNF - Example 3: Real Data Decomposition</div><div class="box-body"><p>Original relation:
+\[
+R(A, B, C)
+\]
+\[
+\begin{array}{|c|c|c|}
+\hline
+A &amp; B &amp; C \\
+\hline
+a &amp; 1 &amp; x \\
+b &amp; 2 &amp; y \\
+c &amp; 2 &amp; z \\
+c &amp; 3 &amp; w \\
+d &amp; 3 &amp; w \\
+e &amp; 3 &amp; w \\
+\hline
+\end{array}
+\]</p>
+<p>Functional dependencies: \(AB \rightarrow C, C \rightarrow B\)</p>
+<p><strong>Step 1: Candidate keys:</strong> \(AB, AC\)</p>
+<p><strong>Step 2: BCNF Violation:</strong> \(C \rightarrow B\) (C not a super key)</p>
+<p><strong>Step 3: Decomposition:</strong>
+\[
+R_1(C, B) =
+\begin{array}{|c|c|}
+\hline
+C &amp; B \\
+\hline
+x &amp; 1 \\
+y &amp; 2 \\
+z &amp; 2 \\
+w &amp; 3 \\
+\hline
+\end{array}
+\]
+\[
+R_2(A, C) =
+\begin{array}{|c|c|}
+\hline
+A &amp; C \\
+\hline
+a &amp; x \\
+b &amp; y \\
+c &amp; z \\
+c &amp; w \\
+d &amp; w \\
+e &amp; w \\
+\hline
+\end{array}
+\]</p>
+<p><strong>Step 4: Check BCNF:</strong>  
+Both \(R_1\) and \(R_2\) satisfy BCNF.</p>
+<p><strong>Conclusion:</strong> Decomposition removes redundancy and ensures BCNF.</p></div></div>
+</section>
+<section id="multi-valued-dependency-and-fourth-normal-form-4nf" class="content-section level-2">
+<h3 class="section-heading">Multi-valued Dependency and Fourth Normal Form (4NF)</h3>
+<p>The <strong>Fourth Normal Form (4NF)</strong> is satisfied if and only if:</p>
+<ol><li><p>The relation is in <strong>BCNF</strong>.</p></li><li><p>The relation contains no non-trivial <strong>multi-valued dependencies (MVDs)</strong> other than a candidate key.</p></li></ol>
+<div class="concept-box"><div class="box-title">Multi-valued Dependency (MVD)</div><div class="box-body"><p>A multi-valued dependency (MVD) in a relation \(R\) occurs when, for a single value of attribute \(A\), there can be multiple independent values of attribute \(B\), such that the presence of \(B\) values is independent of other attributes in \(R\).</p>
+<p><strong>Notation:</strong> \(A \twoheadrightarrow B\)</p>
+<p><strong>Example:</strong>  
+If a student can have multiple phone numbers and multiple courses, then:
+\[
+\text{SID} \twoheadrightarrow \text{Phone}, \quad \text{SID} \twoheadrightarrow \text{Course}
+\]</p>
+<p>Here, the phone numbers and courses are independent of each other, causing a multi-valued dependency.</p></div></div>
+<div class="concept-box"><div class="box-title">Procedure to Decompose into 4NF</div><div class="box-body"><p>To decompose a relation \(R\) into 4NF:</p>
+<ol><li><p>Ensure that the relation is already in BCNF.</p></li><li><p>Identify all multi-valued dependencies \(A \twoheadrightarrow B\).</p></li><li><p>For each MVD that violates 4NF (i.e., \(A\) is not a super key):</p>
+<ul><li><p>Create a new relation \(R_1(A, B)\) for the MVD.</p></li><li><p>Create another relation \(R_2(R - B)\) for the remaining attributes.</p></li></ul></li><li><p>Repeat until all relations satisfy 4NF.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 281: 4NF - Example 1: Student-Course Database</div><div class="box-body"><p>Consider the following database tables:</p>
+<p><strong>Table R1 (Students):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig309.png" alt="diagram"></div>
+<p><strong>Table R2 (Courses):</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig310.png" alt="diagram"></div>
+<p><strong>Step 1: Cross-product causes MVDs:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig311.png" alt="diagram"></div>
+<p><strong>Step 2: Identify multi-valued dependencies:</strong></p>
+<ul><li><p>\( \text{SID} \twoheadrightarrow \text{CID} \)</p></li><li><p>\( \text{SID} \twoheadrightarrow \text{CNAME} \)</p></li></ul>
+<p><strong>Step 3: Check 4NF condition:</strong>  
+SID is not a super key for the combined table. Hence, the relation violates 4NF.</p>
+<p><strong>Step 4: Decomposition into 4NF:</strong></p>
+<ul><li><p>\(R_1(SID, CID)\)</p></li><li><p>\(R_2(SID, CNAME)\)</p></li><li><p>\(R_3(SID, SNAME)\)  (to maintain student info)</p></li></ul>
+<p><strong>Step 5: Check 4NF for new relations:</strong>  
+All decomposed relations now satisfy 4NF.</p></div></div>
+</section>
+<section id="join-dependency-and-fifth-normal-form-5nf" class="content-section level-2">
+<h3 class="section-heading">Join Dependency and Fifth Normal Form (5NF)</h3>
+<p>A relation \(R\) is in <strong>Fifth Normal Form (5NF)</strong> if and only if:</p>
+<ol><li><p>The relation is already in <strong>4NF</strong>.</p></li><li><p>Every join dependency in \(R\) is implied by the candidate keys.</p></li><li><p>The relation cannot be further decomposed into smaller relations without losing the <strong>lossless join property</strong>.</p></li></ol>
+<div class="concept-box"><div class="box-title">Lossless Join Property</div><div class="box-body"><p>A decomposition of a relation is said to have a <strong>lossless join</strong> if, after decomposing the relation into two or more relations, performing a natural join on these decomposed relations reconstructs exactly the original relation without generating any spurious tuples.</p></div></div>
+<div class="concept-box"><div class="box-title">Procedure to Decompose into 5NF</div><div class="box-body"><p>To check and decompose a relation \(R\) into 5NF:</p>
+<ol><li><p>Ensure that the relation is already in 4NF.</p></li><li><p>Identify all <strong>join dependencies (JD)</strong> in the relation.</p></li><li><p>For each join dependency \(JD: R_1 \Join R_2 \Join \dots \Join R_n = R\):</p>
+<ul><li><p>Check if the decomposition is implied by the candidate keys.</p></li><li><p>If not, decompose \(R\) into smaller relations such that each decomposition satisfies the lossless join property.</p></li></ul></li><li><p>Repeat until all join dependencies are satisfied by the candidate keys.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 282: 5NF - Example: Company-Agent-Product Schema</div><div class="box-body"><p>Consider the relation \(ACP(Agent, Company, Product)\) representing which agent sells which product for which company.</p>
+<p><strong>Table ACP:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig312.png" alt="diagram"></div>
+<p><strong>Step 1: Identify join dependency:</strong>  
+The relation has a natural join dependency among:
+\[
+(Agent, Company),\quad (Agent, Product),\quad (Company, Product)
+\]</p>
+<p><strong>Step 2: Decompose into 5NF:</strong></p>
+<ul><li><p>\(R_1(Agent, Company)\)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig313.png" alt="diagram"></div></li><li><p>\(R_2(Agent, Product)\)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig314.png" alt="diagram"></div></li><li><p>\(R_3(Company, Product)\)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig315.png" alt="diagram"></div></li></ul>
+<p><strong>Step 3: Check lossless join:</strong>  
+The natural join of \(R_1, R_2, R_3\) over the common attributes reconstructs the original table \(ACP\) exactly, without generating spurious tuples.</p>
+<p><strong>Step 4: Conclusion:</strong>  
+All redundancies are eliminated, and the relation now satisfies 5NF. No further non-loss decompositions are possible.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch05.html">&larr; Chapter 5: Structured Query Language (SQL)</a><span class="spacer"></span><a class="nav-btn next" href="ch07.html">Chapter 7: Data Organization and Indexing &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

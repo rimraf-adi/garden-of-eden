@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relational Model — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 7</div><h1>Relational Model</h1></div>
+<section id="structure-of-relational-databases" class="content-section level-1">
+<h2 class="section-heading">Structure of Relational Databases</h2>
+<div class="concept-box"><div class="box-title">Relational Model</div><div class="box-body"><p>A <strong>Relational Model</strong> is fundamentally a collection of tables, where each table is assigned a unique name. In the formal mathematical world, these tables are known as <strong>Relations</strong>. The power of the relational model lies in its simplicity: data is represented as a set of related values organized into rows and columns.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Key Terminology</div><div class="box-body"><p>To understand the relational model, we must bridge the gap between common database language and formal mathematical terms:</p>
+<ul><li><p><strong>Relation / Table:</strong> A structure consisting of rows and columns.</p></li><li><p><strong>Tuple / Row:</strong> A single record representing a relationship among a set of values.</p></li><li><p><strong>Attribute / Column:</strong> A specific header defining a type of data within the relation.</p></li><li><p><strong>Relation Instance:</strong> A specific set of data (rows) present in a table at a given moment.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p>Consider a table used to store information about faculty. Each row represents a specific instructor identified by a unique ID.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig047.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p>This table defines the academic offerings. Note that the attribute <code>dept_name</code> appears here as well, creating a logical link between instructors and courses via their departments.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig048.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>In mathematics, a <strong>tuple</strong> is a sequence of $n$ values. A relationship between $n$ values is represented as an <strong>$n$-tuple</strong>. Because a table is essentially a set of these tuples, the order in which they appear is completely irrelevant. 
+A relation instance containing tuples $\{A, B, C\}$ is mathematically identical to an instance containing $\{C, A, B\}$. Database engines do not guarantee a specific order of rows unless an explicit sort command is issued.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Degree &amp; Cardinality of a Relation</div><div class="box-body"><p>In a relational database, <strong>degree</strong> is the number of attributes (columns) in a relation, whereas <strong>cardinality</strong> is the number of tuples (rows) stored in it. For example, if a table has four columns — ID, Name, Age, and Dept — its <strong>degree</strong> is 4. If the table contains 100 records, then its <strong>cardinality</strong> is 100.</p></div></div>
+</section>
+<section id="attribute-domains-atomicity-null-values" class="content-section level-1">
+<h2 class="section-heading">Attribute Domains, Atomicity &amp; NULL values</h2>
+<div class="concept-box"><div class="box-title">Domain</div><div class="box-body"><p>For every attribute, there is a set of permitted values called its <strong>Domain</strong>. For instance, the domain of the <code>Salary</code> attribute is the set of all non-negative currency values.</p></div></div>
+<div class="concept-box"><div class="box-title">Atomic Domains</div><div class="box-body"><p>A critical requirement of the relational model is that domains must be <strong>Atomic</strong>.</p>
+<ul><li><p><strong>Definition:</strong> A domain is atomic if its elements are considered indivisible units.</p></li><li><p><strong>Non-Atomic Example:</strong> If a <code>phone_number</code> attribute stores a <em>set</em> of three numbers, it is non-atomic because it has subparts (the individual numbers).</p></li><li><p><strong>Atomic Example:</strong> If we treat a phone number "555-0102" as a single string that we never split, it is atomic. If we attempt to query based on just the "Area Code" sub-part, we are treating it as non-atomic.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">NULL values</div><div class="box-body"><p>When a value for an attribute is unknown or simply does not exist for a specific tuple, we use a special marker called <strong>Null</strong>.</p>
+<ol><li><p><strong>Unknown:</strong> The value exists (e.g., an instructor has a phone), but we do not know it.</p></li><li><p><strong>Does Not Exist:</strong> The value is not applicable (e.g., an instructor does not own a phone).</p></li></ol>
+<p><em>Note: Null values complicate database operations and should be minimized through proper design.</em></p></div></div>
+</section>
+<section id="database-schema" class="content-section level-1">
+<h2 class="section-heading">Database Schema</h2>
+<div class="concept-box-alt"><div class="box-title">Concept</div><div class="box-body"><p>In database systems, we must distinguish between the <strong>Database Schema</strong>, which is the logical design or structural blueprint of the database, and the <strong>Database Instance</strong>, which is a snapshot of the actual data at a specific moment in time.</p></div></div>
+<p>To use a programming analogy:</p>
+<ul><li><p>A <strong>Relation Schema</strong> is equivalent to a <strong>Type Definition</strong> (like a <code>struct</code> or <code>class</code>). It defines the attributes and their domains but contains no data.</p></li><li><p>A <strong>Relation Instance</strong> is equivalent to the <strong>Value of a Variable</strong>. Just as a variable's value changes as a program executes, the instance changes as data is inserted or deleted.</p></li></ul>
+<p>The <strong>Schema</strong> of a relation generally remains static, while the <strong>Instance</strong> is dynamic.</p>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p>Consider the <strong>Department</strong> relation. Its <strong>Schema</strong> is defined as:
+
+    <code><strong>department</strong> (dept_name, building, budget)</code></p>
+<p>An <strong>Instance</strong> of this relation might look like the following:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig049.png" alt="diagram"></div>
+<p>A crucial aspect of relational design is the use of <strong>overlapping attributes</strong>. Notice that <code>dept_name</code> appears in both the <strong>Instructor</strong> schema and the <strong>Department</strong> schema. This duplication is intentional; it allows us to <strong>link data</strong> across distinct relations. For instance, to find instructors working in the 'Watson' building, we first identify departments located in 'Watson' via the <strong>Department</strong> table, then match those department names in the <strong>Instructor</strong> table.</p>
+<p>This pattern extends to complex university operations. A <strong>Course</strong> may be offered multiple times (different semesters or years). We represent these specific offerings as a <strong>Section</strong>. The <strong>Section Schema</strong> is:
+
+    <code><strong>section</strong> (course_id, sec_id, semester, year, building, room_number, time_slot_id)</code></p>
+<p>To connect faculty to these sections, we use the <strong>Teaches</strong> relation. An <strong>Instance</strong> of <strong>Teaches</strong> acts as a bridge, mapping an <code>ID</code> to a specific class section:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig050.png" alt="diagram"></div>
+<p>By combining various schemas—such as <code>student</code>, <code>advisor</code>, <code>takes</code>, and <code>classroom</code>—a university builds a cohesive relational web.</p></div></div>
+</section>
+<section id="keys" class="content-section level-1">
+<h2 class="section-heading">Keys</h2>
+<div class="concept-box"><div class="box-title">Key</div><div class="box-body"><p>A <em>key</em>, in Database Management Systems, is either a single attribute (or column) or a set of attributes that can uniquely identify rows (or tuples) in a table. We also use keys to set up relations amongst various columns and tables of a relational database.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Types of Keys</div><div class="box-body"><ol><li><p>Composite Key</p></li><li><p>Candidate Key</p></li><li><p>Primary Key</p></li><li><p>Unique Key</p></li><li><p>Super Key</p></li><li><p>Foreign Key</p></li><li><p>Alternate Key</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Composite Key</div><div class="box-body"><p>A Composite Key is a key formed using two or more attributes together to uniquely identify a tuple in a relation. No single attribute alone can uniquely identify the tuple.</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p>ENROLL Table:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig051.png" alt="diagram"></div>
+<p>Here StudentID is repeated and CourseID is also repeated.  
+But the combination (StudentID, CourseID) is unique for every row.  
+Hence (StudentID, CourseID) is the Composite Key.</p></div></div>
+<div class="concept-box"><div class="box-title">Candidate Key</div><div class="box-body"><p>A Candidate Key is a <strong>minimal</strong> set of attributes that can uniquely identify each tuple in a relation. A relation can have multiple candidate keys.</p></div></div>
+<div class="example-box"><div class="box-title">Example 30</div><div class="box-body"><p>STUDENT Table:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig052.png" alt="diagram"></div>
+<p>RollNo, Email, and AadhaarNo are each unique.  
+Each of them can uniquely identify tuples.  
+So all three are Candidate Keys.</p></div></div>
+<div class="concept-box"><div class="box-title">Primary Key</div><div class="box-body"><p>A Primary Key is one candidate key selected to uniquely identify tuples in a relation. It must be unique and cannot be NULL.</p></div></div>
+<div class="example-box"><div class="box-title">Example 31</div><div class="box-body"><p>STUDENT Table (Primary Key = RollNo):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig053.png" alt="diagram"></div>
+<p>RollNo values are unique and not NULL.  
+Hence RollNo is chosen as the Primary Key.</p></div></div>
+<div class="concept-box"><div class="box-title">Unique Key</div><div class="box-body"><p>A Unique Key is a column or a set of columns that ensures all values in a column are distinct. Unlike a Primary Key, a Unique Key <strong>can accept a NULL value</strong> (depending on the database system, usually one NULL is allowed), but it still prevents duplicate entries for non-null data.</p></div></div>
+<div class="example-box"><div class="box-title">Example 32</div><div class="box-body"><p>EMPLOYEE Table (Unique Key = EmailID):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig054.png" alt="diagram"></div>
+<p>The EmailID column must be unique. Since <strong>rahul@abc.com</strong> is already assigned to EmpID 101, the system will reject the attempt to assign the same email to EmpID 104.</p></div></div>
+<div class="concept-box"><div class="box-title">Super Key</div><div class="box-body"><p>A Super Key is any set of attributes that can uniquely identify a tuple. It may contain extra attributes along with a candidate key.</p></div></div>
+<div class="example-box"><div class="box-title">Example 33</div><div class="box-body"><p>STUDENT Table:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig055.png" alt="diagram"></div>
+<p>RollNo is unique → {RollNo} is a Super Key.  
+(RollNo, Name) is also unique → another Super Key.  
+(RollNo, Email) is also unique → another Super Key.</p>
+<p>Super keys can include extra attributes.</p></div></div>
+<div class="concept-box"><div class="box-title">Foreign Key</div><div class="box-body"><p>A Foreign Key is an attribute in one table that refers to the Primary Key of another table. It maintains referential integrity.</p></div></div>
+<div class="example-box"><div class="box-title">Example 34</div><div class="box-body"><p>DEPARTMENT Table (Primary Key = DNo):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig056.png" alt="diagram"></div>
+<p>EMPLOYEE Table (Foreign Key = DNo):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig057.png" alt="diagram"></div>
+<p>DNo in EMPLOYEE refers to DNo in DEPARTMENT.  
+So DNo in EMPLOYEE is a Foreign Key.</p></div></div>
+<div class="concept-box"><div class="box-title">Alternate Key</div><div class="box-body"><p>An Alternate Key is a candidate key that is not selected as the primary key.</p></div></div>
+<div class="example-box"><div class="box-title">Example 35</div><div class="box-body"><p>STUDENT Table:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig058.png" alt="diagram"></div>
+<p>Candidate Keys = RollNo, Email, AadhaarNo.  
+If RollNo is selected as Primary Key,  
+then Email and AadhaarNo become Alternate Keys.</p></div></div>
+</section>
+<section id="integrity-constraints" class="content-section level-1">
+<h2 class="section-heading">Integrity Constraints</h2>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig059.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Concept</div><div class="box-body"><p>In modeling the design of the relational database we can put some restrictions like what values are allowed to be inserted in the relation, and what kind of modifications and deletions are allowed in the relation. These are the restrictions we impose on the relational database.</p></div></div>
+<div class="concept-box"><div class="box-title">Domain Constraint</div><div class="box-body"><p>Every domain must contain atomic values(smallest indivisible units) which means composite and multi-valued attributes are not allowed.</p>
+<p>We perform a datatype check here, which means when we assign a data type to a column we limit the values that it can contain.</p></div></div>
+<div class="example-box"><div class="box-title">Example 36</div><div class="box-body"><p>If we assign the datatype of attribute age as int, we can’t give it values other than int datatype.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig060.png" alt="diagram"></div>
+<p><br>
+    <strong>Employee Information</strong></p>
+<p>In the above relation, Name is a composite attribute and Phone is a multi-values attribute, so it is violating domain constraint.</p></div></div>
+<div class="concept-box"><div class="box-title">Key Constraints or Uniqueness Constraints</div><div class="box-body"><p>These are called uniqueness constraints since it ensures that every tuple in the relation should be unique.</p>
+<p>A relation can have multiple keys or candidate keys (minimal superkey), out of which we choose one of the keys as the primary key, we don’t have any restriction on choosing the primary key out of candidate keys, but it is suggested to go with the candidate key with less number of attributes.</p>
+<p>Null values are not allowed in the primary key, hence Not Null constraint is also part of the key constraint.</p></div></div>
+<div class="example-box"><div class="box-title">Example 37</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig061.png" alt="diagram"></div>
+<p><br>
+     <strong>Employee Information</strong></p>
+<p>In the above table, EID is the primary key, and the first and the last tuple have the same value in EID ie 01, so it is violating the key constraint.</p></div></div>
+<div class="concept-box"><div class="box-title">Entity Integrity Constraints</div><div class="box-body"><p>Entity Integrity constraints say that no primary key can take a NULL value, since using the primary key we identify each tuple uniquely in a  relation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 38</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig062.png" alt="diagram"></div>
+<p><br>
+     <strong>Employee Information</strong></p>
+<p>In the above relation, EID is made the primary key, and the primary key can’t take NULL values but in the third tuple, the primary key is null, so it is violating Entity Integrity constraints.</p></div></div>
+<div class="concept-box"><div class="box-title">Referential Integrity Constraints</div><div class="box-body"><p>The Referential integrity constraint is specified between two relations or tables and used to maintain the consistency among the tuples in two relations.</p>
+<p>This constraint is enforced through a foreign key, when an attribute in the foreign key of relation R1 has the same domain(s) as the primary key of relation R2, then the foreign key of R1 is said to reference or refer to the primary key of relation R2.</p>
+<p>The values of the foreign key in a tuple of relation R1 can either take the values of the primary key for some tuple in relation R2, or can take NULL values, but can’t be empty.</p></div></div>
+<div class="example-box"><div class="box-title">Example 39</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig063.png" alt="diagram"></div>
+<p><br>
+     <strong>Employee Information</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig064.png" alt="diagram"></div>
+<p><br>
+    <strong>Department Information</strong></p>
+<p>In the above tables, the DNO of Table   <strong>Employee Information</strong> is the foreign key, and DNO in Table <strong>Department Information</strong> is the primary key. DNO = 22 in the foreign key of <strong>Employee Information</strong> table is not allowed because DNO = 22 is not defined in the primary key of table <strong>Department Information</strong>. Therefore, Referential integrity constraints are violated here.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Handling Violations: ON DELETE SET NULL</div><div class="box-body"><p>The <strong>ON DELETE SET NULL</strong> strategy is used when a record in the referenced (parent) relation is deleted. To maintain referential integrity, the system automatically sets the foreign key values in the referencing (child) relation to <code>NULL</code> for all tuples that were linked to the deleted record.</p>
+<p>This approach is typically used when the child record should continue to exist even if its association with the parent is removed.</p></div></div>
+<div class="example-box"><div class="box-title">Example 40</div><div class="box-body"><p>Suppose we delete the record for <strong>DNO = 14</strong> (Delhi) from the Department table. With <em>on-delete set null</em> enabled, the <strong>Employee Information</strong> table is updated as follows:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig065.png" alt="diagram"></div>
+<p><br>
+    <strong>Department Information (After Deletion of DNO 14)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig066.png" alt="diagram"></div>
+<p><br>
+     <strong>Employee Information (DNO for Vivian set to NULL)</strong>
+
+Here, Vivian is still a valid employee in the database, but she is currently not assigned to any department since DNO 14 no longer exists.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Handling Violations: ON UPDATE CASCADE</div><div class="box-body"><p>The <strong>ON UPDATE CASCADE</strong> strategy ensures that any modification made to a Primary Key value in the referenced relation is automatically "cascaded" to all corresponding Foreign Key values in the referencing relation.</p>
+<p>This maintains the logical link between tables without requiring manual updates to multiple records across the database.</p></div></div>
+<div class="example-box"><div class="box-title">Example 41</div><div class="box-body"><p>If the <strong>DNO</strong> for the <em>Jaipur</em> branch is changed from <strong>12</strong> to <strong>50</strong> in the Department table, the <strong>Employee Information</strong> table will reflect this change automatically:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig067.png" alt="diagram"></div>
+<p><br>
+    <strong>Department Information (Primary Key Updated)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig068.png" alt="diagram"></div>
+<p><br>
+     <strong>Employee Information (Foreign Key Cascaded)</strong>
+
+The <strong>DNO</strong> for Divine was automatically updated from 12 to 50, ensuring the referential integrity constraint is preserved.</p></div></div>
+</section>
+<section id="schema-diagrams" class="content-section level-1">
+<h2 class="section-heading">Schema Diagrams</h2>
+<p>In a schema diagram, each table is depicted as a box. The <strong>Relation Name</strong> sits at the top, and the <strong>Primary Key</strong>—the unique identifier for every record—is <u>underlined</u>.</p>
+<p>Consider a simple  Food Delivery database with three relations:</p>
+<ul><li><p><strong>Restaurant</strong>: Stores details of eateries like "Haldiram's" or "Empire Restaurant".</p></li><li><p><strong>Partner</strong>: Details of the person delivering the order.</p></li><li><p><strong>Order</strong>: The bridge that connects a customer, a restaurant, and a delivery partner.</p></li></ul>
+<ul><li><p><strong>Primary Key:</strong> The unique field (underlined), e.g., <u>rest_id</u>.</p></li><li><p><strong>Foreign Key (FK):</strong> A link (green arrow) ensuring that a restaurant ID in the Order table actually exists in the Restaurant table.</p></li><li><p><strong>Referential Integrity:</strong> Ensures that the overall data across different tables (like Restaurant and Partner) remains consistent.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig069.png" alt="diagram"></div>
+</section>
+<section id="reducing-e-r-diagrams-to-relational-schema" class="content-section level-1">
+<h2 class="section-heading">Reducing E-R Diagrams to Relational Schema</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Both the Entity–Relationship (E–R) model and the relational database model provide abstract, logical frameworks for modeling real-world enterprises at the schema level. Because these models are based on compatible structural and semantic design principles, an E–R schema can be formally mapped into an equivalent relational schema. Under this mapping, each entity set and each relationship set in the E–R design is transformed into a separate relation schema, with the relation name conventionally derived from the corresponding entity or relationship set.</p></div></div>
+<section id="rules-for-reducing-e-r-diagrams-to-relational-schema" class="content-section level-2">
+<h3 class="section-heading">Rules for Reducing E-R Diagrams to Relational Schema</h3>
+<div class="concept-box-alt"><div class="box-title">Rule 1: Strong Entity Set with Simple Attributes</div><div class="box-body"><ul><li><p>A strong entity set has its own primary key and does not depend on any other entity set for identification.</p></li><li><p>If all attributes are simple and single-valued, the entity set maps to exactly one relational table.</p></li><li><p>Each attribute of the entity set becomes one column in the table.</p></li><li><p>The key attribute(s) of the entity set become the primary key of the table.</p></li><li><p>If the ER key is composite, the relational primary key is also composite.</p></li><li><p>Only stored attributes are mapped — derived attributes are not included in the table.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 42: Strong Entity Set with Simple Attributes — Employee</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig070.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Employee(\underline{EmpID},\ Name,\ Salary)
+\]</p>
+<p><strong>Conversion rule used:</strong> One strong entity with simple attributes → one table; key becomes primary key.</p></div></div>
+<div class="example-box"><div class="box-title">Example 43: Strong Entity Set with Composite Key — Location</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig071.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Location(\underline{Latitude, Longitude},\ Description,\ Last\_Visited)
+\]</p>
+<p><strong>Conversion rule used:</strong> Composite key in ER → composite primary key in relation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 44: Strong Entity Set — Student</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig072.png" alt="diagram"></div>
+<p><strong>Relational Mapping with Arrow View</strong></p>
+<p>\[
+\text{Student entity}
+\;\;\Longrightarrow\;\;
+Student(\underline{StudentID},\ Department,\ Year)
+\]</p>
+<p><strong>Conversion rule used:</strong> All simple attributes map directly to columns.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 2: Strong Entity Set with Composite Attributes</div><div class="box-body"><ul><li><p>A strong entity set may contain composite attributes (attributes that can be divided into sub-attributes).</p></li><li><p>Even if composite attributes exist, only one relational table is created for the entity set.</p></li><li><p>During ER → relational mapping, the composite attribute itself is not stored as a column.</p></li><li><p>Only the simple (atomic) components of each composite attribute are included as table columns.</p></li><li><p>The primary key of the entity set remains the primary key of the table.</p></li><li><p>This rule applies only when composite attributes are single-valued (not multivalued).</p></li><li><p>If a composite attribute contains derived parts, derived components are not stored.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 45: Strong Entity with Composite Attribute — Customer Address</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig073.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+\text{Customer entity with composite Address}
+\;\;\Longrightarrow\;\;
+Customer(\underline{cust\_id},\ name,\ street,\ city,\ state,\ zipcode)
+\]</p>
+<p><strong>Rule used:</strong> Composite attribute → store only its simple components.</p></div></div>
+<div class="example-box"><div class="box-title">Example 46: Strong Entity with Composite Attribute — Employee Name</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig074.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+\text{Employee with composite Name}
+\;\;\Longrightarrow\;\;
+Employee(\underline{EmpID},\ first,\ middle,\ last,\ salary)
+\]</p>
+<p><strong>Rule used:</strong> Composite attribute is flattened into atomic columns.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 3: Strong Entity Set with Multi-Valued Attributes</div><div class="box-body"><ul><li><p>A multi-valued attribute can store multiple values for a single entity instance.</p></li><li><p>A strong entity set having one or more multi-valued attributes cannot be mapped to a single table without redundancy.</p></li><li><p>One main table is created for the entity set containing all simple, single-valued attributes and the primary key.</p></li><li><p>For each multi-valued attribute, a separate relation (table) is created.</p></li><li><p>The new relation contains:</p>
+<ul><li><p>the multi-valued attribute (atomic form only),</p></li><li><p>the primary key of the owner entity set.</p></li></ul></li><li><p>The primary key of the new relation is a composite key:
+      (primary key of entity set + multi-valued attribute value).</p></li><li><p>The primary key of the entity set appears as a foreign key in the new relation.</p></li><li><p>If there are multiple multi-valued attributes, create one separate table per attribute.</p></li><li><p>If a multi-valued attribute is composite, include all its simple components in the new table.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 47: Strong Entity with Multi-Valued Attribute — Employee Phone Numbers</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig075.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+\text{Employee entity}
+\;\Longrightarrow\;
+Employee(\underline{EmpID},\ Name)
+\]</p>
+<p>\[
+\text{Multi-valued attribute Phone}
+\;\Longrightarrow\;
+Employee\_Phone(\underline{EmpID, Phone})
+\]</p>
+<p><strong>Rule used:</strong> Multi-valued attribute → separate table with (PK + attribute) as composite key.</p></div></div>
+<div class="example-box"><div class="box-title">Example 48: Strong Entity with Multi-Valued Attribute — Student Skills</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig076.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Student(\underline{StudentID},\ Department)
+\]</p>
+<p>\[
+Student\_Skill(\underline{StudentID, Skill})
+\]</p>
+<p><strong>Rule used:</strong> Each multi-valued attribute gets its own relation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 49: Composite Multi-Valued Attribute — Customer Addresses</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig077.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Customer(\underline{CustID})
+\]</p>
+<p>\[
+Customer\_Address(\underline{CustID, Street, City})
+\]</p>
+<p><strong>Rule used:</strong> Composite multi-valued attribute → new table with all simple components + entity PK.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 4: Relationship Set into a Table</div><div class="box-body"><ul><li><p>A relationship set can be mapped to a separate relational table.</p></li><li><p>One table is created for the relationship set itself.</p></li><li><p>The columns of the relationship table include:</p>
+<ul><li><p>Primary key attributes of all participating entity sets</p></li><li><p>Descriptive attributes of the relationship set (if any)</p></li></ul></li><li><p>Primary key attributes of participating entities appear as foreign keys in the relationship table.</p></li><li><p>The relationship table stores only key attributes from entities — not their non-key attributes.</p></li><li><p>The primary key of the relationship table is formed from the set of participating entity primary keys (combined key).</p></li><li><p>Descriptive attributes are included in the table but are not part of the primary key unless explicitly specified.</p></li><li><p>This rule describes only the basic relationship-to-table mapping; cardinality-based optimizations are handled separately.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 50: Relationship Set into a Table — Works_On</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig078.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Employee(\underline{EmpID}, Name, Salary)
+\]</p>
+<p>\[
+Project(\underline{ProjID}, Title, Budget)
+\]</p>
+<p>\[
+\text{Works\_On relationship}
+\;\Longrightarrow\;
+Works\_On(\underline{EmpID, ProjID}, Hours)
+\]</p>
+<p><strong>Rule used:</strong> Relationship table contains only participating PKs + relationship attributes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 51: Relationship Set into a Table — Supplies</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig079.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Supplier(\underline{SuppID}, Name, City)
+\]</p>
+<p>\[
+Part(\underline{PartID}, PartName, Color)
+\]</p>
+<p>\[
+Supplies(\underline{SuppID, PartID}, Price)
+\]</p>
+<p><strong>Rule used:</strong> Only entity keys propagate into the relationship table, not other attributes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 52: Rule 1 -4 Combined Example</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig080.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+\color{black} Student(\underline{StudentID})
+\]
+\[
+\color{black} Student\_Hobbies(\underline{StudentID, Hobby})
+\]
+\[
+\color{black} Course(\underline{CourseID}, Title, Code)
+\]
+\[
+\color{black} Enrollment(\underline{StudentID, CourseID}, Join\_Date)
+\]</p>
+<p><strong>Conversion Summary:</strong></p>
+<ul><li><p>Multivalued → separate relation.</p></li><li><p>Composite → decomposed.</p></li><li><p>Descriptive → stored in relationship.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Mapping Principles</div><div class="box-body"><ul><li><p><strong>Cardinality:</strong> Determines <strong>FK placement</strong> or if a <strong>new table</strong> is needed.</p></li><li><p><strong>Participation:</strong> Determines <strong>nullability</strong> (<em>NULL</em> vs. <em>NOT NULL</em>).</p></li><li><p><strong>Descriptive Attributes</strong>: Follow the FK.</p></li><li><p><strong>Goal:</strong> Minimize tables to reduce join overhead.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig081.png" alt="diagram"></div></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 5: Mapping 1:1 Relationships</div><div class="box-body"><ul><li><p>Separate tables are created for each entity; a relationship table is <strong>not required</strong>.</p></li><li><p>The PK of one entity is added as a <strong>Foreign Key (FK)</strong> in the other.</p></li><li><p>The FK column must be <strong>UNIQUE</strong> to maintain the 1:1 ratio.</p></li><li><p>Store relationship attributes in the table receiving the Foreign Key.</p></li></ul>
+<p><strong>Participation Mapping Strategy</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig082.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 53: Example 1: 1:1 Partial Participation</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig083.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Person</strong> (<u>PersonID</u>, Name)</p></li><li><p><strong>Passport</strong> (<u>PassNo</u>, Expiry, PersonID, Place) <br> <em>(PersonID is a Foreign Key. We merge the relationship into the side that is most likely to have a passport to avoid nulls.)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 54: Example 2: 1:1 Total Participation on one side</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig084.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Manager</strong> (<u>MgrID</u>)</p></li><li><p><strong>Department</strong> (<u>DeptID</u>, Location, MgrID, Since) <br> <em>(MgrID is a Foreign Key. Foreign Key is placed in the 'Total Participation' side to ensure every Department has a Manager.)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 55: Example 3: 1:1 Total Participation Both Sides</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig085.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>User_Account</strong> (<u>UserID</u>, AcctID) <br> <em>(Since participation is total on both sides, the two entities can be merged into a single table to improve efficiency and eliminate joins.)</em></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 6: Mapping 1:N Relationships</div><div class="box-body"><ul><li><p>The PK of the <strong>1-side</strong> is added as a <strong>Foreign Key (FK)</strong> in the <strong>N-side</strong> relation.</p></li><li><p>This direction is <strong>mandatory</strong> to maintain functional dependency.</p></li><li><p>Relationship attributes are stored in the <strong>N-side</strong> relation.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig086.png" alt="diagram"></div>
+<p><em>*Note: Total participation on the 1-side requires additional triggers/assertions.</em></p></div></div>
+<div class="example-box"><div class="box-title">Example 56: Example 4: 1:N Total Participation on N-side</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig087.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Department</strong> (<u>DeptID</u>, DeptName, Location)</p></li><li><p><strong>Employee</strong> (<u>EmpID</u>, Name, Salary, DeptID, Since) <br> 
+    <em>(The Primary Key of the 1-side (DeptID) is added to the N-side (Employee) as a Foreign Key. Relationship attributes like 'Since' also move to the N-side table.)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 57: Example 5: 1:N Partial Participation</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig088.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Customer</strong> (<u>CustID</u>, Name, City)</p></li><li><p><strong>Order</strong> (<u>OrderID</u>, OrderDate, Amount, CustID, Mode) <br> 
+    <em>(Even with partial participation, the standard 1:N rule applies: the Foreign Key goes to the N-side. If an Order doesn't have a Customer, the CustID field will simply be NULL.)</em></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 7: Mapping M:N Relationships</div><div class="box-body"><ul><li><p>A <strong>separate relationship table</strong> is mandatory to avoid data redundancy.</p></li><li><p>The table contains the PKs of both entities as <strong>Foreign Keys (FKs)</strong>.</p></li><li><p>The <strong>Primary Key</strong> is a composite key of both participating FKs.</p></li><li><p>Relationship attributes are stored exclusively in this new table.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig089.png" alt="diagram"></div>
+<p><em>*Note: In an M:N bridge table, FKs are always NOT NULL. Total participation is enforced by ensuring every record in the entity table has at least one entry in this relationship table via application logic.</em></p></div></div>
+<div class="example-box"><div class="box-title">Example 58: Rule 7: M:N Relationship (Both Sides Partial)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig090.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Student</strong> (<u>StudentID</u>, Name)</p></li><li><p><strong>Course</strong> (<u>CourseID</u>, Title)</p></li><li><p><strong>Enrolls</strong> (<u>StudentID, CourseID</u>, Grade) <br> 
+    <em>(A new table is created. The Primary Key is the combination of both Foreign Keys.)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 59: Rule 7: M:N Relationship (One Side Total)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig091.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Doctor</strong> (<u>DocID</u>, Name)</p></li><li><p><strong>Patient</strong> (<u>PatientID</u>, Name)</p></li><li><p><strong>Treats</strong> (<u>DocID, PatientID</u>, VisitDate) <br> 
+    <em>(Total participation on the Patient side means every PatientID must appear at least once in the 'Treats' table.)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 60: Rule 7: M:N Relationship (Both Sides Total)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig092.png" alt="diagram"></div>
+<p><strong>Relational Tables:</strong></p>
+<ul><li><p><strong>Author</strong> (<u>AuthorID</u>, Name)</p></li><li><p><strong>Book</strong> (<u>BookID</u>, Title)</p></li><li><p><strong>Writes</strong> (<u>AuthorID, BookID</u>) <br> 
+    <em>(Total participation on both sides is enforced at the application/database constraint level, ensuring no ID exists in Author or Book without a corresponding entry in Writes.)</em></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 8: Recursive (Unary) Relationships</div><div class="box-body"><p>A recursive (unary) relationship occurs when an entity set is related to itself.</p>
+<ul><li><p>Only one entity set participates — but with different roles.</p></li><li><p>Mapping depends on the cardinality ratio.</p></li><li><p>Role names must be used to distinguish participation.</p></li></ul>
+<p><strong>Mapping summary</strong></p>
+<ul><li><p>Recursive 1:1 → Add a self-referencing foreign key in the entity table (or separate relation if relationship has attributes).</p></li><li><p>Recursive 1:N → Add a self-referencing foreign key on the N-side (same table).</p></li><li><p>Recursive M:N → Create a separate relationship table with two foreign keys referencing the same entity table.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 61: Recursive 1:1 — Person Married_To Person</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig093.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Person(\underline{PersonID}, Name, Age, SpouseID)
+\]</p>
+<p>SpouseID → FK referencing Person(PersonID), UNIQUE.</p>
+<p><strong>Rule used:</strong> Recursive 1:1 → self foreign key.</p></div></div>
+<div class="example-box"><div class="box-title">Example 62: Recursive 1:N — Employee Manages Employee</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig094.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Employee(\underline{EmpID}, Name, Salary, ManagerID)
+\]</p>
+<p>ManagerID → FK referencing Employee(EmpID).</p>
+<p><strong>Rule used:</strong> Recursive 1:N → FK stored on N-side (same table).</p></div></div>
+<div class="example-box"><div class="box-title">Example 63: Recursive M:N — Employee Mentors Employee</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig095.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Employee(\underline{EmpID}, Name, Dept)
+\]</p>
+<p>\[
+Mentors(\underline{MentorID, MenteeID}, SinceYear)
+\]</p>
+<p>MentorID → FK to Employee(EmpID)  
+MenteeID → FK to Employee(EmpID)</p>
+<p><strong>Rule used:</strong> Recursive M:N → separate relation with two FKs to same table.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Rule 9: Binary Relationship with Weak Entity</div><div class="box-body"><ul><li><p>A weak entity set does not have a full primary key of its own.</p></li><li><p>It depends on an identifying (owner) entity through an identifying relationship.</p></li><li><p>Weak entity has:</p>
+<ul><li><p>Owner entity key</p></li><li><p>Partial key (discriminator)</p></li></ul></li><li><p>Participation of weak entity in identifying relationship is always total.</p></li><li><p>Identifying relationship is not mapped as a separate table (unless it has its own attributes).</p></li></ul>
+<p><strong>Mapping procedure</strong></p>
+<p>For each weak entity set $W$ with owner entity $E$:</p>
+<ul><li><p>Create a relation for the owner entity $E$ as usual.</p></li><li><p>Create a relation for weak entity $W$.</p></li><li><p>Include all simple attributes of $W$.</p></li><li><p>Add the primary key of owner entity $E$ into $W$ as a foreign key.</p></li><li><p>Primary key of weak entity table =
+      (Owner primary key + Weak entity partial key).</p></li><li><p>Add foreign key constraint from weak table to owner table.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 64: Weak Entity — Employee and Dependent</div><div class="box-body"><p>Each Employee can have many Dependents.  
+Dependent is a weak entity identified by Employee + DepName.</p>
+<p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig096.png" alt="diagram"></div>
+<p><strong>Relational Mapping</strong></p>
+<p>\[
+Employee(\underline{EmpID}, Name)
+\]</p>
+<p>\[
+Dependent(\underline{EmpID, DepName}, Age)
+\]</p>
+<p>EmpID → FK referencing Employee(EmpID)</p>
+<p><strong>Primary Key Rule:</strong> Owner PK + Partial Key</p></div></div>
+</section>
+<section id="converting-n-ary-relationships" class="content-section level-2">
+<h3 class="section-heading">Converting n-ary Relationships</h3>
+<div class="concept-box-alt"><div class="box-title">Rule 10: Mapping n-ary Relationships</div><div class="box-body"><ul><li><p>Used when a relationship involves <strong>three or more</strong> entity sets (e.g., Ternary).</p></li><li><p><strong>Mandatory Table:</strong> Unlike 1:1 or 1:N, these <strong>always</strong> require a separate relationship table.</p></li><li><p><strong>Attributes:</strong> All relationship attributes are stored in this new table.</p></li></ul>
+<p><strong>Step-by-Step Reduction:</strong></p>
+<ol><li><p>Create standard tables for all participating entity sets (e.g., $E_1, E_2, E_3$).</p></li><li><p>Create a <strong>new relationship table</strong> ($R$).</p></li><li><p>Add the <strong>Primary Keys</strong> of all participating entities into table $R$ as <strong>Foreign Keys</strong>.</p></li><li><p>Define the <strong>Primary Key of $R$</strong> as the combination (composite) of all those Foreign Keys.</p></li></ol>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig097.png" alt="diagram"></div>
+<p><em>*Note: When an entity has a "1" constraint, it becomes functionally dependent on the others, so its key is excluded from the composite PK.</em></p></div></div>
+<div class="example-box"><div class="box-title">Example 65: n-ary Relationship — Supplier Supplies Part to Project</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig098.png" alt="diagram"></div>
+<p><strong>Relational Mapping (N:M:P):</strong></p>
+<ul><li><p><strong>Supplier</strong>(<u>SuppID</u>, Name)</p></li><li><p><strong>Part</strong>(<u>PartID</u>, PartName)</p></li><li><p><strong>Project</strong>(<u>ProjID</u>, Budget)</p></li><li><p><strong>Supplies</strong>(<u>SuppID, PartID, ProjID</u>, Quantity) $\rightarrow$ <em>All 3 are FKs</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 66: Relational Mapping (1:N:M)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig099.png" alt="diagram"></div>
+<p><strong>Relational Mapping (1:N:M):</strong></p>
+<ul><li><p><strong>Supplies</strong>(<u>SuppID, PartID</u>, ProjID, Quantity)</p></li><li><p><em>The ProjectID is a Foreign Key but <strong>not</strong> part of the Primary Key because of the "1" constraint.</em></p></li></ul></div></div>
+</section>
+<section id="summary" class="content-section level-2">
+<h3 class="section-heading">Summary</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig100.png" alt="diagram"></div>
+<ul><li><p><strong>Rule 4 Note:</strong> Basic binary relationships are mapped by establishing Foreign Key (FK) links based on the specific cardinality (Rules 5, 6, 7).</p></li><li><p><strong>Participation Impact:</strong> Only affects <strong>Rules 5 and 6</strong> regarding FK location and NULL/NOT NULL constraints.</p></li></ul>
+<div class="concept-box"><div class="box-title">General Procedure for ER-to-Relational Mapping with multiple Entity Sets and Relationship Sets</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig101.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="solved-examples" class="content-section level-1">
+<h2 class="section-heading">Solved Examples</h2>
+<div class="example-box"><div class="box-title">Example 67: University Registration Model — Find Minimum Tables</div><div class="box-body"><p>A University stores Students and Departments.</p>
+<p>Student has composite Name (Fname, Lname) and multivalued Phone.
+Each Student must belong to exactly one Department (total participation).
+A Department may have many Students.</p>
+<p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig102.png" alt="diagram"></div>
+<p><strong>Find: Minimum number of tables</strong></p>
+<p><strong>Solution</strong></p>
+<p>Student → strong entity with composite + multivalued  
+Composite expands, multivalued separate table  
+1:N → FK on N side with NOT NULL</p>
+<p>\[
+Department(\underline{DID}, DeptName)
+\]</p>
+<p>\[
+Student(\underline{SID}, Fname, Lname, DID\; \text{NOT NULL})
+\]</p>
+<p>\[
+StudentPhone(\underline{SID, Phone})
+\]</p>
+<p><strong>Minimum tables = 3</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 68: Employee–Dependent Weak Entity — Find Minimum Tables</div><div class="box-body"><p>Dependent is weak, identified by Employee and DepName.
+Employee has total identifying relationship.</p>
+<p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig103.png" alt="diagram"></div>
+<p><strong>Solution</strong></p>
+<p>Weak entity absorbs identifying relationship.</p>
+<p>\[
+Employee(\underline{EmpID})
+\]</p>
+<p>\[
+Dependent(\underline{EmpID, DepName}, Age)
+\]</p>
+<p><strong>Minimum tables = 2</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 69: Engineer–Project Assignment</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig104.png" alt="diagram"></div>
+<p>Find the minimum number of tables required after ER-to-Relational mapping.</p>
+<p><strong>Solution</strong></p>
+<p>M:N relationship with descriptive attribute $\implies$ separate relation required.</p>
+<p>\[
+Engineer(\underline{EID}, Name)
+\]
+\[
+Project(\underline{PID}, Title)
+\]
+\[
+WorksOn(\underline{EID, PID}, Hours)
+\]</p>
+<p><strong>Minimum tables = 3</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 70: Recursive Supervision Relationship</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig105.png" alt="diagram"></div>
+<p>Find the minimum number of tables required after ER-to-Relational mapping.</p>
+<p><strong>Solution</strong></p>
+<p>Recursive 1:N $\implies$ no separate relation. Add self foreign key and relationship attributes to N-side.</p>
+<p>\[
+Employee(\underline{EmpID}, Name, SupervisorID, SinceYear)
+\]</p>
+<p>SupervisorID → FK referencing Employee.EmpID (NOT NULL due to total participation on N-side)</p>
+<p><strong>Minimum tables = 1</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 71: Doctor–Patient–Drug Prescription</div><div class="box-body"><p><strong>ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig106.png" alt="diagram"></div>
+<p>Find the minimum number of tables required after ER-to-Relational mapping.</p>
+<p><strong>Solution</strong></p>
+<p>Ternary (n-ary) relationship $\implies$ always separate relation.</p>
+<p>\[
+Doctor(\underline{DocID}, Name)
+\]
+\[
+Patient(\underline{PatID}, Name)
+\]
+\[
+Drug(\underline{DrugID}, DrugName)
+\]
+\[
+Prescribes(\underline{DocID, PatID, DrugID}, Dosage)
+\]</p>
+<p>DocID, PatID → NOT NULL FKs (total participation)</p>
+<p><strong>Minimum tables = 4</strong></p></div></div>
+<div class="example-box"><div class="box-title">Example 72: Complex Mapping: University Management System</div><div class="box-body"><p><strong>1. ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig107.png" alt="diagram"></div>
+<p><strong>2. Step-by-Step Relational Reduction</strong></p>
+<ol><li><p><strong>Step 1 &amp; 2 (Strong Entities):</strong></p>
+<ul><li><p>$Department(\underline{DeptID}, Name)$</p></li><li><p>$Student(\underline{SID}, Name, Age)$</p></li><li><p>$Course(\underline{CID}, Title)$</p></li></ul></li><li><p><strong>Step 3 (Weak Entity - Rule 9):</strong></p>
+<ul><li><p>$Dependent(\underline{\textbf{SID}, Name}, Relationship)$ <em>(SID is FK)</em></p></li></ul></li><li><p><strong>Step 4 (Multivalued - Rule 3):</strong></p>
+<ul><li><p>$Student\_Phone(\underline{\textbf{SID}, Phone})$ <em>(SID is FK)</em></p></li></ul></li><li><p><strong>Step 5 (1:N - Rule 6):</strong></p>
+<ul><li><p>Add $DeptID$ to $Student$ table: $Student(\dots, \textbf{DeptID})$</p></li><li><p>Add $DeptID$ to $Course$ table: $Course(\dots, \textbf{DeptID})$</p></li></ul></li><li><p><strong>Step 6 (M:N - Rule 7):</strong></p>
+<ul><li><p>$Enrollment(\underline{\textbf{SID, CID}}, Grade)$ <em>(Both are FKs)</em></p></li></ul></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 73: Supply Chain Management</div><div class="box-body"><p><strong>1. ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig108.png" alt="diagram"></div>
+<p><strong>2. Relational Solution</strong></p>
+<ul><li><p><strong>Customer</strong>(<u>CustID</u>, Name, <strong>Street, City</strong>)  <em>(Rule 2: Flattened)</em></p></li><li><p><strong>Product</strong>(<u>ProdID</u>, Description)  <em>(Rule 1: Strong)</em></p></li><li><p><strong>Supplier</strong>(<u>SuppID</u>, SName) | <strong>Warehouse</strong>(<u>WhID</u>, Location)</p></li><li><p><strong>Buys</strong>(<u><strong>CustID, ProdID</strong></u>, Date)  <em>(Rule 7: Binary M:N)</em></p></li><li><p><strong>Supplies</strong>(<u><strong>ProdID, SuppID, WhID</strong></u>, Qty)  <em>(Rule 10: Ternary N:M:P)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 74: Hospital Administration</div><div class="box-body"><p><strong>1. ER Diagram</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig109.png" alt="diagram"></div>
+<p><strong>2. Relational Solution</strong></p>
+<ul><li><p><strong>Doctor</strong>(<u>DocID</u>, Name)</p></li><li><p><strong>Doctor_Specialty</strong>(<u><strong>DocID, Specialty</strong></u>)  <em>(Rule 3: Multivalued)</em></p></li><li><p><strong>Patient</strong>(<u>PatID</u>, Name, <strong>DocID</strong>)  <em>(Rule 5: 1:1, FK in Patient)</em></p></li><li><p><strong>DailyLog</strong>(<u><strong>PatID, Date</strong></u>, Observation)  <em>(Rule 9: Weak Entity)</em></p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: ER Model</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Relational Algebra &amp; Tuple Calculus &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

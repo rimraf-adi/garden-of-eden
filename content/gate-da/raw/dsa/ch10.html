@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Searching and Sorting &mdash; GATE DSA</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch10.html" class="chapter-link active">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 10 of 10</div><h1>Searching and Sorting</h1></div>
+<div class="concept-box"><div class="box-title">Concept: Searching and Sorting — The Big Picture</div><div class="box-body"><p><strong>Searching</strong> means finding whether a given value (the <strong>key</strong>) is present in a collection, and if so, where. <strong>Sorting</strong> means rearranging the elements of a collection into increasing (or decreasing) order. The two are closely linked. Sorting costs time once, but afterwards searching becomes much faster (binary search instead of linear search).</p>
+<p>Think of a library. If the books are thrown in a heap, you must check every book to find one title (linear search). If the books are arranged alphabetically, you open the middle shelf and decide to go left or right (binary search). Arranging the books is sorting.</p>
+<p>In this chapter all sorting algorithms are <strong>comparison-based</strong>: they learn about the order of elements only by comparing two elements at a time.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Four Properties Used to Compare Sorting Algorithms</div><div class="box-body"><ul><li><p><strong>Stable:</strong> Equal elements keep their original relative order. If two records have the same key and record $X$ comes before record $Y$ in the input, then $X$ still comes before $Y$ in the output. This matters when sorting by multiple keys (sort by marks, then by name).</p></li><li><p><strong>In-place:</strong> The algorithm uses only $O(1)$ extra memory (some books also allow $O(\log n)$ for recursion stack). It sorts inside the same array.</p></li><li><p><strong>Adaptive:</strong> The algorithm runs faster when the input is already partly sorted. For example, it takes $O(n)$ time on a sorted array.</p></li><li><p><strong>Online:</strong> The algorithm can sort the list as new elements keep arriving, without seeing the whole input first.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Inversions — The Measure of Disorder</div><div class="box-body"><p>In an array $A[0..n-1]$, a pair of positions $(i, j)$ with $i &lt; j$ and $A[i] &gt; A[j]$ is called an <strong>inversion</strong>. It is a pair that is in the wrong order.</p>
+<ul><li><p>A sorted array has $0$ inversions.</p></li><li><p>A reverse-sorted array of distinct elements has the maximum, $\dbinom{n}{2} = \dfrac{n(n-1)}{2}$ inversions.</p></li><li><p>Every swap of two <strong>adjacent</strong> elements changes the inversion count by exactly $1$.</p></li></ul>
+<p>Therefore any algorithm that moves elements only by adjacent swaps (bubble sort, insertion sort) needs at least as many swaps or shifts as the number of inversions.</p></div></div>
+<div class="example-box"><div class="box-title">Example 303: Counting Inversions</div><div class="box-body"><p>Array $A = [3, 1, 4, 2]$.</p>
+<ul><li><p>$(3,1)$: inversion, since $3 &gt; 1$.</p></li><li><p>$(3,2)$: inversion.</p></li><li><p>$(4,2)$: inversion.</p></li><li><p>$(3,4)$, $(1,4)$, $(1,2)$: not inversions.</p></li></ul>
+<p>Total inversions $= 3$. The maximum possible for $n=4$ is $\frac{4 \cdot 3}{2} = 6$.</p></div></div>
+<section id="search-algorithms" class="content-section level-1">
+<h2 class="section-heading">Search Algorithms</h2>
+
+<section id="linear-search" class="content-section level-2">
+<h3 class="section-heading">Linear Search</h3>
+<div class="concept-box"><div class="box-title">Concept: Linear Search</div><div class="box-body"><p>Linear search checks the elements one by one from the beginning, until the key is found or the array ends. It does not need the array to be sorted. It works on arrays and linked lists.</p>
+<ul><li><p><strong>Best case:</strong> key at the first position, $1$ comparison, $\Theta(1)$.</p></li><li><p><strong>Worst case:</strong> key at the last position or absent, $n$ comparisons, $\Theta(n)$.</p></li><li><p><strong>Average case:</strong> if the key is present and equally likely at any position, $\dfrac{1+2+\cdots+n}{n} = \dfrac{n+1}{2}$ comparisons, $\Theta(n)$.</p></li></ul></div></div>
+<p><strong>Algorithm: Linear-Search(A, n, key)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_001.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Modified Version: Sentinel Linear Search</div><div class="box-body"><p>In the normal loop, every iteration does <strong>two</strong> tests: “is $i &lt; n$?” and “is $A[i] = key$?”. In sentinel search, we place the key itself at the end, $A[n] = key$, so that the loop is guaranteed to stop. Now only one test per iteration is needed. After the loop, we check whether the position found is $&lt; n$. The complexity is still $\Theta(n)$, but the constant becomes smaller. The algorithm needs one extra slot in the array.</p></div></div>
+<p><strong>Algorithm: Sentinel-Linear-Search(A, n, key)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_002.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">linear-search.py</div><pre><code>def linear_search(a, key):
+    for i in range(len(a)):
+        if a[i] == key:
+            return i
+    return -1
+
+
+def sentinel_search(a, key):
+    n = len(a)
+    last = a[n - 1]
+    a[n - 1] = key              # sentinel
+    i = 0
+    while a[i] != key:          # only ONE test per iteration
+        i += 1
+    a[n - 1] = last             # restore
+    if i &lt; n - 1 or last == key:
+        return i
+    return -1
+
+
+print(linear_search([7, 3, 9, 4], 9))     # 2
+print(sentinel_search([7, 3, 9, 4], 5))   # -1</code></pre></div>
+</section>
+<section id="binary-search" class="content-section level-2">
+<h3 class="section-heading">Binary Search</h3>
+<div class="concept-box"><div class="box-title">Concept: Binary Search</div><div class="box-body"><p>Binary search needs a <strong>sorted</strong> array (with random access). It compares the key with the <strong>middle</strong> element.</p>
+<ul><li><p>If the key equals the middle element, we are done.</p></li><li><p>If the key is smaller, the key can only be in the left half, so we discard the right half.</p></li><li><p>If the key is larger, the key can only be in the right half, so we discard the left half.</p></li></ul>
+<p>Each step throws away half of the remaining elements. After $k$ steps, at most $n/2^k$ elements remain. The search ends when this becomes less than $1$, i.e., after about $\log_2 n$ steps.</p></div></div>
+<div class="example-box"><div class="box-title">Example 304: Analogy: Guess the Number</div><div class="box-body"><p>Your friend thinks of a number between $1$ and $1000$. You ask “Is it more than 500?” and he answers yes or no. Every answer halves the possibilities. In at most $10$ questions ($2^{10} = 1024 \ge 1000$) you find the number. Binary search is exactly this game.</p></div></div>
+<p><strong>Algorithm: Binary-Search-Iterative(A, n, key)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_003.png" alt="diagram"></div>
+<p><strong>Algorithm: Binary-Search-Recursive(A, lo, hi, key)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_004.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 305: Pseudocode: Binary Search (C-like)</div><div class="box-body"><p><strong>BinarySearch(A, n, key):</strong></p>
+<ol><li><p>lo = 0, hi = n - 1</p></li><li><p>while lo &lt;= hi:</p></li><li><p>   mid = lo + (hi - lo) / 2</p></li><li><p>   if A[mid] == key: return mid</p></li><li><p>   else if A[mid] &lt; key: lo = mid + 1</p></li><li><p>   else: hi = mid - 1</p></li><li><p>return -1</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Concept: Recurrence and Complexity of Binary Search</div><div class="box-body"><p>One comparison, then one subproblem of half the size:
+\[
+T(n) = T(n/2) + \Theta(1), \qquad T(1) = \Theta(1)
+\]
+By Master theorem ($a=1$, $b=2$, $n^{\log_2 1} = 1 = \Theta(f(n))$, Case 2): $T(n) = \Theta(\log n)$.</p>
+<ul><li><p><strong>Best case:</strong> the key is at the first middle, $\Theta(1)$.</p></li><li><p><strong>Worst and average case:</strong> $\Theta(\log n)$.</p></li><li><p><strong>Space:</strong> iterative $O(1)$; recursive $O(\log n)$ for the call stack.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 306: Trace: Binary Search for 34</div><div class="box-body"><p>$A = [3, 8, 12, 17, 21, 25, 30, 34, 40, 47, 52]$ (indices $0$ to $10$, $n=11$).</p>
+<ul><li><p>Iteration 1: $lo=0$, $hi=10$, $mid=5$, $A[5]=25 &lt; 34$, so $lo = 6$.</p></li><li><p>Iteration 2: $lo=6$, $hi=10$, $mid=8$, $A[8]=40 &gt; 34$, so $hi = 7$.</p></li><li><p>Iteration 3: $lo=6$, $hi=7$, $mid=6$, $A[6]=30 &lt; 34$, so $lo = 7$.</p></li><li><p>Iteration 4: $lo=7$, $hi=7$, $mid=7$, $A[7]=34$. Found at index $7$.</p></li></ul>
+<p>Total iterations $= 4 = \lfloor \log_2 11 \rfloor + 1$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_005.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Exact Number of Comparisons in Binary Search</div><div class="box-body"><p>Counting convention: one comparison per iteration (the three-way test $A[mid]$ against the key). GATE questions usually count iterations this way, but always read the question.</p>
+<ul><li><p><strong>Worst case</strong> (successful or unsuccessful): $\lfloor \log_2 n \rfloor + 1$.</p></li><li><p>For $n = 2^k - 1$ (a perfect decision tree): the key at the first middle needs $1$ comparison, the two keys at the next level need $2$ each, the four keys at the next level need $3$ each, and so on. In general, $2^{j-1}$ keys need exactly $j$ comparisons.</p></li><li><p><strong>Average successful search</strong> for $n = 2^k - 1$:
+\[
+\frac{\sum_{j=1}^{k} j \cdot 2^{j-1}}{n} = \frac{(k-1)2^k + 1}{2^k - 1}
+\]
+which is about $\log_2 n - 1$ for large $n$.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_006.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 307: Exact Count for $n = 15$</div><div class="box-body"><p>Level 1 has $1$ key (1 comparison), level 2 has $2$ keys (2 comparisons each), level 3 has $4$ keys (3 each), level 4 has $8$ keys (4 each).
+\[
+\text{Total} = 1(1) + 2(2) + 4(3) + 8(4) = 1 + 4 + 12 + 32 = 49
+\]
+Average for a successful search $= \dfrac{49}{15} \approx 3.27$. Worst case $= \lfloor \log_2 15 \rfloor + 1 = 4$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Assumptions, Pitfalls and Limitations of Binary Search</div><div class="box-body"><ul><li><p><strong>Needs a sorted array.</strong> On an unsorted array the answer is meaningless.</p></li><li><p><strong>Needs random access</strong> ($O(1)$ access to the middle). On a linked list, reaching the middle costs $O(n)$, so binary search loses its advantage.</p></li><li><p><strong>Overflow:</strong> In fixed-width integers, $mid = (lo + hi)/2$ can overflow. Use $mid = lo + (hi - lo)/2$. (Python integers do not overflow, but the habit is important.)</p></li><li><p><strong>Duplicates:</strong> Plain binary search returns <em>some</em> index of the key, not necessarily the first or last. To find the first occurrence (lower bound), do not stop at equality; keep searching on the left.</p></li><li><p><strong>Off-by-one:</strong> The loop condition $lo \le hi$ with updates $mid \pm 1$ must go together. Mixing $lo &lt; hi$ with $hi = mid$ is a different, valid style, but mixing the two styles by mistake gives infinite loops.</p></li><li><p><strong>Modified version, interpolation search:</strong> instead of the middle, probe at $lo + \dfrac{(key - A[lo])(hi - lo)}{A[hi] - A[lo]}$. For uniformly distributed keys the average is $O(\log\log n)$, but the worst case is $O(n)$.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">binary-search.py</div><pre><code>def binary_search(a, key):
+    lo, hi = 0, len(a) - 1
+    while lo &lt;= hi:
+        mid = lo + (hi - lo) // 2
+        if a[mid] == key:
+            return mid
+        elif a[mid] &lt; key:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return -1
+
+
+def binary_search_rec(a, lo, hi, key):
+    if lo &gt; hi:
+        return -1
+    mid = lo + (hi - lo) // 2
+    if a[mid] == key:
+        return mid
+    if a[mid] &lt; key:
+        return binary_search_rec(a, mid + 1, hi, key)
+    return binary_search_rec(a, lo, mid - 1, key)
+
+
+def lower_bound(a, key):
+    &quot;&quot;&quot;Index of the FIRST element &gt;= key (works with duplicates).&quot;&quot;&quot;
+    lo, hi = 0, len(a)
+    while lo &lt; hi:
+        mid = lo + (hi - lo) // 2
+        if a[mid] &lt; key:
+            lo = mid + 1
+        else:
+            hi = mid            # do not stop: keep looking left
+    return lo
+
+
+def count_iterations(a, key):
+    lo, hi, steps = 0, len(a) - 1, 0
+    while lo &lt;= hi:
+        steps += 1
+        mid = lo + (hi - lo) // 2
+        if a[mid] == key:
+            return steps
+        elif a[mid] &lt; key:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return steps
+
+
+A = [3, 8, 12, 17, 21, 25, 30, 34, 40, 47, 52]
+print(binary_search(A, 34))        # 7
+print(count_iterations(A, 34))     # 4
+print(lower_bound([1, 2, 2, 2, 3], 2))   # 1</code></pre></div>
+</section>
+<section id="binary-search-on-the-answer" class="content-section level-2">
+<h3 class="section-heading">Binary Search on the Answer</h3>
+<div class="concept-box"><div class="box-title">Concept: Binary Search on the Answer (Application Pattern)</div><div class="box-body"><p>Sometimes there is no sorted array, but the <strong>answer itself</strong> lies in a range of numbers and has a monotone yes/no property. For example, if speed $k$ works, then every speed larger than $k$ also works. Such a predicate looks like
+\[
+\underbrace{\text{No, No, No,}}_{\text{infeasible}} \; \underbrace{\text{Yes, Yes, Yes}}_{\text{feasible}}
+\]
+We binary search for the <strong>first Yes</strong>. Each step calls a feasibility check $\text{feasible}(mid)$ costing $C$, so the total cost is $O(C \cdot \log(\text{range size}))$.</p>
+<p>Template: $lo$ = smallest possible answer, $hi$ = a value that is surely feasible. While $lo &lt; hi$: $mid = lo + (hi-lo)/2$; if $\text{feasible}(mid)$ then $hi = mid$ else $lo = mid + 1$. At the end $lo$ is the answer.</p></div></div>
+<div class="example-box"><div class="box-title">Example 308: Floor of Square Root</div><div class="box-body"><p>Find $\lfloor \sqrt{x} \rfloor$ for $x = 50$. The largest $m$ with $m^2 \le x$. Search $m \in [0, 50]$ with predicate “$m^2 &gt; x$” (the first Yes is $\lfloor\sqrt{x}\rfloor + 1$). Since $7^2 = 49 \le 50 &lt; 64 = 8^2$, the answer is $7$. This takes about $\log_2 50 \approx 6$ steps instead of $7$ linear steps, and for $x = 10^{18}$ it takes about $60$ steps instead of $10^9$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 309: Minimum Eating Speed</div><div class="box-body"><p>Piles $= [3, 6, 7, 11]$ bananas, and we have $h = 8$ hours. Each hour we eat from one pile at speed $k$ (a pile of $p$ takes $\lceil p/k \rceil$ hours). Find the minimum integer $k$ that finishes in $h$ hours.</p>
+<p>Feasible$(k)$ means $\sum \lceil p_i/k \rceil \le 8$.</p>
+<ul><li><p>$k=4$: $1 + 2 + 2 + 3 = 8 \le 8$, feasible.</p></li><li><p>$k=3$: $1 + 2 + 3 + 4 = 10 &gt; 8$, not feasible.</p></li></ul>
+<p>Since feasibility is monotone in $k$, binary search over $k \in [1, 11]$ gives the minimum $k = 4$.</p></div></div>
+<div class="code-box"><div class="code-title">binary-search-on-answer.py</div><pre><code>import math
+
+def isqrt_floor(x):
+    lo, hi = 0, x + 1               # first m with m*m &gt; x
+    while lo &lt; hi:
+        mid = lo + (hi - lo) // 2
+        if mid * mid &gt; x:           # feasible (Yes)
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo - 1
+
+
+def min_speed(piles, h):
+    def feasible(k):
+        return sum(math.ceil(p / k) for p in piles) &lt;= h
+
+    lo, hi = 1, max(piles)
+    while lo &lt; hi:
+        mid = lo + (hi - lo) // 2
+        if feasible(mid):
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+
+
+print(isqrt_floor(50))                 # 7
+print(min_speed([3, 6, 7, 11], 8))     # 4</code></pre></div>
+</section>
+</section>
+<section id="basic-quadratic-sorting" class="content-section level-1">
+<h2 class="section-heading">Basic (Quadratic) Sorting</h2>
+
+<section id="selection-sort" class="content-section level-2">
+<h3 class="section-heading">Selection Sort</h3>
+<div class="concept-box"><div class="box-title">Concept: Selection Sort</div><div class="box-body"><p>Selection sort repeatedly <strong>selects</strong> the minimum element of the unsorted part and puts it at the front of the unsorted part. After pass $i$, the first $i$ positions hold the $i$ smallest elements in their final places.</p>
+<p><strong>Analogy:</strong> Arranging cards in hand by repeatedly picking the smallest card from the remaining pile and placing it next in a row.</p></div></div>
+<p><strong>Algorithm: Selection-Sort(A, n)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_007.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 310: Trace: Selection Sort on $[64, 25, 12, 22, 11]$</div><div class="box-body"><ul><li><p>Pass 1: minimum of all $= 11$ (index 4). Swap with index 0: $[11, 25, 12, 22, 64]$. Comparisons: $4$.</p></li><li><p>Pass 2: minimum of $[25,12,22,64] = 12$. Swap with index 1: $[11, 12, 25, 22, 64]$. Comparisons: $3$.</p></li><li><p>Pass 3: minimum of $[25,22,64] = 22$. Swap with index 2: $[11, 12, 22, 25, 64]$. Comparisons: $2$.</p></li><li><p>Pass 4: minimum of $[25,64] = 25$, already at index 3. Self-swap (no change). Comparisons: $1$.</p></li></ul>
+<p>Total comparisons $= 4+3+2+1 = 10 = \frac{5 \cdot 4}{2}$. Swaps performed $= 4$ (only $3$ if we skip self-swaps).</p></div></div>
+<div class="concept-box"><div class="box-title">Properties of Selection Sort</div><div class="box-body"><ul><li><p><strong>Comparisons:</strong> always exactly $\dfrac{n(n-1)}{2}$, for every input (sorted, reversed or random). So best = average = worst $= \Theta(n^2)$.</p></li><li><p><strong>Swaps:</strong> at most $n-1$, so $O(n)$. This is the <em>minimum number of writes</em> among the simple sorts, useful when writing to memory is expensive.</p></li><li><p><strong>Not adaptive:</strong> a sorted array still costs $\Theta(n^2)$ comparisons.</p></li><li><p><strong>In-place:</strong> yes, $O(1)$ extra space.</p></li><li><p><strong>Not stable (in the swap form):</strong> the long-distance swap can jump an element over equal elements. Example: $[4_a, 4_b, 3]$. Pass 1 swaps $4_a$ with $3$ and gives $[3, 4_b, 4_a]$, so $4_a$ and $4_b$ are reversed.</p></li><li><p><strong>Not online:</strong> it must see all elements to find the minimum.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Modified Versions of Selection Sort</div><div class="box-body"><ul><li><p><strong>Stable selection sort:</strong> instead of swapping, <em>shift</em> the elements between $i$ and $min$ one place to the right and insert the minimum at position $i$. This keeps equal elements in order, but now the writes become $O(n^2)$.</p></li><li><p><strong>Bidirectional (double) selection sort:</strong> in each pass find both the minimum and the maximum and place them at the two ends. Passes halve, but comparisons stay $\Theta(n^2)$.</p></li><li><p><strong>Heap sort</strong> is selection sort with a smarter way (a heap) of finding the minimum or maximum, reducing $\Theta(n^2)$ to $\Theta(n\log n)$.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">selection-sort.py</div><pre><code>def selection_sort(a):
+    n = len(a)
+    comparisons = swaps = 0
+    for i in range(n - 1):
+        m = i
+        for j in range(i + 1, n):
+            comparisons += 1
+            if a[j] &lt; a[m]:
+                m = j
+        if m != i:
+            a[i], a[m] = a[m], a[i]
+            swaps += 1
+    return comparisons, swaps
+
+
+def stable_selection_sort(a):
+    n = len(a)
+    for i in range(n - 1):
+        m = i
+        for j in range(i + 1, n):
+            if a[j] &lt; a[m]:          # strict: first minimum is chosen
+                m = j
+        key = a[m]
+        while m &gt; i:                 # shift instead of swap
+            a[m] = a[m - 1]
+            m -= 1
+        a[i] = key
+
+
+A = [64, 25, 12, 22, 11]
+print(selection_sort(A), A)          # (10, 3) [11, 12, 22, 25, 64]</code></pre></div>
+</section>
+<section id="bubble-sort" class="content-section level-2">
+<h3 class="section-heading">Bubble Sort</h3>
+<div class="concept-box"><div class="box-title">Concept: Bubble Sort</div><div class="box-body"><p>Bubble sort repeatedly walks through the array and compares <strong>adjacent</strong> elements. If a pair is in the wrong order, it swaps them. In each pass, the largest remaining element “bubbles up” to the end like an air bubble rising in water. After pass $i$, the last $i$ positions hold the $i$ largest elements in final places.</p></div></div>
+<p><strong>Algorithm: Bubble-Sort(A, n) — with early exit</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_008.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 311: Trace: Bubble Sort on $[5, 1, 4, 2, 8]$</div><div class="box-body"><ul><li><p><strong>Pass 1</strong> (4 comparisons): $(5,1)$ swap $\to [1,5,4,2,8]$; $(5,4)$ swap $\to [1,4,5,2,8]$; $(5,2)$ swap $\to [1,4,2,5,8]$; $(5,8)$ no swap. Result $[1,4,2,5,8]$, 3 swaps.</p></li><li><p><strong>Pass 2</strong> (3 comparisons): $(1,4)$ no; $(4,2)$ swap $\to [1,2,4,5,8]$; $(4,5)$ no. 1 swap.</p></li><li><p><strong>Pass 3</strong> (2 comparisons): $(1,2)$ no; $(2,4)$ no. No swap, so stop.</p></li></ul>
+<p>Total comparisons $= 4+3+2 = 9$. Total swaps $= 4 = $ number of inversions of the input ($(5,1),(5,4),(5,2),(4,2)$). Passes executed $= 3$ (two to sort, one to confirm).</p></div></div>
+<div class="concept-box"><div class="box-title">Properties of Bubble Sort</div><div class="box-body"><ul><li><p><strong>Swaps</strong> $=$ number of inversions $I$ exactly (each swap fixes exactly one inversion).</p></li><li><p><strong>Comparisons:</strong></p>
+<ul><li><p>Without early exit: always $\dfrac{n(n-1)}{2}$.</p></li><li><p>With early exit: best case (sorted) $n-1$, worst case (reversed) $\dfrac{n(n-1)}{2}$.</p></li></ul></li><li><p><strong>Time:</strong> best $\Theta(n)$ (only with the early-exit flag), average and worst $\Theta(n^2)$.</p></li><li><p><strong>Number of passes to sort</strong> $=$ maximum, over all elements, of the number of larger elements before it (how far an element must move <em>left</em>). Add one more pass if the early-exit flag version must confirm. In the example above: $2$ for the element $2$ (the larger elements $5$ and $4$ are before it), so $2$ passes sort it, plus $1$ confirming pass.</p></li><li><p><strong>Stable:</strong> yes, because we swap only when $A[j] &gt; A[j+1]$ strictly.</p></li><li><p><strong>In-place:</strong> yes. <strong>Adaptive:</strong> yes, with the flag. <strong>Online:</strong> no.</p></li><li><p><strong>Hare and tortoise behaviour:</strong> large elements near the front (“rabbits”) move to the end quickly, but small elements near the end (“turtles”) move left only <strong>one place per pass</strong>. A single small element at the end of an otherwise sorted array forces $n-1$ passes.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Modified Versions of Bubble Sort</div><div class="box-body"><ul><li><p><strong>Early-exit flag</strong> (shown above) makes it adaptive: $\Theta(n)$ on sorted input.</p></li><li><p><strong>Last-swap-position optimisation:</strong> remember the index of the last swap in a pass. Everything after it is already sorted, so the next pass only needs to go up to that index. Good for arrays whose tail is already sorted.</p></li><li><p><strong>Cocktail shaker sort (bidirectional bubble sort):</strong> alternate passes left-to-right (pushes the largest to the end) and right-to-left (pushes the smallest to the front). It handles the “turtle” problem. Still $\Theta(n^2)$ worst case, stable, in-place.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">bubble-sort.py</div><pre><code>def bubble_sort(a):
+    n = len(a)
+    comparisons = swaps = passes = 0
+    for i in range(n - 1):
+        swapped = False
+        passes += 1
+        for j in range(n - 1 - i):
+            comparisons += 1
+            if a[j] &gt; a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                swaps += 1
+                swapped = True
+        if not swapped:
+            break
+    return comparisons, swaps, passes
+
+
+def bubble_sort_last_swap(a):
+    &quot;&quot;&quot;Shrinks the range using the position of the last swap.&quot;&quot;&quot;
+    n = len(a)
+    end = n - 1
+    while end &gt; 0:
+        last = 0
+        for j in range(end):
+            if a[j] &gt; a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                last = j
+        end = last
+
+
+def cocktail_sort(a):
+    lo, hi = 0, len(a) - 1
+    swapped = True
+    while swapped and lo &lt; hi:
+        swapped = False
+        for j in range(lo, hi):              # forward pass
+            if a[j] &gt; a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+                swapped = True
+        hi -= 1
+        for j in range(hi, lo, -1):          # backward pass
+            if a[j - 1] &gt; a[j]:
+                a[j - 1], a[j] = a[j], a[j - 1]
+                swapped = True
+        lo += 1
+
+
+A = [5, 1, 4, 2, 8]
+print(bubble_sort(A), A)     # (9, 4, 3) [1, 2, 4, 5, 8]</code></pre></div>
+</section>
+<section id="insertion-sort" class="content-section level-2">
+<h3 class="section-heading">Insertion Sort</h3>
+<div class="concept-box"><div class="box-title">Concept: Insertion Sort</div><div class="box-body"><p>Insertion sort keeps a sorted prefix $A[0..i-1]$ and takes the next element (the <strong>key</strong>), $A[i]$. It shifts the larger elements of the prefix one place to the right and drops the key into the gap. This is exactly how we arrange playing cards in hand: pick up one card at a time and insert it at the correct place among the cards already held.</p></div></div>
+<p><strong>Algorithm: Insertion-Sort(A, n)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_009.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 312: Trace: Insertion Sort on $[5, 2, 4, 6, 1, 3]$</div><div class="box-body"><p>Count the comparisons of the form $A[j] &gt; key$.</p>
+<ul><li><p>$key = 2$: compare with $5$ ($&gt;$, shift). Reached the left end. Array $[2,5,4,6,1,3]$. Comparisons $1$, shifts $1$.</p></li><li><p>$key = 4$: compare with $5$ (shift), with $2$ (stop). Array $[2,4,5,6,1,3]$. Comparisons $2$, shifts $1$.</p></li><li><p>$key = 6$: compare with $5$ (stop). Array unchanged. Comparisons $1$, shifts $0$.</p></li><li><p>$key = 1$: compare with $6,5,4,2$ (all shift), left end reached. Array $[1,2,4,5,6,3]$. Comparisons $4$, shifts $4$.</p></li><li><p>$key = 3$: compare with $6,5,4$ (shift), with $2$ (stop). Array $[1,2,3,4,5,6]$. Comparisons $4$, shifts $3$.</p></li></ul>
+<p>Total comparisons $= 1+2+1+4+4 = 12$. Total shifts $= 9 = $ inversions of the input.</p>
+<p>General formula: <strong>shifts</strong> $= I$ (number of inversions); <strong>comparisons</strong> $\le I + (n-1)$. Here $9 + 5 = 14$, minus $2$ because two keys ($2$ and $1$) reached the left end without a failing comparison, giving $12$.</p></div></div>
+<div class="concept-box"><div class="box-title">Properties of Insertion Sort</div><div class="box-body"><ul><li><p><strong>Best case</strong> (already sorted): $n-1$ comparisons, $0$ shifts, $\Theta(n)$.</p></li><li><p><strong>Worst case</strong> (reverse sorted): comparisons $=$ shifts $= \dfrac{n(n-1)}{2}$, $\Theta(n^2)$.</p></li><li><p><strong>Average case:</strong> about $\dfrac{n(n-1)}{4}$ inversions, so $\Theta(n^2)$.</p></li><li><p><strong>Running time</strong> $= \Theta(n + I)$, directly proportional to the number of inversions.</p></li><li><p><strong>Nearly sorted input:</strong> if every element is at most $k$ places away from its final position, the time is $O(nk)$.</p></li><li><p><strong>Stable:</strong> yes (we shift only elements <em>strictly</em> greater than the key).</p></li><li><p><strong>In-place:</strong> yes. <strong>Adaptive:</strong> yes. <strong>Online:</strong> yes, a new element simply gets inserted into the sorted prefix.</p></li><li><p><strong>Fastest</strong> of the simple sorts for small or nearly sorted arrays; production sorts (TimSort, introsort) use it for small subarrays.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Modified Versions of Insertion Sort</div><div class="box-body"><ul><li><p><strong>Binary insertion sort:</strong> find the insertion position with <strong>binary search</strong> on the sorted prefix. Comparisons drop to $O(n\log n)$, but the shifting still costs $O(n^2)$ moves, so the total time is still $\Theta(n^2)$. It loses the $\Theta(n)$ best case (it always does about $\log i$ comparisons per key). It remains stable if we search for the position after the last equal element.</p></li><li><p><strong>Shell sort:</strong> insertion sort on elements that are $h$ apart, for a decreasing sequence of gaps $h$, ending with $h=1$. It lets elements jump long distances and beats $\Theta(n^2)$ in practice. Not stable.</p></li><li><p><strong>Linked-list insertion sort:</strong> no shifting is needed (just relink), but finding the position is still linear.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">insertion-sort.py</div><pre><code>import bisect
+
+def insertion_sort(a):
+    comparisons = shifts = 0
+    for i in range(1, len(a)):
+        key = a[i]
+        j = i - 1
+        while j &gt;= 0:
+            comparisons += 1
+            if a[j] &gt; key:
+                a[j + 1] = a[j]
+                shifts += 1
+                j -= 1
+            else:
+                break
+        a[j + 1] = key
+    return comparisons, shifts
+
+
+def binary_insertion_sort(a):
+    for i in range(1, len(a)):
+        key = a[i]
+        pos = bisect.bisect_right(a, key, 0, i)   # after equal elements: stable
+        for j in range(i, pos, -1):               # still O(i) shifting
+            a[j] = a[j - 1]
+        a[pos] = key
+
+
+A = [5, 2, 4, 6, 1, 3]
+print(insertion_sort(A), A)    # (12, 9) [1, 2, 3, 4, 5, 6]</code></pre></div>
+</section>
+<section id="comparison-of-the-three-quadratic-sorts" class="content-section level-2">
+<h3 class="section-heading">Comparison of the Three Quadratic Sorts</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_010.png" alt="diagram"></div>
+</section>
+</section>
+<section id="divide-and-conquer-sorting" class="content-section level-1">
+<h2 class="section-heading">Divide and Conquer Sorting</h2>
+
+<section id="merge-sort" class="content-section level-2">
+<h3 class="section-heading">Merge Sort</h3>
+<div class="concept-box"><div class="box-title">Concept: Merge Sort</div><div class="box-body"><p>Merge sort follows the divide-and-conquer paradigm:</p>
+<ol><li><p><strong>Divide:</strong> split the array into two halves.</p></li><li><p><strong>Conquer:</strong> sort each half recursively (a single element is already sorted).</p></li><li><p><strong>Combine:</strong> <strong>merge</strong> the two sorted halves into one sorted array.</p></li></ol>
+<p>The real work is in the merge step. Merging two sorted lists is easy: keep one pointer at the front of each list, repeatedly take the smaller front element, and move that pointer.</p>
+<p><strong>Analogy:</strong> Two sorted piles of exam papers (by roll number) on a table. To make one sorted pile, repeatedly compare the top papers of the two piles and take the one with the smaller roll number.</p></div></div>
+<p><strong>Algorithm: Merge-Sort(A, p, r)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_011.png" alt="diagram"></div>
+<p><strong>Algorithm: Merge(A, p, q, r) — CLRS style with sentinels</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_012.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_013.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 313: Trace: The MERGE (combine) Phase</div><div class="box-body"><p>Going up from the leaves:</p>
+<ul><li><p>$[38] + [27] \to [27, 38]$.    $[43] + [3] \to [3, 43]$.</p></li><li><p>$[27, 38] + [3, 43] \to [3, 27, 38, 43]$.</p></li><li><p>$[9] + [82] \to [9, 82]$.    $[9, 82] + [10] \to [9, 10, 82]$.</p></li><li><p>Final merge: $[3, 27, 38, 43] + [9, 10, 82]$. Compare $3$ vs $9$ (take $3$), $27$ vs $9$ (take $9$), $27$ vs $10$ (take $10$), $27$ vs $82$ (take $27$), $38$ vs $82$ (take $38$), $43$ vs $82$ (take $43$). Left list is empty; copy the remaining $82$ without comparison. Comparisons $= 6$.</p></li></ul>
+<p>Result: $[3, 9, 10, 27, 38, 43, 82]$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Analysis of Merge Sort</div><div class="box-body"><p><strong>Recurrence:</strong> $T(n) = 2T(n/2) + \Theta(n)$. By Master theorem ($a=2$, $b=2$, $n^{\log_2 2} = n = \Theta(f(n))$, Case 2): $T(n) = \Theta(n\log n)$.</p>
+<p>By recursion tree: there are $\log_2 n$ levels, and each level does total merge work of about $n$.</p>
+<p><strong>Merge comparisons:</strong> merging sorted lists of sizes $m$ and $n$ needs</p>
+<ul><li><p>at most $m + n - 1$ comparisons (the largest element ends up in one list and the other list is emptied last);</p></li><li><p>at least $\min(m, n)$ comparisons (one list entirely smaller than the other).</p></li></ul>
+<p><strong>Comparisons for the whole sort</strong> ($n = 2^k$):</p>
+<ul><li><p>Worst case: $n\log_2 n - n + 1$. For $n=8$: $8\cdot 3 - 8 + 1 = 17$.</p></li><li><p>Best case (already sorted input): $\dfrac{n}{2}\log_2 n$. For $n = 8$: $12$.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Properties of Merge Sort</div><div class="box-body"><ul><li><p><strong>Time:</strong> $\Theta(n\log n)$ in best, average and worst case. The recurrence does not depend on the input order.</p></li><li><p><strong>Stable:</strong> yes, provided the merge takes from the left list when the elements are equal ($\le$).</p></li><li><p><strong>Not in-place:</strong> needs $\Theta(n)$ auxiliary array for arrays. (Recursion stack adds $O(\log n)$.)</p></li><li><p><strong>Not adaptive</strong> in the basic form (still $\Theta(n\log n)$ on sorted input; only the comparison constant drops).</p></li><li><p><strong>Not online.</strong></p></li><li><p><strong>Good for:</strong> linked lists (merging needs only $O(1)$ extra space by relinking), external sorting of data larger than memory, and guaranteed $O(n\log n)$.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Modified Versions of Merge Sort</div><div class="box-body"><ul><li><p><strong>Bottom-up (iterative) merge sort:</strong> merge runs of size $1$, then $2$, then $4$, and so on. No recursion, same $\Theta(n\log n)$.</p></li><li><p><strong>Natural merge sort:</strong> first detect the already-sorted runs in the input and merge those. This is <strong>adaptive</strong>: $\Theta(n)$ if the input is sorted.</p></li><li><p><strong>TimSort</strong> (used by Python): natural merge sort plus insertion sort for short runs. Stable, adaptive, worst case $\Theta(n\log n)$.</p></li><li><p><strong>Merge sort on linked lists:</strong> $O(1)$ extra space, still stable.</p></li><li><p><strong>Counting inversions:</strong> while merging, whenever an element from the <em>right</em> list is taken before the remaining $x$ elements of the left list, those $x$ pairs are inversions. This counts inversions in $\Theta(n\log n)$ instead of $\Theta(n^2)$.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">merge-sort.py</div><pre><code>def merge_sort(a):
+    if len(a) &lt;= 1:
+        return a
+    mid = len(a) // 2
+    left = merge_sort(a[:mid])
+    right = merge_sort(a[mid:])
+    return merge(left, right)
+
+
+def merge(left, right):
+    out = []
+    i = j = 0
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt;= right[j]:          # &lt;= keeps the sort stable
+            out.append(left[i]); i += 1
+        else:
+            out.append(right[j]); j += 1
+    out.extend(left[i:])                 # one of these is empty
+    out.extend(right[j:])
+    return out
+
+
+def sort_and_count(a):
+    &quot;&quot;&quot;Returns (sorted list, number of inversions) in O(n log n).&quot;&quot;&quot;
+    if len(a) &lt;= 1:
+        return a, 0
+    mid = len(a) // 2
+    left, c1 = sort_and_count(a[:mid])
+    right, c2 = sort_and_count(a[mid:])
+    out, i, j, cross = [], 0, 0, 0
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt;= right[j]:
+            out.append(left[i]); i += 1
+        else:
+            out.append(right[j]); j += 1
+            cross += len(left) - i       # left[i:] are all &gt; right[j]
+    out.extend(left[i:]); out.extend(right[j:])
+    return out, c1 + c2 + cross
+
+
+def bottom_up_merge_sort(a):
+    n, width = len(a), 1
+    while width &lt; n:
+        for lo in range(0, n, 2 * width):
+            mid = min(lo + width, n)
+            hi = min(lo + 2 * width, n)
+            a[lo:hi] = merge(a[lo:mid], a[mid:hi])
+        width *= 2
+
+
+print(merge_sort([38, 27, 43, 3, 9, 82, 10]))
+print(sort_and_count([5, 2, 4, 6, 1, 3])[1])     # 9</code></pre></div>
+</section>
+<section id="quicksort" class="content-section level-2">
+<h3 class="section-heading">Quicksort</h3>
+<div class="concept-box"><div class="box-title">Concept: Quicksort</div><div class="box-body"><p>Quicksort also uses divide and conquer, but the hard work is in the <strong>divide</strong> step (partition), and the combine step is empty.</p>
+<ol><li><p><strong>Divide (partition):</strong> choose a <strong>pivot</strong> and rearrange the array so that elements $\le$ pivot come before it and elements $&gt;$ pivot come after it. The pivot is now in (or near) its final place.</p></li><li><p><strong>Conquer:</strong> sort the left part and the right part recursively.</p></li><li><p><strong>Combine:</strong> nothing to do, since the array is already in order.</p></li></ol>
+<p><strong>Analogy:</strong> Arranging a queue by height. Pick one person as the pivot, ask shorter people to stand on his left and taller people on his right, then repeat the idea inside each group.</p></div></div>
+<p><strong>Algorithm: Quicksort(A, p, r)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_014.png" alt="diagram"></div>
+<section id="lomuto-partition-scheme-clrs" class="content-section level-3">
+<h4 class="section-heading">Lomuto Partition Scheme (CLRS)</h4>
+<div class="concept-box"><div class="box-title">Concept: Lomuto Partition</div><div class="box-body"><p>The pivot is the <strong>last</strong> element $x = A[r]$. We keep an index $i$ such that:</p>
+<ul><li><p>$A[p..i]$ holds elements $\le x$ (the “small” region),</p></li><li><p>$A[i+1..j-1]$ holds elements $&gt; x$ (the “large” region),</p></li><li><p>$A[j..r-1]$ is not yet examined.</p></li></ul>
+<p>For each $j$, if $A[j] \le x$, grow the small region by incrementing $i$ and swapping $A[i]$ with $A[j]$. At the end, put the pivot between the two regions by swapping $A[i+1]$ and $A[r]$. The pivot lands at its <strong>final sorted position</strong>, $i+1$. Partition on $n$ elements does exactly $n-1$ comparisons.</p></div></div>
+<p><strong>Algorithm: Partition(A, p, r) — Lomuto</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_015.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_016.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 314: Trace: Lomuto Partition on $[2, 8, 7, 1, 3, 5, 6, 4]$</div><div class="box-body"><p>Pivot $x = 4$ (last element). $i = -1$ at the start (array indexed from $0$).</p>
+<ul><li><p>$j=0$: $2 \le 4$. $i=0$, swap $A[0]$ with itself. $[2,8,7,1,3,5,6,4]$</p></li><li><p>$j=1$: $8 &gt; 4$. No change.</p></li><li><p>$j=2$: $7 &gt; 4$. No change.</p></li><li><p>$j=3$: $1 \le 4$. $i=1$, swap $A[1]$ and $A[3]$. $[2,1,7,8,3,5,6,4]$</p></li><li><p>$j=4$: $3 \le 4$. $i=2$, swap $A[2]$ and $A[4]$. $[2,1,3,8,7,5,6,4]$</p></li><li><p>$j=5$: $5 &gt; 4$. $j=6$: $6 &gt; 4$. No change.</p></li><li><p>End: swap $A[i+1] = A[3]$ with $A[7]$. $[2,1,3,4,7,5,6,8]$. Pivot index $=3$.</p></li></ul>
+<p>Left part $[2,1,3]$, right part $[7,5,6,8]$. Comparisons in this partition: $7 = n-1$.</p></div></div>
+</section>
+<section id="hoare-partition-scheme" class="content-section level-3">
+<h4 class="section-heading">Hoare Partition Scheme</h4>
+<div class="concept-box"><div class="box-title">Concept: Hoare Partition</div><div class="box-body"><p>The original scheme of C.A.R. Hoare. The pivot is $x = A[p]$ (the first element). Two pointers move towards each other:</p>
+<ul><li><p>$i$ starts at the left and moves right until it finds $A[i] \ge x$.</p></li><li><p>$j$ starts at the right and moves left until it finds $A[j] \le x$.</p></li><li><p>If $i &lt; j$, swap $A[i]$ and $A[j]$ and continue. Otherwise return $j$.</p></li></ul>
+<p>The recursion is then on $A[p..j]$ and $A[j+1..r]$. Important differences from Lomuto:</p>
+<ul><li><p>The pivot is <strong>not</strong> guaranteed to land at its final position.</p></li><li><p>It does about <strong>three times fewer swaps</strong> on average, so it is faster in practice.</p></li><li><p>The recursive calls use $(p, j)$ and $(j+1, r)$, not $(p, q-1)$ and $(q+1, r)$.</p></li><li><p>With the pivot as the <em>first</em> element and this version, using the last element as pivot can loop forever, so keep the pivot choice and the return value consistent.</p></li></ul></div></div>
+<p><strong>Algorithm: Hoare-Partition(A, p, r)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_017.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 315: Trace: Hoare Partition on $[5, 3, 8, 4, 2, 7, 1]$</div><div class="box-body"><p>Pivot $x = 5$. Start $i = -1$, $j = 7$.</p>
+<ul><li><p>$j$ moves left: $A[6] = 1 \le 5$, stop at $j=6$. $i$ moves right: $A[0] = 5 \ge 5$, stop at $i=0$. $i&lt;j$, swap: $[1,3,8,4,2,7,5]$.</p></li><li><p>$j$: $A[5]=7 &gt; 5$, $A[4]=2 \le 5$, stop at $j=4$. $i$: $A[1]=3&lt;5$, $A[2]=8 \ge 5$, stop at $i=2$. Swap: $[1,3,2,4,8,7,5]$.</p></li><li><p>$j$: $A[3]=4 \le 5$, stop at $j=3$. $i$: $A[3]=4&lt;5$, $A[4]=8\ge5$, stop at $i=4$. Now $i \ge j$, return $j = 3$.</p></li></ul>
+<p>Partitions: $[1,3,2,4]$ and $[8,7,5]$. Every element of the left part is $\le 5 \le$ every element of the right part. Note the pivot $5$ is in the right part, not at a fixed final position.</p></div></div>
+</section>
+<section id="analysis-of-quicksort" class="content-section level-3">
+<h4 class="section-heading">Analysis of Quicksort</h4>
+<div class="concept-box"><div class="box-title">Concept: Running Time of Quicksort</div><div class="box-body"><p>Let the partition split $n$ elements into parts of size $k$ and $n-k-1$ (Lomuto). Then
+\[
+T(n) = T(k) + T(n-k-1) + \Theta(n)
+\]</p>
+<ul><li><p><strong>Worst case:</strong> the split is always $0 : n-1$ (the pivot is always the smallest or largest element).
+\[
+T(n) = T(n-1) + \Theta(n) \;\Rightarrow\; T(n) = \Theta(n^2), \quad \text{comparisons} = \frac{n(n-1)}{2}
+\]
+For $n=5$ this is $4+3+2+1 = 10$ comparisons.</p></li><li><p><strong>Best case:</strong> the pivot is always the median, $T(n) = 2T(n/2) + \Theta(n) = \Theta(n\log n)$.</p></li><li><p><strong>Any constant-proportion split is still $\Theta(n \log n)$.</strong> For example, a $9:1$ split every time gives $T(n) = T(9n/10) + T(n/10) + n$. The recursion tree has depth about $\log_{10/9} n$ on the long side, and each level costs at most $n$, so $T(n) = \Theta(n\log n)$. This is why quicksort is good even with an “unlucky but not terrible” pivot.</p></li><li><p><strong>Average case:</strong> for a random input order, $E[C_n] = (n-1) + \dfrac{2}{n}\sum_{k=0}^{n-1} E[C_k]$, which solves to $\approx 2n\ln n \approx 1.39\, n\log_2 n$ comparisons. So the average is $\Theta(n\log n)$, only about $39\%$ more comparisons than the ideal.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: When is Quicksort Worst? — Traps for GATE</div><div class="box-body"><ul><li><p><strong>Sorted or reverse-sorted input with first or last element as pivot:</strong> every partition is $0 : n-1$, so $\Theta(n^2)$. (Sorted + last-element pivot: the pivot is the maximum. Reverse sorted + last-element pivot: the pivot is the minimum.)</p></li><li><p><strong>All elements equal</strong> with Lomuto&#x27;s “$\le$” test: every element goes to the left part, so the split is again $n-1 : 0$ and the time is $\Theta(n^2)$.</p></li><li><p><strong>Middle element as pivot</strong> makes sorted input the <em>best</em> case, but an adversary can still construct a bad input for any fixed pivot rule.</p></li><li><p><strong>Pivot is always the median</strong> (found in $O(n)$ time) gives a guaranteed $\Theta(n\log n)$ worst case, but with a big constant.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_018.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Properties of Quicksort</div><div class="box-body"><ul><li><p><strong>Time:</strong> best and average $\Theta(n\log n)$, worst $\Theta(n^2)$.</p></li><li><p><strong>In-place:</strong> yes, partitioning rearranges within the array. The recursion stack uses $O(\log n)$ on average, but $O(n)$ in the worst case.</p></li><li><p><strong>Not stable:</strong> the long-distance swaps in partition can reorder equal elements. Example with Lomuto on $[3_a, 3_b, 2]$: pivot $2$; no element is $\le 2$ except the pivot itself, and the final swap gives $[2, 3_b, 3_a]$. The two $3$s are reversed.</p></li><li><p><strong>Not adaptive</strong> in the basic form, and not online.</p></li><li><p><strong>Fast in practice:</strong> good cache behaviour (sequential access) and a small constant factor, usually faster than merge sort on arrays.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Modified Versions of Quicksort</div><div class="box-body"><ul><li><p><strong>Randomised quicksort:</strong> choose the pivot uniformly at random (or swap a random element to the pivot position first). No fixed input is bad; for <em>every</em> input the <strong>expected</strong> time is $O(n\log n)$. The worst case $O(n^2)$ still exists but has negligible probability.</p></li><li><p><strong>Median-of-three pivot:</strong> use the median of the first, middle and last elements. Sorted input is handled well.</p></li><li><p><strong>Three-way partitioning (Dutch national flag):</strong> split into $&lt;$ pivot, $=$ pivot, $&gt;$ pivot. Equal elements are placed once and never touched again, so inputs with many duplicates run in $O(n)$ for all-equal input.</p></li><li><p><strong>Smaller-part-first recursion + tail-call elimination:</strong> recurse on the smaller side and loop on the larger side. The stack depth is at most $\log_2 n$, so the stack space is $O(\log n)$ even in the worst case.</p></li><li><p><strong>Introsort:</strong> start with quicksort; if the recursion depth exceeds $2\log_2 n$, switch to heap sort. Guarantees $O(n\log n)$ worst case. Used in C++ <code>std::sort</code>.</p></li><li><p><strong>Cutoff to insertion sort</strong> for tiny subarrays (below about $10$ elements).</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 316: Pseudocode: Quicksort with Lomuto Partition (C-like)</div><div class="box-body"><p><strong>Partition(A, p, r):</strong></p>
+<ol><li><p>x = A[r], i = p - 1</p></li><li><p>for j = p to r - 1:</p></li><li><p>   if A[j] $&lt;=$ x: i = i + 1, swap(A[i], A[j])</p></li><li><p>swap(A[i+1], A[r])</p></li><li><p>return i + 1</p></li></ol>
+<p><strong>Quicksort(A, p, r):</strong></p>
+<ol><li><p>if p &lt; r:</p></li><li><p>   q = Partition(A, p, r)</p></li><li><p>   Quicksort(A, p, q - 1)</p></li><li><p>   Quicksort(A, q + 1, r)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">quicksort.py</div><pre><code>import random
+
+def lomuto_partition(a, p, r):
+    x = a[r]
+    i = p - 1
+    for j in range(p, r):
+        if a[j] &lt;= x:
+            i += 1
+            a[i], a[j] = a[j], a[i]
+    a[i + 1], a[r] = a[r], a[i + 1]
+    return i + 1
+
+
+def quicksort(a, p, r):
+    if p &lt; r:
+        q = lomuto_partition(a, p, r)
+        quicksort(a, p, q - 1)
+        quicksort(a, q + 1, r)
+
+
+def hoare_partition(a, p, r):
+    x = a[p]
+    i, j = p - 1, r + 1
+    while True:
+        j -= 1
+        while a[j] &gt; x:
+            j -= 1
+        i += 1
+        while a[i] &lt; x:
+            i += 1
+        if i &lt; j:
+            a[i], a[j] = a[j], a[i]
+        else:
+            return j
+
+
+def quicksort_hoare(a, p, r):
+    if p &lt; r:
+        q = hoare_partition(a, p, r)
+        quicksort_hoare(a, p, q)          # note: q, not q-1
+        quicksort_hoare(a, q + 1, r)
+
+
+def randomized_quicksort(a, p, r):
+    if p &lt; r:
+        k = random.randint(p, r)
+        a[k], a[r] = a[r], a[k]           # random pivot moved to the end
+        q = lomuto_partition(a, p, r)
+        randomized_quicksort(a, p, q - 1)
+        randomized_quicksort(a, q + 1, r)
+
+
+def three_way_quicksort(a, lo, hi):
+    &quot;&quot;&quot;Dutch national flag partition: handles duplicates well.&quot;&quot;&quot;
+    if lo &gt;= hi:
+        return
+    x = a[lo]
+    lt, i, gt = lo, lo + 1, hi
+    while i &lt;= gt:
+        if a[i] &lt; x:
+            a[lt], a[i] = a[i], a[lt]; lt += 1; i += 1
+        elif a[i] &gt; x:
+            a[i], a[gt] = a[gt], a[i]; gt -= 1
+        else:
+            i += 1
+    three_way_quicksort(a, lo, lt - 1)
+    three_way_quicksort(a, gt + 1, hi)
+
+
+A = [2, 8, 7, 1, 3, 5, 6, 4]
+print(lomuto_partition(A[:], 0, 7), A)       # pivot index 3
+B = [2, 8, 7, 1, 3, 5, 6, 4]
+quicksort(B, 0, len(B) - 1)
+print(B)                                      # [1, 2, 3, 4, 5, 6, 7, 8]</code></pre></div>
+</section>
+</section>
+<section id="lower-bound-for-comparison-based-sorting" class="content-section level-2">
+<h3 class="section-heading">Lower Bound for Comparison-Based Sorting</h3>
+<div class="concept-box"><div class="box-title">Theorem: Any Comparison Sort Needs $\Omega(n\log n)$ Comparisons</div><div class="box-body"><p>A comparison-based sorting algorithm can be viewed as a <strong>binary decision tree</strong>. Each internal node is a comparison “is $a_i &lt; a_j$?”, and each leaf is one possible output ordering (a permutation of the input).</p>
+<ul><li><p>There are $n!$ possible input orderings, and the algorithm must be able to produce each of them, so the tree has <strong>at least $n!$ leaves</strong>.</p></li><li><p>A binary tree of height $h$ has at most $2^h$ leaves. So $2^h \ge n!$, which gives
+\[
+h \ge \log_2(n!)
+\]</p></li><li><p>The height $h$ is the number of comparisons in the worst case. Using Stirling&#x27;s approximation, $\log_2 (n!) = n\log_2 n - n\log_2 e + O(\log n) = \Theta(n\log n)$.</p></li></ul>
+<p>Hence every comparison sort needs $\Omega(n\log n)$ comparisons in the worst case. This proves that merge sort (and heap sort) are asymptotically optimal.</p>
+<p><strong>Minimum worst-case comparisons to sort $n$ elements</strong> is at least $\lceil \log_2 n! \rceil$: for $n=3$, $\lceil\log_2 6\rceil = 3$; for $n=4$, $\lceil\log_2 24\rceil = 5$; for $n=5$, $\lceil\log_2 120\rceil = 7$.</p>
+<p><strong>Searching a sorted array:</strong> the decision tree for a key among $n$ sorted elements has $n$ successful outcomes, so the height is at least $\lceil\log_2(n+1)\rceil$. Binary search meets this bound.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_019.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 317: Applying the Lower Bound</div><div class="box-body"><p>Can we sort $6$ numbers using only $9$ comparisons in the worst case? $6! = 720$ and $2^9 = 512 &lt; 720$. A decision tree with $9$ levels has at most $512$ leaves, which is less than $720$, so it is <strong>impossible</strong>. We need at least $\lceil \log_2 720 \rceil = 10$ comparisons.</p></div></div>
+</section>
+</section>
+<section id="randomised-quicksort" class="content-section level-1">
+<h2 class="section-heading">Randomised Quicksort</h2>
+<div class="concept-box"><div class="box-title">Concept: Why Randomise the Pivot</div><div class="box-body"><p>In ordinary quicksort the pivot rule is fixed (first, last or middle element). So for every fixed rule there is some input, such as a sorted array, that gives $\Theta(n^2)$ time. A person who knows your rule can always give you that bad input.</p>
+<p>In <strong>randomised quicksort</strong>, the pivot is chosen <strong>uniformly at random</strong> from the current subarray. Now the running time depends on the coin tosses of the algorithm and not on the order of the input. No input is bad in itself. For <strong>every</strong> input, the <strong>expected</strong> running time is $\Theta(n\log n)$.</p>
+<p><strong>Analogy:</strong> A teacher picks a student at random as the “pivot” for splitting the class by height. Because the student is picked by lottery, nobody can arrange the class in advance to make the teacher unlucky.</p></div></div>
+<p><strong>Algorithm: Randomized-Partition(A, p, r)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_020.png" alt="diagram"></div>
+<p><strong>Algorithm: Randomized-Quicksort(A, p, r)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_021.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 318: Pseudocode: Randomised Quicksort (C-like)</div><div class="box-body"><p><strong>RandomizedPartition(A, p, r):</strong></p>
+<ol><li><p>i = random integer in [p, r]</p></li><li><p>swap(A[r], A[i])</p></li><li><p>return Partition(A, p, r)</p></li></ol>
+<p><strong>RandomizedQuicksort(A, p, r):</strong></p>
+<ol><li><p>if p &lt; r:</p></li><li><p>   q = RandomizedPartition(A, p, r)</p></li><li><p>   RandomizedQuicksort(A, p, q - 1)</p></li><li><p>   RandomizedQuicksort(A, q + 1, r)</p></li></ol></div></div>
+<section id="examples" class="content-section level-2">
+<h3 class="section-heading">Examples</h3>
+<div class="example-box"><div class="box-title">Example 319: One Run on a Sorted Array</div><div class="box-body"><p>Sort $A = [1, 2, 3, 4, 5]$, which is the worst input for last-element pivot.</p>
+<p>Call 1: the random index chosen is $2$ (value $3$). Swap with $A[4]$: $[1,2,5,4,3]$. Lomuto with pivot $3$: elements $1, 2$ are $\le 3$, elements $5, 4$ are not. Final swap gives $[1,2,3,4,5]$ with pivot index $2$. Split sizes $2 : 2$. Comparisons: $4$.</p>
+<p>Left part $[1,2]$: random pivot, say index $0$. Swap: $[2,1]$. Pivot $1$: $2 &gt; 1$. Final swap gives $[1,2]$. Comparisons: $1$. Right part $[4,5]$ similarly costs $1$ comparison.</p>
+<p>Total comparisons $= 4 + 1 + 1 = 6$, instead of the $10$ that last-element pivot needs on this input.</p></div></div>
+<div class="example-box"><div class="box-title">Example 320: Number of Comparisons Depends on Luck</div><div class="box-body"><p>For $n = 3$ distinct elements, the first pivot is the smallest, the middle or the largest, each with probability $\tfrac13$.</p>
+<ul><li><p>Pivot is the middle element (probability $\tfrac13$): the split is $1:1$. Comparisons $= 2$ (partition) $+ 0 + 0 = 2$.</p></li><li><p>Pivot is the smallest or largest (probability $\tfrac23$): the split is $0:2$. Comparisons $= 2$ (partition) $+ 1$ (sorting two elements) $= 3$.</p></li></ul>
+<p>Expected comparisons $= \tfrac13(2) + \tfrac23(3) = \tfrac83 \approx 2.67$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 321: Probability of the Worst Case</div><div class="box-body"><p>For $n = 4$, the maximum number of comparisons is $3 + 2 + 1 = 6$. This happens when every pivot is the minimum or maximum of its subarray. The first call has $2$ good choices out of $4$, the second has $2$ out of $3$, the third has $2$ out of $2$.
+\[
+\Pr[\text{6 comparisons}] = \frac24 \cdot \frac23 \cdot \frac22 = \frac13
+\]
+In general, the probability of the fully skewed run is $\dfrac{2^{n-1}}{n!}$. For $n = 10$ this is $\dfrac{512}{3628800} \approx 0.00014$, and it falls extremely fast as $n$ grows.</p></div></div>
+<div class="example-box"><div class="box-title">Example 322: Probability that Two Elements Are Compared</div><div class="box-body"><p>Sort $6$ distinct elements. What is the probability that the elements of rank $2$ and rank $5$ are ever compared?</p>
+<p>They are compared only if one of them is the <strong>first pivot chosen</strong> among the ranks $2,3,4,5$. If any element of rank $3$ or $4$ is chosen first, it separates them forever. There are $5 - 2 + 1 = 4$ elements in the range, and $2$ of them are good choices.
+\[
+\Pr = \frac{2}{4} = \frac12
+\]</p></div></div>
+</section>
+<section id="performance" class="content-section level-2">
+<h3 class="section-heading">Performance</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_022.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_023.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">randomized-quicksort.py</div><pre><code>import random
+
+comparisons = 0
+
+def partition(a, p, r):
+    global comparisons
+    x = a[r]
+    i = p - 1
+    for j in range(p, r):
+        comparisons += 1
+        if a[j] &lt;= x:
+            i += 1
+            a[i], a[j] = a[j], a[i]
+    a[i + 1], a[r] = a[r], a[i + 1]
+    return i + 1
+
+
+def randomized_partition(a, p, r):
+    i = random.randint(p, r)          # uniform in [p, r]
+    a[r], a[i] = a[i], a[r]
+    return partition(a, p, r)
+
+
+def randomized_quicksort(a, p, r):
+    while p &lt; r:                      # loop on the larger part
+        q = randomized_partition(a, p, r)
+        if q - p &lt; r - q:             # recurse on the smaller part
+            randomized_quicksort(a, p, q - 1)
+            p = q + 1
+        else:
+            randomized_quicksort(a, q + 1, r)
+            r = q - 1
+
+
+def average_comparisons(n, trials=2000):
+    global comparisons
+    total = 0
+    for _ in range(trials):
+        a = list(range(n))            # sorted input: worst for fixed pivot
+        comparisons = 0
+        randomized_quicksort(a, 0, n - 1)
+        total += comparisons
+    return total / trials
+
+
+for n in (3, 10, 100, 1000):
+    print(n, round(average_comparisons(n), 1))
+# n=3    ~ 2.67
+# n=100  ~ 648    (formula 2(n+1)H(n+1) - 4n)
+# n=1000 ~ 10987</code></pre></div>
+</section>
+</section>
+<section id="master-summary" class="content-section level-1">
+<h2 class="section-heading">Master Summary</h2>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_024.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d10_025.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 323: GATE Exam Tips for Searching and Sorting</div><div class="box-body"><ul><li><p><strong>Count the right thing.</strong> Some questions ask comparisons, some ask swaps, some ask passes. Selection sort: comparisons fixed at $\frac{n(n-1)}{2}$. Bubble and insertion: swaps (shifts) $=$ number of inversions.</p></li><li><p><strong>Stability traps.</strong> Stable: bubble, insertion, merge. Not stable: selection, quicksort (and heap sort). Selection sort can be made stable by shifting; merge sort becomes unstable if the merge uses $&lt;$ instead of $\le$.</p></li><li><p><strong>Quicksort worst case.</strong> Sorted or reverse-sorted input with first or last pivot, and also all-equal elements with Lomuto. Recurrence $T(n)=T(n-1)+n$. A constant split ratio (like $9:1$) is still $\Theta(n \log n)$.</p></li><li><p><strong>Randomised quicksort.</strong> Expected time is $O(n\log n)$ for every input, worst case is still $O(n^2)$. Probability that ranks $i&lt;j$ are compared is $\frac{2}{j-i+1}$.</p></li><li><p><strong>In-place is not the same as no extra stack.</strong> Quicksort is in-place (it needs only $O(\log n)$ stack on average). Merge sort on arrays is not in-place.</p></li><li><p><strong>Binary search iterations</strong> for $n$ elements: at most $\lfloor\log_2 n\rfloor + 1$. Do not forget the $+1$.</p></li><li><p><strong>Lower bound.</strong> For $n!$ outcomes, at least $\lceil\log_2 n!\rceil$ comparisons.</p></li><li><p><strong>Quicksort partition trace.</strong> Know the Lomuto scheme (pivot last) and the Hoare scheme (pivot first, pointers towards each other) by hand. They give different intermediate arrays.</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch09.html">&larr; Chapter 9: Shortest Path Algorithms</a><span class="spacer"></span></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

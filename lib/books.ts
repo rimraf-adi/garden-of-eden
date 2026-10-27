@@ -3,6 +3,7 @@ import laIndex from '@/public/data/books/linear-algebra/index.json';
 import vcIndex from '@/public/data/books/vector-calculus/index.json';
 import probIndex from '@/public/data/books/probability/index.json';
 import odeIndex from '@/public/data/books/differential-equations/index.json';
+import gateDaIndex from '@/public/data/books/gate-da/index.json';
 
 export type Block =
   | { t: 'p'; x: string }
@@ -10,7 +11,7 @@ export type Block =
   | { t: 'math'; x: string; tag?: string }
   | { t: 'box'; kind: string; name: string; num?: string; title?: string | null; blocks: Block[] }
   | { t: 'list'; ordered: boolean; style: string | null; desc: boolean; items: { label?: string; blocks: Block[] }[] }
-  | { t: 'fig'; num: string | null; figs: number[]; caption: string }
+  | { t: 'fig'; num: string | null; figs: number[]; srcs?: string[]; caption: string }
   | { t: 'table'; rows: string[][]; caption?: string }
   | { t: 'code'; x: string };
 
@@ -62,6 +63,7 @@ export const BOOK_INDEX: Record<string, BookIndex> = {
   'vector-calculus': vcIndex as BookIndex,
   probability: probIndex as BookIndex,
   'differential-equations': odeIndex as BookIndex,
+  'gate-da': gateDaIndex as BookIndex,
 };
 
 export function getBook(id: string): BookIndex | undefined {

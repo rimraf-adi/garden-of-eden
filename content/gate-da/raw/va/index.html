@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vector Spaces &amp; Linear Algebra — Concept Notes</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Vector Spaces &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Vector Spaces</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#vectors-concept" class="toc-link" data-slug="vectors-concept">Vectors Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-a-vector" class="toc-link" data-slug="what-is-a-vector">What is a Vector?</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#geometric-picture-and-basic-diagrams" class="toc-link" data-slug="geometric-picture-and-basic-diagrams">Geometric picture and basic diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#length-or-magnitude-of-a-vector" class="toc-link" data-slug="length-or-magnitude-of-a-vector">Length or Magnitude of a Vector</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#vector-arithmetic" class="toc-link" data-slug="vector-arithmetic">Vector arithmetic</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dot-product-inner-product-and-properties" class="toc-link" data-slug="dot-product-inner-product-and-properties">Dot product (Inner product) and properties</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#norms-and-distances" class="toc-link" data-slug="norms-and-distances">Norms and distances</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#cross-product-3d-and-properties" class="toc-link" data-slug="cross-product-3d-and-properties">Cross product (3D) and properties</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#vector-space" class="toc-link" data-slug="vector-space">Vector Space</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#concept-of-a-vector-space" class="toc-link" data-slug="concept-of-a-vector-space">Concept of a Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#generalization-to-higher-dimensions" class="toc-link" data-slug="generalization-to-higher-dimensions">Generalization to Higher Dimensions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#definition-of-a-real-vector-space" class="toc-link" data-slug="definition-of-a-real-vector-space">Definition of a Real Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#eight-basic-axioms-of-vector-spaces" class="toc-link" data-slug="eight-basic-axioms-of-vector-spaces">Eight Basic Axioms of Vector Spaces</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#subspaces" class="toc-link" data-slug="subspaces">Subspaces</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#linear-independence-basis-and-dimension" class="toc-link" data-slug="linear-independence-basis-and-dimension">Linear Independence, Basis, and Dimension</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-vector-spaces" class="toc-link" data-slug="applications-of-vector-spaces">Applications of Vector Spaces</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#orthogonal-vectors-and-their-length" class="toc-link" data-slug="orthogonal-vectors-and-their-length">Orthogonal Vectors and Their Length</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-subspaces-and-complements" class="toc-link" data-slug="orthogonal-subspaces-and-complements">Orthogonal Subspaces and Complements</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-and-symmetric-matrices" class="toc-link" data-slug="orthogonal-and-symmetric-matrices">Orthogonal and Symmetric Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-orthogonality-and-projections" class="toc-link" data-slug="applications-of-orthogonality-and-projections">Applications of Orthogonality and Projections</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Quadratic Forms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#definition-and-basic-properties" class="toc-link" data-slug="definition-and-basic-properties">Definition and Basic Properties</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-quadratic-forms" class="toc-link" data-slug="diagonalization-of-quadratic-forms">Diagonalization of Quadratic Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#positive-definite-negative-definite-and-indefinite-forms" class="toc-link" data-slug="positive-definite-negative-definite-and-indefinite-forms">Positive Definite, Negative Definite, and Indefinite Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#canonical-form-using-orthogonal-transformation" class="toc-link" data-slug="canonical-form-using-orthogonal-transformation">Canonical Form Using Orthogonal Transformation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#geometric-interpretation" class="toc-link" data-slug="geometric-interpretation">Geometric Interpretation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Singular Value Decomposition (SVD)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#definition-and-concept" class="toc-link" data-slug="definition-and-concept">Definition and Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#reading-the-axes-u-sigma-and-v" class="toc-link" data-slug="reading-the-axes-u-sigma-and-v">Reading the Axes: $U$, $\Sigma$, and $V$</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#orthogonality" class="toc-link" data-slug="orthogonality">Orthogonality</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#eigenvalues-eigenvectors-and-the-origin-of-svd" class="toc-link" data-slug="eigenvalues-eigenvectors-and-the-origin-of-svd">Eigenvalues, Eigenvectors, and the Origin of SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#computing-the-svd" class="toc-link" data-slug="computing-the-svd">Computing the SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#low-rank-approximation" class="toc-link" data-slug="low-rank-approximation">Low-Rank Approximation</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#shortcut-rules-for-special-matrices" class="toc-link" data-slug="shortcut-rules-for-special-matrices">Shortcut Rules for Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; Linear Algebra Concept Notes</div>
+      <h1>Vector Spaces &amp; Linear Algebra</h1>
+
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">Vector Spaces</div>
+      <div class="chapter-card-meta">16 sections</div>
+      <div class="chapter-card-preview">Vectors Concept, Vector Space, Subspaces...</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Orthogonal Vectors, Subspaces, Matrices, and Projections</div>
+      <div class="chapter-card-meta">6 sections</div>
+      <div class="chapter-card-preview">Orthogonal Vectors and Their Length, Orthogonal Subspaces and Complements, Orthogonal Matrices...</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Quadratic Forms</div>
+      <div class="chapter-card-meta">6 sections</div>
+      <div class="chapter-card-preview">Definition and Basic Properties, Diagonalization of Quadratic Forms, Positive Definite, Negative Definite, and Indefinite Forms...</div>
+    </a>
+    <a class="chapter-card" href="ch04.html">
+      <div class="chapter-card-num">Chapter 4</div>
+      <div class="chapter-card-title">Singular Value Decomposition (SVD)</div>
+      <div class="chapter-card-meta">8 sections</div>
+      <div class="chapter-card-preview">Definition and Concept, Eigenvalues, Eigenvectors, and the Origin of SVD, Computing the SVD...</div>
+    </a>
+    </div>
+    <footer class="page-footer">
+      GateXAIML &middot; Vector Spaces &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

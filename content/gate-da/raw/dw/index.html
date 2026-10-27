@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Warehousing &amp; OLAP — Concept Notes</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Warehousing &amp; OLAP</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: The Data</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#data-objects-and-attribute-types" class="toc-link" data-slug="data-objects-and-attribute-types">Data Objects and Attribute Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#nominal-attributes" class="toc-link" data-slug="nominal-attributes">Nominal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#binary-attributes" class="toc-link" data-slug="binary-attributes">Binary Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#ordinal-attributes" class="toc-link" data-slug="ordinal-attributes">Ordinal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#numeric-attributes" class="toc-link" data-slug="numeric-attributes">Numeric Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#discrete-versus-continuous-attributes" class="toc-link" data-slug="discrete-versus-continuous-attributes">Discrete versus Continuous Attributes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#basic-statistical-descriptions-of-data" class="toc-link" data-slug="basic-statistical-descriptions-of-data">Basic Statistical Descriptions of Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#measuring-the-central-tendency-mean-median-and-mode" class="toc-link" data-slug="measuring-the-central-tendency-mean-median-and-mode">Measuring the Central Tendency: Mean, Median, and Mode</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#median" class="toc-link" data-slug="median">Median</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#mode" class="toc-link" data-slug="mode">Mode</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-the-dispersion-of-data" class="toc-link" data-slug="measuring-the-dispersion-of-data">Measuring the Dispersion of Data</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#range" class="toc-link" data-slug="range">Range</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#quartiles-and-iqr" class="toc-link" data-slug="quartiles-and-iqr">Quartiles and IQR</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#variance-and-standard-deviation" class="toc-link" data-slug="variance-and-standard-deviation">Variance and Standard Deviation</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Data Preprocessing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#data-cleaning" class="toc-link" data-slug="data-cleaning">Data Cleaning</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#handling-missing-values" class="toc-link" data-slug="handling-missing-values">Handling Missing Values</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#noisy-data-binning-regression-and-clustering" class="toc-link" data-slug="noisy-data-binning-regression-and-clustering">Noisy Data: Binning, Regression, and Clustering</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#1-binning-local-smoothing" class="toc-link" data-slug="1-binning-local-smoothing">1. Binning (Local Smoothing)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#2-regression-outlier-analysis" class="toc-link" data-slug="2-regression-outlier-analysis">2. Regression &amp; Outlier Analysis</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-reduction" class="toc-link" data-slug="data-reduction">Data Reduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dimensionality-reduction" class="toc-link" data-slug="dimensionality-reduction">Dimensionality Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#principal-component-analysis" class="toc-link" data-slug="principal-component-analysis">Principal Component Analysis</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#feature-subset-selection" class="toc-link" data-slug="feature-subset-selection">Feature Subset Selection</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#numerosity-reduction" class="toc-link" data-slug="numerosity-reduction">Numerosity Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#sampling" class="toc-link" data-slug="sampling">Sampling</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#clustering-regression" class="toc-link" data-slug="clustering-regression">Clustering &amp; Regression</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#data-compression" class="toc-link" data-slug="data-compression">Data Compression</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#lossless-compression" class="toc-link" data-slug="lossless-compression">Lossless Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#run-length-encoding-rle" class="toc-link" data-slug="run-length-encoding-rle">Run-Length Encoding (RLE)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-1-rle-encoding-pipeline" class="toc-link" data-slug="diagram-1-rle-encoding-pipeline">Diagram 1 — RLE Encoding Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-2-rle-on-binary-bitmap-fax-sparse-column" class="toc-link" data-slug="diagram-2-rle-on-binary-bitmap-fax-sparse-column">Diagram 2 — RLE on Binary Bitmap (Fax / Sparse Column)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#huffman-coding" class="toc-link" data-slug="huffman-coding">Huffman Coding</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-3-huffman-tree-construction" class="toc-link" data-slug="diagram-3-huffman-tree-construction">Diagram 3 — Huffman Tree Construction</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-4-encode-and-decode-pipeline" class="toc-link" data-slug="diagram-4-encode-and-decode-pipeline">Diagram 4 — Encode and Decode Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lzw-lempel-ziv-welch" class="toc-link" data-slug="lzw-lempel-ziv-welch">LZW (Lempel--Ziv--Welch)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-5-lzw-encoding-trace" class="toc-link" data-slug="diagram-5-lzw-encoding-trace">Diagram 5 — LZW Encoding Trace</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lossy-compression" class="toc-link" data-slug="lossy-compression">Lossy Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-pca-2-d-to-1-d-projection" class="toc-link" data-slug="diagram-pca-2-d-to-1-d-projection">Diagram  — PCA: 2-D to 1-D Projection</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-quality-vs-compression-ratio-trade-off" class="toc-link" data-slug="diagram-quality-vs-compression-ratio-trade-off">Diagram  — Quality vs.\ Compression Ratio Trade-off</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-transformation" class="toc-link" data-slug="data-transformation">Data Transformation</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#data-transformation-by-normalization" class="toc-link" data-slug="data-transformation-by-normalization">Data Transformation by Normalization</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#min-max-normalization" class="toc-link" data-slug="min-max-normalization">Min-Max Normalization</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#z-score-normalization-standardization" class="toc-link" data-slug="z-score-normalization-standardization">Z-Score Normalization (Standardization)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#decimal-scaling" class="toc-link" data-slug="decimal-scaling">Decimal Scaling</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-discretization" class="toc-link" data-slug="data-discretization">Data Discretization</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#discretization-by-binning" class="toc-link" data-slug="discretization-by-binning">Discretization by Binning</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#discretization-by-histogram-analysis" class="toc-link" data-slug="discretization-by-histogram-analysis">Discretization by Histogram Analysis</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Data Warehousing and Online Analytical Processing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#data-warehouse-basic-concepts" class="toc-link" data-slug="data-warehouse-basic-concepts">Data Warehouse: Basic Concepts</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#oltp-versus-olap" class="toc-link" data-slug="oltp-versus-olap">OLTP versus OLAP</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#data-warehousing-a-multitiered-architecture" class="toc-link" data-slug="data-warehousing-a-multitiered-architecture">Data Warehousing: A Multitiered Architecture</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#data-warehouse-modeling-data-cube-and-olap" class="toc-link" data-slug="data-warehouse-modeling-data-cube-and-olap">Data Warehouse Modeling: Data Cube and OLAP</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#data-cube-a-multidimensional-data-model" class="toc-link" data-slug="data-cube-a-multidimensional-data-model">Data Cube: A Multidimensional Data Model</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#types-of-data-cubes" class="toc-link" data-slug="types-of-data-cubes">Types of Data Cubes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#schemas-for-multidimensional-data-models" class="toc-link" data-slug="schemas-for-multidimensional-data-models">Schemas for Multidimensional Data Models</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#concept-hierarchy" class="toc-link" data-slug="concept-hierarchy">Concept Hierarchy</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#measures-categorization-and-computation" class="toc-link" data-slug="measures-categorization-and-computation">Measures: Categorization and Computation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#typical-olap-operations" class="toc-link" data-slug="typical-olap-operations">Typical OLAP Operations</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; ML Concept Notes</div>
+      <h1>Data Preprocessing &amp; Data Warehousing</h1>
+
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">The Data</div>
+      <div class="chapter-card-meta">15 sections</div>
+      <div class="chapter-card-preview">Data Objects and Attribute Types, Basic Statistical Descriptions of Data</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Data Preprocessing</div>
+      <div class="chapter-card-meta">33 sections</div>
+      <div class="chapter-card-preview">Data Cleaning, Data Reduction, Data Transformation...</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Data Warehousing and Online Analytical Processing</div>
+      <div class="chapter-card-meta">10 sections</div>
+      <div class="chapter-card-preview">Data Warehouse: Basic Concepts, Data Warehouse Modeling: Data Cube and OLAP, Schemas for Multidimensional Data Models...</div>
+    </a>
+    </div>
+    <footer class="page-footer">GateXAIML &middot; Data Warehousing &amp; OLAP &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Warehousing &amp; OLAP</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: The Data</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#data-objects-and-attribute-types" class="toc-link" data-slug="data-objects-and-attribute-types">Data Objects and Attribute Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#nominal-attributes" class="toc-link" data-slug="nominal-attributes">Nominal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#binary-attributes" class="toc-link" data-slug="binary-attributes">Binary Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#ordinal-attributes" class="toc-link" data-slug="ordinal-attributes">Ordinal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#numeric-attributes" class="toc-link" data-slug="numeric-attributes">Numeric Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#discrete-versus-continuous-attributes" class="toc-link" data-slug="discrete-versus-continuous-attributes">Discrete versus Continuous Attributes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#basic-statistical-descriptions-of-data" class="toc-link" data-slug="basic-statistical-descriptions-of-data">Basic Statistical Descriptions of Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#measuring-the-central-tendency-mean-median-and-mode" class="toc-link" data-slug="measuring-the-central-tendency-mean-median-and-mode">Measuring the Central Tendency: Mean, Median, and Mode</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#median" class="toc-link" data-slug="median">Median</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#mode" class="toc-link" data-slug="mode">Mode</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-the-dispersion-of-data" class="toc-link" data-slug="measuring-the-dispersion-of-data">Measuring the Dispersion of Data</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#range" class="toc-link" data-slug="range">Range</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#quartiles-and-iqr" class="toc-link" data-slug="quartiles-and-iqr">Quartiles and IQR</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#variance-and-standard-deviation" class="toc-link" data-slug="variance-and-standard-deviation">Variance and Standard Deviation</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Data Preprocessing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#data-cleaning" class="toc-link" data-slug="data-cleaning">Data Cleaning</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#handling-missing-values" class="toc-link" data-slug="handling-missing-values">Handling Missing Values</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#noisy-data-binning-regression-and-clustering" class="toc-link" data-slug="noisy-data-binning-regression-and-clustering">Noisy Data: Binning, Regression, and Clustering</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#1-binning-local-smoothing" class="toc-link" data-slug="1-binning-local-smoothing">1. Binning (Local Smoothing)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#2-regression-outlier-analysis" class="toc-link" data-slug="2-regression-outlier-analysis">2. Regression &amp; Outlier Analysis</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-reduction" class="toc-link" data-slug="data-reduction">Data Reduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dimensionality-reduction" class="toc-link" data-slug="dimensionality-reduction">Dimensionality Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#principal-component-analysis" class="toc-link" data-slug="principal-component-analysis">Principal Component Analysis</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#feature-subset-selection" class="toc-link" data-slug="feature-subset-selection">Feature Subset Selection</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#numerosity-reduction" class="toc-link" data-slug="numerosity-reduction">Numerosity Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#sampling" class="toc-link" data-slug="sampling">Sampling</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#clustering-regression" class="toc-link" data-slug="clustering-regression">Clustering &amp; Regression</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#data-compression" class="toc-link" data-slug="data-compression">Data Compression</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#lossless-compression" class="toc-link" data-slug="lossless-compression">Lossless Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#run-length-encoding-rle" class="toc-link" data-slug="run-length-encoding-rle">Run-Length Encoding (RLE)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-1-rle-encoding-pipeline" class="toc-link" data-slug="diagram-1-rle-encoding-pipeline">Diagram 1 — RLE Encoding Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-2-rle-on-binary-bitmap-fax-sparse-column" class="toc-link" data-slug="diagram-2-rle-on-binary-bitmap-fax-sparse-column">Diagram 2 — RLE on Binary Bitmap (Fax / Sparse Column)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#huffman-coding" class="toc-link" data-slug="huffman-coding">Huffman Coding</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-3-huffman-tree-construction" class="toc-link" data-slug="diagram-3-huffman-tree-construction">Diagram 3 — Huffman Tree Construction</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-4-encode-and-decode-pipeline" class="toc-link" data-slug="diagram-4-encode-and-decode-pipeline">Diagram 4 — Encode and Decode Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lzw-lempel-ziv-welch" class="toc-link" data-slug="lzw-lempel-ziv-welch">LZW (Lempel--Ziv--Welch)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-5-lzw-encoding-trace" class="toc-link" data-slug="diagram-5-lzw-encoding-trace">Diagram 5 — LZW Encoding Trace</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lossy-compression" class="toc-link" data-slug="lossy-compression">Lossy Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-pca-2-d-to-1-d-projection" class="toc-link" data-slug="diagram-pca-2-d-to-1-d-projection">Diagram  — PCA: 2-D to 1-D Projection</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-quality-vs-compression-ratio-trade-off" class="toc-link" data-slug="diagram-quality-vs-compression-ratio-trade-off">Diagram  — Quality vs.\ Compression Ratio Trade-off</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-transformation" class="toc-link" data-slug="data-transformation">Data Transformation</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#data-transformation-by-normalization" class="toc-link" data-slug="data-transformation-by-normalization">Data Transformation by Normalization</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#min-max-normalization" class="toc-link" data-slug="min-max-normalization">Min-Max Normalization</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#z-score-normalization-standardization" class="toc-link" data-slug="z-score-normalization-standardization">Z-Score Normalization (Standardization)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#decimal-scaling" class="toc-link" data-slug="decimal-scaling">Decimal Scaling</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-discretization" class="toc-link" data-slug="data-discretization">Data Discretization</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#discretization-by-binning" class="toc-link" data-slug="discretization-by-binning">Discretization by Binning</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#discretization-by-histogram-analysis" class="toc-link" data-slug="discretization-by-histogram-analysis">Discretization by Histogram Analysis</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Data Warehousing and Online Analytical Processing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#data-warehouse-basic-concepts" class="toc-link" data-slug="data-warehouse-basic-concepts">Data Warehouse: Basic Concepts</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#oltp-versus-olap" class="toc-link" data-slug="oltp-versus-olap">OLTP versus OLAP</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#data-warehousing-a-multitiered-architecture" class="toc-link" data-slug="data-warehousing-a-multitiered-architecture">Data Warehousing: A Multitiered Architecture</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#data-warehouse-modeling-data-cube-and-olap" class="toc-link" data-slug="data-warehouse-modeling-data-cube-and-olap">Data Warehouse Modeling: Data Cube and OLAP</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#data-cube-a-multidimensional-data-model" class="toc-link" data-slug="data-cube-a-multidimensional-data-model">Data Cube: A Multidimensional Data Model</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#types-of-data-cubes" class="toc-link" data-slug="types-of-data-cubes">Types of Data Cubes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#schemas-for-multidimensional-data-models" class="toc-link" data-slug="schemas-for-multidimensional-data-models">Schemas for Multidimensional Data Models</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#concept-hierarchy" class="toc-link" data-slug="concept-hierarchy">Concept Hierarchy</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#measures-categorization-and-computation" class="toc-link" data-slug="measures-categorization-and-computation">Measures: Categorization and Computation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#typical-olap-operations" class="toc-link" data-slug="typical-olap-operations">Typical OLAP Operations</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 3</div><h1>The Data</h1></div>
+<section id="data-objects-and-attribute-types" class="content-section level-1">
+<h2 class="section-heading">Data Objects and Attribute Types</h2>
+<div class="concept-box"><div class="box-title">Data Object</div><div class="box-body"><p>A <strong>data object</strong> represents an entity in a dataset.</p>
+<ul><li><p>Also called: <em>samples, instances, data points, tuples</em></p></li><li><p>Each row in a database table $\rightarrow$ one data object</p></li><li><p>Described by a set of <strong>attributes</strong></p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Attribute</div><div class="box-body"><p>An <strong>attribute</strong> is a data field representing a characteristic of a data object.</p>
+<ul><li><p>Also called: <em>feature, variable, dimension, field</em></p></li><li><p>Example: <code>Age</code>, <code>Name</code>, <code>Salary</code>, <code>Zip Code</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+<section id="nominal-attributes" class="content-section level-2">
+<h3 class="section-heading">Nominal Attributes</h3>
+<div class="concept-box"><div class="box-title">Nominal Attribute</div><div class="box-body"><p>A <strong>nominal attribute</strong> takes values that are <strong>names or labels</strong> for categories.</p>
+<ul><li><p>No ordering between values — cannot say one is greater or lesser</p></li><li><p>No arithmetic meaningful — mean, sum have no sense</p></li><li><p>Only valid operations: <strong>equality</strong> (=) and <strong>inequality</strong> ($\neq$)</p></li><li><p>Mode is the only meaningful central tendency measure</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Properties</div><div class="box-body"><ul><li><p>Values act as <strong>labels only</strong> — even if coded as numbers (e.g.\ 1=red, 2=blue), arithmetic is meaningless</p></li><li><p>Can be <strong>multi-valued</strong>: one object may belong to multiple categories</p></li><li><p>Useful statistics: <strong>frequency count</strong>, <strong>mode</strong>, <strong>contingency tables</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 1</div><div class="box-body"><p><strong>Attribute:</strong> <code>HairColor</code>    <strong>Domain:</strong> {Black, Brown, Blonde, Red, Gray}<br></p>
+<ul><li><p>Person A $\rightarrow$ Black    Person B $\rightarrow$ Blonde    Person C $\rightarrow$ Red</p></li><li><p>We can say: A $\neq$ B   </p></li><li><p>We <strong>cannot</strong> say: Black $&gt;$ Blonde, or Average(Black, Red) = ?   </p></li><li><p>Most frequent value (mode) $\rightarrow$ valid summary statistic</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 2</div><div class="box-body"><p><strong>Attribute:</strong> <code>Occupation</code>    <strong>Domain:</strong> {Doctor, Engineer, Teacher, Lawyer, Artist}<br></p>
+<ul><li><p>Encoded internally as: Doctor=1, Engineer=2, Teacher=3, Lawyer=4, Artist=5</p></li><li><p>Even though stored as numbers, $1 + 2 = 3$ (Doctor + Engineer = Teacher?)   </p></li><li><p>Only meaningful question: “How many people are Engineers?” $\rightarrow$ frequency count</p></li><li><p>Ordering like Engineer $&gt;$ Doctor is <strong>completely invalid</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p><strong>Attribute:</strong> <code>PinCode</code>    Example values: {110001, 560001, 400001}<br></p>
+<ul><li><p>Looks numeric — but arithmetic is meaningless</p></li><li><p>$560001 - 110001 = 450000$ has <strong>no geographic meaning</strong></p></li><li><p>Used only to <strong>identify a region</strong> (label), not to measure anything</p></li><li><p>Correct use: grouping, frequency, equality checks only</p></li></ul></div></div>
+</section>
+<section id="binary-attributes" class="content-section level-2">
+<h3 class="section-heading">Binary Attributes</h3>
+<div class="concept-box"><div class="box-title">Binary Attribute</div><div class="box-body"><p>A <strong>binary attribute</strong> is a special case of nominal with exactly <strong>two possible states</strong>: 0 and 1 (or True/False, Yes/No).</p>
+<ul><li><p><strong>Symmetric binary</strong> — both outcomes carry equal weight/importance</p></li><li><p><strong>Asymmetric binary</strong> — one outcome is more significant (usually coded as 1)</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Symmetric vs Asymmetric</div><div class="box-body"><ul><li><p><strong>Symmetric:</strong> Neither state is more important<br>
+          Example: <code>Gender</code> — Male and Female are equally weighted</p></li><li><p><strong>Asymmetric:</strong> State 1 (positive) is <strong>rare and more important</strong><br>
+          Example: <code>Disease Diagnosis</code> — Positive is rare, but critical</p></li><li><p>For <strong>similarity measures</strong>, asymmetric binary attributes ignore <strong>0-0 matches</strong> (both negative = uninformative)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 4</div><div class="box-body"><p><strong>Attribute:</strong> <code>HIV_Test</code>    States: {Positive=1, Negative=0}<br></p>
+<ul><li><p>Most patients test Negative (0) — this is the common, uninformative state</p></li><li><p>A Positive (1) result is <strong>rare and highly significant</strong></p></li><li><p>When comparing two patients, a <strong>1-1 match</strong> (both positive) is very meaningful</p></li><li><p>A <strong>0-0 match</strong> (both negative) is <strong>ignored</strong> in similarity computation — it adds no information</p></li><li><p>Jaccard coefficient used instead of simple matching coefficient</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 5</div><div class="box-body"><p><strong>Attribute:</strong> <code>Gender</code>    States: {Male=1, Female=0} (or vice versa)<br></p>
+<ul><li><p>Both states are <strong>equally important</strong> — no state is rarer or more critical</p></li><li><p>A 0-0 match (both Female) is just as meaningful as a 1-1 match (both Male)</p></li><li><p>Simple matching coefficient is appropriate for similarity</p></li><li><p>Recoding Male=0, Female=1 does <strong>not</strong> change the analysis</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 6</div><div class="box-body"><p><strong>Attribute:</strong> <code>Bought_Item</code>    States: {Yes=1, No=0}<br></p>
+<ul><li><p>In a large transaction database, most entries are 0 (item not bought)</p></li><li><p>A <strong>1-1 co-occurrence</strong> (two customers both buying the same item) $\rightarrow$ meaningful pattern</p></li><li><p><strong>0-0 co-occurrence</strong> (both did not buy) $\rightarrow$ uninformative, ignored</p></li><li><p>Used heavily in <strong>market basket analysis</strong> and association rule mining</p></li></ul></div></div>
+</section>
+<section id="ordinal-attributes" class="content-section level-2">
+<h3 class="section-heading">Ordinal Attributes</h3>
+<div class="concept-box"><div class="box-title">Ordinal Attribute</div><div class="box-body"><p>An <strong>ordinal attribute</strong> has values with a <strong>meaningful rank order</strong>, but the <strong>magnitude of difference</strong> between successive values is unknown.</p>
+<ul><li><p>Valid operations: <strong>=, $\neq$, $&lt;$, $&gt;$, $\leq$, $\geq$</strong></p></li><li><p><strong>Cannot</strong> compute meaningful differences: $A - B$ has no fixed meaning</p></li><li><p>Central tendency: <strong>median</strong> and <strong>mode</strong> are valid; mean is <strong>not</strong></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Ranking &amp; Normalization of Ordinal Values</div><div class="box-body"><p>If an ordinal attribute has $M$ states (ordered $1$ to $M$), values can be mapped to $[0,1]$:
+\[
+z_i = \frac{r_i - 1}{M - 1}, \quad r_i \in \{1, 2, \ldots, M\}
+\]
+This allows ordinal data to be used in certain numeric computations (e.g., distance measures).</p></div></div>
+<div class="example-box"><div class="box-title">Example 7</div><div class="box-body"><p><strong>Attribute:</strong> <code>Grade</code>    <strong>Order:</strong> F $&lt;$ D $&lt;$ C $&lt;$ B $&lt;$ A<br></p>
+<ul><li><p>Student X: B    Student Y: A    Student Z: C</p></li><li><p>We know: A $&gt;$ B $&gt;$ C   </p></li><li><p>We <strong>cannot</strong> say: the gap between A and B equals the gap between B and C   </p></li><li><p>Median grade of {B, A, C, B, D} = <strong>B</strong> (after sorting: D, C, B, B, A)   </p></li><li><p>Mean of {B, A, C} = ?    <strong>undefined and meaningless</strong>   </p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 8</div><div class="box-body"><p><strong>Attribute:</strong> <code>Satisfaction</code>    <strong>Order:</strong> Very Dissatisfied $&lt;$ Dissatisfied $&lt;$ Neutral $&lt;$ Satisfied $&lt;$ Very Satisfied<br></p>
+<ul><li><p>$M = 5$ states, mapped: Very Dissatisfied=1, …, Very Satisfied=5</p></li><li><p>Normalized: $z = \{0,\ 0.25,\ 0.5,\ 0.75,\ 1.0\}$</p></li><li><p>“Satisfied” is better than “Neutral” — but by <strong>how much</strong>? Unknown</p></li><li><p>Report median satisfaction, <strong>not</strong> average — averaging ordinal labels is statistically incorrect</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 9</div><div class="box-body"><p><strong>Attribute:</strong> <code>Rank</code>    <strong>Order:</strong> Private $&lt;$ Corporal $&lt;$ Sergeant $&lt;$ Lieutenant $&lt;$ Captain<br></p>
+<ul><li><p>Clear ordering of authority and responsibility</p></li><li><p>Sergeant is <strong>higher than</strong> Corporal   </p></li><li><p>(Captain $-$ Lieutenant) = (Sergeant $-$ Corporal)?    <strong>No such claim valid</strong>   </p></li><li><p>Useful in sorting, ranking comparisons, and ordinal regression models</p></li></ul></div></div>
+</section>
+<section id="numeric-attributes" class="content-section level-2">
+<h3 class="section-heading">Numeric Attributes</h3>
+<div class="concept-box"><div class="box-title">Numeric Attribute</div><div class="box-body"><p>A <strong>numeric attribute</strong> is quantitative — represented by <strong>measurable numbers</strong> with meaningful arithmetic.<br>
+Two subtypes:</p>
+<ul><li><p><strong>Interval-scaled</strong> — ordered, meaningful differences, <strong>no true zero</strong></p></li><li><p><strong>Ratio-scaled</strong> — interval + <strong>true zero</strong>, all arithmetic valid</p></li></ul></div></div>
+<p><strong> Interval-Scaled Attributes</strong></p>
+<div class="concept-box"><div class="box-title">Interval-Scaled</div><div class="box-body"><ul><li><p>Measured on a scale with <strong>equal-sized units</strong></p></li><li><p>Differences are meaningful; ratios are <strong>not</strong></p></li><li><p><strong>No absolute zero</strong> — zero is just another point on the scale</p></li><li><p>Valid operations: $+$, $-$    Invalid: $\times$, $\div$ for ratio comparisons</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 10</div><div class="box-body"><p><strong>Attribute:</strong> <code>Temperature_C</code><br></p>
+<ul><li><p>$30^\circ C - 20^\circ C = 10^\circ C$    difference is meaningful   </p></li><li><p>$40^\circ C$ is <strong>NOT</strong> twice as hot as $20^\circ C$   </p></li><li><p>Proof: $40^\circ C = 104^\circ F$,    $20^\circ C = 68^\circ F$,    $104/68 \neq 2$    — ratio changes with scale</p></li><li><p>$0^\circ C$ does not mean <em>absence of heat</em> — water still has thermal energy</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 11</div><div class="box-body"><p><strong>Attribute:</strong> <code>Year</code><br></p>
+<ul><li><p>$2024 - 2020 = 4$ years difference   </p></li><li><p>Year 2024 is <strong>not</strong> “twice” as recent as Year 1012   </p></li><li><p>Year 0 is an <strong>arbitrary reference</strong>, not the start of time</p></li><li><p>Differences (durations) are meaningful; ratios of years are not</p></li></ul></div></div>
+<p><strong> Ratio-Scaled Attributes</strong></p>
+<div class="concept-box"><div class="box-title">Ratio-Scaled</div><div class="box-body"><ul><li><p>Has all properties of interval <strong>plus a true zero</strong></p></li><li><p>Zero means <strong>complete absence</strong> of the quantity</p></li><li><p><strong>All arithmetic valid:</strong> $+$, $-$, $\times$, $\div$</p></li><li><p>Can make statements like “X is <em>twice</em> as much as Y”</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 12</div><div class="box-body"><p><strong>Attribute:</strong> <code>Weight_kg</code><br></p>
+<ul><li><p>Person A: 80 kg    Person B: 40 kg</p></li><li><p>A is <strong>exactly twice</strong> as heavy as B    $80/40 = 2$   </p></li><li><p>0 kg = truly no weight   </p></li><li><p>Difference: $80 - 40 = 40$ kg meaningful   </p></li><li><p>Mean, variance, standard deviation all valid</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 13</div><div class="box-body"><p><strong>Attribute:</strong> <code>Annual_Salary</code><br></p>
+<ul><li><p>Salary of $0 = <strong>no income</strong> (true zero)   </p></li><li><p>$80,000 is <strong>four times</strong> $20,000   </p></li><li><p>Meaningful to compute: average salary, salary ratio, percentage increase</p></li><li><p>Transformations (log scale) commonly applied for skewed salary distributions</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 14</div><div class="box-body"><p><strong>Attribute:</strong> <code>Age_years</code><br></p>
+<ul><li><p>Age 0 = just born — true absence of elapsed life time   </p></li><li><p>Person aged 60 is <strong>twice</strong> as old as person aged 30   </p></li><li><p>Difference: $60 - 30 = 30$ years, fully meaningful   </p></li><li><p>Mean age, age ratio — all statistically valid operations</p></li></ul></div></div>
+</section>
+<section id="discrete-versus-continuous-attributes" class="content-section level-2">
+<h3 class="section-heading">Discrete versus Continuous Attributes</h3>
+<div class="concept-box"><div class="box-title">Discrete Attribute</div><div class="box-body"><p>A <strong>discrete attribute</strong> has a <strong>finite</strong> or <strong>countably infinite</strong> set of values.</p>
+<ul><li><p>Values are <strong>distinct, separate</strong> — no value exists between two adjacent values</p></li><li><p>Often represented as <strong>integers</strong></p></li><li><p>Nominal and ordinal attributes are <strong>always discrete</strong></p></li><li><p>Some numeric attributes are also discrete (e.g., count data)</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Continuous Attribute</div><div class="box-body"><p>A <strong>continuous attribute</strong> can take any <strong>real value</strong> within a range.</p>
+<ul><li><p>Infinite possible values between any two points</p></li><li><p>Represented as <strong>floating-point numbers</strong> in practice</p></li><li><p>Measurements (height, weight, temperature) are typically continuous</p></li><li><p>In practice, <strong>precision of instrument</strong> limits the recorded values</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Key Distinction</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 15</div><div class="box-body"><p><strong>Attribute:</strong> <code>Items_Purchased</code>    <strong>Domain:</strong> {0, 1, 2, 3, …}<br></p>
+<ul><li><p>A customer can buy 3 or 4 items — <strong>never 3.5 items</strong></p></li><li><p>Set is countably infinite — no upper bound, but each value is a whole number</p></li><li><p>Represented as integer; bar charts and frequency tables are natural visualizations</p></li><li><p>Mean is technically computable but result (e.g., 2.7 items) must be interpreted carefully</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 16</div><div class="box-body"><p><strong>Attribute:</strong> <code>PinCode</code>    Example: {110001, 560001, 400001}<br></p>
+<ul><li><p>Finite set of valid pin codes across the country</p></li><li><p>No pin code exists <em>between</em> 110001 and 110002 — they are adjacent, distinct labels</p></li><li><p>Although stored as numbers, this is a <strong>nominal discrete</strong> attribute</p></li><li><p>Frequency analysis by pin code region is a valid operation</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 17</div><div class="box-body"><p><strong>Attribute:</strong> <code>Height_cm</code>    Example: 170.5, 171.2, 165.87<br></p>
+<ul><li><p>Between 170 cm and 171 cm, <strong>infinitely many</strong> real values exist: 170.1, 170.11, 170.111…</p></li><li><p>Measured by instrument — precision limited (e.g., 0.1 cm), but the attribute itself is continuous</p></li><li><p>Histograms (not bar charts) are the appropriate visualization</p></li><li><p>All statistical operations valid: mean, variance, percentile, standard deviation</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 18</div><div class="box-body"><p><strong>Attribute:</strong> <code>Temperature_C</code><br></p>
+<ul><li><p>Can be 36.6, 36.61, 36.612… — infinite precision possible</p></li><li><p>Thermometer records to 1 decimal, but true value is continuous</p></li><li><p>In data preprocessing: often <strong>discretized</strong> into bins<br>
+          e.g., $[&lt;20^\circ C =$ Cold$]$, $[20$–$35^\circ C =$ Warm$]$, $[&gt;35^\circ C =$ Hot$]$</p></li><li><p>Discretization converts continuous $\rightarrow$ ordinal for certain algorithms</p></li></ul></div></div>
+</section>
+</section>
+<section id="basic-statistical-descriptions-of-data" class="content-section level-1">
+<h2 class="section-heading">Basic Statistical Descriptions of Data</h2>
+<div class="concept-box-alt"><div class="box-title">Why Statistical Descriptions?</div><div class="box-body"><ul><li><p>Helps understand the <strong>distribution</strong> and <strong>spread</strong> of data</p></li><li><p>Identifies <strong>outliers</strong>, <strong>noise</strong>, and <strong>skewness</strong> early</p></li><li><p>Guides preprocessing decisions: normalization, binning, transformation</p></li></ul></div></div>
+<section id="measuring-the-central-tendency-mean-median-and-mode" class="content-section level-2">
+<h3 class="section-heading">Measuring the Central Tendency: Mean, Median, and Mode</h3>
+<div class="concept-box"><div class="box-title">Central Tendency</div><div class="box-body"><p>A <strong>central tendency</strong> measure gives a single value that best represents an entire dataset.<br>
+Three primary measures:</p>
+<ul><li><p><strong>Mean</strong> — arithmetic average</p></li><li><p><strong>Median</strong> — middle value when sorted</p></li><li><p><strong>Mode</strong> — most frequently occurring value</p></li></ul></div></div>
+<section id="mean" class="content-section level-3">
+<h4 class="section-heading">Mean</h4>
+<div class="concept-box"><div class="box-title">Arithmetic Mean</div><div class="box-body"><p>For $N$ values $x_1, x_2, \ldots, x_N$:
+\[
+\bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i
+\]</p>
+<ul><li><p>Most common measure of central tendency</p></li><li><p><strong>Sensitive to outliers</strong> — a single extreme value pulls the mean strongly</p></li><li><p>Valid only for <strong>interval</strong> and <strong>ratio</strong> attributes</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Weighted Mean</div><div class="box-body"><p>When values have different importance (weights $w_i$):
+\[
+\bar{x}_w = \frac{\sum_{i=1}^{N} w_i x_i}{\sum_{i=1}^{N} w_i}
+\]
+Used when some observations are more reliable or frequent than others.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Trimmed Mean</div><div class="box-body"><ul><li><p>Remove a fixed percentage of extreme values (top and bottom) before computing mean</p></li><li><p>Reduces effect of outliers</p></li><li><p>Example: 5% trimmed mean — discard lowest 5% and highest 5% of values</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 19</div><div class="box-body"><p>Scores of 7 students: {52, 60, 65, 70, 72, 80, 95}<br>
+\[
+\bar{x} = \frac{52 + 60 + 65 + 70 + 72 + 80 + 95}{7} = \frac{494}{7} \approx 70.57
+\]</p>
+<ul><li><p>If one student scored 200 (data error), mean becomes $\approx 99.14$ — heavily distorted</p></li><li><p>This shows mean's <strong>sensitivity to outliers</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 20</div><div class="box-body"><p>Three components with weights:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+<p>\[
+\bar{x}_w = \frac{(80 \times 0.20) + (70 \times 0.30) + (90 \times 0.50)}{0.20 + 0.30 + 0.50}
+= \frac{16 + 21 + 45}{1} = 82
+\]
+Simple mean would give $\frac{80+70+90}{3} = 80$ — ignoring the higher importance of the final exam.</p></div></div>
+</section>
+<section id="median" class="content-section level-3">
+<h4 class="section-heading">Median</h4>
+<div class="concept-box"><div class="box-title">Median</div><div class="box-body"><p>The <strong>median</strong> is the <strong>middle value</strong> of a sorted dataset.
+\[
+\text{Median} =
+\begin{cases}
+x_{\left(\frac{N+1}{2}\right)} &amp; \text{if } N \text{ is odd} \\[6pt]
+\dfrac{x_{\left(\frac{N}{2}\right)} + x_{\left(\frac{N}{2}+1\right)}}{2} &amp; \text{if } N \text{ is even}
+\end{cases}
+\]</p>
+<ul><li><p><strong>Not affected by outliers</strong> — robust measure</p></li><li><p>Preferred over mean when data is <strong>skewed</strong></p></li><li><p>Valid for <strong>ordinal, interval,</strong> and <strong>ratio</strong> attributes</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Median for Grouped Data</div><div class="box-body"><p>When data is in frequency classes, median is estimated as:
+\[
+\text{Median} = L_1 + \left(\frac{\frac{N}{2} - \sum f_l}{f_{\text{median}}}\right) \times \text{width}
+\]
+where $L_1$ = lower boundary of median class, $\sum f_l$ = frequencies before median class,<br>
+$f_{\text{median}}$ = frequency of median class, width = class interval width.</p></div></div>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p>Salaries (in thousands): {30, 45, 50, 60, 72, 85, 120}    $N = 7$<br></p>
+<ul><li><p>Sorted (already sorted above)</p></li><li><p>Middle position: $\frac{7+1}{2} = 4$th value</p></li><li><p>Median $= 60$</p></li><li><p>Note: even if the outlier 120 becomes 5000, median <strong>remains 60</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p>House prices (lakhs): {25, 40, 55, 70, 90, 130}    $N = 6$<br></p>
+<ul><li><p>Positions $\frac{6}{2} = 3$rd and $4$th values: 55 and 70</p></li><li><p>Median $= \dfrac{55 + 70}{2} = 62.5$ lakhs</p></li><li><p>Mean $= \dfrac{25+40+55+70+90+130}{6} = 68.3$ lakhs — pulled up by 130</p></li><li><p>Median better represents the “typical” house price here</p></li></ul></div></div>
+</section>
+<section id="mode" class="content-section level-3">
+<h4 class="section-heading">Mode</h4>
+<div class="concept-box"><div class="box-title">Mode</div><div class="box-body"><p>The <strong>mode</strong> is the value that occurs <strong>most frequently</strong> in a dataset.</p>
+<ul><li><p>A dataset can be <strong>unimodal</strong> (one mode), <strong>bimodal</strong> (two modes), or <strong>multimodal</strong></p></li><li><p>Valid for <strong>all attribute types</strong> including nominal</p></li><li><p>For continuous data: mode is estimated from the most frequent class interval</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Empirical Relation  Mean Median Mode</div><div class="box-body"><p>For <strong>moderately skewed</strong> unimodal distributions:
+\[
+\text{Mean} - \text{Mode} \approx 3 \times (\text{Mean} - \text{Median})
+\]</p>
+<ul><li><p><strong>Symmetric distribution:</strong> Mean $=$ Median $=$ Mode</p></li><li><p><strong>Positively skewed (right):</strong> Mode $&lt;$ Median $&lt;$ Mean</p></li><li><p><strong>Negatively skewed (left):</strong> Mean $&lt;$ Median $&lt;$ Mode</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p>Sizes sold in a day: {6, 7, 7, 8, 8, 8, 9, 9, 10}<br></p>
+<ul><li><p>Size 8 appears 3 times — most frequent</p></li><li><p>Mode $= 8$    (unimodal)</p></li><li><p>A store manager stocks <strong>more of size 8</strong> based on mode — not mean or median</p></li><li><p>Mode is the <strong>only</strong> valid central tendency for nominal data</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p>Ages: {18, 19, 20, 20, 21, 35, 36, 36, 37, 38}<br></p>
+<ul><li><p>Mode $= 20$ and $36$ — <strong>bimodal distribution</strong></p></li><li><p>Reveals two distinct groups: college students and working professionals</p></li><li><p>Mean $\approx 27.9$ — falls in a gap between both groups, <strong>misrepresenting</strong> either group</p></li><li><p>Bimodal patterns suggest the data may need to be <strong>split into subgroups</strong></p></li></ul></div></div>
+</section>
+</section>
+<section id="measuring-the-dispersion-of-data" class="content-section level-2">
+<h3 class="section-heading">Measuring the Dispersion of Data</h3>
+<div class="concept-box"><div class="box-title">Dispersion</div><div class="box-body"><p><strong>Dispersion</strong> measures how <strong>spread out</strong> the data values are around the central tendency.</p>
+<ul><li><p>Low dispersion $\rightarrow$ values clustered tightly around the mean</p></li><li><p>High dispersion $\rightarrow$ values scattered widely</p></li><li><p>Key measures: <strong>Range, Quartiles, IQR, Variance, Standard Deviation</strong></p></li></ul></div></div>
+<section id="range" class="content-section level-3">
+<h4 class="section-heading">Range</h4>
+<div class="concept-box"><div class="box-title">Range</div><div class="box-body"><p>\[
+\text{Range} = x_{\max} - x_{\min}
+\]</p>
+<ul><li><p>Simplest measure of spread</p></li><li><p>Extremely <strong>sensitive to outliers</strong> — one bad value distorts it completely</p></li><li><p>Gives no information about how values are distributed within the range</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p>Rainfall (mm): {10, 25, 40, 55, 70, 120}<br>
+\[
+\text{Range} = 120 - 10 = 110 \text{ mm}
+\]</p>
+<ul><li><p>If 120 is an outlier (measurement error), range is completely misleading</p></li><li><p>IQR and standard deviation give a more reliable picture</p></li></ul></div></div>
+</section>
+<section id="quartiles-and-iqr" class="content-section level-3">
+<h4 class="section-heading">Quartiles and IQR</h4>
+<div class="concept-box"><div class="box-title">Quartiles</div><div class="box-body"><p>Quartiles divide a <strong>sorted</strong> dataset into four equal parts:</p>
+<ul><li><p>$Q_1$ (25th percentile) — 25% of data lies below this value</p></li><li><p>$Q_2$ (50th percentile) — the <strong>median</strong></p></li><li><p>$Q_3$ (75th percentile) — 75% of data lies below this value</p></li></ul>
+<p>\[
+\text{IQR} = Q_3 - Q_1
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Outlier Detection using IQR</div><div class="box-body"><p>A value is considered an <strong>outlier</strong> if it falls outside the fences:
+\[
+\text{Lower fence} = Q_1 - 1.5 \times \text{IQR} \qquad \text{Upper fence} = Q_3 + 1.5 \times \text{IQR}
+\]
+Any value beyond these fences is flagged as a potential outlier.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p>Scores (sorted): {42, 55, 60, 65, 70, 75, 80, 88, 95}    $N=9$<br></p>
+<ul><li><p>$Q_2$ = 5th value $= 70$</p></li><li><p>$Q_1$ = median of lower half {42, 55, 60, 65} $= \dfrac{60+55}{2} = 57.5$</p></li><li><p>$Q_3$ = median of upper half {75, 80, 88, 95} $= \dfrac{80+88}{2} = 84$</p></li><li><p>$\text{IQR} = 84 - 57.5 = 26.5$</p></li><li><p>Lower fence $= 57.5 - 1.5(26.5) = 17.75$    Upper fence $= 84 + 1.5(26.5) = 123.75$</p></li><li><p>All values within fences — no outliers in this dataset</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p>Salaries (thousands): {30, 35, 38, 40, 42, 45, 48, 50, 200}<br></p>
+<ul><li><p>$Q_1 = 38$,    $Q_3 = 48$,    $\text{IQR} = 10$</p></li><li><p>Upper fence $= 48 + 1.5 \times 10 = 63$</p></li><li><p>Salary of 200 exceeds 63 — flagged as <strong>outlier</strong></p></li><li><p>Without IQR, range $= 170$ makes the spread look enormous; IQR $= 10$ reveals true spread</p></li></ul></div></div>
+</section>
+<section id="variance-and-standard-deviation" class="content-section level-3">
+<h4 class="section-heading">Variance and Standard Deviation</h4>
+<div class="concept-box"><div class="box-title">Variance and Standard Deviation</div><div class="box-body"><p><strong>Variance</strong> measures the average squared deviation from the mean:
+\[
+\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2
+\]
+<strong>Standard Deviation</strong> is the square root of variance — in the <strong>same units</strong> as the data:
+\[
+\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2}
+\]</p>
+<ul><li><p>Low $\sigma$ $\rightarrow$ values clustered near mean</p></li><li><p>High $\sigma$ $\rightarrow$ values spread widely</p></li><li><p><strong>Sensitive to outliers</strong> — squaring amplifies extreme deviations</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Sample vs Population</div><div class="box-body"><ul><li><p><strong>Population variance:</strong> divide by $N$</p></li><li><p><strong>Sample variance:</strong> divide by $N-1$ (Bessel's correction — avoids underestimation)
+\[
+s^2 = \frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2
+\]</p></li><li><p>In data mining, population formula is commonly used when entire dataset is available</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p>Temperatures ($^\circ$C): {20, 22, 24, 26, 28}    $\bar{x} = 24$<br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<p>\[
+\sigma^2 = \frac{16+4+0+4+16}{5} = \frac{40}{5} = 8 \qquad \sigma = \sqrt{8} \approx 2.83^\circ C
+\]
+Temperatures deviate on average by $2.83^\circ C$ from the mean of $24^\circ C$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p><strong>Batsman A</strong> scores: {45, 48, 50, 52, 55}    $\bar{x} = 50$<br>
+<strong>Batsman B</strong> scores: {10, 30, 50, 70, 90}    $\bar{x} = 50$<br></p>
+<ul><li><p>Both have the same mean: 50</p></li><li><p>$\sigma_A = \sqrt{\frac{(-5)^2+(-2)^2+0^2+2^2+5^2}{5}} = \sqrt{11.6} \approx 3.4$</p></li><li><p>$\sigma_B = \sqrt{\frac{(-40)^2+(-20)^2+0^2+20^2+40^2}{5}} = \sqrt{1200} \approx 34.6$</p></li><li><p>Batsman A is <strong>consistent</strong> (low $\sigma$); Batsman B is <strong>unpredictable</strong> (high $\sigma$)</p></li><li><p>Mean alone is <strong>completely insufficient</strong> to compare performance</p></li></ul></div></div>
+</section>
+</section>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Data Preprocessing &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Warehousing &amp; OLAP &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

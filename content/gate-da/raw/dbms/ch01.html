@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction — DBMS</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        leftouterjoin: "⟕",
+        rightouterjoin: "⟖",
+        fullouterjoin: "⟗"
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>DBMS</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#overview" class="toc-link" data-slug="overview">Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-dbms-and-roles" class="toc-link" data-slug="what-is-dbms-and-roles">What is DBMS and Roles</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#applications-of-dbms" class="toc-link" data-slug="applications-of-dbms">Applications of DBMS</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#advantages-over-file-processing-systems" class="toc-link" data-slug="advantages-over-file-processing-systems">Advantages Over File Processing Systems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-view" class="toc-link" data-slug="data-view">Data View</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#data-models" class="toc-link" data-slug="data-models">Data Models</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-abstraction" class="toc-link" data-slug="data-abstraction">Data Abstraction</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-independence" class="toc-link" data-slug="data-independence">Data Independence</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-schema-and-instance" class="toc-link" data-slug="database-schema-and-instance">Database Schema and Instance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-languages" class="toc-link" data-slug="database-languages">Database Languages</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#data-definition-language-ddl" class="toc-link" data-slug="data-definition-language-ddl">Data Definition Language (DDL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-manipulation-language" class="toc-link" data-slug="data-manipulation-language">Data Manipulation Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#data-control-language" class="toc-link" data-slug="data-control-language">Data Control Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#transaction-control-language" class="toc-link" data-slug="transaction-control-language">Transaction Control Language</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#database-engine-and-core-internal-components" class="toc-link" data-slug="database-engine-and-core-internal-components">Database Engine and Core Internal Components</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#database-engine-overview" class="toc-link" data-slug="database-engine-overview">Database Engine — Overview</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#storage-manager" class="toc-link" data-slug="storage-manager">Storage Manager</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#query-processor" class="toc-link" data-slug="query-processor">Query Processor</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#transaction-management" class="toc-link" data-slug="transaction-management">Transaction Management</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#database-and-application-architecture" class="toc-link" data-slug="database-and-application-architecture">Database and Application Architecture</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#two-tier-vs-three-tier-database-application-architecture" class="toc-link" data-slug="two-tier-vs-three-tier-database-application-architecture">Two-Tier vs Three-Tier Database Application Architecture</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: ER Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#entity-relationship-e-r-data-model" class="toc-link" data-slug="entity-relationship-e-r-data-model">Entity–Relationship (E–R) Data Model</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#symbols-used-in-er-diagrams" class="toc-link" data-slug="symbols-used-in-er-diagrams">Symbols used in ER Diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#components-of-er-diagram" class="toc-link" data-slug="components-of-er-diagram">Components of ER Diagram</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#entity-and-entity-sets" class="toc-link" data-slug="entity-and-entity-sets">Entity and Entity Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#weak-entity-set" class="toc-link" data-slug="weak-entity-set">Weak Entity Set</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#identifying-the-entity" class="toc-link" data-slug="identifying-the-entity">Identifying the Entity</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#relationship-sets" class="toc-link" data-slug="relationship-sets">Relationship Sets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#degree-or-arity-of-a-relationship-set" class="toc-link" data-slug="degree-or-arity-of-a-relationship-set">Degree (or arity) of a Relationship Set</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#attributes" class="toc-link" data-slug="attributes">Attributes</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#cardinality" class="toc-link" data-slug="cardinality">Cardinality</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#crow-s-foot-notation" class="toc-link" data-slug="crow-s-foot-notation">Crow's Foot Notation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#participation-constraints" class="toc-link" data-slug="participation-constraints">Participation Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Relational Model</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#structure-of-relational-databases" class="toc-link" data-slug="structure-of-relational-databases">Structure of Relational Databases</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#attribute-domains-atomicity-null-values" class="toc-link" data-slug="attribute-domains-atomicity-null-values">Attribute Domains, Atomicity &amp; NULL values</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#database-schema" class="toc-link" data-slug="database-schema">Database Schema</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#keys" class="toc-link" data-slug="keys">Keys</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#integrity-constraints" class="toc-link" data-slug="integrity-constraints">Integrity Constraints</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#schema-diagrams" class="toc-link" data-slug="schema-diagrams">Schema Diagrams</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="reducing-e-r-diagrams-to-relational-schema">Reducing E-R Diagrams to Relational Schema</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#rules-for-reducing-e-r-diagrams-to-relational-schema" class="toc-link" data-slug="rules-for-reducing-e-r-diagrams-to-relational-schema">Rules for Reducing E-R Diagrams to Relational Schema</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#converting-n-ary-relationships" class="toc-link" data-slug="converting-n-ary-relationships">Converting n-ary Relationships</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#solved-examples" class="toc-link" data-slug="solved-examples">Solved Examples</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Relational Algebra &amp; Tuple Calculus</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#relational-algebra" class="toc-link" data-slug="relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#selection-operation-sigma" class="toc-link" data-slug="selection-operation-sigma">Selection Operation ($\sigma$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#projection-operation-pi" class="toc-link" data-slug="projection-operation-pi">Projection Operation ($\Pi$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#composition-of-relational-operations" class="toc-link" data-slug="composition-of-relational-operations">Composition of Relational Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#the-cartesian-product-operation-times" class="toc-link" data-slug="the-cartesian-product-operation-times">The Cartesian-Product Operation ($\times$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#rename-operator-rho" class="toc-link" data-slug="rename-operator-rho">Rename Operator ($\rho$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assignment-operator-leftarrow" class="toc-link" data-slug="assignment-operator-leftarrow">Assignment Operator ($\leftarrow$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#join-operation-bowtie" class="toc-link" data-slug="join-operation-bowtie">Join Operation ($\bowtie$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#set-operations-cap-cup" class="toc-link" data-slug="set-operations-cap-cup">SET Operations ($\cap \cup -$)</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#division-operator" class="toc-link" data-slug="division-operator">Division Operator</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#operators-min-max-tuples-in-relational-algebra" class="toc-link" data-slug="operators-min-max-tuples-in-relational-algebra">Operators: Min/Max Tuples in Relational Algebra</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-on-relation-algebra" class="toc-link" data-slug="examples-on-relation-algebra">Examples on Relation Algebra</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#tuple-relational-calculus" class="toc-link" data-slug="tuple-relational-calculus">Tuple Relational Calculus</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Structured Query Language (SQL)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#sql-schema-creation-and-insertion" class="toc-link" data-slug="sql-schema-creation-and-insertion">SQL Schema Creation and Insertion</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#basic-data-type" class="toc-link" data-slug="basic-data-type">Basic Data Type</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-schema-definition" class="toc-link" data-slug="basic-schema-definition">Basic Schema Definition</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#data-insertion" class="toc-link" data-slug="data-insertion">Data Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-data-definition-modification-commands" class="toc-link" data-slug="sql-data-definition-modification-commands">SQL Data Definition / Modification Commands</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#delete" class="toc-link" data-slug="delete">DELETE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#update" class="toc-link" data-slug="update">UPDATE</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#alter" class="toc-link" data-slug="alter">ALTER</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#drop" class="toc-link" data-slug="drop">DROP</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#truncate" class="toc-link" data-slug="truncate">TRUNCATE</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#sql-query-and-basic-operations" class="toc-link" data-slug="sql-query-and-basic-operations">SQL Query and Basic Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#select-all-attributes" class="toc-link" data-slug="select-all-attributes">Select all Attributes (*)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#renaming-in-sql-as" class="toc-link" data-slug="renaming-in-sql-as">Renaming in SQL (AS)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#relational-operators-comparison-operators" class="toc-link" data-slug="relational-operators-comparison-operators">Relational Operators: Comparison Operators</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#arithmetic-operations" class="toc-link" data-slug="arithmetic-operations">Arithmetic Operations</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#basic-logical-operators-and-or" class="toc-link" data-slug="basic-logical-operators-and-or">Basic Logical Operators: AND OR</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#string-operations" class="toc-link" data-slug="string-operations">String Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#order-by" class="toc-link" data-slug="order-by">ORDER BY</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#between" class="toc-link" data-slug="between">BETWEEN</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#null-values" class="toc-link" data-slug="null-values">NULL Values</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#aggregate-functions" class="toc-link" data-slug="aggregate-functions">AGGREGATE FUNCTIONS</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#aggregation-and-null-values" class="toc-link" data-slug="aggregation-and-null-values">Aggregation and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#groups" class="toc-link" data-slug="groups">Groups</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#group-by-having" class="toc-link" data-slug="group-by-having">GROUP BY HAVING</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#group-by-and-null-values" class="toc-link" data-slug="group-by-and-null-values">GROUP BY and Null Values</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#joins" class="toc-link" data-slug="joins">Joins</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#queries-on-multiple-tables" class="toc-link" data-slug="queries-on-multiple-tables">Queries on Multiple Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#cartesian-product-or-cross-join" class="toc-link" data-slug="cartesian-product-or-cross-join">Cartesian Product or CROSS JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#rename-tables" class="toc-link" data-slug="rename-tables">Rename Tables</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#self-join" class="toc-link" data-slug="self-join">SELF JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inner-join" class="toc-link" data-slug="inner-join">INNER JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#natural-join" class="toc-link" data-slug="natural-join">NATURAL JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#left-outer-join" class="toc-link" data-slug="left-outer-join">LEFT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#right-outer-join" class="toc-link" data-slug="right-outer-join">RIGHT (OUTER) JOIN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#full-outer-join" class="toc-link" data-slug="full-outer-join">FULL (OUTER) JOIN</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#union" class="toc-link" data-slug="union">UNION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#intersection" class="toc-link" data-slug="intersection">INTERSECTION</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#except" class="toc-link" data-slug="except">EXCEPT</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#nested-queries" class="toc-link" data-slug="nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#set-membership-in-not-in" class="toc-link" data-slug="set-membership-in-not-in">Set Membership: IN &amp; NOT IN</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#set-comparison-some-any-all" class="toc-link" data-slug="set-comparison-some-any-all">Set Comparison: SOME, ANY &amp; ALL</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#test-empty-exists-not-exists" class="toc-link" data-slug="test-empty-exists-not-exists">Test Empty: EXISTS &amp; NOT EXISTS</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#subqueries-in-the-from-clause" class="toc-link" data-slug="subqueries-in-the-from-clause">Subqueries in the FROM Clause</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#the-with-clause-common-table-expressions" class="toc-link" data-slug="the-with-clause-common-table-expressions">The WITH Clause (Common Table Expressions)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Normalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#functional-dependencies" class="toc-link" data-slug="functional-dependencies">Functional Dependencies</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#types-of-functional-dependency" class="toc-link" data-slug="types-of-functional-dependency">Types of Functional Dependency</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#armstrong-s-axioms-inference-rules" class="toc-link" data-slug="armstrong-s-axioms-inference-rules">Armstrong’s axioms (Inference rules)</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#closure-of-attributes-finding-candidate-keys" class="toc-link" data-slug="closure-of-attributes-finding-candidate-keys">Closure of attributes &amp; Finding Candidate Keys</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#closure-of-an-attribute" class="toc-link" data-slug="closure-of-an-attribute">Closure of an Attribute</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#finding-candidate-keys" class="toc-link" data-slug="finding-candidate-keys">Finding Candidate Keys</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#canonical-cover" class="toc-link" data-slug="canonical-cover">Canonical Cover</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#equivalence-of-functional-dependencies" class="toc-link" data-slug="equivalence-of-functional-dependencies">Equivalence of Functional Dependencies</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#minimal-cover-of-functional-dependencies" class="toc-link" data-slug="minimal-cover-of-functional-dependencies">Minimal Cover of Functional Dependencies</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#decomposition" class="toc-link" data-slug="decomposition">Decomposition</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#lossless-lossy-join-decomposition" class="toc-link" data-slug="lossless-lossy-join-decomposition">Lossless/Lossy Join Decomposition</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#the-chase-algorithm" class="toc-link" data-slug="the-chase-algorithm">The Chase Algorithm</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#dependency-preserving-decomposition" class="toc-link" data-slug="dependency-preserving-decomposition">Dependency Preserving Decomposition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal-forms" class="toc-link" data-slug="normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#first-normal-form-1nf" class="toc-link" data-slug="first-normal-form-1nf">First Normal Form (1NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#second-normal-form-2nf" class="toc-link" data-slug="second-normal-form-2nf">Second Normal Form (2NF)</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#procedure-to-decompose-a-relation-into-2nf" class="toc-link" data-slug="procedure-to-decompose-a-relation-into-2nf">Procedure to Decompose a Relation into 2NF</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#third-normal-form-3nf" class="toc-link" data-slug="third-normal-form-3nf">Third Normal Form (3NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#boyce-codd-normal-form-bcnf" class="toc-link" data-slug="boyce-codd-normal-form-bcnf">Boyce-Codd Normal Form (BCNF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multi-valued-dependency-and-fourth-normal-form-4nf" class="toc-link" data-slug="multi-valued-dependency-and-fourth-normal-form-4nf">Multi-valued Dependency and Fourth Normal Form (4NF)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#join-dependency-and-fifth-normal-form-5nf" class="toc-link" data-slug="join-dependency-and-fifth-normal-form-5nf">Join Dependency and Fifth Normal Form (5NF)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Data Organization and Indexing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#record-organization" class="toc-link" data-slug="record-organization">Record Organization</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#records-and-record-types" class="toc-link" data-slug="records-and-record-types">Records and Record Types</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#files-fixed-length-records-and-variable-length-records" class="toc-link" data-slug="files-fixed-length-records-and-variable-length-records">Files, Fixed-Length Records, and Variable-Length Records</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#record-blocking-and-spanned-versus-unspanned-records" class="toc-link" data-slug="record-blocking-and-spanned-versus-unspanned-records">Record Blocking and Spanned versus Unspanned Records</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#organization-of-records-in-files" class="toc-link" data-slug="organization-of-records-in-files">Organization of Records in Files</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#indexing" class="toc-link" data-slug="indexing">Indexing</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#types-of-indexes" class="toc-link" data-slug="types-of-indexes">Types of Indexes</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#ordered-indexing" class="toc-link" data-slug="ordered-indexing">Ordered Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#multilevel-indexing" class="toc-link" data-slug="multilevel-indexing">Multilevel Indexing</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dynamic-multilevel-indexing" class="toc-link" data-slug="dynamic-multilevel-indexing">Dynamic Multilevel Indexing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas" class="toc-link" data-slug="b-trees-structure-properties-and-formulas">B Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure" class="toc-link" data-slug="structure">Structure</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion" class="toc-link" data-slug="insertion">Insertion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#b-trees-structure-properties-and-formulas-2" class="toc-link" data-slug="b-trees-structure-properties-and-formulas-2">B+ Trees: Structure, Properties and Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#structure-of-b-trees" class="toc-link" data-slug="structure-of-b-trees">Structure of B+ Trees</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#insertion-in-b-trees" class="toc-link" data-slug="insertion-in-b-trees">Insertion in B+ Trees</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 7</div><h1>Introduction</h1></div>
+<section id="overview" class="content-section level-1">
+<h2 class="section-heading">Overview</h2>
+
+<section id="what-is-dbms-and-roles" class="content-section level-2">
+<h3 class="section-heading">What is DBMS and Roles</h3>
+<div class="concept-box"><div class="box-title">DBMS</div><div class="box-body"><p>A <strong>database-management system (DBMS)</strong> is a collection of <strong>interrelated data</strong> along with a set of <strong>programs</strong> used to <strong>access</strong> those data.  
+The collection of data, commonly called the <strong>database</strong>, stores <strong>information relevant to an enterprise</strong>.  
+The primary objective of a <strong>DBMS</strong> is to provide a <strong>convenient</strong> and <strong>efficient</strong> way to <strong>store</strong> and <strong>retrieve database information</strong>.</p></div></div>
+<ul><li><p>Database systems are designed to manage <strong>large volumes of information</strong>.</p></li><li><p>Data management involves <strong>defining storage structures</strong> for information.</p></li><li><p>It also includes providing <strong>mechanisms for data manipulation</strong>.</p></li><li><p>A database system must ensure the <strong>safety and reliability</strong> of stored data.</p></li><li><p>Data protection must be maintained even during <strong>system crashes</strong>.</p></li><li><p>The system must prevent <strong>unauthorized access</strong> to information.</p></li><li><p>When data are shared among multiple users, the system must avoid
+    <strong>anomalous and inconsistent results</strong>.</p></li></ul>
+</section>
+<section id="applications-of-dbms" class="content-section level-2">
+<h3 class="section-heading">Applications of DBMS</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Applications</div><div class="box-body"><ol><li><p><strong>Banking Systems</strong> <br>
+    Databases store customer information, account details, transactions, loans, and credit records, ensuring data consistency, security, and concurrent access.</p></li><li><p><strong>Airline Reservation Systems</strong> <br>
+    Database systems manage flight schedules, seat availability, passenger details, bookings, and cancellations while preventing double booking.</p></li><li><p><strong>University and Education Systems</strong> <br>
+    Databases maintain student records, course registrations, grades, attendance, and faculty data, supporting multiple users.</p></li><li><p><strong>E-commerce Applications</strong> <br>
+    Online platforms use databases to handle product catalogs, customer profiles, orders, payments, and inventory management.</p></li><li><p><strong>Hospital and Healthcare Systems</strong> <br>
+    Databases store patient records, medical histories, prescriptions, diagnostic reports, and billing information with strict access control.</p></li><li><p><strong>Telecommunication Systems</strong> <br>
+    Database systems manage call detail records, customer plans, billing data, and network usage at very large scale.</p></li><li><p><strong>Social Media Platforms</strong> <br>
+    Databases store user profiles, posts, comments, likes, messages, and relationships, enabling real-time data access.</p></li><li><p><strong>Library Management Systems</strong> <br>
+    Databases track books, authors, issued and returned books, members, and fines efficiently.</p></li><li><p><strong>Government and E-Governance Systems</strong> <br>
+    Databases manage citizen records, tax data, land records, voting information, and public service delivery systems.</p></li><li><p><strong>Manufacturing and Inventory Systems</strong> <br>
+    Databases monitor production data, inventory levels, suppliers, orders, and supply chain operations.</p></li></ol></div></div>
+</section>
+<section id="advantages-over-file-processing-systems" class="content-section level-2">
+<h3 class="section-heading">Advantages Over File Processing Systems</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Advantages of DBMS</div><div class="box-body"><ul><li><p><strong>Data Redundancy and Inconsistency</strong> <br>
+In a file-processing environment, different application programs are developed
+independently over time. As a result, the same data may be stored in multiple files.
+For example, a student enrolled in both the Music and Mathematics departments may
+have personal details stored in two separate files.  
+If the storage required for one student record is $2$ KB and it is duplicated in
+$3$ files, the total storage becomes $6$ KB. If one copy is updated while others are
+not, the system enters an inconsistent state.</p></li><li><p><strong>Difficulty in Accessing Data</strong> <br>
+File-processing systems do not support flexible queries. If a clerk needs a list of
+students living in a specific postal-code area, and no such program exists, the
+options are to manually filter data or write a new program.  
+For example, extracting $500$ relevant records from a file of $10{,}000$ students
+requires scanning the entire file, leading to inefficient data access.</p></li><li><p><strong>Data Isolation</strong> <br>
+Data is scattered across multiple files with different formats, making integration
+difficult.  
+For instance, combining student academic data stored in one file with fee details
+stored in another requires custom programs, increasing complexity and development
+time.</p></li><li><p><strong>Integrity Problems</strong> <br>
+Integrity constraints must be enforced through application code.  
+For example, consider a department account balance that must never fall below
+$\$0$. If an account has a balance of $$2000$, a withdrawal of $$2500$ should be
+disallowed. In file systems, such checks must be implemented in every relevant
+program, making updates and maintenance difficult.</p></li><li><p><strong>Atomicity Problems</strong> <br>
+Operations must be executed completely or not at all.  
+Consider a fund transfer of $\$500$ from account $A$ to account $B$:
+\[
+A = 3000,\quad B = 2000
+\]
+After debit:
+\[
+A = 2500
+\]
+If a system failure occurs before crediting $B$, the database becomes inconsistent.
+Ensuring atomicity is difficult in file-processing systems.</p></li><li><p><strong>Concurrent-Access Anomalies</strong> <br>
+Simultaneous data access by multiple users can lead to incorrect results.  
+For example, if account $A$ has a balance of $\$10{,}000$ and two withdrawals of
+$$500$ and $$100$ occur concurrently, both programs may read the same initial
+balance and write back $$9500$ and $$9900$. The correct balance should be:
+\[
+10{,}000 - 500 - 100 = 9400
+\]</p></li><li><p><strong>Security Problems</strong> <br>
+File-processing systems lack fine-grained access control.  
+For instance, payroll staff may need access only to salary data, not academic
+records. Since access control is embedded in individual programs, enforcing
+security policies consistently becomes difficult.</p></li></ul></div></div>
+</section>
+</section>
+<section id="data-view" class="content-section level-1">
+<h2 class="section-heading">Data View</h2>
+<p>A <strong>database system</strong> consists of a collection of <strong>interrelated data</strong> along with a set of <strong>programs</strong> that enable users to <strong>access</strong> and <strong>modify</strong> this data.  
+One of the primary objectives of a <strong>database system</strong> is to provide users with a <strong>data view</strong>—an <strong>abstract representation</strong> of the information—so that the system <strong>hides the internal details</strong> of how the data is <strong>stored</strong> and <strong>managed</strong>.</p>
+<section id="data-models" class="content-section level-2">
+<h3 class="section-heading">Data Models</h3>
+<div class="concept-box"><div class="box-title">Data Model</div><div class="box-body"><p>The foundation of a <strong>database</strong> is its <strong>data model</strong>, which provides a set of <strong>conceptual tools</strong> to describe the <strong>data</strong>, define the <strong>relationships</strong> among data elements, capture the <strong>semantics</strong> of the data, and specify <strong>constraints</strong> to maintain consistency.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Classification of Data Models</div><div class="box-body"><p><strong>Data models</strong> can be broadly categorized into four types:</p>
+<ul><li><p><strong>Relational Model</strong> <br>
+The <strong>relational model</strong> organizes data and the relationships among data using a collection of <strong>tables</strong> (also called <strong>relations</strong>). Each table consists of multiple <strong>columns</strong> (attributes), and each column has a unique name. The database is structured as <strong>fixed-format records</strong>, where each record corresponds to a row in the table. The relational model is a type of <strong>record-based model</strong> and is the most widely adopted model; the majority of modern database systems are based on it.</p></li><li><p><strong>Entity-Relationship (E-R) Model</strong> <br>
+The <strong>E-R model</strong> represents data using <strong>entities</strong>—objects or things in the real world that are distinguishable from one another—and the <strong>relationships</strong> between these entities. This model is extensively used in <strong>database design</strong> to conceptually structure data.</p></li><li><p><strong>Semi-Structured Data Model</strong> <br>
+The <strong>semi-structured model</strong> allows individual data items of the same type to have <strong>different sets of attributes</strong>, unlike relational or E-R models where all items of a type share the same attributes. Common formats include <strong>JSON</strong> and <strong>XML</strong>, which are widely used for representing semi-structured data.</p></li><li><p><strong>Object-Based Data Model</strong> <br>
+With the rise of <strong>object-oriented programming</strong> (e.g., Java, C++, C#), databases evolved to support <strong>object-oriented concepts</strong>. In this model, <strong>objects</strong> can be stored in the database along with their <strong>methods</strong>, supporting <strong>encapsulation</strong> and <strong>object identity</strong>. Modern relational databases often integrate object-oriented features, effectively extending the relational model with objects and procedures stored in the database.</p></li></ul></div></div>
+</section>
+<section id="data-abstraction" class="content-section level-2">
+<h3 class="section-heading">Data Abstraction</h3>
+<div class="concept-box"><div class="box-title">Data Abstraction</div><div class="box-body"><p>For a <strong>database system</strong> to be practical and effective, it must be able to <strong>retrieve data efficiently</strong>.  
+To achieve this <strong>efficiency</strong>, developers employ <strong>complex data structures</strong> to represent data internally.  
+However, since many <strong>users</strong> are not computer experts, the system <strong>hides this complexity</strong> using multiple <strong>levels of data abstraction</strong>, simplifying the way users interact with the database.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Levels of Data Abstraction</div><div class="box-body"><p>Database systems use multiple <strong>levels of data abstraction</strong> to simplify user interaction while hiding complexity. These levels are:</p>
+<ul><li><p><strong>Physical Level or Internal</strong> <br>
+This is the <strong>lowest level of abstraction</strong> that describes <strong>how data are physically stored</strong>.  
+It details the <strong>complex low-level data structures</strong> used to manage information efficiently.</p></li><li><p><strong>Logical Level or Conceptual</strong> <br>
+The <strong>middle level of abstraction</strong> specifies <strong>what data are stored</strong> and the <strong>relationships among them</strong>.  
+It uses <strong>simplified structures</strong> to represent the database while hiding the underlying physical complexity, providing <strong>physical data independence</strong>.  
+<strong>Database administrators</strong> primarily interact with this level to determine which information is stored.</p></li><li><p><strong>View Leve or Externall</strong> <br>
+The <strong>highest level of abstraction</strong> presents <strong>only the portion of the database relevant to a user or application</strong>.  
+It simplifies user access and interaction by hiding unnecessary details.  
+A database can provide <strong>multiple views</strong> tailored for different users’ needs.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div></div></div>
+</section>
+<section id="data-independence" class="content-section level-2">
+<h3 class="section-heading">Data Independence</h3>
+<div class="concept-box"><div class="box-title">Data Independence</div><div class="box-body"><p><strong>Data Independence</strong> is the ability of a database system to <strong>modify the schema at one level</strong> of abstraction 
+without affecting the schema at the next higher level.</p>
+<p>It ensures that changes in <strong>storage details</strong> or <strong>logical structure</strong> do not require rewriting application programs.</p>
+<p>Data independence is a key advantage of a <strong>DBMS</strong> over traditional file systems.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Types of Data Independence</div><div class="box-body"><p>There are two types of data independence:</p>
+<ul><li><p><strong>Physical Data Independence</strong> <br>
+The ability to change the <strong>internal (physical) schema</strong> without changing the <strong>conceptual schema</strong>.  
+It hides changes in storage structure from users.</p>
+<p><strong>Example:</strong>  
+Changing file organization from <em>heap file</em> to <em>B+ tree index</em> 
+or adding an index on <code>RollNo</code> does not affect the logical structure of the table.</p></li><li><p><strong>Logical Data Independence</strong> <br>
+The ability to change the <strong>conceptual schema</strong> without changing the <strong>external (view) schema</strong>.  
+It hides changes in logical structure from users.</p>
+<p><strong>Example:</strong>  
+Adding a new attribute <code>Email</code> to the <code>Student</code> table does not affect users 
+who only access <code>Name</code> and <code>RollNo</code>.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 1: Example Illustrating Data Independence</div><div class="box-body"><p>Consider a database storing student information:</p>
+<p><strong>Conceptual Schema:</strong></p>
+<div class="code-box"><pre><code>Student(RollNo, Name, Department, CGPA)</code></pre></div>
+<p><strong>View for Faculty:</strong></p>
+<div class="code-box"><pre><code>Student(RollNo, Name, CGPA)</code></pre></div>
+<p><strong>View for Accounts Section:</strong></p>
+<div class="code-box"><pre><code>Student(RollNo, Name)</code></pre></div>
+<p><strong>Physical Change:</strong>  
+Suppose the database administrator creates a <strong>B+ tree index</strong> on <code>RollNo</code>.  
+This change affects only the <strong>physical level</strong>.  
+Neither the conceptual schema nor the user views change.  
+This is <strong>Physical Data Independence</strong>.</p>
+<p><strong>Logical Change:</strong>  
+Suppose a new attribute <code>Email</code> is added:</p>
+<div class="code-box"><pre><code>Student(RollNo, Name, Department, CGPA, Email)</code></pre></div>
+<p>If faculty and accounts views remain unchanged,  
+this demonstrates <strong>Logical Data Independence</strong>.</p></div></div>
+</section>
+<section id="database-schema-and-instance" class="content-section level-2">
+<h3 class="section-heading">Database Schema and Instance</h3>
+<div class="concept-box"><div class="box-title">Schema and Instance</div><div class="box-body"><p>A <strong>database</strong> is dynamic, changing over time as <strong>information is inserted</strong> or <strong>deleted</strong>.  
+The <strong>collection of data</strong> stored in the database at a particular moment is called an <strong>instance</strong> of the database.  
+The <strong>overall design</strong> of the database is called the <strong>database schema</strong>.</p></div></div>
+<p>This concept can be understood by analogy with a <strong>program</strong> in a programming language:</p>
+<ul><li><p>The <strong>database schema</strong> corresponds to the <strong>variable declarations</strong> and their <strong>types</strong> in a program.</p></li><li><p>The <strong>instance of the database</strong> corresponds to the <strong>values of the variables</strong> at a particular point in time.</p></li></ul>
+<div class="concept-box-alt"><div class="box-title">Different Schema</div><div class="box-body"><p>Database systems can have multiple <strong>schemas</strong>, organized according to the <strong>levels of abstraction</strong>:</p>
+<ul><li><p><strong>Physical Schema:</strong> Describes the database design at the <strong>physical level</strong>.</p></li><li><p><strong>Logical Schema:</strong> Describes the database design at the <strong>logical level</strong>. This is the most important schema for <strong>application programs</strong>, as programmers construct applications using the logical schema.</p></li><li><p><strong>View Schemas (Subschemas):</strong> Describe <strong>different views</strong> of the database at the <strong>view level</strong>.</p></li></ul></div></div>
+<p>The <strong>physical schema</strong> is hidden beneath the logical schema and can usually be modified without affecting application programs.  
+Application programs are said to have <strong>physical data independence</strong> if they do not depend on the physical schema, meaning they do not need to be rewritten when the physical schema changes.</p>
+</section>
+<section id="database-languages" class="content-section level-2">
+<h3 class="section-heading">Database Languages</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <strong>database system</strong> supports multiple query and control languages:</p>
+<ul><li><p>A <strong>Data-Definition Language (DDL)</strong> is used to define the 
+    <strong>structure and schema</strong> of the database.</p></li><li><p>A <strong>Data-Manipulation Language (DML)</strong> is used to 
+    <strong>retrieve</strong>, <strong>insert</strong>, <strong>delete</strong>, and 
+    <strong>modify</strong> data.</p></li><li><p>A <strong>Data-Control Language (DCL)</strong> is used to 
+    <strong>grant and revoke access permissions</strong> on database objects.</p></li><li><p>A <strong>Transaction-Control Language (TCL)</strong> is used to 
+    <strong>manage transactions</strong> and control changes using 
+    <strong>commit, rollback, and savepoints</strong>.</p></li></ul></div></div>
+<section id="data-definition-language-ddl" class="content-section level-3">
+<h4 class="section-heading">Data Definition Language (DDL)</h4>
+<div class="concept-box"><div class="box-title">DDL</div><div class="box-body"><p>A <strong>Data-Definition Language (DDL)</strong> is used to define the
+    <strong>structure of a database</strong>, called the <strong>database schema</strong>.</p>
+<ul><li><p>Using DDL, we specify:</p>
+<ul><li><p>tables (relations),</p></li><li><p>attributes and their data types,</p></li><li><p>relationships among tables,</p></li><li><p>constraints on data.</p></li></ul></li><li><p>DDL is also used to describe <strong>storage structures</strong> and
+    <strong>access methods</strong> through a specialized form called
+    <strong>data storage and definition language</strong>.</p></li><li><p>These statements define <strong>physical implementation details</strong>,
+    which are normally <strong>hidden from users</strong>.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Data Dictionary</div><div class="box-body"><ul><li><p>Execution of DDL statements produces <strong>metadata</strong>.</p></li><li><p>Metadata is stored in the <strong>data dictionary</strong>.</p></li><li><p>The data dictionary contains:</p>
+<ul><li><p>schema definitions,</p></li><li><p>constraints,</p></li><li><p>storage details,</p></li><li><p>authorization information.</p></li></ul></li><li><p>It is maintained <strong>only by the database system</strong>.</p></li><li><p>The system consults it before accessing or modifying data.</p></li></ul></div></div>
+</section>
+<section id="data-manipulation-language" class="content-section level-3">
+<h4 class="section-heading">Data Manipulation Language</h4>
+<div class="concept-box"><div class="box-title">DML</div><div class="box-body"><ul><li><p>A <strong>Data-Manipulation Language (DML)</strong> allows users to
+    <strong>access and modify data</strong> stored in a database.</p></li><li><p>DML operations are performed on data that are organized
+    according to a <strong>data model</strong>.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Types of Data Access</div><div class="box-body"><ul><li><p><strong>Retrieval</strong> of existing data from the database.</p></li><li><p><strong>Insertion</strong> of new data into the database.</p></li><li><p><strong>Deletion</strong> of existing data from the database.</p></li><li><p><strong>Modification</strong> (update) of stored data.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Categories of DML</div><div class="box-body"><ul><li><p><strong>Procedural DML</strong></p>
+<ul><li><p>User specifies <strong>what data</strong> are required.</p></li><li><p>User also specifies <strong>how to retrieve</strong> those data.</p></li><li><p>Emphasizes the <strong>procedure or steps</strong> of execution.</p></li></ul></li><li><p><strong>Declarative DML</strong> (Nonprocedural DML)</p>
+<ul><li><p>User specifies only <strong>what data</strong> are needed.</p></li><li><p>User does <strong>not specify how</strong> to obtain the data.</p></li><li><p>The database system decides the <strong>execution strategy</strong>.</p></li></ul></li></ul>
+<p><strong class="inline-subheading">Comparison</strong></p>
+<ul><li><p>Declarative DMLs are generally <strong>easier to learn and use</strong>.</p></li><li><p>They reduce the burden on users by hiding retrieval details.</p></li><li><p>The database system must determine an <strong>efficient access plan</strong>.</p></li></ul></div></div>
+</section>
+<section id="data-control-language" class="content-section level-3">
+<h4 class="section-heading">Data Control Language</h4>
+<div class="concept-box"><div class="box-title">DCL</div><div class="box-body"><ul><li><p>A <strong>Data Control Language (DCL)</strong> is used to 
+    <strong>control access and permissions</strong> on database objects.</p></li><li><p>DCL commands define <strong>who can access</strong> which data and 
+    <strong>what operations</strong> they are allowed to perform.</p></li><li><p>It is mainly related to <strong>security and authorization</strong>.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Types of Access Control Operations</div><div class="box-body"><ul><li><p><strong>Granting</strong> privileges to users or roles.</p></li><li><p><strong>Revoking</strong> privileges from users or roles.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Common DCL Commands with Examples</div><div class="box-body"><ul><li><p><strong>GRANT</strong> — gives privileges</p>
+<div class="code-box"><pre><code>GRANT SELECT, INSERT ON student TO user1;</code></pre></div></li><li><p><strong>REVOKE</strong> — removes privileges</p>
+<div class="code-box"><pre><code>REVOKE INSERT ON student FROM user1;</code></pre></div></li></ul></div></div>
+</section>
+<section id="transaction-control-language" class="content-section level-3">
+<h4 class="section-heading">Transaction Control Language</h4>
+<div class="concept-box"><div class="box-title">TCL</div><div class="box-body"><ul><li><p>A <strong>Transaction Control Language (TCL)</strong> manages 
+    <strong>transactions</strong> in a database.</p></li><li><p>TCL ensures <strong>consistency and integrity</strong> of data by 
+    controlling transaction execution.</p></li><li><p>It works closely with the <strong>ACID properties</strong> of transactions.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Transaction Control Operations</div><div class="box-body"><ul><li><p><strong>Commit</strong> — permanently saves changes.</p></li><li><p><strong>Rollback</strong> — undoes changes since last commit.</p></li><li><p><strong>Savepoint</strong> — creates intermediate rollback points.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Common TCL Commands with Examples</div><div class="box-body"><ul><li><p><strong>COMMIT</strong> — make changes permanent</p>
+<div class="code-box"><pre><code>UPDATE account SET balance = balance - 500 WHERE acc_no = 101;
+COMMIT;</code></pre></div></li><li><p><strong>ROLLBACK</strong> — undo uncommitted changes</p>
+<div class="code-box"><pre><code>DELETE FROM orders WHERE order_id = 9001;
+ROLLBACK;</code></pre></div></li><li><p><strong>SAVEPOINT</strong> — set a checkpoint</p>
+<div class="code-box"><pre><code>SAVEPOINT sp1;
+UPDATE employee SET salary = salary * 1.1;
+ROLLBACK TO sp1;</code></pre></div></li></ul></div></div>
+</section>
+</section>
+</section>
+<section id="database-engine-and-core-internal-components" class="content-section level-1">
+<h2 class="section-heading">Database Engine and Core Internal Components</h2>
+
+<section id="database-engine-overview" class="content-section level-2">
+<h3 class="section-heading">Database Engine — Overview</h3>
+<div class="concept-box"><div class="box-title">Database Engine</div><div class="box-body"><ul><li><p>The <strong>database engine</strong> is the core execution layer of a DBMS.</p></li><li><p>It is responsible for:</p>
+<ul><li><p>executing queries,</p></li><li><p>managing stored data,</p></li><li><p>enforcing rules and constraints,</p></li><li><p>handling transactions safely.</p></li></ul></li><li><p>It acts as the bridge between:</p>
+<ul><li><p>user queries and application programs, and</p></li><li><p>the actual data stored on disk.</p></li></ul></li><li><p>Internally, the database engine mainly consists of:</p>
+<ul><li><p><strong>Storage Manager</strong></p></li><li><p><strong>Query Processor</strong></p></li><li><p><strong>Transaction Manager</strong></p></li></ul></li></ul></div></div>
+</section>
+<section id="storage-manager" class="content-section level-2">
+<h3 class="section-heading">Storage Manager</h3>
+<div class="concept-box"><div class="box-title">Storage Manager</div><div class="box-body"><ul><li><p>The <strong>storage manager</strong> connects high-level database operations with
+    low-level physical storage.</p></li><li><p>It serves as the interface between:</p>
+<ul><li><p>application programs and queries, and</p></li><li><p>the operating system file system.</p></li></ul></li><li><p>Raw data are stored on disk using OS file services.</p></li><li><p>The storage manager converts <strong>DML commands</strong> into
+    <strong>low-level file operations</strong>.</p></li><li><p>It is responsible for:</p>
+<ul><li><p>storing data,</p></li><li><p>retrieving data,</p></li><li><p>updating data efficiently.</p></li></ul></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Main Components of Storage Manager</div><div class="box-body"><ul><li><p><strong>Authorization and Integrity Manager</strong></p>
+<ul><li><p>Verifies user access rights.</p></li><li><p>Enforces integrity constraints.</p></li><li><p>Prevents unauthorized data access or invalid updates.</p></li></ul></li><li><p><strong>Transaction Manager</strong></p>
+<ul><li><p>Ensures database correctness during failures.</p></li><li><p>Coordinates concurrent operations safely.</p></li><li><p>Prevents conflicting updates.</p></li></ul></li><li><p><strong>File Manager</strong></p>
+<ul><li><p>Controls disk space allocation.</p></li><li><p>Maintains physical file structures.</p></li><li><p>Organizes how records are stored on disk.</p></li></ul></li><li><p><strong>Buffer Manager</strong></p>
+<ul><li><p>Moves data between disk and main memory.</p></li><li><p>Caches frequently used data in RAM.</p></li><li><p>Decides which pages remain in memory and which are replaced.</p></li><li><p>Enables databases larger than RAM to be processed efficiently.</p></li></ul></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Data Structures Managed by Storage Layer</div><div class="box-body"><ul><li><p><strong>Data Files</strong></p>
+<ul><li><p>Store the actual database records.</p></li></ul></li><li><p><strong>Data Dictionary (Metadata Repository)</strong></p>
+<ul><li><p>Stores schema definitions.</p></li><li><p>Contains structure and constraint information.</p></li><li><p>Used internally by the DBMS.</p></li></ul></li><li><p><strong>Indexes</strong></p>
+<ul><li><p>Provide fast lookup of records.</p></li><li><p>Store pointers to matching data rows.</p></li><li><p>Example: index on EmployeeID speeds up search.</p></li></ul></li></ul></div></div>
+</section>
+<section id="query-processor" class="content-section level-2">
+<h3 class="section-heading">Query Processor</h3>
+<div class="concept-box"><div class="box-title">Query Processor</div><div class="box-body"><ul><li><p>The <strong>query processor</strong> handles query interpretation and execution.</p></li><li><p>It converts user queries into efficient execution steps.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Query Processor Components</div><div class="box-body"><ul><li><p><strong>DDL Interpreter</strong></p>
+<ul><li><p>Processes schema definition commands.</p></li><li><p>Updates metadata in the data dictionary.</p></li></ul></li><li><p><strong>DML Compiler</strong></p>
+<ul><li><p>Translates queries into low-level execution plans.</p></li><li><p>Generates multiple alternative plans.</p></li><li><p>Performs <strong>query optimization</strong>.</p></li><li><p>Chooses the lowest-cost execution strategy.</p></li></ul></li><li><p><strong>Query Evaluation Engine</strong></p>
+<ul><li><p>Executes the selected execution plan.</p></li><li><p>Runs low-level database operations.</p></li></ul></li></ul></div></div>
+</section>
+<section id="transaction-management" class="content-section level-2">
+<h3 class="section-heading">Transaction Management</h3>
+<div class="concept-box"><div class="box-title">Transaction Management</div><div class="box-body"><ul><li><p>A <strong>transaction</strong> is a set of database operations forming one logical task.</p></li><li><p>Example: transfer money from Account A to Account B.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Transaction Execution Rules</div><div class="box-body"><ul><li><p>Each transaction must preserve database correctness.</p></li><li><p>Temporary inconsistency may occur during execution.</p></li><li><p>Final committed state must be consistent.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Essential Transaction Properties (ACID)</div><div class="box-body"><ul><li><p><strong>Atomicity</strong></p>
+<ul><li><p>A transaction executes completely or not at all.</p></li><li><p>If any step fails, all prior changes are rolled back.</p></li><li><p>No partial updates are allowed.</p></li></ul></li><li><p><strong>Consistency</strong></p>
+<ul><li><p>A transaction must preserve all integrity constraints.</p></li><li><p>Database moves only from one valid state to another valid state.</p></li><li><p>Rules, keys, and constraints must remain satisfied after commit.</p></li></ul></li><li><p><strong>Isolation</strong></p>
+<ul><li><p>Concurrent transactions must not interfere with each other.</p></li><li><p>Intermediate results of one transaction are hidden from others.</p></li><li><p>Effect is equivalent to serial (one-by-one) execution.</p></li></ul></li><li><p><strong>Durability</strong></p>
+<ul><li><p>Once a transaction is committed, its results are permanent.</p></li><li><p>Changes survive system crashes and power failures.</p></li><li><p>Achieved using logs and recovery mechanisms.</p></li></ul></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Transaction Manager Structure</div><div class="box-body"><ul><li><p>Transaction manager consists of:</p>
+<ul><li><p><strong>Concurrency-control manager</strong></p></li><li><p><strong>Recovery manager</strong></p></li></ul></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Failure Handling</div><div class="box-body"><ul><li><p>If a transaction fails:</p>
+<ul><li><p>its effects must be completely undone.</p></li><li><p>database must be restored to the earlier state.</p></li></ul></li><li><p>This is handled by the <strong>recovery manager</strong>.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Concurrency Control</div><div class="box-body"><ul><li><p>Multiple transactions may run simultaneously.</p></li><li><p>Concurrent updates can cause conflicts.</p></li><li><p>The <strong>concurrency-control manager</strong>:</p>
+<ul><li><p>coordinates concurrent execution,</p></li><li><p>prevents data inconsistency,</p></li><li><p>enforces isolation.</p></li></ul></li></ul></div></div>
+</section>
+<section id="database-and-application-architecture" class="content-section level-2">
+<h3 class="section-heading">Database and Application Architecture</h3>
+<p>The figure shows the internal structure of a Database Management Systems(DBMS) and how different types of users interact with database components through multiple processing layers.</p>
+<div class="concept-box-alt"><div class="box-title">Types of Users</div><div class="box-body"><ul><li><p><strong>Naive Users</strong> — use predefined interfaces (forms, web apps, teller screens).</p></li><li><p><strong>Application Programmers</strong> — write application programs using DML calls.</p></li><li><p><strong>Sophisticated Users (Analysts)</strong> — directly use query tools for analysis.</p></li><li><p><strong>Database Administrators (DBA)</strong> — use administration tools for control and maintenance.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"><div class="figure-caption"><br>
+    <strong>Database Architecture</strong></div></div>
+<div class="concept-box-alt"><div class="box-title">User Access Paths</div><div class="box-body"><ul><li><p>Naive users → Application Interfaces</p></li><li><p>Programmers → Application Programs</p></li><li><p>Analysts → Query Tools</p></li><li><p>DBA → Administration Tools</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Compilation Layer</div><div class="box-body"><ul><li><p>Application programs are processed by the <strong>Compiler and Linker</strong>.</p></li><li><p>This produces <strong>Object Code</strong>.</p></li><li><p>DML queries inside programs are extracted for further processing.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Query Processing Layer</div><div class="box-body"><ul><li><p><strong>DDL Interpreter</strong> — processes schema definitions and updates metadata.</p></li><li><p><strong>DML Compiler and Organizer</strong> — parses and optimizes DML queries.</p></li><li><p>Output is given to the <strong>Query Evaluation Engine</strong>.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Query Processor Components</div><div class="box-body"><ul><li><p><strong>Query Evaluation Engine</strong> — executes optimized queries.</p></li><li><p><strong>Buffer Manager</strong> — manages data pages in main memory.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Storage Manager Layer</div><div class="box-body"><ul><li><p><strong>Authorization &amp; Integrity Manager</strong> — checks permissions and constraints.</p></li><li><p><strong>Transaction Manager</strong> — ensures ACID properties.</p></li><li><p><strong>File Manager</strong> — handles file organization on disk.</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Disk Storage Contents</div><div class="box-body"><ul><li><p>Actual <strong>Data Tables</strong></p></li><li><p><strong>Indexes</strong> for fast access</p></li><li><p><strong>Data Dictionary</strong> (metadata)</p></li><li><p><strong>Statistical Data</strong> for query optimization</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">End-to-End Workflow</div><div class="box-body"><ul><li><p>User submits request (query/program/interface).</p></li><li><p>Query or program is compiled or interpreted.</p></li><li><p>DML is optimized by the query processor.</p></li><li><p>Storage manager checks authorization and integrity.</p></li><li><p>Buffer manager fetches required data pages.</p></li><li><p>Data is read/written on disk.</p></li><li><p>Results are returned to the user.</p></li></ul></div></div>
+<section id="two-tier-vs-three-tier-database-application-architecture" class="content-section level-3">
+<h4 class="section-heading">Two-Tier vs Three-Tier Database Application Architecture</h4>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Two-Tier Architecture</div><div class="box-body"><ul><li><p>In two-tier architecture, the application runs directly on the client machine.</p></li><li><p>The client program sends database queries directly to the database server.</p></li><li><p>The database server processes queries and returns results to the client.</p></li><li><p>The client contains:</p>
+<ul><li><p>User interface</p></li><li><p>Application logic</p></li><li><p>Database query calls (SQL/DML)</p></li></ul></li><li><p>Communication happens directly between:
+\[
+\text{Client Application} \leftrightarrow \text{Database Server}
+\]</p></li><li><p>Characteristics:</p>
+<ul><li><p>Simple design</p></li><li><p>Suitable for small systems</p></li><li><p>Harder to maintain when many clients exist</p></li><li><p>Lower security (database exposed to clients)</p></li><li><p>Business logic duplicated across clients</p></li></ul></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Three-Tier Architecture</div><div class="box-body"><ul><li><p>In three-tier architecture, the client is only a front end.</p></li><li><p>The client does <strong>not</strong> directly talk to the database.</p></li><li><p>A separate <strong>application server</strong> sits between client and database.</p></li><li><p>All business logic is placed in the application server.</p></li><li><p>Communication flow:
+\[
+\text{Client} \leftrightarrow \text{Application Server} \leftrightarrow \text{Database Server}
+\]</p></li><li><p>Layer roles:</p>
+<ul><li><p><strong>Client Layer:</strong></p>
+<ul><li><p>Web browser or mobile app</p></li><li><p>Handles UI only</p></li></ul></li><li><p><strong>Application Server Layer:</strong></p>
+<ul><li><p>Contains business rules</p></li><li><p>Validates requests</p></li><li><p>Builds database queries</p></li><li><p>Controls transactions</p></li></ul></li><li><p><strong>Database Layer:</strong></p>
+<ul><li><p>Stores and retrieves data</p></li><li><p>Executes queries</p></li></ul></li></ul></li><li><p>Advantages:</p>
+<ul><li><p>Better security (database not directly exposed)</p></li><li><p>Better scalability</p></li><li><p>Easier maintenance</p></li><li><p>Centralized business logic</p></li><li><p>Improved performance under heavy load</p></li></ul></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Workflow Comparison</div><div class="box-body"><ul><li><p>Two-tier:</p>
+<ul><li><p>User → Client App → Database → Client App → User</p></li></ul></li><li><p>Three-tier:</p>
+<ul><li><p>User → Client → Application Server → Database → Application Server → Client → User</p></li></ul></li></ul></div></div>
+</section>
+</section>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: ER Model &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; DBMS &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

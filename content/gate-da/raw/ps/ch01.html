@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counting — Probability &amp; Statistics</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: { } },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Probability &amp; Statistics</span></div></div>
+<div class="sidebar-scroll"><ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Counting</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch01.html#what-is-combinatorics" class="toc-link" data-slug="what-is-combinatorics">What is Combinatorics?</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#key-areas-in-combinatorics" class="toc-link" data-slug="key-areas-in-combinatorics">Key Areas in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-combinatorics" class="toc-link" data-slug="applications-of-combinatorics">Applications of Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#rule-identification-guide-in-combinatorics" class="toc-link" data-slug="rule-identification-guide-in-combinatorics">Rule Identification Guide in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#quick-decision-table" class="toc-link" data-slug="quick-decision-table">Quick Decision Table</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#permutations" class="toc-link" data-slug="permutations">Permutations</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#how-to-identify-permutation-problems" class="toc-link" data-slug="how-to-identify-permutation-problems">How to Identify Permutation Problems</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-permutation-problems" class="toc-link" data-slug="examples-of-permutation-problems">Examples of Permutation Problems</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-simple-permutation" class="toc-link" data-slug="example-1-simple-permutation">Example 1: Simple Permutation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-permutation-of-a-subset" class="toc-link" data-slug="example-2-permutation-of-a-subset">Example 2: Permutation of a Subset</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-digits-in-a-number" class="toc-link" data-slug="example-3-digits-in-a-number">Example 3: Digits in a Number</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-arrangement-with-restrictions" class="toc-link" data-slug="example-4-arrangement-with-restrictions">Example 4: Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-circular-permutations" class="toc-link" data-slug="example-5-circular-permutations">Example 5: Circular Permutations</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-permutations-with-repeated-items" class="toc-link" data-slug="example-6-permutations-with-repeated-items">Example 6: Permutations with Repeated Items</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-at-least-condition" class="toc-link" data-slug="example-7-at-least-condition">Example 7: At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-arrangement-with-items-together" class="toc-link" data-slug="example-8-arrangement-with-items-together">Example 8: Arrangement with Items Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-number-with-constraints" class="toc-link" data-slug="example-9-number-with-constraints">Example 9: Number with Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-all-letters-used-with-restrictions" class="toc-link" data-slug="example-10-all-letters-used-with-restrictions">Example 10: All Letters Used with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-11-repeated-digits-constraint" class="toc-link" data-slug="example-11-repeated-digits-constraint">Example 11: Repeated Digits Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-12-vowels-together" class="toc-link" data-slug="example-12-vowels-together">Example 12: Vowels Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-13-at-least-one-condition" class="toc-link" data-slug="example-13-at-least-one-condition">Example 13: At Least One Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-14-positions-fixed" class="toc-link" data-slug="example-14-positions-fixed">Example 14: Positions Fixed</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-15-word-arrangement-with-restrictions" class="toc-link" data-slug="example-15-word-arrangement-with-restrictions">Example 15: Word Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-16-conditional-digit-use" class="toc-link" data-slug="example-16-conditional-digit-use">Example 16: Conditional Digit Use</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-17-circular-permutation-with-a-gap-constraint" class="toc-link" data-slug="example-17-circular-permutation-with-a-gap-constraint">Example 17: Circular Permutation with a Gap Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-18-permutations-with-restricted-positions" class="toc-link" data-slug="example-18-permutations-with-restricted-positions">Example 18: Permutations with Restricted Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-19-permutation-with-minimum-gap" class="toc-link" data-slug="example-19-permutation-with-minimum-gap">Example 19: Permutation with Minimum Gap</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-20-arrangements-with-fixed-distance" class="toc-link" data-slug="example-20-arrangements-with-fixed-distance">Example 20: Arrangements with Fixed Distance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-21-permutations-with-banned-positions" class="toc-link" data-slug="example-21-permutations-with-banned-positions">Example 21: Permutations with Banned Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-22-permutations-with-digit-reuse-prohibited" class="toc-link" data-slug="example-22-permutations-with-digit-reuse-prohibited">Example 22: Permutations with Digit Reuse Prohibited</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-23-permutations-with-specific-characters-together" class="toc-link" data-slug="example-23-permutations-with-specific-characters-together">Example 23: Permutations with Specific Characters Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-24-at-least-one-fixed-digit" class="toc-link" data-slug="example-24-at-least-one-fixed-digit">Example 24: At Least One Fixed Digit</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-25-group-arrangements-with-subgroup-together" class="toc-link" data-slug="example-25-group-arrangements-with-subgroup-together">Example 25: Group Arrangements with Subgroup Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-26-letter-arrangement-with-repetition-and-restrictions" class="toc-link" data-slug="example-26-letter-arrangement-with-repetition-and-restrictions">Example 26: Letter Arrangement with Repetition and Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-27-permutation-with-parity-constraints" class="toc-link" data-slug="example-27-permutation-with-parity-constraints">Example 27: Permutation with Parity Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-28-multiset-with-at-least-condition" class="toc-link" data-slug="example-28-multiset-with-at-least-condition">Example 28: Multiset with At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-29-permutations-with-min-distance-constraint" class="toc-link" data-slug="example-29-permutations-with-min-distance-constraint">Example 29: Permutations with Min Distance Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-30-distribution-of-items-in-permutations" class="toc-link" data-slug="example-30-distribution-of-items-in-permutations">Example 30: Distribution of Items in Permutations</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#combinations" class="toc-link" data-slug="combinations">Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#when-to-identify-a-problem-as-combination" class="toc-link" data-slug="when-to-identify-a-problem-as-combination">When to Identify a Problem as Combination</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-combinations" class="toc-link" data-slug="examples-of-combinations">Examples of Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-committee-selection" class="toc-link" data-slug="example-1-committee-selection">Example 1: Committee Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-handshake-problem" class="toc-link" data-slug="example-2-handshake-problem">Example 2: Handshake Problem</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-choosing-balls" class="toc-link" data-slug="example-3-choosing-balls">Example 3: Choosing Balls</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-forming-teams" class="toc-link" data-slug="example-4-forming-teams">Example 4: Forming Teams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-card-selection" class="toc-link" data-slug="example-5-card-selection">Example 5: Card Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-dividing-prizes" class="toc-link" data-slug="example-6-dividing-prizes">Example 6: Dividing Prizes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-selecting-questions" class="toc-link" data-slug="example-7-selecting-questions">Example 7: Selecting Questions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-subsets" class="toc-link" data-slug="example-8-subsets">Example 8: Subsets</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-lottery-selection" class="toc-link" data-slug="example-9-lottery-selection">Example 9: Lottery Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-choosing-books" class="toc-link" data-slug="example-10-choosing-books">Example 10: Choosing Books</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Introduction to Statistics</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch02.html#motivation" class="toc-link" data-slug="motivation">Motivation</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-do-we-sample" class="toc-link" data-slug="why-do-we-sample">Why Do We Sample?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#how-does-inference-work" class="toc-link" data-slug="how-does-inference-work">How Does Inference Work?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fundamental-relationship-between-probability-and-statistics" class="toc-link" data-slug="fundamental-relationship-between-probability-and-statistics">Fundamental Relationship between Probability and Statistics</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#real-world-motivation-and-example" class="toc-link" data-slug="real-world-motivation-and-example">Real-World Motivation and Example</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-collection" class="toc-link" data-slug="data-collection">Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#steps-in-the-sampling-and-data-collection-process" class="toc-link" data-slug="steps-in-the-sampling-and-data-collection-process">Steps in the Sampling and Data Collection Process</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-is-sampling-important" class="toc-link" data-slug="why-is-sampling-important">Why is Sampling Important?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#common-pitfalls-in-data-collection" class="toc-link" data-slug="common-pitfalls-in-data-collection">Common Pitfalls in Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-location" class="toc-link" data-slug="measures-of-location">Measures of Location</a>
+<ul><li class="toc-l2"><a href="ch02.html#sample-mean-texorpdfstring-bar-x-x" class="toc-link" data-slug="sample-mean-texorpdfstring-bar-x-x">Sample Mean ($\bar{x}$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#importance" class="toc-link" data-slug="importance">Importance:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example" class="toc-link" data-slug="example">Example:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison" class="toc-link" data-slug="comparison">Comparison</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-variability" class="toc-link" data-slug="measures-of-variability">Measures of Variability</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: The Probability Theory</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch03.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#probability-rules" class="toc-link" data-slug="probability-rules">Probability Rules</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#conditional-probability" class="toc-link" data-slug="conditional-probability">Conditional Probability</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#bayes-theorem" class="toc-link" data-slug="bayes-theorem">Bayes Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: The Random Variables</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch04.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-discrete-probability-distributions" class="toc-link" data-slug="overview-of-discrete-probability-distributions">Overview of Discrete Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-continuous-probability-distributions" class="toc-link" data-slug="overview-of-continuous-probability-distributions">Overview of Continuous Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#joint-probability-distributions" class="toc-link" data-slug="joint-probability-distributions">Joint Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#marginal-probability-distributions" class="toc-link" data-slug="marginal-probability-distributions">Marginal Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#conditional-probability-distributions" class="toc-link" data-slug="conditional-probability-distributions">Conditional Probability Distributions</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Mean and Variance of a Random Variable</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch05.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-joint-and-marginal-distributions" class="toc-link" data-slug="expectation-of-joint-and-marginal-distributions">Expectation of Joint and Marginal Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-conditional-probability-distribution" class="toc-link" data-slug="expectation-of-conditional-probability-distribution">Expectation of Conditional Probability Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#variance-and-covariance" class="toc-link" data-slug="variance-and-covariance">Variance and Covariance</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#linear-combinations-of-expectation-and-variance" class="toc-link" data-slug="linear-combinations-of-expectation-and-variance">Linear Combinations of Expectation and Variance</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Discrete Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch06.html#bernoulli-trials-and-binomial-distribution" class="toc-link" data-slug="bernoulli-trials-and-binomial-distribution">Bernoulli trials and Binomial distribution</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#poisson-distribution" class="toc-link" data-slug="poisson-distribution">Poisson Distribution</a>
+<ul><li class="toc-l2"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples:</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#properties-of-the-poisson-process" class="toc-link" data-slug="properties-of-the-poisson-process">Properties of the Poisson Process</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#poisson-random-variable-and-distribution" class="toc-link" data-slug="poisson-random-variable-and-distribution">Poisson Random Variable and Distribution</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Continuous Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch07.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#exponential-distribution" class="toc-link" data-slug="exponential-distribution">Exponential Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#normal-distribution-and-standard-normal" class="toc-link" data-slug="normal-distribution-and-standard-normal">Normal Distribution and Standard Normal</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-of-normal-distribution" class="toc-link" data-slug="graph-of-normal-distribution">Graph of Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#tips-to-identify-normal-distribution-problems" class="toc-link" data-slug="tips-to-identify-normal-distribution-problems">Tips to Identify Normal Distribution Problems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#standard-normal-distribution" class="toc-link" data-slug="standard-normal-distribution">Standard Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#t-distribution" class="toc-link" data-slug="t-distribution">t-Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-4" class="toc-link" data-slug="examples-4">Examples</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#chi-squared-distribution" class="toc-link" data-slug="chi-squared-distribution">Chi-Squared Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-5" class="toc-link" data-slug="examples-5">Examples</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Central Limit Theorem and Confidence Intervals</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch08.html#the-central-limit-theorem" class="toc-link" data-slug="the-central-limit-theorem">The Central Limit Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#confidence-intervals" class="toc-link" data-slug="confidence-intervals">Confidence Intervals</a>
+</li></ul></details></li>
+</ul></div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 8</div><h1>Counting</h1></div>
+<section id="what-is-combinatorics" class="content-section level-1">
+<h2 class="section-heading">What is Combinatorics?</h2>
+<p><strong>Combinatorics</strong> is a branch of mathematics focused on <em>counting, arranging, and analyzing discrete structures</em>. It has wide applications in computer science, probability theory, and logic.</p>
+</section>
+<section id="key-areas-in-combinatorics" class="content-section level-1">
+<h2 class="section-heading">Key Areas in Combinatorics</h2>
+<ol><li><p><strong>Counting (Enumerative Combinatorics)</strong> <br>
+    Concerned with determining <em>how many</em> ways certain configurations can occur.</p>
+<ul><li><p>Example: How many 4-letter passwords can be formed using letters A–Z?</p></li></ul></li><li><p><strong>Permutations and Combinations</strong></p>
+<ul><li><p><strong>Permutation</strong>: The order <em>matters</em>.</p>
+<ul><li><p>Example: How many ways can 3 books be arranged on a shelf? <br>
+            Solution: $P(n, r) = \frac{n!}{(n - r)!}$</p></li></ul></li><li><p><strong>Combination</strong>: The order <em>does not matter</em>.</p>
+<ul><li><p>Example: How many ways can you choose 3 students from a group of 10? <br>
+            Solution: $C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!}$</p></li></ul></li></ul></li><li><p><strong>Pigeonhole Principle</strong> <br>
+    If more than $n$ items are put into $n$ containers, at least one container must contain more than one item.</p></li><li><p><strong>Inclusion-Exclusion Principle</strong> <br>
+    Used to count the total number of elements in the union of overlapping sets:
+    \[
+    |A \cup B| = |A| + |B| - |A \cap B|
+    \]
+    For three sets:
+    \[
+    |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C|
+    \]</p></li><li><p><strong>Graph Theory</strong> <br>
+    The study of graphs, which are mathematical structures used to model pairwise relations between objects.</p></li><li><p><strong>Partition Theory</strong> <br>
+    The number of ways of writing a positive integer as a sum of other positive integers.</p>
+<ul><li><p>Example: The number 5 can be written as $5=2+2+1$, among other ways.</p></li></ul></li><li><p><strong>Generating Functions</strong> <br>
+    Algebraic tools that encode sequences of numbers. Useful for solving recurrence relations and counting problems.</p></li></ol>
+</section>
+<section id="applications-of-combinatorics" class="content-section level-1">
+<h2 class="section-heading">Applications of Combinatorics</h2>
+<ul><li><p>Computer Algorithms</p></li><li><p>Cryptography</p></li><li><p>Game Theory</p></li><li><p>Probability Theory</p></li><li><p>Data Structures</p></li><li><p>Bioinformatics (e.g., DNA sequencing)</p></li></ul>
+</section>
+<section id="rule-identification-guide-in-combinatorics" class="content-section level-1">
+<h2 class="section-heading">Rule Identification Guide in Combinatorics</h2>
+<div class="concept-box-alt"><div class="box-title">1. Sum Rule (Addition)</div><div class="box-body"><p><strong>Use when:</strong> You have multiple mutually exclusive options, and you need to pick one.</p>
+<p><strong>Keywords to watch for:</strong></p>
+<ul><li><p>“or”</p></li><li><p>“either this or that”</p></li><li><p>“one of the following”</p></li></ul>
+<p><strong>Formula:</strong> If task A can be done in \( m \) ways and task B in \( n \) ways (and both can&#x27;t happen together), then:
+\[
+\text{Total ways} = m + n
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">2. Product Rule (Multiplication)</div><div class="box-body"><p><strong>Use when:</strong> You need to do multiple independent tasks in sequence.</p>
+<p><strong>Keywords to watch for:</strong></p>
+<ul><li><p>“and”</p></li><li><p>“followed by”</p></li><li><p>“for each choice of …”</p></li></ul>
+<p><strong>Formula:</strong> If task A can be done in \( m \) ways and task B in \( n \) ways, then:
+\[
+\text{Total ways} = m \times n
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">3. Subtraction Rule (Complement)</div><div class="box-body"><p><strong>Use when:</strong> It&#x27;s easier to count the total number of cases and subtract unwanted/restricted ones.</p>
+<p><strong>Keywords to watch for:</strong></p>
+<ul><li><p>“not containing”</p></li><li><p>“at least one”</p></li><li><p>“excluding”</p></li></ul>
+<p><strong>Formula:</strong>
+\[
+\text{Favorable cases} = \text{Total cases} - \text{Unfavorable cases}
+\]</p></div></div>
+<div class="concept-box-alt"><div class="box-title">4. Division Rule (Correcting Overcounting)</div><div class="box-body"><p><strong>Use when:</strong> Your method overcounts due to symmetry or repetition of elements.</p>
+<p><strong>Keywords to watch for:</strong></p>
+<ul><li><p>“arrangements of identical items”</p></li><li><p>“rotations/symmetry”</p></li><li><p>“repeated elements”</p></li></ul>
+<p><strong>Formula:</strong>
+\[
+\text{Correct count} = \frac{\text{Total permutations}}{\text{Repetition factor}}
+\]</p>
+<p><strong>Example:</strong>
+\[
+\frac{n!}{p_1! \cdot p_2! \cdot \dots \cdot p_k!}
+\quad \text{(for repeated elements)}
+\]</p></div></div>
+</section>
+<section id="quick-decision-table" class="content-section level-1">
+<h2 class="section-heading">Quick Decision Table</h2>
+<div class="fact-box"><div class="box-title">When to Use Which Rule?</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Sum Rule</div><div class="box-body"><p>If a task can be done in $m$ ways or $n$ ways (but not both), then the total number of ways to do the task is $m + n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 1: Sum Rule</div><div class="box-body"><p>You can take a bus (5 options) or a train (3 options) to reach a city.</p>
+<p><strong>Solution:</strong> Since these are mutually exclusive choices:
+\[
+\text{Total ways} = 5 + 3 = \boxed{8}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Product Rule</div><div class="box-body"><p>If a task consists of two steps, where the first step can be done in $m$ ways and the second in $n$ ways, then the total number of ways of doing the task is $m \times n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 2: Product Rule</div><div class="box-body"><p>You want to choose a shirt (4 choices) and a pant (5 choices).</p>
+<p><strong>Solution:</strong>
+\[
+\text{Total outfits} = 4 \times 5 = \boxed{20}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Subtraction Rule (Complement Rule)</div><div class="box-body"><p>To count the number of outcomes that satisfy a condition, subtract from the total the number of outcomes that do not satisfy it.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3: Subtraction Rule</div><div class="box-body"><p>How many 2-digit numbers (10–99) <em>do not</em> contain the digit 7?</p>
+<p><strong>Solution:</strong>
+Total 2-digit numbers $= 90$.</p>
+<p>Numbers that contain digit 7 $=$ Numbers with 7 in tens place $+$ Numbers with 7 in ones place $-$ Double counted (77).</p>
+<p>$= 10 + 9 - 1 = 18$.</p>
+<p>Therefore, numbers without 7 $= 90 - 18 = 72$.</p></div></div>
+<div class="concept-box"><div class="box-title">Division Rule</div><div class="box-body"><p>If a task can be done in $n$ ways and there are $k$ indistinguishable repetitions for each outcome, then the actual number of distinct outcomes is $\dfrac{n}{k}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 4: Division Rule</div><div class="box-body"><p>In a class of 4 students \(A,B,C,D\), how many distinct 2-person teams can be formed?  
+(Here, the team \(\{A,B\}\) is the same as \(\{B,A\}\).)</p>
+<p><strong>Solution:</strong>  
+First count <em>ordered</em> selections: \(4\times3=12\).</p>
+<p>Each unordered team is counted twice (\(A,B\) and \(B,A\)).  
+By the Division Rule, divide by \(2\):</p>
+<p>\[
+\frac{12}{2} = \boxed{6}
+\]</p>
+<p>So there are \(\boxed{6}\) distinct 2-person teams.</p></div></div>
+</section>
+<section id="permutations" class="content-section level-1">
+<h2 class="section-heading">Permutations</h2>
+<p><strong>Permutations</strong> refer to the <em>arrangement of objects in a specific order</em>. It is used when the <strong>order matters</strong>.</p>
+<p>If we are given \( n \) distinct objects and we want to arrange \( r \) of them in a sequence, the number of such arrangements (permutations) is given by:</p>
+<p>\[
+P(n, r) = \frac{n!}{(n - r)!}
+\]</p>
+</section>
+<section id="how-to-identify-permutation-problems" class="content-section level-1">
+<h2 class="section-heading">How to Identify Permutation Problems</h2>
+<div class="concept-box"><div class="box-title">Tip</div><div class="box-body"><p>A problem involves permutations if:</p>
+<ul><li><p>The order or arrangement matters.</p></li><li><p>You are asked to “arrange,” “order,” “line up,” or form “different sequences.”</p></li><li><p>There are restrictions about positioning (like certain people must be together or not together).</p></li></ul></div></div>
+</section>
+<section id="examples-of-permutation-problems" class="content-section level-1">
+<h2 class="section-heading">Examples of Permutation Problems</h2>
+
+<section id="example-1-simple-permutation" class="content-section level-2">
+<h3 class="section-heading">Example 1: Simple Permutation</h3>
+<div class="concept-box"><div class="box-title">Example 1</div><div class="box-body"><p>How many different ways can 4 students be seated in 4 chairs?</p>
+<p><strong>Solution:</strong> Since all 4 students are seated, the number of ways = \( P(4, 4) = 4! = 24 \)</p></div></div>
+</section>
+<section id="example-2-permutation-of-a-subset" class="content-section level-2">
+<h3 class="section-heading">Example 2: Permutation of a Subset</h3>
+<div class="concept-box"><div class="box-title">Example 2</div><div class="box-body"><p>In how many ways can 3 students be selected and arranged from a group of 6?</p>
+<p><strong>Solution:</strong> \( P(6, 3) = \frac{6!}{(6-3)!} = \frac{720}{6} = 120 \)</p></div></div>
+</section>
+<section id="example-3-digits-in-a-number" class="content-section level-2">
+<h3 class="section-heading">Example 3: Digits in a Number</h3>
+<div class="concept-box"><div class="box-title">Example 3</div><div class="box-body"><p>How many 3-digit numbers can be formed using the digits 1, 2, 3, 4, 5 with no repetition?</p>
+<p><strong>Solution:</strong> Choose and arrange 3 digits from 5: \( P(5, 3) = \frac{5!}{2!} = 60 \)</p></div></div>
+</section>
+<section id="example-4-arrangement-with-restrictions" class="content-section level-2">
+<h3 class="section-heading">Example 4: Arrangement with Restrictions</h3>
+<div class="concept-box"><div class="box-title">Example 4</div><div class="box-body"><p>How many ways can 4 books be arranged on a shelf if one specific book must always be at the end?</p>
+<p><strong>Solution:</strong> Fix the specific book at the end. Now arrange the remaining 3 books: \( 3! = 6 \)</p></div></div>
+</section>
+<section id="example-5-circular-permutations" class="content-section level-2">
+<h3 class="section-heading">Example 5: Circular Permutations</h3>
+<div class="concept-box"><div class="box-title">Example 5</div><div class="box-body"><p>In how many ways can 5 people be seated around a circular table?</p>
+<p><strong>Solution:</strong> Circular permutations: \( (n - 1)! = 4! = 24 \)</p></div></div>
+</section>
+<section id="example-6-permutations-with-repeated-items" class="content-section level-2">
+<h3 class="section-heading">Example 6: Permutations with Repeated Items</h3>
+<div class="concept-box"><div class="box-title">Example 6</div><div class="box-body"><p>How many permutations can be formed from the letters of the word <code>LEVEL</code>?</p>
+<p><strong>Solution:</strong> Total letters = 5; Repeated letters: L (2), E (2)</p>
+<p>\[
+\text{Permutations} = \frac{5!}{2! \cdot 2!} = \frac{120}{4} = 30
+\]</p></div></div>
+</section>
+<section id="example-7-at-least-condition" class="content-section level-2">
+<h3 class="section-heading">Example 7: At Least Condition</h3>
+<div class="concept-box"><div class="box-title">Example 7</div><div class="box-body"><p>From 7 people, how many ways can a president, vice president, and secretary be chosen?</p>
+<p><strong>Solution:</strong> These are distinct positions; order matters: \( P(7, 3) = \frac{7!}{4!} = 210 \)</p></div></div>
+</section>
+<section id="example-8-arrangement-with-items-together" class="content-section level-2">
+<h3 class="section-heading">Example 8: Arrangement with Items Together</h3>
+<div class="concept-box"><div class="box-title">Example 8</div><div class="box-body"><p>In how many ways can the letters of the word <code>SCHOOL</code> be arranged such that <code>S</code> and <code>C</code> are together?</p>
+<p><strong>Solution:</strong> Treat SC as one unit. So we have: [SC], H, O, O, L → 5 letters</p>
+<p>But O is repeated.</p>
+<p>\[
+\text{Arrangements} = \frac{5!}{2!} = \frac{120}{2} = 60
+\]</p>
+<p>Also SC and CS both allowed → multiply by 2: \( 60 \times 2 = 120 \)</p></div></div>
+</section>
+<section id="example-9-number-with-constraints" class="content-section level-2">
+<h3 class="section-heading">Example 9: Number with Constraints</h3>
+<div class="concept-box"><div class="box-title">Example 9</div><div class="box-body"><p>How many 4-digit numbers can be formed using the digits 1 to 6, such that the number starts with an odd digit?</p>
+<p><strong>Solution:</strong> Odd digits: 1, 3, 5 → 3 choices for first digit</p>
+<p>Remaining 3 digits from 5 unused digits: \( P(5, 3) = 60 \)</p>
+<p>Total = \( 3 \times 60 = 180 \)</p></div></div>
+</section>
+<section id="example-10-all-letters-used-with-restrictions" class="content-section level-2">
+<h3 class="section-heading">Example 10: All Letters Used with Restrictions</h3>
+<div class="concept-box"><div class="box-title">Example 10</div><div class="box-body"><p>How many ways can the letters of the word <code>APPLE</code> be arranged if P’s must be together?</p>
+<p><strong>Solution:</strong> Treat PP as a block → Remaining: [PP], A, L, E → 4 elements</p>
+<p>\[
+\text{Arrangements} = 4! = 24
+\]</p></div></div>
+</section>
+<section id="example-11-repeated-digits-constraint" class="content-section level-2">
+<h3 class="section-heading">Example 11: Repeated Digits Constraint</h3>
+<div class="concept-box"><div class="box-title">Example 11</div><div class="box-body"><p>How many 5-digit numbers can be formed using digits 1–5 such that no digit repeats and the number is even?</p>
+<p><strong>Solution:</strong> For a number to be even, it must end in 2 or 4.</p>
+<p><strong>Case 1: Last digit is 2</strong> → Remaining 4 digits from {1,3,4,5}: \(4!\)</p>
+<p><strong>Case 2: Last digit is 4</strong> → Remaining digits {1,2,3,5}: \(4!\)</p>
+<p>\[
+\text{Total} = 2 \times 4! = 2 \times 24 = \boxed{48}
+\]</p></div></div>
+</section>
+<section id="example-12-vowels-together" class="content-section level-2">
+<h3 class="section-heading">Example 12: Vowels Together</h3>
+<div class="concept-box"><div class="box-title">Example 12</div><div class="box-body"><p>How many ways can the letters of the word <code>ENGINEER</code> be arranged so that all vowels are together?</p>
+<p><strong>Solution:</strong> Vowels = E, I, E, E → 4 vowels (E repeated 3 times)  
+Consonants = N, G, N, R → 4 consonants (N repeated 2 times)</p>
+<p>Treat vowels as one block → total blocks = 5</p>
+<p>\[
+\text{Ways to arrange blocks} = \frac{5!}{2!} = 60
+\]
+\[
+\text{Vowel arrangements} = \frac{4!}{3!} = 4
+\]</p>
+<p>\[
+\text{Total} = 60 \times 4 = \boxed{240}
+\]</p></div></div>
+</section>
+<section id="example-13-at-least-one-condition" class="content-section level-2">
+<h3 class="section-heading">Example 13: At Least One Condition</h3>
+<div class="concept-box"><div class="box-title">Example 13</div><div class="box-body"><p>How many 4-digit numbers can be formed using digits 0-9 such that no digit repeats and at least one digit is 7?</p>
+<p><strong>Solution:</strong> Total 4-digit numbers with distinct digits:</p>
+<p>- Thousands digit: 1–9 → 9 options  
+- Remaining 3 digits from remaining 9 digits → \( P(9,3) \)</p>
+<p>\[
+\text{Total} = 9 \times P(9,3) = 9 \times 504 = 4536
+\]</p>
+<p>Now, subtract those without 7:</p>
+<p>- Choose 4 digits from {0–9} excluding 7 → 9 digits  
+- Thousands place $\neq$ 0 $\implies$ valid starting digits = 8 options (excluding 0 and 7)  
+- Remaining 3 digits: choose from remaining 8</p>
+<p>\[
+\text{Without 7} = 8 \times P(8,3) = 8 \times 336 = 2688
+\]</p>
+<p>\[
+\text{With at least one 7} = 4536 - 2688 = \boxed{1848}
+\]</p></div></div>
+</section>
+<section id="example-14-positions-fixed" class="content-section level-2">
+<h3 class="section-heading">Example 14: Positions Fixed</h3>
+<div class="concept-box"><div class="box-title">Example 14</div><div class="box-body"><p>In how many ways can 6 people be arranged in a row if 2 particular people (A and B) must always occupy the first and last positions (in any order)?</p>
+<p><strong>Solution:</strong> A and B can be in (1st,6th) or (6th,1st) → 2 ways  
+Remaining 4 people can be arranged in \(4!\)</p>
+<p>\[
+\text{Total} = 2 \times 4! = 2 \times 24 = \boxed{48}
+\]</p></div></div>
+</section>
+<section id="example-15-word-arrangement-with-restrictions" class="content-section level-2">
+<h3 class="section-heading">Example 15: Word Arrangement with Restrictions</h3>
+<div class="concept-box"><div class="box-title">Example 15</div><div class="box-body"><p>How many arrangements of the word <code>ASSASSIN</code> are there such that no two S’s are adjacent?</p>
+<p><strong>Solution:</strong> Total letters = 8  
+S appears 4 times.</p>
+<p>First, arrange the non-S letters: A, A, I, N → 4 letters  
+Arrangements = \( \frac{4!}{2!} = 12 \)</p>
+<p>Place 4 S&#x27;s in the 5 available gaps between/around non-S&#x27;s:  
+_ A _ A _ I _ N _ → 5 positions</p>
+<p>Choose 4 positions out of 5 for S’s: \( \binom{5}{4} = 5 \)</p>
+<p>\[
+\text{Total} = 12 \times 5 = \boxed{60}
+\]</p></div></div>
+</section>
+<section id="example-16-conditional-digit-use" class="content-section level-2">
+<h3 class="section-heading">Example 16: Conditional Digit Use</h3>
+<div class="concept-box"><div class="box-title">Example 16</div><div class="box-body"><p>How many 3-digit numbers can be formed using digits 2, 3, 4, 5, 6, 7 such that 5 is always used and digits are not repeated?</p>
+<p><strong>Solution:</strong> Total 3-digit numbers using digits from set of 6.</p>
+<p>We fix 5 in one position. Then choose 2 more from remaining 5 digits.</p>
+<p><strong>Case 1: 5 at hundreds place</strong> → choose 2 digits from 5 → \(P(5,2) = 20\)</p>
+<p><strong>Case 2: 5 at tens place</strong> → hundreds digit $\neq$ 0, 5 → choose from 5 digits (excluding 5), then one more from remaining 4 → \(5 \times 4 = 20\)</p>
+<p><strong>Case 3: 5 at units place</strong> → similar → \(5 \times 4 = 20\)</p>
+<p>\[
+\text{Total} = 20 + 20 + 20 = \boxed{60}
+\]</p></div></div>
+</section>
+<section id="example-17-circular-permutation-with-a-gap-constraint" class="content-section level-2">
+<h3 class="section-heading">Example 17: Circular Permutation with a Gap Constraint</h3>
+<div class="concept-box"><div class="box-title">Example 17</div><div class="box-body"><p>In how many distinct ways can 8 different people be seated around a circular table if persons \(A\) and \(B\) have <em>exactly two people</em> sitting between them?</p>
+<p><strong>Solution:</strong> 
+Fix \(A\)&#x27;s position to remove rotational symmetry. Around the circle, \(B\) must be placed so that exactly two seats lie between \(A\) and \(B\). There are \(2\) such positions for \(B\) (clockwise or counterclockwise).</p>
+<p>Arrange the remaining \(6\) people in the remaining seats: \(6!\) ways.</p>
+<p>\[
+\text{Total} = 2 \times 6! = 2 \times 720 = \boxed{1440}.
+\]</p></div></div>
+</section>
+<section id="example-18-permutations-with-restricted-positions" class="content-section level-2">
+<h3 class="section-heading">Example 18: Permutations with Restricted Positions</h3>
+<div class="concept-box"><div class="box-title">Example 18</div><div class="box-body"><p>In how many ways can 6 people be arranged in a row if person $A$ must be in one of the two end positions?</p>
+<p><strong>Solution:</strong>  
+First, choose the position for $A$:  
+There are \(2\) choices (left end or right end).</p>
+<p>The remaining \(5\) people can be arranged in any order in the remaining \(5\) seats: \(5! = 120\) ways.</p>
+<p>\[
+\text{Total arrangements} = 2 \times 120 = \boxed{240}.
+\]</p></div></div>
+</section>
+<section id="example-19-permutation-with-minimum-gap" class="content-section level-2">
+<h3 class="section-heading">Example 19: Permutation with Minimum Gap</h3>
+<div class="concept-box"><div class="box-title">Example 19</div><div class="box-body"><p>How many ways can the letters of <code>EXAMPLE</code> be arranged such that no two vowels are adjacent?</p>
+<p><strong>Solution:</strong> Vowels = E, A, E → total = 3 (E repeated twice)</p>
+<p>Consonants = X, M, P, L → 4 letters</p>
+<p>Arrange consonants: \(4! = 24\)</p>
+<p>Now place 3 vowels in gaps between consonants: _ C _ C _ C _ C _ → 5 gaps</p>
+<p>Choose 3 of 5 gaps: \( \binom{5}{3} = 10 \)</p>
+<p>Vowel arrangements = \( \frac{3!}{2!} = 3 \)</p>
+<p>\[
+\text{Total} = 24 \times 10 \times 3 = \boxed{720}
+\]</p></div></div>
+</section>
+<section id="example-20-arrangements-with-fixed-distance" class="content-section level-2">
+<h3 class="section-heading">Example 20: Arrangements with Fixed Distance</h3>
+<div class="concept-box"><div class="box-title">Example 20</div><div class="box-body"><p>How many ways can 5 boys and 3 girls be seated in a row such that no two girls sit together?</p>
+<p><strong>Solution:</strong> First, place 5 boys: \(5! = 120\)</p>
+<p>Gaps between boys = 6 positions: _ B _ B _ B _ B _ B _</p>
+<p>Choose 3 gaps from 6 to place girls: \( \binom{6}{3} = 20 \)</p>
+<p>Arrange girls in those positions: \(3! = 6\)</p>
+<p>\[
+\text{Total} = 120 \times 20 \times 6 = \boxed{14400}
+\]</p></div></div>
+</section>
+<section id="example-21-permutations-with-banned-positions" class="content-section level-2">
+<h3 class="section-heading">Example 21: Permutations with Banned Positions</h3>
+<div class="concept-box"><div class="box-title">Example 21</div><div class="box-body"><p>In how many ways can the letters of the word <code>HUNTER</code> be arranged such that the word does not start with H?</p>
+<p><strong>Solution:</strong> Total arrangements = \(6! = 720\)</p>
+<p>Fix H at first position: Remaining 5 letters → \(5! = 120\)</p>
+<p>\[
+\text{Valid arrangements} = 720 - 120 = \boxed{600}
+\]</p></div></div>
+</section>
+<section id="example-22-permutations-with-digit-reuse-prohibited" class="content-section level-2">
+<h3 class="section-heading">Example 22: Permutations with Digit Reuse Prohibited</h3>
+<div class="concept-box"><div class="box-title">Example 22</div><div class="box-body"><p>How many 4-digit numbers greater than 3000 can be formed using digits 2, 3, 4, 5, 6 without repetition?</p>
+<p><strong>Solution:</strong>  
+Thousands digit must be 3, 4, 5, or 6 (4 options)  
+Then choose 3 more digits from remaining 4 → \(P(4,3) = 24\)</p>
+<p>\[
+\text{Total} = 4 \times 24 = \boxed{96}
+\]</p></div></div>
+</section>
+<section id="example-23-permutations-with-specific-characters-together" class="content-section level-2">
+<h3 class="section-heading">Example 23: Permutations with Specific Characters Together</h3>
+<div class="concept-box"><div class="box-title">Example 23</div><div class="box-body"><p>In how many ways can the letters of the word <code>COMMITTEE</code> be arranged such that all T’s are together?</p>
+<p><strong>Solution:</strong> Letters = 9; Repeats: M(2), T(2), E(2)</p>
+<p>Treat TT as a block → 8 items: C, O, M, M, I, T<strong>T</strong>, E, E</p>
+<p>\[
+\text{Total} = \frac{8!}{2! \cdot 2! \cdot 1!} = \frac{40320}{4} = \boxed{10080}
+\]</p></div></div>
+</section>
+<section id="example-24-at-least-one-fixed-digit" class="content-section level-2">
+<h3 class="section-heading">Example 24: At Least One Fixed Digit</h3>
+<div class="concept-box"><div class="box-title">Example 24</div><div class="box-body"><p>How many 4-digit numbers can be formed from digits 1 to 9 such that digit 5 appears at least once?</p>
+<p><strong>Solution:</strong> Total 4-digit numbers using 1–9 (no 0): \(9 \times 8 \times 7 \times 6 = 3024\)</p>
+<p>Exclude numbers without 5:</p>
+<p>- Choose 4 digits from 8 (excluding 5): \(P(8,4) = 1680\)</p>
+<p>\[
+\text{With at least one 5} = 3024 - 1680 = \boxed{1344}
+\]</p></div></div>
+</section>
+<section id="example-25-group-arrangements-with-subgroup-together" class="content-section level-2">
+<h3 class="section-heading">Example 25: Group Arrangements with Subgroup Together</h3>
+<div class="concept-box"><div class="box-title">Example 25</div><div class="box-body"><p>In how many ways can 5 boys and 3 girls be seated in a row such that all the girls sit together?</p>
+<p><strong>Solution:</strong> Treat the 3 girls as a block → now 6 &quot;people&quot; to arrange → \(6! = 720\)</p>
+<p>Girls within their block can be arranged in \(3! = 6\)</p>
+<p>\[
+\text{Total} = 720 \times 6 = \boxed{4320}
+\]</p></div></div>
+</section>
+<section id="example-26-letter-arrangement-with-repetition-and-restrictions" class="content-section level-2">
+<h3 class="section-heading">Example 26: Letter Arrangement with Repetition and Restrictions</h3>
+<div class="concept-box"><div class="box-title">Example 26</div><div class="box-body"><p>How many arrangements of the word <code>BALLOON</code> can be made such that both L’s are not together?</p>
+<p><strong>Solution:</strong> Total arrangements without restriction:  
+Letters = 7; L(2), O(2)</p>
+<p>\[
+\text{Total} = \frac{7!}{2! \cdot 2!} = \frac{5040}{4} = 1260
+\]</p>
+<p>Now count cases where L’s are together:</p>
+<p>Treat LL as a block → total = 6 items: B, A, LL, O, O, N  
+O(2):  
+\[
+\text{With L’s together} = \frac{6!}{2!} = 360
+\]</p>
+<p>\[
+\text{Not together} = 1260 - 360 = \boxed{900}
+\]</p></div></div>
+</section>
+<section id="example-27-permutation-with-parity-constraints" class="content-section level-2">
+<h3 class="section-heading">Example 27: Permutation with Parity Constraints</h3>
+<div class="concept-box"><div class="box-title">Example 27</div><div class="box-body"><p>How many 3-digit even numbers can be formed using digits 2, 3, 4, 5, 6 with no digit repeated?</p>
+<p><strong>Solution:</strong> Even numbers end in 2, 4, or 6 → 3 cases</p>
+<p><strong>Case 1: End with 2</strong> → choose 2 digits from {3,4,5,6} → \(P(4,2) = 12\)</p>
+<p><strong>Case 2: End with 4</strong> → {2,3,5,6} → \(P(4,2) = 12\)</p>
+<p><strong>Case 3: End with 6</strong> → {2,3,4,5} → \(P(4,2) = 12\)</p>
+<p>\[
+\text{Total} = 3 \times 12 = \boxed{36}
+\]</p></div></div>
+</section>
+<section id="example-28-multiset-with-at-least-condition" class="content-section level-2">
+<h3 class="section-heading">Example 28: Multiset with At Least Condition</h3>
+<div class="concept-box"><div class="box-title">Example 28</div><div class="box-body"><p>From the word <code>STATISTICS</code>, how many distinct arrangements are there where all S’s are together?</p>
+<p><strong>Solution:</strong> Letters: 10; S(3), T(3), I(2), A(1), C(1)</p>
+<p>Group all S’s → treat as a block: 8 items: SSS, T(3), I(2), A, C</p>
+<p>\[
+\text{Total} = \frac{8!}{3! \cdot 2!} = \frac{40320}{12} = \boxed{3360}
+\]</p></div></div>
+</section>
+<section id="example-29-permutations-with-min-distance-constraint" class="content-section level-2">
+<h3 class="section-heading">Example 29: Permutations with Min Distance Constraint</h3>
+<div class="concept-box"><div class="box-title">Example 29</div><div class="box-body"><p>How many ways can 6 people be seated in a row such that A and B have exactly one person between them?</p>
+<p><strong>Easy Solution (Position Method):</strong>
+Valid seat pairs for A and B with exactly one seat between them are:
+\((1,3),(2,4),(3,5),(4,6)\) — \(\;4\) pairs.</p>
+<p>For each pair:
+- A and B can swap places: \(\;2\) ways.
+- Choose who sits between them: from the remaining \(4\) people: \(\;4\) ways.
+- Arrange the remaining \(3\) people in the remaining \(3\) seats: \(\;3! = 6\) ways.</p>
+<p>\[
+\text{Total} = 4 \times 2 \times 4 \times 3! = 4 \times 2 \times 4 \times 6 = \boxed{192}.
+\]</p>
+<p><strong>(Quick Check)</strong>  
+Alternatively, fix a valid pair (e.g., \(1,3\)) and order A/B in \(2\) ways; then the other \(4\) people fill the remaining seats in \(4! = 24\) ways.  
+So \(4 \times 2 \times 24 = \boxed{192}\).</p></div></div>
+</section>
+<section id="example-30-distribution-of-items-in-permutations" class="content-section level-2">
+<h3 class="section-heading">Example 30: Distribution of Items in Permutations</h3>
+<div class="concept-box"><div class="box-title">Example 30</div><div class="box-body"><p>In how many ways can 5 identical red balls and 4 identical green balls be arranged in a row?</p>
+<p><strong>Solution:</strong> Total objects = 9  
+Red balls identical, Green balls identical</p>
+<p>\[
+\text{Total arrangements} = \frac{9!}{5! \cdot 4!} = \frac{362880}{120 \cdot 24} = \boxed{126}
+\]</p></div></div>
+</section>
+</section>
+<section id="combinations" class="content-section level-1">
+<h2 class="section-heading">Combinations</h2>
+<p>In combinatorics, a <strong>combination</strong> is a selection of items where the <strong>order does not matter</strong>.</p>
+<p>The number of combinations of \( r \) items that can be selected from \( n \) distinct items is given by:
+\[
+^nC_r = \binom{n}{r} = \frac{n!}{r!(n-r)!}
+\]</p>
+<section id="when-to-identify-a-problem-as-combination" class="content-section level-2">
+<h3 class="section-heading">When to Identify a Problem as Combination</h3>
+<div class="concept-box"><div class="box-title">Tip: When to Use Combinations</div><div class="box-body"><p>Use <strong>combinations</strong> when:</p>
+<ul><li><p>The selection is made without regard to order.</p></li><li><p>Groupings or committees are formed.</p></li><li><p>No specific arrangement or position is mentioned.</p></li></ul>
+<p>Avoid using permutations unless the sequence/arrangement matters.</p></div></div>
+</section>
+</section>
+<section id="examples-of-combinations" class="content-section level-1">
+<h2 class="section-heading">Examples of Combinations</h2>
+
+<section id="example-1-committee-selection" class="content-section level-2">
+<h3 class="section-heading">Example 1: Committee Selection</h3>
+<div class="concept-box"><div class="box-title">Example 1</div><div class="box-body"><p>From a group of 10 people, how many ways can we select 4 to form a committee?</p>
+<p><strong>Solution:</strong> 
+\[
+\binom{10}{4} = \frac{10!}{4! \cdot 6!} = \frac{5040}{24} = \boxed{210}
+\]</p></div></div>
+</section>
+<section id="example-2-handshake-problem" class="content-section level-2">
+<h3 class="section-heading">Example 2: Handshake Problem</h3>
+<div class="concept-box"><div class="box-title">Example 2</div><div class="box-body"><p>In a party of 12 people, if each person shakes hands with every other person once, how many handshakes occur?</p>
+<p><strong>Solution:</strong> 
+Each handshake is a combination of 2 people:
+\[
+\binom{12}{2} = \frac{12 \cdot 11}{2} = \boxed{66}
+\]</p></div></div>
+</section>
+<section id="example-3-choosing-balls" class="content-section level-2">
+<h3 class="section-heading">Example 3: Choosing Balls</h3>
+<div class="concept-box"><div class="box-title">Example 3</div><div class="box-body"><p>From a bag of 15 balls, how many ways can 6 balls be drawn simultaneously?</p>
+<p><strong>Solution:</strong>
+Order doesn&#x27;t matter:
+\[
+\binom{15}{6} = \boxed{5005}
+\]</p></div></div>
+</section>
+<section id="example-4-forming-teams" class="content-section level-2">
+<h3 class="section-heading">Example 4: Forming Teams</h3>
+<div class="concept-box"><div class="box-title">Example 4</div><div class="box-body"><p>A class has 8 boys and 7 girls. In how many ways can a team of 5 students be chosen such that it includes at least 2 girls?</p>
+<p><strong>Solution:</strong>
+We sum combinations for cases:</p>
+<ul><li><p>2 girls, 3 boys: \(\binom{7}{2} \cdot \binom{8}{3} = 21 \cdot 56 = 1176\)</p></li><li><p>3 girls, 2 boys: \(\binom{7}{3} \cdot \binom{8}{2} = 35 \cdot 28 = 980\)</p></li><li><p>4 girls, 1 boy: \(\binom{7}{4} \cdot \binom{8}{1} = 35 \cdot 8 = 280\)</p></li><li><p>5 girls: \(\binom{7}{5} = 21\)</p></li></ul>
+<p>Total = \(1176 + 980 + 280 + 21 = \boxed{2457}\)</p></div></div>
+</section>
+<section id="example-5-card-selection" class="content-section level-2">
+<h3 class="section-heading">Example 5: Card Selection</h3>
+<div class="concept-box"><div class="box-title">Example 5</div><div class="box-body"><p>How many 5-card hands can be drawn from a deck of 52 cards?</p>
+<p><strong>Solution:</strong>
+\[
+\binom{52}{5} = \boxed{2,598,960}
+\]</p></div></div>
+</section>
+<section id="example-6-dividing-prizes" class="content-section level-2">
+<h3 class="section-heading">Example 6: Dividing Prizes</h3>
+<div class="concept-box"><div class="box-title">Example 6</div><div class="box-body"><p>In how many ways can 3 identical prizes be given to 10 students?</p>
+<p><strong>Solution:</strong>
+Choose 3 students from 10:
+\[
+\binom{10}{3} = \boxed{120}
+\]</p></div></div>
+</section>
+<section id="example-7-selecting-questions" class="content-section level-2">
+<h3 class="section-heading">Example 7: Selecting Questions</h3>
+<div class="concept-box"><div class="box-title">Example 7</div><div class="box-body"><p>Out of 20 questions in an exam, a student must attempt 15. In how many ways can this be done?</p>
+<p><strong>Solution:</strong>
+\[
+\binom{20}{15} = \binom{20}{5} = \boxed{15504}
+\]</p></div></div>
+</section>
+<section id="example-8-subsets" class="content-section level-2">
+<h3 class="section-heading">Example 8: Subsets</h3>
+<div class="concept-box"><div class="box-title">Example 8</div><div class="box-body"><p>How many subsets of 4 elements can be formed from a set of 10 elements?</p>
+<p><strong>Solution:</strong>
+\[
+\binom{10}{4} = \boxed{210}
+\]</p></div></div>
+</section>
+<section id="example-9-lottery-selection" class="content-section level-2">
+<h3 class="section-heading">Example 9: Lottery Selection</h3>
+<div class="concept-box"><div class="box-title">Example 9</div><div class="box-body"><p>A lottery draws 6 numbers out of 49. How many combinations are possible?</p>
+<p><strong>Solution:</strong>
+\[
+\binom{49}{6} = \boxed{13,983,816}
+\]</p></div></div>
+</section>
+<section id="example-10-choosing-books" class="content-section level-2">
+<h3 class="section-heading">Example 10: Choosing Books</h3>
+<div class="concept-box"><div class="box-title">Example 10</div><div class="box-body"><p>From 12 different books, in how many ways can 5 books be selected for reading?</p>
+<p><strong>Solution:</strong>
+\[
+\binom{12}{5} = \boxed{792}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 11</div><div class="box-body"><p>In how many ways can a committee of 4 people be selected from 7 men and 5 women such that the committee contains at least 2 women?</p>
+<p><strong>Solution:</strong></p>
+<p>We consider all valid combinations:
+\[
+\begin{aligned}
+&amp;\text{2 women, 2 men: } \binom{5}{2} \cdot \binom{7}{2} = 10 \cdot 21 = 210 \\
+&amp;\text{3 women, 1 man: } \binom{5}{3} \cdot \binom{7}{1} = 10 \cdot 7 = 70 \\
+&amp;\text{4 women: } \binom{5}{4} = 5
+\end{aligned}
+\]</p>
+<p>\[
+\text{Total} = 210 + 70 + 5 = \boxed{285}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 12</div><div class="box-body"><p>From a group of 10 people, in how many ways can a team of 5 be formed such that two particular persons are never together?</p>
+<p><strong>Solution:</strong></p>
+<p>Let the two particular persons be A and B.</p>
+<p><strong>Total combinations without any restriction:</strong> \(\binom{10}{5} = 252\)</p>
+<p><strong>Number of teams where A and B are together:</strong> Choose A and B (fixed), then choose 3 more from remaining 8:
+\[
+\binom{8}{3} = 56
+\]</p>
+<p><strong>Required:</strong> \(252 - 56 = \boxed{196}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 13</div><div class="box-body"><p><strong>Question:</strong>  
+For a game in which two partners oppose two other partners, a total of \(6\) men are available.  
+If every possible pair must play with every other pair, how many games are played?</p>
+<p><strong>Solution:</strong></p>
+<p>We interpret a &quot;game&quot; as selecting two disjoint unordered pairs (pair A vs pair B). Each distinct unordered pair-of-pairs corresponds to one game.</p>
+<p><u>Method 1 (choose pairs stepwise):</u></p>
+<ol><li><p>Choose the first pair of players: there are
+  \[
+  \frac{6\times5}{2\times1}=15
+  \]
+  ways to pick 2 out of 6.</p></li><li><p>From the remaining 4 men choose the opposing pair:
+  \[
+  \frac{4\times3}{2\times1}=6
+  \]
+  ways.</p></li><li><p>The ordered choice (first pair, then second pair) counts each matchup twice (pair \(P\) vs \(Q\) and pair \(Q\) vs \(P\) are the same game), so divide by 2:
+  \[
+  \frac{15\times 6}{2} = 45.
+  \]</p></li></ol>
+<p><u>Method 2 (choose 4 players then partition):</u></p>
+<ol><li><p>Choose which 4 of the 6 men will play in a particular game:
+  \[
+  \frac{6\times5\times4\times3}{4\times3\times2\times1}=15
+  \]
+  ways.</p></li><li><p>For those 4 chosen players, count the number of ways to split them into two unordered pairs. The pairings of 4 distinct people into two unordered pairs equals \(3\) (you can check: fix one person, they have 3 choices for partner, then remaining 2 form the other pair; divide by 2 to remove order of the two pairs: \(\tfrac{3}{1}=3\)).</p></li><li><p>Multiply:
+  \[
+  15 \times 3 = 45.
+  \]</p></li></ol>
+<p>\[
+\boxed{45}
+\]</p>
+<p><strong>Answer:</strong> \(\boxed{45}\) games.</p></div></div>
+<div class="concept-box"><div class="box-title">Example 14</div><div class="box-body"><p>A question paper has 10 questions. A student has to answer exactly 7. However, questions 1 and 2 are mutually exclusive (i.e., both cannot be selected together). In how many ways can the student choose 7 questions?</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Case 1:</strong> Choose Q1 but not Q2 → choose 6 from remaining 8:
+\(\binom{8}{6} = 28\)</p>
+<p><strong>Case 2:</strong> Choose Q2 but not Q1 → again, \(\binom{8}{6} = 28\)</p>
+<p><strong>Case 3:</strong> Choose neither Q1 nor Q2 → choose 7 from remaining 8:
+\(\binom{8}{7} = 8\)</p>
+<p><strong>Total</strong> = \(28 + 28 + 8 = \boxed{64}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 15</div><div class="box-body"><p>How many ways can you choose a group of 6 people from 12 such that two particular people are either both in or both out of the group?</p>
+<p><strong>Solution:</strong></p>
+<p>Let A and B be the two particular people.</p>
+<p><strong>Case 1: Both A and B are in:</strong> choose 4 more from 10 → \(\binom{10}{4} = 210\)</p>
+<p><strong>Case 2: Both A and B are out:</strong> choose 6 from 10 → \(\binom{10}{6} = 210\)</p>
+<p><strong>Total</strong> = \(210 + 210 = \boxed{420}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 16</div><div class="box-body"><p>From 8 different books, how many ways can 5 be chosen such that at least one specific book is included?</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Total ways without restriction:</strong> \(\binom{8}{5} = 56\)</p>
+<p><strong>Ways that exclude the specific book:</strong> \(\binom{7}{5} = 21\)</p>
+<p><strong>Required:</strong> \(56 - 21 = \boxed{35}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 17</div><div class="box-body"><p>From 9 items, including 3 identical ones, how many distinct sets of 4 items can be chosen?</p>
+<p><strong>Solution:</strong></p>
+<p>We count based on how many of the identical items are included.</p>
+<p><strong>Case 1: 0 identical → choose 4 from 6 distinct: </strong> \(\binom{6}{4} = 15\)</p>
+<p><strong>Case 2: 1 identical → \(\binom{6}{3} = 20\)</strong></p>
+<p><strong>Case 3: 2 identical → \(\binom{6}{2} = 15\)</strong></p>
+<p><strong>Case 4: 3 identical → \(\binom{6}{1} = 6\)</strong></p>
+<p><strong>Total</strong> = \(15 + 20 + 15 + 6 = \boxed{56}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 18</div><div class="box-body"><p>How many ways can a team of 4 be formed from 6 girls and 4 boys such that the team includes more girls than boys?</p>
+<p><strong>Solution:</strong></p>
+<p>Valid compositions:
+- 3 girls, 1 boy → \(\binom{6}{3} \cdot \binom{4}{1} = 20 \cdot 4 = 80\)
+- 4 girls → \(\binom{6}{4} = 15\)</p>
+<p><strong>Total</strong> = \(80 + 15 = \boxed{95}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 19</div><div class="box-body"><p>From 12 students, how many ways can 5 be chosen such that two specific students are not both included?</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Total combinations:</strong> \(\binom{12}{5} = 792\)</p>
+<p><strong>Combinations with both A and B:</strong> Choose 3 more from 10 → \(\binom{10}{3} = 120\)</p>
+<p><strong>Required:</strong> \(792 - 120 = \boxed{672}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 20</div><div class="box-body"><p>From 6 red, 5 green, and 4 blue balls, how many ways can 5 balls be selected with at least one of each color?</p>
+<p><strong>Solution:</strong></p>
+<p>We count cases with at least one red, one green, one blue.</p>
+<p><strong>Approach:</strong> Use generating functions or inclusion-exclusion, but simpler to manually count valid (r, g, b) combinations that sum to 5 with each \(\geq 1\):</p>
+<p>Possible (r, g, b) combinations:</p>
+<p>- (3,1,1): \(\binom{6}{3} \cdot \binom{5}{1} \cdot \binom{4}{1} = 20 \cdot 5 \cdot 4 = 400\)
+- (2,2,1): \(\binom{6}{2} \cdot \binom{5}{2} \cdot \binom{4}{1} = 15 \cdot 10 \cdot 4 = 600\)
+- (2,1,2): \(15 \cdot 5 \cdot 6 = 450\)
+- (1,3,1): \(6 \cdot 10 \cdot 4 = 240\)
+- (1,2,2): \(6 \cdot 10 \cdot 6 = 360\)
+- (1,1,3): \(6 \cdot 5 \cdot 4 = 120\)</p>
+<p><strong>Total</strong> = \(400 + 600 + 450 + 240 + 360 + 120 = \boxed{2170}\)</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Introduction to Statistics &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Probability &amp; Statistics &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

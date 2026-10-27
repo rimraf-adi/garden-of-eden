@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Flow — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 6</div><h1>Control Flow</h1></div>
+<section id="conditional-statements" class="content-section level-1">
+<h2 class="section-heading">Conditional Statements</h2>
+
+<section id="if-elif-else" class="content-section level-2">
+<h3 class="section-heading">if / elif / else</h3>
+
+<section id="syntax-chaining-and-nesting" class="content-section level-3">
+<h4 class="section-heading">Syntax, Chaining and Nesting</h4>
+<div class="concept-box"><div class="box-title">if / elif / else --- Formal Syntax</div><div class="box-body"><p>Python conditional execution uses <strong>if</strong>, <strong>elif</strong> (else-if), and
+<strong>else</strong>. Only the <em>first true</em> branch executes; the rest are skipped.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig085.png" alt="diagram"></div>
+<p><strong>Evaluation</strong>: conditions are tested <em>top-to-bottom</em>; as soon as one
+is <code>True</code> its block executes and <em>all remaining elif/else are skipped</em>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig086.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">if / elif / else Properties</div><div class="box-body"><ul><li><p><strong>Short-circuit evaluation</strong>: once a true branch is found, all
+        subsequent <code>elif</code>/<code>else</code> blocks are <em>completely skipped</em>
+        (conditions not even evaluated)</p></li><li><p><strong>No switch/case in Python $&lt;$ 3.10</strong>: use <code>if/elif</code> chains or a
+        dict dispatch table</p></li><li><p><strong>Python 3.10+</strong>: <code>match/case</code> structural pattern matching
+        (see below)</p></li><li><p><strong>Any expression</strong> as condition — Python evaluates its truthiness
+        (<code>bool(expr)</code>)</p></li><li><p><strong>One-liner</strong>: <code>if x &gt; 0: return x</code> allowed but use sparingly</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 87: Basic if / elif / else</div><div class="box-body"><div class="code-box"><pre><code>score = 83
+
+if score &gt;= 90:
+    grade = &quot;A&quot;
+elif score &gt;= 80:
+    grade = &quot;B&quot;
+elif score &gt;= 70:
+    grade = &quot;C&quot;
+elif score &gt;= 60:
+    grade = &quot;D&quot;
+else:
+    grade = &quot;F&quot;
+
+print(grade)  # B
+ 
+# Short-circuit: only first True branch runs
+x = 15
+if x &gt; 10:
+    print(&quot;Greater than 10&quot;)     # prints this
+elif x &gt; 5:                      # NOT evaluated (first was True)
+    print(&quot;Greater than 5&quot;)
+else:
+    print(&quot;5 or less&quot;)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 88: Python 3.10+ match / case (Structural Pattern Matching)</div><div class="box-body"><div class="code-box"><pre><code># match/case: Python 3.10+
+point = (5, 0)
+
+match point:
+    case (0, 0):
+        result = &quot;Origin&quot;
+    case (x, 0):
+        result = f&quot;On x-axis at {x}&quot;
+    case (0, y):
+        result = f&quot;On y-axis at {y}&quot;
+    case (x, y):
+        result = f&quot;Point at ({x}, {y})&quot;
+
+print(result)  # On x-axis at 5
+ 
+# match with guards (if condition)
+value = &quot;hi&quot;
+
+match value:
+    case int(n) if n &lt; 0:
+        classification = &quot;negative int&quot;
+    case int(n) if n == 0:
+        classification = &quot;zero&quot;
+    case int(n):
+        classification = &quot;positive int&quot;
+    case str(s):
+        classification = f&quot;string of length {len(s)}&quot;
+    case _:              # wildcard: matches anything
+        classification = &quot;other&quot;
+ 
+print(classification)  # string of length 2</code></pre></div></div></div>
+</section>
+</section>
+<section id="ternary-conditional-expression" class="content-section level-2">
+<h3 class="section-heading">Ternary (Conditional) Expression</h3>
+
+<section id="inline-if-else" class="content-section level-3">
+<h4 class="section-heading">Inline if-else</h4>
+<div class="concept-box"><div class="box-title">Ternary Expression --- Syntax and Evaluation</div><div class="box-body"><p>Python's <strong>conditional expression</strong> (ternary operator) evaluates to one of two
+values based on a condition, in a single expression:</p>
+<p>\[\texttt{value\_if\_true}\quad\texttt{if}\quad\texttt{condition}\quad
+  \texttt{else}\quad\texttt{value\_if\_false}\]</p>
+<p><strong>Evaluation order:</strong></p>
+<ol><li><p>Condition is evaluated first</p></li><li><p>If <code>True</code>: <code>value_if_true</code> is evaluated and returned</p></li><li><p>If <code>False</code>: <code>value_if_false</code> is evaluated and returned</p></li><li><p>The <em>unchosen</em> branch is <strong>not evaluated</strong> (lazy/short-circuit)</p></li></ol>
+<p><strong>Contrast with C/Java ternary</strong>: <code>cond ? a : b</code><br>
+Python uses <code>a if cond else b</code> (reads more like English).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig087.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Ternary Properties and Patterns</div><div class="box-body"><ul><li><p><strong>Returns a value</strong>: can be used anywhere an expression is needed
+        (assignment, function argument, list comprehension, f-string)</p></li><li><p><strong>Lazy</strong>: only the selected branch is evaluated
+        (<code>1/0 if False else 99</code> $\to$ <code>99</code>, no <code>ZeroDivisionError</code>)</p></li><li><p><strong>Nesting allowed but discouraged</strong>:
+        <code>a if p else b if q else c</code> is valid but hard to read</p></li><li><p><strong>Common pattern</strong>: safe default — <code>x if x is not None else 0</code></p></li><li><p><strong>vs <code>or</code> pattern</strong>: <code>x or default</code> has a subtle difference
+        — <code>x or default</code> returns <code>default</code> when <code>x</code> is
+        <em>any falsy value</em> (including 0, <code>""</code>), not just <code>None</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 89: Ternary Expression --- All Use Cases</div><div class="box-body"><div class="code-box"><pre><code># Basic usage
+x = 10
+result = &quot;positive&quot; if x &gt; 0 else &quot;non-positive&quot;
+print(result)   # positive
+ 
+# In assignment
+score = 85
+grade = &quot;Pass&quot; if score &gt;= 60 else &quot;Fail&quot;
+print(grade)    # Pass
+ 
+# Inside a print call argument
+print(f&quot;Status: {&#x27;Active&#x27; if True else &#x27;Inactive&#x27;}&quot;)   # Status: Active
+ 
+# In f-string
+n = 7
+print(f&quot;{n} is {&#x27;odd&#x27; if n % 2 else &#x27;even&#x27;}&quot;)     # 7 is odd
+ 
+# In list comprehension
+data = [-3, -1, 0, 2, 5, -4, 8]
+abs_vals = [x if x &gt;= 0 else -x for x in data]
+print(abs_vals)   # [3, 1, 0, 2, 5, 4, 8]
+ 
+# Lazy evaluation: unchosen branch not evaluated
+safe = 1/0 if False else 99   # no ZeroDivisionError!
+print(safe)   # 99
+ 
+# Nested ternary (valid, but avoid for readability)
+x = 0
+sign = &quot;positive&quot; if x &gt; 0 else (&quot;negative&quot; if x &lt; 0 else &quot;zero&quot;)
+print(sign)   # zero
+ 
+# PITFALL: or vs ternary for None check
+val = 0
+print(val or &quot;default&quot;)              # &quot;default&quot;  (0 is falsy!)
+print(val if val is not None else &quot;default&quot;)  # 0  (correct None-check)</code></pre></div></div></div>
+</section>
+</section>
+<section id="truthy-falsy-values" class="content-section level-2">
+<h3 class="section-heading">Truthy / Falsy Values</h3>
+
+<section id="python-s-boolean-context" class="content-section level-3">
+<h4 class="section-heading">Python's Boolean Context</h4>
+<div class="concept-box"><div class="box-title">Truthiness in Python --- Complete Rules</div><div class="box-body"><p>Every Python object has an implicit boolean value used in <code>if</code>, <code>while</code>,
+<code>and</code>, <code>or</code>, <code>not</code> contexts.</p>
+<p><strong>Falsy values</strong> — evaluate to <code>False</code> in boolean context:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig088.png" alt="diagram"></div>
+<p><strong>Truthy</strong>: everything else — non-zero numbers, non-empty containers, most
+objects (including <code>0.0001</code>, <code>"0"</code>, <code>[0]</code>, <code>{False}</code>).</p>
+<p><strong>Custom objects</strong>: define <code>__bool__</code> (returns <code>True</code>/<code>False</code>)
+or <code>__len__</code> (falsy if <code>len == 0</code>).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig089.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 90: Truthiness --- Pitfalls and Correct Idioms</div><div class="box-body"><div class="code-box"><pre><code># Checking empty containers the Pythonic way
+lst = []
+if not lst:           # Pythonic: rely on truthiness
+    print(&quot;empty&quot;)
+ 
+# Anti-pattern (verbose)
+if len(lst) == 0:     # works but not idiomatic
+    print(&quot;empty&quot;)
+ 
+# PITFALL: &quot;0&quot; is truthy (non-empty string)
+s = &quot;0&quot;
+if s:
+    print(&quot;truthy!&quot;)  # prints! &quot;0&quot; is NOT the int 0
+ 
+# PITFALL: [0] is truthy (non-empty list)
+L = [0]
+if L:
+    print(&quot;truthy!&quot;)  # prints! list is non-empty
+ 
+# PITFALL: {False} is truthy (non-empty set)
+st = {False}
+if st:
+    print(&quot;truthy!&quot;)  # prints! set is non-empty
+ 
+# None vs falsy: use &#x27;is None&#x27; to distinguish
+a, b = 10, 0
+result = a / b if b else None   # None on zero
+ 
+if result is None:          # correct None check
+    print(&quot;Division by zero&quot;)
+if not result:              # WRONG: also catches result=0.0
+    print(&quot;Would also catch 0.0!&quot;)</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="loops" class="content-section level-1">
+<h2 class="section-heading">Loops</h2>
+
+<section id="for-loop" class="content-section level-2">
+<h3 class="section-heading">for Loop</h3>
+
+<section id="iterating-iterables-range-enumerate-zip" class="content-section level-3">
+<h4 class="section-heading">Iterating Iterables, range, enumerate, zip</h4>
+<div class="concept-box"><div class="box-title">for Loop --- Repeating Things Easily</div><div class="box-body"><p>A <strong>for loop</strong> is like a train track that visits every single station on a line. It tells Python to take a collection of items (like a list of toys or letters in a word) and look at each item, one by one, from the first to the last.</p>
+<p>\[\texttt{for}\ \langle\textit{item}\rangle\ \texttt{in}\ \langle\textit{collection}\rangle\texttt{:}
+  \quad \langle\textit{what to do with it}\rangle\]</p>
+<p><strong>Things you can loop through include</strong>: <code>str</code> (letters in text), <code>list</code> (a list of things), <code>tuple</code> (fixed list), <code>set</code> (unique items), <code>dict</code> (dictionary keys), and helper functions like <code>range</code>, <code>enumerate</code>, and <code>zip</code>.</p>
+<p><strong>range()</strong> parameters (How to count):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig090.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig091.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Cool Loop Assistants: enumerate() and zip()</div><div class="box-body"><ul><li><p><strong><code>enumerate(items, start=0)</code></strong>: Tells you the item *and* its tracking number (index). Like counting: "Item number 0 is an apple, item number 1 is a banana."</p></li><li><p><strong><code>zip(list1, list2, ...)</code></strong>: Pairs things up like matching socks. If you have a list of names and a list of ages, it matches the 1st name with the 1st age. It stops as soon as the <em>shortest</em> list runs out!</p></li><li><p><strong><code>itertools.zip_longest()</code></strong>: Keeps pairing even if one list is longer, filling the empty spots with a placeholder (like <code>None</code> or 0).</p></li><li><p><strong><code>zip(*matrix)</code></strong>: Swaps rows and columns in a grid (like turning a tall photo into a wide photo).</p></li><li><p><strong><code>range</code></strong> is smart and lazy: It doesn't actually write a massive list of numbers in the computer's memory. Even <code>range(10**9)</code> takes up almost no space!</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">What is <code>end=""</code>?</div><div class="box-body"><p>By default, every time Python uses <code>print()</code>, it automatically jumps to a <strong>new line</strong> (like pressing the Enter key on a keyboard).</p>
+<p>When you use <code>end=""</code>, you tell Python: <em>"Don't jump to a new line! Keep the printing cursor right where it is so the next print stays on the same row."</em></p></div></div>
+<div class="example-box"><div class="box-title">Example 91: Comparing Normal Print vs. <code>end=""</code></div><div class="box-body"><div class="code-box"><pre><code># 1. Without end=&quot;&quot; (Default - prints downward)
+print(&quot;Apple&quot;)
+print(&quot;Banana&quot;)
+# Output:
+# Apple
+# Banana
+
+# 2. With end=&quot;&quot; (Glues things together side-by-side)
+print(&quot;Apple&quot;, end=&quot;&quot;)
+print(&quot;Banana&quot;, end=&quot;&quot;)
+# Output: AppleBanana
+
+# 3. Adding a space inside end=&quot; &quot; (Keeps things neat in a row)
+for i in range(3):
+    print(&quot;Hi&quot;, end=&quot; &quot;)
+# Output: Hi Hi Hi 
+
+# 4. Adding a symbol inside end=&quot;-&quot;
+for i in range(3):
+    print(&quot;Go&quot;, end=&quot;-&quot;)
+# Output: Go-Go-Go-</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 92: for Loop --- Simple Examples</div><div class="box-body"><div class="code-box"><pre><code># 1. Counting up to 5 (stops before 5)
+for i in range(5):
+    print(i, end=&quot; &quot;)   # 0 1 2 3 4
+ 
+# 2. Skipping numbers (count by twos)
+for i in range(2, 8, 2):
+    print(i, end=&quot; &quot;)   # 2 4 6
+ 
+# 3. Rocket countdown!
+for i in range(5, 0, -1):
+    print(i, end=&quot; &quot;)   # 5 4 3 2 1
+ 
+# 4. Spell a word letter by letter
+for letter in &quot;CAT&quot;:
+    print(letter, end=&quot; &quot;)   # C A T
+ 
+# 5. Looking at keys in a dictionary
+toy_box = {&quot;car&quot;: &quot;red&quot;, &quot;ball&quot;: &quot;blue&quot;}
+for toy in toy_box:
+    print(toy, end=&quot; &quot;)   # car ball
+ 
+# 6. Using enumerate to get numbers
+fruits = [&quot;apple&quot;, &quot;banana&quot;]
+for index, fruit in enumerate(fruits):
+    print(f&quot;Item {index} is {fruit}&quot;)
+# Item 0 is apple
+# Item 1 is banana
+ 
+# 7. Using zip to pair friends with their favorite colors
+names  = [&quot;Alice&quot;, &quot;Bob&quot;]
+colors = [&quot;Red&quot;, &quot;Blue&quot;]
+for name, color in zip(names, colors):
+    print(f&quot;{name} likes {color}&quot;)
+# Alice likes Red
+# Bob likes Blue
+ 
+# 8. zip stops when the shorter list is empty
+numbers = [1, 2, 3, 4, 5]
+letters = [&quot;A&quot;, &quot;B&quot;]
+print(list(zip(numbers, letters)))    # [(1, &#x27;A&#x27;), (2, &#x27;B&#x27;)]
+ 
+# 9. zip_longest keeps going to the end
+from itertools import zip_longest
+print(list(zip_longest(numbers, letters, fillvalue=&quot;Empty&quot;)))
+# [(1, &#x27;A&#x27;), (2, &#x27;B&#x27;), (3, &#x27;Empty&#x27;), (4, &#x27;Empty&#x27;), (5, &#x27;Empty&#x27;)]</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 93: Common Loop Tricks</div><div class="box-body"><div class="code-box"><pre><code># 1. Adding up numbers (Piggy bank)
+coins = [5, 2, 10, 1]
+total = 0
+for coin in coins:
+    total += coin
+print(total)   # 18
+ 
+# 2. Loop inside a loop (Making a multiplication grid)
+for row in range(1, 3):
+    for col in range(1, 3):
+        print(f&quot;{row}x{col}={row*col}&quot;, end=&quot;  &quot;)
+    print() # Moves to the next line
+# 1x1=1  1x2=2  
+# 2x1=2  2x2=4  
+ 
+# 3. Reading dictionary keys and values together
+pet_sounds = {&quot;dog&quot;: &quot;woof&quot;, &quot;cat&quot;: &quot;meow&quot;}
+for pet, sound in pet_sounds.items():
+    print(f&quot;The {pet} goes {sound}&quot;)
+ 
+# 4. Making a new list using a loop
+numbers = [1, 2, 3]
+doubled = []
+for x in numbers:
+    doubled.append(x * 2)
+print(doubled)   # [2, 4, 6]</code></pre></div></div></div>
+</section>
+</section>
+<section id="while-loop" class="content-section level-2">
+<h3 class="section-heading">while Loop</h3>
+
+<section id="condition-controlled-repetition" class="content-section level-3">
+<h4 class="section-heading">Condition-Controlled Repetition</h4>
+<div class="concept-box"><div class="box-title">while Loop --- Repeat Until We Tell You to Stop</div><div class="box-body"><p>A <strong>while loop</strong> is like jumping on a trampoline. You keep jumping <strong>while</strong> you still have energy. You don't know how many times you will jump before you start, you just check if you are tired before every single jump.</p>
+<p>\[\texttt{while}\ \langle\textit{rule is true}\rangle\texttt{:}
+  \quad \langle\textit{keep doing this action}\rangle\]</p>
+<p><strong>How it works</strong>: Python checks the rule *before* it does anything. If the rule is already <code>False</code> at the very start, the loop will never run even once!</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig092.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Common while Loop Tricks and Traps</div><div class="box-body"><ul><li><p><strong>Counting Down</strong>: <code>cookies = 5; while cookies &gt; 0: eat()</code></p></li><li><p><strong>Infinite Loop with a Break</strong>: Using <code>while True:</code> creates a loop that runs forever, unless a special <code>break</code> command stops it inside.</p></li><li><p><strong>Input Check</strong>: Asking a user to type something until they type the correct answer (like entering a valid password).</p></li><li><p><strong>The Danger Trap (Infinite Loop)</strong>: If you forget to change something inside the loop, the rule stays <code>True</code> forever and the computer gets stuck in an infinite loop!</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 94: while Loop Examples</div><div class="box-body"><div class="code-box"><pre><code># 1. Simple countdown
+candies = 3
+while candies &gt; 0:
+    print(f&quot;Eating a candy! {candies} left.&quot;)
+    candies -= 1  # We eat one, so count goes down
+# Eating a candy! 3 left.
+# Eating a candy! 2 left.
+# Eating a candy! 1 left.
+ 
+# 2. Keep guessing until it&#x27;s right
+secret_number = 7
+user_guess = 0  # Start with 0 so the loop begins
+ 
+# Simulating guesses: 3, then 5, then 7
+guesses = iter([3, 5, 7])
+ 
+while user_guess != secret_number:
+    user_guess = next(guesses)
+    print(f&quot;Guessed: {user_guess}&quot;)
+    if user_guess == secret_number:
+        print(&quot;You got it!&quot;)
+    else:
+        print(&quot;Wrong! Try again.&quot;)
+ 
+# 3. THE INFINTIE LOOP PITFALL (What NOT to do!)
+# item_count = 5
+# while item_count &gt; 0:
+#     print(&quot;Stuck forever!&quot;) 
+#     # Uh oh! We forgot to do item_count -= 1, so it never stops!</code></pre></div></div></div>
+</section>
+</section>
+<section id="loop-control" class="content-section level-2">
+<h3 class="section-heading">Loop Control</h3>
+
+<section id="break-continue-pass" class="content-section level-3">
+<h4 class="section-heading">break, continue, pass</h4>
+<div class="concept-box"><div class="box-title">break, continue, pass --- Traffic Controls for Loops</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig093.png" alt="diagram"></div>
+<p><strong>Important Note</strong>: <code>break</code> only gets you out of the <em>current closest</em> loop box. If you have a loop inside another loop, it won't escape the outer one!</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig094.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 95: Break, Continue, and Pass Examples</div><div class="box-body"><div class="code-box"><pre><code># 1. break: Stop searching when we find what we want
+lucky_numbers = [1, 2, 9, 4, 5]
+for num in lucky_numbers:
+    if num == 9:
+        print(&quot;Found the 9! Stopping the search.&quot;)
+        break
+    print(f&quot;Checking: {num}&quot;)
+# Checking: 1
+# Checking: 2
+# Found the 9! Stopping the search.
+ 
+# 2. continue: Skip bad items (Skip even numbers)
+for num in range(1, 6):
+    if num % 2 == 0:
+        continue # Skip this number!
+    print(num, end=&quot; &quot;) # 1 3 5
+print()
+ 
+# 3. pass: Just a placeholder so Python doesn&#x27;t get confused
+for num in range(3):
+    if num == 1:
+        pass # I will write code here tomorrow!
+    else:
+        print(num, end=&quot; &quot;) # 0 2</code></pre></div></div></div>
+</section>
+</section>
+<section id="else-clause-on-loops" class="content-section level-2">
+<h3 class="section-heading">else Clause on Loops</h3>
+
+<section id="loop-else-the-no-break-reward" class="content-section level-3">
+<h4 class="section-heading">Loop--else: The ``No Break'' Reward</h4>
+<div class="concept-box"><div class="box-title">Loop else --- What happens if we never hit break?</div><div class="box-body"><p>You can attach an <code>else</code> block to a loop. It acts like a reward block that runs **only if the loop finishes its entire run without getting stopped by a break**.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig095.png" alt="diagram"></div>
+<p><strong>Best way to remember</strong>: Think of it as a <strong>“No Break Happened”</strong> block. It is super useful for searching through things to confirm that something is missing.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig096.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 96: Loop else --- Code Example</div><div class="box-body"><div class="code-box"><pre><code># Look for a monster in the closet
+closet = [&quot;shirt&quot;, &quot;pants&quot;, &quot;socks&quot;]
+ 
+for item in closet:
+    if item == &quot;monster&quot;:
+        print(&quot;Ahhh! Found a monster!&quot;)
+        break
+else:
+    # This runs only if we checked EVERYTHING and found NO monster
+    print(&quot;Yay! No monsters found in the closet.&quot;)
+ 
+# Output: Yay! No monsters found in the closet.</code></pre></div></div></div>
+</section>
+</section>
+<section id="walrus-operator-texttt" class="content-section level-2">
+<h3 class="section-heading">Walrus Operator <code>:=</code></h3>
+<div class="concept-box"><div class="box-title">Walrus Operator <code>:=</code> --- Definition</div><div class="box-body"><p>The <strong>walrus operator</strong> (<code>:=</code>), introduced in Python 3.8 via PEP 572,
+is an <strong>assignment expression</strong>: it <em>assigns a value to a name</em> and
+<em>simultaneously returns that value</em> as an expression.</p>
+<p>\[\texttt{name\ :=\ expression}\]</p>
+<p>This allows assignment to occur <em>inside</em> a condition, comprehension, or
+any other expression context where a plain <code>=</code> statement is not allowed.</p>
+<p><strong>Key rules</strong>:</p>
+<ul><li><p>Must be parenthesised when used at the <em>top level of an expression
+        statement</em> (<code>(x := 5)</code> not <code>x := 5</code> standalone)</p></li><li><p>The assigned name is visible in the <em>enclosing scope</em>
+        (not scoped to the comprehension variable)</p></li><li><p>Cannot be used for attribute or subscript assignment
+        (<code>obj.x := 5</code> is illegal)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig097.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Walrus Operator Use Cases</div><div class="box-body"><ul><li><p><strong>while loop</strong>: <code>while chunk := f.read(4096):</code> — read until
+        empty bytes</p></li><li><p><strong>Regex match</strong>: <code>if m := re.search(pat, text):</code> use <code>m.group()</code> in body</p></li><li><p><strong>Comprehension filter and use</strong>: compute expensive value once, filter
+        and use in the same expression</p></li><li><p><strong>Input loop</strong>: <code>while (line := input("? ")) != "quit":</code></p></li><li><p><strong>Chain of transformations</strong>: avoid intermediate variables while
+        keeping result accessible</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 97: Walrus Operator --- All Patterns</div><div class="box-body"><div class="code-box"><pre><code># 1. while loop: read file in chunks
+# with open(&quot;data.bin&quot;, &quot;rb&quot;) as f:
+#     while chunk := f.read(4096):
+#         process(chunk)
+ 
+# Simulated version
+import io
+f = io.BytesIO(b&quot;hello world this is a test&quot;)
+chunks = []
+while chunk := f.read(5):
+    chunks.append(chunk)
+print(chunks)
+# [b&#x27;hello&#x27;, b&#x27; worl&#x27;, b&#x27;d thi&#x27;, b&#x27;s is &#x27;, b&#x27;a tes&#x27;, b&#x27;t&#x27;]
+ 
+# 2. Regex: assign match and test existence
+import re
+texts = [&quot;Phone: 9876543210&quot;, &quot;No phone here&quot;, &quot;Call: 1234567890&quot;]
+for text in texts:
+    if m := re.search(r&#x27;\d{10}&#x27;, text):
+        print(f&quot;Found: {m.group()}&quot;)   # prints matched number
+    else:
+        print(&quot;No number in:&quot;, text)
+ 
+# 3. Comprehension: avoid double computation
+import math
+data = [1, -2, 4, -9, 16, -25]
+results = [root for x in data if (root := math.sqrt(x)) &gt; 1.5]
+# note: :=  inside comprehension; &#x27;root&#x27; leaks to enclosing scope
+print(results)   # [2.0, 4.0]
+ 
+# 4. Input loop
+prompts = iter([&quot;hello&quot;, &quot;world&quot;, &quot;quit&quot;])  # simulate input
+words = []
+while (word := next(prompts)) != &quot;quit&quot;:
+    words.append(word.upper())
+print(words)   # [&#x27;HELLO&#x27;, &#x27;WORLD&#x27;]
+ 
+# 5. Avoid recomputing expensive call
+def expensive(n): return n * n + n - 1
+ 
+values = [1, 5, 3, 8, 2]
+# Without walrus: expensive() called twice per iteration
+filtered_bad = [expensive(x) for x in values if expensive(x) &gt; 10]
+ 
+# With walrus: computed once
+filtered_good = [v for x in values if (v := expensive(x)) &gt; 10]
+print(filtered_good)   # [29, 61]
+ 
+# 6. Nested while with walrus
+total, count = 0, 0
+data_stream = iter([4, 7, 2, -1, 5, -1])   # -1 is sentinel
+while (val := next(data_stream)) != -1:
+    total += val
+    count += 1
+print(f&quot;Sum={total}, Count={count}, Mean={total/count:.2f}&quot;)
+# Sum=13, Count=3, Mean=4.33</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 98: Control Flow ---  Tricky Questions</div><div class="box-body"><div class="code-box"><pre><code># Q1: What does this print?
+for i in range(3):
+    for j in range(3):
+        if j == 1:
+            break
+    print(i, j)
+# break exits INNER loop; j=1 when break fires, but loop ends
+# After inner loop, j retains last value (1 from break, NOT 2)
+# Output: 0 1 / 1 1 / 2 1
+ 
+# Q2: else on for
+for i in range(5):
+    if i == 10:   # never True
+        break
+else:
+    print(&quot;no break&quot;)   # prints: no break
+ 
+# Q3: continue vs pass
+for i in range(5):
+    if i == 2:
+        pass           # does nothing; loop continues normally
+    print(i, end=&quot; &quot;) # 0 1 2 3 4  (2 is still printed!)
+ 
+for i in range(5):
+    if i == 2:
+        continue       # skips print for i=2
+    print(i, end=&quot; &quot;) # 0 1 3 4    (2 is skipped!)
+ 
+# Q4: walrus scope leak
+data = [1, 2, 3, 4, 5]
+evens = [y for x in data if (y := x*2) &gt; 4]
+print(y)   # 10  (last value assigned by := leaks out of comprehension!)
+ 
+# Q5: while-else with continue
+n = 10
+while n &gt; 0:
+    n -= 1
+    if n % 2 == 0:
+        continue      # continue does NOT trigger else
+else:
+    print(&quot;while done&quot;)   # prints: while done (no break occurred)</code></pre></div></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Built-in Data Structures</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Functions &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

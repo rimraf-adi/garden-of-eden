@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clustering Algorithms — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Unsupervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Unsupervised Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-unsupervised-learning" class="toc-link" data-slug="types-of-unsupervised-learning">Types of Unsupervised Learning</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#clustering-example" class="toc-link" data-slug="clustering-example">Clustering Example</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dimensionality-reduction-example" class="toc-link" data-slug="dimensionality-reduction-example">Dimensionality Reduction Example</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Clustering Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#example-customer-purchase-data" class="toc-link" data-slug="example-customer-purchase-data">Example: Customer Purchase Data</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering" class="toc-link" data-slug="types-of-clustering">Types of Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-hard-clustering" class="toc-link" data-slug="1-hard-clustering">1. Hard Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-soft-clustering" class="toc-link" data-slug="2-soft-clustering">2. Soft Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#types-of-clustering-methods" class="toc-link" data-slug="types-of-clustering-methods">Types of Clustering Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#1-centroid-based-clustering-partitioning-methods" class="toc-link" data-slug="1-centroid-based-clustering-partitioning-methods">1. Centroid-based Clustering (Partitioning Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#2-density-based-clustering-model-based-methods" class="toc-link" data-slug="2-density-based-clustering-model-based-methods">2. Density-based Clustering (Model-based Methods)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#3-connectivity-based-clustering-hierarchical-clustering" class="toc-link" data-slug="3-connectivity-based-clustering-hierarchical-clustering">3. Connectivity-based Clustering (Hierarchical Clustering)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#4-distribution-based-clustering" class="toc-link" data-slug="4-distribution-based-clustering">4. Distribution-based Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#5-fuzzy-clustering" class="toc-link" data-slug="5-fuzzy-clustering">5. Fuzzy Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#partition-based-clustering" class="toc-link" data-slug="partition-based-clustering">Partition-based Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#k-means-clustering" class="toc-link" data-slug="k-means-clustering">K-means Clustering</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#k-medoids-clustering" class="toc-link" data-slug="k-medoids-clustering">K-medoids Clustering</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#hierarchical-clustering" class="toc-link" data-slug="hierarchical-clustering">Hierarchical Clustering</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#agglomerative-bottom-up-approach" class="toc-link" data-slug="agglomerative-bottom-up-approach">Agglomerative (Bottom-Up) Approach</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#single-linkage-method" class="toc-link" data-slug="single-linkage-method">Single-Linkage Method</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#complete-multiple-linkage-method" class="toc-link" data-slug="complete-multiple-linkage-method">Complete/Multiple-Linkage Method</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#divisive-top-down-approach" class="toc-link" data-slug="divisive-top-down-approach">Divisive (Top-Down) Approach</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Dimensionality Reduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#principal-component-analysis-pca" class="toc-link" data-slug="principal-component-analysis-pca">Principal Component Analysis (PCA)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#introduction-and-motivation" class="toc-link" data-slug="introduction-and-motivation">Introduction and Motivation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#visualization-of-pca-projection" class="toc-link" data-slug="visualization-of-pca-projection">Visualization of PCA Projection</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#mathematical-formulation" class="toc-link" data-slug="mathematical-formulation">Mathematical Formulation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 3</div><h1>Clustering Algorithms</h1></div>
+<section id="introduction" class="content-section level-1">
+<h2 class="section-heading">Introduction</h2>
+<p>Clustering is an <strong>unsupervised machine learning technique</strong> that groups similar data points together into <strong>clusters</strong> based on their characteristics, <strong>without using any labeled data</strong>. The objective is to ensure that data points within the same cluster are more similar to each other than to those in different clusters, enabling the discovery of natural groupings and hidden patterns in complex datasets.</p>
+<p><strong>Goal:</strong> Discover the natural grouping or structure in unlabeled data without predefined categories.<br>
+<strong>How:</strong> Data points are assigned to clusters based on similarity or distance measures.<br>
+<strong>Similarity Measures:</strong> Euclidean distance, cosine similarity, or other metrics depending on data type and clustering method.<br>
+<strong>Output:</strong> Each group is assigned a cluster ID representing shared characteristics within the cluster.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"><div class="figure-caption">Example of clustering in a 2D feature space</div></div>
+<section id="example-customer-purchase-data" class="content-section level-2">
+<h3 class="section-heading">Example: Customer Purchase Data</h3>
+<p>If we have customer purchase data, clustering can group customers with similar shopping habits. These clusters can then be used for <strong>targeted marketing</strong>, <strong>personalized recommendations</strong>, or <strong>customer segmentation</strong>.</p>
+</section>
+</section>
+<section id="types-of-clustering" class="content-section level-1">
+<h2 class="section-heading">Types of Clustering</h2>
+
+<section id="1-hard-clustering" class="content-section level-2">
+<h3 class="section-heading">1. Hard Clustering</h3>
+<p>In <strong>hard clustering</strong>, each data point strictly belongs to <strong>exactly one cluster</strong>, no overlap is allowed. This approach assigns a clear membership.</p>
+<p><strong>Example:</strong> If clustering customer data into 2 segments, each customer belongs fully to either Cluster 1 or Cluster 2.</p>
+<p><strong>Use Cases:</strong> Market segmentation, customer grouping, document clustering.<br>
+<strong>Limitations:</strong> Cannot represent ambiguity or overlap; boundaries are crisp.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"><div class="figure-caption">Hard Clustering: each point belongs to only one cluster</div></div>
+</section>
+<section id="2-soft-clustering" class="content-section level-2">
+<h3 class="section-heading">2. Soft Clustering</h3>
+<p><strong>Soft clustering</strong> assigns each data point a <strong>probability or degree of membership</strong> to multiple clusters simultaneously. This allows data points to partially belong to several groups.</p>
+<p><strong>Example:</strong> A data point may have a 70% membership in Cluster 1 and 30% in Cluster 2.</p>
+<p><strong>Use Cases:</strong> Situations with overlapping boundaries, fuzzy categories, customer personas, or medical diagnosis.<br>
+<strong>Benefits:</strong> Captures ambiguity, models gradual transitions between clusters.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"><div class="figure-caption">Soft Clustering: points can partially belong to multiple clusters</div></div>
+</section>
+</section>
+<section id="types-of-clustering-methods" class="content-section level-1">
+<h2 class="section-heading">Types of Clustering Methods</h2>
+<p>Clustering methods can be classified based on how they form clusters:</p>
+<section id="1-centroid-based-clustering-partitioning-methods" class="content-section level-2">
+<h3 class="section-heading">1. Centroid-based Clustering (Partitioning Methods)</h3>
+<ul><li><p>Organizes data points around centroids (mean or medoid).</p></li><li><p><strong>Algorithms:</strong></p>
+<ul><li><p>K-means: minimizes intra-cluster variance.</p></li><li><p>K-medoids: uses actual data points, robust to outliers.</p></li></ul></li><li><p><strong>Advantages:</strong> Fast, scalable, easy to implement.</p></li><li><p><strong>Limitations:</strong> Requires number of clusters, sensitive to outliers, not suitable for non-spherical clusters.</p></li></ul>
+</section>
+<section id="2-density-based-clustering-model-based-methods" class="content-section level-2">
+<h3 class="section-heading">2. Density-based Clustering (Model-based Methods)</h3>
+<ul><li><p>Forms clusters as high-density regions separated by low-density areas.</p></li><li><p><strong>Algorithms:</strong></p>
+<ul><li><p>DBSCAN: identifies clusters and noise.</p></li><li><p>OPTICS: handles varying density clusters.</p></li></ul></li><li><p><strong>Advantages:</strong> Detects arbitrary shapes, handles noise, cluster count not required.</p></li><li><p><strong>Limitations:</strong> Parameter selection can be difficult, less effective for varying densities (except OPTICS).</p></li></ul>
+</section>
+<section id="3-connectivity-based-clustering-hierarchical-clustering" class="content-section level-2">
+<h3 class="section-heading">3. Connectivity-based Clustering (Hierarchical Clustering)</h3>
+<ul><li><p>Builds nested clusters based on connectivity among points.</p></li><li><p><strong>Approaches:</strong></p>
+<ul><li><p>Agglomerative (Bottom-up): merge closest clusters iteratively.</p></li><li><p>Divisive (Top-down): split clusters iteratively.</p></li></ul></li><li><p><strong>Advantages:</strong> Full hierarchy, easy visualization, cluster count not needed.</p></li><li><p><strong>Limitations:</strong> Computationally expensive, merging/splitting decisions are irreversible.</p></li></ul>
+</section>
+<section id="4-distribution-based-clustering" class="content-section level-2">
+<h3 class="section-heading">4. Distribution-based Clustering</h3>
+<ul><li><p>Assumes data comes from a mixture of probability distributions.</p></li><li><p><strong>Algorithm:</strong> Gaussian Mixture Model (GMM): assigns points based on likelihood.</p></li><li><p><strong>Advantages:</strong> Flexible cluster shapes, probabilistic memberships, handles overlapping clusters.</p></li><li><p><strong>Limitations:</strong> Requires number of components, computationally expensive, sensitive to initialization.</p></li></ul>
+</section>
+<section id="5-fuzzy-clustering" class="content-section level-2">
+<h3 class="section-heading">5. Fuzzy Clustering</h3>
+<ul><li><p>Allows points to belong to multiple clusters with degrees of membership.</p></li><li><p><strong>Algorithm:</strong> Fuzzy C-Means: updates fuzzy memberships iteratively.</p></li><li><p><strong>Advantages:</strong> Captures ambiguity, suitable for overlapping clusters.</p></li><li><p><strong>Limitations:</strong> Choosing fuzziness parameter can be tricky, higher computational cost.</p></li></ul>
+</section>
+</section>
+<section id="partition-based-clustering" class="content-section level-1">
+<h2 class="section-heading">Partition-based Clustering</h2>
+<p>Partition-based clustering algorithms divide the dataset into a predefined number of clusters $k$, optimizing a cluster-specific objective function. They are widely used because of their simplicity and efficiency, especially for large datasets. The most common algorithms are K-means and K-medoids.</p>
+<section id="k-means-clustering" class="content-section level-2">
+<h3 class="section-heading">K-means Clustering</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">K-means Algorithm</div><div class="box-body"><p><strong>Step 1: Specify Number of Clusters</strong></p>
+<p>Let the dataset be
+\[
+\mathcal{D} = \{x_1, x_2, \ldots, x_n\}, \quad x_i \in \mathbb{R}^d
+\]</p>
+<p>Fix the number of clusters:
+\[
+K \in \mathbb{N}
+\]</p>
+<p><strong>Step 2: Initialize Centroids Randomly</strong></p>
+<p>Select \(K\) distinct data points as initial centroids:
+\[
+\mu_1^{(0)}, \mu_2^{(0)}, \ldots, \mu_K^{(0)} \in \mathcal{D}
+\]</p>
+<p><strong>Step 3: Distance Computation &amp; Assignment Step (Cluster Membership)</strong></p>
+<p>For each data point \(x_i\), compute the squared Euclidean distance to all centroids and assign it to the nearest one:
+\[
+c_i^{(t)} = \arg\min_{k \in \{1,\ldots,K\}} \|x_i - \mu_k^{(t)}\|_2^2
+\]</p>
+<p>Thus,
+\[
+x_i \in C_k^{(t)} \quad \text{if } c_i^{(t)} = k
+\]</p>
+<p><strong>Step 4: Update Step (Centroid Recalculation)</strong></p>
+<p>Recompute each centroid as the mean of the data points assigned to that cluster:
+\[
+\mu_k^{(t+1)} =
+\frac{1}{|C_k^{(t)}|}
+\sum_{x_i \in C_k^{(t)}} x_i
+\]</p>
+<p><strong>Step 5: Stopping Criterion (Convergence)</strong></p>
+<p>Iterate <strong>Steps 3–4</strong> until convergence, i.e., stop if either:
+\[
+C_k^{(t+1)} = C_k^{(t)} \quad \forall k
+\]</p>
+<p>or
+\[
+\mu_k^{(t+1)} = \mu_k^{(t)} \quad \forall k
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 2</div><div class="box-body"><p>Given a dataset in $\mathbb{R}^2$,
+\[
+D = \left\{
+x_1 = (1,1),\;
+x_2 = (1,2),\;
+x_3 = (4,4),\;
+x_4 = (5,4)
+\right\},
+\]
+apply the <strong>K-means clustering algorithm</strong> with
+\[
+K = 2
+\]
+clusters. Perform the algorithm step by step until convergence.</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 1: Specify Number of Clusters</strong></p>
+<p>\[
+K = 2
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 2: Initialize Centroids</strong></p>
+<p>Choose two data points as initial centroids:
+\[
+\mu_1^{(0)} = (1,1), 
+\qquad
+\mu_2^{(0)} = (5,4)
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 3: Distance Computation and Assignment</strong></p>
+<p>The squared Euclidean distance is given by
+\[
+\|x - \mu\|^2 = (x_1 - \mu_1)^2 + (x_2 - \mu_2)^2
+\]</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div>
+<p>\[
+C_1^{(0)} = \{(1,1),(1,2)\},
+\qquad
+C_2^{(0)} = \{(4,4),(5,4)\}
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 4: Update Step (Centroid Recalculation)</strong></p>
+<p>Compute the new centroids as the mean of points in each cluster.</p>
+<p>\[
+\mu_1^{(1)} = \frac{(1,1) + (1,2)}{2} = (1,1.5)
+\]</p>
+<p>\[
+\mu_2^{(1)} = \frac{(4,4) + (5,4)}{2} = (4.5,4)
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 5: Reassignment Using Updated Centroids</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div>
+<p>Since the cluster assignments do not change, the algorithm converges.</p>
+<p>—</p>
+<p><strong class="inline-subheading">Final Result</strong></p>
+<p><strong class="inline-subheading">Clusters</strong>
+\[
+C_1 = \{(1,1),(1,2)\},
+\qquad
+C_2 = \{(4,4),(5,4)\}
+\]</p>
+<p><strong class="inline-subheading">Centroids</strong>
+\[
+\mu_1 = (1,1.5),
+\qquad
+\mu_2 = (4.5,4)
+\]</p>
+<p>$\blacksquare$</p></div></div>
+<div class="concept-box"><div class="box-title">Advantages and Limitations of K-means</div><div class="box-body"><ul><li><p><strong>Advantages:</strong> Simple, scalable, efficient for large datasets.</p></li><li><p><strong>Limitations:</strong> Sensitive to initialization, outliers, assumes spherical clusters, requires pre-defined $k$.</p></li></ul></div></div>
+</section>
+<section id="k-medoids-clustering" class="content-section level-2">
+<h3 class="section-heading">K-medoids Clustering</h3>
+<div class="concept-box"><div class="box-title">K-medoids Clustering: Concept</div><div class="box-body"><p>K-medoids clustering is similar to K-means but uses actual data points as cluster centers (medoids) instead of the mean. This makes it robust to outliers.</p></div></div>
+<div class="concept-box"><div class="box-title">K-medoids Algorithm</div><div class="box-body"><p><strong>Steps:</strong></p>
+<ol><li><p>Initialize $k$ medoids randomly from data points.</p></li><li><p>Assign each point to the nearest medoid.</p></li><li><p>For each cluster, try swapping medoid with another point in cluster; if total cost decreases, update medoid.</p></li><li><p>Repeat step 3 until no improvement.</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">K-medoids Algorithm</div><div class="box-body"><p><strong class="inline-subheading">Step 1: Specify Number of Clusters</strong></p>
+<p>Let the dataset be
+\[
+\mathcal{D} = \{x_1, x_2, \ldots, x_n\}, \quad x_i \in \mathbb{R}^d
+\]</p>
+<p>Fix the number of clusters:
+\[
+K \in \mathbb{N}
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 2: Initialize Medoids Randomly</strong></p>
+<p>Select \(K\) distinct data points as initial medoids:
+\[
+m_1^{(0)}, m_2^{(0)}, \ldots, m_K^{(0)} \in \mathcal{D}
+\]</p>
+<p>Each \(m_k\) is a representative data point of cluster \(C_k\).</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 3: Distance Computation &amp; Assignment Step</strong></p>
+<p>Assign each data point to the nearest medoid using a distance metric:
+\[
+c_i^{(t)} =
+\arg\min_{k \in \{1,\ldots,K\}}
+\text{dist}(x_i, m_k^{(t)})
+\]</p>
+<p>Thus,
+\[
+x_i \in C_k^{(t)} \quad \text{if } c_i^{(t)} = k
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 4: Update Step (Medoid Recalculation)</strong></p>
+<p>For each cluster \(C_k^{(t)}\), choose the new medoid as the data point that minimizes the total distance to all other points in that cluster:
+\[
+m_k^{(t+1)} =
+\arg\min_{x_j \in C_k^{(t)}}
+\sum_{x_i \in C_k^{(t)}} \text{dist}(x_i, x_j)
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Step 5: Stopping Criterion (Convergence)</strong></p>
+<p>Iterate <strong>Steps 3–4</strong> until convergence, i.e., stop if:
+\[
+m_k^{(t+1)} = m_k^{(t)} \quad \forall k
+\]
+or cluster assignments do not change.</p>
+<p>—</p>
+<p><strong class="inline-subheading">Objective Function</strong></p>
+<p>K-medoids minimizes the total within-cluster dissimilarity:
+\[
+\boxed{
+\sum_{k=1}^{K}
+\sum_{x_i \in C_k}
+\text{dist}(x_i, m_k)
+}
+\]</p>
+<p>Unlike K-means, the distance need not be squared and can be any valid metric.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3</div><div class="box-body"><p><strong class="inline-subheading">Given Dataset</strong></p>
+<p>\[
+\mathcal{D} = \{1, 2, 4, 10\}, \quad K = 2
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Initialization</strong></p>
+<p>Choose initial medoids:
+\[
+m_1^{(0)} = 1, \qquad m_2^{(0)} = 10
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Assignment Step</strong></p>
+<p>Using absolute distance:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div>
+<p>\[
+C_1 = \{1,2,4\}, \quad C_2 = \{10\}
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Medoid Update</strong></p>
+<p>Compute total distances within \(C_1\):</p>
+<p>\[
+\begin{aligned}
+\text{cost}(1) &amp;= |1-1| + |2-1| + |4-1| = 4 \\
+\text{cost}(2) &amp;= |1-2| + |2-2| + |4-2| = 3 \\
+\text{cost}(4) &amp;= |1-4| + |2-4| + |4-4| = 5
+\end{aligned}
+\]</p>
+<p>Thus, the new medoid is:
+\[
+m_1^{(1)} = 2
+\]</p>
+<p>For cluster \(C_2\):
+\[
+m_2^{(1)} = 10
+\]</p>
+<p>—</p>
+<p><strong class="inline-subheading">Convergence</strong></p>
+<p>Medoids change from \((1,10)\) to \((2,10)\).  
+Reassignment does not change the clusters; hence the algorithm converges.</p>
+<p>—</p>
+<p><strong class="inline-subheading">Final Result</strong></p>
+<p><strong class="inline-subheading">Clusters</strong>
+\[
+C_1 = \{1,2,4\}, \quad C_2 = \{10\}
+\]</p>
+<p><strong class="inline-subheading">Medoids</strong>
+\[
+m_1 = 2, \quad m_2 = 10
+\]</p>
+<p>$\blacksquare$</p></div></div>
+<div class="concept-box"><div class="box-title">Comparison: K-means vs K-medoids</div><div class="box-body"><ul><li><p>K-means uses mean, sensitive to outliers; K-medoids uses medoid, robust to outliers.</p></li><li><p>K-means is faster (simple arithmetic mean), K-medoids is computationally expensive (pairwise distances).</p></li><li><p>Both require pre-defined $k$.</p></li></ul></div></div>
+</section>
+</section>
+<section id="hierarchical-clustering" class="content-section level-1">
+<h2 class="section-heading">Hierarchical Clustering</h2>
+<p>Hierarchical clustering is an unsupervised learning technique that seeks to build a hierarchy of clusters. Unlike K-means, it does not require a pre-specified number of clusters. Hierarchical clustering can be agglomerative (bottom-up) or divisive (top-down).</p>
+<section id="agglomerative-bottom-up-approach" class="content-section level-2">
+<h3 class="section-heading">Agglomerative (Bottom-Up) Approach</h3>
+<p>Agglomerative clustering starts with each point as a singleton cluster and iteratively merges the two closest clusters until a stopping criterion is met (e.g., all points in one cluster or a threshold distance).</p>
+<div class="concept-box"><div class="box-title">Agglomerative (Bottom-Up) Approach</div><div class="box-body"><p><strong>Algorithm: Bottom-Up (Agglomerative) Hierarchical Clustering</strong></p>
+<ol><li><p><strong>Initialization:</strong> 
+    Start with each data point as its own cluster:
+    \[
+    C_i = \{x_i\}, \quad i = 1,2,\dots,n
+    \]</p></li><li><p><strong>Compute Distance Matrix:</strong> 
+    Compute all pairwise distances between clusters using a chosen metric (e.g., Euclidean distance):
+    \[
+    d(C_i, C_j) = \min/\max/\text{average}_{x \in C_i, y \in C_j} d(x,y)
+    \]
+    depending on the linkage criterion (single, complete, or average).</p></li><li><p><strong>Merge Clusters:</strong> 
+    Identify the pair of clusters with the minimum distance according to the chosen linkage criterion and merge them.</p></li><li><p><strong>Update Distances:</strong> 
+    Recompute distances between the new cluster and all remaining clusters using the linkage criterion.</p></li><li><p><strong>Stopping Criterion:</strong> 
+    Repeat Steps 3–4 until one of the following conditions is met:</p>
+<ul><li><p>Desired number of clusters is reached.</p></li><li><p>Only a single cluster remains (complete hierarchy formed).</p></li></ul></li></ol></div></div>
+<p>The key step is defining the inter-cluster distance. Two popular methods are:</p>
+<section id="single-linkage-method" class="content-section level-3">
+<h4 class="section-heading">Single-Linkage Method</h4>
+<div class="concept-box"><div class="box-title">Single-Linkage Method</div><div class="box-body"><p><strong>Definition:</strong> The distance between two clusters $A$ and $B$ is the minimum distance between any two points in the clusters:</p>
+<p>\[
+D_{\text{single}}(A,B) = \min_{x \in A, y \in B} \|x-y\|
+\]</p>
+<p><strong>Characteristics:</strong></p>
+<ul><li><p>Can produce elongated, chain-like clusters.</p></li><li><p>Sensitive to noise and outliers.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 4</div><div class="box-body"><p>Consider points on a 2D plane: $P_1=(1,1), P_2=(2,1), P_3=(5,5), P_4=(6,5)$. Perform single-linkage clustering.</p>
+<p><strong>Solution:</strong></p>
+<ol><li><p>Compute all pairwise distances:  
+$P_1-P_2=1$, $P_1-P_3 \approx 5.66$, $P_1-P_4 \approx 6.40$, $P_2-P_3 \approx 5.0$, $P_2-P_4 \approx 5.83$, $P_3-P_4=1$.</p></li><li><p>Merge closest pair $P_1$ and $P_2$ → Cluster $C_1 = \{P_1,P_2\}$.  
+Merge closest remaining pair $P_3$ and $P_4$ → Cluster $C_2 = \{P_3,P_4\}$.</p></li><li><p>Compute inter-cluster distance $D_{\text{single}}(C_1,C_2) = \min\{\|P_1-P_3\|, \|P_1-P_4\|, \|P_2-P_3\|, \|P_2-P_4\|\} = 5.0$.</p></li><li><p>Merge $C_1$ and $C_2$ if required.</p></li></ol>
+<p><strong>Dendrogram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div></div></div>
+</section>
+<section id="complete-multiple-linkage-method" class="content-section level-3">
+<h4 class="section-heading">Complete/Multiple-Linkage Method</h4>
+<div class="concept-box"><div class="box-title">Complete-Linkage Method</div><div class="box-body"><p><strong>Definition:</strong> The distance between two clusters $A$ and $B$ is the maximum distance between any two points in the clusters:</p>
+<p>\[
+D_{\text{complete}}(A,B) = \max_{x \in A, y \in B} \|x-y\|
+\]</p>
+<p><strong>Characteristics:</strong></p>
+<ul><li><p>Produces compact, spherical clusters.</p></li><li><p>Less sensitive to outliers compared to single-linkage.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 5</div><div class="box-body"><p>Using the same points as above: $P_1=(1,1), P_2=(2,1), P_3=(5,5), P_4=(6,5)$, perform complete-linkage clustering.</p>
+<p><strong>Solution:</strong></p>
+<ol><li><p>Merge closest pair $P_1$ and $P_2$ → Cluster $C_1=\{P_1,P_2\}$, and $P_3$ and $P_4$ → $C_2=\{P_3,P_4\}$.</p></li><li><p>Compute inter-cluster distance $D_{\text{complete}}(C_1,C_2) = \max\{\|P_1-P_3\|, \|P_1-P_4\|, \|P_2-P_3\|, \|P_2-P_4\|\} = 6.40$.</p></li><li><p>Merge only if threshold allows.</p></li></ol>
+<p><strong>Dendrogram:</strong> (Shows complete linkage produces slightly higher linkage height)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 6</div><div class="box-body"><p><strong>Example: Bottom-Up (Agglomerative) Hierarchical Clustering</strong></p>
+<p>Consider the one-dimensional dataset:
+\[
+D = \{x_1=1,\, x_2=2,\, x_3=5,\, x_4=6\}
+\]
+with Euclidean distance
+\[
+d(x_i, x_j) = |x_i - x_j|.
+\]</p>
+<p>Initially, each point is a separate cluster:
+\[
+C_1 = \{1\},\; C_2 = \{2\},\; C_3 = \{5\},\; C_4 = \{6\}.
+\]</p>
+<p><strong>Step 1: Compute Pairwise Distance Matrix</strong></p>
+<p>\[
+\begin{array}{c|cccc}
+ &amp; 1 &amp; 2 &amp; 5 &amp; 6 \\ \hline
+1 &amp; 0 &amp; 1 &amp; 4 &amp; 5 \\
+2 &amp; 1 &amp; 0 &amp; 3 &amp; 4 \\
+5 &amp; 4 &amp; 3 &amp; 0 &amp; 1 \\
+6 &amp; 5 &amp; 4 &amp; 1 &amp; 0
+\end{array}
+\]</p>
+<p><strong>Step 2: Single Linkage Clustering</strong></p>
+<ol><li><p>Merge the two clusters with minimum distance.  
+    Minimum distance = 1, merge $C_1$ and $C_2$:
+    \[
+    C_{12} = \{1,2\}
+    \]
+    Remaining clusters: $C_{12}, C_3, C_4$</p></li><li><p>Next minimum distance = 1, merge $C_3$ and $C_4$:
+    \[
+    C_{34} = \{5,6\}
+    \]</p></li><li><p>Distance between $C_{12}$ and $C_{34}$ (single linkage):
+    \[
+    d_{\text{single}}(C_{12}, C_{34}) = \min\{3,4,4,5\} = 3
+    \]
+    Merge to form final cluster $C_{1234} = \{1,2,5,6\}$</p></li></ol>
+<p><strong>Step 3: Complete Linkage Clustering</strong></p>
+<ol><li><p>Merge $C_1$ and $C_2$, $C_{12} = \{1,2\}$</p></li><li><p>Merge $C_3$ and $C_4$, $C_{34} = \{5,6\}$</p></li><li><p>Distance between $C_{12}$ and $C_{34}$ (complete linkage):
+    \[
+    d_{\text{complete}}(C_{12}, C_{34}) = \max\{4,5,3,4\} = 5
+    \]
+    Merge to form final cluster $C_{1234} = \{1,2,5,6\}$</p></li></ol>
+<p><strong>Step 4: Average Linkage Clustering</strong></p>
+<ol><li><p>Merge $C_1$ and $C_2$, $C_{12} = \{1,2\}$</p></li><li><p>Merge $C_3$ and $C_4$, $C_{34} = \{5,6\}$</p></li><li><p>Distance between $C_{12}$ and $C_{34}$ (average linkage):
+    \[
+    d_{\text{avg}}(C_{12}, C_{34}) = \frac{4+5+3+4}{4} = 4
+    \]
+    Merge to form final cluster $C_{1234} = \{1,2,5,6\}$</p></li></ol>
+<p><strong>Step 5: Observations</strong></p>
+<ul><li><p>Single linkage produces <strong>chained, elongated clusters</strong>.</p></li><li><p>Complete linkage produces <strong>compact clusters</strong>.</p></li><li><p>Average linkage gives a <strong>balanced clustering</strong>.</p></li></ul></div></div>
+</section>
+</section>
+<section id="divisive-top-down-approach" class="content-section level-2">
+<h3 class="section-heading">Divisive (Top-Down) Approach</h3>
+<div class="concept-box"><div class="box-title">Divisive (Top-Down) Clustering</div><div class="box-body"><p><strong>Definition:</strong> Divisive clustering starts with all points in a single cluster and recursively splits clusters into smaller sub-clusters until each point forms its own cluster or a stopping criterion is satisfied.</p>
+<p><strong>Procedure:</strong></p>
+<ol><li><p>Start with the full dataset as a single cluster.</p></li><li><p>Select a cluster to split based on a criterion (e.g., maximize intra-cluster distance or minimize inter-cluster similarity).</p></li><li><p>Split the selected cluster into two sub-clusters. This can be done using methods such as:</p>
+<ul><li><p>K-means or K-medoids on the cluster to partition it into two groups.</p></li><li><p>Principal Component Analysis (PCA) to find the direction of maximum variance and split along it.</p></li></ul></li><li><p>Repeat steps 2–3 recursively on the new clusters until stopping criteria are met (e.g., desired number of clusters, minimal cluster size, or distance threshold).</p></li></ol>
+<p><strong>Distance Measure:</strong> For splitting, a common choice is the diameter of the cluster:
+\[
+\text{diameter}(C) = \max_{x_i, x_j \in C} \|x_i - x_j\|
+\]
+Clusters with larger diameter are often chosen first to split.</p>
+<p><strong>Characteristics:</strong></p>
+<ul><li><p>Produces a hierarchy of clusters similar to agglomerative clustering but in reverse order.</p></li><li><p>Computationally more expensive than agglomerative methods for large datasets.</p></li><li><p>Flexible in choosing splitting criteria and distance measures.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 7</div><div class="box-body"><p>Consider points $P_1=(1,1), P_2=(2,1), P_3=(5,5), P_4=(6,5)$.</p>
+<ol><li><p>Start with cluster $C = \{P_1,P_2,P_3,P_4\}$.</p></li><li><p>Compute the pairwise distances and find the two points with maximum dissimilarity. Here, $\|P_1-P_4\| = 6.40$.</p></li><li><p>Split the cluster into $C_1 = \{P_1,P_2\}$ and $C_2 = \{P_3,P_4\}$.</p></li><li><p>Recursively apply the same procedure if more splits are required.</p></li></ol>
+<p><strong>Dendrogram:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div></div></div>
+<p><strong>Comparison:</strong></p>
+<ul><li><p>Agglomerative is bottom-up, divisive is top-down.</p></li><li><p>Agglomerative is more commonly used in practice.</p></li><li><p>Choice of linkage affects cluster shape and sensitivity to noise.</p></li></ul>
+<div class="example-box"><div class="box-title">Example 8</div><div class="box-body"><p><strong>Example: Divisive (Top-Down) Hierarchical Clustering</strong></p>
+<p>Consider the one-dimensional dataset:
+\[
+D = \{1, 2, 5, 6\}
+\]
+with Euclidean distance:
+\[
+d(x_i, x_j) = |x_i - x_j|.
+\]</p>
+<p><strong>Step 1: Start with a single cluster</strong></p>
+<p>\[
+C^{(0)} = \{1, 2, 5, 6\}
+\]</p>
+<p><strong>Step 2: Identify cluster to split</strong></p>
+<p>- Only one cluster exists.  
+- Compute cluster diameter:
+\[
+\text{diameter}(C^{(0)}) = \max(D) - \min(D) = 6 - 1 = 5
+\]</p>
+<p><strong>Step 3: Split the cluster</strong></p>
+<p>- Use $k$-means with $K=2$ to divide the cluster:</p>
+<p>\[
+C_1 = \{1,2\}, \quad C_2 = \{5,6\}
+\]</p>
+<p>- Compute cluster centroids:
+\[
+\mu_1 = \frac{1+2}{2} = 1.5, \quad 
+\mu_2 = \frac{5+6}{2} = 5.5
+\]</p>
+<p><strong>Step 4: Update clusters</strong></p>
+<p>\[
+C_1 = \{1,2\}, \quad C_2 = \{5,6\}
+\]</p>
+<p><strong>Step 5: Stopping criterion</strong></p>
+<p>- Desired number of clusters ($K=2$) is reached, so <strong>stop</strong>.</p>
+<p><strong>Final Result</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div>
+<p><strong>Observation:</strong> Divisive clustering works <em>top-down</em>, splitting large clusters recursively. Linkage criteria are <strong>not used</strong>, unlike in agglomerative clustering.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Unsupervised Learning</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Dimensionality Reduction &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Unsupervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Differentiability — Calculus</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Calculus</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#visualizing-a-function" class="toc-link" data-slug="visualizing-a-function">Visualizing a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graph-of-a-function" class="toc-link" data-slug="graph-of-a-function">Graph of a Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-and-range" class="toc-link" data-slug="domain-and-range">Domain and Range</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#piecewise-defined-functions" class="toc-link" data-slug="piecewise-defined-functions">Piecewise-Defined Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#open-and-closed-intervals" class="toc-link" data-slug="open-and-closed-intervals">Open and Closed Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#classes-of-functions" class="toc-link" data-slug="classes-of-functions">Classes of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-linear-functions" class="toc-link" data-slug="1-linear-functions">1. Linear Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-quadratic-functions" class="toc-link" data-slug="2-quadratic-functions">2. Quadratic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-polynomial-functions" class="toc-link" data-slug="3-polynomial-functions">3. Polynomial Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-rational-functions" class="toc-link" data-slug="4-rational-functions">4. Rational Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-exponential-functions" class="toc-link" data-slug="5-exponential-functions">5. Exponential Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-logarithmic-functions" class="toc-link" data-slug="6-logarithmic-functions">6. Logarithmic Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#7-trigonometric-functions" class="toc-link" data-slug="7-trigonometric-functions">7. Trigonometric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#8-absolute-value-function" class="toc-link" data-slug="8-absolute-value-function">8. Absolute Value Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#properties-of-x" class="toc-link" data-slug="properties-of-x">Properties of $|x|$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-functions" class="toc-link" data-slug="types-of-functions">Types of Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#1-one-to-one-function-injective" class="toc-link" data-slug="1-one-to-one-function-injective">1. One-to-One Function (Injective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#2-onto-function-surjective" class="toc-link" data-slug="2-onto-function-surjective">2. Onto Function (Surjective)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#3-bijective-function" class="toc-link" data-slug="3-bijective-function">3. Bijective Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#4-many-to-one-function" class="toc-link" data-slug="4-many-to-one-function">4. Many-to-One Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#5-constant-function" class="toc-link" data-slug="5-constant-function">5. Constant Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#6-identity-function" class="toc-link" data-slug="6-identity-function">6. Identity Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#inverse-function" class="toc-link" data-slug="inverse-function">Inverse Function</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-an-inverse-function" class="toc-link" data-slug="example-of-an-inverse-function">Example of an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#one-to-one-functions" class="toc-link" data-slug="one-to-one-functions">One-to-One Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#finding-an-inverse-function" class="toc-link" data-slug="finding-an-inverse-function">Finding an Inverse Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphing-inverse-functions" class="toc-link" data-slug="graphing-inverse-functions">Graphing Inverse Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#restricting-domains" class="toc-link" data-slug="restricting-domains">Restricting Domains</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#composite-functions" class="toc-link" data-slug="composite-functions">Composite Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#example-of-composite-function" class="toc-link" data-slug="example-of-composite-function">Example of Composite Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#rules-of-composite-functions" class="toc-link" data-slug="rules-of-composite-functions">Rules of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-associative-law" class="toc-link" data-slug="example-associative-law">Example: Associative Law</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#domain-of-composite-functions" class="toc-link" data-slug="domain-of-composite-functions">Domain of Composite Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#graphical-representation" class="toc-link" data-slug="graphical-representation">Graphical Representation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Limits</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#introduction-to-calculus" class="toc-link" data-slug="introduction-to-calculus">Introduction to Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-tangent-problem-and-differential-calculus" class="toc-link" data-slug="the-tangent-problem-and-differential-calculus">The Tangent Problem and Differential Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#the-area-problem-and-integral-calculus" class="toc-link" data-slug="the-area-problem-and-integral-calculus">The Area Problem and Integral Calculus</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits" class="toc-link" data-slug="limits">Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#estimating-limits" class="toc-link" data-slug="estimating-limits">Estimating Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#one-sided-limits" class="toc-link" data-slug="one-sided-limits">One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#definitions-one-sided-limits" class="toc-link" data-slug="definitions-one-sided-limits">Definitions: One-Sided Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fact-relating-one-sided-and-ordinary-limits" class="toc-link" data-slug="fact-relating-one-sided-and-ordinary-limits">Fact Relating One-Sided and Ordinary Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-limits" class="toc-link" data-slug="properties-of-limits">Properties of Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#infinite-limits" class="toc-link" data-slug="infinite-limits">Infinite Limits</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limits-at-infinity" class="toc-link" data-slug="limits-at-infinity">Limits at Infinity</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#limit-formulas" class="toc-link" data-slug="limit-formulas">Limit Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Continuity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#continuity-of-functions" class="toc-link" data-slug="continuity-of-functions">Continuity of Functions</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#types-of-discontinuities" class="toc-link" data-slug="types-of-discontinuities">Types of Discontinuities</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#continuity-over-an-interval" class="toc-link" data-slug="continuity-over-an-interval">Continuity over an Interval</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#composite-functions-and-trigonometric-continuity" class="toc-link" data-slug="composite-functions-and-trigonometric-continuity">Composite Functions and Trigonometric Continuity</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#intermediate-value-theorem-ivt" class="toc-link" data-slug="intermediate-value-theorem-ivt">Intermediate Value Theorem (IVT)</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Differentiability</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#derivatives" class="toc-link" data-slug="derivatives">Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#examples-of-derivatives" class="toc-link" data-slug="examples-of-derivatives">Examples of Derivatives</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#differentiability" class="toc-link" data-slug="differentiability">Differentiability</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#checking-differentiability-at-a-point" class="toc-link" data-slug="checking-differentiability-at-a-point">Checking Differentiability at a Point</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#visualizing-differentiability" class="toc-link" data-slug="visualizing-differentiability">Visualizing Differentiability</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Optimization (Maxima/Minima)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#rate-of-change" class="toc-link" data-slug="rate-of-change">Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#derivatives-as-rates-of-change" class="toc-link" data-slug="derivatives-as-rates-of-change">Derivatives as Rates of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-of-rate-of-change" class="toc-link" data-slug="examples-of-rate-of-change">Examples of Rate of Change</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#critical-points" class="toc-link" data-slug="critical-points">Critical Points</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#minima-and-maxima" class="toc-link" data-slug="minima-and-maxima">Minima and Maxima</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#maximum-and-minimum-values-of-a-function" class="toc-link" data-slug="maximum-and-minimum-values-of-a-function">Maximum and Minimum Values of a Function</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#important-theorems" class="toc-link" data-slug="important-theorems">Important Theorems</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#absolute-extrema" class="toc-link" data-slug="absolute-extrema">Absolute Extrema</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#finding-absolute-extrema-on-a-closed-interval" class="toc-link" data-slug="finding-absolute-extrema-on-a-closed-interval">Finding Absolute Extrema on a Closed Interval</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#increasing-decreasing-and-concavity-convexity" class="toc-link" data-slug="increasing-decreasing-and-concavity-convexity">Increasing/Decreasing and Concavity/Convexity</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#mean-value-theorem" class="toc-link" data-slug="mean-value-theorem">Mean Value Theorem</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#rolle-s-theorem" class="toc-link" data-slug="rolle-s-theorem">Rolle's Theorem</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mean-value-theorem-mvt" class="toc-link" data-slug="mean-value-theorem-mvt">Mean Value Theorem (MVT)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#applications-of-mvt" class="toc-link" data-slug="applications-of-mvt">Applications of MVT</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Taylor series</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#taylor-series-expansion" class="toc-link" data-slug="taylor-series-expansion">Taylor Series Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#using-taylor-series-for-limits" class="toc-link" data-slug="using-taylor-series-for-limits">Using Taylor Series for Limits</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 6</div><h1>Differentiability</h1></div>
+<section id="derivatives" class="content-section level-1">
+<h2 class="section-heading">Derivatives</h2>
+<div class="concept-box-alt"><div class="box-title">Definition of Derivative</div><div class="box-body"><p>The <strong>derivative</strong> of a function $f(x)$ at a point $x = a$ measures the <strong>instantaneous rate of change</strong> of the function at that point. It is defined as:
+\[
+f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}
+\]
+if the limit exists.</p>
+<p>Geometrically, the derivative represents the <strong>slope of the tangent line</strong> to the curve $y = f(x)$ at $x = a$.</p></div></div>
+<div class="concept-box"><div class="box-title">Interpretation of Derivative</div><div class="box-body"><ul><li><p>If $f'(a) &gt; 0$, the function is increasing at $x = a$.</p></li><li><p>If $f'(a) &lt; 0$, the function is decreasing at $x = a$.</p></li><li><p>If $f'(a) = 0$, the function may have a local maximum, minimum, or horizontal inflection at $x = a$.</p></li></ul></div></div>
+</section>
+<section id="examples-of-derivatives" class="content-section level-1">
+<h2 class="section-heading">Examples of Derivatives</h2>
+<div class="example-box"><div class="box-title">Example 82</div><div class="box-body"><p>{Derivative of a Polynomial}
+Find the derivative of $f(x) = 3x^3 - 5x^2 + 2x - 7$.</p>
+<p><strong>Solution:</strong> Using the power rule $\frac{d}{dx}[x^n] = nx^{n-1}$:
+\[
+f'(x) = 9x^2 - 10x + 2
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 83</div><div class="box-body"><p>{Derivative of a Trigonometric Function}
+Find the derivative of $f(x) = \sin x + \cos x$.</p>
+<p><strong>Solution:</strong> Using standard derivatives $\frac{d}{dx}\sin x = \cos x$ and $\frac{d}{dx}\cos x = -\sin x$:
+\[
+f'(x) = \cos x - \sin x
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 84</div><div class="box-body"><p>{Derivative of an Exponential Function}
+Find the derivative of $f(x) = e^{2x}$.</p>
+<p><strong>Solution:</strong> Using $\frac{d}{dx} e^{u} = e^u \frac{du}{dx}$, here $u = 2x$, $\frac{du}{dx}=2$:
+\[
+f'(x) = 2 e^{2x}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 85</div><div class="box-body"><p>{Derivative of a Rational Function}
+Find the derivative of $f(x) = \frac{1}{x^2}$.</p>
+<p><strong>Solution:</strong> Rewrite $f(x) = x^{-2}$, then use the power rule:
+\[
+f'(x) = -2 x^{-3} = -\frac{2}{x^3}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 86</div><div class="box-body"><p>{Derivative Using the Definition}
+Find the derivative of $f(x) = x^2$ at $x = 3$ using the definition:
+\[
+f'(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}
+\]</p>
+<p><strong>Solution:</strong> Let $a = 3$:
+\[
+f'(3) = \lim_{h \to 0} \frac{(3+h)^2 - 9}{h} = \lim_{h \to 0} \frac{9 + 6h + h^2 - 9}{h} = \lim_{h \to 0} \frac{6h + h^2}{h} = \lim_{h \to 0} (6 + h) = 6
+\]</p></div></div>
+</section>
+<section id="differentiability" class="content-section level-1">
+<h2 class="section-heading">Differentiability</h2>
+<div class="concept-box-alt"><div class="box-title">Definition of Differentiability</div><div class="box-body"><p>A function $f(x)$ is said to be <strong>differentiable at a point $x = a$</strong> if its derivative exists at that point:
+\[
+f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h} \quad \text{exists.}
+\]</p>
+<p><strong>Key Points:</strong></p>
+<ul><li><p>If $f$ is differentiable at $x = a$, then it is <strong>continuous</strong> at $x = a$.</p></li><li><p>The converse is not necessarily true: continuity at $x = a$ does <strong>not guarantee differentiability</strong>.</p></li><li><p>Geometrically, differentiability means the function has a <strong>well-defined tangent</strong> at $x = a$.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Geometric Interpretation</div><div class="box-body"><ul><li><p>The derivative $f'(a)$ represents the <strong>slope of the tangent line</strong> at $x = a$.</p></li><li><p>If the curve has a sharp corner or cusp at $x = a$, it is <strong>not differentiable</strong>.</p></li><li><p>If the curve has a vertical tangent, $f'(a)$ does not exist, so the function is <strong>not differentiable</strong> there.</p></li></ul></div></div>
+</section>
+<section id="checking-differentiability-at-a-point" class="content-section level-1">
+<h2 class="section-heading">Checking Differentiability at a Point</h2>
+<div class="concept-box-alt"><div class="box-title">Rule for Checking Differentiability</div><div class="box-body"><p>To check if $f(x)$ is differentiable at $x=a$:</p>
+<ol><li><p>Check if $f(x)$ is <strong>continuous</strong> at $x=a$.</p></li><li><p>Compute the <strong>left-hand derivative</strong>:
+    \[
+    f'_-(a) = \lim_{h \to 0^-} \frac{f(a+h) - f(a)}{h}
+    \]</p></li><li><p>Compute the <strong>right-hand derivative</strong>:
+    \[
+    f'_+(a) = \lim_{h \to 0^+} \frac{f(a+h) - f(a)}{h}
+    \]</p></li><li><p>If $f'_-(a) = f'_+(a)$ (finite), then $f$ is differentiable at $x=a$. Otherwise, it is not.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 87</div><div class="box-body"><p><strong>Continuity:</strong> $|x|$ is continuous at $0$.</p>
+<p>Left derivative:
+\[
+f'_-(0) = \lim_{h \to 0^-} \frac{|h|}{h} = -1
+\]
+Right derivative:
+\[
+f'_+(0) = \lim_{h \to 0^+} \frac{|h|}{h} = 1
+\]
+Since $f'_-(0) \neq f'_+(0)$, $f(x)$ is <strong>not differentiable</strong> at $0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 88</div><div class="box-body"><p><strong>Continuity:</strong> $x^2$ is continuous everywhere.</p>
+<p>Both derivatives:
+\[
+f'(2) = \lim_{h \to 0} \frac{(2+h)^2 - 4}{h} = \lim_{h \to 0}(4+h) = 4
+\]
+Thus, $f(x)$ is <strong>differentiable</strong> at $x=2$ with slope $4$.</p></div></div>
+</section>
+<section id="visualizing-differentiability" class="content-section level-1">
+<h2 class="section-heading">Visualizing Differentiability</h2>
+<div class="concept-box"><div class="box-title">Curves Illustration</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig027.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 89</div><div class="box-body"><p><strong>Continuity:</strong> $\sqrt{|x|}$ is continuous at $0$.</p>
+<p>Left derivative:
+\[
+f'_-(0) = \lim_{h \to 0^-} \frac{\sqrt{-h}}{h} = -\infty
+\]
+Right derivative:
+\[
+f'_+(0) = \lim_{h \to 0^+} \frac{\sqrt{h}}{h} = +\infty
+\]
+Since derivatives diverge, $f(x)$ is <strong>not differentiable</strong> at $0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 90</div><div class="box-body"><p>\[
+f(x) =
+\begin{cases}
+x^2, &amp; x \leq 1 \\
+2x-1, &amp; x &gt; 1
+\end{cases}
+\]</p>
+<p><strong>Continuity at $x=1$:</strong>  
+From left: $f(1^-)=1$, from right: $f(1^+)=1$. Continuous.</p>
+<p>Left derivative:
+\[
+f'_-(1) = \lim_{h \to 0^-} \frac{(1+h)^2-1}{h} = 2
+\]
+Right derivative:
+\[
+f'_+(1) = \lim_{h \to 0^+} \frac{(2(1+h)-1)-1}{h} = 2
+\]
+Since $f'_-(1)=f'_+(1)=2$, $f$ is <strong>differentiable at $x=1$</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 91</div><div class="box-body"><p>{Differentiable Trigonometric Function}
+Consider $f(x) = \sin x$.</p>
+<p><strong>Solution:</strong> $f'(x) = \cos x$, which exists for all $x \in \mathbb{R}$.</p>
+<p><strong>Conclusion:</strong> Differentiable everywhere.</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Continuity</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Optimization (Maxima/Minima) &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Calculus &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

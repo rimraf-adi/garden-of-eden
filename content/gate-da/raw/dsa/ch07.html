@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graph Theory — Introduction &mdash; GATE DSA</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch07.html" class="chapter-link active">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 7 of 10</div><h1>Graph Theory — Introduction</h1></div>
+<div class="concept-box"><div class="box-title">Concept: What is a Graph</div><div class="box-body"><p>A graph is a mathematical structure used to model relationships between objects. The objects are called <strong>vertices</strong> (or nodes), and the relationships between them are called <strong>edges</strong>. A graph $G$ is written as $G = (V, E)$, where $V$ is the set of vertices and $E$ is the set of edges.</p>
+<p>Think of a graph as a map of cities connected by roads. Each city is a vertex. Each road connecting two cities is an edge. Using this map, we can answer questions like, &quot;Is there a path from city A to city B?&quot; or &quot;What is the shortest route?&quot;</p></div></div>
+<div class="example-box"><div class="box-title">Example 252: Real World Examples of Graphs</div><div class="box-body"><ul><li><p><strong>Social Network:</strong> People are vertices. A friendship is an edge between two people.</p></li><li><p><strong>Road Network:</strong> Intersections are vertices. Roads are edges.</p></li><li><p><strong>Internet:</strong> Computers are vertices. Network cables or wireless links are edges.</p></li><li><p><strong>Course Prerequisites:</strong> Courses are vertices. An edge from course A to B means A must be done before B.</p></li></ul></div></div>
+<section id="basic-definitions" class="content-section level-1">
+<h2 class="section-heading">Basic Definitions</h2>
+
+<section id="vertex-edge-and-graph-g-v-e" class="content-section level-2">
+<h3 class="section-heading">Vertex, Edge, and Graph $G = (V, E)$</h3>
+<div class="concept-box"><div class="box-title">Concept: Vertex and Edge</div><div class="box-body"><p>A <strong>vertex</strong> (plural: vertices) is a single point or node in a graph. A <strong>vertex set</strong> $V$ is the collection of all vertices. We write $|V|$ to mean the total number of vertices.</p>
+<p>An <strong>edge</strong> connects two vertices. An <strong>edge set</strong> $E$ is the collection of all edges. Each edge is written as a pair $(u, v)$, meaning there is a connection between vertex $u$ and vertex $v$.</p>
+<p>For example, in the graph $G = (V, E)$ where $V = \{1, 2, 3, 4\}$ and $E = \{(1,2), (1,3), (2,4), (3,4)\}$, there are 4 vertices and 4 edges.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_001.png" alt="diagram"></div>
+</section>
+<section id="directed-vs-undirected-graph" class="content-section level-2">
+<h3 class="section-heading">Directed vs. Undirected Graph</h3>
+<div class="concept-box"><div class="box-title">Concept: Undirected Graph</div><div class="box-body"><p>In an <strong>undirected graph</strong>, edges have no direction. If there is an edge between $u$ and $v$, you can go from $u$ to $v$ AND from $v$ to $u$. The edge $(u, v)$ and $(v, u)$ are the same edge. Think of a two-way road between two cities, you can drive in either direction.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Directed Graph (Digraph)</div><div class="box-body"><p>In a <strong>directed graph</strong> (also called a <strong>digraph</strong>), every edge has a direction, shown by an arrow. Edge $(u, v)$ means you can go from $u$ to $v$, but NOT necessarily from $v$ to $u$. Think of a one-way road: you can only drive in one direction.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_002.png" alt="diagram"></div>
+</section>
+<section id="weighted-vs-unweighted-graph" class="content-section level-2">
+<h3 class="section-heading">Weighted vs. Unweighted Graph</h3>
+<div class="concept-box"><div class="box-title">Concept: Weighted vs. Unweighted</div><div class="box-body"><p>In an <strong>unweighted graph</strong>, all edges are equal. We only care if an edge exists or not. In a <strong>weighted graph</strong>, each edge has a number called a <strong>weight</strong> (or cost). This weight can represent distance, time, cost, or capacity. For example, in a road map, the weight on each edge might be the distance in kilometres between two cities.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_003.png" alt="diagram"></div>
+</section>
+<section id="degree-in-degree-and-out-degree" class="content-section level-2">
+<h3 class="section-heading">Degree, In-Degree, and Out-Degree</h3>
+<div class="concept-box"><div class="box-title">Concept: Degree in Undirected Graph</div><div class="box-body"><p>The <strong>degree</strong> of a vertex $v$ in an undirected graph is the number of edges connected to $v$. It is written as $\deg(v)$. A vertex with degree 0 is called an <strong>isolated vertex</strong>. A vertex with degree 1 is called a <strong>leaf</strong> or <strong>pendant vertex</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: In-Degree and Out-Degree in Directed Graph</div><div class="box-body"><p>In a directed graph, each vertex $v$ has two degree values:</p>
+<ul><li><p><strong>In-degree</strong> $(\deg^-(v))$: number of edges coming <em>into</em> $v$ (arrows pointing to $v$).</p></li><li><p><strong>Out-degree</strong> $(\deg^+(v))$: number of edges going <em>out of</em> $v$ (arrows pointing away from $v$).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_004.png" alt="diagram"></div>
+</section>
+<section id="handshaking-lemma" class="content-section level-2">
+<h3 class="section-heading">Handshaking Lemma</h3>
+<div class="concept-box"><div class="box-title">Concept: Handshaking Lemma</div><div class="box-body"><p>The <strong>Handshaking Lemma</strong> states that for any undirected graph $G = (V, E)$,
+\[
+\sum_{v \in V} \deg(v) = 2|E|
+\]
+The sum of degrees of all vertices equals twice the number of edges. This is because every edge contributes exactly 2 to the total degree sum: one for each of its two endpoints. Counting degrees is like counting handshakes at a party: each handshake is counted once by each participant, so total counts = twice the handshakes.</p>
+<p><strong>Useful consequence:</strong> The number of vertices with odd degree is always even in any graph.</p></div></div>
+<div class="example-box"><div class="box-title">Example 253: Verifying the Handshaking Lemma</div><div class="box-body"><p>In the undirected graph above with vertices A(deg=2), B(deg=3), C(deg=2), D(deg=3), E(deg=0):
+\[
+\sum \deg(v) = 2 + 3 + 2 + 3 + 0 = 10 = 2 \times 5 = 2|E|
+\]
+The graph has 5 edges. Twice 5 is 10. Confirmed.</p>
+<p>Also, vertices with odd degree are B and D. That is 2 vertices, an even count. This is always true.</p></div></div>
+</section>
+<section id="complete-graph-k-n" class="content-section level-2">
+<h3 class="section-heading">Complete Graph $K_n$</h3>
+<div class="concept-box"><div class="box-title">Concept: Complete Graph $K_n$</div><div class="box-body"><p>A <strong>complete graph</strong> $K_n$ is an undirected graph with $n$ vertices where every pair of distinct vertices is connected by exactly one edge. There is an edge between every possible pair.</p>
+<p>The number of edges in $K_n$ is
+\[
+|E| = \binom{n}{2} = \frac{n(n-1)}{2}
+\]
+because we choose 2 vertices from $n$ vertices for each edge. Also, every vertex in $K_n$ has degree $n-1$, since each vertex connects to all other $n-1$ vertices.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_005.png" alt="diagram"></div>
+</section>
+<section id="directed-acyclic-graph-dag" class="content-section level-2">
+<h3 class="section-heading">Directed Acyclic Graph (DAG)</h3>
+<div class="concept-box"><div class="box-title">Concept: DAG — Directed Acyclic Graph</div><div class="box-body"><p>A <strong>DAG</strong> is a directed graph that has <strong>no directed cycles</strong>. That means, starting from any vertex, if you follow directed edges, you can never come back to the starting vertex. DAGs are used to represent dependencies, like course prerequisites, build systems, or scheduling tasks where some tasks must be done before others.</p>
+<p>Key property: A DAG always has at least one vertex with in-degree 0 (no one points to it), called a <strong>source</strong>, and at least one vertex with out-degree 0 (it points to no one), called a <strong>sink</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_006.png" alt="diagram"></div>
+</section>
+<section id="tree-as-a-special-graph" class="content-section level-2">
+<h3 class="section-heading">Tree as a Special Graph</h3>
+<div class="concept-box"><div class="box-title">Concept: Tree as a Graph</div><div class="box-body"><p>A <strong>tree</strong> is a special graph that satisfies all three of these properties simultaneously:</p>
+<ul><li><p><strong>Undirected:</strong> edges have no direction.</p></li><li><p><strong>Connected:</strong> there is a path between every pair of vertices.</p></li><li><p><strong>Acyclic:</strong> there are no cycles.</p></li></ul>
+<p>From these three properties, a very important relationship follows automatically:
+\[
+|E| = |V| - 1
+\]
+A tree with $n$ vertices always has exactly $n-1$ edges. Remove any one edge and the tree becomes disconnected. Add any one edge and you create exactly one cycle.</p></div></div>
+<div class="example-box"><div class="box-title">Example 254: Why $|E| = |V| - 1$</div><div class="box-body"><p>Start with a single vertex (0 edges). Each time we add a new vertex to a tree, we must add exactly 1 edge to connect it (adding more than one edge would either create a cycle or disconnect something). So, after adding $n-1$ vertices to the first vertex, we have added $n-1$ edges total. Hence $|E| = |V| - 1 = n - 1$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_007.png" alt="diagram"></div>
+</section>
+<section id="connected-graph-and-connected-components" class="content-section level-2">
+<h3 class="section-heading">Connected Graph and Connected Components</h3>
+<div class="concept-box"><div class="box-title">Concept: Connected Graph</div><div class="box-body"><p>An <strong>undirected graph</strong> is called <strong>connected</strong> if there is a path between every pair of vertices. That means you can reach any vertex from any other vertex by following edges.</p>
+<p>A graph that is NOT connected is called <strong>disconnected</strong>. In a disconnected graph, there are groups of vertices that are isolated from each other. Each such group is called a <strong>connected component</strong>.</p>
+<p>Formally, a connected component is a <strong>maximal</strong> set of vertices such that every pair of vertices in the set is connected by some path, and no vertex outside the set is connected to any vertex inside it.</p></div></div>
+<div class="example-box"><div class="box-title">Example 255: Connected vs Disconnected</div><div class="box-body"><p>Think of a telephone network. If every phone can call every other phone (directly or through relays), the network is connected. If some phones are cut off from the rest, those isolated phones form a separate component.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_008.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Theorem: Minimum Edges for a Connected Graph</div><div class="box-body"><p>A connected undirected graph with $n$ vertices needs <strong>at least</strong> $n - 1$ edges. This minimum is achieved exactly when the graph is a tree.
+\[
+\text{connected graph:} \quad |E| \ge n - 1
+\]
+<strong>Why:</strong> To connect $n$ vertices into a single group, we need enough edges to link every vertex, directly or indirectly, to every other. The most economical way (using the fewest edges) is a tree structure with exactly $n-1$ edges. Fewer than $n-1$ edges can never connect $n$ vertices, because each edge can merge at most 2 previously separate components into 1, so we need at least $n-1$ merging steps.</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Edges and Components (General Forest Formula)</div><div class="box-body"><p>For an undirected graph with $n$ vertices, $m$ edges, and $c$ connected components, IF the graph is acyclic (a forest):
+\[
+m = n - c
+\]
+This generalizes the tree formula ($|E| = |V| - 1$, i.e., $c=1$) to the case of multiple components. Each component, being a tree, contributes (its own vertices $-1$) edges, and summing over all components gives $n - c$ total edges.</p>
+<p>If the graph is <strong>not</strong> necessarily acyclic, then instead we only know:
+\[
+m \ge n - c
+\]
+with equality holding if and only if every component is a tree (no cycles anywhere).</p></div></div>
+<div class="example-box"><div class="box-title">Example 256: Applying the Component Formula</div><div class="box-body"><p>A forest has $n = 20$ vertices and $c = 5$ connected components (5 separate trees). The total number of edges is:
+\[
+m = n - c = 20 - 5 = 15
+\]</p>
+<p>Now suppose instead we are told a general (not necessarily acyclic) graph has $n = 20$ vertices, $c = 5$ components, and $m = 18$ edges. Since $m = 18 &gt; n - c = 15$, this graph has $18 - 15 = 3$ &quot;extra&quot; edges, meaning at least one component contains a cycle.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_009.png" alt="diagram"></div>
+</section>
+<section id="strongly-connected-and-weakly-connected-directed-graphs" class="content-section level-2">
+<h3 class="section-heading">Strongly Connected and Weakly Connected (Directed Graphs)</h3>
+<div class="concept-box"><div class="box-title">Concept: Strongly Connected</div><div class="box-body"><p>A <strong>directed graph</strong> is called <strong>strongly connected</strong> if for every pair of vertices $u$ and $v$, there is a directed path from $u$ to $v$ <em>and</em> a directed path from $v$ to $u$. In simple words, you can reach every vertex from every other vertex by following the directed edges.</p>
+<p>A <strong>Strongly Connected Component (SCC)</strong> is a maximal subset of vertices that are all mutually reachable from each other.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Weakly Connected</div><div class="box-body"><p>A directed graph is called <strong>weakly connected</strong> if the underlying undirected graph (obtained by ignoring all arrow directions) is connected. So weakly connected means connected if we pretend all edges are two-way. Weakly connected does NOT require paths in both directions.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_010.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Theorem: Relationship Between Strong and Weak Connectivity</div><div class="box-body"><p>For any directed graph:
+\[
+\text{Strongly Connected} \implies \text{Weakly Connected}
+\]
+But the reverse is NOT true, weakly connected does not imply strongly connected (as shown in the example above).</p>
+<p><strong>Special case:</strong> If a directed graph has <strong>no edges at all</strong> between any pair of vertices (i.e., it&#x27;s just isolated vertices), it is neither strongly nor weakly connected (unless it has just 1 vertex, in which case it is trivially both).</p></div></div>
+<div class="example-box"><div class="box-title">Example 257: Determining Strong vs Weak Connectivity</div><div class="box-body"><p>Consider a directed graph with vertices $\{P, Q, R, S\}$ and edges: $P \to Q$, $Q \to R$, $R \to S$, $Q \to S$.</p>
+<p><strong>Check strong connectivity:</strong> Can we go from $S$ back to $P$? There is no outgoing edge from $S$ at all (out-degree of $S$ is 0). So $S$ cannot reach any other vertex. <strong>NOT strongly connected.</strong></p>
+<p><strong>Check weak connectivity:</strong> Ignoring directions, the underlying undirected graph has edges $P-Q$, $Q-R$, $R-S$, $Q-S$. This connects all 4 vertices into one component. <strong>Weakly connected: YES.</strong></p></div></div>
+</section>
+<section id="walk-trail-circuit-path-and-cycle" class="content-section level-2">
+<h3 class="section-heading">Walk, Trail, Circuit, Path, and Cycle</h3>
+<div class="concept-box"><div class="box-title">Concept: Walk</div><div class="box-body"><p>A <strong>walk</strong> is a finite alternating sequence of vertices and edges, where consecutive vertices are joined by the edge between them. Both vertices and edges are allowed to repeat freely in a walk. The <strong>length</strong> of a walk is the number of edges covered in it.</p>
+<p>A walk is called <strong>open</strong> if its length is greater than 0 and the starting and ending vertices are different. A walk is called <strong>closed</strong> if its length is greater than 0 and the starting and ending vertices are the same. A walk of length 0 (a single vertex, no edges) is called a <strong>trivial walk</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 258: Analogy: Walk as Wandering</div><div class="box-body"><p>Think of a person wandering through a city with no particular destination in mind. They may cross the same street multiple times, or pass through the same square again and again. This unrestricted wandering, where nothing is off-limits to repeat, is exactly a walk.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Trail — Edges Cannot Repeat</div><div class="box-body"><p>A <strong>trail</strong> is an open walk in which vertices <strong>may repeat</strong>, but edges are <strong>not allowed to repeat</strong>. Think of a trail as a walk with one extra restriction: once you have used a particular road, you cannot use that exact road again, but you are still allowed to revisit the same junction.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Circuit — A Closed Trail</div><div class="box-body"><p>A <strong>circuit</strong> is a closed walk in which vertices may repeat, but edges are not allowed to repeat. In other words, a circuit is simply a trail that returns to its starting vertex. A closed trail is called a circuit.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Path — Neither Vertices Nor Edges Repeat</div><div class="box-body"><p>A <strong>path</strong> is an open walk in which neither vertices (except possibly the starting and ending vertex) nor edges are allowed to repeat. This is the strictest form of an open walk: every vertex is visited at most once, so naturally every edge is also used at most once (since repeating an edge would force repeating a vertex).</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Cycle — A Closed Path</div><div class="box-body"><p>A <strong>cycle</strong> is a closed walk in which neither vertices nor edges are allowed to repeat, except that the starting and ending vertex is the same. In other words, a cycle is a closed path. A closed path is called a cycle.</p></div></div>
+<div class="example-box"><div class="box-title">Example 259: Key Consequence: Path $\Rightarrow$ Trail, Cycle $\Rightarrow$ Circuit</div><div class="box-body"><p>Since a path never repeats vertices, it automatically never repeats edges either. So:</p>
+<ul><li><p><strong>Every path is a trail</strong>, but every trail need not be a path (a trail is allowed to repeat vertices, a path is not).</p></li><li><p><strong>Every cycle is a circuit</strong>, but every circuit need not be a cycle (a circuit is allowed to repeat vertices, a cycle is not).</p></li></ul>
+<p>For directed graphs, we simply place the word “directed” in front of each of these terms: directed walk, directed trail, directed circuit, directed path, directed cycle. The same repetition rules apply, just following the direction of the arrows.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_011.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_012.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 260: Worked Example: Classifying Sequences on a Graph</div><div class="box-body"><p>Consider a graph with vertices $\{a, b, c, d, e, f, g\}$. Classify each of the following vertex sequences.</p>
+<ul><li><p>$a, b, g, f, c, b$: Open (starts at $a$, ends at $b$). Vertex $b$ repeats, but no edge repeats. This is a <strong>trail</strong> (not a path, since vertex $b$ is repeated).</p></li><li><p>$b, g, f, c, b, g, a$: Open. Both vertices ($b$, $g$) and possibly edges repeat here (edge $b$–$g$ used twice). This is just a general <strong>walk</strong> (not even a trail, since an edge repeats).</p></li><li><p>$c, e, f, c$: Closed (starts and ends at $c$). No vertex or edge repeats other than the start/end vertex $c$. This is a <strong>cycle</strong>.</p></li><li><p>$c, e, f, c, e$: Open (starts at $c$, ends at $e$). If no edge repeats but vertices $c$ and $e$ appear more than once internally, this is a <strong>trail</strong>.</p></li><li><p>$a, b, f, a$: If there is no edge directly between $f$ and $a$ in the graph, this sequence is <strong>not a valid walk</strong> at all, since consecutive vertices must be joined by an edge.</p></li><li><p>$f, d, e, c, b$: Open, no vertex repeats, no edge repeats. This is a <strong>path</strong>.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 261: Worked Example: Directed Walks</div><div class="box-body"><p>Consider a directed graph with vertices $\{u, v, w, x, y\}$ and directed edges $x\to v$, $v \to y$, $y \to w$, $w \to v$, $x \to u$, $u \to x$.</p>
+<p><strong>Sequence $x, v, y, w, v$:</strong> Check each consecutive pair has a directed edge: $x\to v$ ✓, $v \to y$ ✓, $y \to w$ ✓, $w \to v$ ✓. This is a valid directed walk of length 4. Vertex $v$ repeats, so it is not a directed path; since start ($x$) $\ne$ end ($v$), it is not a directed cycle either. If no edge repeats, it is a <strong>directed trail</strong>.</p>
+<p><strong>Sequence $x, u, v, y, x$:</strong> Check $u \to v$: no such directed edge exists (only $u \to x$ exists from $u$). This is <strong>not a valid directed walk</strong> at all.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_013.png" alt="diagram"></div>
+</section>
+<section id="havel-hakimi-theorem" class="content-section level-2">
+<h3 class="section-heading">Havel–Hakimi Theorem</h3>
+<div class="concept-box"><div class="box-title">Concept: The Graphical Sequence Problem</div><div class="box-body"><p>Given a list of numbers, a natural question is: can we build a simple undirected graph where these numbers are exactly the degrees of the vertices? Such a sequence is called a <strong>graphical sequence</strong> (or <strong>graphic sequence</strong>). Not every sequence of numbers is graphical; some sequences simply cannot correspond to any real graph, however hard we try to draw edges. The <strong>Havel–Hakimi algorithm</strong> gives us a step-by-step method to test this, without needing to try every possible graph.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Havel–Hakimi Theorem</div><div class="box-body"><p>A degree sequence $d_1 \ge d_2 \ge \cdots \ge d_n \ge 0$ (sorted in non-increasing order) is <strong>graphical</strong> if and only if the sequence
+\[
+(d_2 - 1, d_3 - 1, \ldots, d_{d_1+1} - 1, d_{d_1+2}, \ldots, d_n)
+\]
+obtained by removing the largest value $d_1$ and subtracting 1 from the next $d_1$ largest entries, is <strong>also graphical</strong>.</p>
+<p>In plain words: take the vertex with the highest degree, say $d_1$. Connect it to the $d_1$ next-highest-degree vertices (this is always possible, and always the safest choice). Once that vertex is fully connected, remove it from the list, and reduce the degree of each vertex it was connected to by 1 (since each of those vertices has now used up one of its edges). Repeat this process on the smaller sequence.</p></div></div>
+<div class="example-box"><div class="box-title">Example 262: Analogy: Havel–Hakimi as a Greedy Matchmaking Process</div><div class="box-body"><p>Think of $n$ people, each wanting a specific number of handshakes ($d_1, d_2, \ldots, d_n$). The greedy idea is: take the person who wants the <strong>most</strong> handshakes, and simply pair them up with the next most eager people, since that is always a safe, non-wasteful choice. Once that person&#x27;s handshakes are all arranged, we remove them from the room and reduce the remaining handshake counts of the people they shook hands with by 1 each (since those handshakes have already happened). We keep repeating this with the reduced list.</p>
+<p>If at any point during this process we get a <strong>negative number</strong> in the list, it means the sequence is <strong>not graphical</strong>, impossible to satisfy. If we can reduce the whole list down to all zeros, the sequence <strong>is graphical</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Stopping Conditions of the Algorithm</div><div class="box-body"><p>At each step of the algorithm, sort the sequence in non-increasing order first. Then check:</p>
+<ul><li><p>If all remaining values are 0, the sequence is <strong>graphical</strong>. Stop.</p></li><li><p>If the largest value $d_1$ is greater than the number of remaining entries (excluding itself), the sequence is <strong>NOT graphical</strong>. Stop (there simply aren&#x27;t enough other vertices to connect to).</p></li><li><p>If subtracting 1 produces any <strong>negative</strong> value, the sequence is <strong>NOT graphical</strong>. Stop.</p></li><li><p>Otherwise, repeat the reduction step on the new sequence.</p></li></ul></div></div>
+<p><strong>Algorithm: Havel-Hakimi(sequence)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_014.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 263: Example I: Testing $7, 6, 5, 4, 4, 3, 2, 0$</div><div class="box-body"><p><strong>Step 1:</strong> Sequence: $7, 6, 5, 4, 4, 3, 2, 0$. Largest value is 7. Remove it, and subtract 1 from the next 7 entries.
+\[
+6-1, 5-1, 4-1, 4-1, 3-1, 2-1, 0-1
+\]
+The last entry becomes $0 - 1 = -1$, which is <strong>negative</strong>.</p>
+<p><strong>Conclusion:</strong> Since a negative value appears, the sequence $7, 6, 5, 4, 4, 3, 2, 0$ is <strong>NOT graphical</strong>.</p>
+<p><em>Intuition:</em> A vertex wanting degree 0 cannot be connected to at all, but the vertex with degree 7 needs to connect to all 7 remaining vertices, forcing a connection with the degree-0 vertex. This is a direct contradiction.</p></div></div>
+<div class="example-box"><div class="box-title">Example 264: Example II: Testing $6, 6, 6, 6, 3, 3, 2, 2$</div><div class="box-body"><p><strong>Step 1:</strong> Sequence: $6, 6, 6, 6, 3, 3, 2, 2$. Largest value is 6. Remove it, subtract 1 from the next 6 entries.
+\[
+6-1, 6-1, 6-1, 3-1, 3-1, 2-1, \; 2
+\]
+New sequence (before sorting): $5, 5, 5, 2, 2, 1, 2$. Sorted: $5, 5, 5, 2, 2, 2, 1$.</p>
+<p><strong>Step 2:</strong> Largest value is 5. Remove it, subtract 1 from the next 5 entries.
+\[
+5-1, 5-1, 2-1, 2-1, 2-1, \; 1
+\]
+New sequence (before sorting): $4, 4, 1, 1, 1, 1$. Sorted: $4, 4, 1, 1, 1, 1$.</p>
+<p><strong>Step 3:</strong> Largest value is 4. Remove it, subtract 1 from the next 4 entries.
+\[
+4-1, 1-1, 1-1, 1-1, \; 1
+\]
+New sequence (before sorting): $3, 0, 0, 0, 1$. Sorted: $3, 1, 0, 0, 0$.</p>
+<p><strong>Step 4:</strong> Largest value is 3. Remove it, subtract 1 from the next 3 entries.
+\[
+1-1, 0-1, 0-1
+\]
+The entry $0 - 1 = -1$ is <strong>negative</strong>.</p>
+<p><strong>Conclusion:</strong> The sequence $6, 6, 6, 6, 3, 3, 2, 2$ is <strong>NOT graphical</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 265: Example III: Testing $7, 6, 6, 4, 4, 3, 2, 2$</div><div class="box-body"><p><strong>Step 1:</strong> Sequence: $7, 6, 6, 4, 4, 3, 2, 2$. Largest value is 7, and there are exactly 7 remaining entries, so this is valid (not too large). Subtract 1 from all 7 remaining entries.
+\[
+6-1, 6-1, 4-1, 4-1, 3-1, 2-1, 2-1
+\]
+New sequence: $5, 5, 3, 3, 2, 1, 1$. Already sorted.</p>
+<p><strong>Step 2:</strong> Largest value is 5. Remove it, subtract 1 from the next 5 entries.
+\[
+5-1, 3-1, 3-1, 2-1, 1-1, \; 1
+\]
+New sequence (before sorting): $4, 2, 2, 1, 0, 1$. Sorted: $4, 2, 2, 1, 1, 0$.</p>
+<p><strong>Step 3:</strong> Largest value is 4. Remove it, subtract 1 from the next 4 entries.
+\[
+2-1, 2-1, 1-1, 1-1, \; 0
+\]
+New sequence (before sorting): $1, 1, 0, 0, 0$. Sorted: $1, 1, 0, 0, 0$.</p>
+<p><strong>Step 4:</strong> Drop trailing zeros: $1, 1$. Largest value is 1. Remove it, subtract 1 from the next 1 entry.
+\[
+1 - 1 = 0
+\]
+New sequence: $0$.</p>
+<p><strong>Step 5:</strong> Drop trailing zero. Sequence is now empty.</p>
+<p><strong>Conclusion:</strong> We reached an empty sequence (all zeros) without ever hitting a negative number. So $7, 6, 6, 4, 4, 3, 2, 2$ <strong>IS graphical</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 266: Example IV: Testing $8, 7, 7, 6, 4, 2, 1, 1$</div><div class="box-body"><p><strong>Step 1:</strong> Sequence: $8, 7, 7, 6, 4, 2, 1, 1$. The largest value is 8, but there are only 7 remaining entries in the sequence.</p>
+<p>\[
+d_1 = 8 &gt; \text{(number of remaining entries)} = 7
+\]</p>
+<p><strong>Conclusion:</strong> Since the largest degree (8) exceeds the number of other vertices available to connect to (only 7 remain), it is impossible for this vertex to achieve degree 8 in a simple graph (no self-loops or multi-edges allowed). So $8, 7, 7, 6, 4, 2, 1, 1$ is <strong>NOT graphical</strong>.</p>
+<p><em>Intuition:</em> With only 8 vertices total, the maximum possible degree for any single vertex is $8 - 1 = 7$ (connecting to every other vertex). A degree of 8 is simply impossible here.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_015.png" alt="diagram"></div>
+</section>
+</section>
+<section id="graph-representations" class="content-section level-1">
+<h2 class="section-heading">Graph Representations</h2>
+<div class="concept-box"><div class="box-title">Concept: Why Representation Matters</div><div class="box-body"><p>The same graph can be stored in a computer in different ways. The choice of representation affects:</p>
+<ul><li><p>How much memory we use.</p></li><li><p>How fast we can check if an edge exists.</p></li><li><p>How fast we can traverse all neighbours of a vertex.</p></li><li><p>How fast graph algorithms run in total.</p></li></ul>
+<p>The two most common representations are the <strong>adjacency matrix</strong> and the <strong>adjacency list</strong>.</p></div></div>
+<section id="adjacency-matrix" class="content-section level-2">
+<h3 class="section-heading">Adjacency Matrix</h3>
+<div class="concept-box"><div class="box-title">Concept: Adjacency Matrix</div><div class="box-body"><p>An <strong>adjacency matrix</strong> is a 2D array (matrix) of size $|V| \times |V|$. For a graph with $|V| = n$ vertices numbered $1$ to $n$:
+\[
+A[i][j] = \begin{cases} 1 &amp; \text{if there is an edge from vertex } i \text{ to vertex } j \\ 0 &amp; \text{otherwise} \end{cases}
+\]
+For a <strong>weighted graph</strong>, we store the weight instead of 1. For an <strong>undirected graph</strong>, the matrix is always symmetric, meaning $A[i][j] = A[j][i]$.</p>
+<p><strong>Space:</strong> $O(V^2)$, regardless of the number of edges.</p>
+<p><strong>Edge check:</strong> $O(1)$, since $A[u][v]$ gives the answer directly.</p>
+<p><strong>Finding all neighbours of $v$:</strong> $O(V)$, since we must scan the entire row $v$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_016.png" alt="diagram"></div>
+</section>
+<section id="adjacency-list" class="content-section level-2">
+<h3 class="section-heading">Adjacency List</h3>
+<div class="concept-box"><div class="box-title">Concept: Adjacency List</div><div class="box-body"><p>An <strong>adjacency list</strong> stores, for each vertex $v$, a list of all vertices adjacent to $v$ (its neighbours). We can implement this as an array of linked lists, or as an array of Python lists.</p>
+<p><strong>Space:</strong> $O(V + E)$, since we store $|V|$ list headers and $2|E|$ total entries (each edge appears in two lists for undirected graph, or $|E|$ entries total for directed).</p>
+<p><strong>Edge check:</strong> $O(\deg(v))$, we must scan the list of $v$ to see if $u$ is in it.</p>
+<p><strong>Finding all neighbours of $v$:</strong> $O(\deg(v))$, simply iterate the list.</p>
+<p><strong>Total traversal:</strong> $O(V + E)$, visiting all vertices and all their edges.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_017.png" alt="diagram"></div>
+</section>
+<section id="dense-vs-sparse-graphs" class="content-section level-2">
+<h3 class="section-heading">Dense vs. Sparse Graphs</h3>
+<div class="concept-box"><div class="box-title">Concept: Dense and Sparse Graphs</div><div class="box-body"><p>A <strong>dense graph</strong> has many edges, close to the maximum possible. A complete graph $K_n$ is the densest possible, with $n(n-1)/2$ edges. For dense graphs, $|E| \approx |V|^2$, so adjacency matrix wastes little space and makes edge checks very fast.</p>
+<p>A <strong>sparse graph</strong> has few edges, much less than the maximum. For sparse graphs, $|E| \ll |V|^2$, often $|E| \approx |V|$ or $|E| \approx |V| \log |V|$. Adjacency list is much better here because the matrix would be mostly empty zeros, wasting memory.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d07_018.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 267: When to Use Which</div><div class="box-body"><ul><li><p>Facebook network: billions of users (vertices) but each person has only a few thousand friends (edges). This is very sparse. $|E| \ll |V|^2$. Use adjacency list.</p></li><li><p>A 5-city road network where every city is connected to every other: $K_5$, 10 edges. Dense for 5 nodes. Matrix is fine here.</p></li><li><p>Flight network: thousands of airports, but not all airports connect to each other. Sparse. Use adjacency list.</p></li><li><p>A graph algorithm on a 1000-vertex dense graph: matrix allows $O(1)$ edge check, which is critical here.</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept: Traversal Complexity — Matrix vs List</div><div class="box-body"><p>When we run graph traversal algorithms like BFS or DFS:</p>
+<ul><li><p><strong>Using adjacency matrix:</strong> For each vertex $v$, we scan its entire row to find neighbours. This takes $O(V)$ per vertex, and with $V$ vertices total, the whole traversal takes $O(V^2)$.</p></li><li><p><strong>Using adjacency list:</strong> For each vertex $v$, we only look at the neighbours in its list. The total work across all vertices is proportional to the total number of entries in all lists, which equals $2|E|$ (each edge appears twice for undirected). So total traversal takes $O(V + E)$.</p></li></ul>
+<p>For sparse graphs where $|E| \ll |V|^2$, the adjacency list traversal $O(V+E)$ is much faster than matrix traversal $O(V^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 268: Traversal Cost Example</div><div class="box-body"><p>Consider a sparse graph with $|V| = 1000$ and $|E| = 2000$ (each vertex connects to 2 others on average).</p>
+<ul><li><p>Adjacency matrix BFS/DFS: $O(V^2) = O(1000^2) = O(1{,}000{,}000)$ operations.</p></li><li><p>Adjacency list BFS/DFS: $O(V+E) = O(1000 + 2000) = O(3000)$ operations.</p></li></ul>
+<p>Adjacency list is about 333 times faster here. This difference becomes even larger for bigger sparse graphs.</p></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch06.html">&larr; Chapter 6: Hash Tables</a><span class="spacer"></span><a class="nav-btn next" href="ch08.html">Chapter 8: Graph Traversals &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

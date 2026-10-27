@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stacks — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 6</div><h1>Stacks</h1></div>
+<section id="core-operations" class="content-section level-1">
+<h2 class="section-heading">Core Operations</h2>
+<div class="concept-box"><div class="box-title">Stack and the LIFO Principle</div><div class="box-body"><p>A stack is a linear data structure where elements are added and removed from only one end, called the <strong>top</strong>. The rule followed is <strong>Last In, First Out (LIFO)</strong>, which means the element added most recently is the one that gets removed first. Think of a stack of plates on a dining table. You always place a new plate on the top, and you always take a plate from the top. You never take from the bottom or middle.</p></div></div>
+<div class="example-box"><div class="box-title">Example 178: Real World Example of LIFO</div><div class="box-body"><p>Think of a stack of books on a desk. If you place book $A$ first, then book $B$, book $C$, then book $D$ on top, the only book you can pick up right now is book $D$. After removing $D$, you can reach $C$. After removing $C$, you can reach $B$, and finally $A$. This is exactly LIFO.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig030.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Core Stack Operations</div><div class="box-body"><p>A stack supports three main operations. All three take constant time, $O(1)$, meaning no matter how many elements are in the stack, these operations always take the same amount of time.</p>
+<ul><li><p><strong>Push(x):</strong> Add element $x$ on the top of the stack.</p></li><li><p><strong>Pop():</strong> Remove and return the element currently on top of the stack.</p></li><li><p><strong>Peek() / Top():</strong> Look at the element on top, without removing it.</p></li></ul>
+<p>Two more helper operations are usually included.</p>
+<ul><li><p><strong>IsEmpty():</strong> Check if the stack has no elements.</p></li><li><p><strong>IsFull():</strong> Check if the stack has no more room (only for array-based implementation).</p></li></ul></div></div>
+<section id="array-implementation" class="content-section level-2">
+<h3 class="section-heading">Array Implementation</h3>
+<div class="concept-box"><div class="box-title">Stack Using an Array</div><div class="box-body"><p>We can implement a stack using a fixed-size array. We keep a variable called <code>top</code>, which stores the index of the topmost element in the array. Initially, before any element is pushed, <code>top</code> is set to $-1$, which means the stack is empty. When we push an element, we first increase <code>top</code> by $1$, and then store the element at index <code>top</code>. When we pop, we return the element at index <code>top</code>, and then decrease <code>top</code> by $1$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig031.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 179: Step by Step: Push and Pop Trace</div><div class="box-body"><p>Suppose we have an empty stack with maximum size $5$. We perform: Push(10), Push(20), Push(30), Pop(), Peek().</p>
+<ul><li><p>Start: <code>top = -1</code>, array = [\_, \_, \_, \_, \_]</p></li><li><p>Push(10): <code>top = 0</code>, array = [10, \_, \_, \_, \_]</p></li><li><p>Push(20): <code>top = 1</code>, array = [10, 20, \_, \_, \_]</p></li><li><p>Push(30): <code>top = 2</code>, array = [10, 20, 30, \_, \_]</p></li><li><p>Pop(): returns $30$, <code>top = 1</code>, array = [10, 20, \_, \_, \_]</p></li><li><p>Peek(): returns $20$ (top element), <code>top</code> stays at $1$</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig032.png" alt="diagram"></div>
+</section>
+<section id="algorithm-pseudocode-and-python-implementation" class="content-section level-2">
+<h3 class="section-heading">Algorithm, Pseudocode and Python Implementation</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig033.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig034.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig035.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig036.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 180: Pseudocode: Full Stack Implementation</div><div class="box-body"><p><strong>Stack Operations (C-style Pseudocode)</strong></p>
+<ol><li><p>Initialize(S, maxsize):</p></li><li><p>   S.arr = array of size maxsize</p></li><li><p>   S.top = -1</p></li><li><p>   S.maxsize = maxsize</p></li><li></li><li><p>Push(S, x):</p></li><li><p>   if S.top == S.maxsize - 1:</p></li><li><p>     print "Stack Overflow"</p></li><li><p>     return</p></li><li><p>   S.top = S.top + 1</p></li><li><p>   S.arr[S.top] = x</p></li><li></li><li><p>Pop(S):</p></li><li><p>   if S.top == -1:</p></li><li><p>     print "Stack Underflow"</p></li><li><p>     return -1</p></li><li><p>   x = S.arr[S.top]</p></li><li><p>   S.top = S.top - 1</p></li><li><p>   return x</p></li><li></li><li><p>Peek(S):</p></li><li><p>   if S.top == -1:</p></li><li><p>     print "Stack is Empty"</p></li><li><p>     return -1</p></li><li><p>   return S.arr[S.top]</p></li><li></li><li><p>IsEmpty(S):</p></li><li><p>   return (S.top == -1)</p></li><li></li><li><p>IsFull(S):</p></li><li><p>   return (S.top == S.maxsize - 1)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">stack-array.py</div><pre><code>class Stack:
+    def __init__(self, maxsize):
+        self.arr = [None] * maxsize   # fixed size array
+        self.top = -1                  # stack is empty
+        self.maxsize = maxsize
+
+    def is_empty(self):
+        return self.top == -1
+
+    def is_full(self):
+        return self.top == self.maxsize - 1
+
+    def push(self, x):
+        if self.is_full():
+            print(&quot;Stack Overflow&quot;)   # no space left
+            return
+        self.top += 1
+        self.arr[self.top] = x
+
+    def pop(self):
+        if self.is_empty():
+            print(&quot;Stack Underflow&quot;)   # nothing to remove
+            return -1
+        x = self.arr[self.top]
+        self.top -= 1
+        return x
+
+    def peek(self):
+        if self.is_empty():
+            print(&quot;Stack is Empty&quot;)
+            return -1
+        return self.arr[self.top]
+
+
+# --- Driver Code ---
+s = Stack(5)
+
+s.push(10)
+s.push(20)
+s.push(30)
+
+print(&quot;Peek:&quot;, s.peek())    # Output: 30
+print(&quot;Pop:&quot;, s.pop())      # Output: 30
+print(&quot;Pop:&quot;, s.pop())      # Output: 20
+print(&quot;Peek:&quot;, s.peek())    # Output: 10
+print(&quot;IsEmpty:&quot;, s.is_empty())  # Output: False</code></pre></div>
+<div class="example-box"><div class="box-title">Example 181: Why All Operations are $O(1)$</div><div class="box-body"><p>All three main stack operations, Push, Pop, and Peek, take constant time $O(1)$. This is because, in an array-based implementation, each operation only does a fixed number of steps, no loops, no searching. Push increases <code>top</code> by $1$ and stores a value, which is just $2$ steps. Pop reads a value and decreases <code>top</code> by $1$, again just $2$ steps. Peek reads one value, just $1$ step. None of these steps depend on how many elements are in the stack. So, the time stays constant, no matter whether the stack has $1$ element or $1000$ elements.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig037.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 182: Overflow and Underflow Conditions</div><div class="box-body"><p>Two important error conditions exist for an array-based stack.</p>
+<ul><li><p><strong>Stack Overflow:</strong> This happens when we try to push an element into a full stack, that means when <code>top == maxsize - 1</code>. The array has no more room.</p></li><li><p><strong>Stack Underflow:</strong> This happens when we try to pop or peek from an empty stack, that means when <code>top == -1</code>. There is no element to return.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig038.png" alt="diagram"></div>
+</section>
+</section>
+<section id="applications-of-stacks" class="content-section level-1">
+<h2 class="section-heading">Applications of Stacks</h2>
+<div class="concept-box"><div class="box-title">Why Stacks are Useful</div><div class="box-body"><p>Stacks are used in many real problems where the most recently seen item needs to be processed first. The LIFO property makes stacks perfect for expression evaluation, matching symbols, tracking function calls, and converting between expression notations. All these applications rely on the same idea, the last thing we stored is the first thing we need.</p></div></div>
+<section id="expression-notations-infix-postfix-prefix" class="content-section level-2">
+<h3 class="section-heading">Expression Notations: Infix, Postfix, Prefix</h3>
+<div class="concept-box"><div class="box-title">Three Notations for Expressions</div><div class="box-body"><p>A mathematical expression like $A + B$ can be written in three different ways, depending on where the operator is placed relative to the operands.</p>
+<ul><li><p><strong>Infix:</strong> Operator is between operands. Example: $A + B$. This is the normal way humans write expressions. Requires parentheses and precedence rules to avoid ambiguity.</p></li><li><p><strong>Postfix (Reverse Polish Notation):</strong> Operator comes after operands. Example: $A\;B\;+$. No parentheses needed. Easy for computers to evaluate using a stack.</p></li><li><p><strong>Prefix (Polish Notation):</strong> Operator comes before operands. Example: $+\;A\;B$. Also no parentheses needed.</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig039.png" alt="diagram"></div>
+</section>
+<section id="infix-to-postfix-conversion-shunting-yard-algorithm" class="content-section level-2">
+<h3 class="section-heading">Infix to Postfix Conversion (Shunting-Yard Algorithm)</h3>
+<div class="concept-box"><div class="box-title">Infix to Postfix Conversion</div><div class="box-body"><p>We use a stack to convert an infix expression to postfix. The idea is, we scan the infix expression left to right. Operands (numbers or variables) go directly to the output. Operators are pushed onto the stack, but before pushing, we first pop all operators of higher or equal precedence already in the stack, and send them to output. Opening brackets are pushed onto the stack. Closing brackets trigger popping until we find the matching opening bracket. At the end, all remaining operators in the stack are popped to output.</p></div></div>
+<div class="concept-box"><div class="box-title">Operator Precedence Rules</div><div class="box-body"><ul><li><p><strong>Highest precedence:</strong> <code>\^{}</code> (exponentiation), right to left associativity</p></li><li><p><strong>Medium precedence:</strong> <code>*</code> and <code>/</code>, left to right associativity</p></li><li><p><strong>Lowest precedence:</strong> <code>+</code> and <code>-</code>, left to right associativity</p></li><li><p><strong>Brackets:</strong> <code>(</code> has lowest precedence when inside the stack</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Infix to Postfix Conversion (Shunting-Yard Algorithm)</div><div class="box-body"><p>We use an operator stack to convert an infix expression to postfix by scanning the infix tokens from left to right:</p>
+<ul><li><p><strong>Operands</strong> (numbers or variables) go directly to the output.</p></li><li><p><strong>Opening brackets</strong> <code>(</code> are pushed directly onto the stack.</p></li><li><p><strong>Closing brackets</strong> <code>)</code> trigger popping all operators from the stack to the output until the matching opening bracket <code>(</code> is found. Discard both brackets.</p></li><li><p><strong>Operators</strong> ($O_1$) trigger popping an operator ($O_2$) from the top of the stack to the output if:</p>
+<ol><li><p>$O_2$ has <strong>strictly higher</strong> precedence than $O_1$, OR</p></li><li><p>$O_2$ has <strong>equal</strong> precedence to $O_1$ AND $O_1$ is <strong>left-associative</strong> (e.g., <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).</p></li></ol>
+<p>Repeat this check for the new stack top. Stop popping as soon as the condition fails, then push $O_1$ onto the stack. (<em>Note: Right-associative operators like <code>\^{}</code> will not pop an equal-precedence operator</em>).</p></li><li><p><strong>End of expression:</strong> Pop all remaining operators from the stack and send them to the output.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 183: Step by Step: Convert $A + B * C - D$ to Postfix</div><div class="box-body"><p>Scan left to right. Stack starts empty, output is empty.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig040.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig041.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 184: Pseudocode: Infix to Postfix</div><div class="box-body"><p><strong>InfixToPostfix(expr)</strong></p>
+<ol><li><p>stack = empty, output = empty list</p></li><li><p>for each token t in expr:</p></li><li><p>   if t is operand:</p></li><li><p>     append t to output</p></li><li><p>   else if t == '(':</p></li><li><p>     push t onto stack</p></li><li><p>   else if t == ')':</p></li><li><p>     while stack top != '(':</p></li><li><p>       pop and append to output</p></li><li><p>     pop '(' from stack (discard)</p></li><li><p>   else: (t is operator)</p></li><li><p>     while stack not empty and prec(stack top) $&gt;=$ prec(t):</p></li><li><p>       pop and append to output</p></li><li><p>     push t onto stack</p></li><li><p>while stack not empty:</p></li><li><p>   pop and append to output</p></li><li><p>return output</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">infix-to-postfix.py</div><pre><code>def infix_to_postfix(expr):
+    precedence = {&#x27;+&#x27;: 1, &#x27;-&#x27;: 1,
+                  &#x27;*&#x27;: 2, &#x27;/&#x27;: 2,
+                  &#x27;^&#x27;: 3}
+    stack  = []
+    output = []
+
+    for token in expr:
+        if token.isalnum():          # operand
+            output.append(token)
+
+        elif token == &#x27;(&#x27;:
+            stack.append(token)
+
+        elif token == &#x27;)&#x27;:
+            while stack and stack[-1] != &#x27;(&#x27;:
+                output.append(stack.pop())
+            stack.pop()              # remove &#x27;(&#x27;
+
+        else:                        # operator
+            while (stack and
+                   stack[-1] != &#x27;(&#x27; and
+                   precedence.get(stack[-1], 0) &gt;= precedence[token]):
+                output.append(stack.pop())
+            stack.append(token)
+
+    while stack:                     # remaining operators
+        output.append(stack.pop())
+
+    return &#x27; &#x27;.join(output)
+
+
+# --- Driver Code ---
+expr = [&#x27;A&#x27;, &#x27;+&#x27;, &#x27;B&#x27;, &#x27;*&#x27;, &#x27;C&#x27;, &#x27;-&#x27;, &#x27;D&#x27;]
+print(infix_to_postfix(expr))
+# Output: A B C * + D -</code></pre></div>
+</section>
+<section id="postfix-expression-evaluation" class="content-section level-2">
+<h3 class="section-heading">Postfix Expression Evaluation</h3>
+<div class="concept-box"><div class="box-title">Postfix Evaluation Using Stack</div><div class="box-body"><p>Evaluating a postfix expression using a stack is simple. We scan the postfix expression left to right. If the current token is an operand, we push it onto the stack. If the current token is an operator, we pop two operands from the stack, apply the operator, and push the result back. At the end, the stack contains exactly one value, which is the final answer.</p></div></div>
+<div class="example-box"><div class="box-title">Example 185: Step by Step: Evaluate $2\;3\;4\;*\;+\;5\;-$</div><div class="box-body"><p>Expression is already in postfix. Scan left to right.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig042.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig043.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig044.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">postfix-eval.py</div><pre><code>def evaluate_postfix(expr):
+    stack = []
+
+    for token in expr:
+        if token.lstrip(&#x27;-&#x27;).isdigit():   # operand
+            stack.append(int(token))
+
+        else:                              # operator
+            b = stack.pop()               # second operand
+            a = stack.pop()               # first operand
+
+            if token == &#x27;+&#x27;:
+                stack.append(a + b)
+            elif token == &#x27;-&#x27;:
+                stack.append(a - b)
+            elif token == &#x27;*&#x27;:
+                stack.append(a * b)
+            elif token == &#x27;/&#x27;:
+                stack.append(a // b)
+
+    return stack[0]   # final result
+
+
+# --- Driver Code ---
+expr = [&#x27;2&#x27;, &#x27;3&#x27;, &#x27;4&#x27;, &#x27;*&#x27;, &#x27;+&#x27;, &#x27;5&#x27;, &#x27;-&#x27;]
+print(&quot;Result:&quot;, evaluate_postfix(expr))
+# Output: Result: 9</code></pre></div>
+</section>
+<section id="infix-to-prefix-conversion" class="content-section level-2">
+<h3 class="section-heading">Infix to Prefix Conversion</h3>
+<div class="concept-box"><div class="box-title">Infix to Prefix Conversion</div><div class="box-body"><p>Converting infix to prefix uses a similar idea as infix to postfix, but with two key differences. First, we reverse the entire infix expression and swap each <code>(</code> with <code>)</code> and vice versa. Second, when running the Shunting-Yard algorithm on this modified expression, we <strong>invert the equal precedence rule</strong>:</p>
+<ul><li><p><strong>Strictly Higher Precedence on Stack:</strong> Pop operators from stack to output.</p></li><li><p><strong>Strictly Lower Precedence on Stack:</strong> Push the incoming operator onto the stack.</p></li><li><p><strong>Equal Precedence (Associativity Rule):</strong></p>
+<ul><li><p>For <strong>left-associative</strong> operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>): <strong>Push</strong> onto the stack (do <em>not</em> pop).</p></li><li><p>For <strong>right-associative</strong> operators (<code>\^{}</code>): <strong>Pop</strong> the stack top to output before pushing.</p></li></ul></li></ul>
+<p>At the end, we reverse the final output string to obtain the prefix expression.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig045.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 186: Step by Step: Convert $A + B * C$ to Prefix</div><div class="box-body"><p><strong>Step 1:</strong> Reverse the expression: $C * B + A$</p>
+<p><strong>Step 2:</strong> No brackets in this example, so no swapping needed.</p>
+<p><strong>Step 3:</strong> Apply modified Shunting-Yard on $C * B + A$:</p>
+<ul><li><p>$C$ $\to$ output: $C$</p></li><li><p>$*$ $\to$ stack: $[*]$</p></li><li><p>$B$ $\to$ output: $C\;B$</p></li><li><p>$+$ $\to$ stack top $*$ has <em>strictly higher</em> precedence than $+$, so pop $*$ to output, push $+ \to$ output: $C\;B\;*$</p></li><li><p>$A$ $\to$ output: $C\;B\;*\;A$</p></li><li><p>End $\to$ pop $+ \to$ output: $C\;B\;*\;A\;+$</p></li></ul>
+<p><strong>Step 4:</strong> Reverse: $+\;A\;*\;B\;C$</p>
+<p><strong>Final Prefix:</strong> $+\;A\;*\;B\;C$, which is same as $A + (B * C)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig046.png" alt="diagram"></div>
+<p>“`</p>
+<div class="code-box"><div class="code-title">infix-to-prefix.py</div><pre><code>def infix_to_postfix_helper(expr):
+    precedence = {&#x27;+&#x27;: 1, &#x27;-&#x27;: 1, &#x27;*&#x27;: 2, &#x27;/&#x27;: 2, &#x27;^&#x27;: 3}
+    stack  = []
+    output = []
+
+    for token in expr:
+        if token.isalnum():
+            output.append(token)
+        elif token == &#x27;(&#x27;:
+            stack.append(token)
+        elif token == &#x27;)&#x27;:
+            while stack and stack[-1] != &#x27;(&#x27;:
+                output.append(stack.pop())
+            stack.pop()
+        else:
+            while (stack and
+                   stack[-1] != &#x27;(&#x27; and
+                   precedence.get(stack[-1], 0) &gt;= precedence[token]):
+                output.append(stack.pop())
+            stack.append(token)
+
+    while stack:
+        output.append(stack.pop())
+
+    return output
+
+
+def infix_to_prefix(expr):
+    # Step 1: Reverse
+    rev = expr[::-1]
+
+    # Step 2: Swap brackets
+    swapped = []
+    for token in rev:
+        if token == &#x27;(&#x27;:
+            swapped.append(&#x27;)&#x27;)
+        elif token == &#x27;)&#x27;:
+            swapped.append(&#x27;(&#x27;)
+        else:
+            swapped.append(token)
+
+    # Step 3: Apply postfix conversion
+    postfix = infix_to_postfix_helper(swapped)
+
+    # Step 4: Reverse result
+    prefix = postfix[::-1]
+
+    return &#x27; &#x27;.join(prefix)
+
+
+# --- Driver Code ---
+expr = [&#x27;A&#x27;, &#x27;+&#x27;, &#x27;B&#x27;, &#x27;*&#x27;, &#x27;C&#x27;]
+print(infix_to_prefix(expr))
+# Output: + A * B C</code></pre></div>
+</section>
+<section id="prefix-expression-evaluation" class="content-section level-2">
+<h3 class="section-heading">Prefix Expression Evaluation</h3>
+<div class="concept-box"><div class="box-title">Prefix Expression Evaluation Rules</div><div class="box-body"><p>To evaluate a prefix expression using a stack:</p>
+<ol><li><p>Scan the prefix expression from <strong>right to left</strong>.</p></li><li><p>If the symbol is an <strong>operand</strong> (number), push it onto the stack.</p></li><li><p>If the symbol is an <strong>operator</strong>, pop two elements from the stack:</p>
+<ul><li><p>$Op_1 = \text{first popped}$</p></li><li><p>$Op_2 = \text{second popped}$</p></li></ul></li><li><p>Compute $\text{result} = Op_1 \ \text{operator} \ Op_2$ and push the result back onto the stack.</p></li><li><p>The final stack value is the expression's result.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 187: Step-by-Step: Evaluate Prefix Expression 1</div><div class="box-body"><p><strong>Expression:</strong> $- \ * \ 4 \ 3 \ / \ 8 \ 2$</p>
+<ul><li><p>Scan right to left:</p></li><li><p>Push $2$, Push $8 \to \text{Stack: } [2, 8]$</p></li><li><p>Read $/ \to \text{Pop } Op_1=8, Op_2=2 \implies 8 / 2 = 4 \to \text{Stack: } [4]$</p></li><li><p>Push $3$, Push $4 \to \text{Stack: } [4, 3, 4]$</p></li><li><p>Read $* \to \text{Pop } Op_1=4, Op_2=3 \implies 4 * 3 = 12 \to \text{Stack: } [4, 12]$</p></li><li><p>Read $- \to \text{Pop } Op_1=12, Op_2=4 \implies 12 - 4 = 8 \to \text{Stack: } [8]$</p></li></ul>
+<p><strong>Final Result:</strong> $8$</p></div></div>
+<div class="example-box"><div class="box-title">Example 188: Step-by-Step: Evaluate Prefix Expression 2</div><div class="box-body"><p><strong>Expression:</strong> $+ \ * \ 2 \ 5 \ \hat{} \ 3 \ 2$</p>
+<ul><li><p>Scan right to left:</p></li><li><p>Push $2$, Push $3 \to \text{Stack: } [2, 3]$</p></li><li><p>Read $\hat{} \to \text{Pop } Op_1=3, Op_2=2 \implies 3^2 = 9 \to \text{Stack: } [9]$</p></li><li><p>Push $5$, Push $2 \to \text{Stack: } [9, 5, 2]$</p></li><li><p>Read $* \to \text{Pop } Op_1=2, Op_2=5 \implies 2 * 5 = 10 \to \text{Stack: } [9, 10]$</p></li><li><p>Read $+ \to \text{Pop } Op_1=10, Op_2=9 \implies 10 + 9 = 19 \to \text{Stack: } [19]$</p></li></ul>
+<p><strong>Final Result:</strong> $19$</p></div></div>
+</section>
+<section id="prefix-to-infix-conversion" class="content-section level-2">
+<h3 class="section-heading">Prefix to Infix Conversion</h3>
+<div class="concept-box"><div class="box-title">How to Convert Prefix to Infix</div><div class="box-body"><ol><li><p>Scan the prefix expression from <strong>right to left</strong>.</p></li><li><p>If the current token is an operand, push it onto the stack as-is.</p></li><li><p>If the current token is an operator, pop two values: call the <strong>first</strong> popped value $A$ and the <strong>second</strong> popped value $B$. Form the string $(A \ \text{op} \ B)$ and push this back onto the stack.</p></li><li><p>After the scan ends, the stack contains exactly one string — this is the fully bracketed infix expression.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 189: Step-by-Step: Convert $+ \ * \ A \ B \ / \ C \ D$ to Infix</div><div class="box-body"><ul><li><p>Scan right to left:</p></li><li><p>Push $D, C \to \text{Stack: } [D, C]$</p></li><li><p>Read $/ \to \text{Pop } A=C, B=D \implies \text{Push } (C / D) \to \text{Stack: } [(C / D)]$</p></li><li><p>Push $B, A \to \text{Stack: } [(C / D), B, A]$</p></li><li><p>Read $* \to \text{Pop } A=A, B=B \implies \text{Push } (A * B) \to \text{Stack: } [(C / D), (A * B)]$</p></li><li><p>Read $+ \to \text{Pop } A=(A * B), B=(C / D) \implies \text{Push } ((A * B) + (C / D))$</p></li></ul>
+<p><strong>Final Infix:</strong> $(A * B) + (C / D)$</p></div></div>
+<div class="example-box"><div class="box-title">Example 190: Step-by-Step: Convert $- \ + \ A \ * \ B \ C \ \hat{} \ D \ E$ to Infix</div><div class="box-body"><ul><li><p>Scan right to left:</p></li><li><p>Push $E, D \to \text{Stack: } [E, D]$</p></li><li><p>Read $\hat{} \to \text{Pop } A=D, B=E \implies \text{Push } (D \hat{} E) \to \text{Stack: } [(D \hat{} E)]$</p></li><li><p>Push $C, B \to \text{Stack: } [(D \hat{} E), C, B]$</p></li><li><p>Read $* \to \text{Pop } A=B, B=C \implies \text{Push } (B * C) \to \text{Stack: } [(D \hat{} E), (B * C)]$</p></li><li><p>Push $A \to \text{Stack: } [(D \hat{} E), (B * C), A]$</p></li><li><p>Read $+ \to \text{Pop } A=A, B=(B * C) \implies \text{Push } (A + (B * C)) \to \text{Stack: } [(D \hat{} E), (A + (B * C))]$</p></li><li><p>Read $- \to \text{Pop } A=(A + (B * C)), B=(D \hat{} E) \implies \text{Push } ((A + (B * C)) - (D \hat{} E))$</p></li></ul>
+<p><strong>Final Infix:</strong> $((A + (B * C)) - (D \hat{} E))$</p></div></div>
+</section>
+<section id="postfix-to-prefix-conversion" class="content-section level-2">
+<h3 class="section-heading">Postfix to Prefix Conversion</h3>
+<div class="concept-box"><div class="box-title">How to Convert Postfix to Prefix</div><div class="box-body"><ol><li><p>Scan the postfix expression from <strong>left to right</strong>.</p></li><li><p>If the current token is an operand, push it onto the stack as-is.</p></li><li><p>If the current token is an operator, pop two values: call the <strong>first</strong> popped value $B$ and the <strong>second</strong> popped value $A$. Form the string $\text{op} \ A \ B$ (operator written first) and push this back onto the stack.</p></li><li><p>After the scan ends, the stack contains exactly one string — this is the prefix expression.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 191: Step-by-Step: Convert $A \ B \ + \ C \ D \ - \ *$ to Prefix</div><div class="box-body"><ul><li><p>Scan left to right:</p></li><li><p>Push $A, B \to \text{Stack: } [A, B]$</p></li><li><p>Read $+ \to \text{Pop } B=B, A=A \implies \text{Push } + A B \to \text{Stack: } [+ A B]$</p></li><li><p>Push $C, D \to \text{Stack: } [+ A B, C, D]$</p></li><li><p>Read $- \to \text{Pop } B=D, A=C \implies \text{Push } - C D \to \text{Stack: } [+ A B, - C D]$</p></li><li><p>Read $* \to \text{Pop } B=- C D, A=+ A B \implies \text{Push } * + A B - C D$</p></li></ul>
+<p><strong>Final Prefix:</strong> $* \ + \ A \ B \ - \ C \ D$</p></div></div>
+<div class="example-box"><div class="box-title">Example 192: Step-by-Step: Convert $A \ B \ C \ * \ + \ D \ E \ F \ - \ / \ -$ to Prefix</div><div class="box-body"><ul><li><p>Scan left to right:</p></li><li><p>Push $A, B, C \to \text{Stack: } [A, B, C]$</p></li><li><p>Read $* \to \text{Pop } B=C, A=B \implies \text{Push } * B C \to \text{Stack: } [A, * B C]$</p></li><li><p>Read $+ \to \text{Pop } B=* B C, A=A \implies \text{Push } + A * B C \to \text{Stack: } [+ A * B C]$</p></li><li><p>Push $D, E, F \to \text{Stack: } [+ A * B C, D, E, F]$</p></li><li><p>Read $- \to \text{Pop } B=F, A=E \implies \text{Push } - E F \to \text{Stack: } [+ A * B C, D, - E F]$</p></li><li><p>Read $/ \to \text{Pop } B=- E F, A=D \implies \text{Push } / D - E F \to \text{Stack: } [+ A * B C, / D - E F]$</p></li><li><p>Read $- \to \text{Pop } B=/ D - E F, A=+ A * B C \implies \text{Push } - + A * B C / D - E F$</p></li></ul>
+<p><strong>Final Prefix:</strong> $- \ + \ A \ * \ B \ C \ / \ D \ - \ E \ F$</p></div></div>
+</section>
+<section id="prefix-to-postfix-conversion" class="content-section level-2">
+<h3 class="section-heading">Prefix to Postfix Conversion</h3>
+<div class="concept-box"><div class="box-title">How to Convert Prefix to Postfix</div><div class="box-body"><ol><li><p>Scan the prefix expression from <strong>right to left</strong>.</p></li><li><p>If the current token is an operand, push it onto the stack as-is.</p></li><li><p>If the current token is an operator, pop two values: call the <strong>first</strong> popped value $A$ and the <strong>second</strong> popped value $B$. Form the string $A \ B \ \text{op}$ (operator written last) and push this back onto the stack.</p></li><li><p>After the scan ends, the stack contains exactly one string — this is the postfix expression.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 193: Step-by-Step: Convert $* \ + \ A \ B \ - \ C \ D$ to Postfix</div><div class="box-body"><ul><li><p>Scan right to left:</p></li><li><p>Push $D, C \to \text{Stack: } [D, C]$</p></li><li><p>Read $- \to \text{Pop } A=C, B=D \implies \text{Push } C D - \to \text{Stack: } [C D -]$</p></li><li><p>Push $B, A \to \text{Stack: } [C D -, B, A]$</p></li><li><p>Read $+ \to \text{Pop } A=A, B=B \implies \text{Push } A B + \to \text{Stack: } [C D -, A B +]$</p></li><li><p>Read $* \to \text{Pop } A=A B +, B=C D - \implies \text{Push } A B + C D - *$</p></li></ul>
+<p><strong>Final Postfix:</strong> $A \ B \ + \ C \ D \ - \ *$</p></div></div>
+<div class="example-box"><div class="box-title">Example 194: Step-by-Step: Convert $- \ / \ * \ A \ B \ C \ + \ D \ E$ to Postfix</div><div class="box-body"><ul><li><p>Scan right to left:</p></li><li><p>Push $E, D \to \text{Stack: } [E, D]$</p></li><li><p>Read $+ \to \text{Pop } A=D, B=E \implies \text{Push } D E + \to \text{Stack: } [D E +]$</p></li><li><p>Push $C, B, A \to \text{Stack: } [D E +, C, B, A]$</p></li><li><p>Read $* \to \text{Pop } A=A, B=B \implies \text{Push } A B * \to \text{Stack: } [D E +, C, A B *]$</p></li><li><p>Read $/ \to \text{Pop } A=A B *, B=C \implies \text{Push } A B * C / \to \text{Stack: } [D E +, A B * C /]$</p></li><li><p>Read $- \to \text{Pop } A=A B * C /, B=D E + \implies \text{Push } A B * C / D E + -$</p></li></ul>
+<p><strong>Final Postfix:</strong> $A \ B \ * \ C \ / \ D \ E \ + \ -$</p></div></div>
+</section>
+<section id="balanced-parentheses-brackets-check" class="content-section level-2">
+<h3 class="section-heading">Balanced Parentheses / Brackets Check</h3>
+<div class="concept-box"><div class="box-title">Balanced Brackets Check</div><div class="box-body"><p>A string of brackets is balanced if every opening bracket has a corresponding closing bracket, in the correct order, and no closing bracket appears before its matching opening bracket. We use a stack to check this. We scan the string left to right. For every opening bracket <code>(</code>, <code>[</code>, or <code>{</code>, we push it onto the stack. For every closing bracket, we check if the top of the stack has the matching opening bracket. If yes, we pop it. If no, the string is not balanced. At the end, if the stack is empty, the string is balanced.</p></div></div>
+<div class="example-box"><div class="box-title">Example 195: Tracing Balanced Check on $\{[A+B]*(C-D)\}$</div><div class="box-body"><p>Each character is scanned left to right.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig047.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig048.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig049.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">balanced-brackets.py</div><pre><code>def is_balanced(expr):
+    stack   = []
+    opening = {&#x27;(&#x27;, &#x27;[&#x27;, &#x27;{&#x27;}
+    closing = {&#x27;)&#x27;: &#x27;(&#x27;, &#x27;]&#x27;: &#x27;[&#x27;, &#x27;}&#x27;: &#x27;{&#x27;}
+
+    for ch in expr:
+        if ch in opening:
+            stack.append(ch)          # push opener
+
+        elif ch in closing:
+            if not stack:
+                return False          # no opener to match
+            top = stack.pop()
+            if top != closing[ch]:    # wrong match
+                return False
+
+    return len(stack) == 0            # must be empty at end
+
+
+# --- Driver Code ---
+tests = [
+    &quot;{[A+B]*(C-D)}&quot;,
+    &quot;((A+B)&quot;,
+    &quot;{[A+B)}&quot;,
+    &quot;(A+(B*C))&quot;
+]
+
+for t in tests:
+    result = &quot;Balanced&quot; if is_balanced(t) else &quot;NOT Balanced&quot;
+    print(f&quot;{t:20s} -&gt; {result}&quot;)
+
+# Output:
+# {[A+B]*(C-D)}       -&gt; Balanced
+# ((A+B)              -&gt; NOT Balanced
+# {[A+B)}             -&gt; NOT Balanced
+# (A+(B*C))           -&gt; Balanced</code></pre></div>
+</section>
+<section id="recursion-and-call-stack-frames" class="content-section level-2">
+<h3 class="section-heading">Recursion and Call Stack Frames</h3>
+<div class="concept-box"><div class="box-title">How Recursion Uses the Call Stack</div><div class="box-body"><p>Every time a function calls itself (or calls another function), the computer needs to remember where to come back, what local variables were in use, and what the current values were. For this, the computer uses a special stack, called the <strong>call stack</strong>. Each time a function is called, a block of memory called a <strong>stack frame</strong> (or <strong>activation record</strong>) is pushed onto the call stack. This frame stores the local variables, parameters, and the return address. When the function finishes, its frame is popped off the call stack, and control returns to the previous frame.</p></div></div>
+<div class="example-box"><div class="box-title">Example 196: What a Stack Frame Contains</div><div class="box-body"><p>Each time a function is called, the system pushes a frame that stores:</p>
+<ul><li><p>The function's local variables and parameters</p></li><li><p>The return address (where to go after this function finishes)</p></li><li><p>The return value (what the function should give back to the caller)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig050.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 197: Tracing Call Stack for <code>factorial(3)</code></div><div class="box-body"><p><strong>Calls going DOWN (pushing frames):</strong></p>
+<ul><li><p><code>factorial(3)</code> is called $\to$ pushes frame, calls <code>factorial(2)</code></p></li><li><p><code>factorial(2)</code> is called $\to$ pushes frame, calls <code>factorial(1)</code></p></li><li><p><code>factorial(1)</code> is called $\to$ pushes frame, calls <code>factorial(0)</code></p></li><li><p><code>factorial(0)</code> is called $\to$ pushes frame, hits base case, returns $1$</p></li></ul>
+<p><strong>Returns going UP (popping frames):</strong></p>
+<ul><li><p><code>factorial(0)</code> returns $1$ $\to$ frame popped</p></li><li><p><code>factorial(1)</code> gets $1$, returns $1 \times 1 = 1$ $\to$ frame popped</p></li><li><p><code>factorial(2)</code> gets $1$, returns $2 \times 1 = 2$ $\to$ frame popped</p></li><li><p><code>factorial(3)</code> gets $2$, returns $3 \times 2 = 6$ $\to$ frame popped</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig051.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 198: Pseudocode: Recursion with Frame Concept</div><div class="box-body"><p><strong>Factorial(n):</strong></p>
+<ol><li><p><strong>Push frame:</strong> store n, return address</p></li><li><p>if n == 0:</p></li><li><p>   result = 1</p></li><li><p>else:</p></li><li><p>   result = n * Factorial(n-1)   // new frame pushed here</p></li><li><p><strong>Pop frame:</strong> send result back to caller</p></li><li><p>return result</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">recursion-call-stack.py</div><pre><code>import sys
+
+def factorial(n, depth=0):
+    indent = &quot;  &quot; * depth
+    print(f&quot;{indent}factorial({n}) called&quot;
+          f&quot;  [stack depth = {depth}]&quot;)
+
+    if n == 0:
+        print(f&quot;{indent}factorial(0) returns 1  [BASE CASE]&quot;)
+        return 1
+
+    result = n * factorial(n - 1, depth + 1)
+
+    print(f&quot;{indent}factorial({n}) returns {result}&quot;
+          f&quot;  [frame popped]&quot;)
+    return result
+
+
+# --- Driver Code ---
+print(&quot;=&quot; * 50)
+ans = factorial(4)
+print(&quot;=&quot; * 50)
+print(&quot;Final Answer:&quot;, ans)
+
+# Output (abbreviated):
+# factorial(4) called  [stack depth = 0]
+#   factorial(3) called  [stack depth = 1]
+#     factorial(2) called  [stack depth = 2]
+#       factorial(1) called  [stack depth = 3]
+#         factorial(0) called  [stack depth = 4]
+#         factorial(0) returns 1  [BASE CASE]
+#       factorial(1) returns 1  [frame popped]
+#     factorial(2) returns 2  [frame popped]
+#   factorial(3) returns 6  [frame popped]
+# factorial(4) returns 24  [frame popped]
+# Final Answer: 24</code></pre></div>
+<div class="concept-box"><div class="box-title">Stack Overflow Due to Deep Recursion</div><div class="box-body"><p>Since each recursive call pushes a new frame onto the call stack, very deep recursion can fill up all available stack space. When the call stack runs out of space, a <strong>Stack Overflow</strong> error occurs. This is why recursive functions must always have a base case that stops recursion, and why the recursion depth matters in practice. In Python, the default recursion depth limit is around $1000$ calls.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig052.png" alt="diagram"></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Algorithm Analysis</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Queues &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

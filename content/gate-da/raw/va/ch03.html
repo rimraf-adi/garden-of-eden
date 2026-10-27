@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadratic Forms — Vector Spaces & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        R: "\\mathbb{R}",
+        norm: ["\\left\\lVert#1\\right\\rVert", 1]
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Vector Spaces &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Vector Spaces</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#vectors-concept" class="toc-link" data-slug="vectors-concept">Vectors Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-a-vector" class="toc-link" data-slug="what-is-a-vector">What is a Vector?</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#geometric-picture-and-basic-diagrams" class="toc-link" data-slug="geometric-picture-and-basic-diagrams">Geometric picture and basic diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#length-or-magnitude-of-a-vector" class="toc-link" data-slug="length-or-magnitude-of-a-vector">Length or Magnitude of a Vector</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#vector-arithmetic" class="toc-link" data-slug="vector-arithmetic">Vector arithmetic</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dot-product-inner-product-and-properties" class="toc-link" data-slug="dot-product-inner-product-and-properties">Dot product (Inner product) and properties</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#norms-and-distances" class="toc-link" data-slug="norms-and-distances">Norms and distances</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#cross-product-3d-and-properties" class="toc-link" data-slug="cross-product-3d-and-properties">Cross product (3D) and properties</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#vector-space" class="toc-link" data-slug="vector-space">Vector Space</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#concept-of-a-vector-space" class="toc-link" data-slug="concept-of-a-vector-space">Concept of a Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#generalization-to-higher-dimensions" class="toc-link" data-slug="generalization-to-higher-dimensions">Generalization to Higher Dimensions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#definition-of-a-real-vector-space" class="toc-link" data-slug="definition-of-a-real-vector-space">Definition of a Real Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#eight-basic-axioms-of-vector-spaces" class="toc-link" data-slug="eight-basic-axioms-of-vector-spaces">Eight Basic Axioms of Vector Spaces</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#subspaces" class="toc-link" data-slug="subspaces">Subspaces</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#linear-independence-basis-and-dimension" class="toc-link" data-slug="linear-independence-basis-and-dimension">Linear Independence, Basis, and Dimension</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-vector-spaces" class="toc-link" data-slug="applications-of-vector-spaces">Applications of Vector Spaces</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#orthogonal-vectors-and-their-length" class="toc-link" data-slug="orthogonal-vectors-and-their-length">Orthogonal Vectors and Their Length</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-subspaces-and-complements" class="toc-link" data-slug="orthogonal-subspaces-and-complements">Orthogonal Subspaces and Complements</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-and-symmetric-matrices" class="toc-link" data-slug="orthogonal-and-symmetric-matrices">Orthogonal and Symmetric Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-orthogonality-and-projections" class="toc-link" data-slug="applications-of-orthogonality-and-projections">Applications of Orthogonality and Projections</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Quadratic Forms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#definition-and-basic-properties" class="toc-link" data-slug="definition-and-basic-properties">Definition and Basic Properties</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-quadratic-forms" class="toc-link" data-slug="diagonalization-of-quadratic-forms">Diagonalization of Quadratic Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#positive-definite-negative-definite-and-indefinite-forms" class="toc-link" data-slug="positive-definite-negative-definite-and-indefinite-forms">Positive Definite, Negative Definite, and Indefinite Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#canonical-form-using-orthogonal-transformation" class="toc-link" data-slug="canonical-form-using-orthogonal-transformation">Canonical Form Using Orthogonal Transformation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#geometric-interpretation" class="toc-link" data-slug="geometric-interpretation">Geometric Interpretation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Singular Value Decomposition (SVD)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#definition-and-concept" class="toc-link" data-slug="definition-and-concept">Definition and Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#reading-the-axes-u-sigma-and-v" class="toc-link" data-slug="reading-the-axes-u-sigma-and-v">Reading the Axes: $U$, $\Sigma$, and $V$</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#orthogonality" class="toc-link" data-slug="orthogonality">Orthogonality</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#eigenvalues-eigenvectors-and-the-origin-of-svd" class="toc-link" data-slug="eigenvalues-eigenvectors-and-the-origin-of-svd">Eigenvalues, Eigenvectors, and the Origin of SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#computing-the-svd" class="toc-link" data-slug="computing-the-svd">Computing the SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#low-rank-approximation" class="toc-link" data-slug="low-rank-approximation">Low-Rank Approximation</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#shortcut-rules-for-special-matrices" class="toc-link" data-slug="shortcut-rules-for-special-matrices">Shortcut Rules for Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 4</div><h1>Quadratic Forms</h1></div>
+<section id="definition-and-basic-properties" class="content-section level-1">
+<h2 class="section-heading">Definition and Basic Properties</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <strong>quadratic form</strong> in $n$ variables $x_1, x_2, \dots, x_n$ is an expression of the type
+\[
+Q(x) = \sum_{i=1}^{n}\sum_{j=1}^{n} a_{ij} x_i x_j
+\]
+where $a_{ij} = a_{ji}$, i.e., $A = [a_{ij}]$ is a symmetric matrix.
+Equivalently, in matrix notation:
+\[
+Q(x) = x^T A x, \quad x = \begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix}, \quad A = A^T.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Symmetric matrix representation:</strong> Every quadratic form can be written uniquely using a symmetric matrix:
+\[
+Q(x) = x^T \frac{A + A^T}{2} x
+\]
+even if $A$ is not symmetric initially.</p></div></div>
+</section>
+<section id="diagonalization-of-quadratic-forms" class="content-section level-1">
+<h2 class="section-heading">Diagonalization of Quadratic Forms</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A$ is symmetric, there exists an orthogonal matrix $P$ such that
+\[
+P^T A P = D
+\]
+where $D$ is a diagonal matrix. Then, by the change of variables $y = P^T x$, the quadratic form becomes
+\[
+Q(x) = x^T A x = y^T D y = \sum_{i=1}^{n} \lambda_i y_i^2
+\]
+where $\lambda_i$ are the eigenvalues of $A$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 44</div><div class="box-body"><p>Diagonalize the quadratic form
+\[
+Q(x_1, x_2) = 4x_1^2 + 4x_1 x_2 + x_2^2.
+\]</p>
+<p><strong>Solution:</strong> 
+\[
+A = \begin{bmatrix}4 &amp; 2 \\ 2 &amp; 1\end{bmatrix}, \quad \text{eigenvalues } \lambda_1 = 0, \lambda_2 = 5
+\]
+\[
+\text{orthogonal matrix } P = \frac{1}{\sqrt{5}} \begin{bmatrix}-1 &amp; 2 \\ 2 &amp; 1\end{bmatrix}
+\]
+Then $y = P^T x$ and $Q(x) = 0 \cdot y_1^2 + 5 y_2^2 = 5 y_2^2$.</p></div></div>
+</section>
+<section id="positive-definite-negative-definite-and-indefinite-forms" class="content-section level-1">
+<h2 class="section-heading">Positive Definite, Negative Definite, and Indefinite Forms</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Let $Q(x) = x^T A x$.</p>
+<ul><li><p>Positive definite: $Q(x) &gt; 0$ for all $x \neq 0$ ($\lambda_i &gt; 0$)</p></li><li><p>Positive semi-definite: $Q(x) \ge 0$ ($\lambda_i \ge 0$)</p></li><li><p>Negative definite: $Q(x) &lt; 0$ for all $x \neq 0$ ($\lambda_i &lt; 0$)</p></li><li><p>Negative semi-definite: $Q(x) \le 0$ ($\lambda_i \le 0$)</p></li><li><p>Indefinite: $Q(x)$ takes both positive and negative values (some $\lambda_i &gt;0$, some $&lt;0$)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 45</div><div class="box-body"><p>Determine the definiteness of
+\[
+Q(x_1, x_2) = 3x_1^2 + 2x_1 x_2 + x_2^2
+\]</p>
+<p><strong>Solution:</strong>
+\[
+A = \begin{bmatrix}3 &amp; 1 \\ 1 &amp; 1\end{bmatrix}, \quad \text{eigenvalues } \lambda_1 = 2, \lambda_2 = 2
+\]
+All positive $\implies$ $Q$ is positive definite.</p></div></div>
+</section>
+<section id="canonical-form-using-orthogonal-transformation" class="content-section level-1">
+<h2 class="section-heading">Canonical Form Using Orthogonal Transformation</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>By applying an orthogonal transformation $y = P^T x$, a quadratic form can always be expressed in <strong>canonical form</strong>:
+\[
+Q(x) = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2
+\]
+where $y_i$ are new variables along orthogonal axes, and $\lambda_i$ are eigenvalues of $A$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 46</div><div class="box-body"><p>Bring
+\[
+Q(x_1, x_2, x_3) = x_1^2 + 2x_1x_2 + 2x_1x_3 + 2x_2^2 + 2x_2x_3 + x_3^2
+\]
+to canonical form.</p>
+<p><strong>Solution:</strong> Compute $A$, find eigenvalues $\lambda_1=0, \lambda_2=1, \lambda_3=5$, find orthogonal $P$, then $y=P^T x$, giving
+\[
+Q(x) = y_2^2 + 5 y_3^2
+\]</p></div></div>
+</section>
+<section id="geometric-interpretation" class="content-section level-1">
+<h2 class="section-heading">Geometric Interpretation</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The canonical form aligns the axes of the quadratic form with its principal directions. The signs of $\lambda_i$ determine the shape of the surface:</p>
+<ul><li><p>Ellipsoid if all $\lambda_i&gt;0$</p></li><li><p>Hyperboloid if eigenvalues have mixed signs</p></li><li><p>Paraboloid if some $\lambda_i=0$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 47</div><div class="box-body"><p>Sketch the surface of $Q(x_1,x_2) = x_1^2 - x_2^2$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div></div></div>
+</section>
+<section id="applications" class="content-section level-1">
+<h2 class="section-heading">Applications</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Quadratic forms are used to:</p>
+<ul><li><p>Test positive/negative definiteness of matrices</p></li><li><p>Solve constrained optimization problems</p></li><li><p>Analyze conic sections and 3D surfaces</p></li><li><p>Diagonalize symmetric matrices (linking to orthogonal transformations)</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a><span class="spacer"></span><a class="nav-btn next" href="ch04.html">Chapter 4: Singular Value Decomposition (SVD) &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Vector Spaces &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

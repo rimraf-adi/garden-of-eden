@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shortest Path Algorithms &mdash; GATE DSA</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch09.html" class="chapter-link active">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 9 of 10</div><h1>Shortest Path Algorithms</h1></div>
+<div class="concept-box"><div class="box-title">Concept: The Shortest Path Problem</div><div class="box-body"><p>Given a weighted graph $G = (V, E)$ with a weight function $w: E \to \mathbb{R}$, the shortest path problem asks: what is the minimum total weight path from one vertex to another (or to all other vertices)? The weight of a path is the sum of the weights of its edges. We study three major algorithms, each suited to different situations depending on whether weights can be negative, and whether we want one source or all pairs.</p>
+<p>Think of this as planning a road trip. Each road (edge) has a travel cost (weight), like distance, time, or toll. We want to find the cheapest route from our starting city to a destination, or sometimes to every other city at once.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Relaxation — The Core Operation</div><div class="box-body"><p>All shortest path algorithms are built around a single basic operation called <strong>relaxation</strong>. For an edge $(u,v)$ with weight $w(u,v)$, relaxing this edge means: &quot;Can we improve our current best known distance to $v$ by going through $u$?&quot;
+\[
+\text{if } dist[u] + w(u,v) &lt; dist[v]: \quad dist[v] \gets dist[u] + w(u,v), \quad parent[v] \gets u
+\]
+Every algorithm in this chapter (Dijkstra, Bellman-Ford, Floyd-Warshall) is just a different strategy for deciding <strong>which edges to relax, and in what order</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_001.png" alt="diagram"></div>
+<section id="single-source-dijkstra-s-algorithm" class="content-section level-1">
+<h2 class="section-heading">Single-Source: Dijkstra&#x27;s Algorithm</h2>
+<div class="concept-box"><div class="box-title">Concept: Dijkstra&#x27;s Algorithm — The Idea</div><div class="box-body"><p>Dijkstra&#x27;s algorithm finds the shortest path from a single source vertex $s$ to <strong>every</strong> other vertex in the graph, but it requires all edge weights to be <strong>non-negative</strong>. The core strategy is <strong>greedy</strong>: at every step, we pick the <strong>unvisited</strong> vertex with the <strong>smallest</strong> known distance, mark it as finalized, and relax all of its outgoing edges.</p>
+<p>Think of it like water spreading outward from a source, but unlike BFS (which spreads in equal steps), Dijkstra always expands to the &quot;nearest&quot; unexplored point first, where &quot;nearest&quot; accounts for edge weights.</p></div></div>
+<div class="example-box"><div class="box-title">Example 290: Analogy: Dijkstra as a Careful Explorer</div><div class="box-body"><p>Imagine you are standing in a city, and you want to find the cheapest taxi fare to every other location. You always first finalize the fare to whichever place is currently cheapest to reach (among places not yet finalized), because once a place is the cheapest remaining option, there is no way a longer, more expensive route could ever beat it (since all fares are non-negative, going through a costlier intermediate stop can never reduce the total cost).</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Why the Greedy Choice is Safe (Correctness Intuition)</div><div class="box-body"><p>At each step, Dijkstra picks the unvisited vertex $u$ with minimum tentative distance $dist[u]$, and declares this distance <strong>final</strong>. This is correct <strong>only because all weights are non-negative</strong>. If $u$ has the smallest tentative distance among all unvisited vertices, then any other path to $u$ through a vertex that is not yet finalized would have to pass through an edge with non-negative weight, making that alternate path&#x27;s length <strong>at least</strong> as long as $dist[u]$ already is. So no shorter path to $u$ can possibly be discovered later.</p></div></div>
+<p><strong>Algorithm: Dijkstra(G, w, s)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_002.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Time Complexity of Dijkstra</div><div class="box-body"><p>The running time depends entirely on how the priority queue is implemented:</p>
+<ul><li><p><strong>Simple array:</strong> Finding the minimum each time takes $O(V)$ (linear scan), done $V$ times, giving $O(V^2)$ for Extract-Min calls. Each edge relaxation is $O(1)$, giving $O(E)$ total for relaxations. Total: $O(V^2 + E) = O(V^2)$ (since $E \le V^2$).</p></li><li><p><strong>Binary min-heap:</strong> Extract-Min takes $O(\log V)$, done $V$ times: $O(V \log V)$. Decrease-Key takes $O(\log V)$, done at most $O(E)$ times: $O(E \log V)$. Total: $O((V+E) \log V)$.</p></li><li><p><strong>Fibonacci heap</strong> (advanced): Extract-Min is $O(\log V)$ amortized, Decrease-Key is $O(1)$ amortized, giving $O(E + V \log V)$, the best known bound.</p></li></ul>
+<p>For <strong>dense</strong> graphs ($E \approx V^2$), the simple array is actually competitive or better. For <strong>sparse</strong> graphs ($E \approx V$), the heap-based version is much faster.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Why Dijkstra Fails on Negative Weights</div><div class="box-body"><p>Dijkstra&#x27;s greedy strategy relies on the assumption that once a vertex is finalized (marked visited with its minimum distance locked in), no future relaxation can ever improve it. This assumption <strong>breaks</strong> if negative edge weights exist, because a path through a vertex we haven&#x27;t visited yet (which currently looks &quot;farther&quot;) could later take a very negative edge and become shorter overall than what we already finalized.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_003.png" alt="diagram"></div>
+<section id="dijkstra-step-by-step-trace-standard-example" class="content-section level-2">
+<h3 class="section-heading">Dijkstra: Step-by-Step Trace (Standard Example)</h3>
+<div class="example-box"><div class="box-title">Example 291: Trace: Dijkstra on a Simple Graph, Source = A</div><div class="box-body"><p>Graph: vertices $\{A, B, C, D, E\}$, edges with weights: $A{-}B{:}4$, $A{-}C{:}2$, $B{-}C{:}1$, $B{-}D{:}5$, $C{-}D{:}8$, $C{-}E{:}10$, $D{-}E{:}2$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_004.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 292: Dijkstra Distance Table Trace</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/d09_005.png" alt="diagram"></div>
+<p><strong>Explanation of each step:</strong></p>
+<ul><li><p><strong>Step 1:</strong> Extract A (dist 0). Relax $A\to B$: $0+4=4 &lt; \infty$, set $dist[B]=4$. Relax $A\to C$: $0+2=2&lt;\infty$, set $dist[C]=2$.</p></li><li><p><strong>Step 2:</strong> Smallest unvisited is C (dist 2). Relax $C\to B$: $2+1=3 &lt; 4$, improve $dist[B]=3$. Relax $C\to D$: $2+8=10$, set $dist[D]=10$. Relax $C\to E$: $2+10=12$, set $dist[E]=12$.</p></li><li><p><strong>Step 3:</strong> Smallest unvisited is B (dist 3). Relax $B\to D$: $3+5=8 &lt; 10$, improve $dist[D]=8$.</p></li><li><p><strong>Step 4:</strong> Smallest unvisited is D (dist 8). Relax $D\to E$: $8+2=10 &lt; 12$, improve $dist[E]=10$.</p></li><li><p><strong>Step 5:</strong> Smallest unvisited is E (dist 10). No outgoing edges to relax further.</p></li></ul>
+<p><strong>Final shortest distances from A:</strong> $B=3, C=2, D=8, E=10$.</p></div></div>
+</section>
+<section id="dijkstra-complex-trace-directed-graph-with-reordering" class="content-section level-2">
+<h3 class="section-heading">Dijkstra: Complex Trace (Directed Graph with Reordering)</h3>
+<div class="example-box"><div class="box-title">Example 293: Trace: Dijkstra on a Directed Graph, Source = S (GATE-style)</div><div class="box-body"><p>Directed graph: $S\to A(10)$, $S\to B(5)$, $B\to A(3)$, $B\to D(2)$, $A\to C(1)$, $D\to A(7)$, $D\to C(9)$, $C\to D(4)$. This graph tests whether the relaxation order causes re-evaluation.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_006.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 294: Full Trace</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/d09_007.png" alt="diagram"></div>
+<p><strong>Key observation:</strong> Notice that $dist[A]$ was first set to 10 (via $S\to A$), then improved to 8 (via $S\to B\to A$), demonstrating that a vertex&#x27;s tentative distance can be relaxed <strong>multiple times</strong> before it is finally extracted. Once A is extracted (finalized) at distance 8, it will never change again, this is the core greedy guarantee.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Dijkstra — Assumptions, Properties, Advantages, Limitations</div><div class="box-body"><ul><li><p><strong>Assumption:</strong> All edge weights must be non-negative. This is non-negotiable; the algorithm&#x27;s correctness proof depends on it.</p></li><li><p><strong>Property:</strong> Once a vertex is extracted from the priority queue (finalized), its distance value is guaranteed optimal and never changes again.</p></li><li><p><strong>Property:</strong> Dijkstra works for both directed and undirected graphs, as long as weights are non-negative.</p></li><li><p><strong>Advantage:</strong> Much faster than Bellman-Ford for non-negative weights, especially with a good priority queue: $O((V+E)\log V)$ vs $O(VE)$.</p></li><li><p><strong>Advantage:</strong> Naturally produces a shortest-path tree (via the parent pointers), giving paths to <em>every</em> reachable vertex from the source in one run.</p></li><li><p><strong>Limitation:</strong> Cannot handle negative edge weights at all, even without negative cycles; it can give incorrect (too large) results.</p></li><li><p><strong>Limitation:</strong> Does not directly extend to all-pairs shortest paths; running it from every vertex gives $O(V(V+E)\log V)$, which is often worse than Floyd-Warshall for dense graphs.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">dijkstra.py</div><pre><code>import heapq
+
+def dijkstra(graph, n, source):
+    &quot;&quot;&quot;
+    graph: dict of u -&gt; list of (v, weight)
+    Returns dist[] and parent[] arrays.
+    &quot;&quot;&quot;
+    dist   = [float(&#x27;inf&#x27;)] * n
+    parent = [-1] * n
+    dist[source] = 0
+
+    pq = [(0, source)]          # (distance, vertex)
+    visited = [False] * n
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if visited[u]:
+            continue             # stale entry, skip
+        visited[u] = True
+
+        for v, w in graph[u]:
+            if not visited[v] and dist[u] + w &lt; dist[v]:
+                dist[v]   = dist[u] + w
+                parent[v] = u
+                heapq.heappush(pq, (dist[v], v))
+
+    return dist, parent
+
+
+# --- Driver Code ---
+# Graph: S=0, A=1, B=2, D=3, C=4
+graph = {
+    0: [(1, 10), (2, 5)],
+    1: [(4, 1)],
+    2: [(1, 3), (3, 2)],
+    3: [(1, 7), (4, 9)],
+    4: [(3, 4)],
+}
+
+dist, parent = dijkstra(graph, 5, 0)
+print(&quot;Distances from S:&quot;, dist)     # [0, 8, 5, 7, 9]
+print(&quot;Parents:&quot;, parent)</code></pre></div>
+</section>
+</section>
+<section id="single-source-bellman-ford-algorithm" class="content-section level-1">
+<h2 class="section-heading">Single-Source: Bellman-Ford Algorithm</h2>
+<div class="concept-box"><div class="box-title">Concept: Bellman-Ford — The Idea</div><div class="box-body"><p>Bellman-Ford also finds shortest paths from a single source, but unlike Dijkstra, it works even when edge weights are <strong>negative</strong> (as long as there is no negative weight cycle reachable from the source). Instead of greedily picking the closest vertex, Bellman-Ford takes a simpler, more brute-force approach: relax <strong>every single edge</strong>, and repeat this entire process $V-1$ times.</p></div></div>
+<div class="concept-box"><div class="box-title">Theorem: Why $V-1$ Iterations Suffice</div><div class="box-body"><p>A shortest path between any two vertices in a graph with $V$ vertices can have at most $V-1$ edges (since a simple path visits at most $V$ vertices, hence at most $V-1$ edges; a path with a cycle is never shorter than the same path with the cycle removed, as long as there&#x27;s no negative cycle).</p>
+<p>Each full pass over all edges guarantees that the shortest path using at most $k$ edges is correctly computed after the $k$-th pass. So after $V-1$ passes, we are guaranteed to have found the shortest path using at most $V-1$ edges, which covers every possible simple shortest path in the graph.</p></div></div>
+<p><strong>Algorithm: Bellman-Ford(G, w, s)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_008.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Negative Weight Cycle Detection</div><div class="box-body"><p>After the $V-1$ main iterations, we do <strong>one more</strong> pass over all edges. If any edge can still be relaxed (i.e., $dist[u] + w(u,v) &lt; dist[v]$), this means the shortest path estimate is <em>still</em> improving beyond what $V-1$ edges should allow. This can only happen if there is a <strong>negative weight cycle</strong> reachable from the source, since such a cycle allows us to keep looping around it, making the &quot;shortest path&quot; infinitely small (undefined).</p></div></div>
+<section id="bellman-ford-step-by-step-trace" class="content-section level-2">
+<h3 class="section-heading">Bellman-Ford: Step-by-Step Trace</h3>
+<div class="example-box"><div class="box-title">Example 295: Trace: Bellman-Ford on a Graph with Negative Edges, Source = S</div><div class="box-body"><p>Directed graph: $S\to A(6)$, $S\to C(7)$, $A\to C(8)$, $A\to D(5)$, $A\to B(-4)$, $C\to D(-3)$, $C\to E(9)$, $D\to B(-1)$, $B\to D(7)$ wait — let&#x27;s use the classic CLRS example: $S\to T(6), S\to Y(7), T\to X(5), T\to Y(8), T\to Z(-4), X\to T(-2), Y\to X(-3), Y\to Z(9), Z\to X(7), Z\to S(2)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_009.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 296: Bellman-Ford Trace: Relaxing All Edges Each Pass</div><div class="box-body"><p>Processing order of edges: $(S,T), (S,Y), (T,X), (T,Y), (T,Z), (X,T), (Y,X), (Y,Z), (Z,X), (Z,S)$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_010.png" alt="diagram"></div>
+<p><strong>Pass 1:</strong> $(S,T)$: $0+6=6\to dist[T]=6$. $(S,Y)$: $0+7=7\to dist[Y]=7$. $(T,X)$: $6+5=11\to dist[X]=11$. $(T,Y)$: $6+8=14$, no improvement. $(T,Z)$: $6-4=2\to dist[Z]=2$. $(X,T)$: $11-2=9$, no improvement. $(Y,X)$: $7-3=4&lt;11\to dist[X]=4$. $(Y,Z)$: $7+9=16$, no improvement. $(Z,X)$: $2+7=9$, no improvement. $(Z,S)$: $2+2=4$, no improvement.</p>
+<p><strong>Pass 2:</strong> $(T,Z)$: now $dist[T]=6$ still, so no change yet in this pass&#x27;s early edges. Key change: $(X,T)$: $4-2=2&lt;6\to dist[T]=2$. Later edges then use updated $dist[T]=2$: $(T,Z)$ re-examined only in pass 3 since edges are processed once per pass in fixed order, so by pass 2 end, $dist[T]=2$ propagates further in Pass 3: $(T,Z)$: $2-4=-2&lt;2\to dist[Z]=-2$.</p>
+<p><strong>Pass 3, 4:</strong> No further changes; values have converged.</p>
+<p><strong>Final shortest distances from S:</strong> $T=2, X=4, Y=7, Z=-2$.</p>
+<p><strong>Verification pass (negative cycle check):</strong> Re-examine all edges once more; no edge can be relaxed further, confirming <strong>no negative weight cycle</strong> exists.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Bellman-Ford — Assumptions, Properties, Advantages, Limitations</div><div class="box-body"><ul><li><p><strong>Assumption:</strong> The graph can have negative edge weights, but must not have a negative weight cycle reachable from the source (or the algorithm correctly detects this instead of producing wrong output).</p></li><li><p><strong>Property:</strong> After $k$ passes, $dist[v]$ correctly equals the shortest path to $v$ using at most $k$ edges.</p></li><li><p><strong>Property:</strong> The order in which edges are processed within a single pass does not affect the final correctness, though it may affect how fast convergence happens (sometimes fewer than $V-1$ passes are needed in practice).</p></li><li><p><strong>Advantage:</strong> Handles negative weights, unlike Dijkstra.</p></li><li><p><strong>Advantage:</strong> Can explicitly detect negative weight cycles, a very useful diagnostic capability (e.g., detecting arbitrage opportunities in currency exchange graphs).</p></li><li><p><strong>Advantage:</strong> Simple to implement; works with just an edge list, no priority queue needed.</p></li><li><p><strong>Limitation:</strong> Much slower than Dijkstra for the same non-negative-weight graph: $O(VE)$ vs $O((V+E)\log V)$.</p></li><li><p><strong>Limitation:</strong> If a negative cycle is reachable from the source, the notion of &quot;shortest path&quot; to vertices affected by that cycle is undefined (distances can be made arbitrarily small by looping).</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">bellman-ford.py</div><pre><code>def bellman_ford(edges, n, source):
+    &quot;&quot;&quot;
+    edges: list of (u, v, weight) tuples
+    Returns dist[], parent[], and whether a negative cycle exists.
+    &quot;&quot;&quot;
+    dist   = [float(&#x27;inf&#x27;)] * n
+    parent = [-1] * n
+    dist[source] = 0
+
+    # Relax all edges V-1 times
+    for _ in range(n - 1):
+        updated = False
+        for u, v, w in edges:
+            if dist[u] != float(&#x27;inf&#x27;) and dist[u] + w &lt; dist[v]:
+                dist[v]   = dist[u] + w
+                parent[v] = u
+                updated = True
+        if not updated:           # early exit: no change this pass
+            break
+
+    # One more pass: detect negative weight cycle
+    has_negative_cycle = False
+    for u, v, w in edges:
+        if dist[u] != float(&#x27;inf&#x27;) and dist[u] + w &lt; dist[v]:
+            has_negative_cycle = True
+            break
+
+    return dist, parent, has_negative_cycle
+
+
+# --- Driver Code ---
+# S=0, T=1, X=2, Y=3, Z=4
+edges = [
+    (0,1,6), (0,3,7), (1,2,5), (1,3,8), (1,4,-4),
+    (2,1,-2), (3,2,-3), (3,4,9), (4,2,7), (4,0,2),
+]
+
+dist, parent, neg_cycle = bellman_ford(edges, 5, 0)
+print(&quot;Distances:&quot;, dist)             # [0, 2, 4, 7, -2]
+print(&quot;Negative cycle?&quot;, neg_cycle)   # False</code></pre></div>
+</section>
+</section>
+<section id="all-pairs-floyd-warshall-algorithm" class="content-section level-1">
+<h2 class="section-heading">All-Pairs: Floyd-Warshall Algorithm</h2>
+<div class="concept-box"><div class="box-title">Concept: Floyd-Warshall — The Idea</div><div class="box-body"><p>Floyd-Warshall solves the <strong>all-pairs shortest path</strong> problem: finding the shortest distance between <strong>every</strong> pair of vertices $(i,j)$, all at once. It uses <strong>dynamic programming</strong>, based on a simple but powerful idea: for every pair $(i,j)$, we consider whether the shortest path should pass through an intermediate vertex $k$, trying every possible $k$, one at a time.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: The DP Formulation</div><div class="box-body"><p>Let $d^{(k)}[i][j]$ denote the shortest path from $i$ to $j$ <strong>using only vertices $\{1, 2, \ldots, k\}$ as intermediate vertices</strong> (the endpoints $i$ and $j$ themselves are always allowed). The recurrence is:
+\[
+d^{(k)}[i][j] = \min\Big(d^{(k-1)}[i][j], \; d^{(k-1)}[i][k] + d^{(k-1)}[k][j]\Big)
+\]
+In words: the shortest path either does <strong>not</strong> use vertex $k$ at all (so it&#x27;s the same as before), or it <strong>does</strong> pass through $k$ (so it splits into a path from $i$ to $k$, plus a path from $k$ to $j$, both using only vertices up to $k-1$). We take the smaller of these two options. The base case is $d^{(0)}[i][j] = w(i,j)$ (direct edge weight, or $\infty$ if no edge, and 0 if $i=j$).</p>
+<p>Since each $d^{(k)}$ only depends on $d^{(k-1)}$, we can use a single 2D array and update it in-place as $k$ increases from 1 to $V$.</p></div></div>
+<p><strong>Algorithm: Floyd-Warshall(W)</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_011.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Time and Space Complexity</div><div class="box-body"><p>Three nested loops, each running $V$ times, gives $\Theta(V^3)$ time. We store a $V \times V$ matrix, giving $\Theta(V^2)$ space. This is efficient for <strong>dense</strong> graphs where we want all-pairs distances; running Dijkstra from every vertex would take $O(V \cdot (V+E)\log V)$, which for dense graphs ($E \approx V^2$) becomes $O(V^3 \log V)$, actually worse than Floyd-Warshall&#x27;s clean $O(V^3)$.</p></div></div>
+<section id="floyd-warshall-step-by-step-matrix-trace" class="content-section level-2">
+<h3 class="section-heading">Floyd-Warshall: Step-by-Step Matrix Trace</h3>
+<div class="example-box"><div class="box-title">Example 297: Trace: Floyd-Warshall on a $4 \times 4$ Graph</div><div class="box-body"><p>Vertices $\{1, 2, 3, 4\}$, directed edges: $1\to2(3), 1\to3(8), 1\to4(-4), 2\to4(1), 2\to3(7), 3\to1(2), 4\to3(-5), 4\to1(6)$. This matches the classic CLRS Floyd-Warshall example.</p></div></div>
+<div class="example-box"><div class="box-title">Example 298: Initial Matrix $d^{(0)}$</div><div class="box-body"><p>\[
+d^{(0)} = \begin{pmatrix}
+0 &amp; 3 &amp; 8 &amp; -4 \\
+\infty &amp; 0 &amp; 7 &amp; 1 \\
+2 &amp; \infty &amp; 0 &amp; \infty \\
+6 &amp; \infty &amp; -5 &amp; 0
+\end{pmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 299: After $k=1$ (allowing vertex 1 as intermediate)</div><div class="box-body"><p>Check if any $d[i][1] + d[1][j] &lt; d[i][j]$. For example, $d[3][2]$: direct is $\infty$, via vertex 1: $d[3][1] + d[1][2] = 2 + 3 = 5$. Update $d[3][2] = 5$. Similarly $d[3][4]$: $d[3][1]+d[1][4] = 2+(-4) = -2 &lt; \infty$, update.
+\[
+d^{(1)} = \begin{pmatrix}
+0 &amp; 3 &amp; 8 &amp; -4 \\
+\infty &amp; 0 &amp; 7 &amp; 1 \\
+2 &amp; 5 &amp; 0 &amp; -2 \\
+6 &amp; 9 &amp; -5 &amp; 0
+\end{pmatrix}
+\]
+(Row 4, column 2: $d[4][1]+d[1][2] = 6+3=9 &lt; \infty$, so updated.)</p></div></div>
+<div class="example-box"><div class="box-title">Example 300: After $k=2$ (allowing vertex 2 as intermediate)</div><div class="box-body"><p>Check $d[i][2] + d[2][j]$. For instance $d[1][3]$: direct is 8, via vertex 2: $d[1][2]+d[2][3] = 3+7=10$, not better. $d[3][3]$ via 2: $5 + \infty$, no change. $d[1][4]$ via 2: $3+1=4$, not better than $-4$. No improvements occur at this step for most entries except checking carefully all combinations; the matrix stays effectively the same at this stage for this particular graph.
+\[
+d^{(2)} = \begin{pmatrix}
+0 &amp; 3 &amp; 8 &amp; -4 \\
+\infty &amp; 0 &amp; 7 &amp; 1 \\
+2 &amp; 5 &amp; 0 &amp; -2 \\
+6 &amp; 9 &amp; -5 &amp; 0
+\end{pmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 301: After $k=3$ (allowing vertex 3 as intermediate)</div><div class="box-body"><p>Check $d[i][3] + d[3][j]$. $d[2][1]$: direct $\infty$, via 3: $d[2][3]+d[3][1] = 7+2=9$. Update $d[2][1]=9$. $d[4][2]$: via 3: $d[4][3]+d[3][2] = -5+5=0 &lt; 9$, update $d[4][2]=0$. $d[2][4]$: via 3: $7+(-2)=5$, not better than 1.
+\[
+d^{(3)} = \begin{pmatrix}
+0 &amp; 3 &amp; 8 &amp; -4 \\
+9 &amp; 0 &amp; 7 &amp; 1 \\
+2 &amp; 5 &amp; 0 &amp; -2 \\
+6 &amp; 0 &amp; -5 &amp; 0
+\end{pmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 302: After $k=4$ (allowing vertex 4 as intermediate) — Final Matrix</div><div class="box-body"><p>Check $d[i][4] + d[4][j]$. $d[1][3]$: via 4: $d[1][4]+d[4][3] = -4+(-5)=-9 &lt; 8$. Update $d[1][3]=-9$. $d[2][1]$: via 4: $1+6=7 &lt; 9$. Update $d[2][1]=7$. $d[2][3]$: via 4: $1+(-5)=-4 &lt; 7$. Update $d[2][3]=-4$. $d[3][2]$: via 4: $-2+0=-2 &lt; 5$. Update $d[3][2]=-2$.
+\[
+d^{(4)} = \begin{pmatrix}
+0 &amp; 3 &amp; -9 &amp; -4 \\
+7 &amp; 0 &amp; -4 &amp; 1 \\
+2 &amp; -2 &amp; 0 &amp; -2 \\
+6 &amp; 0 &amp; -5 &amp; 0
+\end{pmatrix}
+\]</p>
+<p>This is the final all-pairs shortest distance matrix. Reading row $i$, column $j$ gives the shortest distance from $i$ to $j$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Detecting Negative Weight Cycles via Floyd-Warshall</div><div class="box-body"><p>After running the algorithm to completion, check the <strong>diagonal</strong> entries $d[i][i]$. In a graph with no negative weight cycles, every $d[i][i]$ should remain 0 (the trivial zero-length path from $i$ to itself). If any $d[i][i] &lt; 0$ after all iterations, it means there is a cycle through $i$ with negative total weight, since the &quot;shortest path&quot; from $i$ back to itself has become negative.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept: Floyd-Warshall — Assumptions, Properties, Advantages, Limitations</div><div class="box-body"><ul><li><p><strong>Assumption:</strong> Works correctly with negative edge weights, but like Bellman-Ford, requires no negative weight cycles for the result to be meaningful (otherwise, detect it via negative diagonal entries).</p></li><li><p><strong>Property:</strong> The order of considering intermediate vertices $k = 1, 2, \ldots, V$ matters for correctness; we must process them in a complete, increasing sequence (any fixed full ordering works, not necessarily by vertex label).</p></li><li><p><strong>Property:</strong> Can be used on both directed and undirected graphs (undirected simply means $w(i,j) = w(j,i)$).</p></li><li><p><strong>Advantage:</strong> Gives <strong>all pairs</strong> shortest paths in a single clean run, with simple nested-loop code, no complex data structures.</p></li><li><p><strong>Advantage:</strong> Can detect negative weight cycles anywhere in the graph (not just those reachable from one source, unlike Bellman-Ford which only checks from a chosen source).</p></li><li><p><strong>Advantage:</strong> Simple to extend for computing <strong>transitive closure</strong> (reachability) by replacing min/+ with OR/AND operations.</p></li><li><p><strong>Limitation:</strong> $O(V^3)$ time can be too slow for very large sparse graphs; running Dijkstra $V$ times (with a heap) is often faster when $E \ll V^2$.</p></li><li><p><strong>Limitation:</strong> $O(V^2)$ space can also be prohibitive for very large $V$.</p></li></ul></div></div>
+<div class="code-box"><div class="code-title">floyd-warshall.py</div><pre><code>def floyd_warshall(W, n):
+    &quot;&quot;&quot;
+    W: n x n matrix, W[i][j] = weight of edge i-&gt;j, 
+       float(&#x27;inf&#x27;) if no edge, 0 if i == j
+    Returns the all-pairs shortest distance matrix.
+    &quot;&quot;&quot;
+    d = [row[:] for row in W]   # deep copy
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if d[i][k] + d[k][j] &lt; d[i][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+
+    # Check for negative weight cycles
+    for i in range(n):
+        if d[i][i] &lt; 0:
+            print(f&quot;Negative weight cycle detected through vertex {i}&quot;)
+
+    return d
+
+
+# --- Driver Code ---
+INF = float(&#x27;inf&#x27;)
+# Vertices: 1,2,3,4 -&gt; indices 0,1,2,3
+W = [
+    [0,   3,   8,  -4],
+    [INF, 0,   7,   1],
+    [2,   INF, 0,   INF],
+    [6,   INF, -5,  0],
+]
+
+result = floyd_warshall(W, 4)
+for row in result:
+    print(row)
+
+# Output:
+# [0, 3, -9, -4]
+# [7, 0, -4, 1]
+# [2, -2, 0, -2]
+# [6, 0, -5, 0]</code></pre></div>
+</section>
+</section>
+<section id="choosing-the-right-algorithm" class="content-section level-1">
+<h2 class="section-heading">Choosing the Right Algorithm</h2>
+<div class="figure-wrap"><img loading="lazy" src="figures/d09_012.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Key Decision Questions</div><div class="box-body"><ol><li><p><strong>Are all weights 1 (unweighted)?</strong> Use BFS. Simplest and fastest, $O(V+E)$.</p></li><li><p><strong>Single source needed, and are all weights non-negative?</strong> Use Dijkstra. It is the fastest correct algorithm for this case.</p></li><li><p><strong>Single source needed, but negative weights possible?</strong> Use Bellman-Ford. Slower, but correctly handles negatives and can detect negative cycles.</p></li><li><p><strong>Need distances between every pair of vertices?</strong> Use Floyd-Warshall if the graph is dense or $V$ is small-to-moderate. If the graph is sparse and weights are non-negative, running Dijkstra from each vertex can be faster.</p></li></ol></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch08.html">&larr; Chapter 8: Graph Traversals</a><span class="spacer"></span><a class="nav-btn next" href="ch10.html">Chapter 10: Searching and Sorting &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

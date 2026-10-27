@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vector Spaces — Vector Spaces & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        R: "\\mathbb{R}",
+        norm: ["\\left\\lVert#1\\right\\rVert", 1]
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Vector Spaces &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Vector Spaces</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#vectors-concept" class="toc-link" data-slug="vectors-concept">Vectors Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-a-vector" class="toc-link" data-slug="what-is-a-vector">What is a Vector?</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#geometric-picture-and-basic-diagrams" class="toc-link" data-slug="geometric-picture-and-basic-diagrams">Geometric picture and basic diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#length-or-magnitude-of-a-vector" class="toc-link" data-slug="length-or-magnitude-of-a-vector">Length or Magnitude of a Vector</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#vector-arithmetic" class="toc-link" data-slug="vector-arithmetic">Vector arithmetic</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dot-product-inner-product-and-properties" class="toc-link" data-slug="dot-product-inner-product-and-properties">Dot product (Inner product) and properties</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#norms-and-distances" class="toc-link" data-slug="norms-and-distances">Norms and distances</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#cross-product-3d-and-properties" class="toc-link" data-slug="cross-product-3d-and-properties">Cross product (3D) and properties</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#vector-space" class="toc-link" data-slug="vector-space">Vector Space</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#concept-of-a-vector-space" class="toc-link" data-slug="concept-of-a-vector-space">Concept of a Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#generalization-to-higher-dimensions" class="toc-link" data-slug="generalization-to-higher-dimensions">Generalization to Higher Dimensions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#definition-of-a-real-vector-space" class="toc-link" data-slug="definition-of-a-real-vector-space">Definition of a Real Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#eight-basic-axioms-of-vector-spaces" class="toc-link" data-slug="eight-basic-axioms-of-vector-spaces">Eight Basic Axioms of Vector Spaces</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#subspaces" class="toc-link" data-slug="subspaces">Subspaces</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#linear-independence-basis-and-dimension" class="toc-link" data-slug="linear-independence-basis-and-dimension">Linear Independence, Basis, and Dimension</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-vector-spaces" class="toc-link" data-slug="applications-of-vector-spaces">Applications of Vector Spaces</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#orthogonal-vectors-and-their-length" class="toc-link" data-slug="orthogonal-vectors-and-their-length">Orthogonal Vectors and Their Length</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-subspaces-and-complements" class="toc-link" data-slug="orthogonal-subspaces-and-complements">Orthogonal Subspaces and Complements</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-and-symmetric-matrices" class="toc-link" data-slug="orthogonal-and-symmetric-matrices">Orthogonal and Symmetric Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-orthogonality-and-projections" class="toc-link" data-slug="applications-of-orthogonality-and-projections">Applications of Orthogonality and Projections</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Quadratic Forms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#definition-and-basic-properties" class="toc-link" data-slug="definition-and-basic-properties">Definition and Basic Properties</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-quadratic-forms" class="toc-link" data-slug="diagonalization-of-quadratic-forms">Diagonalization of Quadratic Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#positive-definite-negative-definite-and-indefinite-forms" class="toc-link" data-slug="positive-definite-negative-definite-and-indefinite-forms">Positive Definite, Negative Definite, and Indefinite Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#canonical-form-using-orthogonal-transformation" class="toc-link" data-slug="canonical-form-using-orthogonal-transformation">Canonical Form Using Orthogonal Transformation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#geometric-interpretation" class="toc-link" data-slug="geometric-interpretation">Geometric Interpretation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Singular Value Decomposition (SVD)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#definition-and-concept" class="toc-link" data-slug="definition-and-concept">Definition and Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#reading-the-axes-u-sigma-and-v" class="toc-link" data-slug="reading-the-axes-u-sigma-and-v">Reading the Axes: $U$, $\Sigma$, and $V$</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#orthogonality" class="toc-link" data-slug="orthogonality">Orthogonality</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#eigenvalues-eigenvectors-and-the-origin-of-svd" class="toc-link" data-slug="eigenvalues-eigenvectors-and-the-origin-of-svd">Eigenvalues, Eigenvectors, and the Origin of SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#computing-the-svd" class="toc-link" data-slug="computing-the-svd">Computing the SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#low-rank-approximation" class="toc-link" data-slug="low-rank-approximation">Low-Rank Approximation</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#shortcut-rules-for-special-matrices" class="toc-link" data-slug="shortcut-rules-for-special-matrices">Shortcut Rules for Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 4</div><h1>Vector Spaces</h1></div>
+<section id="vectors-concept" class="content-section level-1">
+<h2 class="section-heading">Vectors Concept</h2>
+
+<section id="what-is-a-vector" class="content-section level-2">
+<h3 class="section-heading">What is a Vector?</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <em>vector</em> is a mathematical object that has both magnitude and direction. In coordinate form, a vector in $\R^n$ is an ordered tuple
+\[
+\mathbf{v} = (v_1, v_2, \dots, v_n) \in \R^n.
+\]
+Vectors are usually written in bold (e.g. \(\mathbf{v}\)) or with an arrow overhead (\(\vec{v}\)). A <em>zero vector</em> has all components zero and is denoted \(\mathbf{0}\).</p></div></div>
+</section>
+<section id="geometric-picture-and-basic-diagrams" class="content-section level-2">
+<h3 class="section-heading">Geometric picture and basic diagrams</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A vector in 2D can be drawn as a directed arrow from the origin to the point $(x,y)$. Vectors can be translated (moved) without changing their meaning as long as direction and magnitude remain same.</p></div></div>
+<div class="example-box"><div class="box-title">Example 1: 2D vector diagram</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div></div></div>
+</section>
+<section id="length-or-magnitude-of-a-vector" class="content-section level-2">
+<h3 class="section-heading">Length or Magnitude of a Vector</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The <strong>length (or magnitude or norm)</strong> of a vector $\mathbf{v}$ represents how long the vector is — that is, its distance from the origin to the point it represents in space.</p>
+<p>If $\mathbf{v} = (v_1, v_2, v_3, \dots, v_n)$ in $\mathbb{R}^n$, then the magnitude of $\mathbf{v}$ is given by
+\[
+\norm{\mathbf{v}} = \sqrt{v_1^2 + v_2^2 + v_3^2 + \dots + v_n^2}.
+\]</p>
+<p>This follows from the **Pythagorean theorem** generalized to $n$ dimensions.</p>
+<p><strong>Properties:</strong></p>
+<ul><li><p>$\norm{\mathbf{v}} \ge 0$ for all vectors.</p></li><li><p>$\norm{\mathbf{v}} = 0 \iff \mathbf{v} = \mathbf{0}$.</p></li><li><p>$\norm{k\mathbf{v}} = |k|\norm{\mathbf{v}}$ for any scalar $k$.</p></li><li><p>The distance between two points $\mathbf{A}$ and $\mathbf{B}$ is $\norm{\mathbf{A} - \mathbf{B}}$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 2: Magnitude in 2D and 3D</div><div class="box-body"><ol><li><p>For $\mathbf{v} = (3,4)$,
+  \[
+  \norm{\mathbf{v}} = \sqrt{3^2 + 4^2} = 5.
+  \]</p></li><li><p>For $\mathbf{v} = (1,2,2)$,
+  \[
+  \norm{\mathbf{v}} = \sqrt{1^2 + 2^2 + 2^2} = 3.
+  \]</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 3: Distance between two points</div><div class="box-body"><p>Let $A(1,2,3)$ and $B(4,6,9)$. Then vector $\overrightarrow{AB} = B - A = (3,4,6)$, and
+\[
+\text{Distance } = \norm{\overrightarrow{AB}} = \sqrt{3^2 + 4^2 + 6^2} = \sqrt{61}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 4: Geometric visualization</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 5: Simple vector</div><div class="box-body"><p>Let \(\mathbf{a}=(3,-1,2)\). Then $\mathbf{a}$ is a vector in $\R^3$ with magnitude
+\[
+\norm{\mathbf{a}} = \sqrt{3^2 + (-1)^2 + 2^2} = \sqrt{14}.
+\]</p></div></div>
+</section>
+<section id="vector-arithmetic" class="content-section level-2">
+<h3 class="section-heading">Vector arithmetic</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Given $\mathbf{u}=(u_1,\dots,u_n)$ and $\mathbf{v}=(v_1,\dots,v_n)$ in $\R^n$ and scalar $\alpha\in\R$:</p>
+<ul><li><p>Addition: \(\mathbf{u}+\mathbf{v}=(u_1+v_1,\dots,u_n+v_n)\).</p></li><li><p>Scalar multiplication: \(\alpha\mathbf{v}=(\alpha v_1,\dots,\alpha v_n)\).</p></li><li><p>Subtraction: \(\mathbf{u}-\mathbf{v}=(u_1-v_1,\dots,u_n-v_n)\).</p></li></ul>
+<p>Vector operations satisfy commutativity, associativity, distributivity, existence of zero vector and additive inverses.</p></div></div>
+<div class="example-box"><div class="box-title">Example 6: Addition and scalar multiple</div><div class="box-body"><p>Let $\mathbf{u}=(1,2)$ and $\mathbf{v}=(3,-1)$. Then
+\[
+\mathbf{u}+\mathbf{v}=(4,1),\qquad 2\mathbf{u}=(2,4).
+\]
+Geometric interpretation: addition corresponds to placing vectors head-to-tail (parallelogram rule).</p></div></div>
+<div class="example-box"><div class="box-title">Example 7: Parallelogram</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div></div></div>
+</section>
+<section id="dot-product-inner-product-and-properties" class="content-section level-2">
+<h3 class="section-heading">Dot product (Inner product) and properties</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For $\mathbf{u},\mathbf{v}\in\R^n$, the dot product (inner product) is
+\[
+\mathbf{u}\cdot\mathbf{v} = \sum_{i=1}^n u_i v_i.
+\]
+Properties:</p>
+<ol><li><p>Symmetry: $\mathbf{u}\cdot\mathbf{v}=\mathbf{v}\cdot\mathbf{u}$.</p></li><li><p>Linearity: $(a\mathbf{u}+b\mathbf{w})\cdot\mathbf{v} = a(\mathbf{u}\cdot\mathbf{v}) + b(\mathbf{w}\cdot\mathbf{v})$.</p></li><li><p>Positive-definiteness: $\mathbf{v}\cdot\mathbf{v}=\norm{\mathbf{v}}^2 \ge 0$ and equals zero only for $\mathbf{v}=\mathbf{0}$.</p></li><li><p>Relation to angle: $\mathbf{u}\cdot\mathbf{v} = \norm{\mathbf{u}}\norm{\mathbf{v}} \cos\theta$, where $\theta$ is the angle between them.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 8: Angle between vectors</div><div class="box-body"><p>Let $\mathbf{a}=(1,1,0)$ and $\mathbf{b}=(1,0,1)$. Then
+\[
+\mathbf{a}\cdot\mathbf{b}=1\cdot1+1\cdot0+0\cdot1=1,
+\]
+\[
+\norm{\mathbf{a}}=\sqrt{2},\quad \norm{\mathbf{b}}=\sqrt{2}\quad\Rightarrow\quad \cos\theta=\frac{1}{2}.
+\]
+So $\theta = \cos^{-1}\left(\tfrac{1}{2}\right)=60^\circ$.</p></div></div>
+</section>
+<section id="norms-and-distances" class="content-section level-2">
+<h3 class="section-heading">Norms and distances</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The (Euclidean) norm of $\mathbf{v}\in\R^n$ is $\norm{\mathbf{v}}=\sqrt{\mathbf{v}\cdot\mathbf{v}}$. Distance between points $\mathbf{p},\mathbf{q}\in\R^n$ is $\norm{\mathbf{p}-\mathbf{q}}$.</p>
+<p>Triangle inequality:
+\[
+\norm{\mathbf{u}+\mathbf{v}} \le \norm{\mathbf{u}} + \norm{\mathbf{v}}.
+\]
+Cauchy–Schwarz inequality:
+\[
+|\mathbf{u}\cdot\mathbf{v}| \le \norm{\mathbf{u}}\,\norm{\mathbf{v}}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 9: Triangle inequality check</div><div class="box-body"><p>Take $\mathbf{u}=(1,0)$ and $\mathbf{v}=(0,1)$. Then $\norm{\mathbf{u}}=\norm{\mathbf{v}}=1$ and $\norm{\mathbf{u}+\mathbf{v}}=\sqrt{2}\le 2$ holds.</p></div></div>
+</section>
+<section id="cross-product-3d-and-properties" class="content-section level-2">
+<h3 class="section-heading">Cross product (3D) and properties</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For $\mathbf{a},\mathbf{b}\in\R^3$, the cross product $\mathbf{a}\times\mathbf{b}$ is a vector perpendicular to both, given by the determinant formula:
+\[
+\mathbf{a}\times\mathbf{b} =
+\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+a_1 &amp; a_2 &amp; a_3 \\
+b_1 &amp; b_2 &amp; b_3
+\end{vmatrix}.
+\]
+Properties:</p>
+<ul><li><p>$\mathbf{a}\times\mathbf{b} = -(\mathbf{b}\times\mathbf{a})$ (antisymmetric).</p></li><li><p>$\norm{\mathbf{a}\times\mathbf{b}} = \norm{\mathbf{a}}\norm{\mathbf{b}}\sin\theta$ (area of parallelogram).</p></li><li><p>$(\mathbf{a}\times\mathbf{b})\cdot\mathbf{a}=0$ and $(\mathbf{a}\times\mathbf{b})\cdot\mathbf{b}=0$.</p></li></ul>
+<p>Cross product is defined only in 3D (or via wedge product in higher dimensional algebra).</p></div></div>
+<div class="example-box"><div class="box-title">Example 10: Cross product value</div><div class="box-body"><p>Let $\mathbf{a}=(1,0,0)$ and $\mathbf{b}=(0,1,0)$. Then $\mathbf{a}\times\mathbf{b}=(0,0,1)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 11: Area of triangle using cross product</div><div class="box-body"><p>Triangle with vertices $A(1,0,0)$, $B(2,1,0)$, $C(1,1,1)$. Area = $\tfrac12 \norm{(\overrightarrow{AB}\times\overrightarrow{AC})}$.
+Compute $\overrightarrow{AB}=(1,1,0)$, $\overrightarrow{AC}=(0,1,1)$.
+\[
+\overrightarrow{AB}\times\overrightarrow{AC} =
+\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1
+\end{vmatrix} = (1\cdot1-0\cdot1)\mathbf{i} - (1\cdot1-0\cdot0)\mathbf{j} + (1\cdot1-1\cdot0)\mathbf{k} = (1,-1,1).
+\]
+Norm $=\sqrt{3}$, area $=\tfrac12\sqrt{3}$.</p></div></div>
+</section>
+</section>
+<section id="vector-space" class="content-section level-1">
+<h2 class="section-heading">Vector Space</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Elimination simplifies the system $A\mathbf{x} = \mathbf{b}$, one entry at a time.  
+It also simplifies the underlying theory — particularly the fundamental questions of **existence** and **uniqueness** of solutions:</p>
+<ul><li><p>Does the system have one unique solution?</p></li><li><p>Does it have no solution?</p></li><li><p>Or does it have infinitely many solutions?</p></li></ul>
+<p>After elimination, these questions become easier to answer.  
+However, elimination gives only one kind of understanding of $A\mathbf{x} = \mathbf{b}$.  
+Linear algebra goes deeper — it explores the very structure of the space that these vectors and equations belong to.</p></div></div>
+<section id="concept-of-a-vector-space" class="content-section level-2">
+<h3 class="section-heading">Concept of a Vector Space</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>To develop a deeper understanding, we begin with the most fundamental spaces, denoted by:
+\[
+\mathbb{R}^1, \ \mathbb{R}^2, \ \mathbb{R}^3, \dots, \mathbb{R}^n
+\]
+Each $\mathbb{R}^n$ consists of all column vectors with $n$ real components.</p>
+<ul><li><p>$\mathbb{R}^1$ — all real numbers (a line)</p></li><li><p>$\mathbb{R}^2$ — the usual $xy$-plane</p></li><li><p>$\mathbb{R}^3$ — three-dimensional space</p></li></ul>
+<p>The two components of a vector in $\mathbb{R}^2$ represent the $x$ and $y$ coordinates of a point in the plane.  
+Similarly, the three components of a vector in $\mathbb{R}^3$ represent a point in three-dimensional space.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+</section>
+<section id="generalization-to-higher-dimensions" class="content-section level-2">
+<h3 class="section-heading">Generalization to Higher Dimensions</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The beauty of linear algebra lies in how naturally it extends to higher dimensions.  
+A vector in $\mathbb{R}^7$, for example, is represented simply by its seven components:
+\[
+\mathbf{x} = (x_1, x_2, x_3, x_4, x_5, x_6, x_7)
+\]
+Even though we cannot visualize 7-dimensional geometry, all algebraic operations remain the same:</p>
+<ul><li><p>Vector addition: $\mathbf{x} + \mathbf{y}$</p></li><li><p>Scalar multiplication: $c\mathbf{x}$</p></li></ul></div></div>
+</section>
+<section id="definition-of-a-real-vector-space" class="content-section level-2">
+<h3 class="section-heading">Definition of a Real Vector Space</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <strong>real vector space</strong> is a set of elements (vectors) together with two operations:</p>
+<ul><li><p>Vector addition</p></li><li><p>Scalar multiplication by real numbers</p></li></ul>
+<p>These operations must:</p>
+<ol><li><p>Produce vectors that remain inside the space.</p></li><li><p>Satisfy the eight basic vector space axioms.</p></li></ol></div></div>
+</section>
+<section id="eight-basic-axioms-of-vector-spaces" class="content-section level-2">
+<h3 class="section-heading">Eight Basic Axioms of Vector Spaces</h3>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><ol><li><p><strong>Closure under addition:</strong>  
+    For all \( \mathbf{u}, \mathbf{v} \in V \), the sum \( \mathbf{u} + \mathbf{v} \in V \).</p></li><li><p><strong>Commutative property of addition:</strong>  
+    \( \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u} \).</p></li><li><p><strong>Associative property of addition:</strong>  
+    \( (\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w}) \).</p></li><li><p><strong>Existence of additive identity:</strong>  
+    There exists a zero vector \( \mathbf{0} \in V \) such that  
+    \( \mathbf{v} + \mathbf{0} = \mathbf{v} \).</p></li><li><p><strong>Existence of additive inverse:</strong>  
+    For every \( \mathbf{v} \in V \), there exists \( -\mathbf{v} \in V \) such that  
+    \( \mathbf{v} + (-\mathbf{v}) = \mathbf{0} \).</p></li><li><p><strong>Closure under scalar multiplication:</strong>  
+    For all \( c \in \mathbb{R} \) and \( \mathbf{v} \in V \), \( c\mathbf{v} \in V \).</p></li><li><p><strong>Distributive laws:</strong>  
+    \begin{align*}
+      c(\mathbf{u} + \mathbf{v}) &amp;= c\mathbf{u} + c\mathbf{v}    &amp;<strong>(scalar over vector addition)</strong><br>
+      (c + d)\mathbf{v} &amp;= c\mathbf{v} + d\mathbf{v}    &amp;<strong>(scalar addition over vector)</strong>
+    \end{align*}</p></li><li><p><strong>Compatibility with scalar multiplication:</strong>  
+    \( c(d\mathbf{v}) = (cd)\mathbf{v} \) and \( 1\mathbf{v} = \mathbf{v} \).</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 12: Verifying the Axioms in \(\mathbb{R}^2\)</div><div class="box-body"><p>Let \( V = \mathbb{R}^2 = \{ (x, y) \mid x, y \in \mathbb{R} \} \).  
+Define addition and scalar multiplication as:
+\[
+(x_1, y_1) + (x_2, y_2) = (x_1 + x_2, \, y_1 + y_2), \quad
+c(x, y) = (cx, cy)
+\]</p>
+<p>Let us verify some axioms:</p>
+<ul><li><p><strong>Closure under addition:</strong>  
+    If \( (x_1, y_1), (x_2, y_2) \in \mathbb{R}^2 \), then  
+    \( (x_1 + x_2, y_1 + y_2) \in \mathbb{R}^2 \).</p></li><li><p><strong>Existence of additive identity:</strong>  
+    \( (0,0) \) is the zero vector since \( (x,y) + (0,0) = (x,y) \).</p></li><li><p><strong>Existence of additive inverse:</strong>  
+    The inverse of \( (x,y) \) is \( (-x, -y) \) because \( (x,y) + (-x,-y) = (0,0) \).</p></li><li><p><strong>Distributive property:</strong>  
+    \( c((x_1, y_1) + (x_2, y_2)) = c(x_1 + x_2, y_1 + y_2) = (c(x_1 + x_2), c(y_1 + y_2)) = (cx_1 + cx_2, cy_1 + cy_2) = c(x_1, y_1) + c(x_2, y_2) \).</p></li></ul>
+<p>Thus, \( \mathbb{R}^2 \) satisfies all eight vector space axioms.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+<p><strong>Geometric interpretation:</strong> Vector addition in $\mathbb{R}^2$ corresponds to the parallelogram law.</p>
+</section>
+</section>
+<section id="subspaces" class="content-section level-1">
+<h2 class="section-heading">Subspaces</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A <strong>subspace</strong> of a vector space \( V \) is a nonempty subset \( W \subseteq V \) that itself satisfies the conditions of a vector space.  
+That is, \( W \) is closed under linear combinations:</p>
+<ol><li><p>If \( \mathbf{x}, \mathbf{y} \in W \), then \( \mathbf{x} + \mathbf{y} \in W \).</p></li><li><p>If \( c \in \mathbb{R} \) and \( \mathbf{x} \in W \), then \( c\mathbf{x} \in W \).</p></li></ol>
+<p>Thus, a subspace is a subset that is <strong>closed</strong> under vector addition and scalar multiplication.  
+Because these operations already satisfy the eight vector space axioms in \( V \), they automatically hold in any subspace \( W \).</p>
+<p><strong>Note:</strong> Every subspace must contain the zero vector, since if \( \mathbf{x} \in W \), then \( 0\mathbf{x} = \mathbf{0} \in W \).</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The possible subspaces of \( \mathbb{R}^3 \) include:</p>
+<ul><li><p>The <strong>zero subspace</strong> \( \{\mathbf{0}\} \)</p></li><li><p>Any <strong>line through the origin</strong></p></li><li><p>Any <strong>plane through the origin</strong></p></li><li><p>The entire space \( \mathbb{R}^3 \)</p></li></ul>
+<p>The smallest subspace is \( \{\mathbf{0}\} \), containing only the origin.  
+The largest subspace is the whole space \( \mathbb{R}^3 \) itself.</p></div></div>
+<div class="example-box"><div class="box-title">Example 13: Subset vs. Subspace</div><div class="box-body"><p><strong>Case 1:</strong> Consider all vectors in \( \mathbb{R}^2 \) with nonnegative components:  
+\[
+W = \{(x,y) \mid x \geq 0, \, y \geq 0\}
+\]
+This set is the <strong>first quadrant</strong>. It contains the zero vector and is closed under addition, but not under scalar multiplication.  
+If we multiply \( (1,1) \) by \( -1 \), we get \( (-1,-1) \), which lies outside the first quadrant.  
+Hence, \( W \) is <strong>not</strong> a subspace.</p>
+<p><strong>Case 2:</strong> If we include both the first and third quadrants, multiplication by negative scalars is allowed,  
+but addition can move vectors out of these quadrants.  
+Thus, even this enlarged set is not a subspace.</p>
+<p>The smallest subspace containing the first quadrant is the entire \( \mathbb{R}^2 \).</p></div></div>
+<div class="example-box"><div class="box-title">Example 14: Subspaces of Matrix Spaces</div><div class="box-body"><p>Let \( V \) be the vector space of all \( 3 \times 3 \) matrices.  
+Then the following are subspaces of \( V \):</p>
+<ul><li><p>The set of all <strong>lower triangular matrices</strong></p></li><li><p>The set of all <strong>symmetric matrices</strong></p></li></ul>
+<p>Both sets are closed under matrix addition and scalar multiplication, and contain the zero matrix.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>For a matrix \( A \in \mathbb{R}^{m \times n} \), the <strong>column space</strong> of \( A \), denoted \( C(A) \), is the set of all linear combinations of the columns of \( A \):
+\[
+C(A) = \{ A\mathbf{x} \mid \mathbf{x} \in \mathbb{R}^n \}
+\]
+It is a subspace of \( \mathbb{R}^m \).</p>
+<p>The system \( A\mathbf{x} = \mathbf{b} \) is <strong>solvable</strong> if and only if \( \mathbf{b} \in C(A) \).  
+That is, \( \mathbf{b} \) can be expressed as a linear combination of the columns of \( A \).</p></div></div>
+<div class="example-box"><div class="box-title">Example 15: Column Space in \(\mathbb{R}^3\)</div><div class="box-body"><p>Consider
+\[
+A =
+\begin{bmatrix}
+1 &amp; 0 \\
+5 &amp; 4 \\
+2 &amp; 4
+\end{bmatrix},
+\quad
+\mathbf{x} =
+\begin{bmatrix} u \\ v \end{bmatrix},
+\quad
+\mathbf{b} =
+\begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}
+\]
+Then \( A\mathbf{x} = \mathbf{b} \) means
+\[
+u
+\begin{bmatrix}
+1 \\ 5 \\ 2
+\end{bmatrix}
++
+v
+\begin{bmatrix}
+0 \\ 4 \\ 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\ b_2 \\ b_3
+\end{bmatrix}.
+\]
+All attainable right-hand sides \( \mathbf{b} \) lie in the <strong>plane spanned</strong> by the two column vectors of \( A \).  
+This plane is the column space \( C(A) \subseteq \mathbb{R}^3 \).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<p><strong>Figure:</strong> Column space \( C(A) \) is a plane through the origin in \( \mathbb{R}^3 \).</p>
+<div class="concept-box"><div class="box-title">The Nullspace of a Matrix</div><div class="box-body"><p>The <strong>nullspace</strong> of a matrix \( A \), denoted \( N(A) \), is the set of all vectors \( \mathbf{x} \in \mathbb{R}^n \) such that
+\[
+A\mathbf{x} = \mathbf{0}.
+\]
+It is a subspace of \( \mathbb{R}^n \).</p>
+<p><strong>Properties:</strong></p>
+<ol><li><p>If \( A\mathbf{x} = \mathbf{0} \) and \( A\mathbf{x}' = \mathbf{0} \), then \( A(\mathbf{x} + \mathbf{x}') = \mathbf{0} \).</p></li><li><p>If \( A\mathbf{x} = \mathbf{0} \), then \( A(c\mathbf{x}) = \mathbf{0} \) for any scalar \( c \).</p></li></ol>
+<p><strong>Note:</strong> Only homogeneous systems (\( \mathbf{b} = 0 \)) form subspaces.</p></div></div>
+<div class="example-box"><div class="box-title">Example 16: Nullspace Calculation</div><div class="box-body"><p>For
+\[
+A =
+\begin{bmatrix}
+1 &amp; 0 \\
+5 &amp; 4 \\
+2 &amp; 4
+\end{bmatrix},
+\quad
+A\mathbf{x} = \mathbf{0}
+\Rightarrow
+\begin{cases}
+u = 0 \\
+5u + 4v = 0 \\
+2u + 4v = 0
+\end{cases}
+\Rightarrow
+u = v = 0.
+\]
+Hence, \( N(A) = \{(0,0)\} \). The columns are linearly independent.</p>
+<p>Now let
+\[
+B =
+\begin{bmatrix}
+1 &amp; 0 &amp; 1 \\
+5 &amp; 4 &amp; 9 \\
+2 &amp; 4 &amp; 6
+\end{bmatrix}.
+\]
+Then
+\[
+B
+\begin{bmatrix}
+c \\ c \\ -c
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 0 \\ 0
+\end{bmatrix}.
+\]
+Thus, \( N(B) = \{ c(1,1,-1) \mid c \in \mathbb{R} \} \), which is a <strong>line through the origin</strong> — a one-dimensional subspace.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><ul><li><p>The <strong>column space</strong> \( C(A) \subseteq \mathbb{R}^m \) contains all attainable right-hand sides \( \mathbf{b} \) for \( A\mathbf{x} = \mathbf{b} \).</p></li><li><p>The <strong>nullspace</strong> \( N(A) \subseteq \mathbb{R}^n \) contains all solutions \( \mathbf{x} \) to \( A\mathbf{x} = 0 \).</p></li><li><p>Both are subspaces; they play a fundamental role in understanding linear systems.</p></li></ul></div></div>
+</section>
+<section id="linear-independence-basis-and-dimension" class="content-section level-1">
+<h2 class="section-heading">Linear Independence, Basis, and Dimension</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Linear Independence:</strong> A set of vectors $\{v_1, v_2, \dots, v_k\}$ is <em>linearly independent</em> if the equation
+\[
+c_1 v_1 + c_2 v_2 + \dots + c_k v_k = 0
+\]
+has only the trivial solution $c_1 = c_2 = \dots = c_k = 0$.</p>
+<p>If there exists a nontrivial solution (some $c_i \neq 0$), the vectors are <em>linearly dependent</em>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 17</div><div class="box-body"><p>Let $v_1 = \begin{bmatrix}1\\1\\0\end{bmatrix}, v_2 = \begin{bmatrix}0\\1\\1\end{bmatrix}, v_3 = \begin{bmatrix}1\\2\\1\end{bmatrix}$ in $\mathbb{R}^3$.</p>
+<p>Check $c_1 v_1 + c_2 v_2 + c_3 v_3 = 0$:  
+\[
+c_1 \begin{bmatrix}1\\1\\0\end{bmatrix} + c_2 \begin{bmatrix}0\\1\\1\end{bmatrix} + c_3 \begin{bmatrix}1\\2\\1\end{bmatrix} = \begin{bmatrix}0\\0\\0\end{bmatrix}
+\]</p>
+<p>Solving gives $c_1 = c_2 = c_3 = 0$.</p>
+<p>Hence, $\{v_1, v_2, v_3\}$ are <strong>linearly independent</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 18</div><div class="box-body"><p>Let $v_1 = \begin{bmatrix}1\\2\end{bmatrix}, v_2 = \begin{bmatrix}2\\4\end{bmatrix}$ in $\mathbb{R}^2$.</p>
+<p>Check $c_1 v_1 + c_2 v_2 = 0$:
+\[
+c_1 \begin{bmatrix}1\\2\end{bmatrix} + c_2 \begin{bmatrix}2\\4\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix}
+\]</p>
+<p>A nontrivial solution exists: $c_1 = 2, c_2 = -1$.</p>
+<p>Hence, $v_1$ and $v_2$ are <strong>linearly dependent</strong>.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Spanning a Subspace:</strong> A set of vectors $\{w_1, \dots, w_\ell\}$ spans a subspace $V$ if every vector $v \in V$ can be written as
+\[
+v = c_1 w_1 + c_2 w_2 + \dots + c_\ell w_\ell
+\]
+for some scalars $c_1, \dots, c_\ell$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 19</div><div class="box-body"><p>In $\mathbb{R}^3$, vectors $w_1 = (1,0,0)$, $w_2 = (0,1,0)$, $w_3 = (1,1,0)$ span the $x$-$y$ plane.</p>
+<p>Even $w_1$ and $w_2$ alone span the plane. $w_1$ and $w_3$ only span a line.</p></div></div>
+<div class="example-box"><div class="box-title">Example 20</div><div class="box-body"><p>Let $A = \begin{bmatrix}1 &amp; 2\\0 &amp; 1\\1 &amp; 1\end{bmatrix}$. The columns of $A$ span a subspace of $\mathbb{R}^3$.  
+Any vector $v$ in this subspace can be written as $v = c_1 \begin{bmatrix}1\\0\\1\end{bmatrix} + c_2 \begin{bmatrix}2\\1\\1\end{bmatrix}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Basis of a Vector Space:</strong> A basis of a vector space $V$ is a set of vectors that</p>
+<ol><li><p>are linearly independent, and</p></li><li><p>span $V$.</p></li></ol>
+<p>Every vector in $V$ can then be expressed uniquely as a linear combination of basis vectors.</p></div></div>
+<div class="example-box"><div class="box-title">Example 21</div><div class="box-body"><p>In $\mathbb{R}^2$, vectors $v_1 = (1,2)$, $v_2 = (2,3)$ are linearly independent and span $\mathbb{R}^2$.</p>
+<p>Hence, $\{v_1, v_2\}$ is a basis of $\mathbb{R}^2$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 22</div><div class="box-body"><p>For the matrix $A = \begin{bmatrix}1 &amp; 3 &amp; 1\\0 &amp; 1 &amp; 2\\0 &amp; 0 &amp; 1\end{bmatrix}$, pivot columns are 1, 2, 3.  
+These columns form a basis of the column space of $A$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Dimension of a Vector Space:</strong> The number of vectors in any basis of a vector space $V$ is called the <em>dimension</em> of $V$, denoted $\dim(V)$.</p>
+<p>All bases of $V$ have the same number of vectors.</p></div></div>
+<div class="example-box"><div class="box-title">Example 23</div><div class="box-body"><p>- $R^3$ has dimension 3. Standard basis: $e_1=(1,0,0)$, $e_2=(0,1,0)$, $e_3=(0,0,1)$.  
+- $x$-$y$ plane in $\mathbb{R}^3$ has dimension 2.</p></div></div>
+<div class="example-box"><div class="box-title">Example 24</div><div class="box-body"><p>Matrix $A = \begin{bmatrix}1 &amp; 3 &amp; 3 &amp; 2 \\ 0 &amp; 0 &amp; 3 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0\end{bmatrix}$ has pivot columns 1 and 3.  
+Dimension of the column space = 2.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Rank and Linear Independence:</strong></p>
+<ul><li><p>The <strong>rank</strong> of a matrix $A$ = number of independent rows or columns.</p></li><li><p>Rank = dimension of column space = dimension of row space.</p></li><li><p>If $n &gt; m$ in an $m \times n$ matrix, the $n$ columns are dependent.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 25</div><div class="box-body"><p>Consider $A = \begin{bmatrix}1 &amp; 2 &amp; 3\\2 &amp; 4 &amp; 6\end{bmatrix}$.  
+- $m=2, n=3$, so $n&gt;m$.  
+- Rank = 1 (only first column is independent).  
+- All 3 columns are linearly dependent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 26</div><div class="box-body"><p>Let $U = \begin{bmatrix}1 &amp; 2 &amp; 0\\0 &amp; 1 &amp; 1\\0 &amp; 0 &amp; 0\end{bmatrix}$.  
+- Pivot columns: 1 and 2.  
+- Basis for column space: columns 1 and 2.  
+- Dimension = rank = 2.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Key Theorems:</strong></p>
+<ol><li><p>Any set of more than $n$ vectors in $\mathbb{R}^n$ is linearly dependent.</p></li><li><p>A linearly independent set can be extended to a basis.</p></li><li><p>A spanning set can be reduced to a basis.</p></li><li><p>All bases of a vector space have the same number of vectors.</p></li></ol></div></div>
+</section>
+<section id="applications-of-vector-spaces" class="content-section level-1">
+<h2 class="section-heading">Applications of Vector Spaces</h2>
+<div class="concept-box"><div class="box-title">Solving Systems of Linear Equations</div><div class="box-body"><p>Vector spaces provide a framework to understand solutions of linear systems $Ax = b$.</p>
+<p>- The column space $C(A)$ determines whether $b$ lies in the span of the columns.  
+- The nullspace $N(A)$ gives all solutions of the homogeneous system $Ax = 0$.  
+- The rank of $A$ tells the number of independent equations.  
+- A basis of $C(A)$ allows expressing any solution as a linear combination of independent columns.</p></div></div>
+<div class="concept-box"><div class="box-title">Computer Graphics</div><div class="box-body"><p>Vector spaces represent points, directions, and transformations in 2D/3D graphics.</p>
+<p>- Any point or vector can be expressed as a combination of basis vectors.  
+- Linear transformations like rotations, scaling, and projections are matrix operations on vector spaces.</p></div></div>
+<div class="concept-box"><div class="box-title">Signal Processing</div><div class="box-body"><p>Signals are represented as vectors in function spaces or discrete vector spaces.</p>
+<p>- Orthogonal bases, such as Fourier or wavelet bases, allow decomposition into independent components.  
+- The dimension of the vector space corresponds to the number of independent signal components.</p></div></div>
+<div class="concept-box"><div class="box-title">Computer Science and Data Analysis</div><div class="box-body"><p>Feature vectors in machine learning exist in high-dimensional vector spaces.</p>
+<p>- Linear independence ensures that features are non-redundant.  
+- Basis vectors can be used for dimensionality reduction, e.g., in Principal Component Analysis (PCA).  
+- Rank of the data matrix reveals the intrinsic dimensionality of the dataset.</p></div></div>
+<div class="concept-box"><div class="box-title">Physics and Engineering</div><div class="box-body"><p>Vector spaces describe physical quantities such as forces, velocities, and fields.</p>
+<p>- Basis vectors often correspond to orthogonal coordinate axes.  
+- Linear independence ensures that combinations of forces or fields can be uniquely represented.  
+- The dimension of the space corresponds to the number of independent physical directions.</p></div></div>
+<div class="concept-box"><div class="box-title">Control Systems</div><div class="box-body"><p>State-space models use vectors for system states and inputs.</p>
+<p>- Linear independence of state vectors is crucial for controllability and observability.  
+- Dimension of the state-space corresponds to the number of independent states of the system.</p></div></div>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Vector Spaces &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

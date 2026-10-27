@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Basics — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Python for GATE DA</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Python Basics</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#language-overview" class="toc-link" data-slug="language-overview">Language Overview</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#python-characteristics" class="toc-link" data-slug="python-characteristics">Python Characteristics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interpreted-language" class="toc-link" data-slug="interpreted-language">Interpreted Language</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#dynamically-typed" class="toc-link" data-slug="dynamically-typed">Dynamically Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#strongly-typed" class="toc-link" data-slug="strongly-typed">Strongly Typed</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#everything-is-an-object" class="toc-link" data-slug="everything-is-an-object">Everything is an Object</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#indentation-defines-blocks" class="toc-link" data-slug="indentation-defines-blocks">Indentation Defines Blocks</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#cpython-reference-implementation-execution-model" class="toc-link" data-slug="cpython-reference-implementation-execution-model">CPython: Reference Implementation &amp; Execution Model</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#running-python" class="toc-link" data-slug="running-python">Running Python</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#interactive-mode-repl" class="toc-link" data-slug="interactive-mode-repl">Interactive Mode (REPL)</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#script-mode-and-texttt-name" class="toc-link" data-slug="script-mode-and-texttt-name">Script Mode and <code>__name__</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#variables-assignment" class="toc-link" data-slug="variables-assignment">Variables &amp; Assignment</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#naming-rules" class="toc-link" data-slug="naming-rules">Naming Rules</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#identifier-rules" class="toc-link" data-slug="identifier-rules">Identifier Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#assignment-mechanics" class="toc-link" data-slug="assignment-mechanics">Assignment Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#variable-as-name-binding" class="toc-link" data-slug="variable-as-name-binding">Variable as Name Binding</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#object-identity-vs-equality" class="toc-link" data-slug="object-identity-vs-equality">Object Identity vs Equality</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#data-types" class="toc-link" data-slug="data-types">Data Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#numeric-types" class="toc-link" data-slug="numeric-types">Numeric Types</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-int-arbitrary-precision-integer" class="toc-link" data-slug="texttt-int-arbitrary-precision-integer"><code>int</code> --- Arbitrary-Precision Integer</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-float-ieee-754-double-precision" class="toc-link" data-slug="texttt-float-ieee-754-double-precision"><code>float</code> --- IEEE 754 Double Precision</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-complex-complex-numbers" class="toc-link" data-slug="texttt-complex-complex-numbers"><code>complex</code> --- Complex Numbers</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#texttt-bool-boolean-type" class="toc-link" data-slug="texttt-bool-boolean-type"><code>bool</code> --- Boolean Type</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#nonetype" class="toc-link" data-slug="nonetype">NoneType</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#type-conversion" class="toc-link" data-slug="type-conversion">Type Conversion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#operators" class="toc-link" data-slug="operators">Operators</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#arithmetic-operators" class="toc-link" data-slug="arithmetic-operators">Arithmetic Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#all-arithmetic-operators" class="toc-link" data-slug="all-arithmetic-operators">All Arithmetic Operators</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-operators" class="toc-link" data-slug="comparison-operators">Comparison Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#comparison-and-chaining" class="toc-link" data-slug="comparison-and-chaining">Comparison and Chaining</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#logical-operators" class="toc-link" data-slug="logical-operators">Logical Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#short-circuit-evaluation" class="toc-link" data-slug="short-circuit-evaluation">Short-Circuit Evaluation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#bitwise-operators" class="toc-link" data-slug="bitwise-operators">Bitwise Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#bit-level-operations" class="toc-link" data-slug="bit-level-operations">Bit-Level Operations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-membership-operators" class="toc-link" data-slug="identity-membership-operators">Identity &amp; Membership Operators</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#texttt-is-texttt-in-and-their-negations" class="toc-link" data-slug="texttt-is-texttt-in-and-their-negations"><code>is</code>, <code>in</code> and their Negations</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#operator-precedence" class="toc-link" data-slug="operator-precedence">Operator Precedence</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#full-precedence-table" class="toc-link" data-slug="full-precedence-table">Full Precedence Table</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Built-in Data Structures</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#strings" class="toc-link" data-slug="strings">Strings</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#string-properties" class="toc-link" data-slug="string-properties">String Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#immutable-unicode-sequence" class="toc-link" data-slug="immutable-unicode-sequence">Immutable Unicode Sequence</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#string-literals" class="toc-link" data-slug="string-literals">String Literals</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#quoting-styles-and-escape-sequences" class="toc-link" data-slug="quoting-styles-and-escape-sequences">Quoting Styles and Escape Sequences</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#slicing" class="toc-link" data-slug="slicing">Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#the-texttt-s-start-stop-step-syntax" class="toc-link" data-slug="the-texttt-s-start-stop-step-syntax">The <code>s[start:stop:step]</code> Syntax</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#key-string-methods" class="toc-link" data-slug="key-string-methods">Key String Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#searching-testing" class="toc-link" data-slug="searching-testing">Searching &amp; Testing</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#modification-methods-return-new-string" class="toc-link" data-slug="modification-methods-return-new-string">Modification Methods (Return New String)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#splitting-joining" class="toc-link" data-slug="splitting-joining">Splitting &amp; Joining</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#string-formatting" class="toc-link" data-slug="string-formatting">String Formatting</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#performance-and-common-patterns" class="toc-link" data-slug="performance-and-common-patterns">Performance and Common Patterns</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#lists" class="toc-link" data-slug="lists">Lists</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#list-properties" class="toc-link" data-slug="list-properties">List Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics" class="toc-link" data-slug="core-characteristics">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-creation" class="toc-link" data-slug="list-creation">List Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods" class="toc-link" data-slug="all-creation-methods">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#indexing-slicing" class="toc-link" data-slug="indexing-slicing">Indexing &amp; Slicing</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#list-indexing-slice-assignment-and-texttt-del" class="toc-link" data-slug="list-indexing-slice-assignment-and-texttt-del">List Indexing, Slice Assignment and <code>del</code></a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#list-methods" class="toc-link" data-slug="list-methods">List Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mutation-methods-in-place" class="toc-link" data-slug="mutation-methods-in-place">Mutation Methods (In-Place)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#non-mutating-methods" class="toc-link" data-slug="non-mutating-methods">Non-Mutating Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#copying-semantics" class="toc-link" data-slug="copying-semantics">Copying Semantics</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#assignment-shallow-copy-deep-copy" class="toc-link" data-slug="assignment-shallow-copy-deep-copy">Assignment, Shallow Copy, Deep Copy</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#append-vs-extend-vs-vs" class="toc-link" data-slug="append-vs-extend-vs-vs">append vs extend vs + vs +=</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#adding-elements-and-combining-lists" class="toc-link" data-slug="adding-elements-and-combining-lists">Adding Elements and Combining Lists</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#tuples" class="toc-link" data-slug="tuples">Tuples</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#tuple-properties" class="toc-link" data-slug="tuple-properties">Tuple Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-2" class="toc-link" data-slug="core-characteristics-2">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#creation-special-syntax" class="toc-link" data-slug="creation-special-syntax">Creation &amp; Special Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literal-forms-and-the-comma-rule" class="toc-link" data-slug="literal-forms-and-the-comma-rule">Literal Forms and the Comma Rule</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#packing-unpacking" class="toc-link" data-slug="packing-unpacking">Packing &amp; Unpacking</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-unpacking-forms" class="toc-link" data-slug="all-unpacking-forms">All Unpacking Forms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#tuple-methods" class="toc-link" data-slug="tuple-methods">Tuple Methods</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#texttt-count-and-texttt-index" class="toc-link" data-slug="texttt-count-and-texttt-index"><code>count()</code> and <code>index()</code></a>
+</li>
+<li class="toc-l3"><a href="ch02.html#tuple-vs-list-when-to-use-which" class="toc-link" data-slug="tuple-vs-list-when-to-use-which">Tuple vs List --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#dictionaries" class="toc-link" data-slug="dictionaries">Dictionaries</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dictionary-properties" class="toc-link" data-slug="dictionary-properties">Dictionary Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-3" class="toc-link" data-slug="core-characteristics-3">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#dictionary-creation" class="toc-link" data-slug="dictionary-creation">Dictionary Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#all-creation-methods-2" class="toc-link" data-slug="all-creation-methods-2">All Creation Methods</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#access-mutation" class="toc-link" data-slug="access-mutation">Access &amp; Mutation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#reading-writing-deleting" class="toc-link" data-slug="reading-writing-deleting">Reading, Writing, Deleting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#views-iteration" class="toc-link" data-slug="views-iteration">Views &amp; Iteration</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#live-views-keys-values-items" class="toc-link" data-slug="live-views-keys-values-items">Live Views: keys(), values(), items()</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#nested-dictionaries" class="toc-link" data-slug="nested-dictionaries">Nested Dictionaries</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#access-mutation-and-the-sharing-trap" class="toc-link" data-slug="access-mutation-and-the-sharing-trap">Access, Mutation, and the Sharing Trap</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#sets-frozensets" class="toc-link" data-slug="sets-frozensets">Sets &amp; Frozensets</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#properties" class="toc-link" data-slug="properties">Properties</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#core-characteristics-4" class="toc-link" data-slug="core-characteristics-4">Core Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-creation" class="toc-link" data-slug="set-creation">Set Creation</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#literals-and-constructors" class="toc-link" data-slug="literals-and-constructors">Literals and Constructors</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#set-operations" class="toc-link" data-slug="set-operations">Set Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#mathematical-set-operators" class="toc-link" data-slug="mathematical-set-operators">Mathematical Set Operators</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#mutation-methods" class="toc-link" data-slug="mutation-methods">Mutation Methods</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#frozenset-details-and-practical-set-patterns" class="toc-link" data-slug="frozenset-details-and-practical-set-patterns">Frozenset Details and Practical Set Patterns</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#collection-types-at-a-glance" class="toc-link" data-slug="collection-types-at-a-glance">Collection Types --- At a Glance</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Control Flow</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#conditional-statements" class="toc-link" data-slug="conditional-statements">Conditional Statements</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#if-elif-else" class="toc-link" data-slug="if-elif-else">if / elif / else</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#syntax-chaining-and-nesting" class="toc-link" data-slug="syntax-chaining-and-nesting">Syntax, Chaining and Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#ternary-conditional-expression" class="toc-link" data-slug="ternary-conditional-expression">Ternary (Conditional) Expression</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#inline-if-else" class="toc-link" data-slug="inline-if-else">Inline if-else</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#truthy-falsy-values" class="toc-link" data-slug="truthy-falsy-values">Truthy / Falsy Values</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#python-s-boolean-context" class="toc-link" data-slug="python-s-boolean-context">Python's Boolean Context</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#loops" class="toc-link" data-slug="loops">Loops</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#for-loop" class="toc-link" data-slug="for-loop">for Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#iterating-iterables-range-enumerate-zip" class="toc-link" data-slug="iterating-iterables-range-enumerate-zip">Iterating Iterables, range, enumerate, zip</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#while-loop" class="toc-link" data-slug="while-loop">while Loop</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#condition-controlled-repetition" class="toc-link" data-slug="condition-controlled-repetition">Condition-Controlled Repetition</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#loop-control" class="toc-link" data-slug="loop-control">Loop Control</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#break-continue-pass" class="toc-link" data-slug="break-continue-pass">break, continue, pass</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#else-clause-on-loops" class="toc-link" data-slug="else-clause-on-loops">else Clause on Loops</a>
+<ul>
+<li class="toc-l3"><a href="ch03.html#loop-else-the-no-break-reward" class="toc-link" data-slug="loop-else-the-no-break-reward">Loop--else: The ``No Break'' Reward</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch03.html#walrus-operator-texttt" class="toc-link" data-slug="walrus-operator-texttt">Walrus Operator <code>:=</code></a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Functions</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#defining-calling-functions" class="toc-link" data-slug="defining-calling-functions">Defining &amp; Calling Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#basic-syntax" class="toc-link" data-slug="basic-syntax">Basic Syntax</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#def-return-docstrings" class="toc-link" data-slug="def-return-docstrings">def, return, docstrings</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#function-objects" class="toc-link" data-slug="function-objects">Function Objects</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#first-class-functions" class="toc-link" data-slug="first-class-functions">First-Class Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#arguments-parameters" class="toc-link" data-slug="arguments-parameters">Arguments &amp; Parameters</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#positional-and-keyword-arguments" class="toc-link" data-slug="positional-and-keyword-arguments">Positional and Keyword Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#matching-rules" class="toc-link" data-slug="matching-rules">Matching Rules</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#default-parameters" class="toc-link" data-slug="default-parameters">Default Parameters</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#evaluated-once-at-definition-time" class="toc-link" data-slug="evaluated-once-at-definition-time">Evaluated Once at Definition Time</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#mutable-default-argument-trap" class="toc-link" data-slug="mutable-default-argument-trap">Mutable Default Argument Trap</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#gate-critical-shared-mutable-default" class="toc-link" data-slug="gate-critical-shared-mutable-default">GATE Critical --- Shared Mutable Default</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#args-and-kwargs" class="toc-link" data-slug="args-and-kwargs">*args and **kwargs</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#variable-length-arguments" class="toc-link" data-slug="variable-length-arguments">Variable-Length Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#argument-unpacking-in-calls" class="toc-link" data-slug="argument-unpacking-in-calls">Argument Unpacking in Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#and-at-the-call-site" class="toc-link" data-slug="and-at-the-call-site">* and ** at the Call Site</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#pass-by-object-reference" class="toc-link" data-slug="pass-by-object-reference">Pass-by-Object-Reference</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#how-python-passes-arguments" class="toc-link" data-slug="how-python-passes-arguments">How Python Passes Arguments</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#scope-legb-rule" class="toc-link" data-slug="scope-legb-rule">Scope --- LEGB Rule</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#the-four-scopes" class="toc-link" data-slug="the-four-scopes">The Four Scopes</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#legb-lookup-order" class="toc-link" data-slug="legb-lookup-order">LEGB Lookup Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#global-keyword" class="toc-link" data-slug="global-keyword">global Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accessing-and-modifying-module-level-names" class="toc-link" data-slug="accessing-and-modifying-module-level-names">Accessing and Modifying Module-Level Names</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#nonlocal-keyword" class="toc-link" data-slug="nonlocal-keyword">nonlocal Keyword</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#rebinding-in-enclosing-scope-closures" class="toc-link" data-slug="rebinding-in-enclosing-scope-closures">Rebinding in Enclosing Scope (Closures)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#global-vs-nonlocal-quick-reference" class="toc-link" data-slug="global-vs-nonlocal-quick-reference">global vs nonlocal --- Quick Reference</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#recursion" class="toc-link" data-slug="recursion">Recursion</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#mechanics" class="toc-link" data-slug="mechanics">Mechanics</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-stack-base-case-recursive-case" class="toc-link" data-slug="call-stack-base-case-recursive-case">Call Stack, Base Case, Recursive Case</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#tracing-recursive-calls" class="toc-link" data-slug="tracing-recursive-calls">Tracing Recursive Calls</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#call-trees-node-count-fibonacci" class="toc-link" data-slug="call-trees-node-count-fibonacci">Call Trees, Node Count, Fibonacci</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#return-value-aggregation" class="toc-link" data-slug="return-value-aggregation">Return Value Aggregation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#accumulating-results-bottom-up" class="toc-link" data-slug="accumulating-results-bottom-up">Accumulating Results Bottom-Up</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#recursive-vs-iterative-equivalence" class="toc-link" data-slug="recursive-vs-iterative-equivalence">Recursive vs Iterative Equivalence</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#converting-recursion-to-iteration" class="toc-link" data-slug="converting-recursion-to-iteration">Converting Recursion to Iteration</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#memoisation" class="toc-link" data-slug="memoisation">Memoisation</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#caching-with-lru-cache-and-manual-dicts" class="toc-link" data-slug="caching-with-lru-cache-and-manual-dicts">Caching with lru_cache and Manual Dicts</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#lambda-functions" class="toc-link" data-slug="lambda-functions">Lambda Functions</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#anonymous-single-expression-functions" class="toc-link" data-slug="anonymous-single-expression-functions">Anonymous Single-Expression Functions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#higher-order-functions" class="toc-link" data-slug="higher-order-functions">Higher-Order Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#map" class="toc-link" data-slug="map">map()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#applying-a-function-to-every-element" class="toc-link" data-slug="applying-a-function-to-every-element">Applying a Function to Every Element</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#filter" class="toc-link" data-slug="filter">filter()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#selecting-elements-by-predicate" class="toc-link" data-slug="selecting-elements-by-predicate">Selecting Elements by Predicate</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#functools-reduce" class="toc-link" data-slug="functools-reduce">functools.reduce()</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#folding-an-iterable-to-a-single-value" class="toc-link" data-slug="folding-an-iterable-to-a-single-value">Folding an Iterable to a Single Value</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#closures-nested-functions" class="toc-link" data-slug="closures-nested-functions">Closures &amp; Nested Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#what-is-a-closure" class="toc-link" data-slug="what-is-a-closure">What is a Closure?</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#definition-and-texttt-closure-cells" class="toc-link" data-slug="definition-and-texttt-closure-cells">Definition and <code>__closure__</code> Cells</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#independent-closure-instances" class="toc-link" data-slug="independent-closure-instances">Independent Closure Instances</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#each-outer-call-creates-a-new-environment" class="toc-link" data-slug="each-outer-call-creates-a-new-environment">Each Outer Call Creates a New Environment</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#shared-mutable-state-within-one-closure" class="toc-link" data-slug="shared-mutable-state-within-one-closure">Shared Mutable State Within One Closure</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#multiple-inner-functions-one-shared-cell" class="toc-link" data-slug="multiple-inner-functions-one-shared-cell">Multiple Inner Functions, One Shared Cell</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#late-binding-in-closures" class="toc-link" data-slug="late-binding-in-closures">Late Binding in Closures</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#the-loop-closure-bug" class="toc-link" data-slug="the-loop-closure-bug">The Loop Closure Bug</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#closure-vs-class-when-to-use-which" class="toc-link" data-slug="closure-vs-class-when-to-use-which">Closure vs Class --- When to Use Which</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#decorators" class="toc-link" data-slug="decorators">Decorators</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#concept" class="toc-link" data-slug="concept">Concept</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#what-a-decorator-is" class="toc-link" data-slug="what-a-decorator-is">What a Decorator Is</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#writing-a-decorator" class="toc-link" data-slug="writing-a-decorator">Writing a Decorator</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#wrapper-pattern-and-functools-wraps" class="toc-link" data-slug="wrapper-pattern-and-functools-wraps">Wrapper Pattern and functools.wraps</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#stacking-decorators" class="toc-link" data-slug="stacking-decorators">Stacking Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#bottom-up-application-order" class="toc-link" data-slug="bottom-up-application-order">Bottom-Up Application Order</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#decorator-with-arguments" class="toc-link" data-slug="decorator-with-arguments">Decorator with Arguments</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#three-level-nesting-factory-to-decorator-to-wrapper" class="toc-link" data-slug="three-level-nesting-factory-to-decorator-to-wrapper">Three-Level Nesting: Factory $\to$ Decorator $\to$ Wrapper</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#common-built-in-decorators" class="toc-link" data-slug="common-built-in-decorators">Common Built-in Decorators</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#functools-lru-cache-cached-property" class="toc-link" data-slug="functools-lru-cache-cached-property">functools.lru_cache, cached_property</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Comprehensions &amp; Generators</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#list-comprehensions" class="toc-link" data-slug="list-comprehensions">List Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#syntax-multiple-for-clauses-nesting" class="toc-link" data-slug="syntax-multiple-for-clauses-nesting">Syntax, Multiple for Clauses, Nesting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#dictionary-comprehensions" class="toc-link" data-slug="dictionary-comprehensions">Dictionary Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#key-value-mapping-expressions" class="toc-link" data-slug="key-value-mapping-expressions">Key-Value Mapping Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#set-comprehensions" class="toc-link" data-slug="set-comprehensions">Set Comprehensions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#unique-element-expressions" class="toc-link" data-slug="unique-element-expressions">Unique-Element Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-expressions" class="toc-link" data-slug="generator-expressions">Generator Expressions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#lazy-iterators-from-expressions" class="toc-link" data-slug="lazy-iterators-from-expressions">Lazy Iterators from Expressions</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#generator-functions" class="toc-link" data-slug="generator-functions">Generator Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#yield-statement" class="toc-link" data-slug="yield-statement">yield Statement</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#suspending-and-resuming-execution" class="toc-link" data-slug="suspending-and-resuming-execution">Suspending and Resuming Execution</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Object-Oriented Programming</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#classes-objects" class="toc-link" data-slug="classes-objects">Classes &amp; Objects</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#class-definition" class="toc-link" data-slug="class-definition">Class Definition</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#what-is-a-class" class="toc-link" data-slug="what-is-a-class">What is a Class?</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#init-and-self" class="toc-link" data-slug="init-and-self">__init__ and self</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#setting-up-an-object" class="toc-link" data-slug="setting-up-an-object">Setting Up an Object</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#class-variables-vs-instance-variables" class="toc-link" data-slug="class-variables-vs-instance-variables">Class Variables vs Instance Variables</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#shared-vs-per-object-data" class="toc-link" data-slug="shared-vs-per-object-data">Shared vs Per-Object Data</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#dunder-magic-methods" class="toc-link" data-slug="dunder-magic-methods">Dunder (Magic) Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#string-representation-str-and-repr" class="toc-link" data-slug="string-representation-str-and-repr">String Representation: __str__ and __repr__</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#inheritance" class="toc-link" data-slug="inheritance">Inheritance</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#single-inheritance" class="toc-link" data-slug="single-inheritance">Single Inheritance</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#child-getting-everything-from-parent" class="toc-link" data-slug="child-getting-everything-from-parent">Child Getting Everything from Parent</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hierarchical-inheritance" class="toc-link" data-slug="hierarchical-inheritance">Hierarchical Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#method-overriding" class="toc-link" data-slug="method-overriding">Method Overriding</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multilevel-inheritance" class="toc-link" data-slug="multilevel-inheritance">Multilevel Inheritance</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiple-inheritance-and-mro" class="toc-link" data-slug="multiple-inheritance-and-mro">Multiple Inheritance and MRO</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#getting-from-two-parents-diamond-problem" class="toc-link" data-slug="getting-from-two-parents-diamond-problem">Getting from Two Parents, Diamond Problem</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#polymorphism" class="toc-link" data-slug="polymorphism">Polymorphism</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#encapsulation-name-mangling" class="toc-link" data-slug="encapsulation-name-mangling">Encapsulation &amp; Name Mangling</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#hiding-data-inside-a-class" class="toc-link" data-slug="hiding-data-inside-a-class">Hiding Data Inside a Class</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#abstract-base-classes" class="toc-link" data-slug="abstract-base-classes">Abstract Base Classes</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#forcing-child-classes-to-implement-methods" class="toc-link" data-slug="forcing-child-classes-to-implement-methods">Forcing Child Classes to Implement Methods</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 6</div><h1>Python Basics</h1></div>
+<section id="language-overview" class="content-section level-1">
+<h2 class="section-heading">Language Overview</h2>
+
+<section id="python-characteristics" class="content-section level-2">
+<h3 class="section-heading">Python Characteristics</h3>
+
+<section id="interpreted-language" class="content-section level-3">
+<h4 class="section-heading">Interpreted Language</h4>
+<div class="concept-box"><div class="box-title">Interpreted Language --- Definition</div><div class="box-body"><p>A programming language is called <strong>interpreted</strong> when its source code is executed
+<em>directly</em> by an interpreter program at runtime, statement by statement, without a
+prior separate compilation step that produces machine code.</p>
+<p>Python uses a <strong>two-phase</strong> execution model:</p>
+<ol><li><p><strong>Compilation phase</strong> (automatic, transparent): source <code>.py</code> is compiled to
+        platform-independent <em>bytecode</em> (<code>.pyc</code>) and cached in <code>__pycache__/</code></p></li><li><p><strong>Interpretation phase</strong>: the <strong>Python Virtual Machine (PVM)</strong> reads bytecode
+        instructions one by one and executes them</p></li></ol>
+<p>This is why Python is called interpreted: <em>no explicit compile step is needed by the
+programmer</em>, and errors surface at runtime.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Properties of Python's Interpreted Model</div><div class="box-body"><ul><li><p><strong>No explicit compile step</strong> — run with <code>python script.py</code> directly</p></li><li><p><strong>Bytecode caching</strong> — <code>__pycache__/script.cpython-3xx.pyc</code> created
+        automatically; re-used if source unchanged (checked via modification timestamp)</p></li><li><p><strong>Platform independence</strong> — same <code>.py</code> runs on Windows, Linux, macOS
+        (bytecode is <em>not</em> platform-specific)</p></li><li><p><strong>Late error detection</strong> — syntax errors caught before run;
+        <em>runtime</em> errors (TypeError, NameError …) only when that line executes</p></li><li><p><strong>Dynamic code execution</strong> — <code>eval()</code> and <code>exec()</code> compile and
+        run strings as Python code at runtime</p></li><li><p><strong>Interactive REPL</strong> — possible because lines are interpreted immediately</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 1: Runtime vs Compile-time Error Detection</div><div class="box-body"><div class="code-box"><pre><code># SyntaxError is caught BEFORE execution (static analysis)
+# def bad(:          # SyntaxError -- Python detects before line 1 runs
+ 
+# NameError only caught when the faulty line actually executes
+def process(items):
+    result = []
+    for item in items:
+        result.append(item * 2)   # line 4: runs fine
+    return undefined_var           # line 5: NameError raised HERE
+ 
+process([1, 2, 3])   # lines 1-4 execute successfully, crash on line 5
+# NameError: name &#x27;undefined_var&#x27; is not defined</code></pre></div>
+<p><strong>Takeaway:</strong> Python executes code up to the point of failure. In a compiled
+language such code would be caught before any execution.</p></div></div>
+<div class="example-box"><div class="box-title">Example 2: Inspecting Bytecode with <code>dis</code></div><div class="box-body"><div class="code-box"><pre><code>import dis
+ 
+def multiply(a, b):
+    return a * b
+ 
+dis.dis(multiply)
+# Bytecode output (Python 3.11+):
+#   3           RESUME          0
+#   4           LOAD_FAST       0 (a)
+#               LOAD_FAST       1 (b)
+#               BINARY_OP       5 (*)
+#               RETURN_VALUE</code></pre></div>
+<p>The <code>dis</code> module reveals the actual bytecode instructions the PVM executes.
+Each <code>LOAD_FAST</code> pushes a local variable onto the evaluation stack;
+<code>BINARY_OP</code> pops two operands, multiplies them, and pushes the result.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3: Dynamic Execution with <code>eval</code> and <code>exec</code></div><div class="box-body"><div class="code-box"><pre><code># eval: evaluates an expression string, returns result
+expr = &quot;3 ** 4 + len(&#x27;hello&#x27;)&quot;
+result = eval(expr)
+print(result)   # 86
+ 
+# exec: executes a block of Python code from a string
+code = &quot;&quot;&quot;
+def greet(name):
+    return f&quot;Hello, {name}!&quot;
+ 
+message = greet(&quot;GATE&quot;)
+&quot;&quot;&quot;
+namespace = {}
+exec(code, namespace)
+print(namespace[&quot;message&quot;])   # Hello, GATE!
+ 
+# Practical: dynamic formula evaluator
+formula = input(&quot;Enter formula: &quot;)   # user types: 2*x + 3
+x = 10
+print(eval(formula))   # 23</code></pre></div>
+<p><code>eval</code>/<code>exec</code> are possible <em>only</em> because Python is interpreted:
+bytecode is compiled and run at runtime from a string.</p></div></div>
+</section>
+<section id="dynamically-typed" class="content-section level-3">
+<h4 class="section-heading">Dynamically Typed</h4>
+<div class="concept-box"><div class="box-title">Dynamic Typing --- Definition</div><div class="box-body"><p>In a <strong>dynamically typed</strong> language, <em>type information is associated with
+values (objects), not with variables</em>. A variable is merely a <strong>label</strong> (name
+binding) that can be rebound to any object of any type at any time.</p>
+<p><strong>Formally:</strong> Type checking is performed at <em>runtime</em> (not compile time).
+The type of a variable is determined by the type of the object it currently refers to.</p>
+<p><strong>Contrast with static typing</strong> (C, Java, Rust):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Properties of Dynamic Typing in Python</div><div class="box-body"><ul><li><p><strong>Variable has no type</strong> — <code>x = 5</code> then <code>x = "hi"</code> is perfectly legal</p></li><li><p><strong>Object has a type</strong> — every object carries type info: <code>type(42)</code> $\to$ <code>&lt;class 'int'&gt;</code></p></li><li><p><strong>Type checking at runtime</strong> — <code>TypeError</code> raised when an <em>operation</em> is attempted on an incompatible type</p></li><li><p><strong>Duck typing</strong> — “if it walks like a duck and quacks like a duck…” — Python checks <em>capabilities</em>, not declared types</p></li><li><p><strong>Optional static type hints</strong> (<code>PEP 484</code>) — <code>x: int = 5</code> is a <em>hint</em> only; Python itself does <strong>not</strong> enforce it at runtime (tools like <code>mypy</code> do)</p></li><li><p><strong>Identity vs equality</strong> — <code>id(obj)</code> returns unique identity; <code>is</code> checks identity, <code>==</code> checks value equality</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 4: Variable Rebinding and <code>type()</code> / <code>id()</code></div><div class="box-body"><div class="code-box"><pre><code>x = 42
+print(type(x), id(x))   # &lt;class &#x27;int&#x27;&gt;  9789376
+ 
+x = &quot;hello&quot;
+print(type(x), id(x))   # &lt;class &#x27;str&#x27;&gt;  140223847823984
+ 
+x = [1, 2, 3]
+print(type(x), id(x))   # &lt;class &#x27;list&#x27;&gt; 140223847701248
+ 
+x = lambda n: n**2
+print(type(x), id(x))   # &lt;class &#x27;function&#x27;&gt; 140223846982144
+ 
+# id changes every time -- x now refers to a different object
+# The variable &#x27;x&#x27; itself has no type; its current referent does</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 5: Duck Typing in Practice</div><div class="box-body"><div class="code-box"><pre><code># Any object with __len__ works -- no type declaration needed
+def print_length(obj):
+    print(f&quot;Length: {len(obj)}&quot;)    # uses duck typing
+ 
+print_length(&quot;Python&quot;)          # Length: 6  (str has __len__)
+print_length([10, 20, 30])      # Length: 3  (list has __len__)
+print_length({&quot;a&quot;: 1, &quot;b&quot;: 2})  # Length: 2  (dict has __len__)
+# print_length(42)              # TypeError: &#x27;int&#x27; has no len()
+ 
+# Same function works for any &quot;sized&quot; object -- no isinstance() check!
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+print_length(arr)               # Length: 4</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 6: Type Hints (PEP 484) --- Optional Static Annotation</div><div class="box-body"><div class="code-box"><pre><code># Type hints are ADVISORY ONLY -- Python does NOT enforce them
+def add(a: int, b: int) -&gt; int:
+    return a + b
+ 
+print(add(3, 4))       # 7   -- correct usage
+print(add(&quot;x&quot;, &quot;y&quot;))   # xy  -- no runtime error! hint is ignored
+ 
+# Runtime check (explicit) using isinstance
+def safe_add(a: int, b: int) -&gt; int:
+    if not (isinstance(a, int) and isinstance(b, int)):
+        raise TypeError(f&quot;Expected int, got {type(a)}, {type(b)}&quot;)
+    return a + b
+ 
+safe_add(&quot;x&quot;, &quot;y&quot;)
+# TypeError: Expected int, got &lt;class &#x27;str&#x27;&gt;, &lt;class &#x27;str&#x27;&gt;</code></pre></div>
+<p>Use <code>mypy</code> or <code>pyright</code> externally to enforce type hints statically.</p></div></div>
+</section>
+<section id="strongly-typed" class="content-section level-3">
+<h4 class="section-heading">Strongly Typed</h4>
+<div class="concept-box"><div class="box-title">Strong Typing --- Definition</div><div class="box-body"><p>A language is <strong>strongly typed</strong> when it does <em>not perform implicit type
+coercions</em> between unrelated types. Operations on incompatible types raise a
+<code>TypeError</code> rather than silently converting one operand.</p>
+<p><strong>Formal distinction:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+<p>Python is <strong>both</strong> dynamically typed <em>and</em> strongly typed.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Strong Typing Rules in Python</div><div class="box-body"><ul><li><p><strong>No implicit string$\leftrightarrow$int coercion</strong>:
+        <code>"5" + 3</code> raises <code>TypeError</code>; must use <code>int("5") + 3</code></p></li><li><p><strong>Boolean is a subtype of int</strong>: <code>True</code> behaves as <code>1</code> and
+        <code>False</code> as <code>0</code> (this is the <em>only</em> notable implicit coercion)</p></li><li><p><strong>Explicit conversion always required</strong>: <code>str()</code>, <code>int()</code>,
+        <code>float()</code>, <code>list()</code> etc.\ must be called manually</p></li><li><p><strong>Comparison across types returns <code>False</code></strong>: <code>1 == "1"</code> is
+        <code>False</code> (not a TypeError) but <code>1 &lt; "1"</code> raises <code>TypeError</code></p></li><li><p><strong><code>+</code> for numbers means addition; for strings means concatenation</strong>:
+        mixing raises <code>TypeError</code></p></li><li><p><strong>Operator overloading is explicit</strong>: classes define <code>__add__</code>,
+        <code>__mul__</code> etc.\ to control behaviour</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 7: Strong Typing --- Implicit Coercion Blocked</div><div class="box-body"><div class="code-box"><pre><code># ------ TypeError cases (strong typing) ------
+try:
+    result = &quot;Age: &quot; + 25          # can&#x27;t concat str + int
+except TypeError as e:
+    print(e)   # can only concatenate str (not &quot;int&quot;) to str
+ 
+try:
+    result = &quot;3&quot; * 1.5             # str * float not defined
+except TypeError as e:
+    print(e)   # can&#x27;t multiply sequence by non-int of type &#x27;float&#x27;
+ 
+# ------ Explicit conversion (correct way) ------
+result = &quot;Age: &quot; + str(25)         # &quot;Age: 25&quot;
+result = int(&quot;3&quot;) * 2              # 6
+result = float(&quot;3.14&quot;) + 1         # 4.14
+ 
+# ------ bool IS int (one exception) ------
+print(True + 1)       # 2   (True == 1)
+print(False * 10)     # 0   (False == 0)
+print(sum([True, True, False, True]))  # 3  (useful for counting)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 8: Cross-type Comparisons</div><div class="box-body"><div class="code-box"><pre><code># == works across types (returns False, not error)
+print(1 == &quot;1&quot;)       # False
+print(1 == 1.0)       # True  (int and float compare by value)
+print(True == 1)      # True  (bool is subtype of int)
+print(True == 1.0)    # True
+ 
+# &lt; / &gt; raise TypeError for unrelated types (Python 3)
+try:
+    print(1 &lt; &quot;2&quot;)
+except TypeError as e:
+    print(e)   # &#x27;&lt;&#x27; not supported between instances of &#x27;int&#x27; and &#x27;str&#x27;
+ 
+# In Python 2, this used to silently return an arbitrary ordering!
+# Python 3 fixed this -- another example of stronger type discipline.</code></pre></div></div></div>
+</section>
+<section id="everything-is-an-object" class="content-section level-3">
+<h4 class="section-heading">Everything is an Object</h4>
+<div class="concept-box"><div class="box-title">Python's Unified Object Model</div><div class="box-body"><p>In Python, <strong>every value is an object</strong> — an instance of some class. This
+includes:</p>
+<ul><li><p>Primitive values: <code>42</code>, <code>3.14</code>, <code>True</code>, <code>None</code></p></li><li><p>Collections: <code>list</code>, <code>tuple</code>, <code>dict</code>, <code>set</code></p></li><li><p>Functions and lambda expressions</p></li><li><p>Classes themselves (instances of <code>type</code>)</p></li><li><p>Modules and packages</p></li><li><p>Frames, code objects, tracebacks</p></li></ul>
+<p><strong>Every object has:</strong></p>
+<ol><li><p><strong>Identity</strong> — unique integer, returned by <code>id(obj)</code>
+        (CPython: memory address)</p></li><li><p><strong>Type</strong> — the class it belongs to, returned by <code>type(obj)</code></p></li><li><p><strong>Value</strong> — the data it holds</p></li></ol>
+<p>All objects ultimately inherit from the built-in class <code>object</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">First-Class Objects in Python</div><div class="box-body"><p>In Python, <strong>first-class object</strong> means an entity that can be:</p>
+<ul><li><p><strong>Assigned to a variable</strong>: <code>f = len</code></p></li><li><p><strong>Passed as an argument</strong>: <code>map(str, [1,2,3])</code></p></li><li><p><strong>Returned from a function</strong>: closures, decorators</p></li><li><p><strong>Stored in a data structure</strong>: <code>ops = [add, sub, mul]</code></p></li><li><p><strong>Has attributes and methods</strong>: <code>f.__name__</code>, <code>(42).bit_length()</code></p></li></ul>
+<p>This applies to <em>functions, classes, modules, and all built-in types</em>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 9: Functions and Classes as Objects</div><div class="box-body"><div class="code-box"><pre><code># Functions are objects
+def square(n):
+    return n ** 2
+ 
+print(type(square))          # &lt;class &#x27;function&#x27;&gt;
+print(square.__name__)       # square
+print(square.__code__.co_varnames)  # (&#x27;n&#x27;,)
+ 
+% Assign function to a variable
+f = square
+print(f(7))                  # 49
+ 
+% Store functions in a list
+ops = [abs, str, type, id]
+for op in ops:
+    print(op(-5))            # 5 / &#x27;-5&#x27; / &lt;class &#x27;int&#x27;&gt; / 9789280
+ 
+% Classes are objects too (instances of &#x27;type&#x27;)
+class Dog:
+    sound = &quot;Woof&quot;
+ 
+print(type(Dog))             # &lt;class &#x27;type&#x27;&gt;
+print(Dog.__bases__)         # (&lt;class &#x27;object&#x27;&gt;,)
+print(Dog.__dict__[&#x27;sound&#x27;]) # Woof
+ 
+% Create a class dynamically using type()
+Cat = type(&quot;Cat&quot;, (object,), {&quot;sound&quot;: &quot;Meow&quot;, &quot;legs&quot;: 4})
+c = Cat()
+print(c.sound, c.legs)       # Meow 4</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 10: Integers and Strings Have Methods --- They Are Objects</div><div class="box-body"><div class="code-box"><pre><code># int methods
+n = 255
+print(n.bit_length())        # 8   (255 = 1111_1111)
+print(n.to_bytes(2, &#x27;big&#x27;))  # b&#x27;\x00\xff&#x27;
+print((1_000_000).bit_count()) # 7 (Python 3.10+)
+ 
+# float methods
+x = 3.75
+print(x.is_integer())        # False
+print(x.as_integer_ratio())  # (15, 4)
+ 
+# str methods
+s = &quot;gate exam&quot;
+print(s.upper())             # GATE EXAM
+print(s.title())             # Gate Exam
+print(s.count(&#x27;a&#x27;))          # 2
+ 
+# bool is int subclass
+print(isinstance(True, int))  # True</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 11: Modules and None Are Objects</div><div class="box-body"><div class="code-box"><pre><code>import math
+ 
+# Module is an object
+print(type(math))              # &lt;class &#x27;module&#x27;&gt;
+print(math.__name__)           # math
+print(math.__file__)           # /usr/lib/python3.x/lib-dynload/...
+print(dir(math)[:5])           # [&#x27;__doc__&#x27;, &#x27;__loader__&#x27;, ...]
+ 
+# None is a singleton object
+print(type(None))              # &lt;class &#x27;NoneType&#x27;&gt;
+print(id(None) == id(None))    # True  (same singleton)
+ 
+# Checking for None: use &#x27;is&#x27;, not &#x27;==&#x27;
+result = None
+if result is None:             # correct idiom
+    print(&quot;No result yet&quot;)</code></pre></div></div></div>
+</section>
+<section id="indentation-defines-blocks" class="content-section level-3">
+<h4 class="section-heading">Indentation Defines Blocks</h4>
+<div class="concept-box"><div class="box-title">Indentation as Block Structure</div><div class="box-body"><p>Python uses <strong>consistent indentation</strong> (whitespace at the start of a line) to
+delimit <strong>code blocks</strong>, replacing the braces <code>{}</code> used by C, Java, and
+many other languages.</p>
+<p><strong>Rule:</strong> All statements in a block must be indented by the <em>same number of
+spaces</em>. The block begins after a colon (<code>:</code>) on the preceding line and ends
+when indentation decreases back to the enclosing level.</p>
+<p><strong>Recommendation (PEP 8):</strong> use <strong>4 spaces</strong> per indentation level.
+<em>Never mix tabs and spaces</em> (raises <code>TabError</code> in Python 3).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Indentation Rules and Common Errors</div><div class="box-body"><ul><li><p><strong>Colon triggers a new block</strong>: after <code>if</code>, <code>elif</code>, <code>else</code>,
+        <code>for</code>, <code>while</code>, <code>def</code>, <code>class</code>, <code>with</code>,
+        <code>try/except</code></p></li><li><p><strong>Consistent spacing required</strong>: mixing 2-space and 4-space indentation
+        inside the same block raises <code>IndentationError</code></p></li><li><p><strong>Tabs vs spaces</strong>: Python 3 forbids mixing tabs and spaces
+        (<code>TabError</code>)</p></li><li><p><strong><code>pass</code> placeholder</strong>: used to create an empty block:
+        <code>def todo(): pass</code></p></li><li><p><strong>Continuation lines</strong>: long expressions can span multiple lines inside
+        parentheses, brackets, or braces — indentation of continuation lines is
+        flexible</p></li><li><p><strong>One-liner blocks</strong>: allowed but not recommended:
+        <code>if x &gt; 0: print(x)</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 12: Correct vs Incorrect Indentation</div><div class="box-body"><div class="code-box"><pre><code># CORRECT: consistent 4-space blocks
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+ 
+print(factorial(5))   # 120
+ 
+# ─── ERRORS ───────────────────────────────────────────────────
+# IndentationError: unexpected indent
+# def broken():
+#     x = 1
+#       y = 2     # &lt;-- extra spaces, not a new block!
+ 
+# IndentationError: expected an indented block
+# def empty():
+# print(&quot;hi&quot;)     # nothing indented after def
+ 
+# TabError (Python 3): inconsistent use of tabs and spaces
+# def mixed():
+#     x = 1       # 4 spaces
+# 	y = 2     # 1 tab  --&gt;  TabError!</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 13: Nested Blocks and <code>pass</code></div><div class="box-body"><div class="code-box"><pre><code>matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+ 
+# Three levels of nesting
+for i, row in enumerate(matrix):       # level 1 block
+    for j, val in enumerate(row):      # level 2 block
+        if val % 2 == 0:               # level 3 block
+            print(f&quot;[{i}][{j}] = {val} (even)&quot;)
+        else:
+            pass                       # deliberate no-op
+ 
+# Output:
+# [0][1] = 2 (even)
+# [1][0] = 4 (even)
+# [1][2] = 6 (even)
+# [2][1] = 8 (even)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 14: Line Continuation Inside Parentheses</div><div class="box-body"><div class="code-box"><pre><code># Long expressions: parentheses allow free indentation
+result = (
+    10
+    + 20
+    + 30
+    + 40
+)
+print(result)   # 100
+ 
+# Long function call
+output = sorted(
+    [&#x27;banana&#x27;, &#x27;apple&#x27;, &#x27;cherry&#x27;, &#x27;date&#x27;],
+    key=len,
+    reverse=True
+)
+print(output)   # [&#x27;banana&#x27;, &#x27;cherry&#x27;, &#x27;apple&#x27;, &#x27;date&#x27;]
+ 
+# Backslash continuation (avoid when possible)
+total = 10 + \
+        20 + \
+        30
+print(total)    # 60</code></pre></div></div></div>
+</section>
+<section id="cpython-reference-implementation-execution-model" class="content-section level-3">
+<h4 class="section-heading">CPython: Reference Implementation &amp; Execution Model</h4>
+<div class="concept-box"><div class="box-title">CPython --- The Reference Implementation</div><div class="box-body"><p><strong>CPython</strong> is the <em>official, reference implementation</em> of Python, written
+in C. When people say “Python”, they almost always mean CPython.</p>
+<p><strong>Other implementations</strong> exist for specific use cases:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div>
+<p>All conforming implementations follow the <strong>Python Language Reference</strong>
+(<code>docs.python.org/3/reference</code>).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div>
+<p>}</p>
+<div class="concept-box"><div class="box-title">The Global Interpreter Lock (GIL)</div><div class="box-body"><p>The <strong>GIL</strong> is a mutex (lock) in CPython that allows only <strong>one thread</strong> to
+execute Python bytecode at a time, even on multi-core hardware.</p>
+<p><strong>Why it exists:</strong> CPython's memory management (reference counting) is not
+thread-safe. The GIL prevents race conditions by serialising access.</p>
+<p><strong>Consequences:</strong></p>
+<ul><li><p><strong>CPU-bound multithreading</strong> gives no speedup (threads take turns holding the GIL)</p></li><li><p><strong>I/O-bound multithreading</strong> works well (GIL is released during I/O waits)</p></li><li><p><strong>Multiprocessing</strong> (<code>multiprocessing</code> module) bypasses GIL — each
+        process has its own GIL</p></li><li><p><strong>C extensions</strong> can release the GIL manually (NumPy does this)</p></li></ul>
+<p><strong>Python 3.13+</strong>: experimental “free-threaded” build (<code>–disable-gil</code>)
+is in progress under PEP 703.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">CPython Memory Management Model</div><div class="box-body"><ul><li><p><strong>Reference Counting</strong>: every object stores <code>ob_refcnt</code>; when count
+        drops to zero the object is immediately deallocated</p></li><li><p><strong>Cyclic GC</strong>: a generational garbage collector handles
+        <em>reference cycles</em> (objects referencing each other)
+        that reference counting alone cannot reclaim</p></li><li><p><strong>Small-integer cache</strong>: CPython caches integers
+        $-5$ to $256$; <code>id(5) is id(5)</code> is always <code>True</code></p></li><li><p><strong>String interning</strong>: short strings and identifiers are interned
+        (one copy in memory); <code>sys.intern()</code> forces interning</p></li><li><p><strong>Memory allocator</strong>: CPython has its own arena/pool allocator
+        (<code>obmalloc</code>) for objects $\le 512$ bytes</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 15: Checking CPython Version and Implementation</div><div class="box-body"><div class="code-box"><pre><code>import sys
+import platform
+ 
+# Which implementation?
+print(sys.implementation.name)  # cpython
+print(sys.version)              # 3.11.5 (default, ...) [GCC 12.3.0]
+ 
+# Detailed version info
+print(sys.version_info)
+# sys.version_info(major=3, minor=11, micro=5, ...)
+ 
+# Platform
+print(platform.python_implementation())  # CPython
+print(platform.python_version())         # 3.11.5
+ 
+# Check if we can use free-threaded mode (3.13+)
+print(getattr(sys, &#x27;_is_gil_enabled&#x27;, lambda: True)())  # True (GIL on)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 16: Reference Counting and <code>sys.getrefcount</code></div><div class="box-body"><div class="code-box"><pre><code>import sys
+ 
+x = []                        # ref count = 1 (x)
+print(sys.getrefcount(x))     # 2 (x + getrefcount argument)
+ 
+y = x                         # ref count = 2 (x and y)
+z = x                         # ref count = 3
+print(sys.getrefcount(x))     # 4 (x, y, z + getrefcount arg)
+ 
+del y                         # ref count = 3
+del z                         # ref count = 2
+# When ref count reaches 0, object is immediately freed
+ 
+# Small-int cache: same object for -5..256
+a = 100; b = 100
+print(a is b)    # True  (same cached object)
+print(id(a) == id(b))  # True
+ 
+a = 1000; b = 1000
+print(a is b)    # False  (outside cache range, different objects)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 17: GIL Effect --- CPU-bound Threads vs Processes</div><div class="box-body"><div class="code-box"><pre><code>import threading
+import multiprocessing
+import time
+ 
+def count_down(n):
+    while n &gt; 0:
+        n -= 1
+ 
+N = 50_000_000
+ 
+# ── Single thread ──────────────────────────────────────────
+t0 = time.perf_counter()
+count_down(N)
+print(f&quot;Single  : {time.perf_counter()-t0:.2f}s&quot;)   # ~1.8s
+ 
+# ── Two threads (GIL prevents true parallelism) ────────────
+t0 = time.perf_counter()
+t1 = threading.Thread(target=count_down, args=(N//2,))
+t2 = threading.Thread(target=count_down, args=(N//2,))
+t1.start(); t2.start(); t1.join(); t2.join()
+print(f&quot;Threads : {time.perf_counter()-t0:.2f}s&quot;)   # ~1.9s  (not faster!)
+ 
+# ── Two processes (each has own GIL) ──────────────────────
+t0 = time.perf_counter()
+p1 = multiprocessing.Process(target=count_down, args=(N//2,))
+p2 = multiprocessing.Process(target=count_down, args=(N//2,))
+p1.start(); p2.start(); p1.join(); p2.join()
+print(f&quot;Processes: {time.perf_counter()-t0:.2f}s&quot;)  # ~0.9s  (2x faster!)</code></pre></div>
+<p><strong>Conclusion:</strong> For CPU-bound tasks, use <code>multiprocessing</code> to escape the GIL.
+For I/O-bound tasks (network, disk), <code>threading</code> or <code>asyncio</code> is sufficient.</p></div></div>
+<div class="example-box"><div class="box-title">Example 18: The <code>ast</code> Module --- Inspecting the Parse Tree</div><div class="box-body"><div class="code-box"><pre><code>import ast
+ 
+source = &quot;&quot;&quot;
+x = 10
+y = x * 2 + 1
+print(y)
+&quot;&quot;&quot;
+ 
+tree = ast.parse(source)
+print(ast.dump(tree, indent=2))
+# Module(body=[
+#   Assign(targets=[Name(id=&#x27;x&#x27;, ...)], value=Constant(value=10)),
+#   Assign(targets=[Name(id=&#x27;y&#x27;, ...)],
+#          value=BinOp(
+#            left=BinOp(left=Name(id=&#x27;x&#x27;), op=Mult(), right=Constant(2)),
+#            op=Add(), right=Constant(1))),
+#   Expr(value=Call(func=Name(id=&#x27;print&#x27;), args=[Name(id=&#x27;y&#x27;)]))
+# ])
+ 
+# Walk the AST to find all function calls
+for node in ast.walk(tree):
+    if isinstance(node, ast.Call):
+        if isinstance(node.func, ast.Name):
+            print(f&quot;Call: {node.func.id}&quot;)   # Call: print</code></pre></div>
+<p>This shows exactly what CPython's parser produces before the compiler
+converts the AST to bytecode instructions.</p></div></div>
+</section>
+</section>
+<section id="running-python" class="content-section level-2">
+<h3 class="section-heading">Running Python</h3>
+
+<section id="interactive-mode-repl" class="content-section level-3">
+<h4 class="section-heading">Interactive Mode (REPL)</h4>
+<div class="concept-box"><div class="box-title">REPL --- Read-Eval-Print Loop</div><div class="box-body"><p><strong>REPL</strong> stands for <strong>Read-Eval-Print Loop</strong>.  Python's interactive
+interpreter starts when you run <code>python3</code> (or <code>python</code>) with no
+arguments.  Each expression you type is <em>read</em>, <em>evaluated</em>, and its
+result <em>printed</em> before the prompt reappears.</p>
+<p><strong>Key features:</strong></p>
+<ul><li><p><strong>Immediate feedback</strong> — ideal for exploration and debugging</p></li><li><p><strong><code>_</code> (underscore)</strong> stores the last expression result</p></li><li><p><strong><code>help(obj)</code></strong> shows inline documentation</p></li><li><p><strong><code>dir(obj)</code></strong> lists all attributes/methods</p></li><li><p>Enhanced REPLs: <strong>IPython</strong>, <strong>Jupyter Notebook</strong> (cells = mini-REPL)</p></li><li><p>Exit with <code>exit()</code>, <code>quit()</code>, or <code>Ctrl+D</code> (Unix) / <code>Ctrl+Z</code> (Windows)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 19: REPL --- Underscore and Quick Exploration</div><div class="box-body"><div class="code-box"><pre><code>&gt;&gt;&gt; 100 / 7
+14.285714285714286
+&gt;&gt;&gt; round(_, 2)         # _ holds last result
+14.29
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.factorial(10)
+3628800
+&gt;&gt;&gt; _ / math.factorial(9)   # _ = 3628800
+10.0
+&gt;&gt;&gt; type(_)
+&lt;class &#x27;float&#x27;&gt;
+&gt;&gt;&gt; dir(math)[:6]
+[&#x27;__doc__&#x27;, &#x27;__file__&#x27;, &#x27;__loader__&#x27;, &#x27;__name__&#x27;, &#x27;__package__&#x27;, &#x27;__spec__&#x27;]</code></pre></div></div></div>
+</section>
+<section id="script-mode-and-texttt-name" class="content-section level-3">
+<h4 class="section-heading">Script Mode and <code>__name__</code></h4>
+<div class="concept-box"><div class="box-title">Script Mode and <code>if __name__ == "__main__"</code></div><div class="box-body"><p><strong>Script mode</strong>: Python executes a <code>.py</code> file top to bottom when run as:<br>
+<code>python3 script.py</code></p>
+<p>Every module has a built-in attribute <code>__name__</code>:</p>
+<ul><li><p>When a file is <strong>run directly</strong>: <code>__name__</code> is set to <code>"__main__"</code></p></li><li><p>When a file is <strong>imported</strong>: <code>__name__</code> is set to the <em>module name</em>
+        (e.g.\ <code>"utils"</code>)</p></li></ul>
+<p>The guard <code>if __name__ == "__main__":</code> lets you write code that runs
+<em>only when the file is the entry point</em>, not when it is imported as a library.
+This is the standard Python idiom for making a file both <strong>importable</strong> and
+<strong>executable</strong>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Script Mode Execution Characteristics</div><div class="box-body"><ul><li><p>Command-line arguments passed via <code>sys.argv</code> (list of strings;
+        <code>sys.argv[0]</code> is the script name)</p></li><li><p><code>python3 -c "print('hello')"</code> runs a one-liner without a file</p></li><li><p><code>python3 -m module</code> runs a module as a script (e.g.\
+        <code>python3 -m http.server</code>)</p></li><li><p><code>python3 -i script.py</code> runs the script then drops into REPL</p></li><li><p>Return code: <code>0</code> on success; non-zero on error
+        (<code>sys.exit(code)</code>)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 20: Script with <code>__main__</code> Guard</div><div class="box-body"><div class="code-box"><pre><code># ---------- utils.py ----------
+def add(a, b):
+    return a + b
+ 
+def multiply(a, b):
+    return a * b
+ 
+if __name__ == &quot;__main__&quot;:
+    # Only runs when: python3 utils.py
+    # Skipped when:   import utils
+    print(&quot;Testing utils module...&quot;)
+    print(add(3, 4))       # 7
+    print(multiply(3, 4))  # 12</code></pre></div>
+<div class="code-box"><pre><code># ---------- main.py ----------
+import utils                  # __name__ in utils is &quot;utils&quot;
+                               # guard block does NOT run
+ 
+result = utils.add(10, 20)
+print(result)                  # 30</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 21: Command-line Arguments with <code>sys.argv</code></div><div class="box-body"><div class="code-box"><pre><code># calculator.py
+import sys
+ 
+if len(sys.argv) != 4:
+    print(&quot;Usage: python3 calculator.py &lt;num1&gt; &lt;op&gt; &lt;num2&gt;&quot;)
+    sys.exit(1)
+ 
+a  = float(sys.argv[1])
+op =       sys.argv[2]
+b  = float(sys.argv[3])
+ 
+ops = {&#x27;+&#x27;: a+b, &#x27;-&#x27;: a-b, &#x27;*&#x27;: a*b, &#x27;/&#x27;: a/b}
+if op not in ops:
+    print(f&quot;Unknown operator: {op}&quot;)
+    sys.exit(2)
+ 
+print(f&quot;{a} {op} {b} = {ops[op]}&quot;)
+ 
+# Usage:  python3 calculator.py 10 + 3.5
+# Output: 10.0 + 3.5 = 13.5</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="variables-assignment" class="content-section level-1">
+<h2 class="section-heading">Variables &amp; Assignment</h2>
+
+<section id="naming-rules" class="content-section level-2">
+<h3 class="section-heading">Naming Rules</h3>
+
+<section id="identifier-rules" class="content-section level-3">
+<h4 class="section-heading">Identifier Rules</h4>
+<div class="concept-box"><div class="box-title">Python Identifier Rules</div><div class="box-body"><p>An <strong>identifier</strong> is a name given to a variable, function, class, or module.
+Python's lexical rules:</p>
+<ol><li><p>Must begin with a <strong>letter</strong> (<code>a–z</code>, <code>A–Z</code>) or
+        <strong>underscore</strong> (<code>_</code>)</p></li><li><p>Subsequent characters may be <strong>letters, digits (0–9), or underscores</strong></p></li><li><p><strong>No spaces, hyphens, or special characters</strong></p></li><li><p><strong>Case-sensitive</strong>: <code>count</code>, <code>Count</code>, <code>COUNT</code> are
+        three distinct names</p></li><li><p><strong>Reserved keywords</strong> cannot be used as identifiers</p></li></ol>
+<p><strong>Keywords</strong> (Python 3.12): <code>False, None, True, and, as, assert,
+async, await, break, class, continue, def, del, elif, else, except, finally,
+for, from, global, if, import, in, is, lambda, nonlocal, not, or, pass, raise,
+return, try, while, with, yield</code></p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Naming Conventions (PEP 8)</div><div class="box-body"><ul><li><p><strong><code>snake_case</code></strong> — variables and functions:
+        <code>total_marks</code>, <code>get_data()</code></p></li><li><p><strong><code>PascalCase</code></strong> (CapWords) — classes:
+        <code>NeuralNetwork</code>, <code>DataLoader</code></p></li><li><p><strong><code>UPPER_SNAKE_CASE</code></strong> — constants:
+        <code>MAX_EPOCHS</code>, <code>PI</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 22: Identifier Validity and <code>keyword</code> Module</div><div class="box-body"><div class="code-box"><pre><code>import keyword
+ 
+# Check all keywords
+print(keyword.kwlist)
+# [&#x27;False&#x27;, &#x27;None&#x27;, &#x27;True&#x27;, &#x27;and&#x27;, &#x27;as&#x27;, &#x27;assert&#x27;, ...]
+ 
+# Check if a name is a keyword
+print(keyword.iskeyword(&quot;for&quot;))      # True
+print(keyword.iskeyword(&quot;forEach&quot;))  # False  (valid identifier)
+print(keyword.iskeyword(&quot;GATE&quot;))     # False
+ 
+# Python is case-sensitive
+Value = 100
+value = 200
+VALUE = 300
+print(Value, value, VALUE)   # 100 200 300 -- three separate variables
+ 
+# Soft keywords (Python 3.10+): valid identifiers, context-dependent
+# match, case, type -- can still be used as variable names
+match = 5       # valid (match is a soft keyword)
+case  = &quot;test&quot;  # valid
+print(match, case)</code></pre></div></div></div>
+</section>
+</section>
+<section id="assignment-mechanics" class="content-section level-2">
+<h3 class="section-heading">Assignment Mechanics</h3>
+
+<section id="variable-as-name-binding" class="content-section level-3">
+<h4 class="section-heading">Variable as Name Binding</h4>
+<div class="concept-box"><div class="box-title">Variable = Name Bound to an Object</div><div class="box-body"><p>Unlike C/Java where a variable is a <em>typed memory box</em>, a Python variable is
+simply a <strong>name</strong> stored in a <em>namespace dictionary</em> that <strong>refers
+(points) to an object</strong> in memory.</p>
+<p><strong>Assignment does not copy data</strong> — it binds a name to an existing (or newly
+created) object.</p>
+<p>Consequences:</p>
+<ul><li><p>Re-assigning a name does not modify the old object</p></li><li><p>Multiple names can point to the same object</p></li><li><p>Passing a variable to a function passes the <em>reference</em>
+        (call-by-object-reference / call-by-sharing)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Assignment Forms in Python</div><div class="box-body"><ul><li><p><strong>Simple</strong>: <code>x = 10</code></p></li><li><p><strong>Multiple (chained)</strong>: <code>a = b = c = 0</code> — all names bound to
+        the <em>same</em> object</p></li><li><p><strong>Augmented</strong>: <code>x += 1</code> — equivalent to
+        <code>x = x + 1</code> for immutables; in-place mutation for mutables
+        (list, set, dict)</p></li><li><p><strong>Tuple/simultaneous</strong>: <code>a, b = 1, 2</code> —
+        RHS fully evaluated before any binding</p></li><li><p><strong>Extended unpacking</strong>: <code>first, *rest = iterable</code> —
+        <code>*</code> captures remaining items as a list</p></li><li><p><strong>Walrus operator (<code>:=</code>, PEP 572, Python 3.8+)</strong>:
+        assigns and returns in one expression — used in <code>while</code>/<code>if</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 23: All Assignment Forms in Action</div><div class="box-body"><div class="code-box"><pre><code># Simple
+x = 10
+ 
+# Multiple (all point to the same object)
+a = b = c = []
+a.append(1)
+print(b)           # [1]  -- b IS a (same object!)
+ 
+# Augmented assignment
+n = 5
+n += 3             # n = 8
+n **= 2            # n = 64
+n //= 7            # n = 9
+print(n)           # 9
+ 
+# Tuple / simultaneous swap
+x, y = 10, 20
+x, y = y, x       # swap -- RHS evaluated first as (20,10)
+print(x, y)        # 20 10
+ 
+# Extended unpacking
+first, *middle, last = [1, 2, 3, 4, 5]
+print(first)       # 1
+print(middle)      # [2, 3, 4]
+print(last)        # 5
+ 
+# Nested unpacking
+(a, b), c = (1, 2), 3
+print(a, b, c)     # 1 2 3
+ 
+# Walrus operator (Python 3.8+)
+data = [1, 3, 7, 9, 2]
+if (n := len(data)) &gt; 3:
+    print(f&quot;List has {n} elements&quot;)   # List has 5 elements</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 24: Augmented Assignment --- Mutable vs Immutable Difference</div><div class="box-body"><div class="code-box"><pre><code># IMMUTABLE (int, str, tuple): += creates a new object
+x = 5
+print(id(x))   # e.g., 9789408
+x += 1
+print(id(x))   # different id -- new int object created
+ 
+# MUTABLE (list): += mutates IN-PLACE (__iadd__)
+lst = [1, 2, 3]
+print(id(lst))   # e.g., 140391234
+lst += [4, 5]    # calls lst.__iadd__([4,5]) -- same object!
+print(id(lst))   # SAME id
+print(lst)       # [1, 2, 3, 4, 5]
+ 
+# Compare with lst = lst + [4,5] which creates a NEW list
+lst2 = [1, 2, 3]
+old_id = id(lst2)
+lst2 = lst2 + [4, 5]   # creates new object
+print(id(lst2) == old_id)  # False</code></pre></div></div></div>
+</section>
+<section id="object-identity-vs-equality" class="content-section level-3">
+<h4 class="section-heading">Object Identity vs Equality</h4>
+<div class="concept-box"><div class="box-title"><code>==</code> vs <code>is</code> --- Equality vs Identity</div><div class="box-body"><ul><li><p><strong><code>==</code></strong> calls <code>__eq__</code>: tests whether two objects have
+        the <em>same value</em></p></li><li><p><strong><code>is</code></strong> compares <code>id()</code>: tests whether two names refer to
+        the <em>exact same object in memory</em></p></li></ul>
+<p><strong>Rule of thumb:</strong></p>
+<ul><li><p>Use <code>==</code> for <em>value</em> comparison in almost all cases</p></li><li><p>Use <code>is</code> only for <code>None</code>, <code>True</code>, <code>False</code> singletons</p></li><li><p>Never use <code>is</code> to compare integers, strings, or custom objects
+        (behaviour depends on implementation internals)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Integer Caching (CPython Implementation Detail)</div><div class="box-body"><ul><li><p>CPython pre-allocates <strong>singleton objects</strong> for integers
+        $\mathbf{-5}$ to $\mathbf{256}$</p></li><li><p>Any reference to these values in CPython always points to the <em>same
+        cached object</em></p></li><li><p>Outside this range, each literal may create a new object</p></li><li><p><strong>This is an implementation detail of CPython</strong>, not guaranteed by the
+        Python language specification</p></li><li><p><strong>String interning</strong> works similarly: short strings and identifiers are
+        often interned (same object); can be forced with <code>sys.intern()</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 25: <code>is</code> vs <code>==</code> --- When They Differ</div><div class="box-body"><div class="code-box"><pre><code># Cached integers: is works (coincidentally)
+a, b = 100, 100
+print(a == b)    # True  (same value)
+print(a is b)    # True  (same cached object in CPython)
+ 
+# Uncached integers: is WRONG to use
+c = 1000
+d = 1000
+print(c == d)    # True   (correct: value comparison)
+print(c is d)    # False  (different objects -- NEVER rely on this!)
+ 
+# None is a singleton -- use &#x27;is&#x27;
+def maybe():
+    pass   # returns None implicitly
+ 
+result = maybe()
+print(result == None)    # True  (works but bad style)
+print(result is None)    # True  (correct idiom)
+print(result is not None)# False
+ 
+# List comparison
+x = [1, 2, 3]
+y = [1, 2, 3]
+z = x
+print(x == y)    # True   (same values)
+print(x is y)    # False  (different objects)
+print(x is z)    # True   (z IS x -- same object)</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 26: <code>id()</code> and Memory Address</div><div class="box-body"><div class="code-box"><pre><code>import sys
+ 
+x = &quot;hello&quot;
+y = &quot;hello&quot;
+# CPython interns short string literals
+print(x is y)         # True (interned)
+print(id(x), id(y))   # same address
+ 
+# Force separate objects
+a = &quot;hello world&quot;
+b = &quot;hello world&quot;
+# May or may not be interned -- don&#x27;t rely on it
+print(a is b)         # True in some Python versions (compile-time intern)
+ 
+# Mutable objects are never shared (different id)
+p = [1, 2]
+q = [1, 2]
+print(p is q)         # False always
+print(id(p) != id(q)) # True
+ 
+# sys.intern forces string interning
+import sys
+s1 = sys.intern(&quot;gate exam result&quot;)
+s2 = sys.intern(&quot;gate exam result&quot;)
+print(s1 is s2)       # True -- guaranteed by intern</code></pre></div></div></div>
+</section>
+</section>
+</section>
+<section id="data-types" class="content-section level-1">
+<h2 class="section-heading">Data Types</h2>
+
+<section id="numeric-types" class="content-section level-2">
+<h3 class="section-heading">Numeric Types</h3>
+
+<section id="texttt-int-arbitrary-precision-integer" class="content-section level-3">
+<h4 class="section-heading"><code>int</code> --- Arbitrary-Precision Integer</h4>
+<div class="concept-box"><div class="box-title"><code>int</code> --- Definition and Precision</div><div class="box-body"><p>Python's <code>int</code> type stores <strong>arbitrary-precision integers</strong> — there is
+<em>no fixed size, no overflow, no <code>INT_MAX</code></em>. The only limit is available
+memory.</p>
+<p>Internally CPython represents small integers as C <code>long</code> and switches to a
+multi-digit “bignum” representation for large values (using base $2^{30}$ digits).</p>
+<p><strong>Literal forms:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"></div>
+<p>Underscore separator allowed anywhere for readability: <code>1_000_000</code>,
+<code>0xFF_AA_BB</code>.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Key <code>int</code> Properties and Methods</div><div class="box-body"><ul><li><p><strong>No overflow</strong>: <code>2**1000</code> is exact (a 302-digit number)</p></li><li><p><strong><code>bin(n)</code>, <code>oct(n)</code>, <code>hex(n)</code></strong>: convert to string in respective base</p></li><li><p><strong><code>int(s, base)</code></strong>: parse a string in given base:
+        <code>int("FF", 16)</code> $\to$ 255</p></li><li><p><strong><code>n.bit_length()</code></strong>: number of bits needed to represent $n$</p></li><li><p><strong><code>n.bit_count()</code> (3.10+)</strong>: count of set bits (popcount)</p></li><li><p><strong><code>n.to_bytes(length, byteorder)</code></strong>: convert to bytes object</p></li><li><p><strong><code>divmod(a,b)</code></strong>: returns <code>(a//b, a%b)</code> in one call</p></li><li><p><strong>Underscore literal</strong>: <code>1_000_000</code> for readability (ignored by Python)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 27: <code>int</code> --- Literals, Large Numbers, Bases</div><div class="box-body"><div class="code-box"><pre><code># Bases
+print(0b1010)         # 10   (binary)
+print(0o17)           # 15   (octal)
+print(0xFF)           # 255  (hex)
+print(0b1111_1111)    # 255  (binary with underscore)
+ 
+# Arbitrary precision
+big = 2 ** 100
+print(big)            # 1267650600228229401496703205376
+print(type(big))      # &lt;class &#x27;int&#x27;&gt;
+ 
+# No overflow (contrast with C int)
+print(10 ** 50)
+# 100000000000000000000000000000000000000000000000000
+ 
+# int methods
+n = 255
+print(bin(n))               # &#x27;0b11111111&#x27;
+print(oct(n))               # &#x27;0o377&#x27;
+print(hex(n))               # &#x27;0xff&#x27;
+print(n.bit_length())       # 8
+print((0b101010).bit_count())  # 3  (three 1-bits)
+ 
+# Parsing from string
+print(int(&quot;FF&quot;, 16))   # 255
+print(int(&quot;1010&quot;, 2))  # 10
+print(int(&quot;17&quot;, 8))    # 15
+ 
+# divmod
+q, r = divmod(17, 5)
+print(q, r)            # 3  2  (17 = 3*5 + 2)</code></pre></div></div></div>
+</section>
+<section id="texttt-float-ieee-754-double-precision" class="content-section level-3">
+<h4 class="section-heading"><code>float</code> --- IEEE 754 Double Precision</h4>
+<div class="concept-box"><div class="box-title"><code>float</code> --- Definition and IEEE 754</div><div class="box-body"><p>Python's <code>float</code> corresponds to a C <strong>double</strong> (64-bit IEEE 754):</p>
+<ul><li><p>1 sign bit, 11 exponent bits, 52 mantissa bits</p></li><li><p>Range: approximately $\pm 1.8 \times 10^{308}$</p></li><li><p>Precision: $\approx 15$–17 significant decimal digits</p></li></ul>
+<p><strong>Key consequence:</strong> many decimal fractions cannot be represented exactly in
+binary floating point:
+\[\texttt{0.1 + 0.2 = 0.30000000000000004} \neq 0.3\]
+This is <em>not a Python bug</em> — it is fundamental to IEEE 754.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title"><code>float</code> Properties and Best Practices</div><div class="box-body"><ul><li><p><strong>Special values</strong>: <code>float('inf')</code>, <code>float('-inf')</code>,
+        <code>float('nan')</code></p></li><li><p><strong>NaN</strong>: <code>nan != nan</code> is <code>True</code>; check with
+        <code>math.isnan(x)</code></p></li><li><p><strong>Approximate comparison</strong>: use <code>math.isclose(a, b, rel_tol=1e-9)</code>
+        never <code>==</code> for floats</p></li><li><p><strong><code>round(x, n)</code></strong>: rounds to $n$ decimal places
+        (banker's rounding for <code>.5</code>: rounds to nearest even)</p></li><li><p><strong><code>Decimal</code> module</strong>: exact decimal arithmetic
+        (financial/scientific use)</p></li><li><p><strong><code>fractions.Fraction</code></strong>: exact rational arithmetic</p></li><li><p>Scientific notation: <code>1.5e3</code> $= 1500.0$, <code>2.5e-4</code> $= 0.00025$</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 28: Float Precision and <code>math.isclose</code></div><div class="box-body"><div class="code-box"><pre><code>import math
+ 
+% Floating-point representation error
+print(0.1 + 0.2)              # 0.30000000000000004
+print(0.1 + 0.2 == 0.3)       # False  (!!)
+print(math.isclose(0.1+0.2, 0.3))  # True  (correct way)
+ 
+% Special values
+inf = float(&#x27;inf&#x27;)
+nan = float(&#x27;nan&#x27;)
+print(inf &gt; 10**100)     # True
+print(inf + inf)         # inf
+print(inf - inf)         # nan
+print(nan == nan)        # False  (NaN is never equal to anything)
+print(math.isnan(nan))   # True
+ 
+% Exact decimal arithmetic
+from decimal import Decimal
+print(Decimal(&quot;0.1&quot;) + Decimal(&quot;0.2&quot;))   # 0.3  (exact!)
+ 
+% Fraction arithmetic
+from fractions import Fraction
+print(Fraction(1,3) + Fraction(1,6))     # 1/2  (exact)
+ 
+% round() uses banker&#x27;s rounding
+print(round(0.5))   # 0  (rounds to even)
+print(round(1.5))   # 2  (rounds to even)
+print(round(2.5))   # 2  (rounds to even)
+print(round(3.5))   # 4  (rounds to even)
+print(round(3.14159, 2))   # 3.14</code></pre></div></div></div>
+</section>
+<section id="texttt-complex-complex-numbers" class="content-section level-3">
+<h4 class="section-heading"><code>complex</code> --- Complex Numbers</h4>
+<div class="concept-box"><div class="box-title"><code>complex</code> --- Definition</div><div class="box-body"><p>Python has <strong>native complex number</strong> support. A complex literal is written as
+<code>a + bj</code> (using <code>j</code> for the imaginary unit $i$):
+\[\texttt{z = 3 + 4j} \quad\Rightarrow\quad z = 3 + 4i\]
+Both real and imaginary parts are stored as <code>float</code>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title"><code>complex</code> Properties</div><div class="box-body"><ul><li><p><strong><code>z.real</code></strong>: real part (float)</p></li><li><p><strong><code>z.imag</code></strong>: imaginary part (float)</p></li><li><p><strong><code>abs(z)</code></strong>: modulus $|z| = \sqrt{a^2 + b^2}$</p></li><li><p><strong><code>z.conjugate()</code></strong>: returns $a - bj$</p></li><li><p><strong><code>complex(a, b)</code></strong>: constructor: <code>complex(3, 4)</code> $\to$ <code>(3+4j)</code></p></li><li><p>All arithmetic operators work: <code>+, -, *, /</code></p></li><li><p><strong><code>cmath</code></strong> module for complex-aware <code>sqrt</code>, <code>exp</code>, <code>log</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 29: Complex Numbers --- Arithmetic and <code>cmath</code></div><div class="box-body"><div class="code-box"><pre><code>import cmath, math
+ 
+z1 = 3 + 4j
+z2 = 1 - 2j
+ 
+print(z1.real, z1.imag)    # 3.0  4.0
+print(abs(z1))             # 5.0  (= sqrt(9+16))
+print(z1.conjugate())      # (3-4j)
+ 
+% Arithmetic
+print(z1 + z2)   # (4+2j)
+print(z1 * z2)   # (11-2j)  = (3*1-4*(-2)) + (3*(-2)+4*1)j
+print(z1 / z2)   # (-1+2j)
+ 
+% cmath: sqrt of negative number
+print(cmath.sqrt(-1))       # 1j
+print(cmath.sqrt(-4))       # 2j
+print(cmath.exp(1j * math.pi))  # (-1+1.2e-16j)  ≈ Euler&#x27;s formula e^(iπ)=-1</code></pre></div></div></div>
+</section>
+<section id="texttt-bool-boolean-type" class="content-section level-3">
+<h4 class="section-heading"><code>bool</code> --- Boolean Type</h4>
+<div class="concept-box"><div class="box-title"><code>bool</code> --- Definition and Subclass Relationship</div><div class="box-body"><p><code>bool</code> is a <strong>subclass of <code>int</code></strong>:
+\[\texttt{True} \equiv 1, \quad \texttt{False} \equiv 0\]</p>
+<p><strong>Only two instances</strong> exist: <code>True</code> and <code>False</code> (singletons).</p>
+<p><strong>Truthiness</strong> — every object has a boolean interpretation in a conditional:</p>
+<ul><li><p><strong>Falsy</strong>: <code>0, 0.0, 0j, "", [], {}, set(), frozenset(), None,
+        range(0)</code></p></li><li><p><strong>Truthy</strong>: everything else (non-zero numbers, non-empty containers, etc.)</p></li></ul>
+<p>Customise via <code>__bool__</code> or <code>__len__</code> in user-defined classes.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title"><code>bool</code> Properties</div><div class="box-body"><ul><li><p><code>isinstance(True, int)</code> returns <code>True</code></p></li><li><p>Arithmetic: <code>True + True == 2</code>, <code>False * 100 == 0</code></p></li><li><p>Useful for counting: loops tracking expressions where variable is greater than 0</p></li><li><p><code>bool(x)</code> converts any object to <code>True</code>/<code>False</code></p></li><li><p><strong>Always use</strong> <code>is True</code> / <code>is False</code> only when you
+        need exact boolean singleton check; otherwise use truthiness directly
+        (<code>if x:</code> not <code>if x == True:</code>)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 30: <code>bool</code> Arithmetic and Counting</div><div class="box-body"><div class="code-box"><pre><code># bool is int subclass
+print(type(True))            # &lt;class &#x27;bool&#x27;&gt;
+print(isinstance(True, int)) # True
+print(True + True)           # 2
+print(True * 10)             # 10
+print(False + 5)             # 5
+ 
+# Counting with bools
+scores = [85, 42, 91, 55, 73, 88, 39]
+passing = sum(s &gt;= 60 for s in scores)
+print(f&quot;{passing} out of {len(scores)} passed&quot;)  # 4 out of 7 passed
+ 
+# Truthiness in conditions
+for val in [0, 1, &quot;&quot;, &quot;hi&quot;, [], [0], None, 0.0, {}, {&quot;a&quot;:1}]:
+    print(f&quot;bool({val!r:12}) = {bool(val)}&quot;)
+# bool(0)          = False
+# bool(1)          = True
+# bool(&#x27;&#x27;)         = False
+# bool(&#x27;hi&#x27;)       = True
+# ...</code></pre></div></div></div>
+</section>
+</section>
+<section id="nonetype" class="content-section level-2">
+<h3 class="section-heading">NoneType</h3>
+<div class="concept-box"><div class="box-title"><code>None</code> --- The Null Singleton</div><div class="box-body"><p><code>None</code> is the <strong>sole instance</strong> of <code>NoneType</code>. It represents
+the <em>absence of a value</em>.</p>
+<p><strong>Always check with <code>is</code>, never <code>==</code>:</strong></p>
+<ul><li><p><code>x is None</code> — <strong>correct</strong></p></li><li><p><code>x == None</code> — works but violates PEP 8 (and can be overridden by
+        a class's <code>__eq__</code>)</p></li></ul>
+<p>Functions with <strong>no return statement</strong> implicitly return <code>None</code>.</p></div></div>
+<div class="concept-box-alt"><div class="box-title"><code>None</code> Properties</div><div class="box-body"><ul><li><p><strong>Singleton</strong>: <code>id(None)</code> is constant; <code>None is None</code> always <code>True</code></p></li><li><p><strong>Falsy</strong>: <code>bool(None) == False</code></p></li><li><p>Common uses: default function argument, sentinel value, uninitialised state</p></li><li><p><strong>Not the same</strong> as <code>0</code>, <code>False</code>, <code>""</code>, <code>[]</code>
+        (though all are falsy)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 31: <code>None</code> --- Implicit Return and Sentinel</div><div class="box-body"><div class="code-box"><pre><code># Implicit None return
+def no_return():
+    x = 10   # does something but no return
+ 
+result = no_return()
+print(result)           # None
+print(type(result))     # &lt;class &#x27;NoneType&#x27;&gt;
+ 
+# None as default / sentinel
+def search(lst, target):
+    for i, val in enumerate(lst):
+        if val == target:
+            return i
+    return None   # explicit None when not found
+ 
+idx = search([10, 20, 30], 20)
+if idx is not None:
+    print(f&quot;Found at index {idx}&quot;)   # Found at index 1
+ 
+# None as optional argument default
+def greet(name, title=None):
+    if title is None:
+        return f&quot;Hello, {name}!&quot;
+    return f&quot;Hello, {title} {name}!&quot;
+ 
+print(greet(&quot;Alice&quot;))             # Hello, Alice!
+print(greet(&quot;Alice&quot;, &quot;Dr.&quot;))      # Hello, Dr. Alice!</code></pre></div></div></div>
+</section>
+<section id="type-conversion" class="content-section level-2">
+<h3 class="section-heading">Type Conversion</h3>
+<div class="concept-box"><div class="box-title">Implicit vs Explicit Type Conversion</div><div class="box-body"><ul><li><p><strong>Implicit (coercion)</strong>: Python <em>automatically</em> converts when safe
+        and unambiguous (only a few cases: integer added to float yields a float; bool in arithmetic)</p></li><li><p><strong>Explicit (casting)</strong>: programmer manually calls a constructor function
+        to convert types</p></li></ul>
+<p><strong>Key explicit conversion functions:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig019.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig020.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Type Inspection Functions</div><div class="box-body"><ul><li><p><strong><code>type(x)</code></strong>: returns the exact class; does <em>not</em> consider
+        inheritance (<code>type(True) is bool</code>, not <code>int</code>)</p></li><li><p><strong><code>isinstance(x, T)</code></strong>: returns <code>True</code> if <code>x</code> is an
+        instance of <code>T</code> <em>or any subclass</em> of <code>T</code>; accepts a tuple
+        of types: <code>isinstance(x, (int, float))</code></p></li><li><p><strong><code>issubclass(A, B)</code></strong>: returns <code>True</code> if class <code>A</code>
+        is a subclass of <code>B</code>; <code>issubclass(bool, int)</code> is <code>True</code></p></li><li><p><strong>Prefer <code>isinstance</code></strong> over <code>type(x) ==</code> for type-checking
+        (more Pythonic; respects inheritance)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 32: Explicit Conversion --- Common Cases</div><div class="box-body"><div class="code-box"><pre><code># int conversions
+print(int(3.9))       # 3   (truncates toward zero, NOT floor)
+print(int(-3.9))      # -3  (truncates toward zero)
+print(int(&quot;42&quot;))      # 42
+print(int(&quot;0xFF&quot;, 16))# 255
+print(int(True))      # 1
+ 
+# float conversions
+print(float(&quot;3.14&quot;))  # 3.14
+print(float(&quot;1e-5&quot;))  # 1e-05
+print(float(True))    # 1.0
+ 
+# str conversions
+print(str(100))       # &#x27;100&#x27;
+print(str([1,2,3]))   # &#x27;[1, 2, 3]&#x27;
+print(str(None))      # &#x27;None&#x27;
+ 
+# bool conversions
+print(bool(0))        # False
+print(bool(-1))       # True
+print(bool(&quot;&quot;))       # False
+print(bool(&quot;False&quot;))  # True  (non-empty string!)
+ 
+# list / set / tuple
+print(list(&quot;gate&quot;))   # [&#x27;g&#x27;, &#x27;a&#x27;, &#x27;t&#x27;, &#x27;e&#x27;]
+print(set([1,2,2,3])) # {1, 2, 3}
+print(tuple(range(5)))# (0, 1, 2, 3, 4)
+ 
+# chr and ord
+print(ord(&#x27;A&#x27;))       # 65
+print(chr(65))        # &#x27;A&#x27;
+print(chr(ord(&#x27;a&#x27;)+5))# &#x27;f&#x27;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 33: <code>type()</code> vs <code>isinstance()</code></div><div class="box-body"><div class="code-box"><pre><code>print(type(True) == int)        # False  (bool, not int)
+print(type(True) == bool)       # True
+print(isinstance(True, int))    # True   (bool is subclass of int)
+print(isinstance(True, bool))   # True
+ 
+# isinstance with tuple of types
+def process(x):
+    if isinstance(x, (int, float)):
+        return x ** 2
+    elif isinstance(x, str):
+        return x.upper()
+    else:
+        raise TypeError(f&quot;Unsupported: {type(x)}&quot;)
+ 
+print(process(5))       # 25
+print(process(3.14))    # 9.8596
+print(process(&quot;gate&quot;))  # GATE
+ 
+% issubclass
+print(issubclass(bool, int))     # True
+print(issubclass(int, object))   # True
+print(issubclass(float, int))    # False</code></pre></div></div></div>
+</section>
+</section>
+<section id="operators" class="content-section level-1">
+<h2 class="section-heading">Operators</h2>
+
+<section id="arithmetic-operators" class="content-section level-2">
+<h3 class="section-heading">Arithmetic Operators</h3>
+
+<section id="all-arithmetic-operators" class="content-section level-3">
+<h4 class="section-heading">All Arithmetic Operators</h4>
+<div class="concept-box"><div class="box-title">Python Arithmetic Operators</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig021.png" alt="diagram"></div>
+<p><strong>Critical  points:</strong></p>
+<ul><li><p><code>/</code> <em>always</em> returns <code>float</code>: <code>6/2 = 3.0</code></p></li><li><p><code>//</code> floors <em>towards</em> negative infinity:
+        <code>-7 // 2 = -4</code> (not $-3$)</p></li><li><p><code>%</code> sign matches <em>divisor</em>:
+        <code>-7 % 2 = 1</code> (not $-1$)</p></li><li><p><strong>Invariant</strong>: <code>(a // b) * b + (a % b) == a</code> always holds</p></li><li><p><code>**</code> is right-associative: <code>2**3**2 = 2**(3**2) = 512</code></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig022.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Floor Division and Modulo Sign Rules</div><div class="box-body"><ul><li><p><strong>Floor division</strong> rounds towards negative infinity (not towards zero): <br>
+        <code>7 // 2 = 3</code>,   <code>-7 // 2 = -4</code>,  
+        <code>7 // -2 = -4</code>,   <code>-7 // -2 = 3</code></p></li><li><p><strong>Modulo</strong> sign matches the <em>divisor</em> (not dividend): <br>
+        <code>7 % 2 = 1</code>,   <code>-7 % 2 = 1</code>,  
+        <code>7 % -2 = -1</code>,   <code>-7 % -2 = -3</code></p></li><li><p><strong>Invariant check</strong>: <code>(a // b) * b + a % b == a</code></p></li><li><p><strong><code>**</code> is right-associative</strong>: <code>a**b**c = a**(b**c)</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 34: Arithmetic --- Tricky Floor Division and Modulo</div><div class="box-body"><div class="code-box"><pre><code># True division always returns float
+print(7 / 2)     # 3.5
+print(6 / 2)     # 3.0  &lt;-- float, not int!
+print(6 / 3)     # 2.0
+ 
+# Floor division towards -inf
+print( 7 // 2)   #  3
+print(-7 // 2)   # -4  (not -3!)
+print( 7 //-2)   # -4
+print(-7 //-2)   #  3
+ 
+# Modulo sign follows divisor
+print( 7 % 2)    #  1
+print(-7 % 2)    #  1  (not -1!)
+print( 7 %-2)    # -1
+print(-7 %-2)    # -3
+ 
+# Invariant: always holds
+for a, b in [(7,2),(-7,2),(7,-2),(-7,-2)]:
+    assert (a//b)*b + a%b == a, &quot;invariant broken!&quot;
+print(&quot;Invariant holds for all cases&quot;)
+ 
+# ** right-associative
+print(2 ** 3 ** 2)   # 512  = 2**(3**2) = 2**9
+print((2**3) ** 2)   # 64   = 8**2
+ 
+# Exponentiation with float
+print(16 ** 0.5)     # 4.0  (square root)
+print(8 ** (1/3))    # 2.0  (cube root)</code></pre></div></div></div>
+</section>
+</section>
+<section id="comparison-operators" class="content-section level-2">
+<h3 class="section-heading">Comparison Operators</h3>
+
+<section id="comparison-and-chaining" class="content-section level-3">
+<h4 class="section-heading">Comparison and Chaining</h4>
+<div class="concept-box"><div class="box-title">Comparison Operators</div><div class="box-body"><p>All comparison operators return <code>True</code> or <code>False</code>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig023.png" alt="diagram"></div>
+<p><strong>Chaining</strong>: Python allows chaining: <code>1 &lt; x &lt; 10</code> is evaluated as
+<code>(1 &lt; x) and (x &lt; 10)</code> — both conditions must hold. No redundant evaluation.</p></div></div>
+<div class="example-box"><div class="box-title">Example 35: Comparison Chaining</div><div class="box-body"><div class="code-box"><pre><code>x = 5
+# Chained comparison
+print(1 &lt; x &lt; 10)       # True   == (1&lt;5) and (5&lt;10)
+print(1 &lt; x &lt; 5)        # False  == (1&lt;5) and (5&lt;5) = True and False
+print(1 &lt; 2 &lt; 3 &lt; 4)    # True
+print(10 &gt; x &gt;= 5)      # True
+ 
+# Useful for range checks
+def classify_score(score):
+    if 90 &lt;= score &lt;= 100:
+        return &quot;A&quot;
+    elif 70 &lt;= score &lt; 90:
+        return &quot;B&quot;
+    elif 50 &lt;= score &lt; 70:
+        return &quot;C&quot;
+    else:
+        return &quot;F&quot;
+ 
+print(classify_score(85))   # B
+print(classify_score(50))   # C
+print(classify_score(100))  # A</code></pre></div></div></div>
+</section>
+</section>
+<section id="logical-operators" class="content-section level-2">
+<h3 class="section-heading">Logical Operators</h3>
+
+<section id="short-circuit-evaluation" class="content-section level-3">
+<h4 class="section-heading">Short-Circuit Evaluation</h4>
+<div class="concept-box"><div class="box-title">Logical Operators and Short-Circuit Evaluation</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig024.png" alt="diagram"></div>
+<p><strong>Critical</strong>: <code>and</code> and <code>or</code> return the <em>last evaluated
+1386operand</em>, not necessarily a boolean. This enables idiomatic patterns.</p>
+<p>Short-circuit prevents evaluation of later expressions if result is already determined.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig025.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Logical Operator Patterns (Idiomatic Python)</div><div class="box-body"><ul><li><p><strong>Default value</strong>: <code>x = val or default</code>
+        — use <code>default</code> if <code>val</code> is falsy</p></li><li><p><strong>Conditional call</strong>: <code>obj and obj.method()</code>
+        — only call if <code>obj</code> is not <code>None</code>/falsy</p></li><li><p><strong>Ternary equivalent</strong>: <code>a if cond else b</code>
+        (preferred over <code>cond and a or b</code> which has a bug when <code>a</code> is falsy)</p></li><li><p><strong>Guard check</strong>: <code>lst and lst[0]</code>
+        — safe first-element access</p></li><li><p><strong>All-falsy</strong>: <code>not any(lst)</code> is equivalent to <code>all(not x for x in lst)</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 36: Short-Circuit Evaluation --- Return Value and Side Effects</div><div class="box-body"><div class="code-box"><pre><code># and returns first falsy or last value
+print(0 and 5)        # 0     (0 is falsy -- short-circuit)
+print(3 and 5)        # 5     (3 truthy; return last: 5)
+print(3 and 0)        # 0     (3 truthy; return last: 0)
+print(&quot;&quot; and &quot;hi&quot;)    # &#x27;&#x27;    (empty string falsy)
+ 
+# or returns first truthy or last value
+print(0 or 5)         # 5     (0 falsy; try next)
+print(3 or 5)         # 3     (3 truthy -- short-circuit)
+print(0 or &quot;&quot;)        # &#x27;&#x27;    (both falsy; return last)
+print([] or {})       # {}    (both falsy; return last)
+ 
+# Practical patterns
+name = &quot;&quot;
+display = name or &quot;Anonymous&quot;
+print(display)   # Anonymous
+ 
+config = None
+value = config and config.get(&quot;key&quot;)
+print(value)     # None  (config is None, short-circuit)
+ 
+# Short-circuit prevents errors
+lst = []
+first = lst and lst[0]   # safe: lst is falsy, lst[0] never evaluated
+print(first)             # []
+ 
+# NOT always returns bool
+print(not 0)     # True
+print(not 5)     # False
+print(not &quot;&quot;)    # True
+print(not [1])   # False</code></pre></div></div></div>
+</section>
+</section>
+<section id="bitwise-operators" class="content-section level-2">
+<h3 class="section-heading">Bitwise Operators</h3>
+
+<section id="bit-level-operations" class="content-section level-3">
+<h4 class="section-heading">Bit-Level Operations</h4>
+<div class="concept-box"><div class="box-title">Bitwise Operators</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig026.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig027.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 37: Bitwise Operators --- Practical Uses</div><div class="box-body"><div class="code-box"><pre><code>a, b = 0b1010, 0b1100   # 10 and 12
+ 
+print(bin(a &amp; b))    # 0b1000  = 8   (AND: bits set in both)
+print(bin(a | b))    # 0b1110  = 14  (OR:  bits set in either)
+print(bin(a ^ b))    # 0b0110  = 6   (XOR: bits set in exactly one)
+print(bin(~a))       # -0b1011 = -11 (NOT: ~n = -(n+1))
+ 
+# Shifts = fast multiply/divide by powers of 2
+print(3 &lt;&lt; 2)        # 12   = 3 * 4
+print(12 &gt;&gt; 2)       # 3    = 12 // 4
+print(1 &lt;&lt; 8)        # 256  = 2^8
+ 
+# Practical: check if a number is even (fast)
+n = 18
+print(n &amp; 1)         # 0 --&gt; even (last bit is 0)
+n = 17
+print(n &amp; 1)         # 1 --&gt; odd
+ 
+# Bit masking -- extract lower 4 bits
+value = 0b10110111
+lower4 = value &amp; 0b00001111
+print(bin(lower4))   # 0b111  = 7
+ 
+# Swap without temp using XOR
+x, y = 5, 9
+x ^= y;  y ^= x;  x ^= y
+print(x, y)          # 9 5</code></pre></div></div></div>
+</section>
+</section>
+<section id="identity-membership-operators" class="content-section level-2">
+<h3 class="section-heading">Identity &amp; Membership Operators</h3>
+
+<section id="texttt-is-texttt-in-and-their-negations" class="content-section level-3">
+<h4 class="section-heading"><code>is</code>, <code>in</code> and their Negations</h4>
+<div class="concept-box"><div class="box-title">Identity and Membership Operators</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig028.png" alt="diagram"></div>
+<p><strong>Complexity of <code>in</code>:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig029.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 38: Identity and Membership --- All Containers</div><div class="box-body"><div class="code-box"><pre><code># Membership in various containers
+print(3 in [1, 2, 3, 4])          # True  (list)
+print(5 not in (1, 2, 3))         # True  (tuple)
+print(&quot;gate&quot; in {&quot;gate&quot;, &quot;exam&quot;}) # True  (set)
+print(&quot;name&quot; in {&quot;name&quot;: &quot;Alice&quot;})# True  (dict keys)
+print(&quot;lo&quot; in &quot;hello&quot;)            # True  (substring)
+ 
+# Performance: set lookup O(1) vs list O(n)
+import time
+data_list = list(range(10_000_000))
+data_set  = set(range(10_000_000))
+ 
+t0 = time.perf_counter()
+_ = 9_999_999 in data_list
+print(f&quot;list: {time.perf_counter()-t0:.4f}s&quot;)   # ~0.1s
+ 
+t0 = time.perf_counter()
+_ = 9_999_999 in data_set
+print(f&quot;set : {time.perf_counter()-t0:.6f}s&quot;)   # ~0.000001s
+ 
+# is: identity
+a = [1, 2, 3]
+b = a           # same object
+c = [1, 2, 3]  # equal but different object
+ 
+print(a is b)   # True
+print(a is c)   # False
+print(a == c)   # True</code></pre></div></div></div>
+</section>
+</section>
+<section id="operator-precedence" class="content-section level-2">
+<h3 class="section-heading">Operator Precedence</h3>
+
+<section id="full-precedence-table" class="content-section level-3">
+<h4 class="section-heading">Full Precedence Table</h4>
+<div class="concept-box"><div class="box-title">Python Operator Precedence (Highest to Lowest)</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig030.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig031.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 39: Precedence --- Surprising Evaluations</div><div class="box-body"><div class="code-box"><pre><code># ** before unary minus
+print(-2 ** 2)     # -4  = -(2**2), NOT (-2)**2 = 4
+print((-2) ** 2)   # 4   -- explicit override
+ 
+# Comparison before logical
+print(2 + 3 &gt; 4 and 10 - 1 &lt; 15)
+# = (5 &gt; 4) and (9 &lt; 15) = True and True = True
+ 
+# not before and before or
+print(True or False and False)
+# = True or (False and False) = True or False = True
+print(not False or True and False)
+# = (not False) or (True and False)
+# = True or False = True
+ 
+# Tricky: chained comparison
+print(1 &lt; 2 == 2 &lt; 3)   # True (chained: 1&lt;2 and 2==2 and 2&lt;3)
+ 
+# is before not
+x = None
+print(x is not None)   # False  (is not is ONE operator, not &quot;is&quot; and &quot;not&quot;)
+print(not x is None)   # False  but means not (x is None) -- confusing!
+# Always use: x is not None  (not: not x is None)
+ 
+# Bitwise before comparison
+print(2 &amp; 3 == 3)    # True: 2 &amp; (3 == 3) = 2 &amp; True = 2 &amp; 1 = 0? No!
+# Actually: (2 &amp; 3) == 3 ... wait: precedence: == is LOWER than &amp;
+# 2 &amp; 3 = 2; 2 == 3 = False  -- correct parse
+print((2 &amp; 3) == 3)  # False  (2 &amp; 3 = 2, not 3)
+print(2 &amp; (3 == 3))  # 2 &amp; True = 2 &amp; 1 = 0... as int, but this is confusing
+# Use parentheses whenever mixing bitwise and comparison</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 40: Precedence --- Using Parentheses Correctly</div><div class="box-body"><div class="code-box"><pre><code># Misleading without parens
+result = 5 + 3 * 2 ** 2 - 1
+# = 5 + 3 * 4 - 1
+# = 5 + 12 - 1
+# = 16
+print(result)   # 16
+ 
+# With explicit parens for clarity
+result = 5 + (3 * (2 ** 2)) - 1
+print(result)   # 16 (same)
+ 
+# Different meaning with different parens
+print((5 + 3) * (2 ** 2) - 1)   # 8 * 4 - 1 = 31
+print(5 + 3 * 2 ** (2 - 1))     # 5 + 3*2 = 11
+ 
+# Short-circuit with mixed operators
+x = 5
+print(x &gt; 3 and x &lt; 10 or x == 5)
+# = (x&gt;3 and x&lt;10) or (x==5)
+# = (True and True) or True
+# = True or True = True
+ 
+# Rule: when in doubt, use parentheses!</code></pre></div></div></div>
+</section>
+</section>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Built-in Data Structures &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Python for GATE DA &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

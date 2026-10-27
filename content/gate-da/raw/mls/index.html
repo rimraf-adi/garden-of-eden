@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning (Supervised) — Concept Notes</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">GateXAIML &middot; ML Concept Notes</div>
+      <h1>Machine Learning: Supervised Learning</h1>
+
+    </div>
+    <div class="chapter-grid">
+      
+    <a class="chapter-card" href="ch01.html">
+      <div class="chapter-card-num">Chapter 1</div>
+      <div class="chapter-card-title">Introduction to Machine Learning</div>
+      <div class="chapter-card-meta">18 sections</div>
+      <div class="chapter-card-preview">What is Machine Learning, Overview of Machine Learning Paradigm, Types: supervised, unsupervised, and reinforcement learning...</div>
+    </a>
+    <a class="chapter-card" href="ch02.html">
+      <div class="chapter-card-num">Chapter 2</div>
+      <div class="chapter-card-title">Regression Models</div>
+      <div class="chapter-card-meta">13 sections</div>
+      <div class="chapter-card-preview">Simple Linear Regression, Multiple Linear Regression, Regularized Regression</div>
+    </a>
+    <a class="chapter-card" href="ch03.html">
+      <div class="chapter-card-num">Chapter 3</div>
+      <div class="chapter-card-title">Classification Models - I</div>
+      <div class="chapter-card-meta">11 sections</div>
+      <div class="chapter-card-preview">Logistic Regression, k-Nearest Neighbour (k-NN), Naive Bayes Classifier</div>
+    </a>
+    <a class="chapter-card" href="ch04.html">
+      <div class="chapter-card-num">Chapter 4</div>
+      <div class="chapter-card-title">Classification Models - II</div>
+      <div class="chapter-card-meta">9 sections</div>
+      <div class="chapter-card-preview">Linear Discrimination Analysis (LDA), Fisher’s Linear Discriminant Analysis (LDA), Bayesian View of Linear Discriminant Analysis</div>
+    </a>
+    <a class="chapter-card" href="ch05.html">
+      <div class="chapter-card-num">Chapter 5</div>
+      <div class="chapter-card-title">Model Evaluation and Generalization</div>
+      <div class="chapter-card-meta">19 sections</div>
+      <div class="chapter-card-preview">Cross-Validation Methods, Examples: Cross-Validation Methods, ROC &amp; AUC...</div>
+    </a>
+    <a class="chapter-card" href="ch06.html">
+      <div class="chapter-card-num">Chapter 6</div>
+      <div class="chapter-card-title">Regression &amp; Classification Models</div>
+      <div class="chapter-card-meta">47 sections</div>
+      <div class="chapter-card-preview">Decision Trees, Support Vector Machine (SVM), Neural Network Models...</div>
+    </a>
+    </div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

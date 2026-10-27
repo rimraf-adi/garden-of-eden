@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linked Lists — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+       <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+
+
+
+
+
+
+
+
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 6</div><h1>Linked Lists</h1></div>
+<section id="singly-linked-list" class="content-section level-1">
+<h2 class="section-heading">Singly Linked List</h2>
+<div class="concept-box"><div class="box-title">Concept: Singly Linked List</div><div class="box-body"><p>In a singly linked list, each node has exactly two parts: the <strong>data field</strong> which holds the value, and the <strong>next pointer</strong> which holds the address of the next node. The last node's next pointer is NULL, meaning end of list. We maintain a pointer called <strong>head</strong> which always points to the first node. Traversal is one-directional only, from head towards NULL. We cannot go backward.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig068.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">singly-node.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data = data   # stores the value
+        self.next = None   # pointer to next node (NULL initially)
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None   # empty list: head is NULL</code></pre></div>
+<section id="singly-ll-insertion-operations" class="content-section level-2">
+<h3 class="section-heading">Singly LL --- Insertion Operations</h3>
+
+<section id="insert-at-head" class="content-section level-3">
+<h4 class="section-heading">Insert at Head</h4>
+<div class="concept-box"><div class="box-title">Concept: Insert at Head</div><div class="box-body"><p>Insert at head means adding a new node before the current first node. The new node becomes the new head. Steps:</p>
+<ol><li><p>Create a new node with the given data.</p></li><li><p>Set the new node's next pointer to point to the current head.</p></li><li><p>Update head to point to the new node.</p></li></ol>
+<p>This takes $O(1)$ time because no traversal is needed. We only change two pointers.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig069.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig070.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 205: Pseudocode: Insert at Head (C-like)</div><div class="box-body"><p><strong>SLL-Insert-At-Head(L, data):</strong></p>
+<ol><li><p>new = CreateNode(data)</p></li><li><p>new.next = L.head</p></li><li><p>L.head = new</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">sll-insert-head.py</div><pre><code>def insert_at_head(self, data):
+    new_node      = Node(data)       # create new node
+    new_node.next = self.head        # step 1: new points to old head
+    self.head     = new_node         # step 2: head now points to new
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+ll.insert_at_head(30)   # 30 -&gt; NULL
+ll.insert_at_head(20)   # 20 -&gt; 30 -&gt; NULL
+ll.insert_at_head(10)   # 10 -&gt; 20 -&gt; 30 -&gt; NULL
+# each new element becomes the first element</code></pre></div>
+</section>
+<section id="insert-at-tail-end" class="content-section level-3">
+<h4 class="section-heading">Insert at Tail (End)</h4>
+<div class="concept-box"><div class="box-title">Concept: Insert at Tail</div><div class="box-body"><p>Insert at tail means adding a new node after the current last node. The new node becomes the new last node. Steps:</p>
+<ol><li><p>Create a new node with the given data. Its next is NULL.</p></li><li><p>If the list is empty, the new node becomes the head directly.</p></li><li><p>Otherwise, traverse from head to the last node (the one whose next is NULL).</p></li><li><p>Set that last node's next pointer to point to the new node.</p></li></ol>
+<p>This takes $O(n)$ time because we must traverse the entire list to find the last node. If we maintain a separate <strong>tail pointer</strong>, this becomes $O(1)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig071.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig072.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">sll-insert-tail.py</div><pre><code>def insert_at_tail(self, data):
+    new_node = Node(data)
+    if self.head is None:         # empty list
+        self.head = new_node
+        return
+    curr = self.head
+    while curr.next is not None:  # go to last node
+        curr = curr.next
+    curr.next = new_node          # link new node at end
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+ll.insert_at_tail(10)   # 10 -&gt; NULL
+ll.insert_at_tail(20)   # 10 -&gt; 20 -&gt; NULL
+ll.insert_at_tail(30)   # 10 -&gt; 20 -&gt; 30 -&gt; NULL
+# elements added at the end, order preserved</code></pre></div>
+</section>
+<section id="insert-at-middle-given-position" class="content-section level-3">
+<h4 class="section-heading">Insert at Middle (Given Position)</h4>
+<div class="concept-box"><div class="box-title">Concept: Insert at Given Position</div><div class="box-body"><p>To insert a new node at position $k$ (1-indexed):</p>
+<ol><li><p>If $k = 1$, it is insert at head.</p></li><li><p>Otherwise, traverse to node at position $k-1$ (the node just before the insertion point).</p></li><li><p>Set the new node's next to point to the node currently at position $k$.</p></li><li><p>Set the previous node's next to point to the new node.</p></li></ol>
+<p>Order of the two pointer assignments matters. We must first set new.next, then change prev.next. If we do it the other way, we lose the reference to the rest of the list. Time taken is $O(k)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig073.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig074.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">sll-insert-position.py</div><pre><code>def insert_at_position(self, data, pos):
+    if pos == 1:
+        self.insert_at_head(data)
+        return
+    new_node = Node(data)
+    curr  = self.head
+    count = 1
+    while curr is not None and count &lt; pos - 1:
+        curr  = curr.next
+        count += 1
+    if curr is None:
+        print(&quot;Position out of range&quot;)
+        return
+    new_node.next = curr.next    # step 1: new points forward first!
+    curr.next     = new_node     # step 2: prev points to new
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+for v in [10, 20, 30, 40]:
+    ll.insert_at_tail(v)
+# 10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; NULL
+
+ll.insert_at_position(99, 3)
+# 10 -&gt; 20 -&gt; 99 -&gt; 30 -&gt; 40 -&gt; NULL</code></pre></div>
+</section>
+</section>
+<section id="singly-ll-deletion-operations" class="content-section level-2">
+<h3 class="section-heading">Singly LL --- Deletion Operations</h3>
+<div class="concept-box"><div class="box-title">Concept: Deletion in Singly LL</div><div class="box-body"><p>To delete a node from a singly linked list, we need to change the <strong>previous</strong> node's next pointer to skip over the node being deleted. We cannot go backward, so we always maintain a <strong>prev</strong> pointer while traversing.</p>
+<p>Three possible cases:</p>
+<ul><li><p><strong>Delete head:</strong> Move head to the second node. No prev needed.</p></li><li><p><strong>Delete by value:</strong> Traverse with prev and curr together. When found, do prev.next = curr.next.</p></li><li><p><strong>Delete by position:</strong> Same idea but count positions instead of comparing values.</p></li></ul>
+<p>All cases take $O(n)$ in worst case (except delete head which is $O(1)$).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig075.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig076.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">sll-delete.py</div><pre><code>def delete_by_value(self, val):
+    if self.head is None:
+        print(&quot;List is empty&quot;)
+        return
+    if self.head.data == val:     # delete head
+        self.head = self.head.next
+        return
+    prev = self.head
+    curr = self.head.next
+    while curr is not None:
+        if curr.data == val:
+            prev.next = curr.next   # skip over curr
+            return
+        prev = curr
+        curr = curr.next
+    print(f&quot;Value {val} not found&quot;)
+
+
+def delete_by_position(self, pos):
+    if self.head is None:
+        print(&quot;List is empty&quot;)
+        return
+    if pos == 1:                  # delete head
+        self.head = self.head.next
+        return
+    curr  = self.head
+    count = 1
+    while curr.next is not None and count &lt; pos - 1:
+        curr  = curr.next
+        count += 1
+    if curr.next is None:
+        print(&quot;Position out of range&quot;)
+        return
+    curr.next = curr.next.next    # skip over node at pos
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+for v in [10, 20, 30, 40]:
+    ll.insert_at_tail(v)
+
+ll.delete_by_value(20)
+# 10 -&gt; 30 -&gt; 40 -&gt; NULL
+
+ll.delete_by_position(2)
+# 10 -&gt; 40 -&gt; NULL</code></pre></div>
+</section>
+<section id="singly-ll-search-operation" class="content-section level-2">
+<h3 class="section-heading">Singly LL --- Search Operation</h3>
+<div class="concept-box"><div class="box-title">Concept: Search in Singly LL</div><div class="box-body"><p>To search for a value, we start at head and check each node one by one. Since there is no index or sorting guarantee, we must scan linearly. We stop when we find the value or reach NULL. Time complexity is $O(n)$ in the worst case.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig077.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">sll-search.py</div><pre><code>def search(self, val):
+    curr = self.head
+    pos  = 1
+    while curr is not None:
+        if curr.data == val:
+            return pos        # found: return position
+        curr = curr.next
+        pos += 1
+    return -1                 # not found
+
+def display(self):
+    curr = self.head
+    while curr:
+        print(curr.data, end=&quot; -&gt; &quot;)
+        curr = curr.next
+    print(&quot;NULL&quot;)
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+for v in [10, 20, 30, 40]:
+    ll.insert_at_tail(v)
+
+print(ll.search(30))   # Output: 3
+print(ll.search(99))   # Output: -1</code></pre></div>
+</section>
+<section id="singly-ll-reversal" class="content-section level-2">
+<h3 class="section-heading">Singly LL --- Reversal</h3>
+
+<section id="iterative-reversal" class="content-section level-3">
+<h4 class="section-heading">Iterative Reversal</h4>
+<div class="concept-box"><div class="box-title">Concept: Iterative Reversal</div><div class="box-body"><p>We use three pointers: <strong>prev</strong>, <strong>curr</strong>, and <strong>next\_node</strong>. Initially prev = NULL, curr = head.</p>
+<p>At each step:</p>
+<ol><li><p>Save curr.next into next\_node (so we don't lose the rest of list).</p></li><li><p>Reverse the link: curr.next = prev.</p></li><li><p>Move prev to curr.</p></li><li><p>Move curr to next\_node.</p></li></ol>
+<p>When curr becomes NULL, prev is the new head. Time: $O(n)$. Space: $O(1)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig078.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig079.png" alt="diagram"></div>
+</section>
+<section id="recursive-reversal" class="content-section level-3">
+<h4 class="section-heading">Recursive Reversal</h4>
+<div class="concept-box"><div class="box-title">Concept: Recursive Reversal</div><div class="box-body"><p>In recursive reversal, we keep calling the function on the next node until we reach the last node. The last node becomes the new head. On the way back (unwinding the recursion):</p>
+<ol><li><p>We have the new head from deeper recursion.</p></li><li><p>We do node.next.next = node (make the next node point back to current node).</p></li><li><p>We set node.next = NULL (break the old forward link).</p></li></ol>
+<p>The new head is passed all the way back up. Time: $O(n)$. Space: $O(n)$ recursion stack.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig080.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">sll-reverse.py</div><pre><code>def reverse_iterative(self):
+    prev = None
+    curr = self.head
+    while curr is not None:
+        next_node = curr.next   # save next
+        curr.next = prev        # reverse link
+        prev      = curr        # advance prev
+        curr      = next_node   # advance curr
+    self.head = prev            # new head
+
+
+def _reverse_recursive(self, node):
+    if node is None or node.next is None:
+        return node                      # base case
+    new_head       = self._reverse_recursive(node.next)
+    node.next.next = node               # reverse the link
+    node.next      = None               # break old link
+    return new_head
+
+def reverse_recursive(self):
+    self.head = self._reverse_recursive(self.head)
+
+
+# --- Driver Code ---
+ll = SinglyLinkedList()
+for v in [1, 2, 3, 4, 5]:
+    ll.insert_at_tail(v)
+
+ll.display()              # 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; NULL
+ll.reverse_iterative()
+ll.display()              # 5 -&gt; 4 -&gt; 3 -&gt; 2 -&gt; 1 -&gt; NULL
+ll.reverse_recursive()
+ll.display()              # 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; NULL</code></pre></div>
+</section>
+</section>
+</section>
+<section id="doubly-linked-list" class="content-section level-1">
+<h2 class="section-heading">Doubly Linked List</h2>
+<div class="concept-box"><div class="box-title">Concept: Doubly Linked List</div><div class="box-body"><p>In a doubly linked list, each node has three parts: the <strong>data</strong> field, the <strong>next</strong> pointer pointing to the next node, and the <strong>prev</strong> pointer pointing to the previous node. We maintain both a <strong>head</strong> pointer (first node) and a <strong>tail</strong> pointer (last node). The first node's prev is NULL, and the last node's next is NULL. We can traverse in both forward and backward direction.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig081.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">doubly-node.py</div><pre><code>class DNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None   # forward pointer
+        self.prev = None   # backward pointer
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None   # first node
+        self.tail = None   # last node</code></pre></div>
+<section id="doubly-ll-insertion-operations" class="content-section level-2">
+<h3 class="section-heading">Doubly LL --- Insertion Operations</h3>
+
+<section id="insert-at-head-2" class="content-section level-3">
+<h4 class="section-heading">Insert at Head</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Insert at Head</div><div class="box-body"><p>Steps to insert at head in a doubly linked list:</p>
+<ol><li><p>Create a new node.</p></li><li><p>Set new.next = current head (new node points forward to old head).</p></li><li><p>Set new.prev = NULL (new node is the first, nothing before it).</p></li><li><p>If the list is not empty, set head.prev = new (old head now points back to new node).</p></li><li><p>Update head = new.</p></li><li><p>If the list was empty, update tail = new as well.</p></li></ol>
+<p>Time: $O(1)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig082.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig083.png" alt="diagram"></div>
+</section>
+<section id="insert-at-tail-end-2" class="content-section level-3">
+<h4 class="section-heading">Insert at Tail (End)</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Insert at Tail</div><div class="box-body"><p>Steps to insert at tail in a doubly linked list:</p>
+<ol><li><p>Create a new node.</p></li><li><p>Set new.prev = current tail (new node points backward to old tail).</p></li><li><p>Set new.next = NULL (new node is last, nothing after it).</p></li><li><p>If the list is not empty, set tail.next = new (old tail now points forward to new).</p></li><li><p>Update tail = new.</p></li><li><p>If the list was empty, update head = new as well.</p></li></ol>
+<p>Time: $O(1)$ because we maintain a tail pointer.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig084.png" alt="diagram"></div>
+</section>
+<section id="insert-at-middle-given-position-2" class="content-section level-3">
+<h4 class="section-heading">Insert at Middle (Given Position)</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Insert at Given Position</div><div class="box-body"><p>Steps to insert at position $k$ in a doubly linked list:</p>
+<ol><li><p>Traverse to node at position $k-1$ (call it prev\_node).</p></li><li><p>Let next\_node = prev\_node.next.</p></li><li><p>Set new.next = next\_node and new.prev = prev\_node.</p></li><li><p>Set prev\_node.next = new.</p></li><li><p>If next\_node is not NULL, set next\_node.prev = new.</p></li></ol>
+<p>We must update four pointers total: new.next, new.prev, prev\_node.next, and next\_node.prev. Time: $O(k)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig085.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig086.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">dll-operations.py</div><pre><code>class DNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def insert_at_head(self, data):
+        new_node = DNode(data)
+        new_node.next = self.head
+        new_node.prev = None
+        if self.head:
+            self.head.prev = new_node
+        self.head = new_node
+        if self.tail is None:
+            self.tail = new_node
+
+    def insert_at_tail(self, data):
+        new_node = DNode(data)
+        new_node.prev = self.tail
+        new_node.next = None
+        if self.tail:
+            self.tail.next = new_node
+        self.tail = new_node
+        if self.head is None:
+            self.head = new_node
+
+    def insert_at_position(self, data, pos):
+        if pos == 1:
+            self.insert_at_head(data)
+            return
+        new_node = DNode(data)
+        curr  = self.head
+        count = 1
+        while curr and count &lt; pos - 1:
+            curr  = curr.next
+            count += 1
+        if curr is None:
+            print(&quot;Out of range&quot;)
+            return
+        next_node     = curr.next
+        new_node.next = next_node     # pointer 1
+        new_node.prev = curr          # pointer 2
+        curr.next     = new_node      # pointer 3
+        if next_node:
+            next_node.prev = new_node  # pointer 4
+        else:
+            self.tail = new_node       # new is now tail
+
+    def display_forward(self):
+        curr = self.head
+        print(&quot;HEAD &lt;-&gt; &quot;, end=&quot;&quot;)
+        while curr:
+            print(curr.data, end=&quot; &lt;-&gt; &quot;)
+            curr = curr.next
+        print(&quot;NULL&quot;)
+
+    def display_backward(self):
+        curr = self.tail
+        print(&quot;TAIL &lt;-&gt; &quot;, end=&quot;&quot;)
+        while curr:
+            print(curr.data, end=&quot; &lt;-&gt; &quot;)
+            curr = curr.prev
+        print(&quot;NULL&quot;)
+
+# --- Driver Code ---
+dll = DoublyLinkedList()
+dll.insert_at_tail(10)
+dll.insert_at_tail(20)
+dll.insert_at_tail(30)
+dll.insert_at_tail(40)
+dll.display_forward()     # 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+dll.insert_at_head(5)
+dll.display_forward()     # 5 &lt;-&gt; 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+dll.insert_at_position(99, 3)
+dll.display_forward()     # 5 &lt;-&gt; 10 &lt;-&gt; 99 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+dll.display_backward()    # 40 &lt;-&gt; 30 &lt;-&gt; 20 &lt;-&gt; 99 &lt;-&gt; 10 &lt;-&gt; 5 &lt;-&gt; NULL</code></pre></div>
+</section>
+</section>
+<section id="doubly-ll-deletion-operations" class="content-section level-2">
+<h3 class="section-heading">Doubly LL --- Deletion Operations</h3>
+<div class="concept-box"><div class="box-title">Concept: DLL Deletion</div><div class="box-body"><p>Deleting a node in a doubly linked list is easier than in a singly linked list because we can reach the previous node directly via the <strong>prev</strong> pointer. No separate prev tracking variable is needed during traversal. Once we find the node to delete (call it <strong>del</strong>), we always do the same four pointer fixups:</p>
+<ol><li><p>If del.prev $\ne$ NULL: set del.prev.next = del.next (skip del going forward).</p></li><li><p>If del.prev $=$ NULL: del is the head, so update head = del.next.</p></li><li><p>If del.next $\ne$ NULL: set del.next.prev = del.prev (skip del going backward).</p></li><li><p>If del.next $=$ NULL: del is the tail, so update tail = del.prev.</p></li></ol>
+<p>Finding the node takes $O(n)$. The actual pointer fixup always takes $O(1)$.</p></div></div>
+<section id="delete-at-head" class="content-section level-3">
+<h4 class="section-heading">Delete at Head</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Delete at Head</div><div class="box-body"><p>Deleting the head is the simplest case because we already know which node to delete. Steps:</p>
+<ol><li><p>If the list is empty, report error.</p></li><li><p>If only one node exists: set head = NULL and tail = NULL.</p></li><li><p>Otherwise: move head to head.next, then set the new head's prev pointer to NULL.</p></li></ol>
+<p>Time: $O(1)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig087.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig088.png" alt="diagram"></div>
+</section>
+<section id="delete-by-value" class="content-section level-3">
+<h4 class="section-heading">Delete by Value</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Delete by Value</div><div class="box-body"><p>Traverse from head using curr until we find the node whose data equals the target value. Once found, apply the four pointer fixups. Because of the prev pointer available in each node, we do not need a separate prev variable during traversal.</p>
+<ol><li><p>Traverse: curr = head, move curr = curr.next until curr.data = val or curr = NULL.</p></li><li><p>If not found: report error.</p></li><li><p>Fix forward link: if curr.prev $\ne$ NULL then curr.prev.next = curr.next, else head = curr.next.</p></li><li><p>Fix backward link: if curr.next $\ne$ NULL then curr.next.prev = curr.prev, else tail = curr.prev.</p></li></ol>
+<p>Time: $O(n)$ for traversal, $O(1)$ for deletion.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig089.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig090.png" alt="diagram"></div>
+</section>
+<section id="delete-by-position" class="content-section level-3">
+<h4 class="section-heading">Delete by Position</h4>
+<div class="concept-box"><div class="box-title">Concept: DLL Delete by Position</div><div class="box-body"><p>Traverse to the node at position $k$ (1-indexed). Once we reach that node, apply the same four pointer fixups as delete by value. Position 1 means delete head.</p>
+<ol><li><p>If pos = 1: call Delete-At-Head.</p></li><li><p>Otherwise: traverse curr to position $k$ by counting steps.</p></li><li><p>If we run out of nodes before reaching $k$: position is out of range.</p></li><li><p>Apply the four pointer fixups on curr.</p></li></ol>
+<p>Time: $O(k)$ for traversal, $O(1)$ for deletion.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig091.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig092.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">dll-delete.py</div><pre><code>def delete_at_head(self):
+    if self.head is None:
+        print(&quot;List is empty&quot;)
+        return
+    if self.head == self.tail:     # only one node
+        self.head = None
+        self.tail = None
+        return
+    self.head      = self.head.next
+    self.head.prev = None          # new head has no predecessor
+
+
+def delete_by_value(self, val):
+    curr = self.head
+    while curr:
+        if curr.data == val:
+            if curr.prev:
+                curr.prev.next = curr.next   # fix forward link
+            else:
+                self.head = curr.next        # deleting head
+            if curr.next:
+                curr.next.prev = curr.prev   # fix backward link
+            else:
+                self.tail = curr.prev        # deleting tail
+            return
+        curr = curr.next
+    print(f&quot;{val} not found&quot;)
+
+
+def delete_by_position(self, pos):
+    if self.head is None:
+        print(&quot;List is empty&quot;)
+        return
+    if pos == 1:
+        self.delete_at_head()
+        return
+    curr  = self.head
+    count = 1
+    while curr and count &lt; pos:
+        curr  = curr.next
+        count += 1
+    if curr is None:
+        print(&quot;Position out of range&quot;)
+        return
+    if curr.prev:
+        curr.prev.next = curr.next   # fix forward link
+    else:
+        self.head = curr.next        # was head
+    if curr.next:
+        curr.next.prev = curr.prev   # fix backward link
+    else:
+        self.tail = curr.prev        # was tail
+
+
+# --- Driver Code ---
+dll = DoublyLinkedList()
+for v in [10, 20, 30, 40, 50]:
+    dll.insert_at_tail(v)
+dll.display_forward()       # 10 &lt;-&gt; 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; 50 &lt;-&gt; NULL
+
+dll.delete_at_head()
+dll.display_forward()       # 20 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; 50 &lt;-&gt; NULL
+
+dll.delete_by_value(40)
+dll.display_forward()       # 20 &lt;-&gt; 30 &lt;-&gt; 50 &lt;-&gt; NULL
+
+dll.delete_by_position(2)
+dll.display_forward()       # 20 &lt;-&gt; 50 &lt;-&gt; NULL</code></pre></div>
+</section>
+</section>
+<section id="doubly-ll-search-operation" class="content-section level-2">
+<h3 class="section-heading">Doubly LL --- Search Operation</h3>
+<div class="concept-box"><div class="box-title">Concept: DLL Search</div><div class="box-body"><p>Search in a doubly linked list is the same as in a singly linked list from the forward direction: scan from head to tail. However, with DLL we also have the option to search from tail to head using prev pointers. Both take $O(n)$ time. Searching from both ends simultaneously can save time in some cases.</p></div></div>
+<div class="code-box"><div class="code-title">dll-delete-search.py</div><pre><code>def delete_by_value(self, val):
+    curr = self.head
+    while curr:
+        if curr.data == val:
+            if curr.prev:
+                curr.prev.next = curr.next    # step 1
+            else:
+                self.head = curr.next          # deleting head
+            if curr.next:
+                curr.next.prev = curr.prev    # step 2
+            else:
+                self.tail = curr.prev          # deleting tail
+            return
+        curr = curr.next
+    print(f&quot;{val} not found&quot;)
+
+
+def search(self, val):
+    curr = self.head
+    pos  = 1
+    while curr:
+        if curr.data == val:
+            return pos
+        curr = curr.next
+        pos += 1
+    return -1
+
+
+# --- Driver Code ---
+dll = DoublyLinkedList()
+for v in [10, 20, 30, 40]:
+    dll.insert_at_tail(v)
+
+print(&quot;Search 30:&quot;, dll.search(30))   # 3
+print(&quot;Search 99:&quot;, dll.search(99))   # -1
+
+dll.delete_by_value(20)
+dll.display_forward()   # 10 &lt;-&gt; 30 &lt;-&gt; 40 &lt;-&gt; NULL
+
+dll.delete_by_value(10)   # delete head
+dll.display_forward()   # 30 &lt;-&gt; 40 &lt;-&gt; NULL
+
+dll.delete_by_value(40)   # delete tail
+dll.display_forward()   # 30 &lt;-&gt; NULL</code></pre></div>
+</section>
+</section>
+<section id="circular-linked-list" class="content-section level-1">
+<h2 class="section-heading">Circular Linked List</h2>
+<div class="concept-box"><div class="box-title">Concept: Circular Linked List</div><div class="box-body"><p>In a circular linked list, the last node's next pointer does not point to NULL. Instead, it points back to the first node (head), forming a circle. There is no natural end. We can keep traversing forever by following next pointers. We maintain a <strong>head</strong> pointer. To detect when we have gone around once, we check if we have come back to head. Circular lists are used in round-robin scheduling and buffer implementations.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig093.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">circular-node.py</div><pre><code>class CNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None   # will point to head when in circular list
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None   # empty list
+
+    def display(self):
+        if self.head is None:
+            print(&quot;Empty&quot;)
+            return
+        curr = self.head
+        print(curr.data, end=&quot; -&gt; &quot;)
+        curr = curr.next
+        while curr != self.head:   # stop when we come back to head
+            print(curr.data, end=&quot; -&gt; &quot;)
+            curr = curr.next
+        print(&quot;(back to head)&quot;)</code></pre></div>
+<section id="circular-ll-insertion-operations" class="content-section level-2">
+<h3 class="section-heading">Circular LL --- Insertion Operations</h3>
+
+<section id="insert-at-head-3" class="content-section level-3">
+<h4 class="section-heading">Insert at Head</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Insert at Head</div><div class="box-body"><p>Inserting at head in a circular list requires us to also update the <strong>last node's next</strong> pointer to point to the new head. Steps:</p>
+<ol><li><p>Create a new node.</p></li><li><p>If the list is empty: new.next = new (points to itself), head = new. Done.</p></li><li><p>Otherwise: Traverse to the last node (the one whose next == head).</p></li><li><p>Set new.next = head (new node points to old head).</p></li><li><p>Set last.next = new (last node now points to new head).</p></li><li><p>Update head = new.</p></li></ol>
+<p>Time: $O(n)$ because we must traverse to find the last node. If we maintain a <strong>tail pointer</strong>, this becomes $O(1)$.</p></div></div>
+</section>
+<section id="insert-at-tail-end-3" class="content-section level-3">
+<h4 class="section-heading">Insert at Tail (End)</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Insert at Tail</div><div class="box-body"><p>Inserting at tail in a circular list means inserting just before the head (since it is a circle). Steps:</p>
+<ol><li><p>Create a new node.</p></li><li><p>If the list is empty: new.next = new, head = new. Done.</p></li><li><p>Otherwise: Traverse to the current last node (whose next == head).</p></li><li><p>Set new.next = head (new node wraps around to head).</p></li><li><p>Set last.next = new (old last now points to new last).</p></li></ol>
+<p>Head does not change. Time: $O(n)$ without tail pointer.</p></div></div>
+</section>
+<section id="insert-at-middle-given-position-3" class="content-section level-3">
+<h4 class="section-heading">Insert at Middle (Given Position)</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Insert at Given Position</div><div class="box-body"><p>Inserting at position $k$ is similar to singly linked list, but we must be careful about the circular wrap. Steps:</p>
+<ol><li><p>Traverse to node at position $k-1$.</p></li><li><p>Set new.next = curr.next.</p></li><li><p>Set curr.next = new.</p></li></ol>
+<p>For inserting at position 1 (head), use Insert at Head. This takes $O(k)$ time.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig094.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig095.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig096.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">cll-insert.py</div><pre><code>class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def _find_last(self):
+        &quot;&quot;&quot;Find the last node (whose next == head)&quot;&quot;&quot;
+        if self.head is None:
+            return None
+        last = self.head
+        while last.next != self.head:
+            last = last.next
+        return last
+
+    def insert_at_head(self, data):
+        new_node = CNode(data)
+        if self.head is None:
+            new_node.next = new_node   # points to itself
+            self.head     = new_node
+            return
+        last          = self._find_last()
+        new_node.next = self.head      # step 1: new -&gt; old head
+        last.next     = new_node       # step 2: last -&gt; new
+        self.head     = new_node       # step 3: head = new
+
+    def insert_at_tail(self, data):
+        new_node = CNode(data)
+        if self.head is None:
+            new_node.next = new_node
+            self.head     = new_node
+            return
+        last          = self._find_last()
+        new_node.next = self.head      # new wraps to head
+        last.next     = new_node       # old last -&gt; new
+
+    def insert_at_position(self, data, pos):
+        if pos == 1:
+            self.insert_at_head(data)
+            return
+        new_node = CNode(data)
+        curr  = self.head
+        count = 1
+        while count &lt; pos - 1:
+            curr  = curr.next
+            count += 1
+            if curr == self.head:
+                print(&quot;Out of range&quot;)
+                return
+        new_node.next = curr.next
+        curr.next     = new_node
+
+    def display(self):
+        if self.head is None:
+            print(&quot;Empty&quot;)
+            return
+        curr = self.head
+        print(curr.data, end=&quot; -&gt; &quot;)
+        curr = curr.next
+        while curr != self.head:
+            print(curr.data, end=&quot; -&gt; &quot;)
+            curr = curr.next
+        print(&quot;(back to head)&quot;)
+
+
+# --- Driver Code ---
+cll = CircularLinkedList()
+cll.insert_at_tail(10)
+cll.insert_at_tail(20)
+cll.insert_at_tail(30)
+cll.display()              # 10 -&gt; 20 -&gt; 30 -&gt; (back to head)
+
+cll.insert_at_head(5)
+cll.display()              # 5 -&gt; 10 -&gt; 20 -&gt; 30 -&gt; (back to head)
+
+cll.insert_at_position(99, 3)
+cll.display()              # 5 -&gt; 10 -&gt; 99 -&gt; 20 -&gt; 30 -&gt; (back to head)</code></pre></div>
+</section>
+</section>
+<section id="circular-ll-deletion-operations" class="content-section level-2">
+<h3 class="section-heading">Circular LL --- Deletion Operations</h3>
+<div class="concept-box"><div class="box-title">Concept: CLL Deletion --- Key Rules</div><div class="box-body"><p>Deleting from a circular linked list needs special care because there is no NULL to stop traversal, and deleting the head requires updating the last node's next pointer to the new head. All deletions follow these rules:</p>
+<ul><li><p><strong>Single node:</strong> head = NULL, done.</p></li><li><p><strong>Delete head:</strong> Find last node. Set last.next = head.next. Update head = head.next.</p></li><li><p><strong>Delete non-head:</strong> Traverse with prev and curr. Set prev.next = curr.next.</p></li><li><p><strong>Stopping condition:</strong> Always check curr != head (not NULL) when traversing.</p></li></ul>
+<p>Time: $O(n)$ for all cases.</p></div></div>
+<section id="delete-at-head-2" class="content-section level-3">
+<h4 class="section-heading">Delete at Head</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Delete at Head</div><div class="box-body"><p>Deleting the head is the trickiest case in CLL because the last node's next must also be updated to point to the new head. Without this fix, the circle breaks.</p>
+<ol><li><p>If list is empty: report error.</p></li><li><p>If only one node (head.next == head): set head = NULL.</p></li><li><p>Otherwise: traverse to the last node (whose next == head).</p></li><li><p>Set head = head.next (advance head).</p></li><li><p>Set last.next = new head (repair the circular link).</p></li></ol>
+<p>Time: $O(n)$ because we must traverse to the last node.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig097.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig098.png" alt="diagram"></div>
+</section>
+<section id="delete-by-value-first-occurrence" class="content-section level-3">
+<h4 class="section-heading">Delete by Value --- First Occurrence</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Delete by Value (First Occurrence)</div><div class="box-body"><p>Traverse with two pointers, <strong>prev</strong> and <strong>curr</strong>. Start prev = head, curr = head.next. Compare curr.data with the target. When found, set prev.next = curr.next, which removes curr from the circle. If the head itself matches, call Delete-At-Head instead. Stop when curr comes back to head (full circle done).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig099.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig100.png" alt="diagram"></div>
+</section>
+<section id="delete-by-value-all-occurrences" class="content-section level-3">
+<h4 class="section-heading">Delete by Value --- All Occurrences</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Delete All Occurrences</div><div class="box-body"><p>We repeatedly delete all nodes whose data equals the target value. Since nodes can appear anywhere including at the head, we need to:</p>
+<ol><li><p>First, delete all head occurrences in a loop (head may change multiple times).</p></li><li><p>Then, traverse the rest of the circle once, deleting any matching non-head node using prev.next = curr.next.</p></li><li><p>After deletion, do NOT advance curr (the new curr is the old curr.next, which is now at prev.next). Advance only when no deletion happened.</p></li></ol>
+<p>Time: $O(n)$ single pass after handling head.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig101.png" alt="diagram"></div>
+</section>
+<section id="delete-by-position-2" class="content-section level-3">
+<h4 class="section-heading">Delete by Position</h4>
+<div class="concept-box"><div class="box-title">Concept: CLL Delete by Position</div><div class="box-body"><p>Traverse to position $k$ (1-indexed) by counting from head. Stop when count reaches $k$.</p>
+<ol><li><p>If pos = 1: call Delete-At-Head.</p></li><li><p>Otherwise: start from head, count steps until we reach position $k$.</p></li><li><p>If position exceeds the list length (we come back to head before reaching $k$): report error.</p></li><li><p>Set prev.next = curr.next to delete the node at position $k$.</p></li></ol>
+<p>Time: $O(k)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig102.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig103.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">cll-delete-all.py</div><pre><code>def _find_last(self):
+    if self.head is None:
+        return None
+    last = self.head
+    while last.next != self.head:
+        last = last.next
+    return last
+
+
+def delete_at_head(self):
+    if self.head is None:
+        print(&quot;Empty list&quot;)
+        return
+    if self.head.next == self.head:   # only one node
+        self.head = None
+        return
+    last          = self._find_last()
+    self.head     = self.head.next    # step 1: advance head
+    last.next     = self.head         # step 2: repair circle
+
+
+def delete_first_occurrence(self, val):
+    if self.head is None:
+        print(&quot;Empty list&quot;)
+        return
+    if self.head.data == val:
+        self.delete_at_head()
+        return
+    prev = self.head
+    curr = self.head.next
+    while curr != self.head:
+        if curr.data == val:
+            prev.next = curr.next    # skip over curr
+            return
+        prev = curr
+        curr = curr.next
+    print(f&quot;{val} not found&quot;)
+
+
+def delete_all_occurrences(self, val):
+    if self.head is None:
+        return
+    # Step 1: remove all head occurrences
+    while self.head is not None and self.head.data == val:
+        self.delete_at_head()
+        if self.head is None:
+            return
+
+    # Step 2: traverse and remove non-head occurrences
+    prev = self.head
+    curr = self.head.next
+    while curr != self.head:
+        if curr.data == val:
+            prev.next = curr.next    # skip curr, do NOT move prev
+            curr      = curr.next
+        else:
+            prev = curr
+            curr = curr.next
+
+
+def delete_by_position(self, pos):
+    if self.head is None:
+        print(&quot;Empty list&quot;)
+        return
+    if pos == 1:
+        self.delete_at_head()
+        return
+    prev  = self.head
+    curr  = self.head.next
+    count = 2
+    while curr != self.head:
+        if count == pos:
+            prev.next = curr.next    # skip over curr
+            return
+        prev  = curr
+        curr  = curr.next
+        count += 1
+    print(&quot;Position out of range&quot;)
+
+
+# --- Driver Code ---
+cll = CircularLinkedList()
+for v in [10, 20, 20, 30, 20, 40]:
+    cll.insert_at_tail(v)
+cll.display()
+# 10 -&gt; 20 -&gt; 20 -&gt; 30 -&gt; 20 -&gt; 40 -&gt; (back to head)
+
+cll.delete_first_occurrence(20)
+cll.display()
+# 10 -&gt; 20 -&gt; 30 -&gt; 20 -&gt; 40 -&gt; (back to head)
+
+cll.delete_all_occurrences(20)
+cll.display()
+# 10 -&gt; 30 -&gt; 40 -&gt; (back to head)
+
+cll.delete_at_head()
+cll.display()
+# 30 -&gt; 40 -&gt; (back to head)
+
+cll.delete_by_position(2)
+cll.display()
+# 30 -&gt; (back to head)</code></pre></div>
+</section>
+</section>
+<section id="circular-ll-search-operation" class="content-section level-2">
+<h3 class="section-heading">Circular LL --- Search Operation</h3>
+<div class="concept-box"><div class="box-title">Concept: CLL Search</div><div class="box-body"><p>Searching in a circular list is similar to singly linked list, but we must stop when we come back to the head, not when we hit NULL (there is no NULL). We traverse until we find the value or come full circle back to head.</p></div></div>
+<div class="code-box"><div class="code-title">cll-delete-search.py</div><pre><code>def delete_by_value(self, val):
+    if self.head is None:
+        print(&quot;Empty list&quot;)
+        return
+    # Case: only one node
+    if self.head.data == val and self.head.next == self.head:
+        self.head = None
+        return
+    # Case: delete head
+    if self.head.data == val:
+        last = self._find_last()
+        self.head      = self.head.next
+        last.next      = self.head
+        return
+    # Case: delete non-head node
+    prev = self.head
+    curr = self.head.next
+    while curr != self.head:
+        if curr.data == val:
+            prev.next = curr.next    # skip over curr
+            return
+        prev = curr
+        curr = curr.next
+    print(f&quot;{val} not found&quot;)
+
+
+def search(self, val):
+    if self.head is None:
+        return -1
+    curr = self.head
+    pos  = 1
+    while True:
+        if curr.data == val:
+            return pos
+        curr = curr.next
+        pos += 1
+        if curr == self.head:    # came full circle
+            break
+    return -1
+
+
+# --- Driver Code ---
+cll = CircularLinkedList()
+for v in [10, 20, 30, 40, 50]:
+    cll.insert_at_tail(v)
+cll.display()
+# 10 -&gt; 20 -&gt; 30 -&gt; 40 -&gt; 50 -&gt; (back to head)
+
+print(&quot;Search 30:&quot;, cll.search(30))   # 3
+print(&quot;Search 99:&quot;, cll.search(99))   # -1
+
+cll.delete_by_value(30)
+cll.display()
+# 10 -&gt; 20 -&gt; 40 -&gt; 50 -&gt; (back to head)
+
+cll.delete_by_value(10)   # delete head
+cll.display()
+# 20 -&gt; 40 -&gt; 50 -&gt; (back to head)</code></pre></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig104.png" alt="diagram"></div>
+</section>
+</section>
+<section id="classic-problems" class="content-section level-1">
+<h2 class="section-heading">Classic Problems</h2>
+
+<section id="floyd-s-cycle-detection-algorithm" class="content-section level-2">
+<h3 class="section-heading">Floyd's Cycle Detection Algorithm</h3>
+<div class="concept-box"><div class="box-title">Floyd's Two-Pointer Algorithm</div><div class="box-body"><p>This algorithm uses two pointers, <strong>slow</strong> and <strong>fast</strong>. Slow moves one step at a time. Fast moves two steps at a time. If there is no cycle, fast will reach NULL. If there is a cycle, fast and slow will eventually meet inside the cycle, because fast is catching up to slow at a rate of one step per round. This is like two runners on a circular track, the faster runner always laps the slower one.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig105.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig106.png" alt="diagram"></div>
+</section>
+<section id="finding-the-start-of-a-cycle" class="content-section level-2">
+<h3 class="section-heading">Finding the Start of a Cycle</h3>
+<div class="concept-box"><div class="box-title">Finding Cycle Start</div><div class="box-body"><p>Once Floyd's algorithm detects a cycle (slow and fast meet at some point inside the cycle), we can find where the cycle starts. The mathematical proof shows that the distance from head to cycle start equals the distance from the meeting point to cycle start (going forward). So, after the meeting is detected, we reset one pointer to head, and keep the other at the meeting point. Both move one step at a time. The node where they meet again is the start of the cycle.</p></div></div>
+<div class="concept-box"><div class="box-title">Idea</div><div class="box-body"><p>Let: $F$ = distance from HEAD to cycle start, 
+$C$ = cycle length, 
+$a$ = distance from cycle start to meeting point.<br>[0.4em]
+When slow and fast meet: slow travelled $F + a$, fast travelled $F + a + C$.<br>[0.4em]
+Since fast = $2 \times$ slow: $F + a + C = 2(F + a) \implies C = F + a \implies F = C - a$.<br>[0.4em]
+Resetting one pointer to head and moving both 1 step at a time ensures they meet exactly at the cycle start.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig107.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">cycle-detection.py</div><pre><code>def detect_cycle(self):
+    slow = self.head
+    fast = self.head
+    while fast and fast.next:
+        slow = slow.next           # 1 step
+        fast = fast.next.next      # 2 steps
+        if slow == fast:
+            return True            # cycle exists
+    return False
+
+
+def find_cycle_start(self):
+    slow = self.head
+    fast = self.head
+    has_cycle = False
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            has_cycle = True
+            break
+
+    if not has_cycle:
+        return None
+
+    slow = self.head           # reset slow to head
+    while slow != fast:        # both move 1 step
+        slow = slow.next
+        fast = fast.next
+
+    return slow                # start of cycle
+
+
+# --- Creating a cycle for testing ---
+ll = LinkedList()
+for val in [1, 2, 3, 4, 5, 6]:
+    ll.insert_at_tail(val)
+
+# Manually create cycle: node 6 points back to node 3
+curr = ll.head
+nodes = []
+while curr:
+    nodes.append(curr)
+    curr = curr.next
+
+nodes[5].next = nodes[2]   # creates cycle: 6 -&gt; 3
+
+print(&quot;Cycle detected:&quot;, ll.detect_cycle())   # True
+start = ll.find_cycle_start()
+print(&quot;Cycle starts at node with value:&quot;, start.data)  # 3</code></pre></div>
+</section>
+<section id="finding-the-middle-node" class="content-section level-2">
+<h3 class="section-heading">Finding the Middle Node</h3>
+<div class="concept-box"><div class="box-title">Slow and Fast Pointer for Middle</div><div class="box-body"><p>We use two pointers again, slow and fast. Slow moves one step at a time, fast moves two steps at a time. When fast reaches the end, slow is at the middle. This is because fast covers twice the distance in the same number of steps. So when fast has covered the whole list, slow has covered half. For a list of length $n$, this takes $O(n)$ time with only one pass.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig108.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig109.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">find-middle.py</div><pre><code>def find_middle(self):
+    if self.head is None:
+        return None
+    slow = self.head
+    fast = self.head
+    while fast.next and fast.next.next:
+        slow = slow.next         # 1 step
+        fast = fast.next.next    # 2 steps
+    return slow                  # slow is at middle
+
+
+# --- Driver Code ---
+ll = LinkedList()
+for val in [1, 2, 3, 4, 5]:
+    ll.insert_at_tail(val)
+mid = ll.find_middle()
+print(&quot;Middle:&quot;, mid.data)   # Output: 3
+
+ll2 = LinkedList()
+for val in [1, 2, 3, 4, 5, 6]:
+    ll2.insert_at_tail(val)
+mid2 = ll2.find_middle()
+print(&quot;Middle:&quot;, mid2.data)  # Output: 3 (first middle for even length)</code></pre></div>
+</section>
+<section id="merge-two-sorted-linked-lists" class="content-section level-2">
+<h3 class="section-heading">Merge Two Sorted Linked Lists</h3>
+<div class="concept-box"><div class="box-title">Merging Two Sorted Lists</div><div class="box-body"><p>Given two sorted linked lists, we want to merge them into a single sorted linked list. We use two pointers, one on each list. We compare the front elements of both lists, pick the smaller one, attach it to our result list, and move that pointer forward. We keep doing this until one list runs out. Then we attach the remaining list directly to the result.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig110.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig111.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">merge-sorted-lists.py</div><pre><code>def merge_sorted_lists(head1, head2):
+    dummy = Node(0)          # dummy node to simplify code
+    curr  = dummy
+
+    p1 = head1
+    p2 = head2
+
+    while p1 and p2:
+        if p1.data &lt;= p2.data:
+            curr.next = p1   # pick from list 1
+            p1 = p1.next
+        else:
+            curr.next = p2   # pick from list 2
+            p2 = p2.next
+        curr = curr.next
+
+    if p1:                   # remaining elements of list 1
+        curr.next = p1
+    else:                    # remaining elements of list 2
+        curr.next = p2
+
+    return dummy.next        # actual merged head
+
+
+# --- Driver Code ---
+ll1 = LinkedList()
+for val in [1, 3, 5, 7]:
+    ll1.insert_at_tail(val)
+
+ll2 = LinkedList()
+for val in [2, 4, 6, 8]:
+    ll2.insert_at_tail(val)
+
+merged_head = merge_sorted_lists(ll1.head, ll2.head)
+
+# print merged list
+curr = merged_head
+while curr:
+    print(curr.data, end=&quot; -&gt; &quot;)
+    curr = curr.next
+print(&quot;NULL&quot;)
+# Output: 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; 7 -&gt; 8 -&gt; NULL</code></pre></div>
+</section>
+<section id="nth-node-from-the-end" class="content-section level-2">
+<h3 class="section-heading">Nth Node from the End</h3>
+<div class="concept-box"><div class="box-title">Nth Node from the End</div><div class="box-body"><p>To find the $n$th node from the end in one pass, we use two pointers, <strong>fast</strong> and <strong>slow</strong>. First, we move fast $n$ steps ahead from the head. Then, we move both fast and slow one step at a time, until fast reaches the last node. At this point, slow is exactly $n$ positions from the end. This works because we maintained a gap of exactly $n$ nodes between fast and slow throughout.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig112.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig113.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">nth-from-end.py</div><pre><code>def nth_from_end(self, n):
+    fast = self.head
+    slow = self.head
+
+    # move fast n steps ahead
+    for i in range(n):
+        if fast is None:
+            print(&quot;n is larger than list length&quot;)
+            return None
+        fast = fast.next
+
+    # move both until fast reaches end
+    while fast is not None:
+        slow = slow.next
+        fast = fast.next
+
+    return slow   # slow is at nth node from end
+
+
+# --- Driver Code ---
+ll = LinkedList()
+for val in [1, 2, 3, 4, 5]:
+    ll.insert_at_tail(val)
+
+node = ll.nth_from_end(2)
+print(&quot;2nd from end:&quot;, node.data)   # Output: 4
+
+node = ll.nth_from_end(1)
+print(&quot;1st from end:&quot;, node.data)   # Output: 5
+
+node = ll.nth_from_end(5)
+print(&quot;5th from end:&quot;, node.data)   # Output: 1</code></pre></div>
+</section>
+<section id="intersection-of-two-linked-lists" class="content-section level-2">
+<h3 class="section-heading">Intersection of Two Linked Lists</h3>
+<div class="concept-box"><div class="box-title">Concept: What is Intersection of Linked Lists</div><div class="box-body"><p>Two singly linked lists are said to <strong>intersect</strong> if they share a common node at some point. From that common node onward, both lists follow the exact same nodes all the way to the end. The shared part forms a Y-shape, not an X-shape, because once the lists merge at the intersection node, they become one, and all nodes after it are shared.</p>
+<p>Think of two rivers flowing separately and then joining together at a point. After that joining point, there is only one river, not two. Similarly, after the intersection node, both lists share the same nodes and the same tail.</p></div></div>
+<div class="example-box"><div class="box-title">Example 206: Analogy: Two Paths Meeting</div><div class="box-body"><p>Imagine two hiking trails starting from different points but eventually joining at a fork. From the fork onward, both trails follow the same path to the summit. The fork is the intersection node. Everything before the fork is separate for each trail. Everything after the fork is shared.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig114.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Concept: Important Properties of Intersection</div><div class="box-body"><ul><li><p>The intersection is defined by <strong>same memory address</strong>, not same value. Two nodes with value 8 at different memory locations are NOT an intersection.</p></li><li><p>Once two lists intersect, they must have the <strong>same tail node</strong>. So, checking if both lists end at the same node is the fastest way to detect intersection.</p></li><li><p>The <strong>lengths of the two lists</strong> from head to the intersection node can be different, which is why a naive same-speed traversal misses the intersection.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 207: Why Naive Traversal Misses the Intersection</div><div class="box-body"><p>If List 1 has 5 nodes before intersection and List 2 has 3 nodes before intersection, advancing one pointer per step from each head will never land both pointers at the intersection at the same time. They are always out of sync by 2 steps. We need to compensate for this length difference.</p></div></div>
+</section>
+<section id="methods-to-find-intersection" class="content-section level-2">
+<h3 class="section-heading">Methods to Find Intersection</h3>
+
+<section id="method-1-using-length-difference" class="content-section level-3">
+<h4 class="section-heading">Method 1: Using Length Difference</h4>
+<div class="concept-box"><div class="box-title">Concept: Length Difference Method</div><div class="box-body"><p>The idea is simple. If List 1 has length $L_1$ and List 2 has length $L_2$, then the longer list's pointer should start $|L_1 - L_2|$ steps ahead. After this adjustment, both pointers are the same distance from the intersection node. We then advance both one step at a time until they meet. That meeting point is the intersection.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig115.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig116.png" alt="diagram"></div>
+</section>
+<section id="method-2-two-pointer-redirect-method-floyd-like" class="content-section level-3">
+<h4 class="section-heading">Method 2: Two-Pointer Redirect Method (Floyd-like)</h4>
+<div class="concept-box"><div class="box-title">Concept: Two-Pointer Redirect Method</div><div class="box-body"><p>This elegant method uses two pointers $p_1$ and $p_2$, starting at the heads of List 1 and List 2. Both advance one step at a time. When a pointer reaches the end (NULL) of its list, it is redirected to the <strong>head of the other list</strong>. If the lists intersect, both pointers will meet at the intersection node. If they do not intersect, both will reach NULL at the same time.</p>
+<p><strong>Why does this work?</strong> By the time both pointers have been redirected once, each has traveled the full length of both lists combined ($L_1 + L_2$ steps total). The private portions cancel out, and both land at the intersection at the same time.</p>
+<p>Mathematically: $p_1$ travels $a + c$ steps in List 1, then $b$ steps in List 2 before intersection: total $= a + c + b$. $p_2$ travels $b + c$ steps in List 2, then $a$ steps in List 1 before intersection: total $= b + c + a$. Both are equal, so they meet at the intersection.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig117.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig118.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 208: Pseudocode: Two-Pointer Redirect (C-like)</div><div class="box-body"><p><strong>FindIntersection(head1, head2):</strong></p>
+<ol><li><p>p1 = head1, p2 = head2</p></li><li><p>while p1 != p2:</p></li><li><p>   if p1 == NULL: p1 = head2</p></li><li><p>   else: p1 = p1.next</p></li><li><p>   if p2 == NULL: p2 = head1</p></li><li><p>   else: p2 = p2.next</p></li><li><p>return p1 (NULL means no intersection)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">linked-list-intersection.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+# ============================================================
+# Method 1: Length Difference
+# ============================================================
+def get_length(head):
+    length = 0
+    curr   = head
+    while curr:
+        length += 1
+        curr = curr.next
+    return length
+
+
+def find_intersection_length(head1, head2):
+    l1 = get_length(head1)
+    l2 = get_length(head2)
+
+    p1 = head1
+    p2 = head2
+
+    # advance longer list pointer
+    if l1 &gt; l2:
+        for _ in range(l1 - l2):
+            p1 = p1.next
+    else:
+        for _ in range(l2 - l1):
+            p2 = p2.next
+
+    # advance both together
+    while p1 != p2:
+        p1 = p1.next
+        p2 = p2.next
+
+    return p1   # None if no intersection
+
+
+# ============================================================
+# Method 2: Two-Pointer Redirect (elegant)
+# ============================================================
+def find_intersection_two_pointer(head1, head2):
+    if head1 is None or head2 is None:
+        return None
+
+    p1 = head1
+    p2 = head2
+
+    while p1 != p2:
+        p1 = head2 if p1 is None else p1.next   # redirect on reaching end
+        p2 = head1 if p2 is None else p2.next   # redirect on reaching end
+
+    return p1   # None if no intersection, else intersection node
+
+
+# ============================================================
+# Build intersecting lists for testing
+# ============================================================
+# Shared tail: 8 -&gt; 10 -&gt; 15 -&gt; NULL
+shared1 = Node(8)
+shared2 = Node(10)
+shared3 = Node(15)
+shared1.next = shared2
+shared2.next = shared3
+
+# List 1: 1 -&gt; 3 -&gt; [8 -&gt; 10 -&gt; 15]
+h1      = Node(1)
+h1.next = Node(3)
+h1.next.next = shared1
+
+# List 2: 2 -&gt; 4 -&gt; 6 -&gt; 7 -&gt; [8 -&gt; 10 -&gt; 15]
+h2            = Node(2)
+h2.next       = Node(4)
+h2.next.next  = Node(6)
+h2.next.next.next = Node(7)
+h2.next.next.next.next = shared1   # same shared1 node
+
+# Test Method 1
+result1 = find_intersection_length(h1, h2)
+print(&quot;Method 1 - Intersection at node with value:&quot;,
+      result1.data if result1 else &quot;None&quot;)
+# Output: 8
+
+# Test Method 2
+result2 = find_intersection_two_pointer(h1, h2)
+print(&quot;Method 2 - Intersection at node with value:&quot;,
+      result2.data if result2 else &quot;None&quot;)
+# Output: 8
+
+# Test with non-intersecting lists
+n1      = Node(10)
+n1.next = Node(20)
+n2      = Node(30)
+n2.next = Node(40)
+
+result3 = find_intersection_two_pointer(n1, n2)
+print(&quot;Non-intersecting:&quot;, result3)
+# Output: None</code></pre></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig119.png" alt="diagram"></div>
+</section>
+</section>
+</section>
+<section id="linked-list-implementation-of-stack-and-queue" class="content-section level-1">
+<h2 class="section-heading">Linked List Implementation of Stack and Queue</h2>
+
+<section id="stack-using-linked-list" class="content-section level-2">
+<h3 class="section-heading">Stack Using Linked List</h3>
+<div class="concept-box"><div class="box-title">Stack Using Linked List</div><div class="box-body"><p>We implement a stack using a singly linked list. The head of the linked list acts as the top of the stack. Push means inserting a new node at the head, which takes $O(1)$ time. Pop means removing the head node, which also takes $O(1)$ time. This approach has no size limit, unlike array-based stacks, because nodes are created dynamically.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig120.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig121.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig122.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">stack-linked-list.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class StackLL:
+    def __init__(self):
+        self.top = None    # head of linked list = top of stack
+
+    def is_empty(self):
+        return self.top is None
+
+    def push(self, x):
+        new_node      = Node(x)
+        new_node.next = self.top  # new node points to old top
+        self.top      = new_node  # top is now new node
+
+    def pop(self):
+        if self.is_empty():
+            print(&quot;Stack Underflow&quot;)
+            return -1
+        x        = self.top.data
+        self.top = self.top.next  # move top to next
+        return x
+
+    def peek(self):
+        if self.is_empty():
+            return -1
+        return self.top.data
+
+    def display(self):
+        curr = self.top
+        print(&quot;TOP -&gt;&quot;, end=&quot; &quot;)
+        while curr:
+            print(curr.data, end=&quot; -&gt; &quot;)
+            curr = curr.next
+        print(&quot;NULL&quot;)
+
+
+# --- Driver Code ---
+s = StackLL()
+s.push(10)
+s.push(20)
+s.push(30)
+s.display()              # TOP -&gt; 30 -&gt; 20 -&gt; 10 -&gt; NULL
+print(&quot;Peek:&quot;, s.peek()) # 30
+print(&quot;Pop:&quot;, s.pop())   # 30
+print(&quot;Pop:&quot;, s.pop())   # 20
+s.display()              # TOP -&gt; 10 -&gt; NULL</code></pre></div>
+</section>
+<section id="queue-using-linked-list" class="content-section level-2">
+<h3 class="section-heading">Queue Using Linked List</h3>
+<div class="concept-box"><div class="box-title">Queue Using Linked List</div><div class="box-body"><p>We implement a queue using a singly linked list. The head of the linked list acts as the FRONT (for dequeue), and we maintain a separate <strong>tail</strong> pointer that always points to the last node, which acts as the REAR (for enqueue). Enqueue adds a new node at the tail in $O(1)$ time. Dequeue removes the head node in $O(1)$ time. Both FRONT and REAR operations are $O(1)$ because we maintain both pointers.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig123.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig124.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig125.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">queue-linked-list.py</div><pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class QueueLL:
+    def __init__(self):
+        self.FRONT = None   # head node, for dequeue
+        self.REAR  = None   # tail node, for enqueue
+
+    def is_empty(self):
+        return self.FRONT is None
+
+    def enqueue(self, x):
+        new_node = Node(x)
+        if self.is_empty():
+            self.FRONT = new_node   # first element
+            self.REAR  = new_node
+        else:
+            self.REAR.next = new_node   # link at REAR
+            self.REAR      = new_node   # move REAR forward
+
+    def dequeue(self):
+        if self.is_empty():
+            print(&quot;Queue Underflow&quot;)
+            return -1
+        x          = self.FRONT.data
+        self.FRONT = self.FRONT.next   # move FRONT forward
+        if self.FRONT is None:
+            self.REAR = None           # queue is now empty
+        return x
+
+    def front(self):
+        if self.is_empty():
+            return -1
+        return self.FRONT.data
+
+    def rear(self):
+        if self.is_empty():
+            return -1
+        return self.REAR.data
+
+    def display(self):
+        curr = self.FRONT
+        print(&quot;FRONT -&gt;&quot;, end=&quot; &quot;)
+        while curr:
+            print(curr.data, end=&quot; -&gt; &quot;)
+            curr = curr.next
+        print(&quot;NULL &lt;- REAR&quot;)
+
+
+# --- Driver Code ---
+q = QueueLL()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.display()                       # 10 -&gt; 20 -&gt; 30
+print(&quot;FRONT:&quot;, q.front())        # 10
+print(&quot;REAR:&quot;, q.rear())          # 30
+print(&quot;Dequeue:&quot;, q.dequeue())    # 10
+print(&quot;Dequeue:&quot;, q.dequeue())    # 20
+q.enqueue(40)
+q.display()                       # 30 -&gt; 40</code></pre></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig126.png" alt="diagram"></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Queues</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Trees &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

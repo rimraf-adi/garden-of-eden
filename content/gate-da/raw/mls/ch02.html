@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regression Models — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 6</div><h1>Regression Models</h1></div>
+<section id="simple-linear-regression" class="content-section level-1">
+<h2 class="section-heading">Simple Linear Regression</h2>
+
+<section id="model" class="content-section level-2">
+<h3 class="section-heading">Model</h3>
+<p>Simple Linear Regression predicts a quantitative response $Y$ from a single predictor $X$ assuming a linear relationship. The model represents a straight line, and the predicted values are points on this line.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig028.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Simple Linear Regression Model</div><div class="box-body"><p>Simple Linear Regression predicts a quantitative response $Y$ from a single predictor $X$ assuming a linear relationship:</p>
+<p>\[
+Y \approx \beta_0 + \beta_1 X
+\]</p>
+<p>where</p>
+<ul><li><p>$\beta_0$: Intercept (expected $Y$ when $X=0$)</p></li><li><p>$\beta_1$: Slope (change in $Y$ per unit change in $X$)</p></li></ul>
+<p>Predicted value for a given $X=x$:</p>
+<p>\[
+\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 x
+\]</p>
+<p>Here $\hat{\beta}_0$ and $\hat{\beta}_1$ are estimates of the true coefficients $\beta_0$ and $\beta_1$.</p></div></div>
+<p>To find the best line, we minimize the vertical distances (residuals) from each point to the line. Squaring these distances and summing gives the Residual Sum of Squares (RSS).</p>
+</section>
+<section id="estimating-coefficients-ordinary-least-squares-ols" class="content-section level-2">
+<h3 class="section-heading">Estimating Coefficients: Ordinary Least Squares (OLS)</h3>
+<div class="concept-box"><div class="box-title">Estimating Coefficients: Least Squares (OLS)</div><div class="box-body"><p>We estimate $\beta_0$ and $\beta_1$ by minimizing the Residual Sum of Squares (RSS):</p>
+<p>\[
+RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - \hat{\beta}_0 - \hat{\beta}_1 x_i)^2
+\]</p>
+<p>The least squares estimates are:</p>
+<p>\[
+\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}, \quad
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+\]</p>
+<p>where $\bar{x}$ and $\bar{y}$ are sample means of $X$ and $Y$.</p></div></div>
+</section>
+<section id="residuals-and-residual-standard-error" class="content-section level-2">
+<h3 class="section-heading">Residuals and Residual Standard Error</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig029.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Residuals and Residual Standard Error</div><div class="box-body"><p>Residual for observation $i$:</p>
+<p>\[
+e_i = y_i - \hat{y}_i
+\]</p>
+<p>Residual Sum of Squares:</p>
+<p>\[
+RSS = \sum_{i=1}^{n} e_i^2
+\]</p>
+<p>Residual Standard Error (RSE) measures the average deviation of observed $Y$ from the regression line:</p>
+<p>\[
+RSE = \sqrt{\frac{RSS}{n-2}}
+\]</p>
+<p>It indicates model's lack of fit in the units of $Y$.</p></div></div>
+</section>
+<section id="r-squared-r-2" class="content-section level-2">
+<h3 class="section-heading">R-Squared ($R^2$)</h3>
+<p>R-squared measures how much of the variance in $Y$ is explained by $X$.</p>
+<p>Before understanding $R^2$, we need to know what TSS and RSS are:</p>
+<ul><li><p>TSS (Total Sum of Squares): Measures the total variability of $Y$ around its mean $\bar{Y}$.  
+        \[
+        TSS = \sum_{i=1}^{n} (y_i - \bar{y})^2
+        \]  
+        Think of it as how “spread out” the data points are from the average.</p></li><li><p>RSS (Residual Sum of Squares): Measures the variability of $Y$ that is <strong>not explained by the regression line</strong>, i.e., the sum of squared residuals:
+        \[
+        RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+        \]  
+        This shows how far the points are from the fitted line.</p></li><li><p>$R^2$ then tells us the proportion of total variability explained by the model:
+        \[
+        R^2 = \frac{TSS - RSS}{TSS} = 1 - \frac{RSS}{TSS}
+        \]</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig030.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">R-Squared ($R^2$)</div><div class="box-body"><p>$R^2$ measures the proportion of variance in $Y$ explained by $X$:</p>
+<p>\[
+R^2 = \frac{TSS - RSS}{TSS} = 1 - \frac{RSS}{TSS}, \quad
+TSS = \sum (y_i - \bar{y})^2
+\]</p>
+<ul><li><p>$R^2 \approx 1$: model explains most variability in $Y$</p></li><li><p>$R^2 \approx 0$: model explains little variability</p></li></ul>
+<p>For simple linear regression, $R^2$ is the square of correlation:</p>
+<p>\[
+R^2 = \text{Cor}(X,Y)^2
+\]</p></div></div>
+</section>
+<section id="population-vs-sample-regression" class="content-section level-2">
+<h3 class="section-heading">Population vs Sample Regression</h3>
+<p>The population regression line represents the true relationship with random error. The sample line estimates it from data.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig031.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Population vs Sample Regression</div><div class="box-body"><p>True model with random error:</p>
+<p>\[
+Y = \beta_0 + \beta_1 X + \varepsilon, \quad \mathbb{E}[\varepsilon]=0
+\]</p>
+<ul><li><p>Population regression line: $\beta_0 + \beta_1 X$ (unknown)</p></li><li><p>Sample least squares line: $\hat{\beta}_0 + \hat{\beta}_1 X$ (estimated from data)</p></li></ul>
+<p>Different samples yield slightly different $\hat{\beta}_0, \hat{\beta}_1$, but all estimate the same population line.</p></div></div>
+</section>
+<section id="standard-errors-and-confidence-intervals" class="content-section level-2">
+<h3 class="section-heading">Standard Errors and Confidence Intervals</h3>
+<p>Confidence intervals indicate the likely range of true coefficients.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig032.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Standard Errors and Confidence Intervals (in terms of $Z_{\alpha/2}$)</div><div class="box-body"><p><strong>Standard Errors of Coefficients:</strong></p>
+<p>\[
+SE(\hat{\beta}_1) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}}, 
+\quad
+SE(\hat{\beta}_0) = \sqrt{\sigma^2 \left(\frac{1}{n} + \frac{\bar{x}^2}{\sum (x_i - \bar{x})^2}\right)}
+\]</p>
+<p><strong>Confidence Intervals at </strong> $(1-\alpha)$ <strong> level:</strong></p>
+<p>\[
+\hat{\beta}_1 \pm Z_{\alpha/2} \cdot SE(\hat{\beta}_1),
+\quad 
+\hat{\beta}_0 \pm Z_{\alpha/2} \cdot SE(\hat{\beta}_0)
+\]</p>
+<p><strong>where:</strong></p>
+<ul><li><p>$Z_{\alpha/2}$ is the critical value from the standard normal distribution.</p></li><li><p>For a 95% confidence level, $\alpha = 0.05 \Rightarrow Z_{\alpha/2} = 1.96 \, (\approx 2)$.</p></li></ul>
+<p>\[
+P\left( \hat{\beta}_j - Z_{\alpha/2} SE(\hat{\beta}_j) \le \beta_j \le 
+\hat{\beta}_j + Z_{\alpha/2} SE(\hat{\beta}_j) \right) = 1 - \alpha,
+\quad j = 0,1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 10</div><div class="box-body"><p>A company collects data on advertising spend ($X$, in $1000) and sales ($Y$, in $1000) for 6 markets:</p>
+<p>\[
+(X,Y) = (1,2), (2,3), (3,5), (4,4), (5,6), (6,7)
+\]</p>
+<p>Answer the following:</p>
+<ol><li><p>Compute the least squares estimates of the regression coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$.</p></li><li><p>Predict sales for $X=7$.</p></li><li><p>Compute the residuals $e_i$ and Residual Sum of Squares (RSS).</p></li><li><p>Compute the Residual Standard Error (RSE).</p></li><li><p>Compute standard errors of $\hat{\beta}_0$ and $\hat{\beta}_1$ assuming $\sigma^2 = 0.49$.</p></li><li><p>Compute the 95% confidence intervals for $\hat{\beta}_0$ and $\hat{\beta}_1$.</p></li><li><p>Compute $R^2$ and interpret it.</p></li><li><p>Explain what large positive and negative residuals indicate.</p></li></ol>
+<p><strong>Solution:</strong></p>
+<ol><li><p><strong>Least squares estimates:</strong>
+\[
+\bar{X} = \frac{1+2+3+4+5+6}{6} = 3.5, \quad \bar{Y} = \frac{2+3+5+4+6+7}{6} = 4.5
+\]
+\[
+\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{15.75}{17.5} = 0.9
+\]
+\[
+\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X} = 4.5 - 0.9 \cdot 3.5 = 1.35
+\]</p></li><li><p><strong>Prediction for $X=7$:</strong>
+\[
+\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 X = 1.35 + 0.9 \cdot 7 = 7.65
+\]</p></li><li><p><strong>Residuals and RSS:</strong>
+\[
+\hat{Y}_i = 1.35 + 0.9 X_i = [2.25,3.15,4.05,4.95,5.85,6.75]
+\]
+\[
+e_i = Y_i - \hat{Y}_i = [-0.25,-0.15,0.95,-0.95,0.15,0.25]
+\]
+\[
+RSS = \sum e_i^2 = 0.0625+0.0225+0.9025+0.9025+0.0225+0.0625 = 1.975
+\]</p></li><li><p><strong>Residual Standard Error (RSE):</strong>
+\[
+RSE = \sqrt{\frac{RSS}{n-2}} = \sqrt{\frac{1.975}{6-2}} = \sqrt{0.49375} \approx 0.703
+\]</p></li><li><p><strong>Standard errors of coefficients:</strong>
+\[
+SE(\hat{\beta}_1) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}} = \sqrt{\frac{0.49}{17.5}} \approx 0.167
+\]
+\[
+SE(\hat{\beta}_0) = \sqrt{\sigma^2 \left( \frac{1}{n} + \frac{\bar{X}^2}{\sum (x_i-\bar{x})^2} \right)} = \sqrt{0.49 \left( \frac{1}{6} + \frac{3.5^2}{17.5} \right)} \approx 0.44
+\]</p></li><li><p><strong>95% Confidence intervals:</strong>
+\[
+\hat{\beta}_1 \pm 2 SE(\hat{\beta}_1) = 0.9 \pm 2 \cdot 0.167 = [0.566,1.234]
+\]
+\[
+\hat{\beta}_0 \pm 2 SE(\hat{\beta}_0) = 1.35 \pm 2 \cdot 0.44 = [0.47,2.23]
+\]</p></li><li><p><strong>R-Squared ($R^2$):</strong>
+\[
+TSS = \sum (Y_i - \bar{Y})^2 = 17.5, \quad RSS = 1.975
+\]
+\[
+R^2 = 1 - \frac{RSS}{TSS} = 1 - \frac{1.975}{17.5} \approx 0.887
+\]
+<em>Interpretation:</em> 88.7% of variability in sales is explained by advertising.</p></li><li><p><strong>Interpretation of residuals:</strong></p>
+<ul><li><p>$e_i &gt; 0$ → observed $Y_i$ is above regression line → model underestimates</p></li><li><p>$e_i &lt; 0$ → observed $Y_i$ is below regression line → model overestimates</p></li><li><p>Large magnitude → poor prediction or outlier</p></li></ul></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 11</div><div class="box-body"><p>A startup collects data on number of hours spent on online ads ($X$, in hours) and number of website signups ($Y$) over 7 campaigns:</p>
+<p>\[
+(X,Y) = (1,3), (2,5), (3,4), (4,6), (5,7), (6,8), (7,7)
+\]</p>
+<p>Answer the following:</p>
+<ol><li><p>Compute the least squares estimates of the regression coefficients $\hat{\beta}_0$ and $\hat{\beta}_1$.</p></li><li><p>Predict signups for $X=8$ hours.</p></li><li><p>Compute the residuals $e_i$ and Residual Sum of Squares (RSS).</p></li><li><p>Compute the Residual Standard Error (RSE).</p></li><li><p>Compute standard errors of $\hat{\beta}_0$ and $\hat{\beta}_1$ assuming $\sigma^2 = 0.64$.</p></li><li><p>Compute the 95% confidence intervals for $\hat{\beta}_0$ and $\hat{\beta}_1$.</p></li><li><p>Compute $R^2$ and interpret it.</p></li><li><p>Explain the interpretation of large positive and negative residuals in this case.</p></li></ol>
+<p><strong>Solution:</strong></p>
+<ol><li><p><strong>Least squares estimates:</strong>
+\[
+\bar{X} = \frac{1+2+3+4+5+6+7}{7} = 4, \quad \bar{Y} = \frac{3+5+4+6+7+8+7}{7} = 5.714
+\]</p>
+<p>\[
+\hat{\beta}_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} 
+= \frac{(1-4)(3-5.714)+\dots+(7-4)(7-5.714)}{(1-4)^2+\dots+(7-4)^2} = 0.786
+\]</p>
+<p>\[
+\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X} = 5.714 - 0.786 \cdot 4 \approx 2.570
+\]</p></li><li><p><strong>Prediction for $X=8$:</strong>
+\[
+\hat{Y} = 2.570 + 0.786 \cdot 8 = 9.838
+\]</p></li><li><p><strong>Residuals and RSS:</strong>
+\[
+\hat{Y}_i = 2.570 + 0.786 X_i = [3.356,4.142,4.928,5.714,6.5,7.286,8.072]
+\]
+\[
+e_i = Y_i - \hat{Y}_i = [-0.356,0.858,-0.928,0.286,0.5,0.714,-1.072]
+\]
+\[
+RSS = \sum e_i^2 = 0.127 + 0.736 + 0.861 + 0.082 + 0.25 + 0.51 + 1.149 \approx 3.715
+\]</p></li><li><p><strong>Residual Standard Error (RSE):</strong>
+\[
+RSE = \sqrt{\frac{RSS}{n-2}} = \sqrt{\frac{3.715}{7-2}} = \sqrt{0.743} \approx 0.862
+\]</p></li><li><p><strong>Standard errors of coefficients:</strong>
+\[
+SE(\hat{\beta}_1) = \sqrt{\frac{\sigma^2}{\sum (x_i - \bar{x})^2}} = \sqrt{\frac{0.64}{28}} \approx 0.151
+\]</p>
+<p>\[
+SE(\hat{\beta}_0) = \sqrt{0.64 \left( \frac{1}{7} + \frac{4^2}{28} \right)} = \sqrt{0.64 \left(0.1429+0.5714\right)} = \sqrt{0.457} \approx 0.676
+\]</p></li><li><p><strong>95% Confidence intervals:</strong>
+\[
+\hat{\beta}_1 \pm 2 SE(\hat{\beta}_1) = 0.786 \pm 0.302 = [0.484,1.088]
+\]</p>
+<p>\[
+\hat{\beta}_0 \pm 2 SE(\hat{\beta}_0) = 2.570 \pm 1.352 = [1.218,3.922]
+\]</p></li><li><p><strong>R-Squared ($R^2$):</strong>
+\[
+TSS = \sum (Y_i - \bar{Y})^2 = 0.735+0.020+2.938+0.082+1.653+5.204+1.653 \approx 12.285
+\]</p>
+<p>\[
+R^2 = 1 - \frac{RSS}{TSS} = 1 - \frac{3.715}{12.285} \approx 0.697
+\]</p>
+<p><em>Interpretation:</em> Approximately 69.7% of variability in signups is explained by online ad hours.</p></li><li><p><strong>Interpretation of residuals:</strong></p>
+<ul><li><p>Positive residual $e_i &gt; 0$ → observed $Y_i$ above regression line → model underestimates</p></li><li><p>Negative residual $e_i &lt; 0$ → observed $Y_i$ below regression line → model overestimates</p></li><li><p>Large residuals indicate potential outliers or poor fit for some campaigns</p></li></ul></li></ol></div></div>
+</section>
+</section>
+<section id="multiple-linear-regression" class="content-section level-1">
+<h2 class="section-heading">Multiple Linear Regression</h2>
+<p>Multiple Linear Regression (MLR) models the relationship between a quantitative response $Y$ and multiple predictors $X_1, X_2, \dots, X_p$:</p>
+<p>\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon, \quad \mathbb{E}[\varepsilon] = 0
+\]</p>
+<p>Here, $\beta_0$ is the intercept, $\beta_j$ represents the effect of predictor $X_j$ on $Y$, and $\varepsilon$ is the random error. The goal is to estimate the coefficients to minimize the difference between observed and predicted values.</p>
+<div class="concept-box"><div class="box-title">Matrix Formulation</div><div class="box-body"><p>We can write MLR compactly in matrix form:</p>
+<p>\[
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\]</p>
+<p>where
+\[
+\mathbf{Y} = 
+\begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}, \quad
+\mathbf{X} = 
+\begin{bmatrix} 1 &amp; x_{11} &amp; \dots &amp; x_{1p} \\ 1 &amp; x_{21} &amp; \dots &amp; x_{2p} \\ \vdots &amp; \vdots &amp; &amp; \vdots \\ 1 &amp; x_{n1} &amp; \dots &amp; x_{np} \end{bmatrix}, \quad
+\boldsymbol{\beta} = 
+\begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}, \quad
+\boldsymbol{\varepsilon} = 
+\begin{bmatrix} \varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n \end{bmatrix}
+\]</p>
+<p><strong>Reasoning:</strong> The column of ones in $\mathbf{X}$ corresponds to the intercept. Using matrix notation simplifies calculation of predictions, residuals, and coefficient estimates.</p></div></div>
+<div class="example-box"><div class="box-title">Example 12</div><div class="box-body"><p>Consider 3 houses with Size ($X_1$) and Age ($X_2$) and Price ($Y$):</p>
+<p>\[
+\begin{array}{ccc}
+X_1 &amp; X_2 &amp; Y \\
+1200 &amp; 5 &amp; 240 \\
+1500 &amp; 10 &amp; 300 \\
+1700 &amp; 15 &amp; 325 \\
+\end{array}
+\]</p>
+<p>Matrix form:
+\[
+\mathbf{X} = 
+\begin{bmatrix} 1 &amp; 1200 &amp; 5 \\ 1 &amp; 1500 &amp; 10 \\ 1 &amp; 1700 &amp; 15 \end{bmatrix}, \quad
+\mathbf{Y} = 
+\begin{bmatrix} 240 \\ 300 \\ 325 \end{bmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 13</div><div class="box-body"><p>A fourth house with Size=2000, Age=20:
+\[
+\mathbf{x}_{new} = \begin{bmatrix} 1 &amp; 2000 &amp; 20 \end{bmatrix}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">OLS Estimation: Multiple Linear Regression</div><div class="box-body"><p>In multiple linear regression, the response $Y$ depends on multiple predictors $X_1, X_2, \dots, X_p$:</p>
+<p>\[
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon
+\]</p>
+<p>For $n$ observations, in matrix form:</p>
+<p>\[
+\mathbf{Y} =
+\begin{bmatrix} Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{bmatrix}, \quad
+\mathbf{X} =
+\begin{bmatrix}
+1 &amp; X_{11} &amp; X_{12} &amp; \dots &amp; X_{1p} \\
+1 &amp; X_{21} &amp; X_{22} &amp; \dots &amp; X_{2p} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; X_{n1} &amp; X_{n2} &amp; \dots &amp; X_{np}
+\end{bmatrix}, \quad
+\boldsymbol{\beta} =
+\begin{bmatrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_p \end{bmatrix}
+\]</p>
+<p><strong>OLS Estimate:</strong> The coefficients are chosen to minimize the residual sum of squares (RSS):</p>
+<p>\[
+RSS = \sum_{i=1}^{n} (Y_i - \hat{Y}_i)^2 = (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})^T (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})
+\]</p>
+<p><strong>Closed-form solution:</strong></p>
+<p>\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}
+\]</p>
+<p><strong>Interpretation:</strong> Each $\hat{\beta}_j$ represents the expected change in $Y$ per unit change in $X_j$, holding all other predictors constant.</p></div></div>
+<div class="concept-box"><div class="box-title">OLS Estimation and Normal Equations</div><div class="box-body"><p>OLS estimates minimize the Residual Sum of Squares:</p>
+<p>\[
+RSS = (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})^T (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta})
+\]</p>
+<p>Set derivative w.r.t $\boldsymbol{\beta}$ to zero:</p>
+<p>\[
+\frac{\partial RSS}{\partial \boldsymbol{\beta}} = -2 \mathbf{X}^T (\mathbf{Y} - \mathbf{X} \boldsymbol{\beta}) = 0
+\]</p>
+<p>\[
+\Rightarrow \mathbf{X}^T \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X}^T \mathbf{Y}, \quad
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}
+\]</p>
+<p><strong>Reasoning:</strong> The normal equations provide a closed-form solution for OLS coefficients. $\mathbf{X}^T \mathbf{X}$ must be invertible; otherwise, predictors are linearly dependent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 14</div><div class="box-body"><p>Using previous 3-house data:
+\[
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y} = \begin{bmatrix} 50 \\ 0.15 \\ 5 \end{bmatrix}
+\]
+Regression line: $\hat{Y} = 50 + 0.15 X_1 + 5 X_2$</p></div></div>
+<div class="concept-box"><div class="box-title">Goodness of Fit: $R^2$ and Adjusted $R^2$ (Matrix–Vector Form)</div><div class="box-body"><p><strong>Symbol Definitions:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig033.png" alt="diagram"></div>
+<p><strong>Formulas:</strong></p>
+<p>\[
+TSS = (Y - \bar{y}V)^{\top}(Y - \bar{y}V)
+\]</p>
+<p>\[
+RSS = (Y - X\hat{\beta})^{\top}(Y - X\hat{\beta})
+\]</p>
+<p>\[
+R^2 = 1 - 
+\frac{(Y - X\hat{\beta})^{\top}(Y - X\hat{\beta})}
+{(Y - \bar{y}V)^{\top}(Y - \bar{y}V)}
+\]</p>
+<p>\[
+\bar{R}^2 = 1 -
+\frac{\big[(Y - X\hat{\beta})^{\top}(Y - X\hat{\beta})\big]/(n - p - 1)}
+{\big[(Y - \bar{y}V)^{\top}(Y - \bar{y}V)\big]/(n - 1)}
+\]
+<strong>Residual Sum of Squares (RSS):</strong> <br>
+RSS tells us how far the model's predictions are from the actual data points. <br>
+It adds up all the squared differences between what we predicted and what really happened. <br>
+A smaller RSS means our model fits the data better.</p>
+<p><strong>Why RSS Always Goes Down:</strong> <br>
+When we add more predictors (extra variables) to the model, it gets more freedom to adjust itself. <br>
+Each new variable gives the model another way to slightly bend or twist to fit the data. <br>
+Even if that new variable is just random noise, the model can still use it to reduce some errors. <br>
+So, the total error (RSS) can only go down or stay the same — it never goes up.</p>
+<p><strong>The Problem:</strong> <br>
+Because RSS keeps getting smaller when we add more variables, the regular $R^2$ value (which depends on RSS) always goes up. <br>
+This can make a model <em>look better</em> on paper even if it is actually overfitting — learning noise instead of real patterns.</p>
+<p><strong>Adjusted $R^2$:</strong> <br>
+Adjusted $R^2$ fixes this problem. It rewards models that truly explain the data well but penalizes those that just keep adding useless variables. <br>
+If a new variable genuinely improves predictions, Adjusted $R^2$ will increase. <br>
+If it only adds noise, Adjusted $R^2$ will go down. <br>
+In short, Adjusted $R^2$ gives a fairer picture of how good your model really is.</p></div></div>
+<div class="example-box"><div class="box-title">Example 15</div><div class="box-body"><p>For 3-house data:
+\[
+TSS=(240-295)^2 + (300-295)^2 + (325-295)^2=2450, \quad RSS=0
+\]
+\[
+R^2 = 1 - \frac{0}{2450} = 1
+\]
+Perfect fit.</p></div></div>
+<div class="example-box"><div class="box-title">Example 16</div><div class="box-body"><p>A company wants to predict the sales ($Y$ in $1000) of a product based on two factors: Advertising Spend ($X_1$ in $1000) and Number of Stores ($X_2$). The data for 4 regions is:</p>
+<p>\[
+\begin{array}{ccc}
+X_1 &amp; X_2 &amp; Y \\
+2 &amp; 10 &amp; 50 \\
+3 &amp; 12 &amp; 65 \\
+5 &amp; 15 &amp; 80 \\
+4 &amp; 11 &amp; 70 \\
+\end{array}
+\]</p>
+<p><strong>Step 1: Matrix Formulation</strong></p>
+<p>\[
+\mathbf{X} = 
+\begin{bmatrix} 
+1 &amp; 2 &amp; 10 \\
+1 &amp; 3 &amp; 12 \\
+1 &amp; 5 &amp; 15 \\
+1 &amp; 4 &amp; 11 
+\end{bmatrix}, \quad
+\mathbf{Y} = 
+\begin{bmatrix} 50 \\ 65 \\ 80 \\ 70 \end{bmatrix}
+\]</p>
+<p><strong>Step 2: Compute OLS Estimates</strong></p>
+<p>Normal equation: $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}$</p>
+<p>Compute $\mathbf{X}^T \mathbf{X}$:</p>
+<p>\[
+\mathbf{X}^T \mathbf{X} = 
+\begin{bmatrix}
+4 &amp; 14 &amp; 48 \\
+14 &amp; 54 &amp; 170 \\
+48 &amp; 170 &amp; 650
+\end{bmatrix}
+\]</p>
+<p>Compute $\mathbf{X}^T \mathbf{Y}$:</p>
+<p>\[
+\mathbf{X}^T \mathbf{Y} = 
+\begin{bmatrix} 265 \\ 945 \\ 3485 \end{bmatrix}
+\]</p>
+<p>Solve $(\mathbf{X}^T \mathbf{X}) \hat{\boldsymbol{\beta}} = \mathbf{X}^T \mathbf{Y}$ to get:</p>
+<p>\[
+\hat{\boldsymbol{\beta}} = 
+\begin{bmatrix} 20 \\ 5 \\ 2 \end{bmatrix}
+\]</p>
+<p><strong>Step 3: Regression Equation</strong></p>
+<p>\[
+\hat{Y} = 20 + 5 X_1 + 2 X_2
+\]</p>
+<p><strong>Step 4: Predictions</strong></p>
+<p>For $X_1 = 4$, $X_2 = 13$:</p>
+<p>\[
+\hat{Y} = 20 + 5 \cdot 4 + 2 \cdot 13 = 20 + 20 + 26 = 66
+\]</p>
+<p><strong>Step 5: Residuals and R²</strong></p>
+<p>Observed $Y = 70$, residual $e = 70 - 66 = 4$</p>
+<p>Compute $TSS = \sum (Y_i - \bar{Y})^2$, $RSS = \sum (Y_i - \hat{Y}_i)^2$ and</p>
+<p>\[
+R^2 = 1 - \frac{RSS}{TSS} \approx 0.95
+\]</p>
+<p>Excellent model fit.</p></div></div>
+</section>
+<section id="regularized-regression" class="content-section level-1">
+<h2 class="section-heading">Regularized Regression</h2>
+
+<section id="need-for-regularization" class="content-section level-2">
+<h3 class="section-heading">Need for Regularization</h3>
+<p>In ordinary least squares (OLS) regression, the coefficients $\boldsymbol{\beta}$ are estimated by minimizing the residual sum of squares (RSS):</p>
+<p>\[
+RSS = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^T (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})
+\]</p>
+<p>However, when predictors are highly correlated (<strong>multicollinearity</strong>) or when the number of predictors $p$ is close to or exceeds the number of observations $n$, the matrix $\mathbf{X}^T\mathbf{X}$ becomes nearly singular (non-invertible), making OLS estimates unstable and highly sensitive to small changes in data.</p>
+<p>To overcome this instability, we introduce <strong>regularization</strong>, which penalizes large coefficient values by adding a constraint to the loss function. Regularization discourages overly complex models that overfit the training data and improves generalization on unseen data.</p>
+<div class="concept-box"><div class="box-title">Motivation for Regularization</div><div class="box-body"><p>Regularization adds a penalty term to the objective function that discourages large coefficients:
+\[
+\text{Minimize: } \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \, P(\boldsymbol{\beta})
+\]
+where $P(\boldsymbol{\beta})$ is a penalty function and $\lambda \ge 0$ is the <strong>regularization parameter</strong> controlling the strength of the penalty.</p>
+<ul><li><p>$\lambda = 0$: reduces to ordinary least squares (no penalty)</p></li><li><p>Large $\lambda$: coefficients shrink toward zero (simpler model)</p></li></ul></div></div>
+</section>
+<section id="ridge-regression-l2-regularization" class="content-section level-2">
+<h3 class="section-heading">Ridge Regression (L2 Regularization)</h3>
+<div class="concept-box"><div class="box-title">Ridge Regression Objective</div><div class="box-body"><p>Ridge regression (also called L2 regularization) adds the squared magnitude of the coefficients as a penalty term:
+\[
+\text{Minimize: } J(\boldsymbol{\beta}) = \sum_{i=1}^{n}(y_i - \mathbf{x}_i^T \boldsymbol{\beta})^2 + \lambda \sum_{j=1}^{p} \beta_j^2
+\]
+or equivalently in matrix form:
+\[
+J(\boldsymbol{\beta}) = (\mathbf{Y} - \mathbf{X}\boldsymbol{\beta})^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) + \lambda \boldsymbol{\beta}^T \boldsymbol{\beta}
+\]</p></div></div>
+<p>Here, $\lambda$ controls how much we shrink the coefficients. Larger $\lambda$ values lead to greater shrinkage (smaller coefficients).</p>
+<p>Taking derivative with respect to $\boldsymbol{\beta}$ and setting to zero:</p>
+<p>\[
+\frac{\partial J}{\partial \boldsymbol{\beta}} = -2\mathbf{X}^T(\mathbf{Y} - \mathbf{X}\boldsymbol{\beta}) + 2\lambda \boldsymbol{\beta} = 0
+\]</p>
+<p>\[
+\Rightarrow (\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I}) \hat{\boldsymbol{\beta}} = \mathbf{X}^T \mathbf{Y}
+\]</p>
+<p>\[
+\therefore \hat{\boldsymbol{\beta}}_{\text{ridge}} = (\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I})^{-1}\mathbf{X}^T\mathbf{Y}
+\]</p>
+<div class="fact-box"><div class="box-title">Interpretation of Ridge Estimator</div><div class="box-body"><ul><li><p>$(\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I})$ is always invertible for $\lambda &gt; 0$, ensuring numerical stability.</p></li><li><p>Ridge regression shrinks coefficients towards zero but never exactly to zero.</p></li><li><p>It reduces variance at the cost of introducing slight bias — a bias–variance trade-off.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 17</div><div class="box-body"><p>A dataset has predictors $X_1, X_2$ and response $Y$:</p>
+<p>\[
+X = 
+\begin{bmatrix}
+1 &amp; 2 \\
+2 &amp; 3 \\
+3 &amp; 4
+\end{bmatrix}, \quad
+Y = 
+\begin{bmatrix}
+3 \\ 5 \\ 7
+\end{bmatrix}
+\]</p>
+<p>Compute the ridge regression coefficients for $\lambda = 1$.</p>
+<p><strong>Solution:</strong></p>
+<p>\[
+\mathbf{X}^T\mathbf{X} = 
+\begin{bmatrix}
+14 &amp; 20 \\ 
+20 &amp; 29 
+\end{bmatrix}, \quad
+\mathbf{X}^T\mathbf{Y} = 
+\begin{bmatrix}
+38 \\ 55
+\end{bmatrix}
+\]</p>
+<p>\[
+\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I} = 
+\begin{bmatrix}
+15 &amp; 20 \\ 
+20 &amp; 30
+\end{bmatrix}
+\]</p>
+<p>\[
+(\mathbf{X}^T\mathbf{X} + \lambda \mathbf{I})^{-1} =
+\frac{1}{(15)(30)-(20)(20)} 
+\begin{bmatrix}
+30 &amp; -20 \\ -20 &amp; 15
+\end{bmatrix}
+=
+\frac{1}{50}
+\begin{bmatrix}
+30 &amp; -20 \\ -20 &amp; 15
+\end{bmatrix}
+\]</p>
+<p>\[
+\hat{\boldsymbol{\beta}}_{\text{ridge}} = 
+\frac{1}{50}
+\begin{bmatrix}
+30 &amp; -20 \\ -20 &amp; 15
+\end{bmatrix}
+\begin{bmatrix}
+38 \\ 55
+\end{bmatrix}
+= \frac{1}{50}
+\begin{bmatrix}
+(30)(38) - (20)(55) \\ (-20)(38) + (15)(55)
+\end{bmatrix}
+= \frac{1}{50}
+\begin{bmatrix}
+(1140 - 1100) \\ (-760 + 825)
+\end{bmatrix}
+= \frac{1}{50}
+\begin{bmatrix}
+40 \\ 65
+\end{bmatrix}
+\]</p>
+<p>\[
+\therefore \hat{\boldsymbol{\beta}}_{\text{ridge}} = [0.8, 1.3]^T
+\]</p></div></div>
+<p>—</p>
+<div class="example-box"><div class="box-title">Example 18</div><div class="box-body"><p>To study effect of regularization, consider $\lambda=0$ (OLS) and $\lambda=5$ (Ridge) using the same dataset as before.</p>
+<p><strong>Solution:</strong></p>
+<p>For $\lambda=0$ (OLS):
+\[
+\hat{\boldsymbol{\beta}}_{\text{OLS}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y} =
+\begin{bmatrix}
+1 \\ 1.5
+\end{bmatrix}
+\]</p>
+<p>For $\lambda=5$:
+\[
+\hat{\boldsymbol{\beta}}_{\text{ridge}} = (\mathbf{X}^T\mathbf{X} + 5\mathbf{I})^{-1}\mathbf{X}^T\mathbf{Y} =
+\begin{bmatrix}
+0.65 \\ 1.12
+\end{bmatrix}
+\]</p>
+<p>As $\lambda$ increases, coefficients shrink toward zero, reducing variance and model complexity.</p></div></div>
+</section>
+<section id="bias-variance-trade-off-in-ridge-regression" class="content-section level-2">
+<h3 class="section-heading">Bias–Variance Trade-off in Ridge Regression</h3>
+<p>The total expected error in a model can be decomposed as:</p>
+<p>\[
+E[(Y - \hat{f}(X))^2] = \text{Bias}^2[\hat{f}(X)] + \text{Var}[\hat{f}(X)] + \sigma^2
+\]</p>
+<div class="concept-box"><div class="box-title">Bias–Variance Decomposition</div><div class="box-body"><ul><li><p>Bias: Difference between the true model and the expected prediction.</p></li><li><p>Variance: How much the model predictions vary across different training sets.</p></li><li><p>Ridge regression reduces variance by shrinking coefficients, but introduces bias since coefficients are pulled toward zero.</p></li></ul>
+<p>The optimal $\lambda$ minimizes the total error (bias$^2$ + variance).</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig034.png" alt="diagram"><div class="figure-caption"><strong>Bias–Variance trade-off as a function of $\lambda$.</strong></div></div>
+</section>
+<section id="comparison-with-ols-regression" class="content-section level-2">
+<h3 class="section-heading">Comparison with OLS Regression</h3>
+<div class="concept-box"><div class="box-title">Ridge vs OLS Regression</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig035.png" alt="diagram"></div></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Introduction to Machine Learning</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Classification Models - I &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

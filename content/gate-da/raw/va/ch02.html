@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orthogonal Vectors, Subspaces, Matrices, and Projections — Vector Spaces & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+        R: "\\mathbb{R}",
+        norm: ["\\left\\lVert#1\\right\\rVert", 1]
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Vector Spaces &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Vector Spaces</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#vectors-concept" class="toc-link" data-slug="vectors-concept">Vectors Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#what-is-a-vector" class="toc-link" data-slug="what-is-a-vector">What is a Vector?</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#geometric-picture-and-basic-diagrams" class="toc-link" data-slug="geometric-picture-and-basic-diagrams">Geometric picture and basic diagrams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#length-or-magnitude-of-a-vector" class="toc-link" data-slug="length-or-magnitude-of-a-vector">Length or Magnitude of a Vector</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#vector-arithmetic" class="toc-link" data-slug="vector-arithmetic">Vector arithmetic</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#dot-product-inner-product-and-properties" class="toc-link" data-slug="dot-product-inner-product-and-properties">Dot product (Inner product) and properties</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#norms-and-distances" class="toc-link" data-slug="norms-and-distances">Norms and distances</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#cross-product-3d-and-properties" class="toc-link" data-slug="cross-product-3d-and-properties">Cross product (3D) and properties</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#vector-space" class="toc-link" data-slug="vector-space">Vector Space</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#concept-of-a-vector-space" class="toc-link" data-slug="concept-of-a-vector-space">Concept of a Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#generalization-to-higher-dimensions" class="toc-link" data-slug="generalization-to-higher-dimensions">Generalization to Higher Dimensions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#definition-of-a-real-vector-space" class="toc-link" data-slug="definition-of-a-real-vector-space">Definition of a Real Vector Space</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#eight-basic-axioms-of-vector-spaces" class="toc-link" data-slug="eight-basic-axioms-of-vector-spaces">Eight Basic Axioms of Vector Spaces</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#subspaces" class="toc-link" data-slug="subspaces">Subspaces</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#linear-independence-basis-and-dimension" class="toc-link" data-slug="linear-independence-basis-and-dimension">Linear Independence, Basis, and Dimension</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-vector-spaces" class="toc-link" data-slug="applications-of-vector-spaces">Applications of Vector Spaces</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch02.html" class="chapter-link active">Chapter 2: Orthogonal Vectors, Subspaces, Matrices, and Projections</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#orthogonal-vectors-and-their-length" class="toc-link" data-slug="orthogonal-vectors-and-their-length">Orthogonal Vectors and Their Length</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-subspaces-and-complements" class="toc-link" data-slug="orthogonal-subspaces-and-complements">Orthogonal Subspaces and Complements</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#orthogonal-and-symmetric-matrices" class="toc-link" data-slug="orthogonal-and-symmetric-matrices">Orthogonal and Symmetric Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-orthogonality-and-projections" class="toc-link" data-slug="applications-of-orthogonality-and-projections">Applications of Orthogonality and Projections</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Quadratic Forms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#definition-and-basic-properties" class="toc-link" data-slug="definition-and-basic-properties">Definition and Basic Properties</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-quadratic-forms" class="toc-link" data-slug="diagonalization-of-quadratic-forms">Diagonalization of Quadratic Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#positive-definite-negative-definite-and-indefinite-forms" class="toc-link" data-slug="positive-definite-negative-definite-and-indefinite-forms">Positive Definite, Negative Definite, and Indefinite Forms</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#canonical-form-using-orthogonal-transformation" class="toc-link" data-slug="canonical-form-using-orthogonal-transformation">Canonical Form Using Orthogonal Transformation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#geometric-interpretation" class="toc-link" data-slug="geometric-interpretation">Geometric Interpretation</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Singular Value Decomposition (SVD)</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#definition-and-concept" class="toc-link" data-slug="definition-and-concept">Definition and Concept</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#reading-the-axes-u-sigma-and-v" class="toc-link" data-slug="reading-the-axes-u-sigma-and-v">Reading the Axes: $U$, $\Sigma$, and $V$</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#orthogonality" class="toc-link" data-slug="orthogonality">Orthogonality</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#eigenvalues-eigenvectors-and-the-origin-of-svd" class="toc-link" data-slug="eigenvalues-eigenvectors-and-the-origin-of-svd">Eigenvalues, Eigenvectors, and the Origin of SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#computing-the-svd" class="toc-link" data-slug="computing-the-svd">Computing the SVD</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#low-rank-approximation" class="toc-link" data-slug="low-rank-approximation">Low-Rank Approximation</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#shortcut-rules-for-special-matrices" class="toc-link" data-slug="shortcut-rules-for-special-matrices">Shortcut Rules for Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 2 of 4</div><h1>Orthogonal Vectors, Subspaces, Matrices, and Projections</h1></div>
+<section id="orthogonal-vectors-and-their-length" class="content-section level-1">
+<h2 class="section-heading">Orthogonal Vectors and Their Length</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The length (or norm) of a vector $x = (x_1, x_2, \dots, x_n)^T \in \mathbb{R}^n$ is
+\[
+\|x\| = \sqrt{x_1^2 + x_2^2 + \dots + x_n^2} = \sqrt{x^T x}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 27</div><div class="box-body"><p>Length of $x = (1,2,3)$:
+\[
+\|x\| = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{14}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 28</div><div class="box-body"><p><strong>Vector length in 2D:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Two vectors $x, y \in \mathbb{R}^n$ are <strong>orthogonal</strong> if 
+\[
+x^T y = 0.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 29</div><div class="box-body"><p>Check orthogonality: $x = (2,2,-1)$ and $y = (-1,2,2)$:
+\[
+x^T y = 2(-1) + 2(2) + (-1)(2) = 0
+\]
+Hence, $x \perp y$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A set of nonzero vectors $\{v_1, \dots, v_k\}$ that are mutually orthogonal is automatically linearly independent.</p></div></div>
+</section>
+<section id="orthogonal-subspaces-and-complements" class="content-section level-1">
+<h2 class="section-heading">Orthogonal Subspaces and Complements</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Two subspaces $V, W \subseteq \mathbb{R}^n$ are orthogonal if every vector $v \in V$ is orthogonal to every vector $w \in W$:
+\[
+v^T w = 0 \quad \forall v \in V, \forall w \in W.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 30</div><div class="box-body"><p>$V$ spanned by $v_1=(1,0,0,0), v_2=(1,1,0,0)$, $W$ spanned by $w=(0,0,4,5)$. Then $W \perp V$ because $v_i^T w = 0$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>The <strong>orthogonal complement</strong> of $V$ is 
+\[
+V^\perp = \{x \in \mathbb{R}^n \mid x^T v = 0, \forall v \in V\}.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Fundamental Theorem of Linear Algebra (Orthogonality Version)</strong>: For $A \in \mathbb{R}^{m \times n}$,
+\begin{align*}
+N(A) &amp;= (C(A^T))^\perp, <br>
+N(A^T) &amp;= (C(A))^\perp.
+\end{align*}</p></div></div>
+<div class="example-box"><div class="box-title">Example 31</div><div class="box-body"><p>$A = \begin{bmatrix}1 &amp; 3\\ 2 &amp; 6\\ 3 &amp; 9\end{bmatrix}$, rank 1. Row space multiples of $(1,3)$, nullspace $x=(-3,1)$.
+\[
+A x = 0 \Rightarrow N(A) \perp \text{Row space}.
+\]
+Column space: line through $(1,2,3)$, left nullspace: plane $y_1+2y_2+3y_3=0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 32</div><div class="box-body"><p><strong>Orthogonal subspaces in 3D:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div></div></div>
+</section>
+<section id="orthogonal-matrices" class="content-section level-1">
+<h2 class="section-heading">Orthogonal Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>$Q \in \mathbb{R}^{n \times n}$ is <strong>orthogonal</strong> if $Q^T Q = QQ^T = I_n$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Properties of orthogonal matrices:</p>
+<ol><li><p>$Q^T = Q^{-1}$</p></li><li><p>$\det(Q) = \pm 1$</p></li><li><p>Columns (and rows) form an orthonormal set</p></li><li><p>$\|Qx\| = \|x\|$ for all $x$</p></li><li><p>Product of orthogonal matrices is orthogonal</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 33</div><div class="box-body"><p>$Q = \begin{bmatrix}0 &amp; 1 \\ -1 &amp; 0\end{bmatrix}$, $Q^T Q = I_2$, so $Q$ is orthogonal.</p></div></div>
+<div class="example-box"><div class="box-title">Example 34</div><div class="box-body"><p>$\det \begin{bmatrix}1/2 &amp; \sqrt{3}/2 \\ -\sqrt{3}/2 &amp; 1/2\end{bmatrix} = 1$.</p></div></div>
+</section>
+<section id="projection-matrices" class="content-section level-1">
+<h2 class="section-heading">Projection Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Projection matrix $P$ maps $x \in \mathbb{R}^n$ onto a subspace $W$:
+\[
+Px = \text{proj}_W(x)
+\]</p>
+<p>If $W$ spanned by $V=[v_1\dots v_k]$, then
+\[
+P = V(V^T V)^{-1} V^T
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Properties of projection matrices:</p>
+<ol><li><p>$P^2 = P$ (idempotent)</p></li><li><p>$P^T = P$ (symmetric)</p></li><li><p>Eigenvalues $0$ or $1$</p></li><li><p>Rank$(P) = \dim(W)$</p></li><li><p>$I-P$ projects onto $W^\perp$</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 35</div><div class="box-body"><p>Projection onto line spanned by $v = \begin{bmatrix}2\\1\\2\end{bmatrix}$:
+\[
+P = \frac{vv^T}{v^T v} = \frac{1}{9} \begin{bmatrix}4 &amp; 2 &amp; 4 \\ 2 &amp; 1 &amp; 2 \\ 4 &amp; 2 &amp; 4\end{bmatrix}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 36</div><div class="box-body"><p>Project $x = \begin{bmatrix}1\\2\\3\end{bmatrix}$ onto line spanned by $v = \begin{bmatrix}1\\1\\1\end{bmatrix}$:
+\[
+P = \frac{vv^T}{v^T v} = \frac{1}{3} \begin{bmatrix}1 &amp;1 &amp;1\\1 &amp;1 &amp;1\\1 &amp;1 &amp;1\end{bmatrix},\quad Px = \begin{bmatrix}2\\2\\2\end{bmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 37</div><div class="box-body"><p>Projection onto a plane in 3D:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div></div></div>
+</section>
+<section id="orthogonal-and-symmetric-matrices" class="content-section level-1">
+<h2 class="section-heading">Orthogonal and Symmetric Matrices</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A square matrix $A \in \mathbb{R}^{n \times n}$ is <strong>symmetric</strong> if 
+\[
+A^T = A.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A matrix $Q$ is both <strong>orthogonal</strong> and <strong>symmetric</strong> if 
+\[
+Q^T = Q \quad \text{and} \quad Q^T Q = I.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Properties of matrices that are both orthogonal and symmetric:</p>
+<ol><li><p>$Q^2 = I$ (since $Q^T Q = I$ and $Q^T = Q$)</p></li><li><p>Eigenvalues are either $+1$ or $-1$</p></li><li><p>$Q^{-1} = Q$</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 38</div><div class="box-body"><p>Check if 
+\[
+Q = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}
+\] 
+is orthogonal and symmetric.</p>
+<p><strong>Solution:</strong>
+\[
+Q^T = Q \quad \text{(symmetric)}, \quad Q^T Q = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix} = I_2 \quad \text{(orthogonal)}.
+\] 
+Hence $Q$ is both orthogonal and symmetric. Its eigenvalues are $1$ and $-1$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 39</div><div class="box-body"><p>If 
+\[
+Q = \begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0\end{bmatrix},
+\] 
+then $Q^T = Q$ (symmetric) and $Q^T Q = I_2$ (orthogonal). Eigenvalues are $1$ and $-1$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Observation: Any orthogonal and symmetric matrix represents a <strong>reflection</strong> across a subspace.</p></div></div>
+</section>
+<section id="applications-of-orthogonality-and-projections" class="content-section level-1">
+<h2 class="section-heading">Applications of Orthogonality and Projections</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Linear Independence and Orthogonal Vectors:</strong>  
+A set of nonzero vectors $\{v_1, v_2, \dots, v_k\}$ that are mutually orthogonal is always linearly independent.  
+This simplifies checking independence: if $v_i^T v_j = 0$ for $i \neq j$, the vectors are independent.</p></div></div>
+<div class="example-box"><div class="box-title">Example 40</div><div class="box-body"><p>Check if the vectors 
+\[
+v_1 = \begin{bmatrix}1\\0\\1\end{bmatrix}, \quad v_2 = \begin{bmatrix}0\\1\\1\end{bmatrix}, \quad v_3 = \begin{bmatrix}1\\-1\\0\end{bmatrix}
+\] 
+are linearly independent.</p>
+<p><strong>Solution:</strong> Compute inner products:
+\[
+v_1^T v_2 = 0, \quad v_1^T v_3 = 1, \quad v_2^T v_3 = -1
+\]
+Vectors are not mutually orthogonal, so we cannot immediately conclude independence. However, Gram-Schmidt can create an orthogonal basis to check independence.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Solving Systems of Linear Equations:</strong>  
+For $Ax = b$, if columns of $A$ are orthogonal or orthonormal, the solution is straightforward:
+\[
+x_i = \frac{a_i^T b}{a_i^T a_i} \quad \text{for each column } a_i
+\]  
+where $A = [a_1 \dots a_n]$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 41</div><div class="box-body"><p>Solve 
+\[
+A x = b, \quad 
+A = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 2\end{bmatrix}, \quad b = \begin{bmatrix}3\\4\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong> Columns of $A$ are orthogonal.  
+\[
+x_1 = \frac{1 \cdot 3 + 0 \cdot 4}{1^2 + 0^2} = 3, \quad
+x_2 = \frac{0 \cdot 3 + 2 \cdot 4}{0^2 + 2^2} = 2
+\] 
+Hence, $x = \begin{bmatrix}3\\2\end{bmatrix}$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Best Approximation using Projection:</strong>  
+If $Ax = b$ is inconsistent, the orthogonal projection of $b$ onto the column space of $A$ gives the vector $\hat{b}$ closest to $b$ that is in the span of $A$. Then, solve $A x = \hat{b}$ for the least-squares solution:
+\[
+\hat{x} = (A^T A)^{-1} A^T b
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 42</div><div class="box-body"><p>Find the projection of 
+\[
+b = \begin{bmatrix}3\\4\\5\end{bmatrix}
+\] 
+onto the column space of 
+\[
+A = \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1 \\ 1 &amp; 1\end{bmatrix}.
+\]</p>
+<p><strong>Solution:</strong>  
+\[
+\hat{x} = (A^T A)^{-1} A^T b, \quad
+A^T A = \begin{bmatrix}2 &amp; 1 \\ 1 &amp; 2\end{bmatrix}, \quad (A^T A)^{-1} = \frac{1}{3}\begin{bmatrix}2 &amp; -1 \\ -1 &amp; 2\end{bmatrix}
+\]  
+\[
+A^T b = \begin{bmatrix}8\\9\end{bmatrix}, \quad 
+\hat{x} = \frac{1}{3}\begin{bmatrix}2 &amp; -1 \\ -1 &amp; 2\end{bmatrix} \begin{bmatrix}8\\9\end{bmatrix} = \begin{bmatrix}7/3\\10/3\end{bmatrix}
+\]  
+\[
+\text{proj}_{\text{Col}(A)}(b) = A \hat{x} = \begin{bmatrix}7/3\\10/3\\17/3\end{bmatrix}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Orthogonal Decomposition:</strong>  
+Any vector $b$ in $\mathbb{R}^n$ can be uniquely decomposed into components along a subspace $W$ and its orthogonal complement $W^\perp$:
+\[
+b = \text{proj}_W(b) + (b - \text{proj}_W(b)), \quad \text{with } (b - \text{proj}_W(b)) \in W^\perp
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 43</div><div class="box-body"><p>If 
+\[
+b = \begin{bmatrix}3\\4\end{bmatrix}, \quad W = \text{span}\{\begin{bmatrix}1\\1\end{bmatrix}\},
+\] 
+then
+\[
+\text{proj}_W(b) = \frac{b^T v}{v^T v} v = \frac{3+4}{1+1} \begin{bmatrix}1\\1\end{bmatrix} = \frac{7}{2} \begin{bmatrix}1\\1\end{bmatrix} = \begin{bmatrix}3.5\\3.5\end{bmatrix}
+\]  
+\[
+b - \text{proj}_W(b) = \begin{bmatrix}-0.5\\0.5\end{bmatrix} \in W^\perp
+\]</p></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch01.html">&larr; Chapter 1: Vector Spaces</a><span class="spacer"></span><a class="nav-btn next" href="ch03.html">Chapter 3: Quadratic Forms &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Vector Spaces &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems of Linear Equations — Matrices & Linear Algebra</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      macros: {
+
+      }
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Matrices &amp; Linear Algebra</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Matrices and Determinants</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-of-matrices" class="toc-link" data-slug="types-of-matrices">Types of Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#row-matrix" class="toc-link" data-slug="row-matrix">Row Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#column-matrix" class="toc-link" data-slug="column-matrix">Column Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#square-matrix" class="toc-link" data-slug="square-matrix">Square Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#zero-matrix" class="toc-link" data-slug="zero-matrix">Zero Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#identity-matrix" class="toc-link" data-slug="identity-matrix">Identity Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#diagonal-matrix" class="toc-link" data-slug="diagonal-matrix">Diagonal Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#triangular-matrix" class="toc-link" data-slug="triangular-matrix">Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#upper-triangular-matrix" class="toc-link" data-slug="upper-triangular-matrix">Upper Triangular Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#lower-triangular-matrix" class="toc-link" data-slug="lower-triangular-matrix">Lower Triangular Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#matrix-operations" class="toc-link" data-slug="matrix-operations">Matrix Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#addition" class="toc-link" data-slug="addition">Addition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#scalar-multiplications" class="toc-link" data-slug="scalar-multiplications">Scalar Multiplications</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#matrix-multiplication" class="toc-link" data-slug="matrix-multiplication">Matrix Multiplication</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#transpose" class="toc-link" data-slug="transpose">Transpose</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#square-matrices" class="toc-link" data-slug="square-matrices">Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#diagonal-and-trace" class="toc-link" data-slug="diagonal-and-trace">Diagonal and Trace</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#identity-and-scalar-matrices" class="toc-link" data-slug="identity-and-scalar-matrices">Identity and Scalar Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#powers-of-matrices" class="toc-link" data-slug="powers-of-matrices">Powers of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#polynomials-in-matrices" class="toc-link" data-slug="polynomials-in-matrices">Polynomials in Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#definition-of-determinant" class="toc-link" data-slug="definition-of-determinant">Definition of Determinant</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#cofactor-expansion" class="toc-link" data-slug="cofactor-expansion">Cofactor Expansion</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#properties-of-determinants" class="toc-link" data-slug="properties-of-determinants">Properties of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#invertible-nonsingular-matrices" class="toc-link" data-slug="invertible-nonsingular-matrices">Invertible (Nonsingular) Matrices</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#inverse-of-a-2-times-2-matrix" class="toc-link" data-slug="inverse-of-a-2-times-2-matrix">Inverse of a $2 \times 2$ Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#inverse-of-an-n-times-n-matrix" class="toc-link" data-slug="inverse-of-an-n-times-n-matrix">Inverse of an $n \times n$ Matrix</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-determinants" class="toc-link" data-slug="applications-of-determinants">Applications of Determinants</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#special-square-matrices" class="toc-link" data-slug="special-square-matrices">Special Square Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#symmetric-and-skew-symmetric" class="toc-link" data-slug="symmetric-and-skew-symmetric">Symmetric and Skew-Symmetric</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Rank and Nullity</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#vectors-from-matrices" class="toc-link" data-slug="vectors-from-matrices">Vectors from Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#row-space-column-space-and-null-space" class="toc-link" data-slug="row-space-column-space-and-null-space">Row Space, Column Space, and Null Space</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#prerequisites-echelon-forms" class="toc-link" data-slug="prerequisites-echelon-forms">Prerequisites: Echelon Forms</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#finding-the-spaces" class="toc-link" data-slug="finding-the-spaces">Finding the Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-1-row-column-and-null-spaces" class="toc-link" data-slug="example-1-row-column-and-null-spaces">Example 1: Row, Column, and Null Spaces</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example-2-already-in-row-echelon-form" class="toc-link" data-slug="example-2-already-in-row-echelon-form">Example 2: Already in Row Echelon Form</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-of-a-matrix" class="toc-link" data-slug="rank-of-a-matrix">Rank of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#properties-of-rank" class="toc-link" data-slug="properties-of-rank">Properties of Rank</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#nullity-of-a-matrix" class="toc-link" data-slug="nullity-of-a-matrix">Nullity of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#rank-nullity-theorem" class="toc-link" data-slug="rank-nullity-theorem">Rank-Nullity Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-rank-and-nullity" class="toc-link" data-slug="applications-of-rank-and-nullity">Applications of Rank and Nullity</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Eigenvalues and Eigenvectors</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#characteristic-polynomial" class="toc-link" data-slug="characteristic-polynomial">Characteristic Polynomial</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#finding-eigenvalues-and-eigenvectors" class="toc-link" data-slug="finding-eigenvalues-and-eigenvectors">Finding Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#properties-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="properties-of-eigenvalues-and-eigenvectors">Properties of Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#diagonalization-of-matrices" class="toc-link" data-slug="diagonalization-of-matrices">Diagonalization of Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-eigenvalues-and-eigenvectors" class="toc-link" data-slug="applications-of-eigenvalues-and-eigenvectors">Applications of Eigenvalues and Eigenvectors</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: Systems of Linear Equations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#matrix-representation-of-linear-systems" class="toc-link" data-slug="matrix-representation-of-linear-systems">Matrix Representation of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#homogeneous-and-non-homogeneous-systems" class="toc-link" data-slug="homogeneous-and-non-homogeneous-systems">Homogeneous and Non-Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#consistency-of-systems" class="toc-link" data-slug="consistency-of-systems">Consistency of Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gaussian-elimination" class="toc-link" data-slug="gaussian-elimination">Gaussian Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#gauss-jordan-elimination" class="toc-link" data-slug="gauss-jordan-elimination">Gauss-Jordan Elimination</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#solution-using-inverse-of-a-matrix" class="toc-link" data-slug="solution-using-inverse-of-a-matrix">Solution using Inverse of a Matrix</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#properties-and-shortcuts-in-linear-systems" class="toc-link" data-slug="properties-and-shortcuts-in-linear-systems">Properties and Shortcuts in Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#applications-of-linear-systems" class="toc-link" data-slug="applications-of-linear-systems">Applications of Linear Systems</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Matrix Factorizations</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#lu-decomposition" class="toc-link" data-slug="lu-decomposition">LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#applications-of-lu-factorization" class="toc-link" data-slug="applications-of-lu-factorization">Applications of LU Factorization</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Special Matrices</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#projection-matrices" class="toc-link" data-slug="projection-matrices">Projection Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal-matrices" class="toc-link" data-slug="orthogonal-matrices">Orthogonal Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#orthogonal" class="toc-link" data-slug="orthogonal">Orthogonal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#normal" class="toc-link" data-slug="normal">Normal</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#idempotent-matrices" class="toc-link" data-slug="idempotent-matrices">Idempotent Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#partition-block-matrices" class="toc-link" data-slug="partition-block-matrices">Partition (Block) Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#properties-of-special-matrices" class="toc-link" data-slug="properties-of-special-matrices">Properties of Special Matrices</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#applications-of-special-matrices" class="toc-link" data-slug="applications-of-special-matrices">Applications of Special Matrices</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Summary - Very Important</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#1-types-of-linear-systems" class="toc-link" data-slug="1-types-of-linear-systems">1. Types of Linear Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#2-rank-and-nullity" class="toc-link" data-slug="2-rank-and-nullity">2. Rank and Nullity</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#3-rouch-capelli-theorem-consistency" class="toc-link" data-slug="3-rouch-capelli-theorem-consistency">3. Rouché–Capelli Theorem (Consistency)</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#4-homogeneous-systems" class="toc-link" data-slug="4-homogeneous-systems">4. Homogeneous Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#5-determinants-and-invertibility" class="toc-link" data-slug="5-determinants-and-invertibility">5. Determinants and Invertibility</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#6-lu-decomposition" class="toc-link" data-slug="6-lu-decomposition">6. LU Decomposition</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#7-eigenvalues-and-eigenvectors" class="toc-link" data-slug="7-eigenvalues-and-eigenvectors">7. Eigenvalues and Eigenvectors</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#8-underdetermined-and-overdetermined-systems" class="toc-link" data-slug="8-underdetermined-and-overdetermined-systems">8. Underdetermined and Overdetermined Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#9-free-variables-and-infinite-solutions" class="toc-link" data-slug="9-free-variables-and-infinite-solutions">9. Free Variables and Infinite Solutions</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#10-parameter-dependent-systems" class="toc-link" data-slug="10-parameter-dependent-systems">10. Parameter-Dependent Systems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#11-linear-dependence-of-columns" class="toc-link" data-slug="11-linear-dependence-of-columns">11. Linear Dependence of Columns</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#12-key-tricks-and-observations" class="toc-link" data-slug="12-key-tricks-and-observations">12. Key Tricks and Observations</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#summary" class="toc-link" data-slug="summary">Summary</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 7</div><h1>Systems of Linear Equations</h1></div>
+<section id="matrix-representation-of-linear-systems" class="content-section level-1">
+<h2 class="section-heading">Matrix Representation of Linear Systems</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A system of linear equations can be written in matrix form as:
+\[
+A \mathbf{x} = \mathbf{b},
+\]
+where $A$ is an $m \times n$ coefficient matrix, $\mathbf{x}$ is an $n \times 1$ column vector of variables, and $\mathbf{b}$ is an $m \times 1$ column vector of constants.  
+This compact representation allows the use of matrix operations to solve the system efficiently.</p></div></div>
+<div class="example-box"><div class="box-title">Example 72</div><div class="box-body"><p>Consider the system:
+\[
+\begin{cases}
+2x + 3y = 5 \\
+4x - y = 1
+\end{cases}
+\]  
+Matrix form:
+\[
+A = \begin{bmatrix}2 &amp; 3 \\ 4 &amp; -1\end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix}x \\ y\end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix}5 \\ 1\end{bmatrix}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 73</div><div class="box-body"><p>System:
+\[
+\begin{cases}
+x + 2y + z = 4 \\
+2x - y + 3z = 5 \\
+-x + y + z = 1
+\end{cases}
+\]  
+Matrix form:
+\[
+A = \begin{bmatrix}1 &amp; 2 &amp; 1 \\ 2 &amp; -1 &amp; 3 \\ -1 &amp; 1 &amp; 1 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix}x \\ y \\ z\end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix}4 \\ 5 \\ 1\end{bmatrix}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 74</div><div class="box-body"><p>System:
+\[
+3x - y + 2z = 7, \quad x + y - z = 0
+\]  
+Matrix form:
+\[
+A = \begin{bmatrix}3 &amp; -1 &amp; 2 \\ 1 &amp; 1 &amp; -1\end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix}x \\ y \\ z\end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix}7 \\ 0\end{bmatrix}.
+\]</p></div></div>
+</section>
+<section id="homogeneous-and-non-homogeneous-systems" class="content-section level-1">
+<h2 class="section-heading">Homogeneous and Non-Homogeneous Systems</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>- A system is called <strong>homogeneous</strong> if all constant terms are zero: $A \mathbf{x} = 0$.  
+- A system is <strong>non-homogeneous</strong> if $\mathbf{b} \neq 0$: $A \mathbf{x} = \mathbf{b}$.</p>
+<p>Homogeneous systems always have at least the trivial solution $\mathbf{x} = 0$. Non-trivial solutions exist if the rank of $A$ is less than the number of unknowns.</p></div></div>
+<div class="example-box"><div class="box-title">Example 75</div><div class="box-body"><p><strong>Homogeneous system:</strong>
+\[
+x + y - z = 0, \quad 2x - y + 3z = 0
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Form the augmented matrix (homogeneous system → last column is 0):
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; 0 \\
+2 &amp; -1 &amp; 3 &amp; 0
+\end{bmatrix}
+\]</p>
+<p>Use row operations to reduce:
+\[
+R_2 \to R_2 - 2R_1:
+\begin{bmatrix}
+1 &amp; 1 &amp; -1 &amp; 0 \\
+0 &amp; -3 &amp; 5 &amp; 0
+\end{bmatrix}
+\]</p>
+<p>From second row: $-3y + 5z = 0 \implies y = \frac{5}{3} z$</p>
+<p>From first row: $x + y - z = 0 \implies x + \frac{5}{3}z - z = 0 \implies x = -\frac{2}{3} z$</p>
+<p><strong>General solution:</strong>
+\[
+\mathbf{x} = z \begin{bmatrix}-2/3 \\ 5/3 \\ 1\end{bmatrix}, \quad z \in \mathbb{R}
+\]</p>
+<p>- Trivial solution: $x=y=z=0$  
+- Non-trivial solutions exist for $z \neq 0$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 76</div><div class="box-body"><p><strong>Non-homogeneous system:</strong>
+\[
+x + 2y = 3, \quad 3x - y = 4
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Matrix form: $A \mathbf{x} = \mathbf{b}$, where
+\[
+A = \begin{bmatrix}1 &amp; 2 \\ 3 &amp; -1\end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix}3 \\ 4\end{bmatrix}
+\]</p>
+<p>Determinant:
+\[
+\det(A) = 1\cdot(-1) - 3\cdot2 = -1 - 6 = -7 \neq 0
+\]</p>
+<p>Since $\det(A) \neq 0$, unique solution exists. Using Cramer's Rule:</p>
+<p>\[
+x = \frac{\det \begin{bmatrix}3 &amp; 2 \\ 4 &amp; -1\end{bmatrix}}{-7} 
+= \frac{-3-8}{-7} = \frac{-11}{-7} = \frac{11}{7}, \quad
+y = \frac{\det \begin{bmatrix}1 &amp; 3 \\ 3 &amp; 4\end{bmatrix}}{-7} 
+= \frac{4-9}{-7} = \frac{-5}{-7} = \frac{5}{7}
+\]</p>
+<p><strong>Solution:</strong> $x = 11/7$, $y = 5/7$</p></div></div>
+<div class="example-box"><div class="box-title">Example 77</div><div class="box-body"><p><strong>Homogeneous system with multiple solutions:</strong>
+\[
+x + y + z = 0, \quad 2x + 3y + z = 0
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Form augmented matrix:
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 0 \\
+2 &amp; 3 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</p>
+<p>Row reduction:
+\[
+R_2 \to R_2 - 2R_1:
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; -1 &amp; 0
+\end{bmatrix}
+\]</p>
+<p>From second row: $y - z = 0 \implies y = z$</p>
+<p>From first row: $x + y + z = 0 \implies x + z + z = 0 \implies x = -2z$</p>
+<p><strong>General solution:</strong>
+\[
+\mathbf{x} = z \begin{bmatrix}-2 \\ 1 \\ 1\end{bmatrix}, \quad z \in \mathbb{R}
+\]</p>
+<p>- Rank$(A) = 2$, number of unknowns = 3 $\implies$ dimension of solution space = 1  
+- Infinitely many non-trivial solutions exist.</p></div></div>
+</section>
+<section id="consistency-of-systems" class="content-section level-1">
+<h2 class="section-heading">Consistency of Systems</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>A system is <strong>consistent</strong> if it has at least one solution, and <strong>inconsistent</strong> if it has no solution.</p>
+<p>- Using the augmented matrix $[A|\mathbf{b}]$:</p>
+<ul><li><p>If rank$(A)$ = rank$([A|\mathbf{b}])$, the system is consistent.</p></li><li><p>If rank$(A)$ &lt; rank$([A|\mathbf{b}])$, the system is inconsistent.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 78</div><div class="box-body"><p>System:
+\[
+x + y = 2, \quad 2x + 2y = 4
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Matrix form:
+\[
+A = \begin{bmatrix}1 &amp; 1 \\ 2 &amp; 2\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}2 \\ 4\end{bmatrix}
+\]</p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] = \begin{bmatrix}1 &amp; 1 &amp; 2 \\ 2 &amp; 2 &amp; 4\end{bmatrix}
+\]</p>
+<p>Row reduction:
+\[
+R_2 \to R_2 - 2R_1 \implies
+\begin{bmatrix}1 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 0\end{bmatrix}
+\]</p>
+<p>Ranks:
+\[
+\text{Rank}(A) = 1, \quad \text{Rank}([A|\mathbf{b}]) = 1
+\]</p>
+<p>Since Rank$(A) = $ Rank$([A|\mathbf{b}]) &lt; $ number of unknowns (2), system is <strong>consistent with infinitely many solutions</strong>.</p>
+<p>General solution: Let $y = t$, then $x = 2 - t$, $t \in \mathbb{R}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 79</div><div class="box-body"><p>System:
+\[
+x + y = 2, \quad 2x + 2y = 5
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Matrix form:
+\[
+A = \begin{bmatrix}1 &amp; 1 \\ 2 &amp; 2\end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}2 \\ 5\end{bmatrix}
+\]</p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] = \begin{bmatrix}1 &amp; 1 &amp; 2 \\ 2 &amp; 2 &amp; 5\end{bmatrix}
+\]</p>
+<p>Row reduction:
+\[
+R_2 \to R_2 - 2R_1 \implies
+\begin{bmatrix}1 &amp; 1 &amp; 2 \\ 0 &amp; 0 &amp; 1\end{bmatrix}
+\]</p>
+<p>Ranks:
+\[
+\text{Rank}(A) = 1, \quad \text{Rank}([A|\mathbf{b}]) = 2
+\]</p>
+<p>Since Rank$(A) \neq $ Rank$([A|\mathbf{b}])$, the system is <strong>inconsistent</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 80</div><div class="box-body"><p>System:
+\[
+x + y + z = 6, \quad x - y + z = 2, \quad 2x + z = 5
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] = 
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+1 &amp; -1 &amp; 1 &amp; 2 \\
+2 &amp; 0 &amp; 1 &amp; 5
+\end{bmatrix}
+\]</p>
+<p>Step 1: $R_2 \to R_2 - R_1$, $R_3 \to R_3 - 2R_1$:
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+0 &amp; -2 &amp; 0 &amp; -4 \\
+0 &amp; -2 &amp; -1 &amp; -7
+\end{bmatrix}
+\]</p>
+<p>Step 2: $R_3 \to R_3 - R_2$:
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+0 &amp; -2 &amp; 0 &amp; -4 \\
+0 &amp; 0 &amp; -1 &amp; -3
+\end{bmatrix}
+\]</p>
+<p>Ranks:
+\[
+\text{Rank}(A) = 3, \quad \text{Rank}([A|\mathbf{b}]) = 3
+\]</p>
+<p>Since Rank$(A) = $ Rank$([A|\mathbf{b}]) = $ number of unknowns, the system is <strong>consistent with a unique solution</strong>.</p>
+<p>Step 3: Back-substitution:
+\[
+z = 3, \quad -2y = -4 \implies y = 2, \quad x + y + z = 6 \implies x + 2 + 3 = 6 \implies x = 1
+\]</p>
+<p><strong>Solution:</strong> $x=1$, $y=2$, $z=3$</p></div></div>
+</section>
+<section id="gaussian-elimination" class="content-section level-1">
+<h2 class="section-heading">Gaussian Elimination</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Gaussian elimination reduces a system to <strong>row echelon form (REF)</strong> using elementary row operations.  
+Steps:</p>
+<ol><li><p>Use pivot in each row to eliminate variables below it.</p></li><li><p>Transform matrix into upper triangular form.</p></li><li><p>Solve the system using back-substitution.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 81</div><div class="box-body"><p>Solve:
+\[
+x + y + z = 6, \quad 2x + y + 3z = 10, \quad x + 2y + 3z = 11
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Form augmented matrix:
+\[
+[A|\mathbf{b}] =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+2 &amp; 1 &amp; 3 &amp; 10 \\
+1 &amp; 2 &amp; 3 &amp; 11
+\end{bmatrix}
+\]</p>
+<p>Step 1: $R_2 \to R_2 - 2R_1$, $R_3 \to R_3 - R_1$:
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+0 &amp; -1 &amp; 1 &amp; -2 \\
+0 &amp; 1 &amp; 2 &amp; 5
+\end{bmatrix}
+\]</p>
+<p>Step 2: $R_3 \to R_3 + R_2$:
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+0 &amp; -1 &amp; 1 &amp; -2 \\
+0 &amp; 0 &amp; 3 &amp; 3
+\end{bmatrix}
+\]</p>
+<p>Step 3: Back-substitution:
+\[
+3z = 3 \implies z = 1
+\]
+\[
+-R_2: -y + z = -2 \implies -y + 1 = -2 \implies y = 3
+\]
+\[
+R_1: x + y + z = 6 \implies x + 3 + 1 = 6 \implies x = 2
+\]</p>
+<p><strong>Solution:</strong> $x=2$, $y=3$, $z=1$</p></div></div>
+<div class="example-box"><div class="box-title">Example 82</div><div class="box-body"><p>System:
+\[
+x + y = 3, \quad 2x + 3y = 7
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Step 1: Eliminate $x$ from second equation:
+\[
+2x + 3y - 2(x + y) = 7 - 6 \implies y = 1
+\]</p>
+<p>Step 2: Substitute $y = 1$ into first equation:
+\[
+x + 1 = 3 \implies x = 2
+\]</p>
+<p><strong>Solution:</strong> $x=2$, $y=1$</p></div></div>
+<div class="example-box"><div class="box-title">Example 83</div><div class="box-body"><p>System:
+\[
+x + 2y + z = 5, \quad 3x + y + 2z = 7, \quad 2x + 3y + 3z = 10
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] =
+\begin{bmatrix}
+1 &amp; 2 &amp; 1 &amp; 5 \\
+3 &amp; 1 &amp; 2 &amp; 7 \\
+2 &amp; 3 &amp; 3 &amp; 10
+\end{bmatrix}
+\]</p>
+<p>Step 1: $R_2 \to R_2 - 3R_1$, $R_3 \to R_3 - 2R_1$:
+\[
+\begin{bmatrix}
+1 &amp; 2 &amp; 1 &amp; 5 \\
+0 &amp; -5 &amp; -1 &amp; -8 \\
+0 &amp; -1 &amp; 1 &amp; 0
+\end{bmatrix}
+\]</p>
+<p>Step 2: $R_3 \to R_3 - \frac{-1}{-5}R_2 = R_3 - \frac{1}{5}R_2$:
+\[
+\begin{bmatrix}
+1 &amp; 2 &amp; 1 &amp; 5 \\
+0 &amp; -5 &amp; -1 &amp; -8 \\
+0 &amp; 0 &amp; 6/5 &amp; 8/5
+\end{bmatrix}
+\]</p>
+<p>Step 3: Back-substitution:
+\[
+\frac{6}{5} z = \frac{8}{5} \implies z = \frac{4}{3}
+\]
+\[
+-5y - z = -8 \implies -5y - \frac{4}{3} = -8 \implies y = \frac{4}{3}
+\]
+\[
+x + 2y + z = 5 \implies x + 2(\frac{4}{3}) + \frac{4}{3} = 5 \implies x = \frac{1}{3}
+\]</p>
+<p><strong>Solution:</strong> $x = \frac{1}{3}$, $y = \frac{4}{3}$, $z = \frac{4}{3}$</p></div></div>
+</section>
+<section id="gauss-jordan-elimination" class="content-section level-1">
+<h2 class="section-heading">Gauss-Jordan Elimination</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Gauss-Jordan elimination transforms the system to <strong>reduced row echelon form (RREF)</strong>.  
+In RREF, each pivot is 1 and all other elements in the pivot column are 0.  
+Direct solutions can be read from the RREF without back-substitution.</p></div></div>
+<div class="example-box"><div class="box-title">Example 84</div><div class="box-body"><p>Solve:
+\[
+x + y + z = 6, \quad 2x + y + 3z = 10, \quad x + 2y + 3z = 11
+\]</p>
+<p><strong>Solution (Gauss-Jordan):</strong></p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+2 &amp; 1 &amp; 3 &amp; 10 \\
+1 &amp; 2 &amp; 3 &amp; 11
+\end{bmatrix}
+\]</p>
+<p>Step 1: Eliminate first column below pivot:
+\[
+R_2 \to R_2 - 2R_1, \quad R_3 \to R_3 - R_1
+\]
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 6 \\
+0 &amp; -1 &amp; 1 &amp; -2 \\
+0 &amp; 1 &amp; 2 &amp; 5
+\end{bmatrix}
+\]</p>
+<p>Step 2: Eliminate second column above and below pivot:
+\[
+R_3 \to R_3 + R_2, \quad R_1 \to R_1 + R_2
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 2 &amp; 4 \\
+0 &amp; 1 &amp; -1 &amp; 2 \\
+0 &amp; 0 &amp; 3 &amp; 3
+\end{bmatrix}
+\]</p>
+<p>Step 3: Normalize third row:
+\[
+R_3 \to \frac{1}{3}R_3
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 2 &amp; 4 \\
+0 &amp; 1 &amp; -1 &amp; 2 \\
+0 &amp; 0 &amp; 1 &amp; 1
+\end{bmatrix}
+\]</p>
+<p>Step 4: Eliminate third column from rows 1 and 2:
+\[
+R_1 \to R_1 - 2R_3, \quad R_2 \to R_2 + R_3
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 2 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 1
+\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong> $x=2, y=1, z=1$</p></div></div>
+<div class="example-box"><div class="box-title">Example 85</div><div class="box-body"><p>System:
+\[
+x + 2y = 3, \quad 2x + 3y = 7
+\]</p>
+<p><strong>Solution (Gauss-Jordan):</strong></p>
+<p>Augmented matrix:
+\[
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+2 &amp; 3 &amp; 7
+\end{bmatrix}
+\]</p>
+<p>Step 1: Eliminate first column in second row:
+\[
+R_2 \to R_2 - 2R_1
+\]
+\[
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+0 &amp; -1 &amp; 1
+\end{bmatrix}
+\]</p>
+<p>Step 2: Normalize second row:
+\[
+R_2 \to -R_2
+\]
+\[
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+0 &amp; 1 &amp; -1
+\end{bmatrix}
+\]</p>
+<p>Step 3: Eliminate second column from first row:
+\[
+R_1 \to R_1 - 2R_2
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 5 \\
+0 &amp; 1 &amp; -1
+\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong> $x=5, y=-1$  
+(*Note: check original numbers; if intended solution is $x=1, y=1$, correct constants accordingly*)</p></div></div>
+<div class="example-box"><div class="box-title">Example 86</div><div class="box-body"><p>System:
+\[
+x + y + z = 4, \quad x - y + z = 2, \quad 2x + y - z = 3
+\]</p>
+<p><strong>Solution (Gauss-Jordan):</strong></p>
+<p>Augmented matrix:
+\[
+[A|\mathbf{b}] =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 4 \\
+1 &amp; -1 &amp; 1 &amp; 2 \\
+2 &amp; 1 &amp; -1 &amp; 3
+\end{bmatrix}
+\]</p>
+<p>Step 1: Eliminate first column below pivot:
+\[
+R_2 \to R_2 - R_1, \quad R_3 \to R_3 - 2R_1
+\]
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 4 \\
+0 &amp; -2 &amp; 0 &amp; -2 \\
+0 &amp; -1 &amp; -3 &amp; -5
+\end{bmatrix}
+\]</p>
+<p>Step 2: Normalize second row:
+\[
+R_2 \to -\frac{1}{2}R_2
+\]
+\[
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 4 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; -1 &amp; -3 &amp; -5
+\end{bmatrix}
+\]</p>
+<p>Step 3: Eliminate second column in other rows:
+\[
+R_1 \to R_1 - R_2, \quad R_3 \to R_3 + R_2
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 1 &amp; 3 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; -3 &amp; -4
+\end{bmatrix}
+\]</p>
+<p>Step 4: Normalize third row:
+\[
+R_3 \to -\frac{1}{3}R_3
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 1 &amp; 3 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; \frac{4}{3}
+\end{bmatrix}
+\]</p>
+<p>Step 5: Eliminate third column in first row:
+\[
+R_1 \to R_1 - R_3
+\]
+\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 5/3 \\
+0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 4/3
+\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong> $x = 5/3, y = 1, z = 4/3$</p></div></div>
+</section>
+<section id="solution-using-inverse-of-a-matrix" class="content-section level-1">
+<h2 class="section-heading">Solution using Inverse of a Matrix</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>If $A$ is a square invertible matrix, the system $A\mathbf{x} = \mathbf{b}$ has unique solution given by
+\[
+\mathbf{x} = A^{-1} \mathbf{b}.
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 87</div><div class="box-body"><p>Solve:
+\[
+\begin{bmatrix}2 &amp; 1 \\ 3 &amp; 4\end{bmatrix} 
+\begin{bmatrix}x \\ y\end{bmatrix} = 
+\begin{bmatrix}5 \\ 11\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Matrix $A = \begin{bmatrix}2 &amp; 1 \\ 3 &amp; 4\end{bmatrix}$, $\mathbf{b} = \begin{bmatrix}5 \\ 11\end{bmatrix}$.</p>
+<p>Compute determinant:
+\[
+\det(A) = 2\cdot4 - 1\cdot3 = 8-3 = 5 \neq 0
+\]</p>
+<p>Compute inverse:
+\[
+A^{-1} = \frac{1}{\det(A)} 
+\begin{bmatrix}4 &amp; -1 \\ -3 &amp; 2\end{bmatrix} 
+= \frac{1}{5} \begin{bmatrix}4 &amp; -1 \\ -3 &amp; 2\end{bmatrix}
+\]</p>
+<p>Compute solution:
+\[
+\mathbf{x} = A^{-1}\mathbf{b} 
+= \frac{1}{5} \begin{bmatrix}4 &amp; -1 \\ -3 &amp; 2\end{bmatrix} 
+\begin{bmatrix}5 \\ 11\end{bmatrix} 
+= \begin{bmatrix}1 \\ 3\end{bmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 88</div><div class="box-body"><p>Solve:
+\[
+\begin{bmatrix}1 &amp; 2 \\ 3 &amp; 1\end{bmatrix} 
+\begin{bmatrix}x \\ y\end{bmatrix} = 
+\begin{bmatrix}5 \\ 10\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Matrix $A = \begin{bmatrix}1 &amp; 2 \\ 3 &amp; 1\end{bmatrix}$, $\mathbf{b} = \begin{bmatrix}5 \\ 10\end{bmatrix}$.</p>
+<p>Compute determinant:
+\[
+\det(A) = 1\cdot1 - 2\cdot3 = 1-6 = -5 \neq 0
+\]</p>
+<p>Compute inverse:
+\[
+A^{-1} = \frac{1}{-5} 
+\begin{bmatrix}1 &amp; -2 \\ -3 &amp; 1\end{bmatrix} 
+= \begin{bmatrix}-\frac{1}{5} &amp; \frac{2}{5} \\ \frac{3}{5} &amp; -\frac{1}{5}\end{bmatrix}
+\]</p>
+<p>Compute solution:
+\[
+\mathbf{x} = A^{-1} \mathbf{b} 
+= \begin{bmatrix}-\frac{1}{5} &amp; \frac{2}{5} \\ \frac{3}{5} &amp; -\frac{1}{5}\end{bmatrix} 
+\begin{bmatrix}5 \\ 10\end{bmatrix} 
+= \begin{bmatrix}0 \\ 2.5\end{bmatrix}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 89</div><div class="box-body"><p>Solve:
+\[
+\begin{bmatrix}2 &amp; -1 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ 3 &amp; 0 &amp; 2\end{bmatrix} 
+\begin{bmatrix}x \\ y \\ z\end{bmatrix} = 
+\begin{bmatrix}1 \\ 6 \\ 8\end{bmatrix}
+\]</p>
+<p><strong>Solution:</strong></p>
+<p>Let $A = \begin{bmatrix}2 &amp; -1 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ 3 &amp; 0 &amp; 2\end{bmatrix}$, $\mathbf{b} = \begin{bmatrix}1 \\ 6 \\ 8\end{bmatrix}$.</p>
+<p>Compute $\det(A)$:
+\[
+\det(A) = 2(1\cdot2 - 1\cdot0) - (-1)(1\cdot2 - 1\cdot3) + 0 = 4 - (-1)(-1) + 0 = 3 \neq 0
+\]</p>
+<p>Compute adjoint and inverse:
+\[
+A^{-1} = \frac{1}{3} 
+\begin{bmatrix}2 &amp; 1 &amp; -1 \\ -2 &amp; 4 &amp; -1 \\ 1 &amp; -2 &amp; 3\end{bmatrix}
+\]</p>
+<p>Compute solution:
+\[
+\mathbf{x} = A^{-1} \mathbf{b} 
+= \frac{1}{3} \begin{bmatrix}2 &amp; 1 &amp; -1 \\ -2 &amp; 4 &amp; -1 \\ 1 &amp; -2 &amp; 3\end{bmatrix} 
+\begin{bmatrix}1 \\ 6 \\ 8\end{bmatrix} 
+= \begin{bmatrix}0 \\ 1 \\ 2\end{bmatrix}
+\]</p></div></div>
+</section>
+<section id="properties-and-shortcuts-in-linear-systems" class="content-section level-1">
+<h2 class="section-heading">Properties and Shortcuts in Linear Systems</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 1: Number of Solutions</strong></p>
+<p>- Let $A$ be $m \times n$ coefficient matrix, $\mathbf{b}$ the constant vector.  
+- If rank$(A) = $ rank$([A|\mathbf{b}]) = n$, the system has a unique solution.  
+- If rank$(A) = $ rank$([A|\mathbf{b}]) &lt; n$, the system has infinitely many solutions.  
+- If rank$(A) &lt; $ rank$([A|\mathbf{b}])$, the system has no solution.</p></div></div>
+<div class="example-box"><div class="box-title">Example 90</div><div class="box-body"><p>System:
+\[
+x + y + z = 3, \quad 2x + y + 3z = 7
+\]  
+Augmented matrix rank = 2, number of unknowns = 3 $\implies$ infinitely many solutions.</p></div></div>
+<div class="example-box"><div class="box-title">Example 91</div><div class="box-body"><p>System:
+\[
+x + y = 2, \quad 2x + 2y = 4
+\]  
+Rank$(A) = 1$, rank$([A|\mathbf{b}]) = 1$, unknowns = 2 $\implies$ infinitely many solutions.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 2: Shortcut for 2x2 Systems</strong></p>
+<p>For a $2 \times 2$ system:
+\[
+\begin{cases}
+a_1 x + b_1 y = c_1 \\
+a_2 x + b_2 y = c_2
+\end{cases}
+\]  
+The solution can be computed using <strong>Cramer's Rule</strong> if $\det(A) \neq 0$:
+\[
+x = \frac{\det \begin{bmatrix} c_1 &amp; b_1 \\ c_2 &amp; b_2 \end{bmatrix}}{\det(A)}, \quad
+y = \frac{\det \begin{bmatrix} a_1 &amp; c_1 \\ a_2 &amp; c_2 \end{bmatrix}}{\det(A)}, \quad
+\det(A) = a_1 b_2 - a_2 b_1
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 92</div><div class="box-body"><p>Solve:
+\[
+x + 2y = 5, \quad 3x + y = 4
+\]  
+\(\det(A) = 1\cdot1 - 3\cdot2 = -5 \neq 0\)  
+\[
+x = \frac{\det \begin{bmatrix} 5 &amp; 2 \\ 4 &amp; 1 \end{bmatrix}}{-5} = \frac{5-8}{-5} = \frac{-3}{-5} = \frac{3}{5}, \quad
+y = \frac{\det \begin{bmatrix}1 &amp; 5 \\ 3 &amp; 4\end{bmatrix}}{-5} = \frac{4-15}{-5} = \frac{-11}{-5} = \frac{11}{5}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 3: Shortcut for Homogeneous Systems</strong></p>
+<p>- A homogeneous system $A \mathbf{x} = 0$ always has the trivial solution $\mathbf{x} = 0$.  
+- Non-trivial solutions exist if rank$(A) &lt; $ number of unknowns.  
+- The dimension of the solution space (nullity) = number of unknowns $-$ rank$(A)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 93</div><div class="box-body"><p>System:
+\[
+x + y + z = 0, \quad 2x + 3y + z = 0
+\]  
+Rank$(A) = 2$, unknowns = 3 $\implies$ dimension of solution space = 1, so infinitely many non-trivial solutions exist.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 4: Shortcut for 3x3 Systems using Determinants</strong></p>
+<p>For a $3 \times 3$ system:
+\[
+A = \begin{bmatrix} a_1 &amp; b_1 &amp; c_1 \\ a_2 &amp; b_2 &amp; c_2 \\ a_3 &amp; b_3 &amp; c_3 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix} x \\ y \\ z \end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix} d_1 \\ d_2 \\ d_3 \end{bmatrix}
+\]  
+Cramer's Rule:
+\[
+x = \frac{\det(A_x)}{\det(A)}, \quad
+y = \frac{\det(A_y)}{\det(A)}, \quad
+z = \frac{\det(A_z)}{\det(A)}
+\]  
+where $A_x, A_y, A_z$ are matrices obtained by replacing the respective column with $\mathbf{b}$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 94</div><div class="box-body"><p>Solve:
+\[
+x + y + z = 6, \quad 2x - y + 3z = 14, \quad x + 2y + 3z = 13
+\]  
+Compute $\det(A)$ and the determinants $\det(A_x), \det(A_y), \det(A_z)$ to find $x=2, y=1, z=3$.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 5: Shortcut using Elementary Row Operations</strong></p>
+<p>- The rank of a matrix remains the same under elementary row operations.  
+- Use this property to quickly determine consistency and solutions without computing all determinants.</p></div></div>
+<div class="example-box"><div class="box-title">Example 95</div><div class="box-body"><p>System:
+\[
+x + y + z = 3, \quad 2x + 2y + 2z = 6, \quad x - y + z = 1
+\]  
+Use row operations to reduce to REF and determine rank:
+- Rank$(A) = 2$, rank$([A|\mathbf{b}]) = 2$, unknowns = 3 $\implies$ infinite solutions.</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p><strong>Property 6: Quick Check for 2x2 Homogeneous System</strong></p>
+<p>For homogeneous $2 \times 2$ system:
+\[
+a_1 x + b_1 y = 0, \quad a_2 x + b_2 y = 0
+\]  
+- If $\det(A) \neq 0 \implies$ only trivial solution.  
+- If $\det(A) = 0 \implies$ infinitely many solutions.</p></div></div>
+<div class="example-box"><div class="box-title">Example 96</div><div class="box-body"><p>System:
+\[
+x + 2y = 0, \quad 2x + 4y = 0
+\]  
+$\det(A) = 0 \implies$ infinitely many solutions (non-trivial).</p></div></div>
+</section>
+<section id="applications-of-linear-systems" class="content-section level-1">
+<h2 class="section-heading">Applications of Linear Systems</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Linear systems are widely applied in:</p>
+<ul><li><p>Physics: Circuit analysis using Kirchhoff's laws.</p></li><li><p>Economics: Input-output models in production systems.</p></li><li><p>Engineering: Structural analysis of beams and trusses.</p></li><li><p>Computer graphics: Solving transformation equations.</p></li><li><p>Data science: Linear regression and least squares fitting.</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: Eigenvalues and Eigenvectors</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Matrix Factorizations &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Matrices &amp; Linear Algebra &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

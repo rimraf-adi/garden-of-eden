@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Warehousing and Online Analytical Processing — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Warehousing &amp; OLAP</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: The Data</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#data-objects-and-attribute-types" class="toc-link" data-slug="data-objects-and-attribute-types">Data Objects and Attribute Types</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#nominal-attributes" class="toc-link" data-slug="nominal-attributes">Nominal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#binary-attributes" class="toc-link" data-slug="binary-attributes">Binary Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#ordinal-attributes" class="toc-link" data-slug="ordinal-attributes">Ordinal Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#numeric-attributes" class="toc-link" data-slug="numeric-attributes">Numeric Attributes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#discrete-versus-continuous-attributes" class="toc-link" data-slug="discrete-versus-continuous-attributes">Discrete versus Continuous Attributes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#basic-statistical-descriptions-of-data" class="toc-link" data-slug="basic-statistical-descriptions-of-data">Basic Statistical Descriptions of Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#measuring-the-central-tendency-mean-median-and-mode" class="toc-link" data-slug="measuring-the-central-tendency-mean-median-and-mode">Measuring the Central Tendency: Mean, Median, and Mode</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#median" class="toc-link" data-slug="median">Median</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#mode" class="toc-link" data-slug="mode">Mode</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-the-dispersion-of-data" class="toc-link" data-slug="measuring-the-dispersion-of-data">Measuring the Dispersion of Data</a>
+<ul>
+<li class="toc-l3"><a href="ch01.html#range" class="toc-link" data-slug="range">Range</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#quartiles-and-iqr" class="toc-link" data-slug="quartiles-and-iqr">Quartiles and IQR</a>
+</li>
+<li class="toc-l3"><a href="ch01.html#variance-and-standard-deviation" class="toc-link" data-slug="variance-and-standard-deviation">Variance and Standard Deviation</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Data Preprocessing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#data-cleaning" class="toc-link" data-slug="data-cleaning">Data Cleaning</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#handling-missing-values" class="toc-link" data-slug="handling-missing-values">Handling Missing Values</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#noisy-data-binning-regression-and-clustering" class="toc-link" data-slug="noisy-data-binning-regression-and-clustering">Noisy Data: Binning, Regression, and Clustering</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#1-binning-local-smoothing" class="toc-link" data-slug="1-binning-local-smoothing">1. Binning (Local Smoothing)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#2-regression-outlier-analysis" class="toc-link" data-slug="2-regression-outlier-analysis">2. Regression &amp; Outlier Analysis</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-reduction" class="toc-link" data-slug="data-reduction">Data Reduction</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#dimensionality-reduction" class="toc-link" data-slug="dimensionality-reduction">Dimensionality Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#principal-component-analysis" class="toc-link" data-slug="principal-component-analysis">Principal Component Analysis</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#feature-subset-selection" class="toc-link" data-slug="feature-subset-selection">Feature Subset Selection</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#numerosity-reduction" class="toc-link" data-slug="numerosity-reduction">Numerosity Reduction</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#sampling" class="toc-link" data-slug="sampling">Sampling</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#clustering-regression" class="toc-link" data-slug="clustering-regression">Clustering &amp; Regression</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch02.html#data-compression" class="toc-link" data-slug="data-compression">Data Compression</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#lossless-compression" class="toc-link" data-slug="lossless-compression">Lossless Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#run-length-encoding-rle" class="toc-link" data-slug="run-length-encoding-rle">Run-Length Encoding (RLE)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-1-rle-encoding-pipeline" class="toc-link" data-slug="diagram-1-rle-encoding-pipeline">Diagram 1 — RLE Encoding Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-2-rle-on-binary-bitmap-fax-sparse-column" class="toc-link" data-slug="diagram-2-rle-on-binary-bitmap-fax-sparse-column">Diagram 2 — RLE on Binary Bitmap (Fax / Sparse Column)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#huffman-coding" class="toc-link" data-slug="huffman-coding">Huffman Coding</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-3-huffman-tree-construction" class="toc-link" data-slug="diagram-3-huffman-tree-construction">Diagram 3 — Huffman Tree Construction</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-4-encode-and-decode-pipeline" class="toc-link" data-slug="diagram-4-encode-and-decode-pipeline">Diagram 4 — Encode and Decode Pipeline</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lzw-lempel-ziv-welch" class="toc-link" data-slug="lzw-lempel-ziv-welch">LZW (Lempel--Ziv--Welch)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-5-lzw-encoding-trace" class="toc-link" data-slug="diagram-5-lzw-encoding-trace">Diagram 5 — LZW Encoding Trace</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#lossy-compression" class="toc-link" data-slug="lossy-compression">Lossy Compression</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-pca-2-d-to-1-d-projection" class="toc-link" data-slug="diagram-pca-2-d-to-1-d-projection">Diagram  — PCA: 2-D to 1-D Projection</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#diagram-quality-vs-compression-ratio-trade-off" class="toc-link" data-slug="diagram-quality-vs-compression-ratio-trade-off">Diagram  — Quality vs.\ Compression Ratio Trade-off</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-transformation" class="toc-link" data-slug="data-transformation">Data Transformation</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#data-transformation-by-normalization" class="toc-link" data-slug="data-transformation-by-normalization">Data Transformation by Normalization</a>
+<ul>
+<li class="toc-l3"><a href="ch02.html#min-max-normalization" class="toc-link" data-slug="min-max-normalization">Min-Max Normalization</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#z-score-normalization-standardization" class="toc-link" data-slug="z-score-normalization-standardization">Z-Score Normalization (Standardization)</a>
+</li>
+<li class="toc-l3"><a href="ch02.html#decimal-scaling" class="toc-link" data-slug="decimal-scaling">Decimal Scaling</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-discretization" class="toc-link" data-slug="data-discretization">Data Discretization</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#discretization-by-binning" class="toc-link" data-slug="discretization-by-binning">Discretization by Binning</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#discretization-by-histogram-analysis" class="toc-link" data-slug="discretization-by-histogram-analysis">Discretization by Histogram Analysis</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch03.html" class="chapter-link active">Chapter 3: Data Warehousing and Online Analytical Processing</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#data-warehouse-basic-concepts" class="toc-link" data-slug="data-warehouse-basic-concepts">Data Warehouse: Basic Concepts</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#oltp-versus-olap" class="toc-link" data-slug="oltp-versus-olap">OLTP versus OLAP</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#data-warehousing-a-multitiered-architecture" class="toc-link" data-slug="data-warehousing-a-multitiered-architecture">Data Warehousing: A Multitiered Architecture</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#data-warehouse-modeling-data-cube-and-olap" class="toc-link" data-slug="data-warehouse-modeling-data-cube-and-olap">Data Warehouse Modeling: Data Cube and OLAP</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#data-cube-a-multidimensional-data-model" class="toc-link" data-slug="data-cube-a-multidimensional-data-model">Data Cube: A Multidimensional Data Model</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#types-of-data-cubes" class="toc-link" data-slug="types-of-data-cubes">Types of Data Cubes</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#schemas-for-multidimensional-data-models" class="toc-link" data-slug="schemas-for-multidimensional-data-models">Schemas for Multidimensional Data Models</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#concept-hierarchy" class="toc-link" data-slug="concept-hierarchy">Concept Hierarchy</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#measures-categorization-and-computation" class="toc-link" data-slug="measures-categorization-and-computation">Measures: Categorization and Computation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#typical-olap-operations" class="toc-link" data-slug="typical-olap-operations">Typical OLAP Operations</a>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 3 of 3</div><h1>Data Warehousing and Online Analytical Processing</h1></div>
+<section id="data-warehouse-basic-concepts" class="content-section level-1">
+<h2 class="section-heading">Data Warehouse: Basic Concepts</h2>
+<div class="concept-box"><div class="box-title">Data Warehouse</div><div class="box-body"><p>A <strong>data warehouse</strong> is a <strong>subject-oriented, integrated, time-variant, and non-volatile</strong> collection of data that supports <strong>management decision making</strong>.</p>
+<ul><li><p><strong>Subject-oriented:</strong> Organized around major subjects (sales, customers, products) not transactions</p></li><li><p><strong>Integrated:</strong> Data from multiple heterogeneous sources consolidated into a unified format</p></li><li><p><strong>Time-variant:</strong> Stores <strong>historical data</strong> — every record has a time element</p></li><li><p><strong>Non-volatile:</strong> Data is <strong>loaded and accessed</strong>, never updated or deleted in place</p></li></ul></div></div>
+<section id="oltp-versus-olap" class="content-section level-2">
+<h3 class="section-heading">OLTP versus OLAP</h3>
+<div class="concept-box-alt"><div class="box-title">The Fundamental Difference</div><div class="box-body"><p>The major distinction lies between <strong>Operational</strong> systems and <strong>Informational</strong> systems:</p>
+<ul><li><p><strong>OLTP (Online Transaction Processing):</strong> Systems used for day-to-day operations (e.g., banking, retail checkout).</p></li><li><p><strong>OLAP (Online Analytical Processing):</strong> Systems used for data analysis and decision making (e.g., trend analysis, sales forecasting).</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig082.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Data Warehouse vs Operational Database</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig083.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 80</div><div class="box-body"><ul><li><p><strong>OLTP Task:</strong> A customer buys a laptop. The database updates the stock count from 10 to 9 and records the payment. <em>(High frequency, row-level access)</em></p></li><li><p><strong>OLAP Task:</strong> A manager asks, "What were the sales trends for laptops in South India over the last 3 summers compared to the rainy season?" <em>(Low frequency, massive data aggregation)</em></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 81</div><div class="box-body"><ol><li><p><strong>Step 1 (OLTP):</strong> You withdraw money from an ATM. This is a single, fast transaction that must be consistent (ACID).</p></li><li><p><strong>Step 2 (Data Flow):</strong> At the end of the day, your transaction data is moved to a central Warehouse.</p></li><li><p><strong>Step 3 (OLAP):</strong> The bank analyzes the "Withdrawal Patterns" of all customers in your city to decide if they need to install more ATMs in that area.</p></li></ol></div></div>
+</section>
+<section id="data-warehousing-a-multitiered-architecture" class="content-section level-2">
+<h3 class="section-heading">Data Warehousing: A Multitiered Architecture</h3>
+<div class="concept-box"><div class="box-title">Three-Tier Data Warehouse Architecture</div><div class="box-body"><p>The standard data warehouse architecture has <strong>three tiers</strong>:</p>
+<ul><li><p><strong>Tier 1 — Bottom Tier:</strong> Data sources and data warehouse server (ETL layer)</p></li><li><p><strong>Tier 2 — Middle Tier:</strong> OLAP server (multidimensional analysis engine)</p></li><li><p><strong>Tier 3 — Top Tier:</strong> Front-end client tools (reporting, mining, visualization)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig084.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Tier 1 --- Bottom Tier (Data Warehouse Server)</div><div class="box-body"><p>The <strong>foundation layer</strong> responsible for <strong>data storage and ETL processing</strong>.</p>
+<ul><li><p><strong>Data Sources:</strong> Operational databases, flat files, external feeds, legacy systems</p></li><li><p><strong>ETL Engine:</strong> Extract, Transform, Load — the data integration pipeline</p></li><li><p><strong>Data Warehouse Server:</strong> Central relational database storing integrated, historical data</p></li><li><p><strong>Data Marts:</strong> Smaller, subject-specific subsets of the warehouse</p></li><li><p><strong>Metadata Repository:</strong> Stores information <em>about</em> the data (schema, lineage, transformations)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig085.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">ETL  Extract Transform Load</div><div class="box-body"><ul><li><p><strong>Extract:</strong> Pull data from heterogeneous sources — OLTP databases, CSV files, APIs, web scraping</p></li><li><p><strong>Transform:</strong> Apply data cleaning and integration rules:</p>
+<ul><li><p>Handle <strong>missing values</strong> and <strong>duplicates</strong></p></li><li><p><strong>Standardize formats</strong>: Date formats, unit conversion, encoding</p></li><li><p><strong>Aggregate</strong> data to required granularity</p></li><li><p><strong>Resolve conflicts</strong>: Different source systems may store same data differently</p></li></ul></li><li><p><strong>Load:</strong> Insert transformed data into the warehouse — full or incremental load</p></li><li><p>ETL runs on a <strong>periodic schedule</strong> (nightly, weekly) — not real-time</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 82</div><div class="box-body"><p><strong>Sources:</strong></p>
+<ul><li><p>Store A database: Sales in USD, date format MM/DD/YYYY</p></li><li><p>Store B database: Sales in INR, date format DD-MM-YYYY</p></li><li><p>Online portal: JSON logs with Unix timestamps</p></li></ul>
+<p><strong>Transform steps:</strong></p>
+<ul><li><p>Convert all currencies to INR using exchange rates</p></li><li><p>Standardize all dates to YYYY-MM-DD format</p></li><li><p>Parse Unix timestamps to readable date-time</p></li><li><p>Remove duplicate transaction IDs</p></li><li><p>Fill missing product categories using product lookup table</p></li></ul>
+<p><strong>Load:</strong> Nightly batch job inserts transformed records into the central warehouse.</p></div></div>
+<div class="concept-box"><div class="box-title">Data Mart</div><div class="box-body"><p>A <strong>data mart</strong> is a <strong>smaller, subject-specific</strong> subset of a data warehouse.</p>
+<ul><li><p>Serves a specific <strong>business unit</strong> or department: Sales, Finance, HR, Marketing</p></li><li><p>Faster to build and query than the full warehouse</p></li><li><p>Two types:</p>
+<ul><li><p><strong>Dependent data mart:</strong> Created from the central data warehouse (top-down)</p></li><li><p><strong>Independent data mart:</strong> Built directly from source systems without a central warehouse</p></li></ul></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig086.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Metadata Repository</div><div class="box-body"><p>The <strong>metadata repository</strong> stores information <em>about</em> the data warehouse — it is the “data about data.”</p>
+<ul><li><p><strong>Business metadata:</strong> Definitions, business rules, ownership</p></li><li><p><strong>Technical metadata:</strong> Schema, data types, ETL mappings, transformations applied</p></li><li><p><strong>Operational metadata:</strong> ETL job history, load timestamps, data quality logs</p></li><li><p>Enables <strong>data lineage</strong>: track where each piece of data came from and how it was transformed</p></li><li><p>Critical for <strong>auditing, debugging, and governance</strong></p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Tier 2 --- Middle Tier (OLAP Server)</div><div class="box-body"><p>The <strong>analytical engine</strong> that processes multidimensional queries on warehoused data.<br>
+Three types of OLAP servers:</p>
+<ul><li><p><strong>ROLAP (Relational OLAP):</strong> Implements multidimensional data on top of a relational database using SQL</p></li><li><p><strong>MOLAP (Multidimensional OLAP):</strong> Stores data in a proprietary <strong>multidimensional array</strong> (data cube) directly</p></li><li><p><strong>HOLAP (Hybrid OLAP):</strong> Combines ROLAP and MOLAP — detailed data in relational, aggregates in multidimensional</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig087.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">ROLAP vs MOLAP --- Detailed Comparison</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig088.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Tier 3 --- Top Tier (Front-End Client Tools)</div><div class="box-body"><p>The <strong>user-facing layer</strong> — tools that query, visualize, and mine the data warehouse.</p>
+<ul><li><p><strong>Reporting tools:</strong> Generate fixed-format reports for management (Crystal Reports, SSRS)</p></li><li><p><strong>OLAP query tools:</strong> Ad-hoc multidimensional analysis (drill-down, slice, dice)</p></li><li><p><strong>Data mining tools:</strong> Discover patterns, build predictive models</p></li><li><p><strong>Dashboards:</strong> Real-time KPI visualization (Tableau, Power BI, Looker)</p></li><li><p><strong>Statistical tools:</strong> In-depth statistical analysis (R, Python)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 83</div><div class="box-body"><p><strong>Tier 1 — Data Sources and Warehouse Server:</strong></p>
+<ul><li><p>Sources: Core banking system (Oracle DB), ATM logs (CSV), Mobile app (JSON API), Credit card system (MySQL)</p></li><li><p>ETL: Nightly batch — extract transactions, standardize currency, clean nulls, load into central warehouse</p></li><li><p>Warehouse: Stores 10 years of transaction history (Star Schema with Time, Branch, Product, Customer dimensions)</p></li></ul>
+<p><strong>Tier 2 — OLAP Server:</strong></p>
+<ul><li><p>MOLAP cube pre-aggregated for: monthly deposits by branch, loan defaults by region, product-wise revenue</p></li><li><p>Supports roll-up (branch $\rightarrow$ zone $\rightarrow$ region), drill-down, slice (product = home loan)</p></li></ul>
+<p><strong>Tier 3 — Client Tools:</strong></p>
+<ul><li><p>Executives: Power BI dashboard showing real-time KPIs</p></li><li><p>Risk analysts: Python-based data mining for default prediction</p></li><li><p>Compliance: Crystal Reports for audit reports (fixed format)</p></li><li><p>Branch managers: Ad-hoc OLAP queries for local performance analysis</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Summary --- Three-Tier Architecture</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig089.png" alt="diagram"></div></div></div>
+</section>
+</section>
+<section id="data-warehouse-modeling-data-cube-and-olap" class="content-section level-1">
+<h2 class="section-heading">Data Warehouse Modeling: Data Cube and OLAP</h2>
+
+<section id="data-cube-a-multidimensional-data-model" class="content-section level-2">
+<h3 class="section-heading">Data Cube: A Multidimensional Data Model</h3>
+<div class="concept-box"><div class="box-title">Multidimensional Data Model</div><div class="box-body"><p>A <strong>multidimensional data model</strong> views data as a <strong>data cube</strong> — a structure that organizes data by <strong>dimensions</strong> and stores <strong>measures</strong> at each intersection.</p>
+<ul><li><p>Designed for <strong>OLAP</strong> and data warehouse analysis</p></li><li><p>Replaces the flat 2D table view with an $n$-dimensional perspective</p></li><li><p>Each <strong>point</strong> in the cube represents an aggregated measure for a unique combination of dimension values</p></li><li><p>Enables efficient <strong>roll-up, drill-down, slice, and dice</strong> operations</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Formal Definition of a Data Cube</div><div class="box-body"><p>An $n$-dimensional data cube is defined by:
+\[
+\text{Cube} = (D_1,\ D_2,\ \ldots,\ D_n,\ M)
+\]
+where:</p>
+<ul><li><p>$D_i$ = $i$-th dimension with domain $\text{dom}(D_i)$</p></li><li><p>$M$ = measure function mapping each cell $(d_1, d_2, \ldots, d_n)$ to a numeric value</p></li><li><p>Total number of cells $= |\text{dom}(D_1)| \times |\text{dom}(D_2)| \times \cdots \times |\text{dom}(D_n)|$</p></li><li><p>Many cells may be <strong>empty (sparse)</strong> if not all combinations exist in the data</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Core Components</div><div class="box-body"><ul><li><p><strong>Dimension:</strong> An attribute or perspective used to organize data<br>
+          Examples: <code>Time</code>, <code>Location</code>, <code>Product</code></p></li><li><p><strong>Dimension Hierarchy:</strong> Levels of abstraction within a dimension<br>
+          <code>Time</code>: Day $\rightarrow$ Month $\rightarrow$ Quarter $\rightarrow$ Year</p></li><li><p><strong>Measure:</strong> A numeric value stored at each cell of the cube<br>
+          Examples: <code>Sales</code>, <code>Profit</code>, <code>Count</code>, <code>Average Price</code></p></li><li><p><strong>Cell:</strong> One point in the cube identified by a unique combination of dimension values<br>
+          Example: (Q1, Bengaluru, Electronics) $\rightarrow$ Sales = 120</p></li><li><p><strong>Cuboid:</strong> One particular aggregation of the full cube across a subset of dimensions</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 84</div><div class="box-body"><p>Dimensions and their domains:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig090.png" alt="diagram"></div>
+<ul><li><p>Total cells $= 4 \times 3 \times 3 = 36$</p></li><li><p>Measure: <code>Sales (lakhs)</code> — one value per cell</p></li><li><p>If only 20 of 36 combinations have actual sales data $\rightarrow$ cube is <strong>sparse</strong> (44% empty)</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig091.png" alt="diagram"></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig092.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 85</div><div class="box-body"><p><strong>Q:</strong> A 3-dimensional data cube has Time(12), Location($x$), and Product(50) as dimensions.
+If the total number of cells is 36{,}000, what is the domain size of the Location dimension?</p>
+<p>\[
+\text{Total cells} = 12 \times x \times 50 = 36{,}000
+\]
+\[
+600x = 36{,}000 \implies x = 60
+\]
+<strong>Answer:</strong> The Location dimension has $\mathbf{60}$ distinct values (e.g., 60 cities).</p>
+<p><strong>Q:</strong> A 4-dimensional cube has equal domain size $d$ for all dimensions.
+If the total number of cells is 10{,}000, what is $d$?
+\[
+d^4 = 10{,}000 \implies d = \sqrt[4]{10{,}000} = 10
+\]
+<strong>Answer:</strong> Each dimension has $\mathbf{10}$ distinct values.</p></div></div>
+<div class="concept-box"><div class="box-title">Cuboid and Cuboid Lattice</div><div class="box-body"><p>For an $n$-dimensional cube, there exist $2^n$ <strong>cuboids</strong> — each representing a different level of aggregation.</p>
+<ul><li><p><strong>Base cuboid:</strong> All $n$ dimensions present — most detailed, lowest aggregation</p></li><li><p><strong>Apex cuboid (0-D):</strong> All dimensions aggregated — single grand total value</p></li><li><p>Each cuboid corresponds to a <strong>GROUP BY</strong> query on a subset of dimensions</p></li><li><p>The set of all $2^n$ cuboids forms a <strong>cuboid lattice</strong></p></li></ul>
+<p>\[
+\text{Number of cuboids} = 2^n
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig093.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 86</div><div class="box-body"><p>Each cuboid corresponds to a SQL <code>GROUP BY</code> query on a different subset of dimensions:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig094.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Cuboid Count by Level --- General Formula</div><div class="box-body"><p>For an $n$-dimensional cube, the number of cuboids at each level of the lattice is given by the
+binomial coefficient:
+\[
+\text{Number of } k\text{-dimensional cuboids} = \binom{n}{k} = \frac{n!}{k!\,(n-k)!}
+\]
+The total across all levels:
+\[
+\sum_{k=0}^{n} \binom{n}{k} = 2^n
+\]
+This follows directly from the Binomial Theorem: $\sum_{k=0}^{n}\binom{n}{k}1^k 1^{n-k} = 2^n$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig095.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 87</div><div class="box-body"><p><strong>Q:</strong> A data cube has 5 dimensions: Time, Location, Product, Customer, Channel.<br>
+How many cuboids does the full data cube contain?<br>
+\[
+\text{Number of cuboids} = 2^5 = 32
+\]</p>
+<ul><li><p>1 apex cuboid (0-D)</p></li><li><p>$\binom{5}{1} = 5$ one-dimensional cuboids</p></li><li><p>$\binom{5}{2} = 10$ two-dimensional cuboids</p></li><li><p>$\binom{5}{3} = 10$ three-dimensional cuboids</p></li><li><p>$\binom{5}{4} = 5$ four-dimensional cuboids</p></li><li><p>$\binom{5}{5} = 1$ base cuboid (5-D)</p></li><li><p>Total: $1+5+10+10+5+1 = 32$    cuboids</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 88</div><div class="box-body"><p>Given a Time dimension with the hierarchy: Day(365) $\to$ Month(12) $\to$ Quarter(4) $\to$ Year(1), and
+a Location dimension: City(50) $\to$ State(10) $\to$ Country(3) $\to$ ALL, combined with a
+Product dimension with a flat domain of 200 items, calculate the number of cells for each
+combination of hierarchy levels:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig096.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 89</div><div class="box-body"><p>A cube has 6 dimensions. How many 3-D cuboids exist? What is the total cuboid count?
+\[
+\binom{6}{3} = \frac{6!}{3!\,3!} = 20 \quad \text{three-dimensional cuboids}
+\]
+\[
+\text{Total cuboids} = 2^6 = 64
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 90</div><div class="box-body"><p>A cube has $n$ dimensions. The number of 2-D cuboids equals 21. Find $n$.
+\[
+\binom{n}{2} = \frac{n(n-1)}{2} = 21 \implies n(n-1) = 42 \implies n = 7
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 91</div><div class="box-body"><p>How many cuboids does a 10-dimensional cube have?
+At which level is the number of cuboids maximised?
+\[
+2^{10} = 1024 \quad \text{total cuboids}
+\]
+The maximum occurs at $k = \lfloor n/2 \rfloor = 5$:
+\[
+\binom{10}{5} = 252 \quad \text{(largest single-level count)}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 92</div><div class="box-body"><p>A data cube has Time(T), Product(P), Store(S), Promotion(Pr), and
+Customer(C) as dimensions ($n=5$). An analyst pre-materialises all cuboids involving
+<strong>at least</strong> Product and at most 3 dimensions total.
+How many cuboids satisfy this condition?</p>
+<ul><li><p>The only 1-D cuboid containing $P$ is $\{P\}=1$ .</p></li><li><p>Cuboids of size exactly 2 containing $P$: choose 1 more from $\{T,S,Pr,C\}$ $= \binom{4}{1} = 4$</p></li><li><p>Cuboids of size exactly 3 containing $P$: choose 2 more from $\{T,S,Pr,C\}$ $= \binom{4}{2} = 6$</p></li><li><p>Total: $1 + 4 + 6 = \mathbf{11}$ cuboids</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 93</div><div class="box-body"><p>For an $n$-dimensional cube, prove that the number of cuboids
+containing a specific dimension $D_j$ is $2^{n-1}$.</p>
+<ul><li><p>Fix $D_j$ as present. The remaining $n-1$ dimensions can each independently be included or excluded.</p></li><li><p>This gives $2^{n-1}$ distinct combinations $\Rightarrow$ $2^{n-1}$ cuboids contain $D_j$.</p></li><li><p><strong>Verification ($n=3$):</strong> Each dimension appears in $2^2 = 4$ cuboids.
+          For $T$: $(T)$, $(T,L)$, $(T,P)$, $(T,L,P)$ — indeed 4. ✓</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Each dimension with $L_i$ levels contributes $L_i + 1$ choices
+(including the “ALL” choice). Total cuboids $= \prod_i (L_i + 1)$.</p></div></div>
+</section>
+<section id="types-of-data-cubes" class="content-section level-2">
+<h3 class="section-heading">Types of Data Cubes</h3>
+<div class="concept-box"><div class="box-title">Sparse Data Cube</div><div class="box-body"><p>In practice, most data cubes are <strong>sparse</strong> — many cells are empty.</p>
+<ul><li><p>Not all combinations of dimension values have corresponding data</p></li><li><p>Example: Not every product is sold in every city in every quarter</p></li><li><p><strong>Density</strong> of a cube:
+    \[
+    \text{Density} = \frac{\text{Number of non-empty cells}}{\text{Total possible cells}} \times 100\%
+    \]</p></li><li><p>Storing all cells wastes memory — sparse representation techniques used</p></li><li><p><strong>MOLAP</strong> stores the full array (wastes space for sparse cubes)</p></li><li><p><strong>ROLAP</strong> stores only non-empty cells (efficient for sparse cubes)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 94</div><div class="box-body"><p>A 4-dimensional cube has dimensions:<br>
+Time (12 months), Location (50 cities), Product (200 items), Customer (1000 segments)<br>
+<strong>Total possible cells:</strong>
+\[
+12 \times 50 \times 200 \times 1000 = 1{,}200{,}000{,}000 \quad \text{(1.2 billion)}
+\]
+<strong>Actual non-empty cells:</strong> 3,000,000 (3 million)<br>
+\[
+\text{Density} = \frac{3{,}000{,}000}{1{,}200{,}000{,}000} \times 100\% = 0.25\%
+\]
+The cube is <strong>99.75% sparse</strong> — ROLAP is preferred; MOLAP would waste enormous memory.</p></div></div>
+<div class="concept-box"><div class="box-title">Iceberg Cube</div><div class="box-body"><p>An <strong>iceberg cube</strong> computes and stores only those cuboid cells whose <strong>aggregate value satisfies a minimum threshold</strong>.
+\[
+\text{Store cell } (d_1, d_2, \ldots, d_k) \text{ only if } \text{measure}(d_1,\ldots,d_k) \geq \text{min\_sup}
+\]</p>
+<ul><li><p>Avoids materializing cells with very low counts — reduces storage dramatically</p></li><li><p>Named after the iceberg metaphor — only the <strong>tip</strong> (significant cells) is visible</p></li><li><p>Threshold called <strong>minimum support</strong> (often count $\geq$ some value)</p></li><li><p>Useful for <strong>association rule mining</strong> on large sparse cubes</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig097.png" alt="diagram"></div></div></div>
+<div class="example-box"><div class="box-title">Example 95</div><div class="box-body"><p>Sales cube with 36 cells (4 quarters $\times$ 3 locations $\times$ 3 products).<br>
+<code>min_sup</code> = 100 lakhs (store only cells where Sales $\geq$ 100).<br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig098.png" alt="diagram"></div>
+<p>Only cells meeting the threshold are materialized — the rest are <strong>pruned</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 96</div><div class="box-body"><p>A 3-D cube has Time(4), Location(3), Product(3) with 22 non-empty cells.
+\[
+\text{Total cells} = 4 \times 3 \times 3 = 36, \qquad
+\text{Density} = \frac{22}{36} \times 100\% \approx 61.1\%
+\]
+Moderately dense; either storage approach is viable.</p></div></div>
+<div class="example-box"><div class="box-title">Example 97</div><div class="box-body"><p>A 4-D retail cube has Month(12), Store(500), SKU(10{,}000), Channel(5)
+with 2{,}000{,}000 actual sales records.
+\[
+\text{Total cells} = 12 \times 500 \times 10{,}000 \times 5 = 300{,}000{,}000
+\]
+\[
+\text{Density} = \frac{2{,}000{,}000}{300{,}000{,}000} \times 100\% \approx 0.67\%
+\]
+Extremely sparse (99.33% empty) — ROLAP is strongly preferred.</p></div></div>
+<div class="example-box"><div class="box-title">Example 98</div><div class="box-body"><p>A cube has density 2% and $5 \times 10^8$ total cells.
+How many cells are non-empty?
+\[
+N = 0.02 \times 5 \times 10^8 = 10{,}000{,}000 \quad \text{(10 million non-empty cells)}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 99</div><div class="box-body"><p><strong>(MOLAP vs.\ ROLAP storage):</strong> For Problem 2 above, with $b = 8$ bytes/cell in MOLAP,
+and in ROLAP each record has 4 dimension keys (4 bytes each) + 1 measure (8 bytes):
+\[
+\text{MOLAP} = 300{,}000{,}000 \times 8 = 2{,}400{,}000{,}000 \text{ bytes} \approx 2.4 \text{ GB}
+\]
+\[
+\text{ROLAP} = 2{,}000{,}000 \times (4 \times 4 + 8) = 2{,}000{,}000 \times 24 = 48{,}000{,}000 \text{ bytes} \approx 48 \text{ MB}
+\]
+\[
+\text{Space saving} = \frac{2400 - 48}{2400} \times 100\% = 98\%
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 100</div><div class="box-body"><p><strong>(Find density from storage constraint):</strong>
+A 3-D cube has 1 billion total cells. MOLAP requires 8 GB (8 bytes/cell).
+At what minimum density does ROLAP <em>require more</em> storage than MOLAP?
+(ROLAP record size = 20 bytes: 3 $\times$ 4-byte keys + 8-byte measure.)
+\[
+N \times 20 = 10^9 \times 8 \implies N = \frac{8 \times 10^9}{20} = 4 \times 10^8
+\]
+\[
+\text{Break-even density} = \frac{4 \times 10^8}{10^9} \times 100\% = 40\%
+\]
+At density $&gt; 40\%$, MOLAP is more storage-efficient; below 40%, ROLAP wins.</p></div></div>
+<div class="concept-box"><div class="box-title">Closed Cube --- Formal Definition</div><div class="box-body"><p>A cuboid cell $(d_1, d_2, \ldots, d_k)$ with measure value $v$ is <strong>closed</strong> if and only if
+there is <strong>no</strong> more specific cell (with additional dimension constraints) that has the
+same measure value:
+\[
+\nexists\; (d_1,\ldots,d_k, d_{k+1}): \quad \text{measure}(d_1,\ldots,d_k,d_{k+1}) = v
+\]
+The <strong>closed cube</strong> stores only the closed cells, eliminating redundancy while
+preserving the ability to reconstruct all other cells by roll-up.</p>
+<ul><li><p>If $\text{measure}(d_1,\ldots,d_k) = \text{measure}(d_1,\ldots,d_k,d_{k+1})$
+          for every value of $d_{k+1}$, then the coarser cell is <strong>redundant</strong>
+          (the finer cell already captures the same information)</p></li><li><p>Closed cube $\subseteq$ Iceberg cube $\subseteq$ Full cube</p></li><li><p>Used primarily with COUNT; a cell is not closed if all its refinements
+          have the same count (i.e., adding a dimension doesn't split the group)</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 101</div><div class="box-body"><p>Consider a 2-D cube with dimensions: Location $\in \{North, South\}$ and Customer $\in \{Retail, Wholesale\}$.
+The base cuboid (2-D) has the following COUNT values:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig099.png" alt="diagram"></div>
+<p><strong>Checking closedness of (North) in the 1-D (Location) cuboid:</strong><br>
+The cell $(North)$ has count = 15. Its refinements in the 2-D cuboid are:
+$(North, Retail) = 15$ and $(North, Wholesale) = 0$.<br>
+Since the refinement $(North, Retail)$ has the <em>same count</em> (15) as its parent $(North)$, the cell $(North)$ <strong>is not closed</strong> — adding the Customer dimension does not change the count.</p>
+<p><strong>Checking closedness of (Wholesale) in the 1-D (Customer) cuboid:</strong><br>
+The cell $(Wholesale)$ has count = 25. Its refinements in the 2-D cuboid are:
+$(North, Wholesale) = 0$ and $(South, Wholesale) = 25$.<br>
+Since the refinement $(South, Wholesale)$ has the <em>same count</em> (25) as its parent $(Wholesale)$, the cell $(Wholesale)$ <strong>is not closed</strong>.</p>
+<p><strong>Case of a closed cell:</strong><br>
+Checking $(South)$ in the 1-D (Location) cuboid: $(South)$ has count = 35. 
+Its refinements are $(South, Retail) = 10$ and $(South, Wholesale) = 25$.
+Since neither refinement equals 35, the cell $(South)$ <em>is</em> closed.</p>
+<p><strong>Summary:</strong> Non-closed cells (like North and Wholesale in this table) are redundant. In a Closed Cube representation, we prune these and only store cells where every refinement results in a different count value, effectively compressing the data without losing information.</p></div></div>
+<div class="example-box"><div class="box-title">Example 102</div><div class="box-body"><p>Consider a small 2-D cube: Time $\in \{Q1, Q2\}$, Product $\in \{Electronics, Clothing\}$.
+The base cuboid (2-D) has the following COUNT values:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig100.png" alt="diagram"></div>
+<p><strong>Checking closedness of (Q1) in the 1-D (Time) cuboid:</strong><br>
+$(Q1)$ has count = 10. Its refinements in the 2-D cuboid are:
+$(Q1, \text{Electronics}) = 5$ and $(Q1, \text{Clothing}) = 5$.<br>
+Since $5 \neq 10$, the cell $(Q1)$ <em>is</em> closed — adding the Product dimension
+changes the count.</p>
+<p><strong>Checking closedness of (Electronics) in the 1-D (Product) cuboid:</strong><br>
+$(Electronics)$ has count = 13. Its refinements: $(Q1, Electronics) = 5$, $(Q2, Electronics) = 8$.<br>
+Since $5 \neq 13$ and $8 \neq 13$, $(Electronics)$ is closed.</p>
+<p><strong>Hypothetical non-closed case:</strong><br>
+If all sales of Clothing occurred only in Q2 and there were no other data, then:
+$(Q2, Clothing) = $ all Clothing sales, and the (Clothing) cuboid cell would equal
+$(Q2, Clothing)$ — making (Clothing) <em>not closed</em> (redundant with its 2-D refinement).</p>
+<p><strong>Summary:</strong> In the example above, all cells happen to be closed.
+Non-closed cells arise when the same count value is shared by a cell and
+one of its direct 1-step refinements — signalling that the refinement adds no information.</p></div></div>
+</section>
+</section>
+<section id="schemas-for-multidimensional-data-models" class="content-section level-1">
+<h2 class="section-heading">Schemas for Multidimensional Data Models</h2>
+<div class="concept-box"><div class="box-title">Schema for Multidimensional Data Model</div><div class="box-body"><p>A <strong>schema</strong> in a data warehouse defines how <strong>fact tables</strong> and <strong>dimension tables</strong> are organized and related.</p>
+<ul><li><p><strong>Fact table:</strong> Central table storing <strong>measures</strong> (numeric, quantitative data) and <strong>foreign keys</strong> to dimension tables</p></li><li><p><strong>Dimension table:</strong> Stores <strong>descriptive attributes</strong> of a dimension — the context for analysis</p></li><li><p>Three standard schemas: <strong>Star</strong>, <strong>Snowflake</strong>, <strong>Fact Constellation (Galaxy)</strong></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Fact Table vs Dimension Table</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig101.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig102.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Star Schema</div><div class="box-body"><p>A <strong>star schema</strong> has a single <strong>central fact table</strong> connected to multiple <strong>denormalized dimension tables</strong> — resembling a star shape.</p>
+<ul><li><p>Dimension tables are <strong>flat</strong> — all attributes in one table, not further decomposed</p></li><li><p>Simple structure — <strong>fewer joins</strong> required for queries</p></li><li><p><strong>Fast query performance</strong> — optimized for OLAP</p></li><li><p><strong>Data redundancy</strong> in dimension tables (denormalized)</p></li><li><p>Most widely used schema in data warehouses</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Star Schema Structure</div><div class="box-body"><ul><li><p><strong>Fact table:</strong> Contains measures and foreign keys to all dimension tables<br>
+          Primary key = composite of all foreign keys</p></li><li><p><strong>Dimension tables:</strong> One per dimension; contain all attributes of that dimension in a single flat table</p></li><li><p>Number of joins in a query = number of dimensions involved</p></li><li><p><strong>Denormalization:</strong> Dimension attributes are stored redundantly to avoid joins</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig103.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 103</div><div class="box-body"><p><strong>Query:</strong> Total sales per product category per quarter for 2024.<br>
+<strong>SQL on Star Schema:</strong></p>
+<div class="code-box"><pre><code>SELECT  T.quarter, P.category, SUM(F.sales_amount)
+FROM    Sales_Fact F
+JOIN    Time_Dim T     ON F.time_id     = T.time_id
+JOIN    Product_Dim P  ON F.product_id  = P.product_id
+WHERE   T.year = 2024
+GROUP BY T.quarter, P.category;</code></pre></div>
+<ul><li><p>Only <strong>2 joins</strong> needed (Time and Product) — Location and Customer not touched</p></li><li><p>All product attributes (name, brand, category) are in <strong>one flat table</strong> — no further joins</p></li><li><p>Fast execution — typical OLAP query pattern</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 104</div><div class="box-body"><p><strong>Product_Dim</strong> stores category alongside individual product:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig104.png" alt="diagram"></div>
+<ul><li><p>“Electronics” is stored <strong>twice</strong> — redundancy due to denormalization</p></li><li><p>In a normalized schema, category would be in a separate table</p></li><li><p>Star schema accepts this redundancy to <strong>avoid extra joins</strong> at query time</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Snowflake Schema</div><div class="box-body"><p>A <strong>snowflake schema</strong> is a <strong>normalized</strong> extension of the star schema where dimension tables are <strong>further decomposed</strong> into multiple related tables.</p>
+<ul><li><p>Dimension tables are <strong>normalized</strong> — no redundancy</p></li><li><p>Resembles a snowflake shape — dimensions branch out into sub-dimensions</p></li><li><p><strong>Reduces storage</strong> — eliminates redundant attribute values</p></li><li><p><strong>More joins</strong> required for queries — slower than star schema</p></li><li><p>Better for <strong>frequent dimension updates</strong> (normalized tables easier to maintain)</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Star Schema vs Snowflake Schema</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig105.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig106.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 105</div><div class="box-body"><p><strong>Query:</strong> Total sales per department per year.<br>
+<strong>SQL on Snowflake Schema:</strong></p>
+<div class="code-box"><pre><code>SELECT  Q.year, C.department, SUM(F.sales_amount)
+FROM    Sales_Fact F
+JOIN    Product_Dim P   ON F.product_id  = P.product_id
+JOIN    Category_Dim C  ON P.category_id = C.category_id
+JOIN    Time_Dim T      ON F.time_id     = T.time_id
+JOIN    Quarter_Dim Q   ON T.quarter_id  = Q.quarter_id
+GROUP BY Q.year, C.department;</code></pre></div>
+<ul><li><p><strong>5 joins</strong> required — compared to 2 joins in equivalent star schema query</p></li><li><p><code>department</code> is not in <code>Product_Dim</code> directly — must traverse <code>Category_Dim</code></p></li><li><p><code>year</code> is not in <code>Time_Dim</code> directly — must traverse <code>Quarter_Dim</code></p></li><li><p>Snowflake pays for normalization with <strong>extra join overhead</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 106</div><div class="box-body"><p><strong>Star Schema</strong> — Product_Dim (denormalized):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig107.png" alt="diagram"></div>
+<p>“Electronics” and “Technology” repeated 3 times.<br>
+<strong>Snowflake Schema</strong> — normalized into two tables:<br>
+<strong>Product_Dim:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig108.png" alt="diagram"></div>
+<p><strong>Category_Dim:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig109.png" alt="diagram"></div>
+<p>“Electronics” and “Technology” stored <strong>once only</strong> — no redundancy.</p></div></div>
+<div class="concept-box"><div class="box-title">Fact Constellation Schema (Galaxy Schema)</div><div class="box-body"><p>A <strong>fact constellation</strong> (also called <strong>galaxy schema</strong>) contains <strong>multiple fact tables</strong> that <strong>share dimension tables</strong>.</p>
+<ul><li><p>Models <strong>complex real-world scenarios</strong> where multiple subjects need analysis</p></li><li><p>Shared dimension tables — consistency across fact tables</p></li><li><p>Each fact table can have <strong>different measures</strong> and <strong>different grains</strong></p></li><li><p>Most flexible but <strong>most complex</strong> schema to design and maintain</p></li><li><p>Looks like a collection of stars — hence “galaxy” schema</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig110.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 107</div><div class="box-body"><p>A retail company needs to analyze both <strong>Sales</strong> and <strong>Inventory</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig111.png" alt="diagram"></div>
+<ul><li><p>Cross-fact query: “Which products have high sales but low inventory?” — requires joining both fact tables via shared <code>Product_Dim</code></p></li><li><p>Shared dimension ensures <strong>consistent product definitions</strong> across both facts</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 108</div><div class="box-body"><p><strong>Q:</strong> A data warehouse has the following tables:<br>
+<code>Sales_Fact</code>, <code>Time_Dim</code>, <code>Customer_Dim</code>, <code>Product_Dim</code>, <code>Category_Dim</code><br>
+<code>Product_Dim</code> has a foreign key to <code>Category_Dim</code>.<br>
+What schema does this represent?<br></p>
+<ul><li><p>One fact table (<code>Sales_Fact</code>) $\rightarrow$ not Fact Constellation</p></li><li><p><code>Product_Dim</code> connects to <code>Category_Dim</code> — dimension table is normalized</p></li><li><p>This is a <strong>Snowflake Schema</strong> — dimension hierarchy is normalized out into sub-dimensions</p></li></ul>
+<p><strong>Answer: Snowflake Schema</strong><br>
+If <code>Category_Dim</code> were merged into <code>Product_Dim</code> (no sub-table), it would be a <strong>Star Schema</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 109</div><div class="box-body"><p><strong>Q:</strong> A star schema has a fact table <code>Orders_Fact</code> with foreign keys:<br>
+<code>customer_id, product_id, time_id, store_id</code><br>
+What is the primary key of <code>Orders_Fact</code>?<br></p>
+<ul><li><p>No single attribute uniquely identifies a row in a fact table</p></li><li><p>Primary key = <strong>composite key</strong> of all foreign keys:<br>
+          PK = (<code>customer_id, product_id, time_id, store_id</code>)</p></li><li><p>This assumes one fact per unique combination of all dimensions</p></li><li><p>If multiple orders can exist for the same combination, a <strong>surrogate key</strong> (<code>order_id</code>) is added</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Summary --- Three Schema Types</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig112.png" alt="diagram"></div></div></div>
+</section>
+<section id="concept-hierarchy" class="content-section level-1">
+<h2 class="section-heading">Concept Hierarchy</h2>
+<div class="concept-box"><div class="box-title">Concept Hierarchy</div><div class="box-body"><p>A <strong>concept hierarchy</strong> defines a sequence of mappings from a set of <strong>low-level concepts</strong> to <strong>higher-level, more general concepts</strong>.</p>
+<ul><li><p>Organizes nominal attribute values into <strong>levels of abstraction</strong></p></li><li><p>Enables <strong>roll-up</strong> and <strong>drill-down</strong> operations in data cubes</p></li><li><p>Allows mining at <strong>multiple levels of granularity</strong></p></li><li><p>Example: <code>City</code> $\rightarrow$ <code>State</code> $\rightarrow$ <code>Country</code> $\rightarrow$ <code>Continent</code></p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Why Concept Hierarchies for Nominal Data?</div><div class="box-body"><ul><li><p>Nominal attributes have <strong>many distinct values</strong> at fine levels (e.g., thousands of cities)</p></li><li><p>Patterns at fine level are <strong>too sparse</strong> to be statistically meaningful</p></li><li><p>Rolling up to higher levels <strong>groups values</strong>, increasing support for patterns</p></li><li><p>Enables <strong>generalization</strong>: specific value $\rightarrow$ broader category</p></li><li><p>Reduces cardinality: fewer distinct values $\rightarrow$ faster mining</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig113.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Methods for Generating Concept Hierarchies for Nominal Data</div><div class="box-body"><p>Four main approaches:</p>
+<ul><li><p><strong>Method 1:</strong> Specified explicitly by a user or domain expert</p></li><li><p><strong>Method 2:</strong> Specified by the order of attributes (schema hierarchy)</p></li><li><p><strong>Method 3:</strong> Automatically generated by number of distinct values</p></li><li><p><strong>Method 4:</strong> Specified by explicit grouping of values</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Method 1 --- Explicitly Specified by User/Expert</div><div class="box-body"><p>A domain expert <strong>manually defines</strong> the hierarchy levels and mappings.</p>
+<ul><li><p>Most accurate — captures domain knowledge</p></li><li><p>Time-consuming and requires expert involvement</p></li><li><p>Stored as <strong>metadata</strong> in the data warehouse schema</p></li><li><p>Example: A retail expert defines product hierarchy:<br>
+          <code>Item</code> $\rightarrow$ <code>Brand</code> $\rightarrow$ <code>Category</code> $\rightarrow$ <code>Department</code></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 110</div><div class="box-body"><p>A retail database stores individual products. An expert defines:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig114.png" alt="diagram"></div>
+<p>Roll-up from <code>Item</code> to <code>Category</code>: instead of analyzing 10,000 SKUs, analyst sees 5 categories.</p></div></div>
+<div class="concept-box"><div class="box-title">Method 2 --- Specified by Order of Attributes (Schema Hierarchy)</div><div class="box-body"><p>The hierarchy is implied by the <strong>order of attributes listed</strong> in the database schema.</p>
+<ul><li><p>User specifies: <code>street $&lt;$ city $&lt;$ state $&lt;$ country</code></p></li><li><p>System automatically infers the hierarchy from this order</p></li><li><p>A <strong>total ordering</strong> of attributes defines the levels</p></li><li><p>Simple to implement — no explicit value-to-value mapping needed</p></li><li><p>The attribute with <strong>fewer distinct values</strong> is at a higher level</p></li></ul></div></div>
+<div class="concept-box-alt"><div class="box-title">Schema Hierarchy Rule</div><div class="box-body"><p>If a user specifies the partial order:<br>
+<code>day $&lt;$ month $&lt;$ quarter $&lt;$ year</code><br>
+Then the system knows:</p>
+<ul><li><p><code>day</code> is the most specific level (many distinct values)</p></li><li><p><code>year</code> is the most general level (few distinct values)</p></li><li><p>Rolling up moves <strong>left to right</strong> in the ordering</p></li><li><p>Drilling down moves <strong>right to left</strong></p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 111</div><div class="box-body"><p>Database table <code>Customer</code> has attributes:<br>
+<code>Street, City, District, State, Country</code><br>
+User specifies order: <code>Street $&lt;$ City $&lt;$ District $&lt;$ State $&lt;$ Country</code><br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig115.png" alt="diagram"></div>
+<p>Fewer distinct values $\rightarrow$ higher in hierarchy.<br>
+Mining at <code>City</code> level instead of <code>Street</code> reduces cardinality from 50,000 to 500.</p></div></div>
+<div class="concept-box"><div class="box-title">Method 3 --- Automatic Generation by Number of Distinct Values</div><div class="box-body"><p>System <strong>automatically generates</strong> the hierarchy by sorting attributes on the number of distinct values:</p>
+<ul><li><p>Attribute with the <strong>most distinct values</strong> $\rightarrow$ lowest level (most specific)</p></li><li><p>Attribute with the <strong>fewest distinct values</strong> $\rightarrow$ highest level (most general)</p></li><li><p>No user specification of order needed</p></li><li><p>Works well when attributes have a <strong>natural parent-child relationship</strong></p></li><li><p>May produce incorrect hierarchies if attributes are <strong>unrelated</strong></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig116.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 112</div><div class="box-body"><p>A data warehouse has the following attributes and their distinct value counts:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig117.png" alt="diagram"></div>
+<ul><li><p>System automatically orders: <code>ProductID $&lt;$ ProductName $&lt;$ SubCategory $&lt;$ Category $&lt;$ Department</code></p></li><li><p>No user input needed — purely driven by cardinality</p></li><li><p>Risk: <code>ProductID</code> and <code>ProductName</code> may not have a true parent-child relationship</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Method 4 --- Explicit Value Grouping</div><div class="box-body"><p>User <strong>manually groups specific values</strong> of an attribute into higher-level concepts.</p>
+<ul><li><p>Most flexible — handles arbitrary, non-geographic groupings</p></li><li><p>Example: Group countries by economic classification:<br>
+          {India, China, Brazil} $\rightarrow$ <code>Developing</code><br>
+          {USA, UK, Germany} $\rightarrow$ <code>Developed</code></p></li><li><p>Requires domain knowledge — groups may not be derivable from data alone</p></li><li><p>Stored as a <strong>mapping table</strong> in the data warehouse</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 113</div><div class="box-body"><p><strong>Attribute:</strong> <code>JobRole</code> with many values. User defines groupings:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig118.png" alt="diagram"></div>
+<p>Mining at <code>Department</code> level: “Analytics department has highest project completion rate” — a pattern invisible at the <code>JobRole</code> level due to data sparsity.</p></div></div>
+<div class="example-box"><div class="box-title">Example 114</div><div class="box-body"><p><strong>Attribute:</strong> <code>Grade</code> $\in$ {A+, A, A–, B+, B, B–, C+, C, D, F}<br>
+User defines grouping:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig119.png" alt="diagram"></div>
+<p>Roll-up from 10 grade values to 4 performance bands — meaningful for policy decisions.<br>
+Pattern: “80% of scholarship holders are in <code>Distinction</code>” is clear at rolled-up level.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Multi-Level Concept Hierarchy --- Combined Example</div><div class="box-body"><p>A <code>Location</code> attribute supports a 4-level hierarchy:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig120.png" alt="diagram"></div></div></div>
+<div class="concept-box-alt"><div class="box-title">Concept Hierarchy vs Discretization --- Key Difference</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig121.png" alt="diagram"></div></div></div>
+<section id="measures-categorization-and-computation" class="content-section level-2">
+<h3 class="section-heading">Measures: Categorization and Computation</h3>
+<div class="concept-box"><div class="box-title">Measure Classification</div><div class="box-body"><p>A <strong>measure</strong> is a numeric function defined over the cells of a data cube. Measures are classified by how they <em>behave under aggregation</em> across cuboids:</p>
+<ul><li><p><strong>Distributive</strong> — computable from sub-aggregate results alone.</p></li><li><p><strong>Algebraic</strong> — computable from a <em>fixed finite</em> set of distributive sub-aggregates.</p></li><li><p><strong>Holistic</strong> — require the <em>entire</em> partition; no bounded sub-aggregate suffices.</p></li></ul>
+<p>This classification directly determines <strong>how efficiently</strong> a measure can be pre-computed and maintained in a data cube or OLAP system.</p></div></div>
+<div class="concept-box"><div class="box-title">Measures in a Data Cube</div><div class="box-body"><p>Measures are classified by how they behave during <strong>aggregation</strong>:</p>
+<ul><li><p><strong>Distributive:</strong> Can be computed from sub-aggregates<br>
+          $\text{agg}(S) = f(\text{agg}(S_1), \text{agg}(S_2), \ldots)$<br>
+          Examples: <code>SUM</code>, <code>COUNT</code>, <code>MIN</code>, <code>MAX</code></p></li><li><p><strong>Algebraic:</strong> Computed from a fixed number of distributive aggregates<br>
+          Examples: <code>AVG</code> (= SUM / COUNT), <code>Standard Deviation</code></p></li><li><p><strong>Holistic:</strong> Cannot be computed from sub-aggregates — require the full set<br>
+          Examples: <code>MEDIAN</code>, <code>MODE</code>, <code>RANK</code></p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Summary of Measures in a Data Cube</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig122.png" alt="diagram"></div></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig123.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 115</div><div class="box-body"><p>Consider partitioned sales data split by region:<br>
+Region A: {10, 20, 30}    Region B: {40, 50, 60}<br>
+<strong>SUM (Distributive):</strong>
+\[
+\text{SUM(A)} = 60, \quad \text{SUM(B)} = 150, \quad \text{SUM(All)} = 60 + 150 = 210 \quad \text{(computable from sub-aggregates)}
+\]
+<strong>AVG (Algebraic):</strong>
+\[
+\text{AVG(A)} = 20, \quad \text{AVG(B)} = 50
+\]
+\[
+\text{AVG(All)} \neq \frac{20+50}{2} = 35 \quad \text{(wrong!)}
+\]
+\[
+\text{AVG(All)} = \frac{\text{SUM(All)}}{\text{COUNT(All)}} = \frac{210}{6} = 35 \quad \text{(correct — needs both SUM and COUNT)}
+\]
+<strong>MEDIAN (Holistic):</strong>
+\[
+\text{MEDIAN(A)} = 20, \quad \text{MEDIAN(B)} = 50
+\]
+\[
+\text{MEDIAN(All)} = \text{MEDIAN}(\{10,20,30,40,50,60\}) = \frac{30+40}{2} = 35
+\]
+Cannot compute this from MEDIAN(A) and MEDIAN(B) alone — requires the <strong>full sorted list</strong>.</p></div></div>
+<div class="example-box"><div class="box-title">Example 116</div><div class="box-body"><p>Three branch offices report quarterly sales:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig124.png" alt="diagram"></div>
+<p><strong>Incorrect global AVG:</strong>
+\[
+\text{AVG}_{\text{wrong}} = \frac{30 + 10 + 30}{3} = \frac{70}{3} \approx 23.33 \quad \text{\ding{55}}
+\]</p>
+<p><strong>Correct global AVG (algebraic combination):</strong>
+\[
+\text{AVG}_{\text{correct}} = \frac{240 + 150 + 360}{8 + 15 + 12} = \frac{750}{35} \approx 21.43 \quad \checkmark
+\]</p>
+<p><strong>Conclusion:</strong> Simply averaging the branch averages <em>ignores differing counts</em>. 
+The correct approach requires carrying both SUM and COUNT as sub-aggregates — confirming AVG
+is <em>algebraic</em>, not distributive.</p></div></div>
+<p>════════════════════════════════════════════╗</p>
+</section>
+</section>
+<section id="typical-olap-operations" class="content-section level-1">
+<h2 class="section-heading">Typical OLAP Operations</h2>
+<div class="concept-box"><div class="box-title">OLAP Operations</div><div class="box-body"><p><strong>OLAP (Online Analytical Processing)</strong> operations allow analysts to <strong>navigate and explore</strong> data cubes at different levels of abstraction and from different perspectives.</p>
+<ul><li><p>Operate on <strong>multidimensional data cubes</strong></p></li><li><p>Each operation produces a <strong>new view</strong> of the data</p></li><li><p>Five fundamental operations: <strong>Roll-up, Drill-down, Slice, Dice, Pivot</strong></p></li><li><p>Supported by data warehouses for fast <strong>decision support queries</strong></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig125.png" alt="diagram"></div>
+<div class="concept-box-alt"><div class="box-title">Running Example --- Sales Data Cube</div><div class="box-body"><p>All five operations are demonstrated on the following base data cube:<br>
+<strong>Dimensions:</strong> <code>Time</code> (Quarter), <code>Location</code> (City), <code>Product</code> (Category)<br>
+<strong>Measure:</strong> <code>Sales</code> (in lakhs)</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig126.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Roll-up (Drill-up)</div><div class="box-body"><p><strong>Roll-up</strong> aggregates data by <strong>climbing up</strong> a concept hierarchy or by <strong>reducing a dimension</strong>.</p>
+<ul><li><p>Moving to a <strong>higher, more general</strong> level of abstraction</p></li><li><p>Applies an <strong>aggregate function</strong> (SUM, AVG, COUNT) across the rolled-up level</p></li><li><p>Two ways to roll up:</p>
+<ul><li><p><strong>Along a hierarchy:</strong> Day $\rightarrow$ Month $\rightarrow$ Quarter $\rightarrow$ Year</p></li><li><p><strong>By dimension reduction:</strong> Remove a dimension entirely</p></li></ul></li><li><p>Result has <strong>fewer rows and fewer details</strong></p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig127.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 117</div><div class="box-body"><p>Roll up <code>Time</code> from <strong>Quarter</strong> to <strong>Year</strong> — aggregate Sales by SUM.<br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig128.png" alt="diagram"></div>
+<p>16 rows $\rightarrow$ 4 rows. Detail lost; annual trends visible.</p></div></div>
+<div class="example-box"><div class="box-title">Example 118</div><div class="box-body"><p>Roll up <code>Location</code> from <strong>City</strong> to <strong>State</strong>:<br>
+Bengaluru and Mumbai both belong to different states (Karnataka, Maharashtra).<br></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig129.png" alt="diagram"></div>
+<p>If both cities belonged to the same state, their sales would be <strong>summed</strong> into one row per state.</p></div></div>
+<div class="example-box"><div class="box-title">Example 119</div><div class="box-body"><p>Remove <code>Product</code> dimension entirely — sum across all products:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig130.png" alt="diagram"></div>
+<p>Product breakdown lost — now shows total sales per city per quarter.</p></div></div>
+<div class="concept-box"><div class="box-title">Drill-down</div><div class="box-body"><p><strong>Drill-down</strong> is the <strong>reverse of roll-up</strong> — navigates from <strong>summarized data to more detailed data</strong>.</p>
+<ul><li><p>Moves <strong>down</strong> a concept hierarchy to a lower, more specific level</p></li><li><p>Or <strong>adds a new dimension</strong> to the current view</p></li><li><p>Result has <strong>more rows and finer detail</strong></p></li><li><p>Used when a summary shows an interesting pattern that warrants deeper investigation</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig131.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 120</div><div class="box-body"><p>Starting from the rolled-up annual view, drill down <code>Time</code> back to <strong>Quarter</strong>:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig132.png" alt="diagram"></div>
+<p>Insight: Mumbai's Q4 sales (300) are consistently highest — visible only after drilling down.</p></div></div>
+<div class="example-box"><div class="box-title">Example 121</div><div class="box-body"><p>Starting from a 2-dimension view (Time, Location), add <code>Product</code> dimension:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig133.png" alt="diagram"></div>
+<p>Mumbai Q4 total was 300 — drilling into Product reveals Electronics (190) dominates Clothing (110).</p></div></div>
+<div class="concept-box"><div class="box-title">Slice</div><div class="box-body"><p><strong>Slice</strong> selects a <strong>single value</strong> for one dimension, reducing the cube by one dimension.</p>
+<ul><li><p>Fixes <strong>exactly one dimension</strong> to a <strong>single specific value</strong></p></li><li><p>Result is a <strong>2D table</strong> (if original was 3D cube)</p></li><li><p>Equivalent to a <strong>WHERE</strong> clause on one dimension in SQL</p></li><li><p>Does <strong>not aggregate</strong> — all remaining rows at the same granularity are retained</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig134.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 122</div><div class="box-body"><p>Fix <code>Product = Electronics</code> — remove Product dimension:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig135.png" alt="diagram"></div>
+<p><strong>Equivalent SQL:</strong></p>
+<div class="code-box"><pre><code>SELECT Time, Location, SUM(Sales)
+FROM SalesCube
+WHERE Product = &#x27;Electronics&#x27;
+GROUP BY Time, Location;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 123</div><div class="box-body"><p>Fix <code>Time = Q1</code> — analyze only first quarter performance:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig136.png" alt="diagram"></div>
+<p>3D cube (Time $\times$ Location $\times$ Product) $\rightarrow$ 2D table (Location $\times$ Product) for Q1 only.</p></div></div>
+<div class="concept-box"><div class="box-title">Dice</div><div class="box-body"><p><strong>Dice</strong> selects a <strong>range of values</strong> for <strong>two or more dimensions</strong>, extracting a <strong>sub-cube</strong>.</p>
+<ul><li><p>Fixes a <strong>subset of values</strong> (not just one) on multiple dimensions</p></li><li><p>Result is a <strong>smaller cube</strong> — same number of dimensions, fewer values per dimension</p></li><li><p>Equivalent to a <strong>WHERE</strong> clause on <strong>multiple dimensions</strong> in SQL</p></li><li><p>Key difference from Slice: Dice retains dimensionality; Slice reduces it by one</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig137.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 124</div><div class="box-body"><p>Select sub-cube where Time is Q1 or Q2 <strong>and</strong> Location is Mumbai:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig138.png" alt="diagram"></div>
+<p>16 rows $\rightarrow$ 4 rows. Still a 3D sub-cube (Time $\times$ Location $\times$ Product).<br>
+<strong>Equivalent SQL:</strong></p>
+<div class="code-box"><pre><code>SELECT Time, Location, Product, Sales
+FROM SalesCube
+WHERE Time IN (&#x27;Q1&#x27;,&#x27;Q2&#x27;) AND Location = &#x27;Mumbai&#x27;;</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 125</div><div class="box-body"><p>Three dimensions constrained:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig139.png" alt="diagram"></div>
+<p>This is the <strong>smallest meaningful sub-cube</strong> — 2 rows remain, all 3 dimensions still present.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Slice vs Dice --- Key Distinction</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig140.png" alt="diagram"></div></div></div>
+<div class="concept-box"><div class="box-title">Pivot (Rotate)</div><div class="box-body"><p><strong>Pivot</strong> <strong>rotates</strong> the data cube to present an alternative view by <strong>reorienting dimensions</strong>.</p>
+<ul><li><p>Does <strong>not change the data</strong> — only changes the <strong>presentation axis</strong></p></li><li><p>Swaps rows and columns in a 2D cross-tabulation</p></li><li><p>Makes different relationships more visible</p></li><li><p>Also called <strong>rotate</strong> in some systems</p></li><li><p>Familiar as <strong>Pivot Table</strong> in Excel/spreadsheet tools</p></li></ul></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig141.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 126</div><div class="box-body"><p><strong>Before Pivot</strong> — rows indexed by Location, columns by Time:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig142.png" alt="diagram"></div>
+<p><strong>After Pivot</strong> — rows indexed by Time, columns by Location:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig143.png" alt="diagram"></div>
+<p>Same data — different perspective. Quarterly growth trend per city is now easier to read.</p></div></div>
+<div class="example-box"><div class="box-title">Example 127</div><div class="box-body"><p><strong>Before Pivot</strong> (after Slice: Location = Bengaluru):</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig144.png" alt="diagram"></div>
+<p><strong>After Pivot:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig145.png" alt="diagram"></div>
+<p>Comparing Electronics vs Clothing across quarters is now <strong>immediate</strong> from a single row.</p></div></div>
+<div class="concept-box-alt"><div class="box-title">Summary --- All Five OLAP Operations</div><div class="box-body"><div class="figure-wrap"><img loading="lazy" src="figures/fig146.png" alt="diagram"></div></div></div>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch02.html">&larr; Chapter 2: Data Preprocessing</a><span class="spacer"></span></div>
+    <footer class="page-footer">GateXAIML &middot; Data Warehousing &amp; OLAP &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+
+
+</body>
+</html>

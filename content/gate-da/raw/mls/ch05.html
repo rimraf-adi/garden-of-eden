@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Model Evaluation and Generalization — GATE Python</title>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Machine Learning: Supervised</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Introduction to Machine Learning</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#what-is-machine-learning" class="toc-link" data-slug="what-is-machine-learning">What is Machine Learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#overview-of-machine-learning-paradigm" class="toc-link" data-slug="overview-of-machine-learning-paradigm">Overview of Machine Learning Paradigm</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#types-supervised-unsupervised-and-reinforcement-learning" class="toc-link" data-slug="types-supervised-unsupervised-and-reinforcement-learning">Types: supervised, unsupervised, and reinforcement learning</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#data" class="toc-link" data-slug="data">Data</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#basic-types-of-data" class="toc-link" data-slug="basic-types-of-data">Basic Types of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#exploring-structure-of-data" class="toc-link" data-slug="exploring-structure-of-data">Exploring Structure of Data</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-quality" class="toc-link" data-slug="data-quality">Data Quality</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#data-pre-processing" class="toc-link" data-slug="data-pre-processing">Data Pre-Processing</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#parametric-and-non-parametric-functions" class="toc-link" data-slug="parametric-and-non-parametric-functions">Parametric and Non-Parametric Functions</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#parametric-functions" class="toc-link" data-slug="parametric-functions">Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#non-parametric-functions" class="toc-link" data-slug="non-parametric-functions">Non-Parametric Functions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#comparison-parametric-vs-non-parametric" class="toc-link" data-slug="comparison-parametric-vs-non-parametric">Comparison: Parametric vs Non-Parametric</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#issues-in-ml" class="toc-link" data-slug="issues-in-ml">Issues in ML</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#accuracy-and-precision" class="toc-link" data-slug="accuracy-and-precision">Accuracy and Precision</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#issues" class="toc-link" data-slug="issues">Issues</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#bias-and-variance" class="toc-link" data-slug="bias-and-variance">Bias and Variance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#evaluation-metrics-for-classification" class="toc-link" data-slug="evaluation-metrics-for-classification">Evaluation Metrics for  Classification</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications" class="toc-link" data-slug="applications">Applications</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Regression Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#simple-linear-regression" class="toc-link" data-slug="simple-linear-regression">Simple Linear Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#model" class="toc-link" data-slug="model">Model</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#estimating-coefficients-ordinary-least-squares-ols" class="toc-link" data-slug="estimating-coefficients-ordinary-least-squares-ols">Estimating Coefficients: Ordinary Least Squares (OLS)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#residuals-and-residual-standard-error" class="toc-link" data-slug="residuals-and-residual-standard-error">Residuals and Residual Standard Error</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#r-squared-r-2" class="toc-link" data-slug="r-squared-r-2">R-Squared ($R^2$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#population-vs-sample-regression" class="toc-link" data-slug="population-vs-sample-regression">Population vs Sample Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#standard-errors-and-confidence-intervals" class="toc-link" data-slug="standard-errors-and-confidence-intervals">Standard Errors and Confidence Intervals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#multiple-linear-regression" class="toc-link" data-slug="multiple-linear-regression">Multiple Linear Regression</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#regularized-regression" class="toc-link" data-slug="regularized-regression">Regularized Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#need-for-regularization" class="toc-link" data-slug="need-for-regularization">Need for Regularization</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#ridge-regression-l2-regularization" class="toc-link" data-slug="ridge-regression-l2-regularization">Ridge Regression (L2 Regularization)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#bias-variance-trade-off-in-ridge-regression" class="toc-link" data-slug="bias-variance-trade-off-in-ridge-regression">Bias–Variance Trade-off in Ridge Regression</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison-with-ols-regression" class="toc-link" data-slug="comparison-with-ols-regression">Comparison with OLS Regression</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Classification Models - I</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#logistic-regression" class="toc-link" data-slug="logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#sigmoid-function-and-log-odds-interpretation" class="toc-link" data-slug="sigmoid-function-and-log-odds-interpretation">Sigmoid Function and Log-Odds Interpretation</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#decision-boundary-analysis" class="toc-link" data-slug="decision-boundary-analysis">Decision Boundary Analysis</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#k-nearest-neighbour-k-nn" class="toc-link" data-slug="k-nearest-neighbour-k-nn">k-Nearest Neighbour (k-NN)</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#distance-metrics-in-k-nn" class="toc-link" data-slug="distance-metrics-in-k-nn">Distance Metrics in k-NN</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#choice-of-k-and-model-complexity" class="toc-link" data-slug="choice-of-k-and-model-complexity">Choice of k and Model Complexity</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#effect-of-dimensionality-on-performance" class="toc-link" data-slug="effect-of-dimensionality-on-performance">Effect of Dimensionality on Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#naive-bayes-classifier" class="toc-link" data-slug="naive-bayes-classifier">Naive Bayes Classifier</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#bayes-theorem-and-conditional-independence" class="toc-link" data-slug="bayes-theorem-and-conditional-independence">Bayes’ Theorem and Conditional Independence</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#gaussian-multinomial-and-bernoulli-naive-bayes" class="toc-link" data-slug="gaussian-multinomial-and-bernoulli-naive-bayes">Gaussian, Multinomial, and Bernoulli Naive Bayes</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#parameter-estimation-and-map-decision-rule" class="toc-link" data-slug="parameter-estimation-and-map-decision-rule">Parameter Estimation and MAP Decision Rule</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Classification Models - II</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#linear-discrimination-analysis-lda" class="toc-link" data-slug="linear-discrimination-analysis-lda">Linear Discrimination Analysis (LDA)</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#fisher-s-linear-discriminant-analysis-lda" class="toc-link" data-slug="fisher-s-linear-discriminant-analysis-lda">Fisher’s Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#two-class-fisher-lda-step-by-step-derivation" class="toc-link" data-slug="two-class-fisher-lda-step-by-step-derivation">Two-Class Fisher LDA: Step-by-Step Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#numerical-example" class="toc-link" data-slug="numerical-example">Numerical Example</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#multiclass-fisher-lda-derivation" class="toc-link" data-slug="multiclass-fisher-lda-derivation">Multiclass Fisher LDA Derivation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#assumptions-of-fisher-lda" class="toc-link" data-slug="assumptions-of-fisher-lda">Assumptions of Fisher LDA</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#bayesian-view-of-linear-discriminant-analysis" class="toc-link" data-slug="bayesian-view-of-linear-discriminant-analysis">Bayesian View of Linear Discriminant Analysis</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#assumptions-in-bayesian-lda" class="toc-link" data-slug="assumptions-in-bayesian-lda">Assumptions in Bayesian LDA</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#example-bayesian-lda-two-classes" class="toc-link" data-slug="example-bayesian-lda-two-classes">Example: Bayesian LDA (Two Classes)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch05.html" class="chapter-link active">Chapter 5: Model Evaluation and Generalization</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#cross-validation-methods" class="toc-link" data-slug="cross-validation-methods">Cross-Validation Methods</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#hold-out-validation" class="toc-link" data-slug="hold-out-validation">Hold-Out Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#leave-one-out-loo-cross-validation" class="toc-link" data-slug="leave-one-out-loo-cross-validation">Leave-One-Out (LOO) Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#k-fold-cross-validation" class="toc-link" data-slug="k-fold-cross-validation">k-Fold Cross-Validation</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#model-selection-and-hyperparameter-tuning" class="toc-link" data-slug="model-selection-and-hyperparameter-tuning">Model Selection and Hyperparameter Tuning</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#examples-cross-validation-methods" class="toc-link" data-slug="examples-cross-validation-methods">Examples: Cross-Validation Methods</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#roc-auc" class="toc-link" data-slug="roc-auc">ROC &amp; AUC</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#confusion-matrix-and-rates" class="toc-link" data-slug="confusion-matrix-and-rates">Confusion matrix and rates</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#what-is-a-decision-threshold" class="toc-link" data-slug="what-is-a-decision-threshold">What is a decision threshold?</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#roc-curve-and-auc-intuition" class="toc-link" data-slug="roc-curve-and-auc-intuition">ROC curve and AUC (intuition)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#worked-numeric-example-spam-detector" class="toc-link" data-slug="worked-numeric-example-spam-detector">Worked numeric example (spam detector)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#plotting-the-roc-curve-from-these-points" class="toc-link" data-slug="plotting-the-roc-curve-from-these-points">Plotting the ROC curve (from these points)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#computing-auc-brief" class="toc-link" data-slug="computing-auc-brief">Computing AUC (brief)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-and-random-classifiers-illustration" class="toc-link" data-slug="perfect-and-random-classifiers-illustration">Perfect and random classifiers (illustration)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#practical-notes" class="toc-link" data-slug="practical-notes">Practical notes</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#conclusion" class="toc-link" data-slug="conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#bias-variance-trade-off" class="toc-link" data-slug="bias-variance-trade-off">Bias--Variance Trade-off</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#understanding-the-trade-off" class="toc-link" data-slug="understanding-the-trade-off">Understanding the Trade-off</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#mathematical-derivation" class="toc-link" data-slug="mathematical-derivation">Mathematical Derivation</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Regression &amp; Classification Models</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#decision-trees" class="toc-link" data-slug="decision-trees">Decision Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#entropy-gini-index-and-information-gain" class="toc-link" data-slug="entropy-gini-index-and-information-gain">Entropy, Gini Index, and Information Gain</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-construction-and-stopping-criteria" class="toc-link" data-slug="tree-construction-and-stopping-criteria">Tree Construction and Stopping Criteria</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#tree-pruning-and-overfitting" class="toc-link" data-slug="tree-pruning-and-overfitting">Tree Pruning and Overfitting</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#bias-variance-characteristics" class="toc-link" data-slug="bias-variance-characteristics">Bias–Variance Characteristics</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#support-vector-machine-svm" class="toc-link" data-slug="support-vector-machine-svm">Support Vector Machine (SVM)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#hyperplane" class="toc-link" data-slug="hyperplane">Hyperplane</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#definition" class="toc-link" data-slug="definition">Definition</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#1d-mathbb-r-a-point" class="toc-link" data-slug="1d-mathbb-r-a-point">1D (\,\(\mathbb{R}\)\,) -- a point</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#2d-mathbb-r-2-a-line" class="toc-link" data-slug="2d-mathbb-r-2-a-line">2D (\,\(\mathbb{R}^2\)\,) -- a line</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#general-d-mathbb-r-d-derivation-orthogonal-projection" class="toc-link" data-slug="general-d-mathbb-r-d-derivation-orthogonal-projection">General $d$ (\,\(\mathbb{R}^d\)\,) -- derivation (orthogonal projection)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#decision-function-linear-classifier" class="toc-link" data-slug="decision-function-linear-classifier">Decision function (linear classifier)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#hard-margin-svm-geometry-formulation-and-solution" class="toc-link" data-slug="hard-margin-svm-geometry-formulation-and-solution">Hard-Margin SVM: geometry, formulation and solution</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#geometric-figure-and-support-vectors-2d" class="toc-link" data-slug="geometric-figure-and-support-vectors-2d">Geometric figure and support vectors (2D)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#concept-informal" class="toc-link" data-slug="concept-informal">Concept (informal)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#derivation-of-the-optimization-problem" class="toc-link" data-slug="derivation-of-the-optimization-problem">Derivation of the optimization problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-kkt-and-consequence" class="toc-link" data-slug="lagrangian-kkt-and-consequence">Lagrangian, KKT and consequence</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-statement-brief-and-solution-strategy" class="toc-link" data-slug="dual-statement-brief-and-solution-strategy">Dual statement (brief) and solution strategy</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#bias-b-practical-formula" class="toc-link" data-slug="bias-b-practical-formula">Bias $b$ (practical formula)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-final-formulas" class="toc-link" data-slug="summary-final-formulas">Summary (final formulas)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#soft-margin-support-vector-classifier" class="toc-link" data-slug="soft-margin-support-vector-classifier">Soft Margin - Support Vector Classifier</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#motivation-why-soft-margin" class="toc-link" data-slug="motivation-why-soft-margin">Motivation: why soft margin</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#primal-formulation-soft-margin" class="toc-link" data-slug="primal-formulation-soft-margin">Primal formulation (soft margin)</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#lagrangian-and-stationarity" class="toc-link" data-slug="lagrangian-and-stationarity">Lagrangian and stationarity</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#dual-problem" class="toc-link" data-slug="dual-problem">Dual problem</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kkt-conditions-and-practical-consequences" class="toc-link" data-slug="kkt-conditions-and-practical-consequences">KKT conditions and practical consequences</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#summary-table-alpha-i-xi-i-and-geometric-meaning" class="toc-link" data-slug="summary-table-alpha-i-xi-i-and-geometric-meaning">Summary table: \(\alpha_i\), \(\xi_i\) and geometric meaning</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#hinge-loss" class="toc-link" data-slug="hinge-loss">Hinge Loss</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch06.html#kernel-trick" class="toc-link" data-slug="kernel-trick">Kernel Trick</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#feature-mapping-phi-cdot" class="toc-link" data-slug="feature-mapping-phi-cdot">Feature Mapping $\phi(\cdot)$</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#example-1d-to-2d-mapping" class="toc-link" data-slug="example-1d-to-2d-mapping">Example: 1D to 2D Mapping</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#kernel-function" class="toc-link" data-slug="kernel-function">Kernel Function</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#the-trick-with-dot-products" class="toc-link" data-slug="the-trick-with-dot-products">The ``Trick'' with Dot Products</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#common-kernel-functions" class="toc-link" data-slug="common-kernel-functions">Common Kernel Functions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#neural-network-models" class="toc-link" data-slug="neural-network-models">Neural Network Models</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#feed-forward-neural-networks-ffnn" class="toc-link" data-slug="feed-forward-neural-networks-ffnn">Feed-Forward Neural Networks (FFNN)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#network-architecture-and-notation" class="toc-link" data-slug="network-architecture-and-notation">Network Architecture and Notation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#activation-functions-sigmoid-relu-tanh" class="toc-link" data-slug="activation-functions-sigmoid-relu-tanh">Activation Functions (Sigmoid, ReLU, Tanh)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#forward-propagation-and-loss-computation" class="toc-link" data-slug="forward-propagation-and-loss-computation">Forward Propagation and Loss Computation</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#backpropagation-algorithm-and-gradient-flow" class="toc-link" data-slug="backpropagation-algorithm-and-gradient-flow">Backpropagation Algorithm and Gradient Flow</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#vanishing-exploding-gradient-problem" class="toc-link" data-slug="vanishing-exploding-gradient-problem">Vanishing/Exploding Gradient Problem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#multi-layer-perceptron-mlp" class="toc-link" data-slug="multi-layer-perceptron-mlp">Multi-Layer Perceptron (MLP)</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#universal-approximation-theorem-conceptual-insight" class="toc-link" data-slug="universal-approximation-theorem-conceptual-insight">Universal Approximation Theorem (Conceptual Insight)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#training-and-regularization-techniques" class="toc-link" data-slug="training-and-regularization-techniques">Training and Regularization Techniques</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#comparison-with-traditional-ml-models" class="toc-link" data-slug="comparison-with-traditional-ml-models">Comparison with Traditional ML Models</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#advantages-and-limitations-of-mlps" class="toc-link" data-slug="advantages-and-limitations-of-mlps">Advantages and Limitations of MLPs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+</ul>
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 5 of 6</div><h1>Model Evaluation and Generalization</h1></div>
+<section id="cross-validation-methods" class="content-section level-1">
+<h2 class="section-heading">Cross-Validation Methods</h2>
+<p>Cross-validation is a statistical method used to estimate the performance of machine learning models on unseen data. It is widely used for model evaluation and hyperparameter tuning, especially when the dataset is limited.</p>
+<section id="hold-out-validation" class="content-section level-2">
+<h3 class="section-heading">Hold-Out Validation</h3>
+<p><strong>Concept:</strong>  
+Hold-out validation splits the dataset into two disjoint subsets:</p>
+<ul><li><p><strong>Training set:</strong> used to fit the model.</p></li><li><p><strong>Test set:</strong> used to evaluate the model performance.</p></li></ul>
+<p><strong>Procedure:</strong></p>
+<ol><li><p>Randomly split the data, e.g., 70% training and 30% test.</p></li><li><p>Train the model on the training set.</p></li><li><p>Compute evaluation metrics (MSE, accuracy, etc.) on the test set.</p></li></ol>
+<p><strong>Advantages:</strong> Simple, fast.  
+<strong>Disadvantages:</strong> Sensitive to the random split, may not utilize all data for training.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig043.png" alt="diagram"><div class="figure-caption">Dataset split in Hold-Out Validation.</div></div>
+</section>
+<section id="leave-one-out-loo-cross-validation" class="content-section level-2">
+<h3 class="section-heading">Leave-One-Out (LOO) Cross-Validation</h3>
+<p><strong>Concept:</strong>  
+LOO is an extreme case of k-fold cross-validation where $k=n$ (number of samples). Each sample is used once as a test set, and the model is trained on the remaining $n-1$ samples.</p>
+<p><strong>Procedure:</strong></p>
+<ol><li><p>For each sample $i=1,\dots,n$, train the model on all other samples except $i$.</p></li><li><p>Test the model on the excluded sample.</p></li><li><p>Average the evaluation metrics across all iterations.</p></li></ol>
+<p><strong>Advantages:</strong> Uses maximum data for training, low bias.  
+<strong>Disadvantages:</strong> Computationally expensive for large datasets.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig044.png" alt="diagram"><div class="figure-caption">LOO Cross-Validation: Each sample is tested once.</div></div>
+</section>
+<section id="k-fold-cross-validation" class="content-section level-2">
+<h3 class="section-heading">k-Fold Cross-Validation</h3>
+<p><strong>Concept:</strong>  
+In k-fold cross-validation, the dataset is divided into $k$ roughly equal folds. Each fold is used once as a test set, and the remaining $k-1$ folds are used for training.</p>
+<p><strong>Procedure:</strong></p>
+<ol><li><p>Split the dataset into $k$ folds.</p></li><li><p>For $i=1$ to $k$, train on $k-1$ folds and test on the $i$-th fold.</p></li><li><p>Average the evaluation metrics over all folds.</p></li></ol>
+<p><strong>Advantages:</strong> Reduces variance of the performance estimate, uses all data for training and testing.  
+<strong>Choice of $k$:</strong> $k=5$ or $10$ are commonly used.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig045.png" alt="diagram"><div class="figure-caption">5-Fold Cross-Validation: Each fold is tested once.</div></div>
+</section>
+<section id="model-selection-and-hyperparameter-tuning" class="content-section level-2">
+<h3 class="section-heading">Model Selection and Hyperparameter Tuning</h3>
+<p><strong>Concept:</strong>  
+Cross-validation is extensively used to select the best model or hyperparameters, e.g., regularization strength, number of neighbors ($k$ in k-NN), or depth of decision trees.</p>
+<p><strong>Procedure:</strong></p>
+<ol><li><p>Define a grid of hyperparameter values.</p></li><li><p>For each combination, perform k-fold CV.</p></li><li><p>Select the combination with the best average performance.</p></li></ol>
+<p><strong>Reasoning:</strong> Using cross-validation prevents overfitting on a single validation set and provides a more robust estimate of model performance.</p>
+</section>
+</section>
+<section id="examples-cross-validation-methods" class="content-section level-1">
+<h2 class="section-heading">Examples: Cross-Validation Methods</h2>
+<div class="example-box"><div class="box-title">Example 34</div><div class="box-body"><p><strong>Hold-Out Validation Example: House Prices</strong></p>
+<p>A dataset contains 50 samples of house prices with features: area, bedrooms, age. We split it 70% training and 30% test. Train a linear regression model and evaluate MSE on the test set: MSE = 25.</p>
+<p><strong>Interpretation:</strong> Hold-out validation gives an estimate of test error. The result may vary if the random split changes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 35</div><div class="box-body"><p><strong>Leave-One-Out Cross-Validation Example</strong></p>
+<p>Dataset: $X = [1,2,3,4]$, $Y = [2,3,2.5,5]$.</p>
+<p>Perform LOO CV for linear regression:</p>
+<ol><li><p>Iteration 1: Train on $\{2,3,4\}$, test on 1 → Predicted $\hat{Y}_1 = 2.1$, squared error = 0.01</p></li><li><p>Iteration 2: Train on $\{1,3,4\}$, test on 2 → Predicted $\hat{Y}_2 = 2.9$, squared error = 0.01</p></li><li><p>Iteration 3: Train on $\{1,2,4\}$, test on 3 → Predicted $\hat{Y}_3 = 2.7$, squared error = 0.04</p></li><li><p>Iteration 4: Train on $\{1,2,3\}$, test on 4 → Predicted $\hat{Y}_4 = 4.8$, squared error = 0.04</p></li></ol>
+<p><strong>LOO CV error:</strong> $CV_{LOO} = \frac{0.01+0.01+0.04+0.04}{4} = 0.025$</p></div></div>
+<div class="example-box"><div class="box-title">Example 36</div><div class="box-body"><p><strong>k-Fold Cross-Validation Example</strong></p>
+<p>Dataset: 12 samples. Perform 4-fold CV for a k-NN model ($k=3$):</p>
+<ol><li><p>Split dataset into 4 folds of 3 samples each.</p></li><li><p>Iteration 1: Train on folds 2-4, test fold 1 → accuracy = 0.67</p></li><li><p>Iteration 2: Train on folds 1,3,4, test fold 2 → accuracy = 0.67</p></li><li><p>Iteration 3: Train on folds 1,2,4, test fold 3 → accuracy = 1.0</p></li><li><p>Iteration 4: Train on folds 1-3, test fold 4 → accuracy = 0.67</p></li></ol>
+<p><strong>4-fold CV accuracy:</strong> $\frac{0.67+0.67+1.0+0.67}{4} = 0.7525$</p></div></div>
+<div class="example-box"><div class="box-title">Example 37</div><div class="box-body"><p><strong>Hyperparameter Tuning using k-Fold CV</strong></p>
+<p>We want to choose $k$ in k-NN for a dataset of 100 samples. Test $k = 1,3,5,7$ using 5-fold CV:</p>
+<ul><li><p>$k=1$: average accuracy = 0.78</p></li><li><p>$k=3$: average accuracy = 0.82</p></li><li><p>$k=5$: average accuracy = 0.81</p></li><li><p>$k=7$: average accuracy = 0.79</p></li></ul>
+<p><strong>Best choice:</strong> $k=3$ because it gives the highest cross-validation accuracy.</p>
+<p><strong>Interpretation:</strong> k-fold CV helps select hyperparameters while avoiding overfitting.</p></div></div>
+<div class="example-box"><div class="box-title">Example 38</div><div class="box-body"><p><strong>LOO vs Hold-Out Comparison</strong></p>
+<p>Dataset: 10 samples for linear regression.</p>
+<ul><li><p>Hold-Out: Train 7, Test 3 → test MSE = 10.5</p></li><li><p>LOO: Compute prediction for each sample leaving it out → average MSE = 9.8</p></li></ul>
+<p><strong>Observation:</strong>  
+LOO provides a more stable estimate because it uses almost all data for training, whereas hold-out can vary depending on the random split. However, LOO is more computationally expensive.</p></div></div>
+</section>
+<section id="roc-auc" class="content-section level-1">
+<h2 class="section-heading">ROC &amp; AUC</h2>
+<p>The <strong>ROC curve</strong> (Receiver Operating Characteristic curve) is a standard way to visualize and evaluate the performance of a binary classifier across all possible decision thresholds.  
+The curve plots the <em>True Positive Rate</em> (TPR) on the vertical axis against the <em>False Positive Rate</em> (FPR) on the horizontal axis.  
+The <strong>AUC</strong> (Area Under the ROC Curve) is a single scalar summarizing the ROC; it ranges from 0 to 1. Higher AUC indicates better ability to separate positive and negative classes.</p>
+<section id="confusion-matrix-and-rates" class="content-section level-2">
+<h3 class="section-heading">Confusion matrix and rates</h3>
+<p>A confusion matrix for a binary classifier:</p>
+<p>\[
+\begin{array}{c|cc}
+ &amp; \text{Predicted Positive} &amp; \text{Predicted Negative} \\ \hline
+\text{Actual Positive} &amp; \mathrm{TP} &amp; \mathrm{FN} \\
+\text{Actual Negative} &amp; \mathrm{FP} &amp; \mathrm{TN}
+\end{array}
+\]</p>
+<p>From this we define:
+\[
+\mathrm{TPR} \;=\; \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FN}}
+\qquad\text{(True Positive Rate, a.k.a. Recall)}
+\]
+\[
+\mathrm{FPR} \;=\; \frac{\mathrm{FP}}{\mathrm{FP}+\mathrm{TN}}
+\qquad\text{(False Positive Rate, a.k.a. False alarm rate)}
+\]</p>
+</section>
+<section id="what-is-a-decision-threshold" class="content-section level-2">
+<h3 class="section-heading">What is a decision threshold?</h3>
+<p>A probabilistic classifier outputs a score \(s(x)\in[0,1]\). To obtain labels we pick a threshold \(\tau\) and predict positive if \(s(x)\ge\tau\).  
+Different choices of \(\tau\) produce different confusion matrices and thus different (TPR,FPR) pairs. The ROC curve collects those pairs for all thresholds.</p>
+</section>
+<section id="roc-curve-and-auc-intuition" class="content-section level-2">
+<h3 class="section-heading">ROC curve and AUC (intuition)</h3>
+<ul><li><p>Each point on the ROC corresponds to a threshold and shows the trade-off between detection rate (TPR) and false-alarm rate (FPR).</p></li><li><p>The <strong>AUC</strong> is the area under the ROC curve. It has the following useful interpretation:
+  \[
+    \mathrm{AUC} = P\big(s(X_+) &gt; s(X_-)\big) \quad\text{(probability a random positive ranks above a random negative).}
+  \]</p></li><li><p>Values: AUC = 1.0 (perfect ranking), AUC = 0.5 (random), AUC &lt; 0.5 (means ranking reversed).</p></li></ul>
+</section>
+<section id="worked-numeric-example-spam-detector" class="content-section level-2">
+<h3 class="section-heading">Worked numeric example (spam detector)</h3>
+<p>We reuse the concrete threshold outcomes described earlier (counts are not all given; we present the rates you provided):</p>
+<p>At three decision thresholds we observed:</p>
+<p>\[
+\begin{array}{l|c|c}
+\text{Threshold} &amp; \mathrm{TPR}=\dfrac{\text{TP}}{\text{TP}+\text{FN}} &amp; 
+\mathrm{FPR}=\dfrac{\text{FP}}{\text{FP}+\text{TN}} \\ \hline
+0.50 &amp; 800/(800+100)=0.89 &amp; 500/(500+8600)=0.06 \\
+0.80 &amp; 600/(600+300)=0.67 &amp; 100/(100+9000)=0.01 \\
+0.95 &amp; 200/(200+700)=0.22 &amp; 10/(10+9090)=0.001
+\end{array}
+\]</p>
+<p>Interpretation:</p>
+<ul><li><p>At \(\tau=0.50\) the detector is lenient: high recall (0.89) but more false alarms (FPR=0.06).</p></li><li><p>At \(\tau=0.95\) the detector is strict: low recall (0.22) and almost no false alarms (FPR=0.001).</p></li></ul>
+</section>
+<section id="plotting-the-roc-curve-from-these-points" class="content-section level-2">
+<h3 class="section-heading">Plotting the ROC curve (from these points)</h3>
+<p>To draw the ROC we plot the FPR on the \(x\)-axis and TPR on the \(y\)-axis for each threshold and connect the points (also include \((0,0)\) and \((1,1)\)).</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig046.png" alt="diagram"></div>
+<p>Note: the curve above is drawn from the listed (FPR,TPR) pairs; with more threshold values the curve becomes smoother.</p>
+</section>
+<section id="computing-auc-brief" class="content-section level-2">
+<h3 class="section-heading">Computing AUC (brief)</h3>
+<p>A common numerical method is the trapezoidal rule on the ROC points ordered by FPR:
+\[
+\mathrm{AUC} \approx \sum_{i} (x_{i+1}-x_i)\,\frac{y_i+y_{i+1}}{2},
+\]
+where \(x_i\) are FPRs and \(y_i\) are the corresponding TPRs. Use sufficiently many thresholds for a good estimate.</p>
+</section>
+<section id="perfect-and-random-classifiers-illustration" class="content-section level-2">
+<h3 class="section-heading">Perfect and random classifiers (illustration)</h3>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig047.png" alt="diagram"></div>
+</section>
+<section id="practical-notes" class="content-section level-2">
+<h3 class="section-heading">Practical notes</h3>
+<ul><li><p><strong>AUC is threshold-independent:</strong> it summarizes ranking quality for all thresholds.</p></li><li><p><strong>Use-case sensitivity:</strong> if the positive class is rare, Precision–Recall curves may be more informative than ROC.</p></li><li><p><strong>Interpretation:</strong> AUC $=0.5$ means no discrimination (random), AUC close to 1.0 means excellent discrimination.</p></li><li><p><strong>Choice of threshold:</strong> AUC does not choose a threshold — select \(\tau\) based on application-specific trade-offs (costs of FP vs FN).</p></li></ul>
+</section>
+<section id="conclusion" class="content-section level-2">
+<h3 class="section-heading">Conclusion</h3>
+<p>ROC visualizes the trade-off between detecting positives and producing false alarms as the decision threshold varies. AUC condenses this visualization into a single number expressing the classifier's overall ranking ability.</p>
+</section>
+</section>
+<section id="bias-variance-trade-off" class="content-section level-1">
+<h2 class="section-heading">Bias--Variance Trade-off</h2>
+
+<section id="understanding-the-trade-off" class="content-section level-2">
+<h3 class="section-heading">Understanding the Trade-off</h3>
+<p>In supervised learning, our goal is to build a model that generalizes well to unseen data.  
+The performance of a model on unseen data can be decomposed into three components: bias, variance, and irreducible error (noise).</p>
+<p>\[
+\text{Expected Test Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
+\]</p>
+<p>Each term has an intuitive meaning:</p>
+<ul><li><p><strong>Bias:</strong> Error due to simplifying assumptions made by the model.</p></li><li><p><strong>Variance:</strong> Error due to sensitivity of the model to small fluctuations in training data.</p></li><li><p><strong>Irreducible Error:</strong> Noise inherent in the data that no model can explain.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig048.png" alt="diagram"></div>
+<p><em>Figure: The bias–variance trade-off. As model complexity increases, bias decreases but variance increases. The total error is minimized at an optimal complexity.</em></p>
+<div class="concept-box"><div class="box-title">Bias</div><div class="box-body"><p><strong>Bias</strong> measures the error introduced by approximating a real-world problem (which may be extremely complex) by a simplified model.  
+A high-bias model makes strong assumptions about the data and fails to capture important regularities.</p>
+<p>\[
+\text{Bias}^2 = [E(\hat{f}(x)) - f(x)]^2
+\]
+<strong>Interpretation:</strong> It represents how far the average prediction of the model is from the true function $f(x)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig049.png" alt="diagram"></div>
+<p><em>Figure: A biased model (red) systematically underestimates the true relationship (blue).</em></p>
+<div class="concept-box"><div class="box-title">Variance</div><div class="box-body"><p><strong>Variance</strong> measures how much the model’s predictions would vary if we trained it on different samples from the same population.</p>
+<p>\[
+\text{Var}[\hat{f}(x)] = E[(\hat{f}(x) - E[\hat{f}(x)])^2]
+\]</p>
+<p><strong>Interpretation:</strong> High-variance models fit training data too closely and perform poorly on unseen data.  
+They have high sensitivity to random noise in the training set.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig050.png" alt="diagram"></div>
+<p><em>Figure: High-variance models change drastically with different data samples.</em></p>
+<div class="concept-box"><div class="box-title">Bias–Variance Trade-off Summary</div><div class="box-body"><ul><li><p>Increasing model complexity (e.g., higher polynomial degree) reduces bias but increases variance.</p></li><li><p>Decreasing model complexity increases bias but reduces variance.</p></li><li><p>The goal is to find the sweet spot minimizing total expected error.</p></li></ul></div></div>
+</section>
+<section id="mathematical-derivation" class="content-section level-2">
+<h3 class="section-heading">Mathematical Derivation</h3>
+<p>Suppose $Y = f(X) + \varepsilon$, where $E[\varepsilon] = 0$, $\text{Var}(\varepsilon) = \sigma^2$.  
+We predict $Y$ using an estimator $\hat{f}(X)$ obtained from data.</p>
+<p>\[
+E[(Y - \hat{f}(X))^2] = [E[\hat{f}(X)] - f(X)]^2 + E[(\hat{f}(X) - E[\hat{f}(X)])^2] + \sigma^2
+\]
+\[
+\Rightarrow \text{Expected Test MSE} = \underbrace{\text{Bias}^2}_{\text{Systematic Error}} + \underbrace{\text{Variance}}_{\text{Sensitivity to Data}} + \underbrace{\sigma^2}_{\text{Noise}}
+\]</p>
+<p>—</p>
+<div class="example-box"><div class="box-title">Example 39</div><div class="box-body"><p><strong>Comparing Linear vs Polynomial Regression Models</strong></p>
+<p>Consider data generated from $Y = X^2 + \varepsilon$.</p>
+<ul><li><p>A <strong>linear regression model</strong> $Y = \beta_0 + \beta_1 X$ will have <em>high bias</em> (it cannot capture curvature).</p></li><li><p>A <strong>degree-10 polynomial</strong> will have <em>low bias</em> but <em>very high variance</em>.</p></li></ul>
+<p>Cross-validation typically identifies an intermediate degree (say, 3 or 4) that minimizes total test error.</p></div></div>
+<p>—</p>
+<div class="example-box"><div class="box-title">Example 40</div><div class="box-body"><p><strong>Effect of Sample Size</strong></p>
+<p>When training a model on a small dataset:</p>
+<ul><li><p>Variance increases — the model depends heavily on limited data.</p></li><li><p>Bias may remain unchanged if model class is fixed.</p></li></ul>
+<p>Thus, increasing dataset size reduces variance but not bias.</p></div></div>
+<p>—</p>
+<div class="concept-box"><div class="box-title">Key Takeaways</div><div class="box-body"><ul><li><p>High bias $\rightarrow$ underfitting (model too simple).</p></li><li><p>High variance $\rightarrow$ overfitting (model too complex).</p></li><li><p>Bias–variance trade-off can be visualized as an $U$-shaped total error curve.</p></li><li><p>Techniques like <strong>regularization</strong> (Ridge/Lasso) and <strong>cross-validation</strong> help control this trade-off.</p></li></ul></div></div>
+</section>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch04.html">&larr; Chapter 4: Classification Models - II</a><span class="spacer"></span><a class="nav-btn next" href="ch06.html">Chapter 6: Regression &amp; Classification Models &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Machine Learning: Supervised &mdash; Concept Notes<div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+</div>
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+</footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algorithm Analysis — GATE DSA</title>
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['\\[', '\\]']] },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Data Structures &amp; Algorithms</span></div></div>
+<div class="sidebar-scroll">
+<ul class="toc-root">
+<li class="toc-chapter"><details open><summary><a href="ch01.html" class="chapter-link active">Chapter 1: Algorithm Analysis</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch01.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#core-algorithmic-paradigms" class="toc-link" data-slug="core-algorithmic-paradigms">Core Algorithmic Paradigms</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-framework" class="toc-link" data-slug="analysis-framework">Analysis Framework</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#time-and-space-efficiency" class="toc-link" data-slug="time-and-space-efficiency">Time and Space Efficiency</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#input-size-and-efficiency-analysis" class="toc-link" data-slug="input-size-and-efficiency-analysis">Input Size and Efficiency Analysis</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#measuring-running-time-of-algorithms" class="toc-link" data-slug="measuring-running-time-of-algorithms">Measuring Running Time of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#order-of-growth" class="toc-link" data-slug="order-of-growth">Order of Growth</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#asymptotic-notations" class="toc-link" data-slug="asymptotic-notations">Asymptotic Notations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#asymptotic-efficiency-of-algorithms" class="toc-link" data-slug="asymptotic-efficiency-of-algorithms">Asymptotic Efficiency of Algorithms</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#o-notation-big-oh-notation" class="toc-link" data-slug="o-notation-big-oh-notation">O-Notation (Big-Oh Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#omega-notation-big-omega-notation" class="toc-link" data-slug="omega-notation-big-omega-notation">$\Omega$-Notation (Big-Omega Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#theta-notation-big-theta-notation" class="toc-link" data-slug="theta-notation-big-theta-notation">$\Theta$-Notation (Big-Theta Notation)</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-and-theta" class="toc-link" data-slug="relationship-between-o-omega-and-theta">Relationship Between $O$, $\Omega$, and $\Theta$</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-o-notation" class="toc-link" data-slug="little-o-notation">Little-$o$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#little-omega-notation" class="toc-link" data-slug="little-omega-notation">Little-$\omega$ Notation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#relationship-between-o-omega-theta-o-and-omega" class="toc-link" data-slug="relationship-between-o-omega-theta-o-and-omega">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#best-case-worst-case-and-average-case" class="toc-link" data-slug="best-case-worst-case-and-average-case">Best Case, Worst Case and Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#relation-between-o-omega-theta-and-best-worst-average-case" class="toc-link" data-slug="relation-between-o-omega-theta-and-best-worst-average-case">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-non-recursive-algorithms" class="toc-link" data-slug="analysis-of-non-recursive-algorithms">Analysis of Non Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#useful-maths-formulas" class="toc-link" data-slug="useful-maths-formulas">Useful Maths Formulas</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#mathematical-analysis-of-nonrecursive-algorithms" class="toc-link" data-slug="mathematical-analysis-of-nonrecursive-algorithms">Mathematical Analysis of Nonrecursive Algorithms</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#recurrence-relations" class="toc-link" data-slug="recurrence-relations">Recurrence Relations</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#substitution-method" class="toc-link" data-slug="substitution-method">Substitution Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#recursion-tree-method" class="toc-link" data-slug="recursion-tree-method">Recursion Tree Method</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#extended-master-theorem" class="toc-link" data-slug="extended-master-theorem">Extended Master Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#analysis-of-recursive-algorithms" class="toc-link" data-slug="analysis-of-recursive-algorithms">Analysis of Recursive Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch01.html#factorial-function" class="toc-link" data-slug="factorial-function">Factorial Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#fibonacci-function" class="toc-link" data-slug="fibonacci-function">Fibonacci Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#sum-of-digits-function" class="toc-link" data-slug="sum-of-digits-function">Sum of Digits Function</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#power-function" class="toc-link" data-slug="power-function">Power Function</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#useful-formulas" class="toc-link" data-slug="useful-formulas">Useful Formulas</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Stacks</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch02.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#array-implementation" class="toc-link" data-slug="array-implementation">Array Implementation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#algorithm-pseudocode-and-python-implementation" class="toc-link" data-slug="algorithm-pseudocode-and-python-implementation">Algorithm, Pseudocode and Python Implementation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#applications-of-stacks" class="toc-link" data-slug="applications-of-stacks">Applications of Stacks</a>
+<ul>
+<li class="toc-l2"><a href="ch02.html#expression-notations-infix-postfix-prefix" class="toc-link" data-slug="expression-notations-infix-postfix-prefix">Expression Notations: Infix, Postfix, Prefix</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-postfix-conversion-shunting-yard-algorithm" class="toc-link" data-slug="infix-to-postfix-conversion-shunting-yard-algorithm">Infix to Postfix Conversion (Shunting-Yard Algorithm)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-expression-evaluation" class="toc-link" data-slug="postfix-expression-evaluation">Postfix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#infix-to-prefix-conversion" class="toc-link" data-slug="infix-to-prefix-conversion">Infix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-expression-evaluation" class="toc-link" data-slug="prefix-expression-evaluation">Prefix Expression Evaluation</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-infix-conversion" class="toc-link" data-slug="prefix-to-infix-conversion">Prefix to Infix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#postfix-to-prefix-conversion" class="toc-link" data-slug="postfix-to-prefix-conversion">Postfix to Prefix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#prefix-to-postfix-conversion" class="toc-link" data-slug="prefix-to-postfix-conversion">Prefix to Postfix Conversion</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#balanced-parentheses-brackets-check" class="toc-link" data-slug="balanced-parentheses-brackets-check">Balanced Parentheses / Brackets Check</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#recursion-and-call-stack-frames" class="toc-link" data-slug="recursion-and-call-stack-frames">Recursion and Call Stack Frames</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: Queues</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch03.html#core-operations" class="toc-link" data-slug="core-operations">Core Operations</a>
+<ul>
+<li class="toc-l2"><a href="ch03.html#array-implementation-of-queue" class="toc-link" data-slug="array-implementation-of-queue">Array Implementation of Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#circular-queue" class="toc-link" data-slug="circular-queue">Circular Queue</a>
+</li>
+<li class="toc-l2"><a href="ch03.html#deque-double-ended-queue" class="toc-link" data-slug="deque-double-ended-queue">Deque (Double-Ended Queue)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch03.html#applications-of-queues" class="toc-link" data-slug="applications-of-queues">Applications of Queues</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch04.html" class="chapter-link">Chapter 4: Linked Lists</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch04.html#singly-linked-list" class="toc-link" data-slug="singly-linked-list">Singly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#singly-ll-insertion-operations" class="toc-link" data-slug="singly-ll-insertion-operations">Singly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head" class="toc-link" data-slug="insert-at-head">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end" class="toc-link" data-slug="insert-at-tail-end">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position" class="toc-link" data-slug="insert-at-middle-given-position">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-deletion-operations" class="toc-link" data-slug="singly-ll-deletion-operations">Singly LL --- Deletion Operations</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-search-operation" class="toc-link" data-slug="singly-ll-search-operation">Singly LL --- Search Operation</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#singly-ll-reversal" class="toc-link" data-slug="singly-ll-reversal">Singly LL --- Reversal</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#iterative-reversal" class="toc-link" data-slug="iterative-reversal">Iterative Reversal</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#recursive-reversal" class="toc-link" data-slug="recursive-reversal">Recursive Reversal</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#doubly-linked-list" class="toc-link" data-slug="doubly-linked-list">Doubly Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-insertion-operations" class="toc-link" data-slug="doubly-ll-insertion-operations">Doubly LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-2" class="toc-link" data-slug="insert-at-head-2">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-2" class="toc-link" data-slug="insert-at-tail-end-2">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-2" class="toc-link" data-slug="insert-at-middle-given-position-2">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-deletion-operations" class="toc-link" data-slug="doubly-ll-deletion-operations">Doubly LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head" class="toc-link" data-slug="delete-at-head">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value" class="toc-link" data-slug="delete-by-value">Delete by Value</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position" class="toc-link" data-slug="delete-by-position">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#doubly-ll-search-operation" class="toc-link" data-slug="doubly-ll-search-operation">Doubly LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#circular-linked-list" class="toc-link" data-slug="circular-linked-list">Circular Linked List</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#circular-ll-insertion-operations" class="toc-link" data-slug="circular-ll-insertion-operations">Circular LL --- Insertion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#insert-at-head-3" class="toc-link" data-slug="insert-at-head-3">Insert at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-tail-end-3" class="toc-link" data-slug="insert-at-tail-end-3">Insert at Tail (End)</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#insert-at-middle-given-position-3" class="toc-link" data-slug="insert-at-middle-given-position-3">Insert at Middle (Given Position)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-deletion-operations" class="toc-link" data-slug="circular-ll-deletion-operations">Circular LL --- Deletion Operations</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#delete-at-head-2" class="toc-link" data-slug="delete-at-head-2">Delete at Head</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-first-occurrence" class="toc-link" data-slug="delete-by-value-first-occurrence">Delete by Value --- First Occurrence</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-value-all-occurrences" class="toc-link" data-slug="delete-by-value-all-occurrences">Delete by Value --- All Occurrences</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#delete-by-position-2" class="toc-link" data-slug="delete-by-position-2">Delete by Position</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch04.html#circular-ll-search-operation" class="toc-link" data-slug="circular-ll-search-operation">Circular LL --- Search Operation</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#classic-problems" class="toc-link" data-slug="classic-problems">Classic Problems</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#floyd-s-cycle-detection-algorithm" class="toc-link" data-slug="floyd-s-cycle-detection-algorithm">Floyd's Cycle Detection Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-start-of-a-cycle" class="toc-link" data-slug="finding-the-start-of-a-cycle">Finding the Start of a Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#finding-the-middle-node" class="toc-link" data-slug="finding-the-middle-node">Finding the Middle Node</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#merge-two-sorted-linked-lists" class="toc-link" data-slug="merge-two-sorted-linked-lists">Merge Two Sorted Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#nth-node-from-the-end" class="toc-link" data-slug="nth-node-from-the-end">Nth Node from the End</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#intersection-of-two-linked-lists" class="toc-link" data-slug="intersection-of-two-linked-lists">Intersection of Two Linked Lists</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#methods-to-find-intersection" class="toc-link" data-slug="methods-to-find-intersection">Methods to Find Intersection</a>
+<ul>
+<li class="toc-l3"><a href="ch04.html#method-1-using-length-difference" class="toc-link" data-slug="method-1-using-length-difference">Method 1: Using Length Difference</a>
+</li>
+<li class="toc-l3"><a href="ch04.html#method-2-two-pointer-redirect-method-floyd-like" class="toc-link" data-slug="method-2-two-pointer-redirect-method-floyd-like">Method 2: Two-Pointer Redirect Method (Floyd-like)</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch04.html#linked-list-implementation-of-stack-and-queue" class="toc-link" data-slug="linked-list-implementation-of-stack-and-queue">Linked List Implementation of Stack and Queue</a>
+<ul>
+<li class="toc-l2"><a href="ch04.html#stack-using-linked-list" class="toc-link" data-slug="stack-using-linked-list">Stack Using Linked List</a>
+</li>
+<li class="toc-l2"><a href="ch04.html#queue-using-linked-list" class="toc-link" data-slug="queue-using-linked-list">Queue Using Linked List</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Trees</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch05.html#terminology-and-structure" class="toc-link" data-slug="terminology-and-structure">Terminology and Structure</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-complete-and-perfect-binary-tree" class="toc-link" data-slug="full-complete-and-perfect-binary-tree">Full, Complete, and Perfect Binary Tree</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#array-representation-of-a-binary-tree" class="toc-link" data-slug="array-representation-of-a-binary-tree">Array Representation of a Binary Tree</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-formulas" class="toc-link" data-slug="binary-tree-formulas">Binary Tree Formulas</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#formula-practice-problems" class="toc-link" data-slug="formula-practice-problems">Formula Practice Problems</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#theorems-and-structural-properties-of-binary-trees" class="toc-link" data-slug="theorems-and-structural-properties-of-binary-trees">Theorems and Structural Properties of Binary Trees</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#full-binary-tree" class="toc-link" data-slug="full-binary-tree">Full Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-full-binary-tree-formulas" class="toc-link" data-slug="derivation-of-full-binary-tree-formulas">Derivation of Full Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#perfect-binary-tree" class="toc-link" data-slug="perfect-binary-tree">Perfect Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-perfect-binary-tree-formulas" class="toc-link" data-slug="derivation-of-perfect-binary-tree-formulas">Derivation of Perfect Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch05.html#complete-binary-tree" class="toc-link" data-slug="complete-binary-tree">Complete Binary Tree</a>
+<ul>
+<li class="toc-l3"><a href="ch05.html#derivation-of-complete-binary-tree-formulas" class="toc-link" data-slug="derivation-of-complete-binary-tree-formulas">Derivation of Complete Binary Tree Formulas</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-tree-traversals" class="toc-link" data-slug="binary-tree-traversals">Binary Tree Traversals</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-left-root-right" class="toc-link" data-slug="inorder-traversal-left-root-right">Inorder Traversal (Left, Root, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#preorder-traversal-root-left-right" class="toc-link" data-slug="preorder-traversal-root-left-right">Preorder Traversal (Root, Left, Right)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#postorder-traversal-left-right-root" class="toc-link" data-slug="postorder-traversal-left-right-root">Postorder Traversal (Left, Right, Root)</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#reconstructing-a-tree-from-two-traversals" class="toc-link" data-slug="reconstructing-a-tree-from-two-traversals">Reconstructing a Tree from Two Traversals</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch05.html#binary-search-tree-bst" class="toc-link" data-slug="binary-search-tree-bst">Binary Search Tree (BST)</a>
+<ul>
+<li class="toc-l2"><a href="ch05.html#construct-a-bst-from-a-given-insertion-sequence" class="toc-link" data-slug="construct-a-bst-from-a-given-insertion-sequence">Construct a BST from a Given Insertion Sequence</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#search-in-bst" class="toc-link" data-slug="search-in-bst">Search in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#insert-in-bst" class="toc-link" data-slug="insert-in-bst">Insert in BST</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-successor-and-predecessor" class="toc-link" data-slug="inorder-successor-and-predecessor">Inorder Successor and Predecessor</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#delete-in-bst-three-cases" class="toc-link" data-slug="delete-in-bst-three-cases">Delete in BST: Three Cases</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#inorder-traversal-of-bst-gives-sorted-order" class="toc-link" data-slug="inorder-traversal-of-bst-gives-sorted-order">Inorder Traversal of BST Gives Sorted Order</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#height-of-bst-best-and-worst-case" class="toc-link" data-slug="height-of-bst-best-and-worst-case">Height of BST: Best and Worst Case</a>
+</li>
+<li class="toc-l2"><a href="ch05.html#number-of-distinct-bsts-catalan-numbers" class="toc-link" data-slug="number-of-distinct-bsts-catalan-numbers">Number of Distinct BSTs: Catalan Numbers</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Hash Tables</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch06.html#hash-functions-and-load-factor" class="toc-link" data-slug="hash-functions-and-load-factor">Hash Functions and Load Factor</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#division-method" class="toc-link" data-slug="division-method">Division Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#multiplication-method" class="toc-link" data-slug="multiplication-method">Multiplication Method</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#load-factor" class="toc-link" data-slug="load-factor">Load Factor</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#collision-resolution" class="toc-link" data-slug="collision-resolution">Collision Resolution</a>
+<ul>
+<li class="toc-l2"><a href="ch06.html#chaining-separate-chaining" class="toc-link" data-slug="chaining-separate-chaining">Chaining (Separate Chaining)</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#open-addressing" class="toc-link" data-slug="open-addressing">Open Addressing</a>
+<ul>
+<li class="toc-l3"><a href="ch06.html#linear-probing" class="toc-link" data-slug="linear-probing">Linear Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#quadratic-probing" class="toc-link" data-slug="quadratic-probing">Quadratic Probing</a>
+</li>
+<li class="toc-l3"><a href="ch06.html#double-hashing" class="toc-link" data-slug="double-hashing">Double Hashing</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#performance-analysis" class="toc-link" data-slug="performance-analysis">Performance Analysis</a>
+</li>
+</ul></details></li>
+
+
+
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Graph Theory — Introduction</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch07.html#basic-definitions" class="toc-link" data-slug="basic-definitions">Basic Definitions</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#vertex-edge-and-graph-g-v-e" class="toc-link" data-slug="vertex-edge-and-graph-g-v-e">Vertex, Edge, and Graph $G = (V, E)$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-vs-undirected-graph" class="toc-link" data-slug="directed-vs-undirected-graph">Directed vs. Undirected Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#weighted-vs-unweighted-graph" class="toc-link" data-slug="weighted-vs-unweighted-graph">Weighted vs. Unweighted Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#degree-in-degree-and-out-degree" class="toc-link" data-slug="degree-in-degree-and-out-degree">Degree, In-Degree, and Out-Degree</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#handshaking-lemma" class="toc-link" data-slug="handshaking-lemma">Handshaking Lemma</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#complete-graph-k-n" class="toc-link" data-slug="complete-graph-k-n">Complete Graph $K_n$</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#directed-acyclic-graph-dag" class="toc-link" data-slug="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#tree-as-a-special-graph" class="toc-link" data-slug="tree-as-a-special-graph">Tree as a Special Graph</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#connected-graph-and-connected-components" class="toc-link" data-slug="connected-graph-and-connected-components">Connected Graph and Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#strongly-connected-and-weakly-connected-directed-graphs" class="toc-link" data-slug="strongly-connected-and-weakly-connected-directed-graphs">Strongly Connected and Weakly Connected (Directed Graphs)</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#walk-trail-circuit-path-and-cycle" class="toc-link" data-slug="walk-trail-circuit-path-and-cycle">Walk, Trail, Circuit, Path, and Cycle</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#havel-hakimi-theorem" class="toc-link" data-slug="havel-hakimi-theorem">Havel–Hakimi Theorem</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-representations" class="toc-link" data-slug="graph-representations">Graph Representations</a>
+<ul>
+<li class="toc-l2"><a href="ch07.html#adjacency-matrix" class="toc-link" data-slug="adjacency-matrix">Adjacency Matrix</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#adjacency-list" class="toc-link" data-slug="adjacency-list">Adjacency List</a>
+</li>
+<li class="toc-l2"><a href="ch07.html#dense-vs-sparse-graphs" class="toc-link" data-slug="dense-vs-sparse-graphs">Dense vs. Sparse Graphs</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Graph Traversals</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch08.html#breadth-first-search-bfs" class="toc-link" data-slug="breadth-first-search-bfs">Breadth-First Search (BFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#introduction-to-bfs" class="toc-link" data-slug="introduction-to-bfs">Introduction to BFS</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-algorithm" class="toc-link" data-slug="bfs-algorithm">BFS Algorithm</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-trace-example-graph" class="toc-link" data-slug="bfs-trace-example-graph">BFS Trace: Example Graph</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-directed-graphs" class="toc-link" data-slug="bfs-on-directed-graphs">BFS on Directed Graphs</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#bfs-on-disconnected-graph-connected-components" class="toc-link" data-slug="bfs-on-disconnected-graph-connected-components">BFS on Disconnected Graph — Connected Components</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#properties-of-bfs" class="toc-link" data-slug="properties-of-bfs">Properties of BFS</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#depth-first-search-dfs" class="toc-link" data-slug="depth-first-search-dfs">Depth-First Search (DFS)</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#dfs-discovery-and-finish-timestamps" class="toc-link" data-slug="dfs-discovery-and-finish-timestamps">DFS Discovery and Finish Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-step-by-step-trace-with-timestamps" class="toc-link" data-slug="dfs-step-by-step-trace-with-timestamps">DFS Step-by-Step Trace with Timestamps</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#dfs-edge-classification" class="toc-link" data-slug="dfs-edge-classification">DFS Edge Classification</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch08.html#topological-sort" class="toc-link" data-slug="topological-sort">Topological Sort</a>
+<ul>
+<li class="toc-l2"><a href="ch08.html#method-1-dfs-based-topological-sort" class="toc-link" data-slug="method-1-dfs-based-topological-sort">Method 1: DFS-Based Topological Sort</a>
+</li>
+<li class="toc-l2"><a href="ch08.html#method-2-kahn-s-algorithm-bfs-with-in-degree" class="toc-link" data-slug="method-2-kahn-s-algorithm-bfs-with-in-degree">Method 2: Kahn&#x27;s Algorithm (BFS with In-Degree)</a>
+</li>
+</ul>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch09.html" class="chapter-link">Chapter 9: Shortest Path Algorithms</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch09.html#single-source-dijkstra-s-algorithm" class="toc-link" data-slug="single-source-dijkstra-s-algorithm">Single-Source: Dijkstra&#x27;s Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#dijkstra-step-by-step-trace-standard-example" class="toc-link" data-slug="dijkstra-step-by-step-trace-standard-example">Dijkstra: Step-by-Step Trace (Standard Example)</a>
+</li>
+<li class="toc-l2"><a href="ch09.html#dijkstra-complex-trace-directed-graph-with-reordering" class="toc-link" data-slug="dijkstra-complex-trace-directed-graph-with-reordering">Dijkstra: Complex Trace (Directed Graph with Reordering)</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#single-source-bellman-ford-algorithm" class="toc-link" data-slug="single-source-bellman-ford-algorithm">Single-Source: Bellman-Ford Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#bellman-ford-step-by-step-trace" class="toc-link" data-slug="bellman-ford-step-by-step-trace">Bellman-Ford: Step-by-Step Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#all-pairs-floyd-warshall-algorithm" class="toc-link" data-slug="all-pairs-floyd-warshall-algorithm">All-Pairs: Floyd-Warshall Algorithm</a>
+<ul>
+<li class="toc-l2"><a href="ch09.html#floyd-warshall-step-by-step-matrix-trace" class="toc-link" data-slug="floyd-warshall-step-by-step-matrix-trace">Floyd-Warshall: Step-by-Step Matrix Trace</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch09.html#choosing-the-right-algorithm" class="toc-link" data-slug="choosing-the-right-algorithm">Choosing the Right Algorithm</a>
+</li>
+</ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch10.html" class="chapter-link">Chapter 10: Searching and Sorting</a></summary>
+<ul class="toc-sections">
+<li class="toc-l1"><a href="ch10.html#search-algorithms" class="toc-link" data-slug="search-algorithms">Search Algorithms</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#linear-search" class="toc-link" data-slug="linear-search">Linear Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search" class="toc-link" data-slug="binary-search">Binary Search</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#binary-search-on-the-answer" class="toc-link" data-slug="binary-search-on-the-answer">Binary Search on the Answer</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#basic-quadratic-sorting" class="toc-link" data-slug="basic-quadratic-sorting">Basic (Quadratic) Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#selection-sort" class="toc-link" data-slug="selection-sort">Selection Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#bubble-sort" class="toc-link" data-slug="bubble-sort">Bubble Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#insertion-sort" class="toc-link" data-slug="insertion-sort">Insertion Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#comparison-of-the-three-quadratic-sorts" class="toc-link" data-slug="comparison-of-the-three-quadratic-sorts">Comparison of the Three Quadratic Sorts</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#divide-and-conquer-sorting" class="toc-link" data-slug="divide-and-conquer-sorting">Divide and Conquer Sorting</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#merge-sort" class="toc-link" data-slug="merge-sort">Merge Sort</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#quicksort" class="toc-link" data-slug="quicksort">Quicksort</a>
+<ul>
+<li class="toc-l3"><a href="ch10.html#lomuto-partition-scheme-clrs" class="toc-link" data-slug="lomuto-partition-scheme-clrs">Lomuto Partition Scheme (CLRS)</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#hoare-partition-scheme" class="toc-link" data-slug="hoare-partition-scheme">Hoare Partition Scheme</a>
+</li>
+<li class="toc-l3"><a href="ch10.html#analysis-of-quicksort" class="toc-link" data-slug="analysis-of-quicksort">Analysis of Quicksort</a>
+</li>
+</ul>
+</li>
+<li class="toc-l2"><a href="ch10.html#lower-bound-for-comparison-based-sorting" class="toc-link" data-slug="lower-bound-for-comparison-based-sorting">Lower Bound for Comparison-Based Sorting</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#randomised-quicksort" class="toc-link" data-slug="randomised-quicksort">Randomised Quicksort</a>
+<ul>
+<li class="toc-l2"><a href="ch10.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l2"><a href="ch10.html#performance" class="toc-link" data-slug="performance">Performance</a>
+</li>
+</ul>
+</li>
+<li class="toc-l1"><a href="ch10.html#master-summary" class="toc-link" data-slug="master-summary">Master Summary</a>
+</li>
+</ul></details></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 1 of 6</div><h1>Algorithm Analysis</h1></div>
+<section id="introduction" class="content-section level-1">
+<h2 class="section-heading">Introduction</h2>
+<div class="concept-box"><div class="box-title">Data Structures</div><div class="box-body"><p>A data structure is a way to store data in a computer so that we can use it easily. Just like we keep clothes in a cupboard with shelves, so that we find them fast, a data structure keeps data in an organised way. Different data structures store data in different ways. We pick the right one based on what work we want to do with the data.</p></div></div>
+<div class="example-box"><div class="box-title">Example 1: Train and Bogies</div><div class="box-body"><p>Think of a train. Each bogie is connected to the next bogie in a line. This is like a Linked List data structure, where one item points to the next item.</p></div></div>
+<div class="example-box"><div class="box-title">Example 2: Choosing a Data Structure</div><div class="box-body"><p>Suppose we want to check if a webpage URL is already visited or not, very fast, again and again. Which data structure suits best, a List or a Hash Table? A Hash Table suits best here, because checking an item in a Hash Table takes less time on average than checking in a List.</p></div></div>
+<div class="concept-box"><div class="box-title">Algorithms</div><div class="box-body"><p>An algorithm is a step by step method to solve a problem. It is like a recipe to cook food. The recipe tells what to do first, what to do next, and what to do last. An algorithm takes some input, does some steps, and gives an output. A good algorithm should be clear, correct, and should finish in finite steps.</p></div></div>
+<div class="example-box"><div class="box-title">Example 3: Making Tea</div><div class="box-body"><p>To make tea, we follow steps. Boil water, add tea powder, add milk, add sugar, boil again, and pour in a cup. This is an algorithm, because it has clear steps in a fixed order.</p></div></div>
+<div class="example-box"><div class="box-title">Example 4: Finding Maximum Number</div><div class="box-body"><p>Given an array $A = [4, 9, 2, 7, 1]$, an algorithm to find the maximum number will compare each element one by one with a variable holding the current maximum, and update it when a bigger number is found. At the end, the variable holds the maximum value, which is $9$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig001.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Pseudocode</div><div class="box-body"><p>Pseudocode is a simple way to write the steps of an algorithm using plain words and simple structure, similar to a programming language but not exact. It is not a real programming language, so we cannot run it on a computer. It helps us to plan the logic first, before writing real code. We write it using simple words like if, for, while, so anyone can understand it easily.</p></div></div>
+<div class="example-box"><div class="box-title">Example 5: Pseudocode for Finding Maximum</div><div class="box-body"><p><strong>Find-Max(A)</strong></p>
+<ol><li><p>max = A[0]</p></li><li><p>for i = 1 to length(A) - 1</p></li><li><p>   if A[i] $&gt;$ max</p></li><li><p>     max = A[i]</p></li><li><p>return max</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Code (Python)</div><div class="box-body"><p>Code is the actual set of instructions written in a programming language, which a computer can run directly. We take the logic from pseudocode and convert it into Python code, following Python rules like indentation and syntax. Once written, this code can be run on a computer to get the real output.</p></div></div>
+<div class="code-box"><div class="code-title">find-max.py</div><pre><code>def find_max(arr):
+    max_val = arr[0]
+    for i in range(1, len(arr)):
+        if arr[i] &gt; max_val:
+            max_val = arr[i]
+    return max_val</code></pre></div>
+</section>
+<section id="core-algorithmic-paradigms" class="content-section level-1">
+<h2 class="section-heading">Core Algorithmic Paradigms</h2>
+<div class="concept-box"><div class="box-title">Brute Force (Exhaustive Search)</div><div class="box-body"><p>Brute force means we check every possible option one by one, until we find the correct answer. We do not use any trick or shortcut. It is simple to think and write, but it can take a lot of time when the number of options is large.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig002.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 6: Applying Brute Force</div><div class="box-body"><p>Suppose we want to find two numbers in a list that add up to a target value. Brute force will pick every pair of numbers, one pair at a time, and check if their sum matches the target. It keeps doing this for all possible pairs.</p></div></div>
+<div class="concept-box"><div class="box-title">Divide and Conquer</div><div class="box-body"><p>This method breaks a big problem into smaller parts, called subproblems. These subproblems are independent of each other, which means one subproblem does not depend on another. We solve each small part separately, and then we combine all the small answers to get the final answer.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig003.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 7: Applying Divide and Conquer</div><div class="box-body"><p>Suppose we want to sort a big list of numbers. Divide and conquer will split the list into two halves, sort each half on its own, and then join the two sorted halves into one sorted list.</p></div></div>
+<div class="concept-box"><div class="box-title">Decrease and Conquer</div><div class="box-body"><p>This method reduces the problem to one smaller problem of the same type, not many. We solve that one smaller problem, and then we use its answer to build the answer for the original problem.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig004.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 8: Applying Decrease and Conquer</div><div class="box-body"><p>Suppose we want to find the maximum number in a list. Decrease and conquer will find the maximum in the list without the last element, which is a smaller problem, and then compare that result with the last element to get the final maximum.</p></div></div>
+<div class="concept-box"><div class="box-title">Transform and Conquer</div><div class="box-body"><p>This method changes the problem into a different, simpler form, which is easier to solve. After solving the new simpler form, we use that result for our original problem.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig005.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 9: Applying Transform and Conquer</div><div class="box-body"><p>Suppose we want to check if a list has any duplicate numbers. Transform and conquer will first sort the list, which is a transformation, and then simply check neighbouring elements, which becomes a much easier check.</p></div></div>
+<div class="concept-box"><div class="box-title">Greedy Method</div><div class="box-body"><p>This method picks the best option available right now, at every step, without thinking about the future steps. It hopes that picking the best choice every time will give the best overall answer at the end.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 10: Applying Greedy Method</div><div class="box-body"><p>Suppose we want to give change to a customer using minimum number of coins. Greedy method will always pick the largest coin value possible at each step, until the full change amount is given.</p></div></div>
+<div class="concept-box"><div class="box-title">Dynamic Programming</div><div class="box-body"><p>This method also breaks a problem into smaller subproblems, like divide and conquer. But here, the same subproblem can come again and again, so we store the answer of each subproblem once, and reuse it later instead of solving it again.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 11: Applying Dynamic Programming</div><div class="box-body"><p>Suppose we want to find the number of ways to climb a staircase, taking one or two steps at a time. Dynamic programming will store the number of ways for each smaller staircase height, and reuse those stored values to build the answer for the full staircase.</p></div></div>
+<div class="concept-box"><div class="box-title">Backtracking</div><div class="box-body"><p>This method builds a solution step by step. At each step, if we find that the current path breaks a rule of the problem, we go back to the previous step and try a different option. This way, we avoid wrong paths early.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 12: Applying Backtracking</div><div class="box-body"><p>Suppose we want to place numbers in a sudoku grid. Backtracking will place a number in a cell, and if it breaks a sudoku rule, it removes that number and tries the next possible number in that cell.</p></div></div>
+<div class="concept-box"><div class="box-title">Branch and Bound</div><div class="box-body"><p>This method is used for optimization problems, where we want the best possible answer, like minimum cost or maximum profit. It builds a tree of choices, and at each branch, it calculates a bound, which tells if that branch can possibly give a better answer or not. If a branch cannot give a better answer, we cut it off and do not explore it further.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 13: Applying Branch and Bound</div><div class="box-body"><p>Suppose a delivery person wants the shortest route to visit many cities. Branch and bound will build partial routes, calculate a lower bound cost for each partial route, and skip any partial route whose bound is already worse than the best route found so far.</p></div></div>
+</section>
+<section id="analysis-framework" class="content-section level-1">
+<h2 class="section-heading">Analysis Framework</h2>
+
+<section id="time-and-space-efficiency" class="content-section level-2">
+<h3 class="section-heading">Time and Space Efficiency</h3>
+<div class="concept-box"><div class="box-title">Time and Space Efficiency</div><div class="box-body"><p>We check how good an algorithm is using two things, time and space. Time efficiency means how long the algorithm takes to run. Space efficiency means how much extra memory the algorithm needs, apart from the input and output.</p></div></div>
+<div class="example-box"><div class="box-title">Example 14: Cooking Time vs Kitchen Space</div><div class="box-body"><p>Think of cooking food. Time efficiency is like how many minutes the cooking takes. Space efficiency is like how many extra vessels and counter space we need while cooking, apart from the raw ingredients and the final dish.</p></div></div>
+<div class="concept-box"><div class="box-title">Primary Focus on Time</div><div class="box-body"><p>Nowadays, computers have a lot of memory. So memory is not a big problem most of the time. But running time is still important, because we want answers fast. So, in most cases, we focus more on time efficiency than space efficiency.</p></div></div>
+</section>
+<section id="input-size-and-efficiency-analysis" class="content-section level-2">
+<h3 class="section-heading">Input Size and Efficiency Analysis</h3>
+<div class="concept-box"><div class="box-title">Input Size and Algorithm Efficiency</div><div class="box-body"><p>The work done by an algorithm depends on how big the input is. A bigger input usually means more work. So, we write the running time as a function of a number $n$, which represents the size of the input.</p></div></div>
+<div class="example-box"><div class="box-title">Example 15: Sweeping a Room</div><div class="box-body"><p>Sweeping a small room takes less time. Sweeping a big hall takes more time. Here, the size of the room is like input size $n$, and the sweeping time grows as the room size grows.</p></div></div>
+<div class="concept-box"><div class="box-title">Selecting an Appropriate Size Measure</div><div class="box-body"><p>For most problems, we pick the input size directly from the data we are given, like the number of elements in a list, the number of rows in a table, or the number of terms in an expression. Small differences in counting do not change our final conclusion about efficiency.</p></div></div>
+<div class="example-box"><div class="box-title">Example 16: Checking a Student ID in a File</div><div class="box-body"><p>Suppose we want to check if a student ID is present in a record file. The algorithm reads each record one by one, compares the ID, and stops when found or when the file ends. If the file has $n$ records, the algorithm may check up to $n$ records in the worst case. If the file size doubles, the work also doubles. So here, input size is the number of records.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Multiple Valid Size Metrics</div><div class="box-body"><p>Some problems can have more than one way to measure input size. The algorithm itself does not change, but the way we write its growth function changes, depending on which size measure we choose.</p></div></div>
+<div class="example-box"><div class="box-title">Example 17: Matrix Size Measure</div><div class="box-body"><p>For a matrix, we can measure size as the number of rows, or as the total number of elements (rows times columns). Both are valid, but the growth function looks different depending on which one we use.</p></div></div>
+<div class="concept-box"><div class="box-title">Operation-Dependent Measurement</div><div class="box-body"><p>We should choose the size measure based on what unit the algorithm actually works on. If the algorithm works on characters, we count characters. If it works on records or rows, we count those instead.</p></div></div>
+<div class="example-box"><div class="box-title">Example 18: Counting Letters vs Counting Words</div><div class="box-body"><p>An algorithm that checks spelling works on each character of a word, so its input size is the number of characters. An algorithm that counts how many words are in a sentence works on each word, so its input size is the number of words.</p></div></div>
+</section>
+<section id="measuring-running-time-of-algorithms" class="content-section level-2">
+<h3 class="section-heading">Measuring Running Time of Algorithms</h3>
+<div class="concept-box"><div class="box-title">Why Clock Time Is Not a Good Measure</div><div class="box-body"><p>We should not measure an algorithm using seconds or milliseconds. This is because clock time depends on many outside things, like processor speed, programming language used, coding style, and how busy the system is at that moment. These things are not part of the algorithm. So, clock time does not give a fair measure of how good an algorithm is.</p></div></div>
+<div class="example-box"><div class="box-title">Example 19: Same Recipe, Different Kitchens</div><div class="box-body"><p>If two cooks use the same recipe, but one has a fast gas stove and the other has a slow stove, their cooking time will differ. But the recipe, that is the method, is the same for both. So, we should judge the recipe by its steps, not by the stove used.</p></div></div>
+<div class="concept-box"><div class="box-title">Operation Count as a Machine-Independent Measure</div><div class="box-body"><p>Instead of checking how many seconds an algorithm takes, we count how many times an important operation runs. This count does not depend on the computer used. We do not count every single operation, we only count the operation that takes the most work.</p></div></div>
+<div class="concept-box"><div class="box-title">Basic Operation</div><div class="box-body"><p>The basic operation is the one operation that takes the most time in an algorithm. It is usually present inside the innermost loop, and it is the heaviest step in the algorithm. For example, comparing two elements in sorting, comparing two records in searching, or doing a division in a number based algorithm.</p></div></div>
+<div class="example-box"><div class="box-title">Example 20: Checking an Employee Registration Number</div><div class="box-body"><p>Suppose we want to check if a registration number is present in a list of employee records. The algorithm compares the target number with each record one by one, and stops when it matches or the list ends. Here, the basic operation is the comparison between two numbers. If the list has $n$ records, the algorithm does at most $n$ comparisons.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Estimating Running Time from Operation Count</div><div class="box-body"><p>We can write the number of basic operations needed for input size $n$ as $C(n)$. We also have $c_{op}$, which is the time taken for one basic operation. Using these, we can estimate the running time as
+\[
+T(n) \approx c_{op} \cdot C(n)
+\]
+This gives us a rough idea of running time, without depending on the actual machine timing.</p></div></div>
+<div class="example-box"><div class="box-title">Example 21: Estimating Time for Record Check</div><div class="box-body"><p>If checking one record takes $c_{op}$ time, and we have $n$ records, then in the worst case, the total time is approximately $c_{op} \cdot n$. If $n$ becomes double, the total time also becomes roughly double.</p></div></div>
+<div class="concept-box"><div class="box-title">Ignoring Constant Factors</div><div class="box-body"><p>When we study efficiency, we ignore constant multipliers. This is because these constants depend on the hardware and the way the program is written. Also, when input size becomes very large, these constants do not matter much, because the growth pattern of $C(n)$ matters more than the fixed constant.</p></div></div>
+<div class="example-box"><div class="box-title">Example 22: Doubling Input Size</div><div class="box-body"><p>If an algorithm takes $5n$ steps and another takes $2n$ steps, both grow in the same straight line pattern as $n$ increases. So, we say both algorithms have the same growth pattern, and we ignore the constants $5$ and $2$ while comparing their efficiency.</p></div></div>
+</section>
+<section id="order-of-growth" class="content-section level-2">
+<h3 class="section-heading">Order of Growth</h3>
+<p>When we compare algorithms, the difference does not show much when the input is small, because even a slow algorithm finishes fast for small input. The real difference is seen when the input size becomes very large. So, we study how the running time grows as the input size grows.</p>
+<div class="concept-box"><div class="box-title">Order of Growth</div><div class="box-body"><p>If an algorithm's operation count grows slowly as input size increases, the algorithm stays usable even for large problems. But if the operation count grows very fast, the algorithm becomes useless for large input. Because of this, we classify algorithms by their order of growth, which means how fast their cost increases with input size.</p></div></div>
+<div class="example-box"><div class="box-title">Example 23: Walking vs Running on a Long Road</div><div class="box-body"><p>For a short distance, walking and running may take almost the same time. But for a very long road, running clearly takes much less time than walking. In the same way, for small input, slow and fast algorithms look similar, but for large input, the difference becomes clear.</p></div></div>
+<p>We compare algorithms based on how the number of basic operations grows with input size $n$, not based on actual running time for small inputs. Different growth rates behave very differently:</p>
+<ul><li><p>Logarithmic growth ($\log n$) increases very slowly.</p></li><li><p>Linear growth ($n$) increases in direct proportion to input size.</p></li><li><p>Polynomial growth ($n^2$, $n^3$) increases fast.</p></li><li><p>Exponential ($2^n$) and factorial ($n!$) growth increase extremely fast, becoming unusable very quickly.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">Base of Logarithm Does Not Matter</div><div class="box-body"><p>When we write $\log n$, the base of the log does not matter in efficiency analysis. This is because changing the base only changes the value by a constant factor, as shown below
+\[
+\log_a n = \frac{\log_b n}{\log_b a}
+\]
+Since we ignore constant factors in this kind of analysis, we simply write $\log n$ without mentioning the base.</p></div></div>
+<div class="concept-box"><div class="box-title">Exponential and Factorial Growth</div><div class="box-body"><p>Algorithms with exponential growth ($2^n$) or factorial growth ($n!$) are practical only for very small input sizes. As $n$ increases even a little, their running time increases extremely fast, making them unusable for large input.</p></div></div>
+<div class="example-box"><div class="box-title">Example 24: Doubling Input Size Effect</div><div class="box-body"><p>Suppose an algorithm needs $f(n) = n^2$ operations. If input size becomes double, from $n$ to $2n$, then
+\[
+f(2n) = (2n)^2 = 4n^2
+\]
+So the work becomes four times more.</p>
+<p>Now suppose another algorithm needs $g(n) = n$ operations. If input size becomes double, then
+\[
+g(2n) = 2n
+\]
+So the work becomes only double.</p>
+<p>This shows that even if both algorithms look similar for small input, the algorithm with $n^2$ becomes much costlier than the algorithm with $n$, as input size grows large.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 25: Order of Growth Practice 1</div><div class="box-body"><p>Arrange the following functions in increasing order of growth:
+\[
+n,    \log n,    n^2,    1
+\]
+<strong>Order:</strong> $1 &lt; \log n &lt; n &lt; n^2$</p></div></div>
+<div class="example-box"><div class="box-title">Example 26: Order of Growth Practice 2</div><div class="box-body"><p>Arrange the following functions in increasing order of growth:
+\[
+n!,    2^n,    n^3,    n \log n
+\]
+<strong>Order:</strong> $n \log n &lt; n^3 &lt; 2^n &lt; n!$</p></div></div>
+<div class="example-box"><div class="box-title">Example 27: Order of Growth Practice 3</div><div class="box-body"><p>Arrange the following functions in increasing order of growth:
+\[
+\sqrt{n},    n,    \log n,    n^2 \log n
+\]
+<strong>Order:</strong> $\log n &lt; \sqrt{n} &lt; n &lt; n^2 \log n$</p></div></div>
+<div class="example-box"><div class="box-title">Example 28: Order of Growth Practice 4</div><div class="box-body"><p>Arrange the following functions in increasing order of growth:
+\[
+2^n,    n^{10},    10^n,    \log_2 n
+\]
+<strong>Order:</strong> $\log_2 n &lt; n^{10} &lt; 2^n &lt; 10^n$</p></div></div>
+<div class="example-box"><div class="box-title">Example 29: Order of Growth Practice 5</div><div class="box-body"><p>Arrange the following functions in increasing order of growth:
+\[
+n \log n,    n^2,    n,    2^{\log n}
+\]
+<em>Hint: simplify $2^{\log n}$ first using log identity, base 2.</em></p>
+<p><strong>Order:</strong> $n = 2^{\log n} &lt; n \log n &lt; n^2$</p></div></div>
+</section>
+</section>
+<section id="asymptotic-notations" class="content-section level-1">
+<h2 class="section-heading">Asymptotic Notations</h2>
+
+<section id="asymptotic-efficiency-of-algorithms" class="content-section level-2">
+<h3 class="section-heading">Asymptotic Efficiency of Algorithms</h3>
+<div class="concept-box"><div class="box-title">Asymptotic Efficiency Analysis</div><div class="box-body"><p>When input size becomes very large, small parts of the running time formula stop mattering. Constant numbers and small extra terms become tiny compared to the main growing part. So, we only look at the main part that grows with $n$. This way of studying growth is called asymptotic efficiency analysis.</p></div></div>
+<div class="example-box"><div class="box-title">Example 30: Buying in Bulk</div><div class="box-body"><p>If we buy 2 apples, paying 5 rupees extra for a bag does matter. But if we buy 1000 apples, that same 5 rupees extra does not matter much. In the same way, small constants in running time do not matter when input size is very large.</p></div></div>
+<div class="concept-box"><div class="box-title">What Asymptotic Analysis Tells Us</div><div class="box-body"><p>Asymptotic analysis tells us how well an algorithm scales, that means how it behaves as input grows bigger and bigger. It does not give us the exact running time in seconds. It only tells us the pattern of growth, which is the main thing we need while choosing an algorithm for large input.</p></div></div>
+<div class="concept-box"><div class="box-title">Why We Look at the Dominant Term</div><div class="box-body"><p>A running time formula can have many terms, like $n^2 + 3n + 7$. As $n$ becomes very large, the term $n^2$ becomes much bigger than $3n$ and $7$. So, $3n$ and $7$ become useless in comparison. We only keep the dominant term, which is the term that grows the fastest, and we ignore the rest.</p></div></div>
+<p><strong>Mathematical view:</strong> Consider $f(n) = n^2 + 3n + 7$. We can divide every term by $n^2$ to see their relative size as $n$ grows:
+\[
+\frac{f(n)}{n^2} = 1 + \frac{3}{n} + \frac{7}{n^2}
+\]
+As $n \to \infty$, the terms $\dfrac{3}{n}$ and $\dfrac{7}{n^2}$ become almost $0$. So, $f(n)$ behaves almost exactly like $n^2$ for large $n$. This is why we say $f(n)$ has order of growth $n^2$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div>
+<p>Notice in the graph that the solid curve ($n^2+3n+7$) and the dashed curve ($n^2$) come very close together as $n$ becomes large. This shows visually why we can ignore the smaller terms and constants.</p>
+<div class="concept-box"><div class="box-title">Comparing Algorithms Using Order of Growth</div><div class="box-body"><p>When we compare two algorithms, we do not check their exact step count. We check their order of growth. An algorithm with a slower growing order of growth is better for large input, even if it looks worse for small input.</p></div></div>
+<div class="example-box"><div class="box-title">Example 31: Linear vs Quadratic Growth</div><div class="box-body"><p>Suppose Algorithm A takes $5n + 20$ steps, and Algorithm B takes $n^2 + 3n$ steps. Algorithm A grows linearly, and Algorithm B grows quadratically. For small $n$, both may take similar steps. But for large $n$, Algorithm A becomes much faster than Algorithm B, because linear growth is slower than quadratic growth.</p></div></div>
+<div class="example-box"><div class="box-title">Example 32: Numerical Comparison: Algorithm A vs Algorithm B</div><div class="box-body"><p>Suppose Algorithm A needs $4n + 10$ operations, and Algorithm B needs $n^2$ operations.</p>
+<p><strong>Case 1: Small input, $n = 5$</strong>
+\[
+A = 4(5) + 10 = 30,      B = 5^2 = 25
+\]
+Here, B is actually doing fewer operations than A.</p>
+<p><strong>Case 2: Large input, $n = 1000$</strong>
+\[
+A = 4(1000) + 10 = 4010,      B = 1000^2 = 1{,}000{,}000
+\]
+Now, A is doing far fewer operations than B.</p>
+<p>This shows that for small input, the algorithm with a worse order of growth can still look better. But as input size grows large, the algorithm with the better order of growth always wins. So, asymptotically, Algorithm A is the better choice.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"></div>
+<p>The graph shows the crossover point, where Algorithm B's curve crosses above Algorithm A's curve. Before this point, B looks better. After this point, A is always better, and the gap keeps increasing as $n$ grows.</p>
+<div class="example-box"><div class="box-title">Example 33: Practice: Identify the Dominant Term</div><div class="box-body"><p>For each running time expression, identify the dominant term, that means the order of growth.</p>
+<ol><li><p>$T(n) = 7n^3 + 50n^2 + 100$    $\rightarrow$ dominant term is $n^3$</p></li><li><p>$T(n) = 2^n + n^{10}$    $\rightarrow$ dominant term is $2^n$</p></li><li><p>$T(n) = 20n \log n + 5n$    $\rightarrow$ dominant term is $n \log n$</p></li><li><p>$T(n) = n! + 2^n + n^5$    $\rightarrow$ dominant term is $n!$</p></li></ol></div></div>
+</section>
+<section id="o-notation-big-oh-notation" class="content-section level-2">
+<h3 class="section-heading">O-Notation (Big-Oh Notation)</h3>
+<div class="concept-box"><div class="box-title">Big-Oh Notation</div><div class="box-body"><p>Big-Oh notation gives us an upper bound on how fast a function grows. It tells us that a function $f(n)$ does not grow faster than another function $g(n)$, once $n$ becomes large enough, except for a constant multiplying factor.</p>
+<p>Formally, we say $f(n) = O(g(n))$ if we can find two positive numbers $c$ and $n_0$, such that
+\[
+0 \le f(n) \le c \cdot g(n)    \text{for all } n \ge n_0
+\]</p>
+<p>In simple words, after some point $n_0$, the function $f(n)$ always stays below or on the curve $c \cdot g(n)$. We do not care what happens before $n_0$, we only care about large $n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 34: Speed Limit Board</div><div class="box-body"><p>Think of a speed limit board on a highway that says maximum speed is 80. A car may go slow sometimes, fast sometimes, but it never crosses 80, once it is on the highway. Big-Oh is similar, $c \cdot g(n)$ acts like a speed limit, and $f(n)$ never crosses it, after point $n_0$.</p></div></div>
+<p><strong>Maths intuition:</strong> Why do we allow a constant $c$ and a starting point $n_0$?</p>
+<ul><li><p>The constant $c$ is needed because we do not care about exact values, we only care about growth pattern. So even if $f(n)$ is a bit bigger than $g(n)$, like $f(n) = 5g(n)$, we can still say $f(n) = O(g(n))$, by simply choosing $c = 5$ or more.</p></li><li><p>The point $n_0$ is needed because for small $n$, a function may behave randomly, or one function may be bigger than other by chance. We only care about behavior when $n$ becomes large, so we allow the inequality to fail for small $n$, before $n_0$.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig016.png" alt="diagram"></div>
+<p>In this picture, before $n_0$, the curve $f(n)$ might cross above $c \cdot g(n)$, that is fine. But after $n_0$, $f(n)$ always stays below $c \cdot g(n)$. This is exactly what the Big-Oh definition demands.</p>
+<div class="concept-box"><div class="box-title">Properties of Big-Oh Notation</div><div class="box-body"><ul><li><p>$O(g(n))$ is actually a set of functions, not a single function. Writing $f(n) = O(g(n))$ really means $f(n)$ belongs to this set.</p></li><li><p>The constants $c$ and $n_0$ are not fixed or unique. Many valid choices of $c$ and $n_0$ can work for the same proof.</p></li><li><p>Big-Oh ignores small input behavior. Only what happens as $n$ becomes very large matters.</p></li><li><p>A slower growing function can still belong to a faster growing function's class. For example, $n \in O(n^2)$, because $n$ never grows faster than $n^2$. This does not mean they grow at the same rate, it only means $n$ does not cross $n^2$ beyond a constant factor.</p></li><li><p>We assume $f(n)$ is non-negative for large $n$, so that the comparison $f(n) \le c \cdot g(n)$ makes proper sense.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 35: Finding Upper Bound: $f(n) = 3n + 8$</div><div class="box-body"><p>We want to show $f(n) = O(n)$.</p>
+<p>We need to find $c &gt; 0$ and $n_0$ such that
+\[
+0 \le 3n + 8 \le c \cdot n    \text{for all } n \ge n_0
+\]</p>
+<p>For $n \ge 8$, we know $8 \le n$. So,
+\[
+3n + 8 \le 3n + n = 4n
+\]</p>
+<p>This means $3n + 8 \le 4n$ for all $n \ge 8$.</p>
+<p>Choosing $c = 4$ and $n_0 = 8$, the condition holds. So,
+\[
+3n + 8 = O(n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 36: Finding Upper Bound: $f(n) = n^2 + 1$</div><div class="box-body"><p>We want to show $f(n) = O(n^2)$.</p>
+<p>We need $c &gt; 0$ and $n_0$ such that
+\[
+0 \le n^2 + 1 \le c \cdot n^2    \text{for all } n \ge n_0
+\]</p>
+<p>For $n \ge 1$, we know $1 \le n^2$. So,
+\[
+n^2 + 1 \le n^2 + n^2 = 2n^2
+\]</p>
+<p>This means $n^2 + 1 \le 2n^2$ for all $n \ge 1$.</p>
+<p>Choosing $c = 2$ and $n_0 = 1$, the condition holds. So,
+\[
+n^2 + 1 = O(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 37: Finding Upper Bound: $f(n) = 100n + 5$</div><div class="box-body"><p>We want to show $f(n) = O(n^2)$.</p>
+<p>For $n \ge 5$, we know $5 \le n$. So,
+\[
+100n + 5 \le 100n + n = 101n
+\]</p>
+<p>Also, for $n \ge 1$, we know $n \le n^2$, so $101n \le 101n^2$.</p>
+<p>Combining, for $n \ge 5$,
+\[
+100n + 5 \le 101n^2
+\]</p>
+<p>Choosing $c = 101$ and $n_0 = 5$, the condition holds. So,
+\[
+100n + 5 = O(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 38: Practice 1: $f(n) = 5n^2 + 3n$</div><div class="box-body"><p>Prove that $f(n) = O(n^2)$.</p>
+<p><strong>Solution:</strong> For $n \ge 1$, we know $3n \le 3n^2$. So,
+\[
+5n^2 + 3n \le 5n^2 + 3n^2 = 8n^2
+\]
+Choosing $c = 8$ and $n_0 = 1$, we get $5n^2 + 3n = O(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 39: Practice 2: $f(n) = n^3 + 50n^2$</div><div class="box-body"><p>Prove that $f(n) = O(n^3)$.</p>
+<p><strong>Solution:</strong> For $n \ge 50$, we know $50n^2 \le n \cdot n^2 = n^3$. So,
+\[
+n^3 + 50n^2 \le n^3 + n^3 = 2n^3
+\]
+Choosing $c = 2$ and $n_0 = 50$, we get $n^3 + 50n^2 = O(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 40: Practice 3: $f(n) = 7$</div><div class="box-body"><p>Prove that $f(n) = O(1)$.</p>
+<p><strong>Solution:</strong> Here $f(n) = 7$ stays fixed, it does not grow with $n$. So,
+\[
+7 \le 7 \cdot 1
+\]
+Choosing $c = 7$ and $n_0 = 1$, we get $7 = O(1)$. This shows constant functions are written as $O(1)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 41: Practice 4: $f(n) = n \log n + n$</div><div class="box-body"><p>Prove that $f(n) = O(n \log n)$.</p>
+<p><strong>Solution:</strong> For $n \ge 2$, we know $\log n \ge 1$, so $n \le n \log n$. So,
+\[
+n \log n + n \le n \log n + n \log n = 2 n \log n
+\]
+Choosing $c = 2$ and $n_0 = 2$, we get $n \log n + n = O(n \log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 42: Practice 5: $f(n) = 2n^2 + 3n \log n + 10$</div><div class="box-body"><p>Prove that $f(n) = O(n^2)$.</p>
+<p><strong>Solution:</strong> For $n \ge 2$, we know $\log n \le n$, so $3n \log n \le 3n^2$. Also for $n \ge 1$, $10 \le 10n^2$. So,
+\[
+2n^2 + 3n \log n + 10 \le 2n^2 + 3n^2 + 10n^2 = 15n^2
+\]
+Choosing $c = 15$ and $n_0 = 2$, we get $2n^2 + 3n \log n + 10 = O(n^2)$.</p></div></div>
+</section>
+<section id="omega-notation-big-omega-notation" class="content-section level-2">
+<h3 class="section-heading">$\Omega$-Notation (Big-Omega Notation)</h3>
+<div class="concept-box"><div class="box-title">Big-Omega Notation</div><div class="box-body"><p>Big-Omega notation gives us a lower bound on how fast a function grows. It tells us that a function $f(n)$ grows at least as fast as another function $g(n)$, once $n$ becomes large enough, except for a constant multiplying factor.</p>
+<p>Formally, we say $f(n) = \Omega(g(n))$ if we can find two positive numbers $c$ and $n_0$, such that
+\[
+0 \le c \cdot g(n) \le f(n)    \text{for all } n \ge n_0
+\]</p>
+<p>In simple words, after some point $n_0$, the function $f(n)$ always stays above or on the curve $c \cdot g(n)$. We do not care what happens before $n_0$, we only care about large $n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 43: Minimum Wage Floor</div><div class="box-body"><p>Think of a rule that says a worker must be paid at least 500 rupees per day. The actual pay can be more, some days much more, but it never falls below this floor amount. Big-Omega is similar, $c \cdot g(n)$ acts like a floor, and $f(n)$ never falls below it, after point $n_0$.</p></div></div>
+<p><strong>Maths intuition:</strong> Big-Oh and Big-Omega are like opposite directions of the same idea.</p>
+<ul><li><p>In Big-Oh, $f(n)$ stays <em>below</em> $c \cdot g(n)$, so $g(n)$ acts as a ceiling.</p></li><li><p>In Big-Omega, $f(n)$ stays <em>above</em> $c \cdot g(n)$, so $g(n)$ acts as a floor.</p></li><li><p>The constant $c$ lets us shrink $g(n)$ a little, so even if $f(n)$ is somewhat smaller than $g(n)$, we can still find a smaller version of $g(n)$ that $f(n)$ stays above.</p></li><li><p>The point $n_0$ lets us ignore small $n$, where the inequality might not hold by chance.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig017.png" alt="diagram"></div>
+<p>In this picture, after $n_0$, the curve $f(n)$ always stays above $c \cdot g(n)$. Before $n_0$, this may or may not be true, and we do not worry about that part.</p>
+<div class="concept-box"><div class="box-title">Properties of Big-Omega Notation</div><div class="box-body"><ul><li><p>$\Omega(g(n))$ is a set of functions, not a single function. Writing $f(n) = \Omega(g(n))$ means $f(n) \in \Omega(g(n))$.</p></li><li><p>The constants $c$ and $n_0$ are not fixed or unique. Many valid pairs can work for the same proof.</p></li><li><p>Only behavior as $n \to \infty$ matters. Small input values are ignored.</p></li><li><p>If $f(n)$ grows faster than $g(n)$, then $f(n)$ can still belong to $\Omega(g(n))$. For example, $n^2 \in \Omega(n)$, because $n^2$ eventually grows at least as fast as $n$. This does not mean they grow at the same rate, it only means $n^2$ never falls below $n$, up to a constant factor.</p></li><li><p>We assume $f(n)$ and $g(n)$ are non-negative for large $n$, so the comparison makes proper sense.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 44: Showing Lower Bound: $f(n) = 3n^2 + 2n$</div><div class="box-body"><p>We want to show $f(n) = \Omega(n^2)$.</p>
+<p>We need $c &gt; 0$ and $n_0$ such that
+\[
+0 \le c \cdot n^2 \le 3n^2 + 2n    \text{for all } n \ge n_0
+\]</p>
+<p>Since $2n \ge 0$ for all $n \ge 0$,
+\[
+3n^2 + 2n \ge 3n^2
+\]</p>
+<p>This means $3n^2 + 2n \ge 3n^2$ for all $n \ge 0$.</p>
+<p>Choosing $c = 3$ and $n_0 = 1$, the condition holds. So,
+\[
+3n^2 + 2n = \Omega(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 45: Practice 1: $f(n) = n^2 - 3n$</div><div class="box-body"><p>Prove that $f(n) = \Omega(n^2)$.</p>
+<p><strong>Solution:</strong> For $n \ge 6$, we know $3n \le \dfrac{1}{2}n^2$. So,
+\[
+n^2 - 3n \ge n^2 - \frac{1}{2}n^2 = \frac{1}{2}n^2
+\]
+Choosing $c = \dfrac{1}{2}$ and $n_0 = 6$, we get $n^2 - 3n = \Omega(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 46: Practice 2: $f(n) = 7n + 2$</div><div class="box-body"><p>Prove that $f(n) = \Omega(n)$.</p>
+<p><strong>Solution:</strong> Since $2 \ge 0$ for all $n$,
+\[
+7n + 2 \ge 7n
+\]
+Choosing $c = 7$ and $n_0 = 1$, we get $7n + 2 = \Omega(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 47: Practice 3: $f(n) = n^3 + 4n$</div><div class="box-body"><p>Prove that $f(n) = \Omega(n^3)$.</p>
+<p><strong>Solution:</strong> Since $4n \ge 0$ for all $n \ge 0$,
+\[
+n^3 + 4n \ge n^3
+\]
+Choosing $c = 1$ and $n_0 = 1$, we get $n^3 + 4n = \Omega(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 48: Practice 4: $f(n) = n \log n$</div><div class="box-body"><p>Prove that $f(n) = \Omega(n)$.</p>
+<p><strong>Solution:</strong> For $n \ge 2$, we know $\log n \ge 1$. So,
+\[
+n \log n \ge n \cdot 1 = n
+\]
+Choosing $c = 1$ and $n_0 = 2$, we get $n \log n = \Omega(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 49: Practice 5: $f(n) = 2^n$</div><div class="box-body"><p>Prove that $f(n) = \Omega(n^2)$.</p>
+<p><strong>Solution:</strong> It is known that $2^n$ grows much faster than any polynomial like $n^2$, for large $n$. We can check small values to find a safe starting point. At $n = 6$, $2^n = 64$ and $n^2 = 36$, so $2^n \ge n^2$ here. As $n$ increases further, $2^n$ grows much faster than $n^2$, so the inequality keeps holding.
+\[
+2^n \ge n^2    \text{for all } n \ge 6
+\]
+Choosing $c = 1$ and $n_0 = 6$, we get $2^n = \Omega(n^2)$.</p></div></div>
+</section>
+<section id="theta-notation-big-theta-notation" class="content-section level-2">
+<h3 class="section-heading">$\Theta$-Notation (Big-Theta Notation)</h3>
+<div class="concept-box"><div class="box-title">Big-Theta Notation</div><div class="box-body"><p>Big-Theta notation gives us a tight bound on how fast a function grows. It tells us that a function $f(n)$ grows neither faster nor slower than $g(n)$, once $n$ becomes large enough, except for constant factors. This means $f(n)$ and $g(n)$ grow at the same rate.</p>
+<p>Formally, we say $f(n) = \Theta(g(n))$ if we can find three positive numbers $c_1$, $c_2$, and $n_0$, such that
+\[
+0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)    \text{for all } n \ge n_0
+\]</p>
+<p>In simple words, after some point $n_0$, the function $f(n)$ is always sandwiched between $c_1 \cdot g(n)$ and $c_2 \cdot g(n)$. It never goes too high above $g(n)$, and never goes too low below $g(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 50: Road Between Two Walls</div><div class="box-body"><p>Think of a narrow road with a wall on the left side and a wall on the right side. A car driving on this road can never go beyond the left wall, and can never go beyond the right wall, it always stays between them. Big-Theta is similar, $f(n)$ always stays between the lower wall $c_1 \cdot g(n)$ and the upper wall $c_2 \cdot g(n)$.</p></div></div>
+<p><strong>Maths intuition:</strong> Big-Theta is simply Big-Oh and Big-Omega combined together.</p>
+<ul><li><p>Big-Oh alone tells us $f(n)$ does not grow faster than $g(n)$, that is an upper bound only.</p></li><li><p>Big-Omega alone tells us $f(n)$ does not grow slower than $g(n)$, that is a lower bound only.</p></li><li><p>Big-Theta needs both conditions to be true at the same time. So if we already know $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$, then automatically $f(n) = \Theta(g(n))$.</p></li><li><p>This is the strongest and most informative notation, because it tells us the exact growth class of $f(n)$, not just an upper limit or just a lower limit.</p></li></ul>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig018.png" alt="diagram"></div>
+<p>In this picture, after $n_0$, the function $f(n)$ is trapped between the lower curve $c_1 g(n)$ and the upper curve $c_2 g(n)$. This trapped region is the visual meaning of Big-Theta.</p>
+<div class="concept-box"><div class="box-title">Properties of Big-Theta Notation</div><div class="box-body"><ul><li><p>$\Theta(g(n))$ is a set of functions, not a single function. Writing $f(n) = \Theta(g(n))$ means $f(n) \in \Theta(g(n))$.</p></li><li><p>Big-Theta needs two inequalities together, $c_1 g(n) \le f(n)$ and $f(n) \le c_2 g(n)$. Both must be true at the same time, for the same $n_0$.</p></li><li><p>Only behavior for large $n$ matters. Small $n$ does not affect membership in $\Theta(g(n))$.</p></li><li><p>Constant multiplying factors do not change the Theta class. For example, $a n^2 \in \Theta(n^2)$, for any positive constant $a$.</p></li><li><p>If $f(n) = \Theta(g(n))$, then $f(n)$ and $g(n)$ grow at the same speed, neither one beats the other by more than a constant factor, as $n$ becomes large.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 51: Showing Tight Bound: $f(n) = 2n^2 + 3n + 4$</div><div class="box-body"><p>We want to show $f(n) = \Theta(n^2)$.</p>
+<p><strong>Step 1: Upper Bound.</strong> For $n \ge 1$, we know $3n \le 3n^2$ and $4 \le 4n^2$. So,
+\[
+f(n) \le 2n^2 + 3n^2 + 4n^2 = 9n^2
+\]
+This gives us $c_2 = 9$.</p>
+<p><strong>Step 2: Lower Bound.</strong> Since all terms in $f(n)$ are non-negative for $n \ge 1$,
+\[
+f(n) \ge 2n^2
+\]
+This gives us $c_1 = 2$.</p>
+<p><strong>Step 3: Combine.</strong> For all $n \ge 1$,
+\[
+2n^2 \le 2n^2 + 3n + 4 \le 9n^2
+\]</p>
+<p>Choosing $c_1 = 2$, $c_2 = 9$, and $n_0 = 1$, both conditions hold together. So,
+\[
+2n^2 + 3n + 4 = \Theta(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 52: Practice 1: $f(n) = 5n + 2$</div><div class="box-body"><p>Prove that $f(n) = \Theta(n)$.</p>
+<p><strong>Upper bound:</strong> For $n \ge 1$, $5n + 2 \le 5n + 2n = 7n$, so $c_2 = 7$.</p>
+<p><strong>Lower bound:</strong> Since $2 \ge 0$, $5n + 2 \ge 5n$, so $c_1 = 5$.</p>
+<p>Choosing $c_1 = 5$, $c_2 = 7$, $n_0 = 1$, we get $5n + 2 = \Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 53: Practice 2: $f(n) = n^2 + n$</div><div class="box-body"><p>Prove that $f(n) = \Theta(n^2)$.</p>
+<p><strong>Upper bound:</strong> For $n \ge 1$, $n \le n^2$, so $n^2 + n \le n^2 + n^2 = 2n^2$, giving $c_2 = 2$.</p>
+<p><strong>Lower bound:</strong> Since $n \ge 0$, $n^2 + n \ge n^2$, giving $c_1 = 1$.</p>
+<p>Choosing $c_1 = 1$, $c_2 = 2$, $n_0 = 1$, we get $n^2 + n = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 54: Practice 3: $f(n) = 3n^3 + 2n^2 + n$</div><div class="box-body"><p>Prove that $f(n) = \Theta(n^3)$.</p>
+<p><strong>Upper bound:</strong> For $n \ge 1$, $2n^2 \le 2n^3$ and $n \le n^3$, so
+\[
+f(n) \le 3n^3 + 2n^3 + n^3 = 6n^3,    c_2 = 6
+\]</p>
+<p><strong>Lower bound:</strong> Since all terms are non-negative, $f(n) \ge 3n^3$, so $c_1 = 3$.</p>
+<p>Choosing $c_1 = 3$, $c_2 = 6$, $n_0 = 1$, we get $3n^3 + 2n^2 + n = \Theta(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 55: Practice 4: $f(n) = \dfrac{1}{2}n^2 - 3n$</div><div class="box-body"><p>Prove that $f(n) = \Theta(n^2)$.</p>
+<p><strong>Lower bound:</strong> For $n \ge 12$, $3n \le \dfrac{1}{4}n^2$, so
+\[
+f(n) \ge \frac{1}{2}n^2 - \frac{1}{4}n^2 = \frac{1}{4}n^2,    c_1 = \frac{1}{4}
+\]</p>
+<p><strong>Upper bound:</strong> Since $3n \ge 0$ does not add value here, simply $f(n) \le \dfrac{1}{2}n^2$, so $c_2 = \dfrac{1}{2}$.</p>
+<p>Choosing $c_1 = \dfrac{1}{4}$, $c_2 = \dfrac{1}{2}$, $n_0 = 12$, we get $\dfrac{1}{2}n^2 - 3n = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 56: Practice 5: $f(n) = n \log n + n$</div><div class="box-body"><p>Prove that $f(n) = \Theta(n \log n)$.</p>
+<p><strong>Upper bound:</strong> For $n \ge 2$, $\log n \ge 1$, so $n \le n \log n$, giving
+\[
+f(n) \le n \log n + n \log n = 2n \log n,    c_2 = 2
+\]</p>
+<p><strong>Lower bound:</strong> Since $n \ge 0$, $f(n) \ge n \log n$, giving $c_1 = 1$.</p>
+<p>Choosing $c_1 = 1$, $c_2 = 2$, $n_0 = 2$, we get $n \log n + n = \Theta(n \log n)$.</p></div></div>
+</section>
+<section id="relationship-between-o-omega-and-theta" class="content-section level-2">
+<h3 class="section-heading">Relationship Between $O$, $\Omega$, and $\Theta$</h3>
+<div class="concept-box"><div class="box-title">How the Three Notations Connect</div><div class="box-body"><p>Big-Oh, Big-Omega, and Big-Theta are not separate, unrelated ideas. They are connected to each other through some simple rules. These rules help us prove one notation using another, and help us understand them better as a single family.</p></div></div>
+<div class="concept-box"><div class="box-title">Transitivity</div><div class="box-body"><p>If $f(n) = \Theta(g(n))$, and $g(n) = \Theta(h(n))$, then $f(n) = \Theta(h(n))$. This same rule also works for $O$ and $\Omega$. In simple words, if $A$ matches $B$ in growth, and $B$ matches $C$ in growth, then $A$ also matches $C$ in growth.</p></div></div>
+<div class="example-box"><div class="box-title">Example 57: Chain of Friends</div><div class="box-body"><p>If Ravi is as tall as Suresh, and Suresh is as tall as Mahesh, then Ravi is also as tall as Mahesh. Transitivity in notations works the same way, just with growth rate instead of height.</p></div></div>
+<div class="concept-box"><div class="box-title">Reflexivity</div><div class="box-body"><p>Any function is always related to itself in the same notation. That means $f(n) = O(f(n))$. This same rule works for $\Theta$ and $\Omega$ also. In simple words, a function always grows at the same rate as itself, which is obviously true.</p></div></div>
+<div class="concept-box"><div class="box-title">Symmetry</div><div class="box-body"><p>This rule is only for Big-Theta. $f(n) = \Theta(g(n))$ if and only if $g(n) = \Theta(f(n))$. In simple words, if $f(n)$ grows at the same rate as $g(n)$, then $g(n)$ also grows at the same rate as $f(n)$. This makes sense because Big-Theta means equal growth, and equal growth works both ways.</p></div></div>
+<div class="concept-box"><div class="box-title">Transpose Symmetry</div><div class="box-body"><p>This rule connects Big-Oh and Big-Omega together. $f(n) = O(g(n))$ if and only if $g(n) = \Omega(f(n))$. In simple words, if $f(n)$ does not grow faster than $g(n)$, then automatically $g(n)$ does not grow slower than $f(n)$. These are just two ways of saying the same thing, from different sides.</p></div></div>
+<div class="concept-box"><div class="box-title">Theta as Combination of Oh and Omega</div><div class="box-body"><p>For any two functions $f(n)$ and $g(n)$ that stay non-negative for large $n$,
+\[
+f(n) = \Theta(g(n))    \text{if and only if}    f(n) = O(g(n)) \text{ and } f(n) = \Omega(g(n))
+\]
+This means, to prove Big-Theta, we do not need a brand new method. We simply prove Big-Oh first, then prove Big-Omega separately, and if both are true, Big-Theta is automatically true.</p></div></div>
+<div class="example-box"><div class="box-title">Example 58: Upper Wall and Lower Wall Together</div><div class="box-body"><p>Think back to the road between two walls example used for Big-Theta. The left wall is the lower bound, which is Big-Omega. The right wall is the upper bound, which is Big-Oh. If we show the car never crosses the left wall, and never crosses the right wall, we have shown the car always stays on this road, which is exactly Big-Theta.</p></div></div>
+<div class="example-box"><div class="box-title">Example 59: Proving Theta Using Oh and Omega Together: $f(n) = an^2 + bn + c$</div><div class="box-body"><p>We want to show that for $a &gt; 0$, $f(n) = an^2 + bn + c = \Theta(n^2)$.</p>
+<p><strong>Step 1: Prove Big-Oh.</strong> For $n \ge 1$, we know $|bn| \le |b| n^2$ and $|c| \le |c| n^2$. So,
+\[
+f(n) \le an^2 + |b|n^2 + |c|n^2 = (a + |b| + |c|) n^2
+\]
+This shows $f(n) = O(n^2)$.</p>
+<p><strong>Step 2: Prove Big-Omega.</strong> Since $a &gt; 0$, the term $an^2$ is the strongest term, and it grows faster than $bn$ and $c$. So, for large enough $n$, the smaller terms cannot pull the value below half of $an^2$. There exists some $n_0$ such that
+\[
+an^2 + bn + c \ge \frac{a}{2} n^2    \text{for all } n \ge n_0
+\]
+This shows $f(n) = \Omega(n^2)$.</p>
+<p><strong>Step 3: Combine.</strong> Since $f(n)$ is both $O(n^2)$ and $\Omega(n^2)$, by the rule connecting the three notations,
+\[
+an^2 + bn + c = \Theta(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 60: Practice 1: Using Transitivity</div><div class="box-body"><p>Given $f(n) = \Theta(n^2)$ and $g(n) = \Theta(n^2)$, with $h(n) = n^2$, show $f(n) = \Theta(h(n))$.</p>
+<p><strong>Solution:</strong> Since $f(n) = \Theta(g(n))$, and $g(n) = \Theta(h(n))$ (because both $g(n)$ and $h(n)$ are $\Theta(n^2)$), by transitivity, $f(n) = \Theta(h(n))$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 61: Practice 2: Using Transpose Symmetry</div><div class="box-body"><p>Given $n = O(n^2)$, what can we say about $n^2$ using transpose symmetry?</p>
+<p><strong>Solution:</strong> By transpose symmetry, since $n = O(n^2)$, it directly follows that $n^2 = \Omega(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 62: Practice 3: Proving Theta Using Both Bounds</div><div class="box-body"><p>Show that $f(n) = 4n^2 - 5n$ is $\Theta(n^2)$.</p>
+<p><strong>Upper bound:</strong> For $n \ge 1$, $f(n) \le 4n^2$, so $f(n) = O(n^2)$.</p>
+<p><strong>Lower bound:</strong> For $n \ge 3$, $5n \le 2n^2$, so $f(n) \ge 4n^2 - 2n^2 = 2n^2$, giving $f(n) = \Omega(n^2)$.</p>
+<p>Since both hold, $f(n) = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 63: Practice 4: Symmetry Check</div><div class="box-body"><p>If $5n^2 = \Theta(n^2)$, what can we say about $n^2$ in relation to $5n^2$?</p>
+<p><strong>Solution:</strong> By symmetry of Big-Theta, since $5n^2 = \Theta(n^2)$, it directly follows that $n^2 = \Theta(5n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 64: Practice 5: Chain Using Transitivity</div><div class="box-body"><p>Given $n \log n = \Theta(n \log n)$, and $n \log n = \Theta(2n \log n)$, and $2n \log n = \Theta(3n \log n)$, what can we conclude about $n \log n$ and $3n \log n$?</p>
+<p><strong>Solution:</strong> Using transitivity twice, since $n \log n = \Theta(2n \log n)$ and $2n \log n = \Theta(3n \log n)$, we get $n \log n = \Theta(3n \log n)$.</p></div></div>
+</section>
+<section id="little-o-notation" class="content-section level-2">
+<h3 class="section-heading">Little-$o$ Notation</h3>
+<div class="concept-box"><div class="box-title">Little-$o$ Notation</div><div class="box-body"><p>Little-$o$ notation also gives an upper bound, like Big-Oh. But there is a big difference. In Big-Oh, $f(n)$ can grow at the same rate as $g(n)$. In little-$o$, $f(n)$ must grow strictly slower than $g(n)$, not at the same rate.</p>
+<p>Formally, we say $f(n) = o(g(n))$ if, for every positive constant $c$, no matter how small, we can find a value $n_0$ such that
+\[
+0 \le f(n) &lt; c \cdot g(n)    \text{for all } n \ge n_0
+\]</p>
+<p>The key difference from Big-Oh is this, in little-$o$, the inequality must hold for <em>every</em> possible $c &gt; 0$, even very tiny values of $c$, not just for some one fixed $c$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 65: Younger Brother and Older Brother</div><div class="box-body"><p>Think of two brothers walking. Big-Oh is like saying the younger brother never walks faster than the older brother, but they could be walking at the exact same speed. Little-$o$ is like saying the younger brother always walks strictly slower, he can never catch up to the same speed, no matter how slow we let the older brother go.</p></div></div>
+<div class="concept-box"><div class="box-title">Properties of Little-$o$ Notation</div><div class="box-body"><ul><li><p>Little-$o$ gives a strict upper bound, meaning $f(n)$ grows strictly slower than $g(n)$.</p></li><li><p>Unlike Big-Oh, here the condition must hold for every $c &gt; 0$, not just one specific $c$. This makes little-$o$ a stronger and more demanding condition than Big-Oh.</p></li><li><p>If $f(n) = o(g(n))$, then automatically $f(n) = O(g(n))$ also holds. But the opposite is not always true.</p></li><li><p>A function is never little-$o$ of itself. That means $f(n) \ne o(f(n))$, because $f(n)$ cannot grow strictly slower than itself.</p></li><li><p>A simple way to check little-$o$ is using limits,
+\[
+\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0
+\]
+If this limit becomes exactly $0$, then $f(n) = o(g(n))$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 66: Checking Little-$o$: $f(n) = n$, $g(n) = n^2$</div><div class="box-body"><p>We check whether $n = o(n^2)$, using the limit method.
+\[
+\lim_{n \to \infty} \frac{n}{n^2} = \lim_{n \to \infty} \frac{1}{n} = 0
+\]
+Since the limit is $0$, we conclude
+\[
+n = o(n^2)
+\]
+This makes sense, because $n$ grows much slower than $n^2$, as $n$ becomes large.</p></div></div>
+<div class="example-box"><div class="box-title">Example 67: Checking Little-$o$: $f(n) = n^2$, $g(n) = n^2$</div><div class="box-body"><p>We check whether $n^2 = o(n^2)$.
+\[
+\lim_{n \to \infty} \frac{n^2}{n^2} = 1
+\]
+Since the limit is $1$, not $0$, we conclude
+\[
+n^2 \ne o(n^2)
+\]
+This confirms that little-$o$ does not allow same speed growth, only strictly slower growth is allowed.</p></div></div>
+</section>
+<section id="little-omega-notation" class="content-section level-2">
+<h3 class="section-heading">Little-$\omega$ Notation</h3>
+<div class="concept-box"><div class="box-title">Little-$\omega$ Notation</div><div class="box-body"><p>Little-$\omega$ notation gives a lower bound, like Big-Omega. But just like little-$o$, there is a strictness added here. In Big-Omega, $f(n)$ can grow at the same rate as $g(n)$. In little-$\omega$, $f(n)$ must grow strictly faster than $g(n)$, not at the same rate.</p>
+<p>Formally, we say $f(n) = \omega(g(n))$ if, for every positive constant $c$, no matter how large, we can find a value $n_0$ such that
+\[
+0 \le c \cdot g(n) &lt; f(n)    \text{for all } n \ge n_0
+\]</p>
+<p>Here also, the condition must hold for <em>every</em> possible $c &gt; 0$, not just one fixed $c$, which makes little-$\omega$ a stronger condition than Big-Omega.</p></div></div>
+<div class="example-box"><div class="box-title">Example 68: Faster Runner</div><div class="box-body"><p>Think of a runner who is always strictly faster than another runner, no matter how much we slow down the comparison runner. This is little-$\omega$, a strict, always faster relationship. Big-Omega only says our runner is never slower, they could even run at the same speed sometimes.</p></div></div>
+<div class="concept-box"><div class="box-title">Properties of Little-$\omega$ Notation</div><div class="box-body"><ul><li><p>Little-$\omega$ gives a strict lower bound, meaning $f(n)$ grows strictly faster than $g(n)$.</p></li><li><p>The condition must hold for every $c &gt; 0$, not just one specific $c$, making it stronger than Big-Omega.</p></li><li><p>If $f(n) = \omega(g(n))$, then automatically $f(n) = \Omega(g(n))$ also holds. But the opposite is not always true.</p></li><li><p>A function is never little-$\omega$ of itself, since $f(n)$ cannot grow strictly faster than itself.</p></li><li><p>A simple way to check little-$\omega$ is using limits,
+\[
+\lim_{n \to \infty} \frac{f(n)}{g(n)} = \infty
+\]
+If this limit becomes infinity, then $f(n) = \omega(g(n))$.</p></li><li><p>Little-$o$ and little-$\omega$ are reverse of each other, just like Big-Oh and Big-Omega. If $f(n) = o(g(n))$, then $g(n) = \omega(f(n))$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 69: Checking Little-$\omega$: $f(n) = n^2$, $g(n) = n$</div><div class="box-body"><p>We check whether $n^2 = \omega(n)$, using the limit method.
+\[
+\lim_{n \to \infty} \frac{n^2}{n} = \lim_{n \to \infty} n = \infty
+\]
+Since the limit is infinity, we conclude
+\[
+n^2 = \omega(n)
+\]
+This makes sense, because $n^2$ grows much faster than $n$, as $n$ becomes large.</p></div></div>
+<div class="example-box"><div class="box-title">Example 70: Checking Little-$\omega$: $f(n) = 2^n$, $g(n) = n^{10}$</div><div class="box-body"><p>We check whether $2^n = \omega(n^{10})$.
+\[
+\lim_{n \to \infty} \frac{2^n}{n^{10}} = \infty
+\]
+This is true because exponential growth always beats polynomial growth, eventually, no matter how large the power is. So,
+\[
+2^n = \omega(n^{10})
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 71: Practice 1</div><div class="box-body"><p>Check whether $\log n = o(n)$.</p>
+<p><strong>Solution:</strong> 
+\[
+\lim_{n \to \infty} \frac{\log n}{n} = 0
+\]
+Since the limit is $0$, we get $\log n = o(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 72: Practice 2</div><div class="box-body"><p>Check whether $n^3 = o(n^2)$.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{n^3}{n^2} = \lim_{n \to \infty} n = \infty
+\]
+Since the limit is not $0$, we get $n^3 \ne o(n^2)$. In fact, $n^3 = \omega(n^2)$ instead.</p></div></div>
+<div class="example-box"><div class="box-title">Example 73: Practice 3</div><div class="box-body"><p>Check whether $n! = \omega(2^n)$.</p>
+<p><strong>Solution:</strong> As $n$ becomes large, factorial growth becomes much faster than exponential growth.
+\[
+\lim_{n \to \infty} \frac{n!}{2^n} = \infty
+\]
+So, $n! = \omega(2^n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 74: Practice 4</div><div class="box-body"><p>Check whether $5n^2 = o(n^2)$.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{5n^2}{n^2} = 5
+\]
+Since the limit is a fixed constant, not $0$, we get $5n^2 \ne o(n^2)$. Instead, $5n^2 = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 75: Practice 5</div><div class="box-body"><p>Check whether $n \log n = \omega(n)$.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{n \log n}{n} = \lim_{n \to \infty} \log n = \infty
+\]
+Since the limit is infinity, we get $n \log n = \omega(n)$.</p></div></div>
+</section>
+<section id="relationship-between-o-omega-theta-o-and-omega" class="content-section level-2">
+<h3 class="section-heading">Relationship Between $O$, $\Omega$, $\Theta$, $o$, and $\omega$</h3>
+<div class="concept-box"><div class="box-title">Two Families of Notations</div><div class="box-body"><p>We can group all five notations into two families. One family compares growth allowing equal growth also, this is the non-strict family, containing $O$, $\Omega$, and $\Theta$. The other family compares growth not allowing equal growth, this is the strict family, containing $o$ and $\omega$. Little-$o$ is the strict version of Big-Oh, and little-$\omega$ is the strict version of Big-Omega. There is no strict version of Big-Theta, because Theta already means exact equal growth.</p></div></div>
+<div class="example-box"><div class="box-title">Example 76: Less Than vs Strictly Less Than</div><div class="box-body"><p>Think of two ways to compare numbers. We can say $a \le b$, which allows $a$ to be equal to $b$. Or we can say $a &lt; b$, which does not allow them to be equal. Big-Oh is like $\le$, and little-$o$ is like $&lt;$. The same pattern goes for Big-Omega and little-$\omega$.</p></div></div>
+<div class="concept-box"><div class="box-title">Limit Based Summary</div><div class="box-body"><p>All five notations can be checked using the limit
+\[
+L = \lim_{n \to \infty} \frac{f(n)}{g(n)}
+\]
+Depending on the value of $L$, we know which notation applies.</p>
+<ul><li><p>If $L = 0$, then $f(n) = o(g(n))$, and also $f(n) = O(g(n))$.</p></li><li><p>If $L$ is a positive finite constant, then $f(n) = \Theta(g(n))$, and also $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$.</p></li><li><p>If $L = \infty$, then $f(n) = \omega(g(n))$, and also $f(n) = \Omega(g(n))$.</p></li></ul>
+<p>This single limit test tells us exactly which notations are true and which are false, for a given pair $f(n)$ and $g(n)$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig019.png" alt="diagram"></div>
+<div class="concept-box"><div class="box-title">How the Notations Are Related</div><div class="box-body"><ul><li><p>$f(n) = o(g(n))$ always implies $f(n) = O(g(n))$, because strictly slower also means not faster. But $O$ does not imply $o$, since $O$ allows equal growth also.</p></li><li><p>$f(n) = \omega(g(n))$ always implies $f(n) = \Omega(g(n))$, because strictly faster also means not slower. But $\Omega$ does not imply $\omega$, since $\Omega$ allows equal growth also.</p></li><li><p>$f(n) = \Theta(g(n))$ if and only if both $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$ are true together.</p></li><li><p>$f(n) = o(g(n))$ and $f(n) = \omega(g(n))$ can never both be true for the same pair $f(n)$ and $g(n)$, because one says strictly slower and other says strictly faster, they cannot both happen.</p></li><li><p>$f(n) = o(g(n))$ and $f(n) = \Theta(g(n))$ can never both be true together, because $o$ means strictly slower, but $\Theta$ means equal growth.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 77: Connection Through Transpose Symmetry</div><div class="box-body"><p>Just like $f(n) = O(g(n))$ if and only if $g(n) = \Omega(f(n))$, the same flipping rule works for the strict family also. $f(n) = o(g(n))$ if and only if $g(n) = \omega(f(n))$. For example, since $n = o(n^2)$, by this flipping rule, we directly get $n^2 = \omega(n)$, without checking the limit again.</p></div></div>
+<div class="concept-box"><div class="box-title">Relation Between the Big Family and the Little Family</div><div class="box-body"><p>The big notations ($O$, $\Omega$, $\Theta$) and the little notations ($o$, $\omega$) are not independent, they sit inside each other in a strict-inside-non-strict pattern.</p>
+<ul><li><p>Every function pair classified by $o$ is automatically also classified by $O$. So $o(g(n))$ is a smaller, stricter set sitting entirely inside $O(g(n))$.</p></li><li><p>Every function pair classified by $\omega$ is automatically also classified by $\Omega$. So $\omega(g(n))$ sits entirely inside $\Omega(g(n))$.</p></li><li><p>$O(g(n))$ can be split into exactly two non-overlapping parts: the part where growth is strictly slower, which is $o(g(n))$, and the part where growth is exactly equal, which is $\Theta(g(n))$. That is,
+\[
+O(g(n)) = o(g(n)) \cup \Theta(g(n))
+\]</p></li><li><p>Similarly, $\Omega(g(n))$ splits into $\omega(g(n))$ and $\Theta(g(n))$:
+\[
+\Omega(g(n)) = \omega(g(n)) \cup \Theta(g(n))
+\]</p></li><li><p>Because of this split, if we already know $f(n) = O(g(n))$ but we can rule out $f(n) = \Theta(g(n))$, we can directly conclude the stronger fact $f(n) = o(g(n))$. The same logic applies to $\Omega$ and $\omega$.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 78: Using the Big-Little Split: $f(n) = n^2$, $g(n) = n^3$</div><div class="box-body"><p>We already know from Practice 1 that $f(n) = O(n^3)$. Now check whether $f(n) = \Theta(n^3)$ is true. Since
+\[
+\lim_{n \to \infty} \frac{n^2}{n^3} = 0 \ne \text{positive constant}
+\]
+$\Theta$ is ruled out. Since $O(g(n)) = o(g(n)) \cup \Theta(g(n))$, and $\Theta$ is ruled out, we directly conclude
+\[
+f(n) = o(n^3)
+\]
+without needing to separately confirm the strict limit condition.</p></div></div>
+<div class="concept-box"><div class="box-title">Transitivity of Little-$o$ and Little-$\omega$</div><div class="box-body"><p>The strict notations are transitive. If $f(n) = o(g(n))$ and $g(n) = o(h(n))$, then
+\[
+f(n) = o(h(n))
+\]
+Similarly, if $f(n) = \omega(g(n))$ and $g(n) = \omega(h(n))$, then
+\[
+f(n) = \omega(h(n))
+\]
+Think of it as a chain of strictly-slower-than relationships. If $A$ is strictly slower than $B$, and $B$ is strictly slower than $C$, then $A$ must be strictly slower than $C$ as well, the strictness carries through the whole chain.</p></div></div>
+<div class="example-box"><div class="box-title">Example 79: Using Transitivity of Little-$o$</div><div class="box-body"><p>We know $\log n = o(n)$, and we know $n = o(n^2)$. By transitivity of $o$, without computing any new limit, we can directly conclude
+\[
+\log n = o(n^2)
+\]
+By the transpose symmetry rule, this also tells us $n^2 = \omega(\log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 80: Full Classification: $f(n) = 3n^2$, $g(n) = n^2$</div><div class="box-body"><p>\[
+\lim_{n \to \infty} \frac{3n^2}{n^2} = 3
+\]
+The limit is a positive constant, so $f(n) = \Theta(n^2)$. This also means $f(n) = O(n^2)$ and $f(n) = \Omega(n^2)$ are both true. But $f(n) \ne o(n^2)$ and $f(n) \ne \omega(n^2)$, since the limit is not $0$ and not $\infty$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 81: Full Classification: $f(n) = n \log n$, $g(n) = n^2$</div><div class="box-body"><p>\[
+\lim_{n \to \infty} \frac{n \log n}{n^2} = \lim_{n \to \infty} \frac{\log n}{n} = 0
+\]
+The limit is $0$, so $f(n) = o(n^2)$. This also means $f(n) = O(n^2)$ is true. But $f(n) \ne \Theta(n^2)$, $f(n) \ne \Omega(n^2)$, and $f(n) \ne \omega(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 82: Practice 1: $f(n) = n^2$, $g(n) = n^3$</div><div class="box-body"><p>Find the limit and classify the relationship.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{n^2}{n^3} = 0
+\]
+So, $f(n) = o(n^3)$, which also means $f(n) = O(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 83: Practice 2: $f(n) = 2^n$, $g(n) = 3^n$</div><div class="box-body"><p>Find the limit and classify the relationship.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{2^n}{3^n} = \lim_{n \to \infty} \left(\frac{2}{3}\right)^n = 0
+\]
+So, $f(n) = o(3^n)$, which also means $f(n) = O(3^n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 84: Practice 3: $f(n) = n!$, $g(n) = n^n$</div><div class="box-body"><p>Find the limit and classify the relationship.</p>
+<p><strong>Solution:</strong> Since $n^n$ multiplies $n$ copies of $n$, but $n!$ multiplies decreasing numbers below $n$, $n^n$ grows faster.
+\[
+\lim_{n \to \infty} \frac{n!}{n^n} = 0
+\]
+So, $f(n) = o(n^n)$, which also means $f(n) = O(n^n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 85: Practice 4: $f(n) = 7n^2 + 2n$, $g(n) = n^2$</div><div class="box-body"><p>Find the limit and classify the relationship.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{7n^2 + 2n}{n^2} = 7
+\]
+Since the limit is a positive constant, $f(n) = \Theta(n^2)$, which also means $f(n) = O(n^2)$ and $f(n) = \Omega(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 86: Practice 5: $f(n) = n^3$, $g(n) = n^2 \log n$</div><div class="box-body"><p>Find the limit and classify the relationship.</p>
+<p><strong>Solution:</strong>
+\[
+\lim_{n \to \infty} \frac{n^3}{n^2 \log n} = \lim_{n \to \infty} \frac{n}{\log n} = \infty
+\]
+So, $f(n) = \omega(n^2 \log n)$, which also means $f(n) = \Omega(n^2 \log n)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Additive Property (Sum Rule)</div><div class="box-body"><p>When two functions are added together, the sum is bounded by whichever growth rate is faster. Formally, if $f_1(n) = O(g_1(n))$ and $f_2(n) = O(g_2(n))$, then
+\[
+f_1(n) + f_2(n) = O\big(\max(g_1(n), g_2(n))\big)
+\]
+The same idea holds for $\Omega$: if $f_1(n) = \Omega(g_1(n))$ and $f_2(n) = \Omega(g_2(n))$, then $f_1(n) + f_2(n) = \Omega\big(\max(g_1(n), g_2(n))\big)$.</p>
+<p>A useful special case, often called the <strong>Max Rule</strong>, applies when $f(n)$ and $g(n)$ are both asymptotically non-negative:
+\[
+f(n) + g(n) = \Theta\big(\max(f(n), g(n))\big)
+\]
+The intuition is simple: when you add a slow-growing term to a fast-growing term, the slow term eventually becomes insignificant, so the sum behaves like the faster term alone.</p></div></div>
+<div class="example-box"><div class="box-title">Example 87: Applying the Sum Rule: $f(n) = n^3 + n^2 \log n$</div><div class="box-body"><p>Here the two terms are $n^3$ and $n^2 \log n$. Since $n^3$ grows faster than $n^2 \log n$, the max rule tells us
+\[
+n^3 + n^2 \log n = \Theta(n^3)
+\]
+We do not need to analyze both terms separately in later steps of an algorithm's analysis; only the dominant term $n^3$ matters for the overall growth rate.</p></div></div>
+<div class="concept-box"><div class="box-title">Multiplicative Property (Product Rule)</div><div class="box-body"><p>When two functions are multiplied, their bounds multiply together as well. If $f_1(n) = O(g_1(n))$ and $f_2(n) = O(g_2(n))$, then
+\[
+f_1(n) \cdot f_2(n) = O\big(g_1(n) \cdot g_2(n)\big)
+\]
+The same pattern holds for $\Omega$ and $\Theta$:</p>
+<ul><li><p>If $f_1(n) = \Omega(g_1(n))$ and $f_2(n) = \Omega(g_2(n))$, then $f_1(n) \cdot f_2(n) = \Omega(g_1(n) \cdot g_2(n))$.</p></li><li><p>If $f_1(n) = \Theta(g_1(n))$ and $f_2(n) = \Theta(g_2(n))$, then $f_1(n) \cdot f_2(n) = \Theta(g_1(n) \cdot g_2(n))$.</p></li></ul>
+<p>This property is especially useful when analyzing nested loops, since the work done by an outer loop and an inner loop multiplies together.</p></div></div>
+<div class="example-box"><div class="box-title">Example 88: Applying the Product Rule: Nested Loop Cost</div><div class="box-body"><p>Suppose an outer loop runs $\Theta(n)$ times, and for each outer iteration, an inner loop runs $\Theta(\log n)$ times. Treating these as $f_1(n) = \Theta(n)$ and $f_2(n) = \Theta(\log n)$, the product rule gives the total work as
+\[
+f_1(n) \cdot f_2(n) = \Theta(n \log n)
+\]
+This is exactly why we multiply the bounds of nested loops instead of adding them.</p></div></div>
+<div class="concept-box"><div class="box-title">Constant Multiple Property</div><div class="box-body"><p>Multiplying a function by a fixed positive constant does not change its asymptotic classification. If $f(n) = O(g(n))$, then for any constant $c &gt; 0$,
+\[
+c \cdot f(n) = O(g(n))
+\]
+The same holds for $\Omega$, $\Theta$, $o$, and $\omega$. This is why constant factors are always dropped when we state a growth rate, since $2n$, $50n$, and $0.001n$ are all $\Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 89: Dropping Constant Factors</div><div class="box-body"><p>Suppose an algorithm performs $5n^2 + 3n$ operations. Using the sum rule, this is $\Theta(n^2)$. Using the constant multiple property, we also see that a related algorithm performing $500n^2$ operations, or even $0.5n^2$ operations, is still $\Theta(n^2)$. Only the shape of growth matters, not the constant in front of it.</p></div></div>
+<div class="example-box"><div class="box-title">Example 90: Practice 6: Big-Little Split</div><div class="box-body"><p>Given $f(n) = n \log n$ and $g(n) = n^2$, we already know $f(n) = O(n^2)$. Use the big-little split to decide whether $f(n) = o(n^2)$.</p>
+<p><strong>Solution:</strong> Check if $\Theta$ holds:
+\[
+\lim_{n \to \infty} \frac{n \log n}{n^2} = 0 \ne \text{positive constant}
+\]
+$\Theta$ is ruled out, so since $O(g(n)) = o(g(n)) \cup \Theta(g(n))$, we conclude $f(n) = o(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 91: Practice 7: Transitivity of Little-$\omega$</div><div class="box-body"><p>Given $n^2 = \omega(n \log n)$ and $n \log n = \omega(n)$, what can we conclude?</p>
+<p><strong>Solution:</strong> By transitivity of $\omega$,
+\[
+n^2 = \omega(n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 92: Practice 8: Sum Rule</div><div class="box-body"><p>Classify $f(n) = 2^n + n^{100}$ using the max rule.</p>
+<p><strong>Solution:</strong> Since $2^n$ grows faster than any polynomial, including $n^{100}$,
+\[
+2^n + n^{100} = \Theta(2^n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 93: Practice 9: Product Rule</div><div class="box-body"><p>An algorithm has an outer loop of $\Theta(n^2)$ iterations, and inside each iteration it calls a subroutine that costs $\Theta(n)$. Find the total cost.</p>
+<p><strong>Solution:</strong> By the product rule,
+\[
+\Theta(n^2) \cdot \Theta(n) = \Theta(n^3)
+\]</p></div></div>
+</section>
+</section>
+<section id="best-case-worst-case-and-average-case" class="content-section level-1">
+<h2 class="section-heading">Best Case, Worst Case and Average Case</h2>
+<div class="concept-box"><div class="box-title">Why We Need These Three Cases</div><div class="box-body"><p>For many algorithms, the running time does not stay fixed, it changes depending on the actual input given, even if the input size $n$ is the same. So, we study three different cases to fully understand the algorithm's behavior, best case, worst case, and average case.</p></div></div>
+<div class="example-box"><div class="box-title">Example 94: Searching for a Friend in a Queue</div><div class="box-body"><p>Suppose we are searching for our friend in a queue of people, by checking one by one from the front. If our friend is the first person, we find them fast. If our friend is the last person, we take a long time. If our friend can be anywhere with equal chance, the time taken on average lies somewhere in between.</p></div></div>
+<div class="concept-box"><div class="box-title">Worst Case</div><div class="box-body"><p>Worst case means the input that makes the algorithm take the maximum possible time, among all inputs of the same size $n$. We study worst case because it gives us a guarantee, the algorithm will never take more time than this, no matter what input comes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 95: Worst Case in Linear Search</div><div class="box-body"><p>Suppose we search for a target value in an array of $n$ elements, using linear search, checking one by one. The worst case happens when the target is at the last position, or the target is not present at all in the array. In this case, the algorithm has to check all $n$ elements, so the worst case time is $\Theta(n)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Best Case</div><div class="box-body"><p>Best case means the input that makes the algorithm take the minimum possible time, among all inputs of the same size $n$. Best case is less useful for guarantees, because we cannot expect lucky input every time, but it tells us the fastest the algorithm can ever be.</p></div></div>
+<div class="example-box"><div class="box-title">Example 96: Best Case in Linear Search</div><div class="box-body"><p>In the same linear search example, the best case happens when the target is found at the very first position. Here, the algorithm only checks one element, so the best case time is $\Theta(1)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Average Case</div><div class="box-body"><p>Average case means the expected time taken by the algorithm, averaged over all possible inputs of size $n$, assuming some probability distribution on the inputs. Average case is usually harder to calculate than best case or worst case, because it needs assumptions about how likely each input is.</p></div></div>
+<div class="example-box"><div class="box-title">Example 97: Average Case in Linear Search</div><div class="box-body"><p>In linear search, assume the target is equally likely to be at any position from $1$ to $n$, or not present at all. On average, the target is found around the middle of the array. So, the average case time works out to be around $\dfrac{n+1}{2}$ comparisons, which is still $\Theta(n)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Which Case Matters Most</div><div class="box-body"><p>In most algorithm analysis, we focus mainly on worst case, because it gives a safe upper limit, useful for real world guarantees. Average case is used when we have good knowledge about the typical input pattern. Best case is rarely used alone, because it can be misleading, an algorithm may look fast in best case but actually be slow in general.</p></div></div>
+<div class="example-box"><div class="box-title">Example 98: Best, Worst, Average Together: Searching in an Array of Size 10</div><div class="box-body"><p>Suppose we have an array of $10$ elements, and we search for a target using linear search.</p>
+<ul><li><p>Best case, target is at position $1$, only $1$ comparison needed.</p></li><li><p>Worst case, target is at position $10$, or not present, $10$ comparisons needed.</p></li><li><p>Average case, assuming target is equally likely anywhere, around $5$ to $6$ comparisons needed on average.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 99: Practice 1: Searching in Sorted Array</div><div class="box-body"><p>For a sorted array, where we stop searching as soon as we cross the target value (since the array is sorted), identify the best and worst case for linear search.</p>
+<p><strong>Solution:</strong> Best case, target found at position $1$, only $1$ comparison. Worst case, target is bigger than all elements, or array is fully scanned, requiring $n$ comparisons.</p></div></div>
+<div class="example-box"><div class="box-title">Example 100: Practice 2: Bubble Sort on Already Sorted Array</div><div class="box-body"><p>Identify the best case for bubble sort, when the input array is already sorted, and the algorithm can detect this and stop early.</p>
+<p><strong>Solution:</strong> Best case happens when the array is already sorted, requiring only $1$ pass with $n-1$ comparisons to confirm no swaps are needed, giving best case $\Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 101: Practice 3: Bubble Sort on Reverse Sorted Array</div><div class="box-body"><p>Identify the worst case for bubble sort, when the input array is sorted in reverse order.</p>
+<p><strong>Solution:</strong> Worst case happens when every pair of adjacent elements needs swapping, in every pass, requiring around $\dfrac{n(n-1)}{2}$ comparisons, giving worst case $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 102: Practice 4: Searching in a Hash Table</div><div class="box-body"><p>Identify a situation that represents the worst case for searching in a hash table.</p>
+<p><strong>Solution:</strong> Worst case happens when many keys collide and land in the same bucket, forming a long chain. Searching then becomes like a linear search inside that chain, giving worst case $\Theta(n)$, even though average case is usually $\Theta(1)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 103: Practice 5: Quicksort Best vs Worst Case</div><div class="box-body"><p>Identify the best case and worst case input pattern for quicksort, based on how the pivot splits the array.</p>
+<p><strong>Solution:</strong> Best case happens when the pivot always splits the array into two equal halves, giving $\Theta(n \log n)$. Worst case happens when the pivot always picks the smallest or largest element, splitting the array very unevenly, giving $\Theta(n^2)$.</p></div></div>
+</section>
+<section id="relation-between-o-omega-theta-and-best-worst-average-case" class="content-section level-1">
+<h2 class="section-heading">Relation Between $O$, $\Omega$, $\Theta$ and Best, Worst, Average Case</h2>
+<div class="concept-box"><div class="box-title">These Are Two Completely Different Ideas</div><div class="box-body"><p>Many students mix up these two ideas, but they are not the same thing, and they do not replace each other. Best case, worst case, and average case tell us <strong>which input</strong> we are talking about. Big-Oh, Big-Omega, and Big-Theta tell us <strong>how we are measuring the growth</strong> of the running time, for whichever case we picked. These two ideas work on different axes, one is about input type, the other is about bound type.</p></div></div>
+<div class="example-box"><div class="box-title">Example 104: Two Different Questions</div><div class="box-body"><p>Think of two separate questions about a runner. Question one is, "Which race are we talking about, his fastest race, his slowest race, or his typical race?" This is like best case, worst case, average case. Question two is, "Are we giving his exact time, just an upper limit, or just a lower limit?" This is like Theta, Big-Oh, Big-Omega. Both questions are needed together to fully describe his performance.</p></div></div>
+<div class="concept-box"><div class="box-title">Why Confusion Happens</div><div class="box-body"><p>The confusion happens because people are taught a shortcut, "worst case is Big-Oh, best case is Big-Omega". This shortcut is wrong, and it only works in some examples by coincidence. The truth is, we can use $O$, $\Omega$, or $\Theta$ on the worst case. We can also use $O$, $\Omega$, or $\Theta$ on the best case. We can also use them on the average case. All nine combinations are mathematically possible.</p></div></div>
+<div class="example-box"><div class="box-title">Example 105: All Nine Combinations Are Valid Statements</div><div class="box-body"><ul><li><p>Worst case can be written as $O(n^2)$, or $\Omega(n^2)$, or $\Theta(n^2)$.</p></li><li><p>Best case can be written as $O(n)$, or $\Omega(n)$, or $\Theta(n)$.</p></li><li><p>Average case can be written as $O(n \log n)$, or $\Omega(n \log n)$, or $\Theta(n \log n)$.</p></li></ul>
+<p>None of these combinations are wrong by definition. $O$, $\Omega$, $\Theta$ are just tools to express a bound, and we can apply this tool to any one of the three cases.</p></div></div>
+<div class="concept-box"><div class="box-title">Why the Shortcut Seems to Work Sometimes</div><div class="box-body"><p>In many simple textbook examples, people only state the tightest possible bound, which is $\Theta$, for both best case and worst case. When they write the worst case using $O$ instead of $\Theta$, by habit, it looks like "worst case equals Big-Oh". But this is just a common writing style, it is not a rule. We could just as easily write the worst case using $\Theta$, since $\Theta$ gives more information than $O$ alone.</p></div></div>
+<div class="example-box"><div class="box-title">Example 106: Linear Search Explained Properly</div><div class="box-body"><p>Consider linear search on an array of size $n$.</p>
+<ul><li><p>Worst case happens when the target is not found, requiring exactly $n$ comparisons. Since this is an exact bound, we should correctly say worst case is $\Theta(n)$, not just $O(n)$. Saying $O(n)$ is also technically true, but it is a weaker, less informative statement.</p></li><li><p>Best case happens when the target is found at the first position, requiring exactly $1$ comparison. So best case is $\Theta(1)$.</p></li><li><p>Average case, assuming equal probability of target at any position, requires around $\dfrac{n+1}{2}$ comparisons, so average case is also $\Theta(n)$.</p></li></ul>
+<p>Notice here, $\Theta$ was used for all three cases, because in each case, we know the exact tight bound. $O$ and $\Omega$ were not needed here, but they could have been used too, just with less precision.</p></div></div>
+<div class="concept-box"><div class="box-title">When We Actually Need $O$ or $\Omega$ Alone</div><div class="box-body"><p>Sometimes, we do not know the exact tight bound for a case, we only know a limit from one side. In such situations, we are forced to use only $O$ or only $\Omega$, because $\Theta$ is not available to us yet.</p></div></div>
+<div class="example-box"><div class="box-title">Example 107: A Case Where Only $O$ Is Known</div><div class="box-body"><p>Suppose we have a complicated algorithm, and we have proved that in the worst case, it never takes more than $n^2$ steps, but we have not yet proved the exact lower limit for worst case. Here, we can only correctly say worst case is $O(n^2)$. We cannot yet say worst case is $\Theta(n^2)$, until someone also proves a matching $\Omega(n^2)$ lower bound for the worst case.</p></div></div>
+<div class="concept-box"><div class="box-title">Clear Rule to Always Remember</div><div class="box-body"><ul><li><p>First, decide which case you are analyzing, best, worst, or average. This depends only on the input pattern, nothing to do with notation.</p></li><li><p>Second, once the case is fixed, find a formula for the number of operations, for that case only.</p></li><li><p>Third, apply $O$, $\Omega$, or $\Theta$ on that formula, exactly the same way we apply it on any normal function. The case you picked earlier has no special rule for which notation to use.</p></li><li><p>If you know the exact tight formula for that case, always prefer writing $\Theta$, since it carries the most information. Use $O$ alone only when you genuinely have just an upper limit, and use $\Omega$ alone only when you genuinely have just a lower limit.</p></li></ul></div></div>
+<div class="example-box"><div class="box-title">Example 108: Common Wrong Statement vs Correct Statement</div><div class="box-body"><p><strong>Wrong belief:</strong> "Worst case is always Big-Oh, and best case is always Big-Omega."</p>
+<p><strong>Correct understanding:</strong> Worst case, best case, and average case are simply different inputs we are studying. For each of these, once we get the exact step count, we can describe it using $O$, $\Omega$, or $\Theta$, based on how much we have proved, not based on which case it is.</p></div></div>
+<div class="example-box"><div class="box-title">Example 109: Practice 1</div><div class="box-body"><p>For linear search, the worst case requires exactly $n$ comparisons. Write this using all three notations correctly.</p>
+<p><strong>Solution:</strong> Worst case is $\Theta(n)$. It is also correct, though less precise, to say worst case is $O(n)$ and worst case is $\Omega(n)$, since $\Theta(n)$ already implies both.</p></div></div>
+<div class="example-box"><div class="box-title">Example 110: Practice 2</div><div class="box-body"><p>For insertion sort, the best case (already sorted array) requires exactly $n-1$ comparisons. Write this using the most informative notation.</p>
+<p><strong>Solution:</strong> Best case is $\Theta(n)$, since we know the exact count, $n-1$, which is tightly bounded both above and below by constant multiples of $n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 111: Practice 3</div><div class="box-body"><p>Suppose for some algorithm, only an upper limit of $n^3$ has been proved for the average case, and no lower limit is known yet. How should this be written correctly?</p>
+<p><strong>Solution:</strong> Average case is $O(n^3)$ only. It would be wrong to write $\Theta(n^3)$, because we have not proved a matching lower bound yet.</p></div></div>
+<div class="example-box"><div class="box-title">Example 112: Practice 4</div><div class="box-body"><p>A student says, "Best case of bubble sort is $\Omega(n)$, because best case always uses Omega." Explain why this reasoning is incorrect, even if the final answer is correct.</p>
+<p><strong>Solution:</strong> The reasoning is wrong, even though $\Omega(n)$ is true for the best case of bubble sort. The correct logic is, best case of bubble sort needs exactly $n-1$ comparisons, so it is $\Theta(n)$, which automatically makes $\Omega(n)$ true also. It is not true simply because it is a best case, it is true because of the actual exact analysis.</p></div></div>
+<div class="example-box"><div class="box-title">Example 113: Practice 5</div><div class="box-body"><p>For binary search on a sorted array, the worst case requires exactly $\log n$ comparisons. Write the best, worst, and average case using the most precise notation.</p>
+<p><strong>Solution:</strong> Best case is $\Theta(1)$, when the target is found at the middle on the first check. Worst case is $\Theta(\log n)$. Average case is also $\Theta(\log n)$, since on average, the search still takes a number of steps proportional to $\log n$.</p></div></div>
+</section>
+<section id="analysis-of-non-recursive-algorithms" class="content-section level-1">
+<h2 class="section-heading">Analysis of Non Recursive Algorithms</h2>
+
+<section id="useful-maths-formulas" class="content-section level-2">
+<h3 class="section-heading">Useful Maths Formulas</h3>
+<div class="concept-box"><div class="box-title">Why We Need These Formulas</div><div class="box-body"><p>When we analyze a loop in an algorithm, we often get a sum of many terms, like $1 + 2 + 3 + \dots + n$. To find the exact order of growth, we need to convert this long sum into a simple formula. These maths formulas help us do that conversion quickly and correctly.</p></div></div>
+<div class="concept-box"><div class="box-title">Sum of First $n$ Natural Numbers</div><div class="box-body"><p>This formula gives the sum of all numbers from $1$ to $n$.
+\[
+\sum_{i=1}^{n} i = 1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}
+\]
+This sum grows as $\Theta(n^2)$, even though we are adding $n$ terms, because the terms themselves keep increasing.</p></div></div>
+<div class="example-box"><div class="box-title">Example 114: Applying Sum of Natural Numbers</div><div class="box-body"><p>Consider a loop where, in the first round we do $1$ unit of work, in the second round $2$ units, in the third round $3$ units, and so on, till $n$ rounds. The total work is
+\[
+1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}
+\]
+which is $\Theta(n^2)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Sum of First $n$ Squares</div><div class="box-body"><p>This formula gives the sum of squares of numbers from $1$ to $n$.
+\[
+\sum_{i=1}^{n} i^2 = 1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+This sum grows as $\Theta(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 115: Applying Sum of Squares</div><div class="box-body"><p>Consider a loop where, in round $i$, we do $i^2$ units of work, for $i = 1$ to $n$. The total work is
+\[
+\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+which is $\Theta(n^3)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Sum of a Geometric Series</div><div class="box-body"><p>This formula gives the sum of terms where each term is a fixed ratio $r$ times the previous term.
+\[
+\sum_{i=0}^{n} r^i = 1 + r + r^2 + \dots + r^n = \frac{r^{n+1} - 1}{r - 1},    r \ne 1
+\]
+If $r &gt; 1$, this sum grows as $\Theta(r^n)$, because the last term dominates all the earlier terms combined. If $0 &lt; r &lt; 1$, the sum stays bounded by a constant, no matter how large $n$ becomes.</p></div></div>
+<div class="example-box"><div class="box-title">Example 116: Applying Geometric Series with $r=2$</div><div class="box-body"><p>Consider a loop where, in round $i$, we do $2^i$ units of work, for $i = 0$ to $n$. The total work is
+\[
+1 + 2 + 4 + \dots + 2^n = 2^{n+1} - 1
+\]
+which is $\Theta(2^n)$. This matches the idea that the last term in a growing geometric series dominates the entire sum.</p></div></div>
+<div class="concept-box"><div class="box-title">Sum of Harmonic Series</div><div class="box-body"><p>This formula gives the sum of reciprocals of numbers from $1$ to $n$.
+\[
+\sum_{i=1}^{n} \frac{1}{i} = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n} \approx \ln n
+\]
+This sum grows as $\Theta(\log n)$, even though we are adding $n$ terms, because each term becomes smaller and smaller.</p></div></div>
+<div class="example-box"><div class="box-title">Example 117: Applying Harmonic Series</div><div class="box-body"><p>Consider an algorithm where, in round $i$, the work depends on $\dfrac{n}{i}$, for $i = 1$ to $n$. The total work is
+\[
+\sum_{i=1}^{n} \frac{n}{i} = n \sum_{i=1}^{n} \frac{1}{i} \approx n \ln n
+\]
+which is $\Theta(n \log n)$.</p></div></div>
+<div class="concept-box"><div class="box-title">Sum of Logarithms</div><div class="box-body"><p>This formula gives the sum of logarithm values from $1$ to $n$, using the property that sum of logs equals log of product.
+\[
+\sum_{i=1}^{n} \log i = \log(1 \cdot 2 \cdot 3 \cdots n) = \log(n!)
+\]
+Using Stirling's approximation, $\log(n!)$ grows as $\Theta(n \log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 118: Applying Sum of Logarithms</div><div class="box-body"><p>Consider a loop where, in round $i$, we do $\log i$ units of work, for $i = 1$ to $n$. The total work is
+\[
+\sum_{i=1}^{n} \log i = \log(n!) = \Theta(n \log n)
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Sum Splitting Rule</div><div class="box-body"><p>A sum of two different parts can be split and solved separately, and then added together.
+\[
+\sum_{i=1}^{n} \left( a_i + b_i \right) = \sum_{i=1}^{n} a_i + \sum_{i=1}^{n} b_i
+\]
+Also, a constant multiplying factor can be taken outside the sum.
+\[
+\sum_{i=1}^{n} c \cdot a_i = c \sum_{i=1}^{n} a_i
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 119: Applying Sum Splitting</div><div class="box-body"><p>Consider the sum $\sum_{i=1}^{n} (3i + 5)$. We split this into two parts.
+\[
+\sum_{i=1}^{n} 3i + \sum_{i=1}^{n} 5 = 3 \cdot \frac{n(n+1)}{2} + 5n
+\]
+The dominant term here is $3 \cdot \dfrac{n(n+1)}{2}$, so the overall sum is $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 120: Practice 1</div><div class="box-body"><p>Find the order of growth of $\sum_{i=1}^{n} 4i$.</p>
+<p><strong>Solution:</strong>
+\[
+\sum_{i=1}^{n} 4i = 4 \cdot \frac{n(n+1)}{2} = 2n(n+1)
+\]
+This is $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 121: Practice 2</div><div class="box-body"><p>Find the order of growth of $\sum_{i=1}^{n} 3i^2$.</p>
+<p><strong>Solution:</strong>
+\[
+\sum_{i=1}^{n} 3i^2 = 3 \cdot \frac{n(n+1)(2n+1)}{6} = \frac{n(n+1)(2n+1)}{2}
+\]
+This is $\Theta(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 122: Practice 3</div><div class="box-body"><p>Find the order of growth of $\sum_{i=0}^{n} 3^i$.</p>
+<p><strong>Solution:</strong>
+\[
+\sum_{i=0}^{n} 3^i = \frac{3^{n+1} - 1}{3 - 1}
+\]
+This is $\Theta(3^n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 123: Practice 4</div><div class="box-body"><p>Find the order of growth of $\sum_{i=1}^{n} \left(i + \frac{1}{i}\right)$.</p>
+<p><strong>Solution:</strong> We split the sum into two parts.
+\[
+\sum_{i=1}^{n} i + \sum_{i=1}^{n} \frac{1}{i} = \frac{n(n+1)}{2} + \ln n
+\]
+The term $\dfrac{n(n+1)}{2}$ dominates $\ln n$, so the overall sum is $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 124: Practice 5</div><div class="box-body"><p>Find the order of growth of $\sum_{i=1}^{n} \log(i^2)$.</p>
+<p><strong>Solution:</strong> Using log property, $\log(i^2) = 2 \log i$.
+\[
+\sum_{i=1}^{n} 2 \log i = 2 \sum_{i=1}^{n} \log i = 2 \log(n!)
+\]
+This is $\Theta(n \log n)$.</p></div></div>
+</section>
+<section id="mathematical-analysis-of-nonrecursive-algorithms" class="content-section level-2">
+<h3 class="section-heading">Mathematical Analysis of Nonrecursive Algorithms</h3>
+<div class="concept-box"><div class="box-title">Mathematical Analysis of Nonrecursive Algorithms</div><div class="box-body"><p>To find how good a nonrecursive algorithm is, we count how many times its basic operation runs, as a function of input size. This count is not guessed, it is built step by step, using a fixed plan, so that we do not miss anything and do not make mistakes.</p></div></div>
+<div class="concept-box"><div class="box-title">General Plan</div><div class="box-body"><ol><li><p>Decide on a parameter that represents the input size.</p></li><li><p>Find the basic operation of the algorithm, usually inside the innermost loop.</p></li><li><p>Check if the operation count depends only on input size, or also on the actual input values, that means check if we need best case, worst case, or average case.</p></li><li><p>Write a summation that counts how many times the basic operation runs.</p></li><li><p>Solve the summation exactly, or at least find its order of growth.</p></li></ol></div></div>
+<div class="example-box"><div class="box-title">Example 125: Step by Step Walkthrough: Sum of First $n$ Numbers</div><div class="box-body"><p>Consider this code, which adds numbers from $1$ to $n$ into a variable <code>sum</code>.</p>
+<div class="code-box"><pre><code>sum = 0;
+for (i = 1; i &lt;= n; i++)
+    sum = sum + i;</code></pre></div>
+<p>We now apply the general plan, one step at a time.</p>
+<p><strong>Step 1: Decide input size parameter.</strong> Here, the input is the number $n$ itself. So, our size parameter is simply $n$.</p>
+<p><strong>Step 2: Identify the basic operation.</strong> The line <code>sum = sum + i;</code> is inside the loop, and it is the operation that repeats. This addition is our basic operation.</p>
+<p><strong>Step 3: Check dependency on input configuration.</strong> The loop always runs from $i = 1$ to $i = n$, no matter what value $n$ has, there is no condition like searching for a target, where the count could change based on where something is found. So, here, the count depends only on $n$, we do not need separate best case, worst case, average case, the count is fixed for a given $n$.</p>
+<p><strong>Step 4: Set up the summation.</strong> The basic operation runs once for every value of $i$ from $1$ to $n$. So the count is
+\[
+C(n) = \sum_{i=1}^{n} 1
+\]</p>
+<p><strong>Step 5: Solve the summation.</strong> Adding $1$, exactly $n$ times, gives
+\[
+C(n) = n
+\]
+So, the running time is $\Theta(n)$.</p></div></div>
+<div class="concept-box"><div class="box-title">How We Decide the Bounds</div><div class="box-body"><p>In the above example, we got an exact value, $C(n) = n$, not just an upper or lower limit. Since we have the exact formula, we can confidently write $\Theta(n)$, because $\Theta$ needs both an upper bound and a lower bound, and here both bounds are the same exact function, $n$ itself. If a problem only allows us to estimate an upper limit, like "the loop runs at most $n$ times" without knowing the exact count, then we should only write $O(n)$. Bounds are decided based on how much we actually know about the exact behavior of the count, not by guesswork.</p></div></div>
+<div class="example-box"><div class="box-title">Example 126: Loops</div><div class="box-body"><p>The running time of a loop is exactly proportional to the running time of the statements inside the loop, multiplied by the number of times the loop runs.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i++)
+    m = m + 2;   // constant time</code></pre></div>
+<p>Here, the loop runs exactly $n$ times, and each time, a constant amount of work happens. Since this represents both an upper and a lower bound for the execution, the tight complexity is:
+\[
+c \cdot n = \Theta(n)
+\]</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig020.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 127: Nested Loops</div><div class="box-body"><p>For nested loops, we analyze from inside out, and the total running time is the product of the sizes of all the loops.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i++) {
+    for (j = 1; j &lt;= n; j++)
+        k = k + 1;   // constant time
+}</code></pre></div>
+<p>The inner loop runs exactly $n$ times for each of the $n$ runs of the outer loop. Because this behavior is deterministic and constant across all inputs of size $n$, the tight running time is:
+\[
+c \cdot n \cdot n = \Theta(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 128: Consecutive Statements</div><div class="box-body"><p>When statements come one after another, not nested, we simply add their time complexities.</p>
+<div class="code-box"><pre><code>x = x + 1;   // constant time
+for (i = 1; i &lt;= n; i++)
+    m = m + 2;   // constant time
+for (i = 1; i &lt;= n; i++) {
+    for (j = 1; j &lt;= n; j++)
+        k = k + 1;   // constant time
+}</code></pre></div>
+<p>Total time is:
+\[
+c_0 + c_1 n + c_2 n^2 = \Theta(n^2)
+\]
+Here, the largest term, $c_2 n^2$, decides the final order of growth. The smaller terms do not matter for large $n$. Since the execution path always runs both loops, the runtime is tightly bounded by $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 129: If-Then-Else Statements</div><div class="box-body"><p>For an if-else block, the worst-case time is the time for checking the condition, plus the larger of the two branches (the then-part or the else-part).</p>
+<div class="code-box"><pre><code>if (length() == 0)
+    return false;      // constant
+else {
+    for (int n = 0; n &lt; length(); n++) {
+        if (list[n].equals(otherList.list[n]))
+            return false;   // constant
+    }
+}</code></pre></div>
+<p>Here, the <code>then</code> part is constant time, but the worst-case scenario for the <code>else</code> part is that the loop runs to completion (taking time proportional to $n$). So, the worst-case complexity is tightly bounded by the <code>else</code> branch:
+\[
+c_0 + c_1 + (c_2 + c_3)n = \Theta(n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 130: Logarithmic Complexity</div><div class="box-body"><p>An algorithm takes $\Theta(\log n)$ time if its problem size gets divided or multiplied by a constant fraction each step, usually by $2$.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i = i * 2)
+    ;   // constant time</code></pre></div>
+<p>Here, $i$ doubles every round, so after $k$ rounds, $i = 2^k$. The loop stops precisely when $2^k$ becomes bigger than $n$, which means:
+\[
+2^k = n \Rightarrow k = \log_2 n
+\]
+Since the loop always executes exactly $\lfloor \log_2 n \rfloor + 1$ iterations, its tight bound is $\Theta(\log n)$.</p>
+<p>Similarly, dividing by $2$ every round also gives a tight bound of $\Theta(\log n)$:</p>
+<div class="code-box"><pre><code>for (i = n; i &gt;= 1; i = i / 2)
+    ;   // constant time</code></pre></div></div></div>
+<div class="example-box"><div class="box-title">Example 131: Three Nested Loops with Different Patterns</div><div class="box-body"><p>Find the time complexity of this code.</p>
+<div class="code-box"><pre><code>void function(int n) {
+    int i, j, k, count = 0;
+    for (i = n/2; i &lt;= n; i++)
+        for (j = 1; j + n/2 &lt;= n; j++)
+            for (k = 1; k &lt;= n; k = k * 2)
+                count++;
+}</code></pre></div>
+<p><strong>Outer loop:</strong> $i$ runs from $n/2$ to $n$, so the number of rounds is exactly $n - n/2 + 1 \approx n/2$, which is $\Theta(n)$.</p>
+<p><strong>Middle loop:</strong> The condition is $j + n/2 \le n$, which simplifies to $j \le n/2$. So this loop always runs exactly $n/2$ times, which is $\Theta(n)$.</p>
+<p><strong>Inner loop:</strong> $k$ doubles each round ($1, 2, 4, 8, \dots$) until it exceeds $n$. This always yields exactly $\lfloor \log_2 n \rfloor + 1$ rounds, which is $\Theta(\log n)$.</p>
+<p><strong>Combining all three loops:</strong> Since these nested loops execute unconditionally, we multiply their tight counts:
+\[
+T(n) = \Theta(n) \times \Theta(n) \times \Theta(\log n) = \Theta(n^2 \log n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 132: Practice 1: Single Loop with Step 2</div><div class="box-body"><p>Find the time complexity.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i = i + 2)
+    count++;</code></pre></div>
+<p><strong>Solution:</strong> The loop runs for $i = 1, 3, 5, \dots$, up to $n$, which is exactly $\lceil n/2 \rceil$ rounds. Ignoring the constant factor $\frac{1}{2}$, the tight asymptotic bound is $\Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 133: Practice 2: Two Independent Loops, Different Limits</div><div class="box-body"><p>Find the time complexity.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i++)
+    count++;
+for (j = 1; j &lt;= n*n; j++)
+    count++;</code></pre></div>
+<p><strong>Solution:</strong> The first loop takes exactly $\Theta(n)$ steps and the second loop takes exactly $\Theta(n^2)$ steps. Summing them together, the dominant quadratic term establishes a tight limit, so the total time complexity is $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 134: Practice 3: Nested Loop with Triangular Pattern</div><div class="box-body"><p>Find the time complexity.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i++)
+    for (j = 1; j &lt;= i; j++)
+        count++;</code></pre></div>
+<p><strong>Solution:</strong> For each $i$, the inner loop runs exactly $i$ times. The total count is:
+\[
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\]
+which is $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 135: Practice 4: Nested Loop with One Logarithmic Loop</div><div class="box-body"><p>Find the time complexity.</p>
+<div class="code-box"><pre><code>for (i = 1; i &lt;= n; i++)
+    for (j = 1; j &lt;= n; j = j * 2)
+        count++;</code></pre></div>
+<p><strong>Solution:</strong> The outer loop runs exactly $n$ times ($\Theta(n)$). The inner loop runs exactly $\lfloor \log_2 n \rfloor + 1$ times ($\Theta(\log n)$) for each outer round. Since the work is fully deterministic, the total time complexity is tightly bounded:
+\[
+\Theta(n) \times \Theta(\log n) = \Theta(n \log n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 136: Practice 5: If-Else with Loop on Both Sides</div><div class="box-body"><p>Find the worst-case time complexity.</p>
+<div class="code-box"><pre><code>if (n % 2 == 0) {
+    for (i = 1; i &lt;= n; i++)
+        count++;
+} else {
+    for (i = 1; i &lt;= n*n; i++)
+        count++;
+}</code></pre></div>
+<p><strong>Solution:</strong> When $n$ is even, the branch takes exactly $\Theta(n)$ time. When $n$ is odd, the branch takes exactly $\Theta(n^2)$ time. The worst-case performance is strictly determined by the odd branch, meaning the worst-case time complexity is tightly bounded by $\Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 137: Python Example 1: Single Loop</div><div class="box-body"><p>This function adds up all numbers from $0$ to $n-1$.</p></div></div>
+<div class="code-box"><div class="code-title">single-loop-sum.py</div><pre><code>def sum_numbers(n):
+    total = 0
+    for i in range(n):
+        total = total + i   # basic operation
+    return total</code></pre></div>
+<p><strong>Analysis:</strong> The loop runs exactly $n$ times, and each time, one addition happens. So,
+\[
+C(n) = \sum_{i=0}^{n-1} 1 = n
+\]
+This gives $\Theta(n)$.</p>
+<div class="example-box"><div class="box-title">Example 138: Python Example 2: Nested Loop, Both Depending on $n$</div><div class="box-body"><p>This function counts how many pairs $(i, j)$ exist, where both $i$ and $j$ range from $0$ to $n-1$.</p></div></div>
+<div class="code-box"><div class="code-title">nested-loop-pairs.py</div><pre><code>def count_pairs(n):
+    count = 0
+    for i in range(n):
+        for j in range(n):
+            count = count + 1   # basic operation
+    return count</code></pre></div>
+<p><strong>Analysis:</strong> The outer loop runs $n$ times, and for every round of the outer loop, the inner loop also runs $n$ times. So,
+\[
+C(n) = \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} 1 = n \cdot n = n^2
+\]
+This gives $\Theta(n^2)$.</p>
+<div class="example-box"><div class="box-title">Example 139: Python Example 3: Triangular Nested Loop</div><div class="box-body"><p>This function counts pairs $(i, j)$ where $j$ only goes up to $i$, not all the way to $n$.</p></div></div>
+<div class="code-box"><div class="code-title">triangular-loop.py</div><pre><code>def count_triangular(n):
+    count = 0
+    for i in range(n):
+        for j in range(i):
+            count = count + 1   # basic operation
+    return count</code></pre></div>
+<p><strong>Analysis:</strong> For a fixed $i$, inner loop runs $i$ times. So, total count is
+\[
+C(n) = \sum_{i=0}^{n-1} i = \frac{n(n-1)}{2}
+\]
+This gives $\Theta(n^2)$, the same order as a full nested loop, just with a smaller constant.</p>
+<div class="example-box"><div class="box-title">Example 140: Python Example 4: Loop with Doubling Step</div><div class="box-body"><p>This function counts how many times we can double a number, starting from $1$, before it crosses $n$.</p></div></div>
+<div class="code-box"><div class="code-title">doubling-loop.py</div><pre><code>def count_doublings(n):
+    count = 0
+    i = 1
+    while i &lt;= n:
+        count = count + 1   # basic operation
+        i = i * 2
+    return count</code></pre></div>
+<p><strong>Analysis:</strong> The value of $i$ follows the pattern $1, 2, 4, 8, \dots$, until it crosses $n$. If the loop runs $k$ times, then $2^{k-1} \le n$, so $k \approx \log_2 n$. This gives $\Theta(\log n)$.</p>
+<div class="example-box"><div class="box-title">Example 141: Python Example 5: Consecutive Statements with Mixed Complexity</div><div class="box-body"><p>This function has a simple loop, followed by a nested loop, one after another, not inside each other.</p></div></div>
+<div class="code-box"><div class="code-title">consecutive-statements.py</div><pre><code>def mixed_work(n):
+    total = 0
+    
+    for i in range(n):          # simple loop
+        total = total + i
+
+    for i in range(n):          # nested loop
+        for j in range(n):
+            total = total + 1
+
+    return total</code></pre></div>
+<p><strong>Analysis:</strong> The first loop takes $\Theta(n)$ steps. The second, nested loop takes $\Theta(n^2)$ steps. Since these two parts run one after another, we add them together.
+\[
+C(n) = n + n^2
+\]
+For large $n$, the $n^2$ term dominates the $n$ term, so the overall complexity is $\Theta(n^2)$.</p>
+</section>
+</section>
+<section id="recurrence-relations" class="content-section level-1">
+<h2 class="section-heading">Recurrence Relations</h2>
+<div class="concept-box"><div class="box-title">What Is a Recurrence Relation</div><div class="box-body"><p>A recurrence relation is an equation that defines the running time of an algorithm in terms of its own running time on a smaller input. It is used for recursive algorithms, because a recursive algorithm calls itself on a smaller piece of the problem, and the total time depends on the time of these smaller calls, plus the extra work done outside the calls.</p></div></div>
+<div class="example-box"><div class="box-title">Example 142: Folding a Paper</div><div class="box-body"><p>Suppose folding a paper of size $n$ takes some time, and folding always means first folding a paper of half the size, then doing one quick fold action on top. The time to fold size $n$ depends on the time to fold size $n/2$, plus a small constant time for the final fold. This is exactly the idea behind a recurrence relation.</p></div></div>
+<div class="concept-box"><div class="box-title">General Form of a Recurrence</div><div class="box-body"><p>A recurrence relation usually has two parts. One part is the recursive part, which tells the cost in terms of a smaller input. The other part is the base case, which tells the cost when input becomes very small, usually a constant.
+\[
+T(n) = a \cdot T\left(\frac{n}{b}\right) + f(n),      T(1) = c
+\]
+Here, $a$ is the number of recursive calls made, $\dfrac{n}{b}$ is the size of each smaller call, and $f(n)$ is the extra work done outside the recursive calls, like dividing the problem or combining results.</p></div></div>
+<div class="example-box"><div class="box-title">Example 143: Recurrence for Merge Sort</div><div class="box-body"><p>Merge sort splits an array of size $n$ into two halves, sorts each half recursively, and then merges them. The recurrence relation is
+\[
+T(n) = 2T\left(\frac{n}{2}\right) + cn,      T(1) = c
+\]
+Here, $2$ recursive calls are made, each on half the size, and $cn$ is the cost of merging.</p></div></div>
+<div class="concept-box"><div class="box-title">Why We Need to Solve Recurrences</div><div class="box-body"><p>A recurrence relation only gives the running time indirectly, in terms of itself. To actually know the order of growth, like $\Theta(n \log n)$ or $\Theta(n^2)$, we need to solve the recurrence, that means converting it into a normal formula in terms of $n$ only, without $T$ appearing on the right side.</p></div></div>
+<div class="concept-box"><div class="box-title">Methods to Solve a Recurrence</div><div class="box-body"><p>There are three common methods used to solve a recurrence relation.</p>
+<ul><li><p>Substitution Method, where we guess the answer, and then prove it correct using mathematical induction.</p></li><li><p>Recursion Tree Method, where we draw the recursive calls as a tree, and add up the work done at every level of the tree.</p></li><li><p>Master Theorem, which is a ready-made formula, that directly gives the answer for recurrences of a specific common shape.</p></li></ul></div></div>
+<section id="substitution-method" class="content-section level-2">
+<h3 class="section-heading">Substitution Method</h3>
+<div class="concept-box"><div class="box-title">Substitution Method</div><div class="box-body"><p>In the substitution method, we first guess a formula for $T(n)$, based on intuition or pattern. Then, we substitute this guessed formula back into the recurrence, and check using mathematical induction, whether the guess actually satisfies the recurrence, for all values of $n$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 144: Substitution Example 1: $T(n) = 2T(n/2) + n$</div><div class="box-body"><p><strong>Step 1: Guess the answer.</strong> Based on similar problems, we guess
+\[
+T(n) \le c \cdot n \log n,    \text{for some constant } c &gt; 0
+\]</p>
+<p><strong>Step 2: Assume the guess is true for smaller values.</strong> Assume for $n/2$,
+\[
+T\left(\frac{n}{2}\right) \le c \cdot \frac{n}{2} \log\left(\frac{n}{2}\right)
+\]</p>
+<p><strong>Step 3: Substitute into the recurrence.</strong>
+\[
+T(n) \le 2 \left( c \cdot \frac{n}{2} \log\left(\frac{n}{2}\right) \right) + n
+= c \cdot n \log\left(\frac{n}{2}\right) + n
+\]
+\[
+= c \cdot n (\log n - 1) + n
+= c \cdot n \log n - c \cdot n + n
+\]</p>
+<p><strong>Step 4: Check the guess.</strong> We want
+\[
+c \cdot n \log n - c \cdot n + n \le c \cdot n \log n
+\]
+This simplifies to $-c \cdot n + n \le 0$, that means $c \ge 1$. So, choosing $c \ge 1$ works.</p>
+<p><strong>Step 5: Conclude.</strong> Since a valid $c$ was found, $T(n) = O(n \log n)$. A similar argument with $\ge$ gives $T(n) = \Omega(n \log n)$. So, $T(n) = \Theta(n \log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 145: Substitution Example 2: $T(n) = T(n/2) + 1$</div><div class="box-body"><p><strong>Step 1: Guess the answer.</strong> We guess
+\[
+T(n) \le c \cdot \log n,    \text{for some constant } c &gt; 0
+\]</p>
+<p><strong>Step 2: Assume the guess is true for $n/2$.</strong>
+\[
+T\left(\frac{n}{2}\right) \le c \cdot \log\left(\frac{n}{2}\right)
+\]</p>
+<p><strong>Step 3: Substitute into the recurrence.</strong>
+\[
+T(n) \le c \cdot \log\left(\frac{n}{2}\right) + 1
+= c (\log n - 1) + 1
+= c \log n - c + 1
+\]</p>
+<p><strong>Step 4: Check the guess.</strong> We want
+\[
+c \log n - c + 1 \le c \log n
+\]
+This simplifies to $-c + 1 \le 0$, that means $c \ge 1$. So, choosing $c \ge 1$ works.</p>
+<p><strong>Step 5: Conclude.</strong> So, $T(n) = O(\log n)$. A similar argument gives $T(n) = \Omega(\log n)$. So, $T(n) = \Theta(\log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 146: Substitution Example 3: $T(n) = 2T(n/2) + n^2$</div><div class="box-body"><p><strong>Step 1: Guess the answer.</strong> We guess
+\[
+T(n) \le c \cdot n^2,    \text{for some constant } c &gt; 0
+\]</p>
+<p><strong>Step 2: Assume the guess is true for $n/2$.</strong>
+\[
+T\left(\frac{n}{2}\right) \le c \cdot \left(\frac{n}{2}\right)^2 = c \cdot \frac{n^2}{4}
+\]</p>
+<p><strong>Step 3: Substitute into the recurrence.</strong>
+\[
+T(n) \le 2 \left( c \cdot \frac{n^2}{4} \right) + n^2
+= \frac{c \cdot n^2}{2} + n^2
+\]</p>
+<p><strong>Step 4: Check the guess.</strong> We want
+\[
+\frac{c \cdot n^2}{2} + n^2 \le c \cdot n^2
+\]
+This simplifies to $n^2 \le \dfrac{c \cdot n^2}{2}$, that means $c \ge 2$. So, choosing $c \ge 2$ works.</p>
+<p><strong>Step 5: Conclude.</strong> So, $T(n) = O(n^2)$. A similar argument gives $T(n) = \Omega(n^2)$. So, $T(n) = \Theta(n^2)$.</p></div></div>
+</section>
+<section id="recursion-tree-method" class="content-section level-2">
+<h3 class="section-heading">Recursion Tree Method</h3>
+<div class="concept-box"><div class="box-title">Recursion Tree Method</div><div class="box-body"><p>In the recursion tree method, we draw a tree, where the root is the original problem of size $n$, and the children of each node are the smaller recursive calls made by that node. Each node also carries the extra cost $f(n)$ done at that level, not counting its children's cost. We then add up the cost of every level, and add all levels together, to get the total cost.</p></div></div>
+<div class="example-box"><div class="box-title">Example 147: Recursion Tree Example 1: $T(n) = 2T(n/2) + n$</div><div class="box-body"><p><strong>Step 1: Draw the root.</strong> The root is a problem of size $n$, with cost $n$ at that level.</p>
+<p><strong>Step 2: Draw the children.</strong> The root makes $2$ calls of size $n/2$ each. Level cost is $2 \times \dfrac{n}{2} = n$.</p>
+<p><strong>Step 3: Continue expanding.</strong> Each of those $2$ nodes makes $2$ calls of size $n/4$. Now $4$ nodes exist, each cost $n/4$, level total $4 \times \dfrac{n}{4} = n$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig021.png" alt="diagram"></div>
+<p><strong>Step 4: Notice the pattern.</strong> Every level costs exactly $n$, since problem size halves but number of nodes doubles, and these effects cancel.</p>
+<p><strong>Step 5: Count the levels.</strong> Size goes $n, n/2, n/4, \dots, 1$, giving $\log_2 n$ levels.</p>
+<p><strong>Step 6: Total cost.</strong>
+\[
+T(n) = n \times \log_2 n = \Theta(n \log n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 148: Recursion Tree Example 2: $T(n) = 3T(n/2) + n$</div><div class="box-body"><p><strong>Step 1: Draw the root.</strong> Root is size $n$, cost $n$.</p>
+<p><strong>Step 2: Draw children.</strong> Root makes $3$ calls of size $n/2$. Level cost $3 \times \dfrac{n}{2} = \dfrac{3n}{2}$.</p>
+<p><strong>Step 3: Continue expanding.</strong> Each of those $3$ nodes makes $3$ calls of size $n/4$, giving $9$ nodes, level cost $9 \times \dfrac{n}{4} = \dfrac{9n}{4}$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig022.png" alt="diagram"></div>
+<p><strong>Step 4: Notice the pattern.</strong> At level $i$, there are $3^i$ nodes, each of size $n/2^i$, so level cost is $3^i \times \dfrac{n}{2^i} = n \left(\dfrac{3}{2}\right)^i$. This level cost increases as $i$ increases, since $3/2 &gt; 1$.</p>
+<p><strong>Step 5: Count the levels.</strong> Number of levels is $\log_2 n$, since size halves every level.</p>
+<p><strong>Step 6: Total cost.</strong> Since the cost grows with each level, the last level dominates the sum. The last level has $n^{\log_2 3}$ nodes, each doing constant work, giving
+\[
+T(n) = \Theta(n^{\log_2 3})
+\]
+which is approximately $\Theta(n^{1.58})$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 149: Recursion Tree Example 3: $T(n) = T(n/2) + T(n/4) + n$</div><div class="box-body"><p><strong>Step 1: Draw the root.</strong> Root is size $n$, cost $n$.</p>
+<p><strong>Step 2: Draw children.</strong> Root makes $2$ calls, one of size $n/2$, one of size $n/4$. Level cost is $\dfrac{n}{2} + \dfrac{n}{4} = \dfrac{3n}{4}$.</p>
+<p><strong>Step 3: Continue expanding.</strong> The $n/2$ node makes calls of size $n/4$ and $n/8$. The $n/4$ node makes calls of size $n/8$ and $n/16$. Level cost is again less than $n$, around $\dfrac{9n}{16}$.</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig023.png" alt="diagram"></div>
+<p><strong>Step 4: Notice the pattern.</strong> Unlike Example 2, here the level cost keeps shrinking, since $\dfrac{1}{2} + \dfrac{1}{4} = \dfrac{3}{4} &lt; 1$. So the root level cost, $n$, dominates the total sum.</p>
+<p><strong>Step 5: Total cost.</strong> Adding up a shrinking sum across all levels still gives a value close to the root cost, just scaled by a constant. So,
+\[
+T(n) = \Theta(n)
+\]</p></div></div>
+</section>
+<section id="extended-master-theorem" class="content-section level-2">
+<h3 class="section-heading">Extended Master Theorem</h3>
+<div class="concept-box"><div class="box-title">Extended Master Theorem</div><div class="box-body"><p>The Extended Master Theorem solves recurrences of the form
+\[
+T(n) = a \cdot T\left(\frac{n}{b}\right) + \Theta(n^k \log^p n)
+\]
+where $a \ge 1$, $b &gt; 1$, $k \ge 0$ are constants, and $p$ is any real number. Instead of comparing $f(n)$ with $n^{\log_b a}$ directly, we identify the constants $a$, $b$, $k$, $p$, then compare $a$ with $b^k$.</p>
+<p><strong>Case 1:</strong> If $a &gt; b^k$, the work done by the leaves dominates, then
+\[
+T(n) = \Theta(n^{\log_b a})
+\]</p>
+<p><strong>Case 2:</strong> If $a = b^k$, the work is balanced across all levels, and the log power $p$ decides the answer:
+\[
+T(n) = \begin{cases}
+\Theta(n^{\log_b a} \log^{p+1} n) &amp; p &gt; -1 <br>
+\Theta(n^{\log_b a} \log \log n) &amp; p = -1 <br>
+\Theta(n^{\log_b a}) &amp; p &lt; -1
+\end{cases}
+\]</p>
+<p><strong>Case 3:</strong> If $a &lt; b^k$, the work done at the root dominates, and $p$ decides the answer:
+\[
+T(n) = \begin{cases}
+\Theta(n^k \log^p n) &amp; p \ge 0 <br>
+\Theta(n^k) &amp; p &lt; 0
+\end{cases}
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 150: Extended Master Theorem Example 1: $T(n) = 2T(n/2) + n$</div><div class="box-body"><p><strong>Step 1: Identify constants.</strong> $a = 2$, $b = 2$, $f(n) = n = \Theta(n^1 \log^0 n)$, so $k = 1$, $p = 0$.</p>
+<p><strong>Step 2: Compare $a$ with $b^k$.</strong>
+\[
+a = 2,    b^k = 2^1 = 2    \Rightarrow    a = b^k
+\]</p>
+<p><strong>Step 3: Apply Case 2, check $p$.</strong> Since $p = 0 &gt; -1$, use the first sub-case.</p>
+<p><strong>Step 4: Compute the answer.</strong>
+\[
+T(n) = \Theta(n^{\log_2 2} \log^{0+1} n) = \Theta(n \log n)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 151: Extended Master Theorem Example 2: $T(n) = 9T(n/3) + n$</div><div class="box-body"><p><strong>Step 1: Identify constants.</strong> $a = 9$, $b = 3$, $f(n) = n = \Theta(n^1 \log^0 n)$, so $k = 1$, $p = 0$.</p>
+<p><strong>Step 2: Compare $a$ with $b^k$.</strong>
+\[
+a = 9,    b^k = 3^1 = 3    \Rightarrow    a &gt; b^k
+\]</p>
+<p><strong>Step 3: Apply Case 1.</strong> The leaves dominate since $a &gt; b^k$.</p>
+<p><strong>Step 4: Compute the answer.</strong>
+\[
+T(n) = \Theta(n^{\log_3 9}) = \Theta(n^2)
+\]</p></div></div>
+<div class="example-box"><div class="box-title">Example 152: Extended Master Theorem Example 3: $T(n) = 3T(n/4) + n \log n$</div><div class="box-body"><p><strong>Step 1: Identify constants.</strong> $a = 3$, $b = 4$, $f(n) = n\log n = \Theta(n^1 \log^1 n)$, so $k = 1$, $p = 1$.</p>
+<p><strong>Step 2: Compare $a$ with $b^k$.</strong>
+\[
+a = 3,    b^k = 4^1 = 4    \Rightarrow    a &lt; b^k
+\]</p>
+<p><strong>Step 3: Apply Case 3, check $p$.</strong> Since $p = 1 \ge 0$, use the first sub-case.</p>
+<p><strong>Step 4: Compute the answer.</strong>
+\[
+T(n) = \Theta(n^k \log^p n) = \Theta(n \log n)
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">When the Extended Master Theorem Cannot Be Used</div><div class="box-body"><p>The Extended Master Theorem still fails to apply when the recurrence does not fit the exact form $a \cdot T(n/b) + \Theta(n^k \log^p n)$. This happens when $a &lt; 1$, since that is not a valid divide-and-conquer split, or when the subproblem sizes are unequal, like $T(n) = T(n/2) + T(n/3) + n$, or when $f(n)$ is not of the form $n^k \log^p n$ at all, for example $f(n) = 2^n$. In such cases, we go back to the recursion tree method or the Akra-Bazzi method.</p></div></div>
+<div class="example-box"><div class="box-title">Example 153: A Case the Basic Master Theorem Missed, Now Solved: $T(n) = 2T(n/2) + n \log n$</div><div class="box-body"><p><strong>Step 1: Identify constants.</strong> $a = 2$, $b = 2$, $f(n) = n \log n = \Theta(n^1 \log^1 n)$, so $k = 1$, $p = 1$.</p>
+<p><strong>Step 2: Compare $a$ with $b^k$.</strong>
+\[
+a = 2,    b^k = 2^1 = 2    \Rightarrow    a = b^k
+\]</p>
+<p><strong>Step 3: Apply Case 2, check $p$.</strong> Since $p = 1 &gt; -1$, use the first sub-case.</p>
+<p><strong>Step 4: Compute the answer.</strong>
+\[
+T(n) = \Theta(n^{\log_2 2} \log^{1+1} n) = \Theta(n \log^2 n)
+\]
+This is exactly the recurrence that the basic Master Theorem could not solve, since $f(n) = n \log n$ sits exactly on $n^{\log_b a} = n$ with an extra log factor. The extended version handles it directly through the $p$ sub-case.</p></div></div>
+<div class="example-box"><div class="box-title">Example 154: Practice 1</div><div class="box-body"><p>Solve $T(n) = 4T(n/2) + n$ using the Extended Master Theorem.</p>
+<p><strong>Solution:</strong> $a = 4$, $b = 2$, $f(n) = n = \Theta(n^1 \log^0 n)$, so $k = 1$, $p = 0$. $b^k = 2^1 = 2$. Since $a = 4 &gt; b^k = 2$, this is Case 1, giving $T(n) = \Theta(n^{\log_2 4}) = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 155: Practice 2</div><div class="box-body"><p>Solve $T(n) = 2T(n/2) + n^2$ using the Extended Master Theorem.</p>
+<p><strong>Solution:</strong> $a = 2$, $b = 2$, $f(n) = n^2 = \Theta(n^2 \log^0 n)$, so $k = 2$, $p = 0$. $b^k = 2^2 = 4$. Since $a = 2 &lt; b^k = 4$, this is Case 3, and $p = 0 \ge 0$, giving $T(n) = \Theta(n^2 \log^0 n) = \Theta(n^2)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 156: Practice 3</div><div class="box-body"><p>Solve $T(n) = 8T(n/2) + n^2$ using the Extended Master Theorem.</p>
+<p><strong>Solution:</strong> $a = 8$, $b = 2$, $f(n) = n^2 = \Theta(n^2 \log^0 n)$, so $k = 2$, $p = 0$. $b^k = 2^2 = 4$. Since $a = 8 &gt; b^k = 4$, this is Case 1, giving $T(n) = \Theta(n^{\log_2 8}) = \Theta(n^3)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 157: Practice 4</div><div class="box-body"><p>Solve $T(n) = T(n/2) + n$ using the Extended Master Theorem.</p>
+<p><strong>Solution:</strong> $a = 1$, $b = 2$, $f(n) = n = \Theta(n^1 \log^0 n)$, so $k = 1$, $p = 0$. $b^k = 2^1 = 2$. Since $a = 1 &lt; b^k = 2$, this is Case 3, and $p = 0 \ge 0$, giving $T(n) = \Theta(n^1 \log^0 n) = \Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 158: Practice 5</div><div class="box-body"><p>Solve $T(n) = 4T(n/2) + n \log^{-1} n$ using the Extended Master Theorem.</p>
+<p><strong>Solution:</strong> $a = 4$, $b = 2$, $f(n) = n\log^{-1} n = \Theta(n^1 \log^{-1} n)$, so $k = 1$, $p = -1$. $b^k = 2^1 = 2$. Since $a = 4 &gt; b^k = 2$, this is Case 1, and Case 1 does not depend on $p$ at all, giving $T(n) = \Theta(n^{\log_2 4}) = \Theta(n^2)$.</p></div></div>
+</section>
+</section>
+<section id="analysis-of-recursive-algorithms" class="content-section level-1">
+<h2 class="section-heading">Analysis of Recursive Algorithms</h2>
+<div class="concept-box"><div class="box-title">Analysis of Recursive Algorithms</div><div class="box-body"><p>A recursive algorithm is an algorithm that calls itself on a smaller input, until it reaches a base case, which is the simplest input that needs no further recursion. To analyze a recursive algorithm, we first write its recurrence relation, by checking how many recursive calls happen, how much smaller the input becomes, and how much extra work happens outside the calls. Then, we solve this recurrence using substitution, recursion tree, or master theorem, to get the final order of growth.</p></div></div>
+<div class="concept-box"><div class="box-title">General Plan for Recursive Algorithm Analysis</div><div class="box-body"><ol><li><p>Decide the input size parameter, usually $n$.</p></li><li><p>Identify the basic operation, the operation that repeats with every call.</p></li><li><p>Find how many recursive calls are made, and on what smaller size.</p></li><li><p>Write the recurrence relation, including the base case.</p></li><li><p>Solve the recurrence to get the order of growth.</p></li></ol></div></div>
+<section id="factorial-function" class="content-section level-2">
+<h3 class="section-heading">Factorial Function</h3>
+<div class="example-box"><div class="box-title">Example 159: Understanding Factorial Recursion</div><div class="box-body"><p>Factorial of $n$, written $n!$, means multiplying all numbers from $n$ down to $1$. The recursive idea is, $n! = n \times (n-1)!$, and the base case is $0! = 1$. So, computing factorial of $n$ depends on computing factorial of $n-1$ first.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig024.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 160: Pseudocode for Factorial</div><div class="box-body"><p><strong>Factorial(n)</strong></p>
+<ol><li><p>if n == 0</p></li><li><p>   return 1</p></li><li><p>else</p></li><li><p>   return n * Factorial(n - 1)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">factorial.py</div><pre><code>def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)</code></pre></div>
+<div class="example-box"><div class="box-title">Example 161: Analysis of Factorial Recursion</div><div class="box-body"><p><strong>Step 1: Input size.</strong> The parameter $n$ is the input size.</p>
+<p><strong>Step 2: Basic operation.</strong> The multiplication, $n \times \text{Factorial}(n-1)$, is the basic operation.</p>
+<p><strong>Step 3: Recursive calls.</strong> Each call makes exactly $1$ recursive call, on input size $n-1$.</p>
+<p><strong>Step 4: Recurrence relation.</strong>
+\[
+T(n) = T(n-1) + c,      T(0) = c
+\]
+Here, $c$ represents the constant work done outside the recursive call, like the multiplication and the comparison.</p>
+<p><strong>Step 5: Solve.</strong> Using the recursion tree method, each level reduces $n$ by $1$, and does constant work $c$. The tree has $n+1$ levels, from $n$ down to $0$. Total cost is
+\[
+T(n) = c \times (n+1) = \Theta(n)
+\]</p></div></div>
+</section>
+<section id="fibonacci-function" class="content-section level-2">
+<h3 class="section-heading">Fibonacci Function</h3>
+<div class="example-box"><div class="box-title">Example 162: Understanding Fibonacci Recursion</div><div class="box-body"><p>The Fibonacci sequence is $0, 1, 1, 2, 3, 5, 8, \dots$, where each number is the sum of the two numbers before it. The recursive idea is, $\text{Fib}(n) = \text{Fib}(n-1) + \text{Fib}(n-2)$, with base cases $\text{Fib}(0) = 0$ and $\text{Fib}(1) = 1$. Unlike factorial, here each call makes two recursive calls, not one.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig025.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 163: Pseudocode for Fibonacci</div><div class="box-body"><p><strong>Fibonacci(n)</strong></p>
+<ol><li><p>if n $&lt;=$ 1</p></li><li><p>   return n</p></li><li><p>else</p></li><li><p>   return Fibonacci(n - 1) + Fibonacci(n - 2)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">fibonacci.py</div><pre><code>def fibonacci(n):
+    if n &lt;= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)</code></pre></div>
+<div class="example-box"><div class="box-title">Example 164: Analysis of Fibonacci Recursion</div><div class="box-body"><p><strong>Step 1: Input size.</strong> The parameter $n$ is the input size.</p>
+<p><strong>Step 2: Basic operation.</strong> The addition, combining the two recursive results, is the basic operation.</p>
+<p><strong>Step 3: Recursive calls.</strong> Each call makes $2$ recursive calls, one on $n-1$, one on $n-2$.</p>
+<p><strong>Step 4: Recurrence relation.</strong>
+\[
+T(n) = T(n-1) + T(n-2) + c,      T(0) = T(1) = c
+\]</p>
+<p><strong>Step 5: Solve.</strong> This recurrence does not fit the Master Theorem, since the two subproblems have different sizes. Using the recursion tree method, each call branches into $2$ more calls, so the tree looks similar to a binary tree, except the depth on the left branch is longer than the right branch. The total number of nodes in this tree can be shown to grow like the Fibonacci numbers themselves, giving
+\[
+T(n) = \Theta(\phi^n),      \phi \approx 1.618
+\]
+where $\phi$ is the golden ratio. So, this simple looking function has exponential running time, $\Theta(2^n)$ is also commonly used as a simpler, looser bound for this.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig026.png" alt="diagram"></div>
+<p>The picture shows the recursion tree for $\text{Fib}(4)$. Notice that $F(2)$ and $F(1)$ are computed many times, again and again, which is the reason this recursion is so slow.</p>
+</section>
+<section id="sum-of-digits-function" class="content-section level-2">
+<h3 class="section-heading">Sum of Digits Function</h3>
+<div class="example-box"><div class="box-title">Example 165: Understanding Sum of Digits Recursion</div><div class="box-body"><p>This function adds up all the digits of a number $n$. The recursive idea is, the sum of digits of $n$ equals the last digit of $n$, plus the sum of digits of the remaining number, after removing the last digit. The base case is, when $n$ becomes $0$, the sum is $0$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig027.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 166: Pseudocode for Sum of Digits</div><div class="box-body"><p><strong>SumOfDigits(n)</strong></p>
+<ol><li><p>if n == 0</p></li><li><p>   return 0</p></li><li><p>else</p></li><li><p>   return (n mod 10) + SumOfDigits(n / 10)</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">sum-of-digits.py</div><pre><code>def sum_of_digits(n):
+    if n == 0:
+        return 0
+    else:
+        return (n % 10) + sum_of_digits(n // 10)</code></pre></div>
+<div class="example-box"><div class="box-title">Example 167: Analysis of Sum of Digits Recursion</div><div class="box-body"><p><strong>Step 1: Input size.</strong> Here, the input size is not $n$ itself, but the number of digits in $n$, since each call removes one digit, not one unit. Let us call the number of digits $d$.</p>
+<p><strong>Step 2: Basic operation.</strong> The addition, $(n \bmod 10) + \text{SumOfDigits}(n/10)$, is the basic operation.</p>
+<p><strong>Step 3: Recursive calls.</strong> Each call makes exactly $1$ recursive call, on a number with one less digit.</p>
+<p><strong>Step 4: Recurrence relation.</strong>
+\[
+T(d) = T(d-1) + c,      T(0) = c
+\]</p>
+<p><strong>Step 5: Solve.</strong> Same pattern as factorial, each level does constant work, and there are $d+1$ levels. Total cost is
+\[
+T(d) = \Theta(d)
+\]
+Since $d \approx \log_{10} n$, we can also write this as $\Theta(\log n)$, in terms of the value of $n$.</p></div></div>
+</section>
+<section id="power-function" class="content-section level-2">
+<h3 class="section-heading">Power Function</h3>
+<div class="example-box"><div class="box-title">Example 168: Understanding Power Recursion</div><div class="box-body"><p>This function computes $x^n$, that is $x$ raised to power $n$. There are two ways to write this recursively, a slow way and a fast way. We look at both, to see how the recurrence changes the running time.</p></div></div>
+<div class="example-box"><div class="box-title">Example 169: Slow Version: One Reduction at a Time</div><div class="box-body"><p>Here, $x^n = x \times x^{n-1}$, with base case $x^0 = 1$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig028.png" alt="diagram"></div>
+<div class="code-box"><div class="code-title">power-slow.py</div><pre><code>def power_slow(x, n):
+    if n == 0:
+        return 1
+    else:
+        return x * power_slow(x, n - 1)</code></pre></div>
+<p><strong>Recurrence:</strong> $T(n) = T(n-1) + c$, giving $T(n) = \Theta(n)$, same pattern as factorial.</p>
+<div class="example-box"><div class="box-title">Example 170: Fast Version: Halving the Power</div><div class="box-body"><p>Here, we use the idea, $x^n = (x^{n/2})^2$, when $n$ is even, and $x^n = x \times (x^{(n-1)/2})^2$, when $n$ is odd. This way, the power reduces to half each time, instead of reducing by $1$.</p></div></div>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig029.png" alt="diagram"></div>
+<div class="example-box"><div class="box-title">Example 171: Pseudocode for Power Fast</div><div class="box-body"><p><strong>PowerFast(x, n)</strong></p>
+<ol><li><p>if n == 0</p></li><li><p>   return 1</p></li><li><p>else if n is even</p></li><li><p>   half = PowerFast(x, n / 2)</p></li><li><p>   return half * half</p></li><li><p>else</p></li><li><p>   half = PowerFast(x, (n - 1) / 2)</p></li><li><p>   return x * half * half</p></li></ol></div></div>
+<div class="code-box"><div class="code-title">power-fast.py</div><pre><code>def power_fast(x, n):
+    if n == 0:
+        return 1
+    elif n % 2 == 0:
+        half = power_fast(x, n // 2)
+        return half * half
+    else:
+        half = power_fast(x, (n - 1) // 2)
+        return x * half * half</code></pre></div>
+<div class="example-box"><div class="box-title">Example 172: Analysis of Power Fast Recursion</div><div class="box-body"><p><strong>Step 1: Input size.</strong> The parameter $n$ is the input size.</p>
+<p><strong>Step 2: Basic operation.</strong> The multiplication, $half \times half$, is the basic operation.</p>
+<p><strong>Step 3: Recursive calls.</strong> Each call makes exactly $1$ recursive call, on input size roughly $n/2$.</p>
+<p><strong>Step 4: Recurrence relation.</strong>
+\[
+T(n) = T(n/2) + c,      T(0) = c
+\]</p>
+<p><strong>Step 5: Solve using Master Theorem.</strong> Here, $a = 1$, $b = 2$, $f(n) = c = \Theta(1) = \Theta(n^0)$. Compute $n^{\log_b a} = n^{\log_2 1} = n^0$. Since $f(n)$ matches $n^{\log_b a}$ exactly, this is Case 2, giving
+\[
+T(n) = \Theta(n^0 \log n) = \Theta(\log n)
+\]
+This shows the fast version is much better than the slow version, $\Theta(\log n)$ compared to $\Theta(n)$, just by halving the power instead of reducing it by $1$ each time.</p></div></div>
+<div class="example-box"><div class="box-title">Example 173: Practice 1: Reverse a Number</div><div class="box-body"><p>A function reverses the digits of a number $n$ recursively, removing one digit and placing it at the end, in each call, until $n$ becomes $0$. Identify the recurrence and find the order of growth.</p>
+<p><strong>Solution:</strong> Each call reduces the number of digits by $1$, doing constant work. So, $T(d) = T(d-1) + c$, giving $T(d) = \Theta(d) = \Theta(\log n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 174: Practice 2: Recursive Array Sum</div><div class="box-body"><p>A function adds up all elements of an array of size $n$, by adding the first element to the sum of the rest of the array, recursively. Identify the recurrence and find the order of growth.</p>
+<p><strong>Solution:</strong> Each call reduces array size by $1$, doing constant work to add one element. So, $T(n) = T(n-1) + c$, giving $T(n) = \Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 175: Practice 3: Tower of Hanoi</div><div class="box-body"><p>The Tower of Hanoi problem moves $n$ disks, by first moving $n-1$ disks to a spare rod, then moving the largest disk, then moving the $n-1$ disks again, on top of it. Identify the recurrence and find the order of growth.</p>
+<p><strong>Solution:</strong> Each call makes $2$ recursive calls, each on size $n-1$, plus constant work for moving the largest disk. So, $T(n) = 2T(n-1) + c$. Solving by recursion tree, the tree doubles in nodes each level, while the work per node stays constant, giving $T(n) = \Theta(2^n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 176: Practice 4: Recursive Counting Down</div><div class="box-body"><p>A function prints numbers from $n$ down to $1$, by printing $n$, then calling itself on $n-1$. Identify the recurrence and find the order of growth.</p>
+<p><strong>Solution:</strong> Each call reduces $n$ by $1$, doing constant work for the print statement. So, $T(n) = T(n-1) + c$, giving $T(n) = \Theta(n)$.</p></div></div>
+<div class="example-box"><div class="box-title">Example 177: Practice 5: Recursive GCD (Euclid's Method)</div><div class="box-body"><p>A function computes the GCD of two numbers $a$ and $b$, using $\text{GCD}(a, b) = \text{GCD}(b, a \bmod b)$, until $b$ becomes $0$. This problem is harder to analyze directly using $n$ as size, since the reduction is not a simple halving or minus one, it depends on number theory properties.</p>
+<p><strong>Solution:</strong> It is known, using a deeper number theory result, that this recursion takes at most $O(\log(\min(a,b)))$ calls, because the smaller number reduces roughly by a multiplicative factor related to the golden ratio, in the worst case, every two calls.</p></div></div>
+</section>
+</section>
+<section id="useful-formulas" class="content-section level-1">
+<h2 class="section-heading">Useful Formulas</h2>
+<div class="concept-box"><div class="box-title">Important Formulas</div><div class="box-body"><p><strong>A. Core Logarithm Identities</strong> <br>
+(All logarithms below are base $2$ unless stated otherwise; the base never affects $\Theta$-notation.)</p>
+<ol><li><p><strong>Product rule:</strong> $\log(mn) = \log m + \log n$ <br>
+    <em>Example:</em> $\log(8n) = 3 + \log n$.</p></li><li><p><strong>Quotient rule:</strong> $\log(m/n) = \log m - \log n$ <br>
+    <em>Example:</em> $\log(n/4) = \log n - 2$.</p></li><li><p><strong>Power rule:</strong> $\log(n^k) = k \log n$ <br>
+    <em>Example:</em> $\log(n^3) = 3 \log n$.</p></li><li><p><strong>Change of base:</strong> $\log_b n = \dfrac{\log_a n}{\log_a b}$ <br>
+    <em>Example:</em> $\log_2 n = \dfrac{\ln n}{\ln 2}$, so $\log_2 n = \Theta(\ln n)$ – <strong>this is exactly why the base of a log is never written inside $\Theta$-notation</strong>: changing the base only multiplies by a constant.</p></li><li><p><strong>Inverse identity:</strong> $b^{\log_b n} = n$ <br>
+    <em>Example:</em> $2^{\log_2 n} = n$.</p></li><li><p><strong>Base facts:</strong> $\log_b 1 = 0$,    $\log_b b = 1$.</p></li><li><p><strong>Exponent–log swap (the “hidden” identity):</strong> $a^{\log_b c} = c^{\log_b a}$ <br>
+    <em>Example:</em> $n^{\log_2 7} = 7^{\log_2 n}$ – this rewriting is exactly how divide-and-conquer exponents like $\Theta(n^{\log_2 7})$ are manipulated.</p></li><li><p><strong>The “$n^{1/\log n}$ is a constant” trick:</strong> $n^{1/\log_b n} = b$ <br>
+    <em>Example:</em> $n^{1/\log_2 n} = 2$ for every $n$ – a function that <em>looks</em> like it depends on $n$ but is actually $\Theta(1)$.</p></li><li><p><strong>Sum of logs $=$ log of a factorial:</strong> $\displaystyle\sum_{i=1}^{n} \log i = \log(n!)$ <br>
+    <em>Example:</em> this identity is the bridge to Stirling's Approximation in Section B below.</p></li><li><p>For very small x, $\log_{b}(1+x) \approx \frac{x}{\ln(b)}$, where $ln$ is natural logarithm ( base e).</p></li><li><p><strong>Iterated logarithm</strong> $\log^{*} n$: the number of times $\log$ must be applied to $n$ before the result is $\le 1$. It grows slower than $\log\log\cdots\log n$ for <em>any</em> fixed number of iterations. <br>
+    <em>Example:</em> $\log^{*}(65536) = 4$, since $\log\log\log\log(65536) \le 1$; for all practically occurring $n$, $\log^{*} n \le 5$.</p></li></ol>
+<p><strong>B. Factorial and Stirling's Approximation</strong> <br></p>
+<ol><li><p><strong>Stirling's Approximation:</strong>
+    \[n! = \sqrt{2\pi n}\left(\frac{n}{e}\right)^n\left(1 + O\!\left(\frac{1}{n}\right)\right)   \Longrightarrow   n! = \Theta\!\left(\sqrt{n}\left(\frac{n}{e}\right)^n\right)\]
+    <em>Example:</em> for $n=10$, Stirling gives $10! \approx 3{,}598{,}696$, versus the true value $3{,}628{,}800$ – accurate to within $1\%$.</p></li><li><p><strong>Log-factorial form (the single most-used consequence of Stirling):</strong>
+    \[\ln(n!) = n\ln n - n + O(\log n)   \Longrightarrow   \log(n!) = \Theta(n \log n)\]
+    <em>Example:</em> this is precisely why the comparison-based sorting lower bound is $\Omega(n \log n)$, and why $\log(n!)$ and $n \log n$ can always be swapped inside $\Theta$-notation.</p></li><li><p><strong>Loose factorial bounds (no constants needed):</strong>
+    \[\left(\frac{n}{e}\right)^n \;\le\; n! \;\le\; n^n\]
+    <em>Example:</em> instantly bounds $n!$ between an exponential and $n^n$ without invoking $\sqrt{2\pi n}$.</p></li><li><p><strong>Factorial's place in the growth hierarchy:</strong> for every constant $c$,
+    \[c^n = o(n!)     \text{and}     n! = o(n^n)\]
+    <em>Example:</em> $2^n = o(n!)$ and $n! = o(n^n)$, so $2^n \prec n! \prec n^n$.</p></li><li><p><strong>Central binomial coefficient:</strong>
+    \[\binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}}   \Longrightarrow   \binom{2n}{n} = \Theta\!\left(\frac{4^n}{\sqrt n}\right)\]
+    <em>Example:</em> shows $\binom{2n}{n} = O(4^n)$ but $\binom{2n}{n} \ne \Theta(4^n)$ – the $\sqrt n$ factor in the denominator matters.</p></li><li><p><strong>Sum of all binomial coefficients:</strong>
+    \[\sum_{k=0}^{n} \binom{n}{k} = 2^n\]
+    <em>Example:</em> this is exactly the count of all $2^n$ subsets of an $n$-element set – the standard justification for a Brute-Force paradigm's exponential running time.</p></li></ol>
+<p><strong>C. Summation (Series) Formulas</strong> <br></p>
+<ol><li><p><strong>Arithmetic series:</strong>
+    \[\sum_{i=1}^{n} i = \frac{n(n+1)}{2} = \Theta(n^2)\]</p></li><li><p><strong>Sum of squares:</strong>
+    \[\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6} = \Theta(n^3)\]</p></li><li><p><strong>Sum of cubes:</strong>
+    \[\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2 = \Theta(n^4)\]</p></li><li><p><strong>General power sum:</strong>
+    \[\sum_{i=1}^{n} i^k = \Theta(n^{k+1}),   \text{for any constant } k \ge 0\]</p></li><li><p><strong>Finite geometric series</strong></p>
+<ul><li><p>For $r &gt; 1$: $S_n = \frac{a(r^n - 1)}{r - 1}$</p></li><li><p>For $r &lt; 1$: $S_n = \frac{a(1 - r^n)}{1 - r}$</p></li><li><p>For $S_\infty$ ($|r| &lt; 1$): $S_\infty = \frac{a}{1 - r}$</p></li></ul></li><li><p><strong>Harmonic series:</strong>
+    \[\sum_{i=1}^{n} \frac{1}{i} = \ln n + \gamma + O(1/n) = \Theta(\log n),      \gamma \approx 0.5772\]
+    <em>Example:</em> directly explains why a loop of the form <code>for(i=1;i&lt;=n;i++) for(j=1;j&lt;=n;j+=i)</code> runs $\Theta(n \log n)$ times in total.</p></li><li><p><strong>Sum of logarithms:</strong>
+    \[\sum_{i=1}^{n} \log i = \log(n!) = \Theta(n \log n)\]</p></li><li><p><strong>Arithmetico-geometric series</strong> ($r &gt; 1$):
+    \[\sum_{i=1}^{n} i \, r^i = \Theta(n \, r^n)\]
+    <em>Example:</em> $\displaystyle\sum_{i=1}^{n} i \cdot 2^i = \Theta(n \cdot 2^n)$ – again dominated by the last (largest-index) term.</p></li><li><p><strong>Decaying recursion-tree workload:</strong>
+    \[\sum_{i=0}^{\log n} \frac{n}{2^i} = \Theta(n)\]
+    <em>Example:</em> models a divide-and-conquer process where the work per level halves but the number of levels is $\Theta(\log n)$ – the total is still only $\Theta(n)$, <strong>not</strong> $\Theta(n \log n)$.</p></li><li><p><strong>Growing recursion-tree workload:</strong>
+    \[\sum_{i=1}^{\log n} 2^i = \Theta(n)\]
+    <em>Example:</em> work doubling every level for $\Theta(\log n)$ levels also sums to only $\Theta(n)$, since the sum is dominated by the final, largest term.</p></li></ol>
+<p><strong>D. Growth-Rate Hierarchy and Limit Tests</strong> <br></p>
+<ol><li><p><strong>Logarithms lose to every polynomial:</strong>
+    \[\lim_{n \to \infty} \frac{\log n}{n^{\varepsilon}} = 0,   \text{for any constant } \varepsilon &gt; 0\]
+    <em>Example:</em> $\log n = o(\sqrt n)$, and even $\log n = o(n^{0.001})$.</p></li><li><p><strong>Polynomials lose to every exponential:</strong>
+    \[\lim_{n \to \infty} \frac{n^{k}}{c^{n}} = 0,   \text{for any constants } k &gt; 0,\ c &gt; 1\]
+    <em>Example:</em> $n^{100} = o(1.01^n)$.</p></li><li><p><strong>The full growth hierarchy</strong> (for constants $0&lt;\varepsilon&lt;1$ and $c&gt;1$):
+    \[\log^{*} n \;\prec\; \log\log n \;\prec\; \log n \;\prec\; n^{\varepsilon} \;\prec\; n \;\prec\; n\log n \;\prec\; n^{c} \;\prec\; c^{n} \;\prec\; n! \;\prec\; n^{n}\]</p></li><li><p><strong>Ratio (limit) test for comparing $f$ and $g$:</strong> if $\displaystyle\lim_{n\to\infty}\frac{f(n)}{g(n)} = L$, then
+    \[0 &lt; L &lt; \infty \Rightarrow f = \Theta(g),      L = 0 \Rightarrow f = o(g),      L = \infty \Rightarrow f = \omega(g)\]
+    <em>Example:</em> $\displaystyle\lim_{n\to\infty} \frac{3n^2+5}{n^2} = 3 \Rightarrow 3n^2+5 = \Theta(n^2)$.</p></li><li><p><strong>Euler's number limits</strong> (used in hashing / amortized / probabilistic analyses):
+    \[\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n} = e,      \lim_{n\to\infty}\left(1-\frac{1}{n}\right)^{n} = \frac{1}{e}\]
+    <em>Example:</em> the probability that $n$ items hashed into $n$ buckets avoid a particular bucket entirely is $(1-1/n)^n \approx 1/e$.</p></li><li><p><strong>Exponential and log inequalities</strong> (used to bound the expressions above):
+    \[1 + x \le e^{x} \ \text{ for all real } x,      \ln(1+x) \le x \ \text{ for } x &gt; -1\]
+    <em>Example:</em> gives the one-line bound $(1 - 1/n)^n \le e^{-1}$ used just above.</p></li></ol>
+<p><strong>E. Floors/ceilings never matter</strong> <br></p>
+<p>For a recurrence $T(n) = a\,T(n/b) + f(n)$ with $a \ge 1$, $b &gt; 1$, let $p = \log_b a$.</p>
+<ul><li><p><strong>Floors/ceilings never matter:</strong> $T(n) = T(\lfloor n/2 \rfloor) + T(\lceil n/2 \rceil) + O(n)$ has exactly the same solution, $\Theta(n\log n)$, as $T(n) = 2T(n/2) + O(n)$.</p></li></ul></div></div>
+</section>
+    <div class="chapter-pager"><span class="spacer"></span><a class="nav-btn next" href="ch02.html">Chapter 2: Stacks &rarr;</a></div>
+    <footer class="page-footer">GateXAIML &middot; Data Structures &amp; Algorithms &mdash; Concept Notes
+       
+    <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+   </div>
+   
+<div class="site-footer-copy">&copy; 2026 GateXAIML. All original content. Not affiliated with IIT / GATE authorities.</div>
+
+
+    
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>

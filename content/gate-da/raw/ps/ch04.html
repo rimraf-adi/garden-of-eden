@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Random Variables — Probability &amp; Statistics</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2091443451043907" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="assets/style.css">
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TC6MSJZS87"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TC6MSJZS87');
+</script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['\\[', '\\]']], macros: { } },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</head>
+<body>
+<button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header"><img src="assets/logo.png" class="brand-logo" onerror="this.style.display='none'"><div class="brand-text">GateXAIML<span>Probability &amp; Statistics</span></div></div>
+<div class="sidebar-scroll"><ul class="toc-root">
+<li class="toc-chapter"><details><summary><a href="ch01.html" class="chapter-link">Chapter 1: Counting</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch01.html#what-is-combinatorics" class="toc-link" data-slug="what-is-combinatorics">What is Combinatorics?</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#key-areas-in-combinatorics" class="toc-link" data-slug="key-areas-in-combinatorics">Key Areas in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#applications-of-combinatorics" class="toc-link" data-slug="applications-of-combinatorics">Applications of Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#rule-identification-guide-in-combinatorics" class="toc-link" data-slug="rule-identification-guide-in-combinatorics">Rule Identification Guide in Combinatorics</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#quick-decision-table" class="toc-link" data-slug="quick-decision-table">Quick Decision Table</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#permutations" class="toc-link" data-slug="permutations">Permutations</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#how-to-identify-permutation-problems" class="toc-link" data-slug="how-to-identify-permutation-problems">How to Identify Permutation Problems</a>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-permutation-problems" class="toc-link" data-slug="examples-of-permutation-problems">Examples of Permutation Problems</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-simple-permutation" class="toc-link" data-slug="example-1-simple-permutation">Example 1: Simple Permutation</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-permutation-of-a-subset" class="toc-link" data-slug="example-2-permutation-of-a-subset">Example 2: Permutation of a Subset</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-digits-in-a-number" class="toc-link" data-slug="example-3-digits-in-a-number">Example 3: Digits in a Number</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-arrangement-with-restrictions" class="toc-link" data-slug="example-4-arrangement-with-restrictions">Example 4: Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-circular-permutations" class="toc-link" data-slug="example-5-circular-permutations">Example 5: Circular Permutations</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-permutations-with-repeated-items" class="toc-link" data-slug="example-6-permutations-with-repeated-items">Example 6: Permutations with Repeated Items</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-at-least-condition" class="toc-link" data-slug="example-7-at-least-condition">Example 7: At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-arrangement-with-items-together" class="toc-link" data-slug="example-8-arrangement-with-items-together">Example 8: Arrangement with Items Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-number-with-constraints" class="toc-link" data-slug="example-9-number-with-constraints">Example 9: Number with Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-all-letters-used-with-restrictions" class="toc-link" data-slug="example-10-all-letters-used-with-restrictions">Example 10: All Letters Used with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-11-repeated-digits-constraint" class="toc-link" data-slug="example-11-repeated-digits-constraint">Example 11: Repeated Digits Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-12-vowels-together" class="toc-link" data-slug="example-12-vowels-together">Example 12: Vowels Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-13-at-least-one-condition" class="toc-link" data-slug="example-13-at-least-one-condition">Example 13: At Least One Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-14-positions-fixed" class="toc-link" data-slug="example-14-positions-fixed">Example 14: Positions Fixed</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-15-word-arrangement-with-restrictions" class="toc-link" data-slug="example-15-word-arrangement-with-restrictions">Example 15: Word Arrangement with Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-16-conditional-digit-use" class="toc-link" data-slug="example-16-conditional-digit-use">Example 16: Conditional Digit Use</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-17-circular-permutation-with-a-gap-constraint" class="toc-link" data-slug="example-17-circular-permutation-with-a-gap-constraint">Example 17: Circular Permutation with a Gap Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-18-permutations-with-restricted-positions" class="toc-link" data-slug="example-18-permutations-with-restricted-positions">Example 18: Permutations with Restricted Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-19-permutation-with-minimum-gap" class="toc-link" data-slug="example-19-permutation-with-minimum-gap">Example 19: Permutation with Minimum Gap</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-20-arrangements-with-fixed-distance" class="toc-link" data-slug="example-20-arrangements-with-fixed-distance">Example 20: Arrangements with Fixed Distance</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-21-permutations-with-banned-positions" class="toc-link" data-slug="example-21-permutations-with-banned-positions">Example 21: Permutations with Banned Positions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-22-permutations-with-digit-reuse-prohibited" class="toc-link" data-slug="example-22-permutations-with-digit-reuse-prohibited">Example 22: Permutations with Digit Reuse Prohibited</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-23-permutations-with-specific-characters-together" class="toc-link" data-slug="example-23-permutations-with-specific-characters-together">Example 23: Permutations with Specific Characters Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-24-at-least-one-fixed-digit" class="toc-link" data-slug="example-24-at-least-one-fixed-digit">Example 24: At Least One Fixed Digit</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-25-group-arrangements-with-subgroup-together" class="toc-link" data-slug="example-25-group-arrangements-with-subgroup-together">Example 25: Group Arrangements with Subgroup Together</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-26-letter-arrangement-with-repetition-and-restrictions" class="toc-link" data-slug="example-26-letter-arrangement-with-repetition-and-restrictions">Example 26: Letter Arrangement with Repetition and Restrictions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-27-permutation-with-parity-constraints" class="toc-link" data-slug="example-27-permutation-with-parity-constraints">Example 27: Permutation with Parity Constraints</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-28-multiset-with-at-least-condition" class="toc-link" data-slug="example-28-multiset-with-at-least-condition">Example 28: Multiset with At Least Condition</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-29-permutations-with-min-distance-constraint" class="toc-link" data-slug="example-29-permutations-with-min-distance-constraint">Example 29: Permutations with Min Distance Constraint</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-30-distribution-of-items-in-permutations" class="toc-link" data-slug="example-30-distribution-of-items-in-permutations">Example 30: Distribution of Items in Permutations</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#combinations" class="toc-link" data-slug="combinations">Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#when-to-identify-a-problem-as-combination" class="toc-link" data-slug="when-to-identify-a-problem-as-combination">When to Identify a Problem as Combination</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch01.html#examples-of-combinations" class="toc-link" data-slug="examples-of-combinations">Examples of Combinations</a>
+<ul><li class="toc-l2"><a href="ch01.html#example-1-committee-selection" class="toc-link" data-slug="example-1-committee-selection">Example 1: Committee Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-2-handshake-problem" class="toc-link" data-slug="example-2-handshake-problem">Example 2: Handshake Problem</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-3-choosing-balls" class="toc-link" data-slug="example-3-choosing-balls">Example 3: Choosing Balls</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-4-forming-teams" class="toc-link" data-slug="example-4-forming-teams">Example 4: Forming Teams</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-5-card-selection" class="toc-link" data-slug="example-5-card-selection">Example 5: Card Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-6-dividing-prizes" class="toc-link" data-slug="example-6-dividing-prizes">Example 6: Dividing Prizes</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-7-selecting-questions" class="toc-link" data-slug="example-7-selecting-questions">Example 7: Selecting Questions</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-8-subsets" class="toc-link" data-slug="example-8-subsets">Example 8: Subsets</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-9-lottery-selection" class="toc-link" data-slug="example-9-lottery-selection">Example 9: Lottery Selection</a>
+</li>
+<li class="toc-l2"><a href="ch01.html#example-10-choosing-books" class="toc-link" data-slug="example-10-choosing-books">Example 10: Choosing Books</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch02.html" class="chapter-link">Chapter 2: Introduction to Statistics</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch02.html#motivation" class="toc-link" data-slug="motivation">Motivation</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-do-we-sample" class="toc-link" data-slug="why-do-we-sample">Why Do We Sample?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#how-does-inference-work" class="toc-link" data-slug="how-does-inference-work">How Does Inference Work?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#fundamental-relationship-between-probability-and-statistics" class="toc-link" data-slug="fundamental-relationship-between-probability-and-statistics">Fundamental Relationship between Probability and Statistics</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#real-world-motivation-and-example" class="toc-link" data-slug="real-world-motivation-and-example">Real-World Motivation and Example</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#data-collection" class="toc-link" data-slug="data-collection">Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#steps-in-the-sampling-and-data-collection-process" class="toc-link" data-slug="steps-in-the-sampling-and-data-collection-process">Steps in the Sampling and Data Collection Process</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#why-is-sampling-important" class="toc-link" data-slug="why-is-sampling-important">Why is Sampling Important?</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#common-pitfalls-in-data-collection" class="toc-link" data-slug="common-pitfalls-in-data-collection">Common Pitfalls in Data Collection</a>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-location" class="toc-link" data-slug="measures-of-location">Measures of Location</a>
+<ul><li class="toc-l2"><a href="ch02.html#sample-mean-texorpdfstring-bar-x-x" class="toc-link" data-slug="sample-mean-texorpdfstring-bar-x-x">Sample Mean ($\bar{x}$)</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#importance" class="toc-link" data-slug="importance">Importance:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#example" class="toc-link" data-slug="example">Example:</a>
+</li>
+<li class="toc-l2"><a href="ch02.html#comparison" class="toc-link" data-slug="comparison">Comparison</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch02.html#measures-of-variability" class="toc-link" data-slug="measures-of-variability">Measures of Variability</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch03.html" class="chapter-link">Chapter 3: The Probability Theory</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch03.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#probability-rules" class="toc-link" data-slug="probability-rules">Probability Rules</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#conditional-probability" class="toc-link" data-slug="conditional-probability">Conditional Probability</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#bayes-theorem" class="toc-link" data-slug="bayes-theorem">Bayes Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch03.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details open><summary><a href="ch04.html" class="chapter-link active">Chapter 4: The Random Variables</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch04.html#introduction" class="toc-link" data-slug="introduction">Introduction</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-discrete-probability-distributions" class="toc-link" data-slug="overview-of-discrete-probability-distributions">Overview of Discrete Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#overview-of-continuous-probability-distributions" class="toc-link" data-slug="overview-of-continuous-probability-distributions">Overview of Continuous Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#joint-probability-distributions" class="toc-link" data-slug="joint-probability-distributions">Joint Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#marginal-probability-distributions" class="toc-link" data-slug="marginal-probability-distributions">Marginal Probability Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch04.html#conditional-probability-distributions" class="toc-link" data-slug="conditional-probability-distributions">Conditional Probability Distributions</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch05.html" class="chapter-link">Chapter 5: Mean and Variance of a Random Variable</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch05.html#mean" class="toc-link" data-slug="mean">Mean</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-joint-and-marginal-distributions" class="toc-link" data-slug="expectation-of-joint-and-marginal-distributions">Expectation of Joint and Marginal Distributions</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#expectation-of-conditional-probability-distribution" class="toc-link" data-slug="expectation-of-conditional-probability-distribution">Expectation of Conditional Probability Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#variance-and-covariance" class="toc-link" data-slug="variance-and-covariance">Variance and Covariance</a>
+</li>
+<li class="toc-l1"><a href="ch05.html#linear-combinations-of-expectation-and-variance" class="toc-link" data-slug="linear-combinations-of-expectation-and-variance">Linear Combinations of Expectation and Variance</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch06.html" class="chapter-link">Chapter 6: Discrete Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch06.html#bernoulli-trials-and-binomial-distribution" class="toc-link" data-slug="bernoulli-trials-and-binomial-distribution">Bernoulli trials and Binomial distribution</a>
+</li>
+<li class="toc-l1"><a href="ch06.html#poisson-distribution" class="toc-link" data-slug="poisson-distribution">Poisson Distribution</a>
+<ul><li class="toc-l2"><a href="ch06.html#examples" class="toc-link" data-slug="examples">Examples:</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#properties-of-the-poisson-process" class="toc-link" data-slug="properties-of-the-poisson-process">Properties of the Poisson Process</a>
+</li>
+<li class="toc-l2"><a href="ch06.html#poisson-random-variable-and-distribution" class="toc-link" data-slug="poisson-random-variable-and-distribution">Poisson Random Variable and Distribution</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch06.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch07.html" class="chapter-link">Chapter 7: Continuous Probability Distributions</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch07.html#uniform-distribution" class="toc-link" data-slug="uniform-distribution">Uniform Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#exponential-distribution" class="toc-link" data-slug="exponential-distribution">Exponential Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-2" class="toc-link" data-slug="examples-2">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#normal-distribution-and-standard-normal" class="toc-link" data-slug="normal-distribution-and-standard-normal">Normal Distribution and Standard Normal</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#graph-of-normal-distribution" class="toc-link" data-slug="graph-of-normal-distribution">Graph of Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#tips-to-identify-normal-distribution-problems" class="toc-link" data-slug="tips-to-identify-normal-distribution-problems">Tips to Identify Normal Distribution Problems</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#standard-normal-distribution" class="toc-link" data-slug="standard-normal-distribution">Standard Normal Distribution</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#examples-3" class="toc-link" data-slug="examples-3">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch07.html#t-distribution" class="toc-link" data-slug="t-distribution">t-Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-4" class="toc-link" data-slug="examples-4">Examples</a>
+</li></ul>
+</li>
+<li class="toc-l1"><a href="ch07.html#chi-squared-distribution" class="toc-link" data-slug="chi-squared-distribution">Chi-Squared Distribution</a>
+<ul><li class="toc-l2"><a href="ch07.html#examples-5" class="toc-link" data-slug="examples-5">Examples</a>
+</li></ul>
+</li></ul></details></li>
+<li class="toc-chapter"><details><summary><a href="ch08.html" class="chapter-link">Chapter 8: Central Limit Theorem and Confidence Intervals</a></summary>
+<ul class="toc-sections"><li class="toc-l1"><a href="ch08.html#the-central-limit-theorem" class="toc-link" data-slug="the-central-limit-theorem">The Central Limit Theorem</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#examples" class="toc-link" data-slug="examples">Examples</a>
+</li>
+<li class="toc-l1"><a href="ch08.html#confidence-intervals" class="toc-link" data-slug="confidence-intervals">Confidence Intervals</a>
+</li></ul></details></li>
+</ul></div></nav>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="content">
+  <div class="content-inner">
+    <div class="chapter-header"><div class="chapter-eyebrow">Chapter 4 of 8</div><h1>The Random Variables</h1></div>
+<section id="introduction" class="content-section level-1">
+<h2 class="section-heading">Introduction</h2>
+<div class="concept-box"><div class="box-title"><strong>Random Variable</strong></div><div class="box-body"><p><strong>Definition:</strong> A <strong>random variable (RV)</strong> is a function that assigns a real number to each outcome in the sample space of a random experiment.</p>
+<p>There are two types:</p>
+<ul><li><p><strong>Discrete Random Variable:</strong> Takes a countable number of values.</p></li><li><p><strong>Continuous Random Variable:</strong> Takes values in a continuous range.</p></li></ul>
+<p><strong>Examples:</strong></p>
+<ol><li><p><strong>Coin Tossing:</strong></p>
+<ul><li><p>Experiment: Toss a fair coin 3 times.</p></li><li><p>Sample space: $\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$</p></li><li><p>Define $X$ = number of heads. Then $X$ is a discrete RV taking values $\{0,1,2,3\}$.</p></li></ul></li><li><p><strong>Dice Roll:</strong></p>
+<ul><li><p>Experiment: Roll a fair 6-sided die once.</p></li><li><p>Sample space: $\{1,2,3,4,5,6\}$</p></li><li><p>Define $Y$ = value shown on the die. $Y$ is a discrete RV taking values from 1 to 6.</p></li></ul></li><li><p><strong>Card Draw:</strong></p>
+<ul><li><p>Experiment: Draw one card from a deck.</p></li><li><p>Define $Z = 1$ if red card drawn, $Z = 0$ otherwise.</p></li><li><p>$Z$ is a discrete RV with values $\{0,1\}$.</p></li></ul></li><li><p><strong>Measuring Height:</strong></p>
+<ul><li><p>Experiment: Measure the height of a randomly selected student.</p></li><li><p>Define $H$ = height in cm. $H$ can take any real value in an interval, e.g., $[120, 200]$.</p></li><li><p>$H$ is a continuous RV.</p></li></ul></li></ol>
+<p><strong>Summary:</strong> A random variable converts qualitative outcomes into quantitative values for probabilistic analysis.</p></div></div>
+</section>
+<section id="overview-of-discrete-probability-distributions" class="content-section level-1">
+<h2 class="section-heading">Overview of Discrete Probability Distributions</h2>
+<div class="concept-box"><div class="box-title"><strong>Discrete Probability Distribution</strong></div><div class="box-body"><p>A <strong>Discrete Random Variable (DRV)</strong> is a variable that can take on a countable number of values, each with a corresponding probability.</p>
+<p>A <strong>Discrete Probability Distribution</strong> describes the probability that a discrete random variable takes each of its possible values.</p>
+<p><strong>Probability Mass Function (PMF)</strong>: Let $X$ be a discrete random variable. The function $f(x)$ defined as:</p>
+<p>\[
+f(x) = P(X = x)
+\]</p>
+<p>is called the <strong>Probability Mass Function</strong> (PMF), which satisfies:</p>
+<ol><li><p>$f(x) \geq 0$ for all $x$</p></li><li><p>$\sum_x f(x) = 1$</p></li><li><p>$P(X = x) = f(x)$</p></li></ol>
+<p><strong>Cumulative Distribution Function (CDF)</strong>: The cumulative distribution function $F(x)$ gives the probability that $X$ is less than or equal to $x$:</p>
+<p>\[
+F(x) = P(X \leq x) = \sum_{t \leq x} f(t)
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 1: Tossing a Coin 3 Times</strong></div><div class="box-body"><p>Let $X$ be the number of heads observed when a fair coin is tossed 3 times.</p>
+<p><strong>Sample Space:</strong> Each toss has 2 outcomes: H or T. Total outcomes: $2^3 = 8$  
+Enumerating outcomes:</p>
+<ul><li><p>0 heads: TTT</p></li><li><p>1 head: HTT, THT, TTH</p></li><li><p>2 heads: HHT, HTH, THH</p></li><li><p>3 heads: HHH</p></li></ul>
+<p><strong>PMF Table:</strong>
+\[
+\begin{array}{|c|c|}
+
+x &amp; P(X = x) \\
+
+0 &amp; \frac{1}{8} \\
+1 &amp; \frac{3}{8} \\
+2 &amp; \frac{3}{8} \\
+3 &amp; \frac{1}{8} \\
+
+\end{array}
+\]</p>
+<p><strong>CDF Table:</strong>
+\[
+\begin{array}{|c|c|}
+
+x &amp; F(x) = P(X \leq x) \\
+
+0 &amp; \frac{1}{8} \\
+1 &amp; \frac{4}{8} \\
+2 &amp; \frac{7}{8} \\
+3 &amp; 1 \\
+
+\end{array}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 2: Random Helmet Assignment</strong></div><div class="box-body"><p>Let $M$ be the number of employees getting back their own helmets when 3 helmets are randomly returned.</p>
+<p><strong>Possible values:</strong> $M = 0, 1, 3$</p>
+<p><strong>PMF:</strong>
+\[
+\begin{array}{|c|c|}
+
+m &amp; P(M = m) \\
+
+0 &amp; \frac{1}{3} \\
+1 &amp; \frac{1}{2} \\
+3 &amp; \frac{1}{6} \\
+
+\end{array}
+\]</p>
+<p>Check: $\frac{1}{3} + \frac{1}{2} + \frac{1}{6} = 1$</p>
+<p>This is a valid discrete probability distribution.</p></div></div>
+<div class="concept-box"><div class="box-title"><strong>Example 3: Defective Laptops in a Shipment</strong></div><div class="box-body"><p>A small company buys 2 laptops at random from a shipment of 20, where 3 are defective. Let $X$ be the number of defectives selected.</p>
+<p><strong>Total ways to choose 2 laptops out of 20:</strong> ${20 \choose 2} = 190$</p>
+<p>Now, calculate:</p>
+<ul><li><p>$P(X = 0)$ = Both are non-defective: ${17 \choose 2}/190 = 136/190$</p></li><li><p>$P(X = 1)$ = One defective, one good: ${3 \choose 1}{17 \choose 1}/190 = 51/190$</p></li><li><p>$P(X = 2)$ = Both defective: ${3 \choose 2}/190 = 3/190$</p></li></ul>
+<p><strong>PMF Table:</strong>
+\[
+\begin{array}{|c|c|}
+
+x &amp; P(X = x) \\
+
+0 &amp; \frac{136}{190} \\
+1 &amp; \frac{51}{190} \\
+2 &amp; \frac{3}{190} \\
+
+\end{array}
+\]</p>
+<p><strong>Check:</strong> $\frac{136 + 51 + 3}{190} = 1$</p></div></div>
+<div class="concept-box"><div class="box-title">Example</div><div class="box-body"><p><strong>Problem:</strong> A car dealership sells a particular foreign car, 50% of which are equipped with side airbags. Let $X$ denote the number of cars with side airbags among the next 4 cars sold.</p>
+<ol><li><p>Determine a formula for the <strong>probability distribution</strong> of $X$.</p></li><li><p>Find the <strong>cumulative distribution function (CDF)</strong> of $X$.</p></li></ol>
+<p><strong>Solution:</strong><br>
+We are dealing with a <strong>Binomial distribution</strong> problem where:</p>
+<ul><li><p>Number of trials: $n = 4$</p></li><li><p>Probability of success (a car with airbags): $p = 0.5$</p></li><li><p>Random variable $X$: number of cars with airbags among the next 4 sold</p></li></ul>
+<p><strong>1. Probability Mass Function (PMF)</strong> <br>
+For a binomial random variable, the PMF is given by:
+\[
+P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, 2, 3, 4
+\]
+Substituting $n = 4$ and $p = 0.5$:
+\[
+P(X = x) = \binom{4}{x} (0.5)^x (0.5)^{4-x} = \binom{4}{x} \cdot (0.5)^4 = \binom{4}{x} \cdot \frac{1}{16}
+\]</p>
+<p><strong>2. PMF Values:</strong>
+\begin{align*}
+P(X = 0) &amp;= \frac{1}{16}, &amp;
+P(X = 1) &amp;= \frac{4}{16}, \\
+P(X = 2) &amp;= \frac{6}{16}, &amp;
+P(X = 3) &amp;= \frac{4}{16}, \\
+P(X = 4) &amp;= \frac{1}{16}
+\end{align*}</p>
+<p><strong>3. Probability Distribution Table:</strong>
+\[
+\begin{array}{|c|c|}
+
+x &amp; P(X = x) \\
+
+0 &amp; \frac{1}{16} \\
+1 &amp; \frac{4}{16} \\
+2 &amp; \frac{6}{16} \\
+3 &amp; \frac{4}{16} \\
+4 &amp; \frac{1}{16} \\
+
+\end{array}
+\]</p>
+<p><strong>4. Cumulative Distribution Function (CDF):</strong>
+\[
+\begin{array}{|c|c|}
+
+x &amp; F(x) = P(X \le x) \\
+
+0 &amp; \frac{1}{16} \\
+1 &amp; \frac{1+4}{16} = \frac{5}{16} \\
+2 &amp; \frac{5+6}{16} = \frac{11}{16} \\
+3 &amp; \frac{11+4}{16} = \frac{15}{16} \\
+4 &amp; \frac{15+1}{16} = 1 \\
+
+\end{array}
+\]</p></div></div>
+</section>
+<section id="overview-of-continuous-probability-distributions" class="content-section level-1">
+<h2 class="section-heading">Overview of Continuous Probability Distributions</h2>
+<div class="concept-box"><div class="box-title">Continuous Random Variables and Probability Density Function (PDF)</div><div class="box-body"><p>A <strong>continuous random variable</strong> can assume an infinite number of values in a given range. The probability that a continuous random variable takes on any exact value is zero. This is because between any two real numbers, no matter how close, there are infinitely many values.</p>
+<p><strong>Example</strong>: Consider the heights of people over 21 years of age. The probability that a randomly chosen person is exactly 164 cm tall is <strong>0</strong>. However, the probability that the height lies within an interval, say between 163 and 165 cm, is greater than 0.</p>
+<p>For a continuous random variable $X$, the probability is computed over an interval:
+\[
+P(a &lt; X &lt; b) = \int_a^b f(x) \, dx
+\]</p>
+<p>Here, $f(x)$ is called the <strong>probability density function (pdf)</strong> and must satisfy:</p>
+<ol><li><p>$f(x) \geq 0$ for all $x \in \mathbb{R}$</p></li><li><p>$\displaystyle \int_{-\infty}^{\infty} f(x)\, dx = 1$</p></li><li><p>$\displaystyle P(a &lt; X &lt; b) = \int_a^b f(x)\, dx$</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Example: PDF Verification and Probability Calculation</div><div class="box-body"><p>Let $X$ be a continuous random variable with pdf:</p>
+<p>\[
+f(x) = 
+\begin{cases}
+\dfrac{x^2}{3}, &amp; \text{if } -1 &lt; x &lt; 2 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p><strong>(a) Verify that $f(x)$ is a valid pdf</strong></p>
+<p>We need to check:
+\[
+\int_{-\infty}^{\infty} f(x) dx = \int_{-1}^{2} \dfrac{x^2}{3} dx
+\]</p>
+<p>\[
+= \dfrac{1}{3} \int_{-1}^{2} x^2 dx = \dfrac{1}{3} \left[\dfrac{x^3}{3}\right]_{-1}^{2}
+= \dfrac{1}{3} \left( \dfrac{8}{3} - \left( -\dfrac{1}{3} \right) \right)
+= \dfrac{1}{3} \cdot \dfrac{9}{3} = 1
+\]</p>
+<p>So, $f(x)$ is a valid pdf.</p>
+<p><strong>(b) Find </strong> $P(0 &lt; X \leq 1)$</p>
+<p>\[
+P(0 &lt; X \leq 1) = \int_0^1 \dfrac{x^2}{3} dx = \dfrac{1}{3} \int_0^1 x^2 dx 
+= \dfrac{1}{3} \left[\dfrac{x^3}{3}\right]_0^1 = \dfrac{1}{3} \cdot \dfrac{1}{3} = \dfrac{1}{9}
+\]</p>
+<p><strong>Answer: </strong> $P(0 &lt; X \leq 1) = \dfrac{1}{9}$</p></div></div>
+<div class="concept-box"><div class="box-title">Definition: Cumulative Distribution Function</div><div class="box-body"><p>The cumulative distribution function \( F(x) \) of a continuous random variable \( X \) with density function \( f(x) \) is given by:</p>
+<p>\[
+F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt, \quad \text{for } -\infty &lt; x &lt; \infty.
+\]</p>
+<p>As a consequence of this definition, we also have:
+\begin{align*}
+P(a &lt; X &lt; b) &amp;= F(b) - F(a), \\
+f(x) &amp;= \frac{dF(x)}{dx}, \quad \text{if the derivative exists.}
+\end{align*}</p></div></div>
+<div class="concept-box"><div class="box-title">Example: Finding CDF and Probability from PDF</div><div class="box-body"><p>Recall from previous example, the probability density function:
+\[
+f(x) = 
+\begin{cases}
+\frac{x^2}{3}, &amp; \text{for } -1 &lt; x &lt; 2, \\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</p>
+<p><strong>(a) Finding the cumulative distribution function \( F(x) \):</strong></p>
+<p>We compute \( F(x) = \int_{-\infty}^{x} f(t)\,dt \) in different intervals:</p>
+<ul><li><p>For \( x \leq -1 \):<br>
+  \[
+  F(x) = 0
+  \]</p></li><li><p>For \( -1 &lt; x &lt; 2 \):<br>
+  \[
+  F(x) = \int_{-1}^{x} \frac{t^2}{3} \, dt = \frac{1}{3} \int_{-1}^{x} t^2 \, dt = \frac{1}{3} \left[ \frac{t^3}{3} \right]_{-1}^{x} = \frac{1}{9}(x^3 + 1)
+  \]</p></li><li><p>For \( x \geq 2 \):<br>
+  \[
+  F(x) = \int_{-1}^{2} \frac{t^2}{3} \, dt = \frac{1}{3} \left[ \frac{t^3}{3} \right]_{-1}^{2} = \frac{1}{9}(8 + 1) = 1
+  \]</p></li></ul>
+<p>So, the cumulative distribution function is:</p>
+<p>\[
+F(x) = 
+\begin{cases}
+0, &amp; x \leq -1, \\
+\frac{1}{9}(x^3 + 1), &amp; -1 &lt; x &lt; 2, \\
+1, &amp; x \geq 2.
+\end{cases}
+\]</p>
+<p><strong>(b) Use \( F(x) \) to compute \( P(0 &lt; X \leq 1) \):</strong></p>
+<p>\[
+P(0 &lt; X \leq 1) = F(1) - F(0) = \frac{1}{9}(1^3 + 1) - \frac{1}{9}(0^3 + 1) = \frac{2}{9} - \frac{1}{9} = \frac{1}{9}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Identifying Random Variables (Question and Solution)</div><div class="box-body"><p><strong>Question:</strong><br>
+Determine whether each of the following random variables is <strong>discrete</strong> or <strong>continuous</strong>:</p>
+<ul><li><p>$X$: the number of traffic tickets issued in a city per month.</p></li><li><p>$Y$: the duration (in hours) of a marathon race.</p></li><li><p>$M$: the yearly milk yield from a specific cow.</p></li><li><p>$N$: the number of eggs a hen lays in a week.</p></li><li><p>$P$: the monthly number of building inspections conducted in a town.</p></li><li><p>$Q$: the weight of wheat harvested per acre.</p></li></ul>
+<p><strong>Solution:</strong><br>
+Classify each variable based on whether it assumes countable values (discrete) or can take any value within a range (continuous):</p>
+<ul><li><p><strong>$X$ is Discrete:</strong> Tickets are counted as whole numbers (0, 1, 2, ...).</p></li><li><p><strong>$Y$ is Continuous:</strong> Race duration can take any positive real value (e.g., 4.75 hours).</p></li><li><p><strong>$M$ is Continuous:</strong> Milk yield varies continuously (e.g., 2135.6 liters/year).</p></li><li><p><strong>$N$ is Discrete:</strong> Eggs are counted in integers.</p></li><li><p><strong>$P$ is Discrete:</strong> Number of inspections is a countable quantity.</p></li><li><p><strong>$Q$ is Continuous:</strong> Wheat weight can take any value within a range (e.g., 3.42 tons/acre).</p></li></ul></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Random Variable for Selected Automobiles</div><div class="box-body"><p><strong>Question:</strong> <br>
+A shipment contains 5 foreign cars, 2 of which are special edition models. An agency randomly selects 3 cars from this shipment.</p>
+<ol><li><p>List all possible selections of 3 cars, using \(S\) for special edition and \(R\) for regular models.</p></li><li><p>Define a random variable \(X\) as the number of special edition cars in the selection, and determine its value for each selection.</p></li></ol>
+<p><strong>Solution:</strong> <br>
+We have 5 cars in total: 2 special edition \( (S) \) and 3 regular \( (R) \). The total number of ways to choose 3 cars is:
+\[
+\binom{5}{3} = 10
+\]</p>
+<p><strong>Step 1: Sample space</strong> <br>
+All distinct subsets of 3 cars:</p>
+<p>\[
+S = \{ \{S_1, S_2, R_1\}, \{S_1, S_2, R_2\}, \{S_1, S_2, R_3\}, \{S_1, R_1, R_2\}, \\\
+\{S_1, R_1, R_3\}, \{S_1, R_2, R_3\}, \{S_2, R_1, R_2\}, \{S_2, R_1, R_3\}, 
+\{S_2, R_2, R_3\}, \{R_1, R_2, R_3\} \}
+\]</p>
+<p><strong>Step 2: Assign values of \(X\)</strong> <br>
+The random variable \(X\) counts the number of special edition cars in each subset:</p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig006.png" alt="diagram"></div>
+<p>Hence, the random variable \(X\) can take the values \(0, 1, 2\) with the sample space completely enumerated.</p></div></div>
+<div class="concept-box"><div class="box-title">Example 3: Sample Space for Coin Tossing Until 3 Successive Heads</div><div class="box-body"><p><strong>Question:</strong> A coin is flipped until 3 heads in succession occur. List only those elements of the sample space that require 6 or fewer tosses. Is this a discrete sample space? Explain.</p>
+<p><strong>Solution:</strong> <br>
+We are to record sequences of coin tosses that result in the first occurrence of three successive heads (HHH) and require at most 6 tosses.</p>
+<p><strong>Step 1: Understand the stopping condition:</strong>  
+We stop the experiment as soon as 3 consecutive heads occur. So we only include sequences that end with HHH and do not have HHH earlier in the sequence.</p>
+<p><strong>Step 2: List all such sequences of length $\leq 6$ that end with the first occurrence of HHH:</strong></p>
+<ul><li><p>Length 3: <code>HHH</code></p></li><li><p>Length 4: <code>THHH</code></p></li><li><p>Length 5: <code>TTHHH</code>, <code>HTHH</code>, <code>HTTHH</code></p></li><li><p>Length 6: <code>TTTHHH</code>, <code>THTHHH</code>, <code>HTTHHH</code>, <code>HHTTHH</code>, <code>HTHTHH</code></p></li></ul>
+<p>(The list can be extended exhaustively by generating all valid sequences of length $\leq 6$ that end with the <code>HHH</code> and have no earlier HHH. This process requires a state-based approach or tree traversal for accuracy.)</p>
+<p><strong>Step 3: Is the sample space discrete?</strong></p>
+<p>Yes, this is a <strong>discrete sample space</strong> because:</p>
+<ul><li><p>The outcomes (coin sequences) can be listed individually.</p></li><li><p>Each outcome corresponds to a finite sequence of tosses.</p></li><li><p>There are a countable number of possible outcomes even though the experiment could theoretically continue beyond 6 tosses.</p></li></ul>
+<p><strong>Conclusion:</strong>  
+The sample space consists of all sequences that end with the first appearance of 3 successive heads, and the total set is countable. Therefore, it is a discrete sample space.</p></div></div>
+<div class="concept-box"><div class="box-title">Example 4: Shelf Life Probability of Medicine</div><div class="box-body"><p><strong>Question:</strong>  
+The shelf life, in days, for bottles of a certain prescribed medicine is a random variable having the density function
+\[
+f(x) = 
+\begin{cases}
+\frac{20,\!000}{(x+100)^3}, &amp; x &gt; 0 \\
+0, &amp; \text{elsewhere}
+\end{cases}
+\]
+Find the probability that a bottle of this medicine will have a shelf life of  
+(a) at least 200 days;  
+(b) anywhere from 80 to 120 days.</p>
+<p><strong>Solution:</strong></p>
+<p>This is a continuous probability density function. To find probabilities, we integrate the density over the desired interval.</p>
+<p>—</p>
+<p><strong>(a) Probability that shelf life is at least 200 days:</strong>  
+We want \( P(X \geq 200) = \int_{200}^{\infty} \frac{20000}{(x+100)^3} dx \)</p>
+<p>Let us make the substitution:  
+Let \( u = x + 100 \Rightarrow du = dx \), when \( x = 200 \), \( u = 300 \)</p>
+<p>\begin{align*}
+P(X \geq 300) &amp;= \int_{300}^{\infty} \frac{20000}{u^3} \, du \\
+&amp;= 20000 \int_{300}^{\infty} u^{-3} \, du \\
+&amp;= 20000 \left[ \frac{u^{-2}}{-2} \right]_{300}^{\infty} \\
+&amp;= 20000 \left( 0 - \left( \frac{-1}{2 \cdot 300^2} \right) \right) \\
+&amp;= \frac{20000}{2 \cdot 300^2} \\
+&amp;= \frac{20000}{180000} \\
+&amp;= \frac{1}{9}
+\end{align*}</p>
+<p>\[
+\boxed{P(X \geq 200) = \frac{1}{9}}
+\]</p>
+<p>—</p>
+<p><strong>(b) Probability that shelf life is between 80 and 120 days:</strong>  
+We want \( P(80 \leq X \leq 120) = \int_{80}^{120} \frac{20000}{(x+100)^3} dx \)</p>
+<p>Use substitution \( u = x + 100 \Rightarrow du = dx \)  
+When \( x = 80 \), \( u = 180 \);  
+When \( x = 120 \), \( u = 220 \)</p>
+<p>\begin{align*}
+P(180 \leq X \leq 220) &amp;= \int_{180}^{220} \frac{20000}{u^3} \, du \\
+&amp;= 20000 \int_{180}^{220} u^{-3} \, du \\
+&amp;= 20000 \left[ \frac{u^{-2}}{-2} \right]_{180}^{220} \\
+&amp;= 20000 \left( \frac{-1}{2 \cdot 220^2} + \frac{1}{2 \cdot 180^2} \right) \\
+&amp;= \frac{20000}{2} \left( \frac{1}{180^2} - \frac{1}{220^2} \right) \\
+&amp;= 10000 \left( \frac{1}{32400} - \frac{1}{48400} \right) \\
+&amp;= 10000 \left( \frac{48400 - 32400}{32400 \cdot 48400} \right) \\
+&amp;= 10000 \cdot \frac{16000}{1,\!568,\!160,\!000} \\
+&amp;= \frac{160,\!000,\!000}{1,\!568,\!160,\!000} \\
+&amp;= \boxed{\frac{10}{98.01} \approx 0.102}
+\end{align*}
+So,  
+\[
+\boxed{P(80 \leq X \leq 120) \approx 0.102}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 5: Continuous Distribution Problem</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>The total number of hours, measured in units of 100 hours, that a family runs a vacuum cleaner over a period of one year is a continuous random variable \( X \) with the density function:</p>
+<p>\[
+f(x) =
+\begin{cases}
+x, &amp; 0 &lt; x &lt; 1 \\
+2 - x, &amp; 1 \le x &lt; 2 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>Find the probability that over a period of one year, a family runs their vacuum cleaner:</p>
+<p>(a) less than 120 hours;</p>
+<p>(b) between 50 and 100 hours.</p>
+<p><strong>Solution:</strong></p>
+<p>The given PDF \( f(x) \) is a piecewise function over the domain \( (0,2) \). Since \( x \) is in 100-hour units:</p>
+<ul><li><p>120 hours = 1.2 units</p></li><li><p>50 hours = 0.5 units</p></li><li><p>100 hours = 1 unit</p></li></ul>
+<p><strong>(a) Probability that \( X &lt; 1.2 \):</strong></p>
+<p>\[
+P(X &lt; 1.2) = \int_0^1 x \, dx + \int_1^{1.2} (2 - x) \, dx
+\]</p>
+<p>First integral:
+\[
+\int_0^1 x \, dx = \left[\frac{x^2}{2}\right]_0^1 = \frac{1}{2}
+\]</p>
+<p>Second integral:
+\[
+\int_1^{1.2} (2 - x) \, dx = \left[2x - \frac{x^2}{2}\right]_1^{1.2}
+= \left(2(1.2) - \frac{(1.2)^2}{2}\right) - \left(2(1) - \frac{(1)^2}{2}\right)
+\]
+\[
+= (2.4 - 0.72) - (2 - 0.5) = 1.68 - 1.5 = 0.18
+\]</p>
+<p>So,
+\[
+P(X &lt; 1.2) = 0.5 + 0.18 = \boxed{0.68}
+\]</p>
+<p><strong>(b) Probability that \( 0.5 &lt; X &lt; 1 \):</strong></p>
+<p>This falls entirely in the first part of the PDF \( f(x) = x \):</p>
+<p>\[
+P(0.5 &lt; X &lt; 1) = \int_{0.5}^{1} x \, dx = \left[\frac{x^2}{2}\right]_{0.5}^1
+= \frac{1}{2} - \frac{(0.5)^2}{2} = \frac{1}{2} - \frac{0.25}{2} = \frac{1}{2} - 0.125 = \boxed{0.375}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 6: Probability Question with Solution</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>The proportion of people who respond to a certain mails  is a continuous random variable \( X \) that has the density function:
+\[
+f(x) = 
+\begin{cases}
+\dfrac{2(x+2)}{5}, &amp; 0 &lt; x &lt; 1 \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>(a) Show that \( P(0 &lt; X &lt; 1) = 1 \).<br>
+(b) Find the probability that more than \( \frac{1}{4} \) but less than \( \frac{1}{2} \) of the people respond.</p>
+<p><strong>Solution:</strong></p>
+<p><strong>(a)</strong> We verify that the total probability over the range of the PDF is 1:</p>
+<p>\[
+P(0 &lt; X &lt; 1) = \int_0^1 \frac{2(x+2)}{5} \, dx = \frac{2}{5} \int_0^1 (x + 2) \, dx
+\]
+\[
+= \frac{2}{5} \left[ \frac{x^2}{2} + 2x \right]_0^1 = \frac{2}{5} \left( \frac{1}{2} + 2 \right) = \frac{2}{5} \cdot \frac{5}{2} = 1
+\]</p>
+<p>Hence, the PDF is valid.</p>
+<p><strong>(b)</strong> We find the probability:
+\[
+P\left( \frac{1}{4} &lt; X &lt; \frac{1}{2} \right) = \int_{1/4}^{1/2} \frac{2(x+2)}{5} \, dx = \frac{2}{5} \int_{1/4}^{1/2} (x + 2) \, dx
+\]
+\[
+= \frac{2}{5} \left[ \frac{x^2}{2} + 2x \right]_{1/4}^{1/2}
+\]</p>
+<p>Evaluating:
+\[
+\left( \frac{1}{2} \right)^2/2 + 2 \cdot \frac{1}{2} = \frac{1}{8} + 1 = \frac{9}{8}
+\]
+\[
+\left( \frac{1}{4} \right)^2/2 + 2 \cdot \frac{1}{4} = \frac{1}{32} + \frac{1}{2} = \frac{17}{32}
+\]
+\[
+\Rightarrow \frac{9}{8} - \frac{17}{32} = \frac{36 - 17}{32} = \frac{19}{32}
+\]
+\[
+\Rightarrow \frac{2}{5} \cdot \frac{19}{32} = \frac{38}{160} = \boxed{\frac{19}{80} = 0.2375}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 7: Probability Question with Solution</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>A continuous random variable \( X \) that can assume values between \( x = 2 \) and \( x = 5 \) has a density function given by:</p>
+<p>\[
+f(x) = \frac{2(1 + x)}{27}, \quad 2 \le x \le 5
+\]</p>
+<p>Find:</p>
+<ul><li><p>[(a)] \( P(X &lt; 4) \)</p></li><li><p>[(b)] \( P(3 \le X &lt; 4) \)</p></li></ul>
+<p><strong>Solution:</strong></p>
+<p><strong>(a) Compute </strong> \( P(X &lt; 4) \):</p>
+<p>\[
+P(X &lt; 4) = \int_{2}^{4} \frac{2(1 + x)}{27} \, dx = \frac{2}{27} \int_{2}^{4} (1 + x) \, dx
+\]
+\[
+= \frac{2}{27} \left[ x + \frac{x^2}{2} \right]_2^4
+= \frac{2}{27} \left( \left(4 + \frac{16}{2} \right) - \left(2 + \frac{4}{2} \right) \right)
+\]
+\[
+= \frac{2}{27} \left( 4 + 8 - 2 - 2 \right) = \frac{2}{27} \cdot 8 = \frac{16}{27}
+\]</p>
+<p>\[
+\boxed{P(X &lt; 4) = \frac{16}{27} \approx 0.5926}
+\]</p>
+<p><strong>(b) Compute </strong> \( P(3 \le X &lt; 4) \):</p>
+<p>\[
+P(3 \le X &lt; 4) = \int_{3}^{4} \frac{2(1 + x)}{27} \, dx = \frac{2}{27} \int_{3}^{4} (1 + x) \, dx
+\]
+\[
+= \frac{2}{27} \left[ x + \frac{x^2}{2} \right]_3^4
+= \frac{2}{27} \left( \left(4 + \frac{16}{2} \right) - \left(3 + \frac{9}{2} \right) \right)
+\]
+\[
+= \frac{2}{27} \left( 4 + 8 - 3 - 4.5 \right) = \frac{2}{27} \cdot 4.5 = \frac{9}{27} = \frac{1}{3}
+\]</p>
+<p>\[
+\boxed{P(3 \le X &lt; 4) = \frac{1}{3} \approx 0.3333}
+\]</p></div></div>
+</section>
+<section id="joint-probability-distributions" class="content-section level-1">
+<h2 class="section-heading">Joint Probability Distributions</h2>
+<div class="concept-box"><div class="box-title">Definition: Discrete Joint Probability Distribution</div><div class="box-body"><p>Let \(X\) and \(Y\) be discrete random variables. A function \(f(x, y)\) is called the <strong>joint probability distribution</strong> of \(X\) and \(Y\) if:</p>
+<ol><li><p>\(f(x, y) \geq 0\) for all \((x, y)\),</p></li><li><p>\(\sum_x \sum_y f(x, y) = 1\),</p></li><li><p>\(P(X = x, Y = y) = f(x, y)\)</p></li></ol>
+<p>For any region \(A\) in the \(xy\)-plane:
+\[
+P[(X, Y) \in A] = \sum_{(x, y) \in A} f(x, y)
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1: Pen Selection Problem</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>Two ballpoint pens are selected at random from a box containing 3 blue, 2 red, and 3 green pens (8 pens total).</p>
+<p>Let:
+\[
+X = \text{Number of blue pens selected}, \quad Y = \text{Number of red pens selected}
+\]</p>
+<p>(a) Find the joint probability mass function \(f(x, y)\).  
+(b) Compute \(P(X + Y \leq 1)\)</p>
+<p><strong>Solution:</strong></p>
+<p>There are \({8 \choose 2} = 28\) possible ways to choose 2 pens from 8.</p>
+<p>We list valid combinations of \((X, Y)\) where \(x + y \leq 2\), \(x \leq 2\), \(y \leq 2\), and \(x + y \leq 2\):</p>
+<ul><li><p>\((0,0)\): 2 green → \({3 \choose 2} = 3\)</p></li><li><p>\((1,0)\): 1 blue, 1 green → \(3 \times 3 = 9\)</p></li><li><p>\((0,1)\): 1 red, 1 green → \(2 \times 3 = 6\)</p></li><li><p>\((1,1)\): 1 blue, 1 red → \(3 \times 2 = 6\)</p></li><li><p>\((2,0)\): 2 blue → \({3 \choose 2} = 3\)</p></li><li><p>\((0,2)\): 2 red → \({2 \choose 2} = 1\)</p></li></ul>
+<p>So, joint pmf \(f(x,y)\) is:</p>
+<p>\[
+\begin{aligned}
+f(0,0) &amp;= \frac{3}{28}, \quad f(1,0) = \frac{9}{28}, \quad f(0,1) = \frac{6}{28}, \\
+f(1,1) &amp;= \frac{6}{28}, \quad f(2,0) = \frac{3}{28}, \quad f(0,2) = \frac{1}{28}
+\end{aligned}
+\]</p>
+<p>(b) \(P(X + Y \leq 1) = f(0,0) + f(1,0) + f(0,1) = \frac{3 + 9 + 6}{28} = \frac{18}{28} = \frac{9}{14}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2: Coin Toss with 2 Heads</div><div class="box-body"><p><strong>Problem:</strong></p>
+<p>A fair coin is tossed 3 times. Let:
+\[
+X = \text{Number of Heads}, \quad Y = \text{Number of Tails}
+\]</p>
+<p>(a) Find the joint pmf \(f(x, y)\).  
+(b) Find \(P(X = 2, Y = 1)\)</p>
+<p><strong>Solution:</strong></p>
+<p>All outcomes: HHH, HHT, HTH, THH, HTT, THT, TTH, TTT — total of 8 outcomes.</p>
+<p>Count heads and tails in each:
+\[
+\begin{aligned}
+&amp;\text{HHH} \rightarrow (3,0) \\
+&amp;\text{HHT, HTH, THH} \rightarrow (2,1) \quad \text{(3 outcomes)} \\
+&amp;\text{HTT, THT, TTH} \rightarrow (1,2) \quad \text{(3 outcomes)} \\
+&amp;\text{TTT} \rightarrow (0,3)
+\end{aligned}
+\]</p>
+<p>Thus, the joint pmf is:</p>
+<p>\[
+\begin{aligned}
+f(3,0) &amp;= \frac{1}{8}, \\
+f(2,1) &amp;= \frac{3}{8}, \\
+f(1,2) &amp;= \frac{3}{8}, \\
+f(0,3) &amp;= \frac{1}{8}
+\end{aligned}
+\]</p>
+<p>(b) \(P(X = 2, Y = 1) = f(2,1) = \frac{3}{8}\)</p></div></div>
+<div class="concept-box"><div class="box-title">Joint Density Function - Definition &amp; Explanation</div><div class="box-body"><p>When $X$ and $Y$ are continuous random variables, their joint density function $f(x, y)$ defines a surface over the $xy$-plane. The probability that $(X, Y)$ lies in a region $A$ is equal to the volume under the surface $f(x, y)$ over that region.</p>
+<p><strong>Definition:</strong> The function $f(x, y)$ is a joint density function if:</p>
+<ol><li><p>$f(x, y) \geq 0$ for all $(x, y)$,</p></li><li><p>$\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \, dx \, dy = 1$,</p></li><li><p>$P[(X, Y) \in A] = \int\int_{A} f(x, y) \, dx \, dy$, for any region $A$ in the $xy$-plane.</p></li></ol></div></div>
+<div class="concept-box"><div class="box-title">Example 1 - Joint Density Function</div><div class="box-body"><p>Let $X$ and $Y$ be the proportion of time that a drive-in and a walk-in facility are in use, respectively. Their joint density function is:</p>
+<p>\[
+f(x, y) = 
+\begin{cases}
+\frac{2}{5}(2x + 3y), &amp; 0 \leq x \leq 1,\ 0 \leq y \leq 1, \\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</p>
+<p><strong>(a) Verify that $f(x, y)$ is a valid joint density function:</strong></p>
+<p>\begin{align*}
+\iint_{\mathbb{R}^2} f(x, y) \, dy \, dx 
+&amp;= \int_0^1 \int_0^1 \frac{2}{5}(2x + 3y) \, dy \, dx \\
+&amp;= \int_0^1 \left[ \frac{2}{5} \left(2xy + \frac{3}{2} y^2 \right) \bigg|_0^1 \right] dx \\
+&amp;= \int_0^1 \frac{2}{5} \left(2x + \frac{3}{2} \right) dx \\
+&amp;= \frac{2}{5} \int_0^1 \left(2x + \frac{3}{2} \right) dx \\
+&amp;= \frac{2}{5} \left[ x^2 + \frac{3}{2}x \right]_0^1 \\
+&amp;= \frac{2}{5} \left(1 + \frac{3}{2} \right) = \frac{2}{5} \cdot \frac{5}{2} = 1
+\end{align*}</p>
+<p>So, the function satisfies the condition of total probability being 1.</p>
+<p><strong>(b) Find </strong> $P\left(0 &lt; x &lt; \frac{1}{2},\ \frac{1}{4} &lt; y &lt; \frac{1}{2}\right)$:</p>
+<p>\begin{align*}
+P &amp;= \int_0^{1/2} \int_{1/4}^{1/2} \frac{2}{5}(2x + 3y) \, dy \, dx \\
+&amp;= \int_0^{1/2} \left[ \frac{2}{5} \left(2xy + \frac{3}{2} y^2 \right) \bigg|_{1/4}^{1/2} \right] dx \\
+&amp;= \int_0^{1/2} \frac{2}{5} \left(2x \cdot \left(\frac{1}{2} - \frac{1}{4} \right) + \frac{3}{2} \left( \left(\frac{1}{2}\right)^2 - \left(\frac{1}{4}\right)^2 \right) \right) dx \\
+&amp;= \int_0^{1/2} \frac{2}{5} \left( \frac{x}{2} + \frac{3}{2} \cdot \left( \frac{1}{4} - \frac{1}{16} \right) \right) dx \\
+&amp;= \int_0^{1/2} \frac{2}{5} \left( \frac{x}{2} + \frac{3}{2} \cdot \frac{3}{16} \right) dx \\
+&amp;= \int_0^{1/2} \frac{2}{5} \left( \frac{x}{2} + \frac{9}{32} \right) dx \\
+&amp;= \frac{2}{5} \left[ \frac{x^2}{4} + \frac{9x}{32} \right]_0^{1/2} \\
+&amp;= \frac{2}{5} \left( \frac{1}{16} + \frac{9}{64} \right) = \frac{2}{5} \cdot \frac{13}{64} = \frac{26}{320} = \frac{13}{160}
+\end{align*}</p></div></div>
+<div class="concept-box"><div class="box-title">New Problem - Joint Density</div><div class="box-body"><p>Let $f(x, y) = 6xy$ for $0 &lt; x &lt; 1$, $0 &lt; y &lt; 1$ and 0 elsewhere.</p>
+<p>Check $f(x, y)$ is a valid joint density function?</p>
+<p><strong>Solution:</strong></p>
+<p>We compute:</p>
+<p>\[
+\int_0^1 \int_0^1 6xy \, dy \, dx = \int_0^1 6x \left[ \frac{y^2}{2} \right]_0^1 dx = \int_0^1 6x \cdot \frac{1}{2} dx = 3 \int_0^1 x \, dx = 3 \cdot \frac{1}{2} = \boxed{1.5}.
+\]</p>
+<p>So, it&#x27;s not a valid joint density function.</p></div></div>
+</section>
+<section id="marginal-probability-distributions" class="content-section level-1">
+<h2 class="section-heading">Marginal Probability Distributions</h2>
+<div class="concept-box"><div class="box-title">Definition: Marginal Distributions</div><div class="box-body"><p><strong>Definition:</strong> Given the joint probability distribution \( f(x, y) \) of the discrete random variables \( X \) and \( Y \), the probability distribution \( g(x) \) of \( X \) alone is obtained by summing \( f(x, y) \) over the values of \( y \), and the probability distribution \( h(y) \) of \( Y \) alone is obtained by summing \( f(x, y) \) over the values of \( x \). These are called the <strong>marginal distributions</strong> of \( X \) and \( Y \), respectively.</p>
+<ul><li><p>For the discrete case:
+    \[
+    g(x) = \sum_y f(x, y), \quad h(y) = \sum_x f(x, y)
+    \]</p></li><li><p>For the continuous case:
+    \[
+    g(x) = \int_{-\infty}^{\infty} f(x, y) \, dy, \quad h(y) = \int_{-\infty}^{\infty} f(x, y) \, dx
+    \]</p></li></ul>
+<p>The term <strong>marginal</strong> is used because these are the totals of the respective rows and columns in a joint probability table.</p>
+<p><strong>Example:</strong> Show that the column and row totals of Table given give the marginal distributions of \( X \) and \( Y \).
+\[
+\begin{array}{c|ccc|c}
+f(x,y) &amp; x=0 &amp; x=1 &amp; x=2 &amp; \text{Row Totals} \\
+
+y=0 &amp; \frac{3}{28} &amp; \frac{9}{28} &amp; \frac{3}{28} &amp; \frac{15}{28} \\
+y=1 &amp; \frac{3}{14} &amp; \frac{3}{14} &amp; 0 &amp; \frac{3}{7} \\
+y=2 &amp; \frac{1}{28} &amp; 0 &amp; 0 &amp; \frac{1}{28} \\
+
+\text{Column Totals} &amp; \frac{5}{14} &amp; \frac{15}{28} &amp; \frac{3}{28} &amp; 1
+\end{array}
+\]</p>
+<p><strong>Solution:</strong> Using the values from Table :</p>
+<p>\[
+\begin{aligned}
+g(0) &amp;= f(0,0) + f(0,1) + f(0,2) = \frac{3}{28} + \frac{6}{28} + \frac{1}{28} = \frac{10}{28} = \frac{5}{14}, \\
+g(1) &amp;= f(1,0) + f(1,1) + f(1,2) = \frac{9}{28} + \frac{6}{28} + 0 = \frac{15}{28}, \\
+g(2) &amp;= f(2,0) + f(2,1) + f(2,2) = \frac{3}{28} + 0 + 0 = \frac{3}{28}.
+\end{aligned}
+\]</p>
+<p>Similarly, for \( Y \):</p>
+<p>.+-
+\[
+\begin{aligned}
+h(0) &amp;= f(0,0) + f(1,0) + f(2,0) = \frac{3}{28} + \frac{9}{28} + \frac{3}{28} = \frac{15}{28}, \\
+h(1) &amp;= f(0,1) + f(1,1) + f(2,1) = \frac{6}{28} + \frac{6}{28} + 0 = \frac{12}{28} = \frac{3}{7}, \\
+h(2) &amp;= f(0,2) + f(1,2) + f(2,2) = \frac{1}{28} + 0 + 0 = \frac{1}{28}.
+\end{aligned}
+\]</p>
+<p><strong>Marginal Distributions in Table Form:</strong></p>
+<p>\[
+\begin{array}{c|ccc}
+x &amp; 0 &amp; 1 &amp; 2 \\
+
+g(x) &amp; \frac{5}{14} &amp; \frac{15}{28} &amp; \frac{3}{28}
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+y &amp; 0 &amp; 1 &amp; 2 \\
+
+h(y) &amp; \frac{15}{28} &amp; \frac{3}{7} &amp; \frac{1}{28}
+\end{array}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example: Marginal Distributions (Continuous Case)</div><div class="box-body"><p><strong>Definition:</strong>  
+For continuous random variables \( X \) and \( Y \) with joint probability density function \( f(x, y) \),  
+the <strong>marginal distribution</strong> of \( X \) is:
+\[
+g(x) = \int_{-\infty}^{\infty} f(x, y) \, dy
+\]  
+and the marginal distribution of \( Y \) is:
+\[
+h(y) = \int_{-\infty}^{\infty} f(x, y) \, dx
+\]</p>
+<p><strong>Example:</strong> Suppose the joint probability density function of \( X \) and \( Y \) is given by  
+\[
+f(x, y) = 
+\begin{cases}
+6xy &amp; \text{if } 0 &lt; x &lt; 1, \ 0 &lt; y &lt; 1 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>(a) Find the marginal density function of \( X \), \( g(x) \).  
+(b) Find the marginal density function of \( Y \), \( h(y) \).</p>
+<p><strong>Solution:</strong></p>
+<p>(a) Marginal density of \( X \):
+\[
+g(x) = \int_0^1 6xy \, dy = 6x \int_0^1 y \, dy = 6x \cdot \left[\frac{y^2}{2}\right]_0^1 = 6x \cdot \frac{1}{2} = 3x
+\]  
+So,
+\[
+g(x) = 
+\begin{cases}
+3x &amp; \text{if } 0 &lt; x &lt; 1 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</p>
+<p>(b) Marginal density of \( Y \):
+\[
+h(y) = \int_0^1 6xy \, dx = 6y \int_0^1 x \, dx = 6y \cdot \left[\frac{x^2}{2}\right]_0^1 = 6y \cdot \frac{1}{2} = 3y
+\]  
+So,
+\[
+h(y) = 
+\begin{cases}
+3y &amp; \text{if } 0 &lt; y &lt; 1 \\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</p></div></div>
+</section>
+<section id="conditional-probability-distributions" class="content-section level-1">
+<h2 class="section-heading">Conditional Probability Distributions</h2>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Let \( X \) and \( Y \) be discrete random variables. The <strong>conditional distribution</strong> of the random variable \( Y \) given that \( X = x \) is defined as:
+\[
+P(Y = y \mid X = x) = \frac{P(X = x, Y = y)}{P(X = x)}, \quad \text{provided } P(X = x) &gt; 0.
+\]</p>
+<p>Similarly, the conditional distribution of \( X \) given that \( Y = y \) is:
+\[
+P(X = x \mid Y = y) = \frac{P(X = x, Y = y)}{P(Y = y)}, \quad \text{provided } P(Y = y) &gt; 0.
+\]</p>
+<p>To compute the probability that \( X \) lies between \( a \) and \( b \) given \( Y = y \), we sum:
+\[
+P(a &lt; X &lt; b \mid Y = y) = \sum_{a &lt; x &lt; b} P(X = x \mid Y = y).
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Concept</div><div class="box-body"><p>Let \( X \) and \( Y \) be continuous random variables with joint probability density function \( f(x, y) \). The <strong>conditional distribution</strong> of \( Y \) given that \( X = x \) is:
+\[
+f(y \mid x) = \frac{f(x, y)}{g(x)}, \quad \text{where } g(x) = \int_{-\infty}^{\infty} f(x, y) \, dy, \quad \text{provided } g(x) &gt; 0.
+\]</p>
+<p>Similarly, the conditional distribution of \( X \) given that \( Y = y \) is:
+\[
+f(x \mid y) = \frac{f(x, y)}{h(y)}, \quad \text{where } h(y) = \int_{-\infty}^{\infty} f(x, y) \, dx, \quad \text{provided } h(y) &gt; 0.
+\]</p>
+<p>To find the probability that \( X \) lies between \( a \) and \( b \) given \( Y = y \), we compute:
+\[
+P(a &lt; X &lt; b \mid Y = y) = \int_a^b f(x \mid y) \, dx.
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 1</div><div class="box-body"><p>A fair 6-sided die is rolled twice. Let \( X \) be the outcome of the first roll and \( Y \) be the sum of both rolls. Find \( P(X = 3 \mid Y = 7) \).</p>
+<p><strong>Solution:</strong></p>
+<p>Total outcomes where \( Y = 7 \):  
+\[
+\begin{aligned}
+(X, Y - X) &amp;= (1,6), (2,5), (3,4), \\
+           &amp;\quad (4,3), (5,2), (6,1) \\
+&amp;\Rightarrow 6 \text{ outcomes} \\
+\text{Out of these, only one has } X &amp;= 3 \Rightarrow (3,4)
+\end{aligned}
+\]
+\[
+P(X = 3 \mid Y = 7) = \frac{1}{6}
+\]</p></div></div>
+<div class="concept-box"><div class="box-title">Example 2</div><div class="box-body"><p>Let \( X \) and \( Y \) have joint PDF:
+\[
+f(x, y) = 
+\begin{cases}
+8xy, &amp; 0 &lt; x &lt; 1,\ 0 &lt; y &lt; x \\
+0, &amp; \text{otherwise}
+\end{cases}
+\]
+Find the conditional density \( f(y \mid x) \).</p>
+<p><strong>Solution:</strong></p>
+<p>Marginal of \( X \):
+\[
+f_X(x) = \int_0^x 8xy\, dy = 8x \cdot \left[\frac{y^2}{2}\right]_0^x = 4x^3
+\]</p>
+<p>So, conditional density:
+\[
+f(y \mid x) = \frac{f(x, y)}{f_X(x)} = \frac{8xy}{4x^3} = \frac{2y}{x^2}, \quad 0 &lt; y &lt; x
+\]</p></div></div>
+<p><strong>Discrete Random Variable Probability Rules</strong></p>
+<p>|}</p>
+<p><strong>Rule 1: $P(X \le a)$</strong> <br>
+<strong>Formula:</strong> $P(X \le a) = F(a)$ <br>
+<strong>Example:</strong> $P(X \le 2) = F(2) = P(X=0)+P(X=1)+P(X=2)=0.875$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig007.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 2: $P(X &lt; a)$</strong> <br>
+<strong>Formula:</strong> $P(X &lt; a) = F(a-1)$ <br>
+<strong>Example:</strong> $P(X &lt; 2) = F(1) = P(X=0)+P(X=1)=0.5$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig008.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 3: $P(X &gt; a)$</strong> <br>
+<strong>Formula:</strong> $P(X &gt; a) = 1 - F(a)$ <br>
+<strong>Example:</strong> $P(X&gt;1) = 1 - F(1) = 0.5$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig009.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 4: $P(X \ge a)$</strong> <br>
+<strong>Formula:</strong> $P(X \ge a) = 1 - F(a-1)$ <br>
+<strong>Example:</strong> $P(X \ge 2) = 1 - F(1) = 0.5$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig010.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 5: $P(a \le X \le b)$</strong> <br>
+<strong>Formula:</strong> $P(a \le X \le b) = F(b)-F(a-1)$ <br>
+<strong>Example:</strong> $P(1 \le X \le 2) = F(2)-F(0)=0.75$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig011.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 6: $P(a &lt; X \le b)$</strong> <br>
+<strong>Formula:</strong> $P(a &lt; X \le b) = F(b)-F(a)$ <br>
+<strong>Example:</strong> $P(1 &lt; X \le 2) = F(2)-F(1)=0.375$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig012.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 7: $P(a \le X &lt; b)$</strong> <br>
+<strong>Formula:</strong> $P(a \le X &lt; b) = F(b-1)-F(a-1)$ <br>
+<strong>Example:</strong> $P(1 \le X &lt; 3) = F(2)-F(0)=0.75$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig013.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 8: $P(a &lt; X &lt; b)$</strong> <br>
+<strong>Formula:</strong> $P(a &lt; X &lt; b) = F(b-1)-F(a)$ <br>
+<strong>Example:</strong> $P(0 &lt; X &lt; 3) = F(2)-F(0)=0.75$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig014.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Rule 9: $P(X = a)$</strong> <br>
+<strong>Formula:</strong> $P(X = a) = F(a)-F(a-1)$ <br>
+<strong>Example:</strong> $P(X=2) = F(2)-F(1)=0.375$ <br>
+<strong>Visual:</strong></p>
+<div class="figure-wrap"><img loading="lazy" src="figures/fig015.png" alt="diagram"></div>
+<p><br></p>
+<p><strong>Continuous Random Variable Probability Rules</strong></p>
+<p>|}</p>
+<p><strong>Rule 1: CDF at a point</strong> <br>
+\[
+F(a) = P(X \le a) = P(X &lt; a)
+\]</p>
+<ul><li><p>In continuous case, the probability at a single point is zero.</p></li><li><p>So whether we write $X \le a$ or $X &lt; a$, both mean the same.</p></li><li><p>Formally: 
+    \[
+    P(X = a) = \lim_{\epsilon \to 0^+} P(a \le X \le a+\epsilon) = 0
+    \]</p></li></ul>
+<p><br></p>
+<p><strong>Rule 2: Right tail probability</strong> <br>
+\[
+P(X &gt; a) = 1 - F(a)
+\]</p>
+<ul><li><p>$F(a)$ already includes all probability up to $a$.</p></li><li><p>Since the entire distribution sums to $1$, the remaining area to the right is $1 - F(a)$.</p></li><li><p>Geometrically: probability under density curve to the right of $a$.</p></li></ul>
+<p><br></p>
+<p><strong>Rule 3: Interval probability</strong> <br>
+\[
+P(a &lt; X &lt; b) = P(a \le X \le b) = F(b) - F(a)
+\]</p>
+<ul><li><p>$F(b)$ counts probability up to $b$.</p></li><li><p>$F(a)$ counts probability up to $a$.</p></li><li><p>Subtraction gives probability between $a$ and $b$.</p></li><li><p>Since point probability is zero, choice of strict/weak inequalities doesn’t matter.</p></li></ul>
+<p><br></p>
+</section>
+    <div class="chapter-pager"><a class="nav-btn prev" href="ch03.html">&larr; Chapter 3: The Probability Theory</a><span class="spacer"></span><a class="nav-btn next" href="ch05.html">Chapter 5: Mean and Variance of a Random Variable &rarr;</a></div>
+    <footer class="page-footer">
+      GateXAIML &middot; Probability &amp; Statistics &mdash; Concept Notes
+      <div class="site-footer-links">
+      <a href="/gatexaiml_black/index.php">Home</a> |
+      <a href="/gatexaiml_black/about.html">About Us</a> |
+      <a href="/gatexaiml_black/contact.php">Contact Us</a> |
+      <a href="/gatexaiml_black/privacy-policy.html">Privacy Policy</a> |
+      <a href="/gatexaiml_black/disclaimer.html">Disclaimer</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</div>
+<script src="assets/script.js"></script>
+</body>
+</html>
