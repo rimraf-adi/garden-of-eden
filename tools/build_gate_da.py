@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Convert the downloaded GateXAIML HTML notes into the site's book JSON (book id: gate-da).
 
-Input : content/gate-da/raw/<subject>/chNN.html   (see tools/fetch_gate_da.py)
-Output: public/data/books/gate-da/index.json and chapters/*.json
+Input : modules/gate-da/raw/<subject>/chNN.html   (see tools/fetch_gate_da.py)
+Output: modules/gate-da/data/index.json and chapters/*.json
 
 Usage: python3 tools/build_gate_da.py [subject ...]   (default: every subject that has been downloaded)
 """
@@ -10,8 +10,8 @@ import html, json, os, re, sys
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, 'content', 'gate-da', 'raw')
-OUT = os.path.join(ROOT, 'public', 'data', 'books', 'gate-da')
+RAW = os.path.join(ROOT, 'modules', 'gate-da', 'raw')
+OUT = os.path.join(ROOT, 'modules', 'gate-da', 'data')
 BOOK = 'gate-da'
 
 SUBJECTS = [  # (folder, display name, slug fragment)

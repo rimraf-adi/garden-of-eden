@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated from modules/*/images by tools/sync-public.mjs
+/public/books/
+/public/data/

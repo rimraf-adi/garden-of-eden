@@ -2,8 +2,8 @@
 """Download the GateXAIML notes (HTML chapters and figure images) for the GATE DA book.
 
 Usage: python3 tools/fetch_gate_da.py [subject ...]
-Raw HTML goes to content/gate-da/raw/<subject>/chNN.html and figures to
-public/books/gate-da/<subject>/figNNN.png. Existing files are skipped, and requests
+Raw HTML goes to modules/gate-da/raw/<subject>/chNN.html and figures to
+modules/gate-da/images/<subject>/figNNN.png. Existing files are skipped, and requests
 are spaced out so the origin server is not hammered.
 """
 import os, re, subprocess, sys, time
@@ -11,8 +11,8 @@ import os, re, subprocess, sys, time
 BASE = 'https://www.gatexaiml.in/gatexaiml_black/notes'
 SUBJECTS = ['ps', 'mla', 'va', 'calc', 'python', 'dsa', 'dbms', 'dw', 'mls', 'mlu']
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW = os.path.join(ROOT, 'content', 'gate-da', 'raw')
-FIG = os.path.join(ROOT, 'public', 'books', 'gate-da')
+RAW = os.path.join(ROOT, 'modules', 'gate-da', 'raw')
+FIG = os.path.join(ROOT, 'modules', 'gate-da', 'images')
 
 
 def get(url, out):

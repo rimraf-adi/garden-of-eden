@@ -3,7 +3,7 @@ import path from 'path';
 import katex from 'katex';
 const macros = JSON.parse(fs.readFileSync('lib/katexMacros.json', 'utf8'));
 const book = process.argv[2];
-const dir = `public/data/books/${book}/chapters`;
+const dir = `modules/${book}/data/chapters`;
 const bad = new Map();
 let total = 0;
 function check(src, display, where) {

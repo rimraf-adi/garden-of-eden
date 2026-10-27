@@ -10,7 +10,7 @@ import json, re, glob
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CHAPTERS_DIR = ROOT / "public" / "data" / "chapters"
+CHAPTERS_DIR = ROOT / "modules" / "intro-to-ml" / "data" / "chapters"
 
 # Authentic mathematical equations from Ethem Alpaydin's textbook (Chapters 1 - 19)
 EQUATIONS = {

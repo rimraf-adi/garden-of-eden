@@ -3,9 +3,9 @@ from pathlib import Path
 import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
-PDF_PATH = ROOT / "docs" / "book.pdf"
-TEX_DIR = ROOT / "intro-to-ml" / "chapters"
-OUTPUT_DIR = ROOT / "public" / "data"
+PDF_PATH = ROOT / "modules" / "intro-to-ml" / "book.pdf"
+TEX_DIR = ROOT / "modules" / "intro-to-ml" / "latex" / "chapters"
+OUTPUT_DIR = ROOT / "modules" / "intro-to-ml" / "data"
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 (OUTPUT_DIR / "chapters").mkdir(parents=True, exist_ok=True)
@@ -236,8 +236,8 @@ book_meta = {
     "isbn": "978-0-262-01243-0",
     "totalPages": 572,
     "totalChapters": 19,
-    "pdfFile": "/docs/book.pdf",
-    "latexArchive": "/intro-to-ml"
+    "pdfFile": "/modules/intro-to-ml/book.pdf",
+    "latexArchive": "/modules/intro-to-ml/latex"
 }
 (OUTPUT_DIR / "book-meta.json").write_text(json.dumps(book_meta, indent=2, ensure_ascii=False), encoding='utf-8')
 print("Successfully generated all book JSON assets!")

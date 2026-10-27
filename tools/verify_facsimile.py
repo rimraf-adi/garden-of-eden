@@ -7,9 +7,9 @@ import fitz
 import numpy as np
 
 
-SOURCE = "docs/book.pdf"
-OUTPUT = "intro-to-ml/main.pdf"
-REPORT = "intro-to-ml/fidelity-verification.md"
+SOURCE = "modules/intro-to-ml/book.pdf"
+OUTPUT = "modules/intro-to-ml/latex/main.pdf"
+REPORT = "modules/intro-to-ml/latex/fidelity-verification.md"
 
 
 def main() -> None:

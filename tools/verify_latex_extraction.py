@@ -33,7 +33,7 @@ def main() -> None:
     report = [
         "# Chapter-level reconciliation report",
         "",
-        "Ground truth is `../docs/book.pdf`. Token coverage compares normalized alphabetic word occurrences from each PDF chapter page range with its generated `.tex` file. It is a mechanical completeness signal, not evidence that equations, figures, tables, or page geometry were reconstructed.",
+        "Ground truth is `../book.pdf`. Token coverage compares normalized alphabetic word occurrences from each PDF chapter page range with its generated `.tex` file. It is a mechanical completeness signal, not evidence that equations, figures, tables, or page geometry were reconstructed.",
         "",
         "| Chapter | PDF pages | Source tokens | LaTeX tokens | Source-token coverage | Manual visual check |",
         "| --- | ---: | ---: | ---: | ---: | --- |",

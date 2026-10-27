@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync": "node tools/sync-public.mjs",
+    "predev": "node tools/sync-public.mjs",
+    "prebuild": "node tools/sync-public.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

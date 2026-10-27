@@ -1,0 +1,1964 @@
+{
+ "subjects": [
+  "Probability & Statistics",
+  "Linear Algebra",
+  "Calculus & Optimization",
+  "Programming, Data Structures & Algorithms",
+  "Database Management & Warehousing",
+  "Machine Learning",
+  "Artificial Intelligence",
+  "General Aptitude"
+ ],
+ "questions": [
+  {
+   "id": "Q1.26.19",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Basic Probability",
+   "topic": "Combinatorial Probability of Even Product",
+   "key": "C"
+  },
+  {
+   "id": "Q1.26.20",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Discrete Poisson Distribution Properties",
+   "key": "A"
+  },
+  {
+   "id": "Q1.26.28",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Standard Normal vs Student-t Distribution",
+   "key": "A;C"
+  },
+  {
+   "id": "Q1.26.34",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Exponential Distribution Memoryless Property",
+   "key": "0.34 to 0.36"
+  },
+  {
+   "id": "Q1.26.44",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Expectation and Variance",
+   "topic": "Variance of Independent Bernoulli-Normal Product",
+   "key": "A"
+  },
+  {
+   "id": "Q1.26.45",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Statistical Inference",
+   "topic": "Poisson Central Limit Theorem Limit",
+   "key": "A"
+  },
+  {
+   "id": "Q1.26.47",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Hypergeometric Probability (Sampling Without Replacement)",
+   "key": "A;B"
+  },
+  {
+   "id": "Q1.26.53",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Statistical Inference",
+   "topic": "Sampling Distributions (Chi-Square and Normal Independence)",
+   "key": "A;B;C"
+  },
+  {
+   "id": "Q1.26.54",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Cumulative Distribution Function (CDF) Properties",
+   "key": "B;C"
+  },
+  {
+   "id": "Q1.26.57",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Bayes Theorem Medical Diagnostic Test",
+   "key": "0.76 to 0.78"
+  },
+  {
+   "id": "Q1.26.62",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Descriptive Statistics",
+   "topic": "Sample Variance Pairwise Difference Identity",
+   "key": "10 to 10"
+  },
+  {
+   "id": "Q1.26.63",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Expectation and Variance",
+   "topic": "Uniform Conditional Distribution and Zero Correlation",
+   "key": "0 to 0"
+  },
+  {
+   "id": "Q1.26.64",
+   "subject": "Probability & Statistics",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Random Bernoulli Matrix Row-Sum and Column-Sum",
+   "key": "0.08 to 0.12"
+  },
+  {
+   "id": "Q1.25.11",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Expectation and Variance",
+   "topic": "Law of Total Expectation",
+   "key": "C"
+  },
+  {
+   "id": "Q1.25.19",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Continuous CDF and Median",
+   "key": "A"
+  },
+  {
+   "id": "Q1.25.20",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Normal Distribution Linear Transformation",
+   "key": "A"
+  },
+  {
+   "id": "Q1.25.21",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Exponential Distribution Parameter Estimation",
+   "key": "A"
+  },
+  {
+   "id": "Q1.25.31",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Basic Probability",
+   "topic": "Bayes Theorem (Box Selection)",
+   "key": "0.25 to 0.25"
+  },
+  {
+   "id": "Q1.25.36",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "ChiSquare Distribution and Normal Squares",
+   "key": "B"
+  },
+  {
+   "id": "Q1.25.39",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Piecewise CDF Probability Computation",
+   "key": "C"
+  },
+  {
+   "id": "Q1.25.40",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Statistical Inference",
+   "topic": "Central Limit Theorem on Bernoulli Trials",
+   "key": "A"
+  },
+  {
+   "id": "Q1.25.41",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Discretized Exponential Distribution",
+   "key": "A"
+  },
+  {
+   "id": "Q1.25.45",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Independent Dice Outcomes",
+   "key": "C"
+  },
+  {
+   "id": "Q1.25.54",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Statistical Inference",
+   "topic": "Sample Mean of Bernoulli Trials",
+   "key": "A;C"
+  },
+  {
+   "id": "Q1.25.61",
+   "subject": "Probability & Statistics",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Expectation and Variance",
+   "topic": "Binomial Random Variable Expectation",
+   "key": "66.6 to 66.7"
+  },
+  {
+   "id": "Q1.24.11",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Random Variables and Distributions",
+   "topic": "Poisson and Normal Distributions",
+   "key": "A"
+  },
+  {
+   "id": "Q1.24.12",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Basic Probability",
+   "topic": "Sample Space and Independent Events",
+   "key": "A"
+  },
+  {
+   "id": "Q1.24.34",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Descriptive Statistics",
+   "topic": "Sample Mean Update",
+   "key": "42 to 42"
+  },
+  {
+   "id": "Q1.24.36",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Expected Waiting Time and Geometric Trials",
+   "key": "C"
+  },
+  {
+   "id": "Q1.24.56",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Uniform Continuous Distributions",
+   "key": "0.125 to 0.125"
+  },
+  {
+   "id": "Q1.24.57",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Exponential Distribution Moments",
+   "key": "0.2 to 0.2"
+  },
+  {
+   "id": "Q1.24.58",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Basic Probability",
+   "topic": "Bayes Theorem and Conditional Probability",
+   "key": "0.25 to 0.25"
+  },
+  {
+   "id": "Q1.24.59",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Random Variables and Distributions",
+   "topic": "Joint PDF and Conditional Expectation",
+   "key": "MTA"
+  },
+  {
+   "id": "Q1.24.65",
+   "subject": "Probability & Statistics",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Expectation and Variance",
+   "topic": "Covariance of Indicator Random Variables",
+   "key": "0.062 to 0.063"
+  },
+  {
+   "id": "Q2.26.21",
+   "subject": "Linear Algebra",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Matrices and Linear Systems",
+   "topic": "2D Rotation Matrix Powers",
+   "key": "B"
+  },
+  {
+   "id": "Q2.26.22",
+   "subject": "Linear Algebra",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Vector Spaces",
+   "topic": "Convex Sets and Subspaces",
+   "key": "A"
+  },
+  {
+   "id": "Q2.26.46",
+   "subject": "Linear Algebra",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Eigenvalues and Eigenvectors",
+   "topic": "3D Rotation Matrix Eigenvalues and Trace",
+   "key": "C"
+  },
+  {
+   "id": "Q2.26.52",
+   "subject": "Linear Algebra",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Centering Matrix Properties",
+   "key": "A;D"
+  },
+  {
+   "id": "Q2.26.65",
+   "subject": "Linear Algebra",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Vector Spaces and Matrices",
+   "topic": "Quadratic Form Optimization of Centering Matrix",
+   "key": "1 to 1"
+  },
+  {
+   "id": "Q2.25.12",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Matrices and Linear Systems",
+   "topic": "Gaussian Elimination Arithmetic Operations",
+   "key": "B"
+  },
+  {
+   "id": "Q2.25.13",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Eigenvalues and Eigenvectors",
+   "topic": "Stochastic Matrix Eigenvalues",
+   "key": "C"
+  },
+  {
+   "id": "Q2.25.25",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Vector Spaces",
+   "topic": "Orthonormal Bases in Vector Spaces",
+   "key": "B;D"
+  },
+  {
+   "id": "Q2.25.28",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Matrices and Linear Systems",
+   "topic": "Rank-1 Perturbation of Identity Matrix",
+   "key": "A;B"
+  },
+  {
+   "id": "Q2.25.37",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Matrix Powers and Rank Equality",
+   "key": "D"
+  },
+  {
+   "id": "Q2.25.38",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Gram Matrix Invertibility",
+   "key": "A"
+  },
+  {
+   "id": "Q2.25.50",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Vector Spaces and Matrices",
+   "topic": "Projection Matrix from Orthonormal System",
+   "key": "A;B"
+  },
+  {
+   "id": "Q2.25.52",
+   "subject": "Linear Algebra",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Orthogonal Matrices and Isometries",
+   "key": "A;D"
+  },
+  {
+   "id": "Q2.24.13",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Eigenvalues and Eigenvectors",
+   "topic": "Complex Eigenvalues of 2x2 Matrix",
+   "key": "B"
+  },
+  {
+   "id": "Q2.24.35",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Determinants and Matrices",
+   "topic": "Matrix Determinants and Matrix Polynomials",
+   "key": "0 to 0"
+  },
+  {
+   "id": "Q2.24.47",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Vector Spaces",
+   "topic": "Subspaces of Real Vector Space",
+   "key": "A;C"
+  },
+  {
+   "id": "Q2.24.48",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Rank, Nullity and Linear Systems",
+   "key": "B;D"
+  },
+  {
+   "id": "Q2.24.49",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Vector Spaces and Matrices",
+   "topic": "Orthogonal Projection Matrices",
+   "key": "B;C;D"
+  },
+  {
+   "id": "Q2.24.61",
+   "subject": "Linear Algebra",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Matrices and Linear Systems",
+   "topic": "Singular Values of Outer Product Matrix",
+   "key": "55 to 55"
+  },
+  {
+   "id": "Q3.26.27",
+   "subject": "Calculus & Optimization",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Maxima and Minima",
+   "topic": "Cubic Function Critical Points and Roots",
+   "key": "B;D"
+  },
+  {
+   "id": "Q3.26.35",
+   "subject": "Calculus & Optimization",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Differential Calculus",
+   "topic": "Double Infinite Geometric Series",
+   "key": "1 to 1"
+  },
+  {
+   "id": "Q3.25.14",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Differential Calculus",
+   "topic": "Hyperbolic Function Derivatives",
+   "key": "A"
+  },
+  {
+   "id": "Q3.25.24",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Differential Calculus",
+   "topic": "Differentiability of Function Combinations",
+   "key": "A;B;C"
+  },
+  {
+   "id": "Q3.25.32",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Differential Calculus",
+   "topic": "Limits at Infinity",
+   "key": "0.5 to 0.5"
+  },
+  {
+   "id": "Q3.25.49",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Maxima and Minima",
+   "topic": "Cubic Polynomial Global Extrema on Interval",
+   "key": "C;D"
+  },
+  {
+   "id": "Q3.25.51",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Functions of Single Variable",
+   "topic": "Strictly Convex Functions",
+   "key": "B;C;D"
+  },
+  {
+   "id": "Q3.25.59",
+   "subject": "Calculus & Optimization",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Differential Calculus",
+   "topic": "Lipschitz Continuity and Constant Functions",
+   "key": "0 to 0"
+  },
+  {
+   "id": "Q3.24.15",
+   "subject": "Calculus & Optimization",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Maxima and Minima",
+   "topic": "Second Derivative Test",
+   "key": "A"
+  },
+  {
+   "id": "Q3.24.33",
+   "subject": "Calculus & Optimization",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Differential Calculus",
+   "topic": "Sigmoid Function Derivative",
+   "key": "0.24 to 0.24"
+  },
+  {
+   "id": "Q3.24.37",
+   "subject": "Calculus & Optimization",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Differential Calculus",
+   "topic": "Piecewise Differentiability and Continuity",
+   "key": "A"
+  },
+  {
+   "id": "Q3.24.50",
+   "subject": "Calculus & Optimization",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Maxima and Minima",
+   "topic": "Polynomial Critical Points and Local Extrema",
+   "key": "A;B"
+  },
+  {
+   "id": "Q3.24.60",
+   "subject": "Calculus & Optimization",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Differential Calculus",
+   "topic": "Limits via L Hopital Rule",
+   "key": "0.5 to 0.5"
+  },
+  {
+   "id": "Q4.26.15",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Searching and Sorting",
+   "topic": "Quicksort Recurrence and Complexity",
+   "key": "D"
+  },
+  {
+   "id": "Q4.26.16",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Python Programming",
+   "topic": "Python Default Mutable Arguments",
+   "key": "B"
+  },
+  {
+   "id": "Q4.26.25",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Trees and Heaps",
+   "topic": "Binary Tree from Pre-order and In-order",
+   "key": "A;B"
+  },
+  {
+   "id": "Q4.26.31",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Searching and Sorting",
+   "topic": "Binary Search Comparisons Count",
+   "key": "10 to 10"
+  },
+  {
+   "id": "Q4.26.33",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Discrete Mathematics",
+   "topic": "Involutions and SelfInverse Permutations",
+   "key": "10 to 10"
+  },
+  {
+   "id": "Q4.26.39",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Recursive Call Stack Activations",
+   "key": "C"
+  },
+  {
+   "id": "Q4.26.40",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Graph Algorithms",
+   "topic": "Graph BFS/DFS on Transpose Graph",
+   "key": "D"
+  },
+  {
+   "id": "Q4.26.49",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Searching and Sorting",
+   "topic": "Array Inversions and Sorting Steps",
+   "key": "B;C;D"
+  },
+  {
+   "id": "Q4.26.50",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Python Closures and Mutable State",
+   "key": "B;D"
+  },
+  {
+   "id": "Q4.26.58",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Bubble-Sort Recursion and Swap Count",
+   "key": "8 to 8"
+  },
+  {
+   "id": "Q4.25.18",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Basic Data Structures",
+   "topic": "Hash Tables and Linear Probing",
+   "key": "D"
+  },
+  {
+   "id": "Q4.25.23",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Python Programming",
+   "topic": "Python List Methods (extend vs append)",
+   "key": "A"
+  },
+  {
+   "id": "Q4.25.27",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Searching and Sorting",
+   "topic": "Binary Search Time Complexity",
+   "key": "C"
+  },
+  {
+   "id": "Q4.25.29",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Searching and Sorting",
+   "topic": "Insertion Sort Swaps",
+   "key": "A;C"
+  },
+  {
+   "id": "Q4.25.47",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Python Set Operations and Loops",
+   "key": "B"
+  },
+  {
+   "id": "Q4.25.58",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Graph Algorithms",
+   "topic": "Shortest Paths in Undirected Graphs",
+   "key": "A;C;D"
+  },
+  {
+   "id": "Q4.25.63",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Python Recursive Function Evaluation",
+   "key": "160 to 160"
+  },
+  {
+   "id": "Q4.25.64",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Basic Data Structures",
+   "topic": "Stack Simulation Pseudocode",
+   "key": "24 to 24"
+  },
+  {
+   "id": "Q4.25.65",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Graph Algorithms",
+   "topic": "Directed Graph DFS Traversal Order",
+   "key": "75 to 75"
+  },
+  {
+   "id": "Q4.24.14",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Graph Algorithms",
+   "topic": "Depth-First Search (DFS)",
+   "key": "A"
+  },
+  {
+   "id": "Q4.24.16",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Basic Data Structures",
+   "topic": "Matching Data Structures and Properties",
+   "key": "A"
+  },
+  {
+   "id": "Q4.24.21",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Basic Data Structures",
+   "topic": "Open Addressing Hash Tables",
+   "key": "B"
+  },
+  {
+   "id": "Q4.24.28",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Trees and Heaps",
+   "topic": "Full Binary Tree Reconstruction",
+   "key": "A;B;C"
+  },
+  {
+   "id": "Q4.24.30",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Searching and Sorting",
+   "topic": "Quicksort Swaps",
+   "key": "0 to 0"
+  },
+  {
+   "id": "Q4.24.32",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Basic Data Structures",
+   "topic": "Double-Ended Queue (Deque)",
+   "key": "17 to 17"
+  },
+  {
+   "id": "Q4.24.38",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Python Tree Traversal and Recursion",
+   "key": "D"
+  },
+  {
+   "id": "Q4.24.39",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Pseudocode Array Processing",
+   "key": "C"
+  },
+  {
+   "id": "Q4.24.40",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Searching and Sorting",
+   "topic": "Binary Search Comparisons Recurrence",
+   "key": "A"
+  },
+  {
+   "id": "Q4.24.41",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Python Programming",
+   "topic": "Python List In-Place Reversal",
+   "key": "C"
+  },
+  {
+   "id": "Q4.24.45",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Searching and Sorting",
+   "topic": "Sorting Algorithm Stability and Inversions",
+   "key": "B"
+  },
+  {
+   "id": "Q4.24.52",
+   "subject": "Programming, Data Structures & Algorithms",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Trees and Heaps",
+   "topic": "Full Binary Tree Node Properties",
+   "key": "A;B;C"
+  },
+  {
+   "id": "Q5.26.14",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Transactions and Concurrency",
+   "topic": "ACID Properties and Serializability",
+   "key": "C"
+  },
+  {
+   "id": "Q5.26.17",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Relational Model and Normalization",
+   "topic": "Functional Dependencies and Normal Forms",
+   "key": "A"
+  },
+  {
+   "id": "Q5.26.18",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Data Warehousing",
+   "topic": "OLAP Cube Operations (Roll-up, Drill-down, Slice, Dice)",
+   "key": "D"
+  },
+  {
+   "id": "Q5.26.26",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Relational Model and Normalization",
+   "topic": "Foreign Key Referential Integrity Constraints",
+   "key": "A;B"
+  },
+  {
+   "id": "Q5.26.32",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Indexing and Storage",
+   "topic": "B+ Tree Fan-out and Node Capacity",
+   "key": "195 to 195"
+  },
+  {
+   "id": "Q5.26.41",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Indexing and Storage",
+   "topic": "B+ Tree Node Split and Key Promotion",
+   "key": "A"
+  },
+  {
+   "id": "Q5.26.42",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Relational Algebra",
+   "topic": "Relational Algebra Natural Join and Selection",
+   "key": "D"
+  },
+  {
+   "id": "Q5.26.43",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Data Warehousing",
+   "topic": "Concept Hierarchies and Roll-Up Dimensions",
+   "key": "A"
+  },
+  {
+   "id": "Q5.26.51",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "SQL",
+   "topic": "SQL Self-Join and Aggregation",
+   "key": "A"
+  },
+  {
+   "id": "Q5.26.59",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Relational Algebra",
+   "topic": "Tuple Relational Calculus (TRC) Evaluation",
+   "key": "2 to 3"
+  },
+  {
+   "id": "Q5.26.60",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "SQL",
+   "topic": "SQL Correlated Subquery with Comparison Counts",
+   "key": "3 to 3"
+  },
+  {
+   "id": "Q5.26.61",
+   "subject": "Database Management & Warehousing",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Relational Model and Normalization",
+   "topic": "ER Diagram to 3NF Relational Mapping",
+   "key": "4 to 4"
+  },
+  {
+   "id": "Q5.25.16",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Relational Model and Normalization",
+   "topic": "Dependency-Preserving Decompositions",
+   "key": "C"
+  },
+  {
+   "id": "Q5.25.17",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Relational Algebra",
+   "topic": "Relational Algebra Expression Evaluation",
+   "key": "C"
+  },
+  {
+   "id": "Q5.25.33",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 1,
+   "area": "SQL",
+   "topic": "SQL Correlated Subquery on Bank Loan",
+   "key": "3 to 3"
+  },
+  {
+   "id": "Q5.25.46",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Data Warehousing",
+   "topic": "OLAP CUBE Aggregate Tuples",
+   "key": "D"
+  },
+  {
+   "id": "Q5.25.56",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Relational Model and Normalization",
+   "topic": "Primary Keys, Foreign Keys and Nullability",
+   "key": "B;C"
+  },
+  {
+   "id": "Q5.25.57",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Relational Model and Normalization",
+   "topic": "Functional Dependencies and BCNF",
+   "key": "B;D"
+  },
+  {
+   "id": "Q5.25.62",
+   "subject": "Database Management & Warehousing",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Relational Algebra",
+   "topic": "Relational Division Operator",
+   "key": "1 to 1"
+  },
+  {
+   "id": "Q5.24.26",
+   "subject": "Database Management & Warehousing",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Relational Algebra",
+   "topic": "Relational Set Operations and Joins",
+   "key": "C"
+  },
+  {
+   "id": "Q5.24.31",
+   "subject": "Database Management & Warehousing",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 1,
+   "area": "SQL",
+   "topic": "SQL Join and Filter Query",
+   "key": "3 to 3"
+  },
+  {
+   "id": "Q5.24.46",
+   "subject": "Database Management & Warehousing",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Relational Model and Normalization",
+   "topic": "Candidate Keys and Normal Forms",
+   "key": "A;B;D"
+  },
+  {
+   "id": "Q5.24.55",
+   "subject": "Database Management & Warehousing",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Indexing and Storage",
+   "topic": "B+ Tree vs Hash Index Optimization",
+   "key": "A;B"
+  },
+  {
+   "id": "Q6.26.11",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Linear Dimensionality Reduction",
+   "topic": "PCA Orthogonal Eigenvectors",
+   "key": "B"
+  },
+  {
+   "id": "Q6.26.12",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Model Evaluation and Selection",
+   "topic": "Leave-OneOut Cross-Validation (LOOCV)",
+   "key": "C"
+  },
+  {
+   "id": "Q6.26.23",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Overview of Machine Learning",
+   "topic": "Matching ML Paradigms (Regression, Clustering, Classification)",
+   "key": "B"
+  },
+  {
+   "id": "Q6.26.29",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Optimization",
+   "topic": "Stochastic Gradient Descent (SGD) Parameter Update",
+   "key": "8.90 to 9.10"
+  },
+  {
+   "id": "Q6.26.36",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Unsupervised Learning",
+   "topic": "Hierarchical Agglomerative Clustering (Manhattan Distance)",
+   "key": "D"
+  },
+  {
+   "id": "Q6.26.37",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Ridge Regression Regularization",
+   "key": "D"
+  },
+  {
+   "id": "Q6.26.55",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Ridge Regression Regularized Loss Computation",
+   "key": "6.90 to 7.10"
+  },
+  {
+   "id": "Q6.26.56",
+   "subject": "Machine Learning",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Neural Networks",
+   "topic": "Multilayer Perceptron Parameter Count",
+   "key": "135 to 135"
+  },
+  {
+   "id": "Q6.25.22",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Supervised Learning",
+   "topic": "Perceptron Update Rule",
+   "key": "A"
+  },
+  {
+   "id": "Q6.25.30",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Unsupervised Learning",
+   "topic": "Hierarchical Clustering Linkage Metrics",
+   "key": "B;D"
+  },
+  {
+   "id": "Q6.25.34",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Supervised Learning",
+   "topic": "Linear Least Squares Regression",
+   "key": "0.285 to 0.287"
+  },
+  {
+   "id": "Q6.25.35",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Supervised Learning",
+   "topic": "Naive Bayes Classification Error",
+   "key": "0.39 to 0.41"
+  },
+  {
+   "id": "Q6.25.42",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Neural Networks",
+   "topic": "Feed-Forward Neural Network Backpropagation",
+   "key": "A"
+  },
+  {
+   "id": "Q6.25.48",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Neural Networks",
+   "topic": "ReLU Activation Continuity and Differentiability",
+   "key": "A;C"
+  },
+  {
+   "id": "Q6.25.53",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Hard-Margin Support Vector Machine (SVM)",
+   "key": "B;C"
+  },
+  {
+   "id": "Q6.25.55",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Nearest Centroid Decision Boundary",
+   "key": "B;C"
+  },
+  {
+   "id": "Q6.25.60",
+   "subject": "Machine Learning",
+   "year": 2025,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Linear Dimensionality Reduction",
+   "topic": "Principal Component Analysis (Covariance Eigenvalues)",
+   "key": "100 to 100"
+  },
+  {
+   "id": "Q6.24.17",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Supervised Learning",
+   "topic": "Support Vector Machines (SVM)",
+   "key": "D"
+  },
+  {
+   "id": "Q6.24.18",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Overview of Machine Learning",
+   "topic": "Matching ML Paradigms (PCA, k-Means, Naive Bayes)",
+   "key": "C"
+  },
+  {
+   "id": "Q6.24.19",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Unsupervised Learning",
+   "topic": "k-Means Clustering Convergence",
+   "key": "D"
+  },
+  {
+   "id": "Q6.24.20",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Supervised Learning",
+   "topic": "Naive Bayes Binary Attributes",
+   "key": "B"
+  },
+  {
+   "id": "Q6.24.22",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Linear Dimensionality Reduction",
+   "topic": "Fisher Linear Discriminant",
+   "key": "A"
+  },
+  {
+   "id": "Q6.24.27",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Data Preprocessing",
+   "topic": "z-Score Normalization",
+   "key": "B"
+  },
+  {
+   "id": "Q6.24.42",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Unsupervised Learning",
+   "topic": "Single Linkage Hierarchical Clustering",
+   "key": "A"
+  },
+  {
+   "id": "Q6.24.43",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Neural Networks",
+   "topic": "ReLU Multilayer Perceptron Equivalence",
+   "key": "A"
+  },
+  {
+   "id": "Q6.24.53",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Linear Separability of 2D Datasets",
+   "key": "A;D"
+  },
+  {
+   "id": "Q6.24.62",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "Decision Tree Information Gain",
+   "key": "0.12 to 0.13"
+  },
+  {
+   "id": "Q6.24.63",
+   "subject": "Machine Learning",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Supervised Learning",
+   "topic": "k-Nearest Neighbors Decision Boundary",
+   "key": "5 to 5"
+  },
+  {
+   "id": "Q7.26.13",
+   "subject": "Artificial Intelligence",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Search Algorithms",
+   "topic": "Uninformed vs Informed Search",
+   "key": "C"
+  },
+  {
+   "id": "Q7.26.24",
+   "subject": "Artificial Intelligence",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Logic",
+   "topic": "Propositional Logic Entailment",
+   "key": "A;B;C"
+  },
+  {
+   "id": "Q7.26.30",
+   "subject": "Artificial Intelligence",
+   "year": 2026,
+   "type": "NAT",
+   "marks": 1,
+   "area": "Search Algorithms",
+   "topic": "Minimax Game Tree Optimal Strategy",
+   "key": "2 to 2"
+  },
+  {
+   "id": "Q7.26.38",
+   "subject": "Artificial Intelligence",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Logic",
+   "topic": "Propositional Logic Translation and Equivalence",
+   "key": "B"
+  },
+  {
+   "id": "Q7.26.48",
+   "subject": "Artificial Intelligence",
+   "year": 2026,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Logic",
+   "topic": "First-Order Logic Quantifier Equivalences",
+   "key": "B;C;D"
+  },
+  {
+   "id": "Q7.25.15",
+   "subject": "Artificial Intelligence",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Logic",
+   "topic": "Propositional Logic Equivalences",
+   "key": "A"
+  },
+  {
+   "id": "Q7.25.26",
+   "subject": "Artificial Intelligence",
+   "year": 2025,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Reasoning Under Uncertainty",
+   "topic": "Bayesian Network Inference Algorithms",
+   "key": "C;D"
+  },
+  {
+   "id": "Q7.25.43",
+   "subject": "Artificial Intelligence",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Search Algorithms",
+   "topic": "Alpha-Beta Pruning Pruned Ranges",
+   "key": "C"
+  },
+  {
+   "id": "Q7.25.44",
+   "subject": "Artificial Intelligence",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Search Algorithms",
+   "topic": "A* Search Priority Queue Expansion",
+   "key": "C"
+  },
+  {
+   "id": "Q7.24.23",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Search Algorithms",
+   "topic": "A* Search and Heuristic Dominance",
+   "key": "D"
+  },
+  {
+   "id": "Q7.24.24",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Reasoning Under Uncertainty",
+   "topic": "Bayesian Networks and d-Separation",
+   "key": "C"
+  },
+  {
+   "id": "Q7.24.25",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Search Algorithms",
+   "topic": "Alpha-Beta Pruning Bounds",
+   "key": "C"
+  },
+  {
+   "id": "Q7.24.29",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 1,
+   "area": "Logic",
+   "topic": "Propositional Logic Tautologies",
+   "key": "B;C;D"
+  },
+  {
+   "id": "Q7.24.44",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Search Algorithms",
+   "topic": "State Space Search and Unexpanded List",
+   "key": "C"
+  },
+  {
+   "id": "Q7.24.51",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Search Algorithms",
+   "topic": "Game Trees and Minimax on DAG",
+   "key": "B;D"
+  },
+  {
+   "id": "Q7.24.54",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "MSQ",
+   "marks": 2,
+   "area": "Logic",
+   "topic": "First-Order Logic and Quantifiers",
+   "key": "A;C"
+  },
+  {
+   "id": "Q7.24.64",
+   "subject": "Artificial Intelligence",
+   "year": 2024,
+   "type": "NAT",
+   "marks": 2,
+   "area": "Reasoning Under Uncertainty",
+   "topic": "Bayesian Network Inference",
+   "key": "0.125 to 0.125"
+  },
+  {
+   "id": "Q8.26.1",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Verbal Aptitude",
+   "topic": "Vocabulary and Antonyms",
+   "key": "B"
+  },
+  {
+   "id": "Q8.26.2",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Number Properties and Digits",
+   "key": "B"
+  },
+  {
+   "id": "Q8.26.3",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Spatial Aptitude",
+   "topic": "Puzzle Pieces and Shape Assembly",
+   "key": "A"
+  },
+  {
+   "id": "Q8.26.4",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Logarithms and Inequalities",
+   "key": "C"
+  },
+  {
+   "id": "Q8.26.5",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Verbal Aptitude",
+   "topic": "Logical Inferences and Conditionals",
+   "key": "D"
+  },
+  {
+   "id": "Q8.26.6",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Verbal Aptitude",
+   "topic": "Prepositions and Grammar",
+   "key": "A"
+  },
+  {
+   "id": "Q8.26.7",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Mean, Median and Mode Combinatorics",
+   "key": "B"
+  },
+  {
+   "id": "Q8.26.8",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Analytical Aptitude",
+   "topic": "Logical Deduction and Elimination",
+   "key": "D"
+  },
+  {
+   "id": "Q8.26.9",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Digit Arithmetic and Squares",
+   "key": "C"
+  },
+  {
+   "id": "Q8.26.10",
+   "subject": "General Aptitude",
+   "year": 2026,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Spatial Aptitude",
+   "topic": "Circle Geometry and Area of Regions",
+   "key": "C"
+  },
+  {
+   "id": "Q8.25.1",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Verbal Aptitude",
+   "topic": "Vocabulary and Analogies",
+   "key": "A"
+  },
+  {
+   "id": "Q8.25.2",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Verbal Aptitude",
+   "topic": "Grammar and Sentence Completion",
+   "key": "B"
+  },
+  {
+   "id": "Q8.25.3",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Image Pixel Processing and Counting",
+   "key": "C"
+  },
+  {
+   "id": "Q8.25.4",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Spatial Aptitude",
+   "topic": "Venn Diagrams and Geometric Overlaps",
+   "key": "A"
+  },
+  {
+   "id": "Q8.25.5",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Percentages and Mensuration",
+   "key": "C"
+  },
+  {
+   "id": "Q8.25.6",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Verbal Aptitude",
+   "topic": "Phrasal Verbs and Dialogue Matching",
+   "key": "B"
+  },
+  {
+   "id": "Q8.25.7",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Analytical Aptitude",
+   "topic": "Monotonic Functions and Reasoning",
+   "key": "B"
+  },
+  {
+   "id": "Q8.25.8",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Spatial Aptitude",
+   "topic": "Regular Polygons and Tessellations",
+   "key": "A"
+  },
+  {
+   "id": "Q8.25.9",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Exponents and Logarithms",
+   "key": "C"
+  },
+  {
+   "id": "Q8.25.10",
+   "subject": "General Aptitude",
+   "year": 2025,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Bar Charts and Weighted Averages",
+   "key": "A"
+  },
+  {
+   "id": "Q8.24.1",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Verbal Aptitude",
+   "topic": "Vocabulary and Analogies",
+   "key": "D"
+  },
+  {
+   "id": "Q8.24.2",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Spatial Aptitude",
+   "topic": "Coloring and Graph Planarity",
+   "key": "A"
+  },
+  {
+   "id": "Q8.24.3",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Divisibility and Permutations",
+   "key": "B"
+  },
+  {
+   "id": "Q8.24.4",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Infinite Series Sum",
+   "key": "B"
+  },
+  {
+   "id": "Q8.24.5",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 1,
+   "area": "Quantitative Aptitude",
+   "topic": "Pie Charts and Data Interpretation",
+   "key": "B"
+  },
+  {
+   "id": "Q8.24.6",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Verbal Aptitude",
+   "topic": "Reading Comprehension and Inferences",
+   "key": "D"
+  },
+  {
+   "id": "Q8.24.7",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Probability and Binomial Events",
+   "key": "A"
+  },
+  {
+   "id": "Q8.24.8",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Quantitative Aptitude",
+   "topic": "Simple and Compound Interest",
+   "key": "B"
+  },
+  {
+   "id": "Q8.24.9",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Spatial Aptitude",
+   "topic": "Paper Folding and Dice Nets",
+   "key": "A"
+  },
+  {
+   "id": "Q8.24.10",
+   "subject": "General Aptitude",
+   "year": 2024,
+   "type": "MCQ",
+   "marks": 2,
+   "area": "Spatial Aptitude",
+   "topic": "3D Geometry and Conic Sections",
+   "key": "A"
+  }
+ ]
+}

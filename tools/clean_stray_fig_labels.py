@@ -1,6 +1,6 @@
 import glob, json, re
 
-for f in sorted(glob.glob('public/data/chapters/*.json')):
+for f in sorted(glob.glob('modules/intro-to-ml/data/chapters/*.json')):
     data = json.load(open(f))
     changed = False
 

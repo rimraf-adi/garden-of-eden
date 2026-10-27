@@ -1,8 +1,8 @@
-import chaptersIndexRaw from '@/public/data/chapters-index.json';
-import bookMetaRaw from '@/public/data/book-meta.json';
-import notationsRaw from '@/public/data/notations.json';
-import frontmatterRaw from '@/public/data/frontmatter.json';
-import appendixRaw from '@/public/data/appendix.json';
+import chaptersIndexRaw from '@/modules/intro-to-ml/data/chapters-index.json';
+import bookMetaRaw from '@/modules/intro-to-ml/data/book-meta.json';
+import notationsRaw from '@/modules/intro-to-ml/data/notations.json';
+import frontmatterRaw from '@/modules/intro-to-ml/data/frontmatter.json';
+import appendixRaw from '@/modules/intro-to-ml/data/appendix.json';
 
 export interface Subsection {
   id: string;

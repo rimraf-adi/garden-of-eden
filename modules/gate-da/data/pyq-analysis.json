@@ -1,0 +1,256 @@
+{
+ "source": "GATE DA Complete PYQ Book (2024 IISc, 2025 IIT Roorkee, 2026 IIT Guwahati), pp. 3-6",
+ "years": [
+  "2026",
+  "2025",
+  "2024"
+ ],
+ "subjects": [
+  {
+   "name": "Probability & Statistics",
+   "marks": [
+    21,
+    15,
+    17
+   ],
+   "avg": 17.7,
+   "range": "15M (2025) – 21M (2026)",
+   "swing": 2.5,
+   "trend": "⇑ Titan",
+   "style": "Shifted from single-variable calculus to joint distributions, covariance matrices, and Bayes network inference."
+  },
+  {
+   "name": "Programming, DSA",
+   "marks": [
+    13,
+    13,
+    20
+   ],
+   "avg": 15.3,
+   "range": "13M (2025) – 20M (2024)",
+   "swing": 3.3,
+   "trend": "≈ Pillar",
+   "style": "Stabilised at ~13–15M; evolved from C-style logic to Python internals, mutable defaults, and tree traversals."
+  },
+  {
+   "name": "General Aptitude",
+   "marks": [
+    15,
+    15,
+    15
+   ],
+   "avg": 15.0,
+   "range": "15M every year",
+   "swing": 0.0,
+   "trend": "≡ Fixed",
+   "style": "Strictly invariant 15M (5×1M + 5×2M): quantitative puzzles, spatial reasoning, reading comprehension."
+  },
+  {
+   "name": "Machine Learning",
+   "marks": [
+    10,
+    17,
+    14
+   ],
+   "avg": 13.7,
+   "range": "10M (2026) – 17M (2025)",
+   "swing": 2.9,
+   "trend": "⇓ Focused",
+   "style": "Peaked in 2025 with neural-net backpropagation; stabilised around distance metrics, clustering, and decision trees."
+  },
+  {
+   "name": "Database Mgmt & Warehousing",
+   "marks": [
+    17,
+    11,
+    6
+   ],
+   "avg": 11.3,
+   "range": "6M (2024) – 17M (2026)",
+   "swing": 4.5,
+   "trend": "⇑⇑ Surging",
+   "style": "Exploded from basic ER modelling to star/snowflake schemas, OLAP operations, and B+ trees."
+  },
+  {
+   "name": "Linear Algebra",
+   "marks": [
+    12,
+    10,
+    10
+   ],
+   "avg": 10.7,
+   "range": "10M (2024) – 12M (2026)",
+   "swing": 0.9,
+   "trend": "↔ Anchor",
+   "style": "Rock-solid predictability; eigenvalues, null spaces, projections, and matrix rank."
+  },
+  {
+   "name": "Artificial Intelligence",
+   "marks": [
+    8,
+    11,
+    10
+   ],
+   "avg": 9.7,
+   "range": "8M (2026) – 11M (2025)",
+   "swing": 1.2,
+   "trend": "≈ Steady",
+   "style": "Heuristic search (A* queue expansion, admissible heuristics) and adversarial game trees."
+  },
+  {
+   "name": "Calculus & Optimization",
+   "marks": [
+    4,
+    8,
+    8
+   ],
+   "avg": 6.7,
+   "range": "4M (2026) – 8M (2024)",
+   "swing": 1.9,
+   "trend": "⇓ Target",
+   "style": "Moved from broad multivariable calculus to convex optimisation, gradient-descent steps, and local extrema."
+  }
+ ],
+ "editions": [
+  {
+   "year": "2026",
+   "venue": "IIT Guwahati",
+   "theme": "Systems & Precision Realism",
+   "core": "Prob/Stats (21M) + DBMS (17M)",
+   "bullets": [
+    "Data Warehousing & OLAP cubes",
+    "Python scope & mutable defaults",
+    "Record NAT peak (18 NATs)"
+   ],
+   "mix": {
+    "mcq": 33,
+    "msq": 14,
+    "nat": 18
+   }
+  },
+  {
+   "year": "2025",
+   "venue": "IIT Roorkee",
+   "theme": "Applied Deep Learning Pivot",
+   "core": "ML (17M) + Stats (15M)",
+   "bullets": [
+    "Neural-net backpropagation & ReLU",
+    "Heuristic AI (A* priority queues)",
+    "Record MSQ peak (18 MSQs)"
+   ],
+   "mix": {
+    "mcq": 35,
+    "msq": 18,
+    "nat": 12
+   }
+  },
+  {
+   "year": "2024",
+   "venue": "IISc Bengaluru",
+   "theme": "Theory & Math Foundations",
+   "core": "Algorithms (20M) + Stats (17M)",
+   "bullets": [
+    "Classical ML, PCA & recursion",
+    "Continuous probability derivations",
+    "Minimal DBMS footprint (6M)"
+   ],
+   "mix": {
+    "mcq": 37,
+    "msq": 12,
+    "nat": 16
+   }
+  }
+ ],
+ "evolution": [
+  {
+   "dimension": "Core philosophy",
+   "v": [
+    "Data-systems realism, OLAP & exact computation",
+    "Applied ML, neural nets & heuristic search",
+    "Mathematical proofs & algorithmic derivations"
+   ],
+   "trajectory": "Theory → Systems"
+  },
+  {
+   "dimension": "Dominant subject",
+   "v": [
+    "Prob & Stats (21M) & DBMS (17M)",
+    "ML (17M) & Stats (15M)",
+    "Programming/DSA (20M) & Stats (17M)"
+   ],
+   "trajectory": "Stats + Systems"
+  },
+  {
+   "dimension": "Format stance",
+   "v": [
+    "33 MCQ · 14 MSQ · 18 NAT",
+    "35 MCQ · 18 MSQ · 12 NAT",
+    "37 MCQ · 12 MSQ · 16 NAT"
+   ],
+   "trajectory": "MCQ ⇓ / NAT ⇑"
+  },
+  {
+   "dimension": "MSQ pressure",
+   "v": [
+    "21.5% of paper (high)",
+    "27.7% of paper (historical peak)",
+    "18.5% of paper (moderate)"
+   ],
+   "trajectory": "Strict multi-select"
+  },
+  {
+   "dimension": "NAT numerical load",
+   "v": [
+    "27.7% (exact decimals)",
+    "18.5% (concept-first)",
+    "24.6% (analytical)"
+   ],
+   "trajectory": "High numerical load"
+  },
+  {
+   "dimension": "Data-systems stance",
+   "v": [
+    "Heavy warehousing/OLAP (17M)",
+    "Balanced indexing/SQL (11M)",
+    "Minimal ER/relational (6M)"
+   ],
+   "trajectory": "≈3× growth"
+  },
+  {
+   "dimension": "Programming focus",
+   "v": [
+    "Python internals & mutable scoping",
+    "Binary trees & search heuristics",
+    "C/Python flow, arrays & recursion"
+   ],
+   "trajectory": "Python-native"
+  }
+ ],
+ "takeaways": [
+  "Standard single-choice questions fell from 56.9% (37 Qs) in 2024 to 50.8% (33 Qs) in 2026, shifting weight to zero-option formats.",
+  "MSQ and NAT together now command nearly 50% of the paper, so option elimination and guessing do not work; exact derivations are essential.",
+  "DBMS and Data Warehousing grew 183% from 2024 (6M to 17M): GATE DA now covers end-to-end data engineering, not only theory."
+ ],
+ "playbook": [
+  {
+   "rule": "Master the “Unshakeable Forty-Eight” (Stats + DSA + Aptitude)",
+   "body": "Probability & Statistics (18M avg), Programming/DSA (15M avg) and General Aptitude (15M fixed) account for 48% of the exam. Flawless execution in this trio alone secures a top-tier percentile before touching other subjects."
+  },
+  {
+   "rule": "Respect the data-engineering shift",
+   "body": "With 17M in 2026, DBMS is no minor subject. Data warehousing (star/snowflake), OLAP operations (slice, dice, roll-up), B+ tree depth and transaction serialisation deserve study time equal to Machine Learning."
+  },
+  {
+   "rule": "Immunise yourself against the zero-option trap",
+   "body": "Nearly 50% of the paper has no option-elimination safety net. MSQs need absolute theoretical mastery (one missed choice yields 0), NATs need end-to-end accuracy with exact rounding. Practise numericals without answer choices."
+  },
+  {
+   "rule": "Linear Algebra is the silent multiplier",
+   "body": "Direct questions yield 10–12M, but rank, orthogonality and eigenspaces underpin ML (PCA, SVD, normal equations), optimisation (Hessians, quadratic forms) and statistics."
+  }
+ ],
+ "notes": [
+  "Marks, ranges and trends above are as printed on pp. 3–6 of the book. Recounting the book's own 195-question bank (pp. 7–64) gives slightly different per-subject marks in places (see the recount table); the book's printed question-type table on p. 4 also does not reconcile with its rows or with the p. 5 yearly mixes (44 MSQ, 46 NAT).",
+  "Question-type and 1M/2M counts on this page are recounted from the question bank, which matches the p. 5 yearly mixes exactly (105 MCQ, 44 MSQ, 46 NAT)."
+ ]
+}

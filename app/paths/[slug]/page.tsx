@@ -196,6 +196,15 @@ export default async function PathPage({ params }: Props) {
                     {book.subtitle}. {book.chapters.length} chapters,{' '}
                     {book.chapters.reduce((a, c) => a + c.wordCount, 0).toLocaleString()} words.
                   </p>
+                  {book.id === 'gate-da' && (
+                    <Link
+                      href="/gate-da/pyq-analysis"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-amber-600/40 text-amber-700 dark:text-amber-300 text-sm font-medium hover:bg-amber-500/10 transition"
+                    >
+                      <span>PYQ pattern analysis 2024–26</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  )}
                 </div>
               ) : isML ? (
                 <div className="space-y-2.5">

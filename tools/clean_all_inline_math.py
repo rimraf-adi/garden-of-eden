@@ -7,7 +7,7 @@ Systematically repairs every odd-dollar or malformed inline math fragment in all
 import json, glob, re
 from pathlib import Path
 
-CHAPTERS_DIR = Path("public/data/chapters")
+CHAPTERS_DIR = Path("modules/intro-to-ml/data/chapters")
 
 def fix_paragraph_math(p: str) -> str:
     # 1. Double dollar typos inside inline prose

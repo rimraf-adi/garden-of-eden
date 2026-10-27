@@ -15,8 +15,8 @@ import fitz
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "docs" / "book.pdf"
-DESTINATION = ROOT / "intro-to-ml"
+SOURCE = ROOT / "modules" / "intro-to-ml" / "book.pdf"
+DESTINATION = ROOT / "modules" / "intro-to-ml" / "latex"
 
 CHAPTERS = [
     ("01-introduction", "Introduction", 36),
@@ -158,7 +158,7 @@ def tex_for_chapter(doc: fitz.Document, index: int, slug: str, title: str, start
     )
     items = paragraphs(raw)
     lines = [
-        "% Generated from docs/book.pdf. Review equations and figures against the source PDF.",
+        "% Generated from modules/intro-to-ml/book.pdf. Review equations and figures against the source PDF.",
         rf"\chapter{{{escape_latex(title)}}}",
         rf"\label{{chap:{slug}}}",
         "",
@@ -229,23 +229,23 @@ def main() -> None:
         "\\input{source-pages/front-matter}",
     ]
     (source_pages_dir / "cover-and-contents.tex").write_text(
-        "\\includepdf[pages=1-12,fitpaper=true]{../docs/book.pdf}\n", encoding="utf-8"
+        "\\includepdf[pages=1-12,fitpaper=true]{../book.pdf}\n", encoding="utf-8"
     )
     (source_pages_dir / "front-matter.tex").write_text(
-        "\\includepdf[pages=13-35,fitpaper=true]{../docs/book.pdf}\n", encoding="utf-8"
+        "\\includepdf[pages=13-35,fitpaper=true]{../book.pdf}\n", encoding="utf-8"
     )
     for number, (slug, _, start) in enumerate(CHAPTERS, start=1):
         end = CHAPTERS[number][2] if number < len(CHAPTERS) else 552
         (source_pages_dir / f"{slug}.tex").write_text(
-            rf"\includepdf[pages={start}-{end - 1},fitpaper=true]{{../docs/book.pdf}}" + "\n",
+            rf"\includepdf[pages={start}-{end - 1},fitpaper=true]{{../book.pdf}}" + "\n",
             encoding="utf-8",
         )
         facsimile_inputs.append(rf"\input{{source-pages/{slug}}}")
     (source_pages_dir / "appendix.tex").write_text(
-        "\\includepdf[pages=552-563,fitpaper=true]{../docs/book.pdf}\n", encoding="utf-8"
+        "\\includepdf[pages=552-563,fitpaper=true]{../book.pdf}\n", encoding="utf-8"
     )
     (source_pages_dir / "index.tex").write_text(
-        "\\includepdf[pages=564-572,fitpaper=true]{../docs/book.pdf}\n", encoding="utf-8"
+        "\\includepdf[pages=564-572,fitpaper=true]{../book.pdf}\n", encoding="utf-8"
     )
     facsimile_inputs.extend(["\\input{source-pages/appendix}", "\\input{source-pages/index}"])
     (DESTINATION / "main.tex").write_text(
@@ -258,9 +258,9 @@ def main() -> None:
     (DESTINATION / "README.md").write_text(
         """# Introduction to Machine Learning - LaTeX extraction
 
-This project is an automated, chapter-wise text extraction from `../docs/book.pdf`.
+This project is an automated, chapter-wise text extraction from `../book.pdf`.
 
-`main.tex` is the source-faithful edition: it has the same 572 PDF pages, page numbers, equations, figures, tables, and typography as `../docs/book.pdf`. Its `source-pages/` directory provides one LaTeX wrapper per front-matter segment, chapter, appendix, and index.
+`main.tex` is the source-faithful edition: it has the same 572 PDF pages, page numbers, equations, figures, tables, and typography as `../book.pdf`. Its `source-pages/` directory provides one LaTeX wrapper per front-matter segment, chapter, appendix, and index.
 
 `editable-main.tex` includes the 19 text-extracted chapter sources in `chapters/`. This edition is searchable and editable, but reflows prose into fewer pages and does not claim to reconstruct the original equations, figures, tables, marginal terms, or page geometry.
 

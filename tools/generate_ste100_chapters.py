@@ -815,7 +815,7 @@ chapters = [
 ]
 
 def main():
-    target_dir = "/Users/adityakinjawadekar/Documents/100xcode/garden-of-eden/public/data/ste100"
+    target_dir = "/Users/adityakinjawadekar/Documents/100xcode/garden-of-eden/modules/intro-to-ml/data/ste100"
     os.makedirs(target_dir, exist_ok=True)
 
     errors = 0

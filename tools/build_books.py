@@ -4,10 +4,10 @@
 Usage: build_books.py <book-id> <source-dir> [--figures]
 
 Writes:
-  public/data/books/<book>/index.json
-  public/data/books/<book>/chapters/<slug>.json
-  public/data/books/<book>/tex/<slug>.tex
-  public/books/<book>/fig-<n>.svg           (with --figures)
+  modules/<book>/data/index.json
+  modules/<book>/data/chapters/<slug>.json
+  modules/<book>/data/tex/<slug>.tex
+  modules/<book>/images/fig-<n>.svg           (with --figures)
 """
 import json
 import os
@@ -939,7 +939,7 @@ def main():
     do_figs = '--figures' in sys.argv
     cfg = BOOKS[book_id]
     chapters, figs = build_book(book_id, src_dir)
-    out = os.path.join(ROOT, 'public', 'data', 'books', book_id)
+    out = os.path.join(ROOT, 'modules', book_id, 'data')
     shutil.rmtree(out, ignore_errors=True)
     os.makedirs(os.path.join(out, 'chapters'))
     os.makedirs(os.path.join(out, 'tex'))
@@ -960,7 +960,7 @@ def main():
     if UNKNOWN:
         print('  unknown commands:', sorted(UNKNOWN.items(), key=lambda x: -x[1])[:40])
     if do_figs:
-        compile_figures(book_id, src_dir, figs, os.path.join(ROOT, 'public', 'books', book_id))
+        compile_figures(book_id, src_dir, figs, os.path.join(ROOT, 'modules', book_id, 'images'))
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import type { BookChapter } from './books';
 
-const root = (book: string) => path.join(process.cwd(), 'public', 'data', 'books', book);
+const root = (book: string) => path.join(process.cwd(), 'modules', book, 'data');
 
 export function getBookChapter(book: string, slug: string): BookChapter | null {
   try {

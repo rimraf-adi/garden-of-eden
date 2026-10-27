@@ -1,9 +1,9 @@
-import isIndex from '@/public/data/books/inferential-statistics/index.json';
-import laIndex from '@/public/data/books/linear-algebra/index.json';
-import vcIndex from '@/public/data/books/vector-calculus/index.json';
-import probIndex from '@/public/data/books/probability/index.json';
-import odeIndex from '@/public/data/books/differential-equations/index.json';
-import gateDaIndex from '@/public/data/books/gate-da/index.json';
+import isIndex from '@/modules/inferential-statistics/data/index.json';
+import laIndex from '@/modules/linear-algebra/data/index.json';
+import vcIndex from '@/modules/vector-calculus/data/index.json';
+import probIndex from '@/modules/probability/data/index.json';
+import odeIndex from '@/modules/differential-equations/data/index.json';
+import gateDaIndex from '@/modules/gate-da/data/index.json';
 
 export type Block =
   | { t: 'p'; x: string }
