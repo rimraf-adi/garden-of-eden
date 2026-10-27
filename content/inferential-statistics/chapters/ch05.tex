@@ -1,9 +1,5 @@
 \chapter{Simple Linear Regression and Correlation}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~11 of the course textbook section by section, with the same titles and order. Regression builds an empirical model for how a response $Y$ changes with a regressor $x$, then uses the machinery of Chapters~2 and~3 (confidence intervals and tests) on the fitted coefficients. The worked example below is carried through every section so that all the formulas can be checked against one set of numbers. Numbering follows the textbook with the chapter number lowered by $6$: Section $5.2$ of this book is Section $11$-$2$ of the textbook, and Section $5.2.1$ is its Section $11$-$2.1$.
-\end{nuance}
-
 \section{Empirical Models}
 
 Many problems involve the relationship between two or more variables: the strength of a weld and its temperature, the fuel use of a car and its weight. An \emph{empirical model} is an equation fitted to observed data that describes this relationship without being derived from first principles. Typically the response $Y$ is random and the regressor $x$ is a quantity whose value we choose or measure with negligible error.
@@ -11,7 +7,7 @@ Many problems involve the relationship between two or more variables: the streng
 \begin{definition}[Simple linear regression model]
 The \emph{simple linear regression model} is
 \[ Y=\beta_0+\beta_1x+\varepsilon, \]
-where $\beta_0$ (the intercept) and $\beta_1$ (the slope) are unknown \emph{regression coefficients} and $\varepsilon$ is a random error with $\Exp\varepsilon=0$ and $\Var\varepsilon=\sigma^2$. For data $(x_i,y_i)$, $i=1,\dots,n$: $Y_i=\beta_0+\beta_1x_i+\varepsilon_i$ with the $\varepsilon_i$ independent. For inference we also assume the errors are normal, $\varepsilon_i\sim\Normal(0,\sigma^2)$.
+where $\beta_0$ (the intercept) and $\beta_1$ (the slope) are unknown \emph{regression coefficients} and $\varepsilon$ is a random error with $\Exp[\varepsilon]=0$ and $\Var[\varepsilon]=\sigma^2$. For data $(x_i,y_i)$, $i=1,\dots,n$: $Y_i=\beta_0+\beta_1x_i+\varepsilon_i$ with the $\varepsilon_i$ independent. For inference we also assume the errors are normal, $\varepsilon_i\sim\Normal(0,\sigma^2)$.
 \end{definition}
 
 Then for fixed $x$, $\Exp(Y\mid x)=\beta_0+\beta_1x$ (the mean response lies on a straight line), $\Var(Y\mid x)=\sigma^2$ (constant variance), and $\beta_1$ is the change in the mean response per unit change in $x$.
@@ -84,16 +80,16 @@ Write $\hat\beta_1=\sum c_iY_i$ with $c_i=(x_i-\bar{x})/S_{xx}$; the $x_i$ are f
 \begin{theorem}[Sampling properties]\label{thm:lsprops}
 Under the model assumptions:
 \begin{enumerate}[label=(\roman*)]
-  \item $\Exp\hat\beta_1=\beta_1$ and $\Var\hat\beta_1=\sigma^2/S_{xx}$;
-  \item $\Exp\hat\beta_0=\beta_0$ and $\Var\hat\beta_0=\sigma^2\Big(\dfrac1n+\dfrac{\bar{x}^2}{S_{xx}}\Big)$;
-  \item $\Exp\hat\sigma^2=\sigma^2$;
+  \item $\Exp[\hat\beta_1]=\beta_1$ and $\Var[\hat\beta_1]=\sigma^2/S_{xx}$;
+  \item $\Exp[\hat\beta_0]=\beta_0$ and $\Var[\hat\beta_0]=\sigma^2\Big(\dfrac1n+\dfrac{\bar{x}^2}{S_{xx}}\Big)$;
+  \item $\Exp[\hat\sigma^2]=\sigma^2$;
   \item if the errors are normal, $\hat\beta_0,\hat\beta_1$ are normal, and $(n-2)\hat\sigma^2/\sigma^2\sim\chi^2_{n-2}$ independently of $(\hat\beta_0,\hat\beta_1)$.
 \end{enumerate}
 The estimated standard errors are $\se(\hat\beta_1)=\sqrt{\hat\sigma^2/S_{xx}}$ and $\se(\hat\beta_0)=\sqrt{\hat\sigma^2(1/n+\bar{x}^2/S_{xx})}$.
 \end{theorem}
 
 \begin{proof}
-(i) Since $\sum c_i=0$ and $\sum c_ix_i=1$: $\Exp\hat\beta_1=\sum c_i(\beta_0+\beta_1x_i)=\beta_1$, and $\Var\hat\beta_1=\sigma^2\sum c_i^2=\sigma^2/S_{xx}$. (ii) $\hat\beta_0=\bar{Y}-\hat\beta_1\bar{x}$; the terms $\bar{Y}$ and $\hat\beta_1$ are uncorrelated (because $\sum c_i=0$), so $\Var\hat\beta_0=\sigma^2/n+\bar{x}^2\sigma^2/S_{xx}$. (iii) and (iv) are proved in the matrix setting in Chapter~6 (Theorem~\ref{thm:mlr-dist}): the residual vector lies in an $(n-2)$-dimensional space.
+(i) Since $\sum c_i=0$ and $\sum c_ix_i=1$: $\Exp[\hat\beta_1]=\sum c_i(\beta_0+\beta_1x_i)=\beta_1$, and $\Var[\hat\beta_1]=\sigma^2\sum c_i^2=\sigma^2/S_{xx}$. (ii) $\hat\beta_0=\bar{Y}-\hat\beta_1\bar{x}$; the terms $\bar{Y}$ and $\hat\beta_1$ are uncorrelated (because $\sum c_i=0$), so $\Var[\hat\beta_0]=\sigma^2/n+\bar{x}^2\sigma^2/S_{xx}$. (iii) and (iv) are proved in the matrix setting in Chapter~6 (Theorem~\ref{thm:mlr-dist}): the residual vector lies in an $(n-2)$-dimensional space.
 \end{proof}
 
 \begin{theorem}[Gauss--Markov]\label{thm:gm1}
@@ -101,7 +97,7 @@ Among all \emph{linear unbiased} estimators of $\beta_1$ (estimators of the form
 \end{theorem}
 
 \begin{interview}{what makes the slope precise?}
-$\Var\hat\beta_1=\sigma^2/S_{xx}$ shrinks when the noise $\sigma$ is small, when $n$ is large, and when the $x$-values are \emph{spread out} (large $S_{xx}$). A designed experiment should place regressor values at the extremes of the range: half at each end maximises $S_{xx}$ for given $n$ and range (though it cannot detect curvature, so a few middle points are added). Extrapolating beyond the range of the data is dangerous, since the fitted line says nothing about whether the relationship stays linear there.
+$\Var[\hat\beta_1]=\sigma^2/S_{xx}$ shrinks when the noise $\sigma$ is small, when $n$ is large, and when the $x$-values are \emph{spread out} (large $S_{xx}$). A designed experiment should place regressor values at the extremes of the range: half at each end maximises $S_{xx}$ for given $n$ and range (though it cannot detect curvature, so a few middle points are added). Extrapolating beyond the range of the data is dangerous, since the fitted line says nothing about whether the relationship stays linear there.
 \end{interview}
 
 \section{Some Comments on Uses of Regression (CD Only)}
@@ -122,6 +118,12 @@ The most important special case is $H_0:\beta_1=0$ against $H_1:\beta_1\ne0$, th
 
 \begin{example}
 For Example~\ref{ex:regfit}: $\se(\hat\beta_1)=\sqrt{0.0325/42}=0.0278$ and $t_0=1.9976/0.0278=71.8$ with $6$ degrees of freedom, far beyond $t_{0.005,6}=3.707$: reject $H_0:\beta_1=0$ ($P<0.0001$). For the intercept, $\se(\hat\beta_0)=\sqrt{0.0325(1/8+20.25/42)}=0.1405$ and $t_0=0.0357/0.1405=0.25$: no evidence that the intercept differs from $0$.
+\end{example}
+
+\emph{Reading the test of $H_0:\beta_1=0$} (significance of regression). Failing to reject $H_0$ means either that $x$ is of little value in explaining $Y$ (the best estimate of $Y$ for every $x$ is $\bar{y}$) or that the true relationship is not linear. Rejecting $H_0$ means that $x$ explains variability in $Y$, which can mean either that the straight line is adequate or that the line is a good first approximation and a higher-order term would do better. Also $\hat\beta_0$ and $\hat\beta_1$ are not independent: $\operatorname{cov}(\hat\beta_0,\hat\beta_1)=-\bar{x}\sigma^2/S_{xx}$.
+
+\begin{example}[Textbook example: oxygen purity]
+Oxygen purity $y$ (\%) against hydrocarbon level $x$ (\%), $n=20$: $S_{xx}=0.68088$, $S_{xy}=10.17744$, so $\hat\beta_1=14.947$ and $\hat\beta_0=74.283$, giving $\hat{y}=74.283+14.947x$. The predicted purity at $x=1.00$ is $89.23\%$. $SS_T=173.38$, $SS_R=\hat\beta_1S_{xy}=152.13$, $SS_E=21.25$ and $\hat\sigma^2=1.18$. To test $H_0:\beta_1=0$ at $\alpha=0.01$: $t_0=11.35$ against $t_{0.005,18}=2.88$, and $F_0=152.13/1.18=128.86$ ($=t_0^2$), $P\approx1.2\times10^{-9}$: reject. $R^2=152.13/173.38=0.877$, so the model accounts for $87.7\%$ of the variability.
 \end{example}
 
 \subsection{Analysis of Variance Approach to Test Significance of Regression}
@@ -164,7 +166,9 @@ $SS_T=167.795$, $SS_R=1.9976(83.9)=167.600$, $SS_E=0.195$; $f_0=167.600/0.0325=5
 \subsection{Confidence Intervals on the Slope and Intercept}
 
 \begin{theorem}[Intervals for the coefficients]\label{thm:regci}
-A $100(1-\alpha)\%$ confidence interval on $\beta_1$ is $\hat\beta_1\pm t_{\alpha/2,n-2}\sqrt{\hat\sigma^2/S_{xx}}$, and on $\beta_0$ is $\hat\beta_0\pm t_{\alpha/2,n-2}\sqrt{\hat\sigma^2(1/n+\bar{x}^2/S_{xx})}$. A confidence interval on $\sigma^2$ is $\dfrac{(n-2)\hat\sigma^2}{\chi^2_{\alpha/2,n-2}}\le\sigma^2\le\dfrac{(n-2)\hat\sigma^2}{\chi^2_{1-\alpha/2,n-2}}$.
+A two-sided $100(1-\alpha)\%$ confidence interval on $\beta_1$ is $\hat\beta_1\pm t_{\alpha/2,n-2}\sqrt{\hat\sigma^2/S_{xx}}$, and on $\beta_0$ is $\hat\beta_0\pm t_{\alpha/2,n-2}\sqrt{\hat\sigma^2(1/n+\bar{x}^2/S_{xx})}$. A confidence interval on $\sigma^2$ is $\dfrac{(n-2)\hat\sigma^2}{\chi^2_{\alpha/2,n-2}}\le\sigma^2\le\dfrac{(n-2)\hat\sigma^2}{\chi^2_{1-\alpha/2,n-2}}$.
+
+\emph{One-sided versions} use $\alpha$ in a single tail and write one limit only: upper bound $\beta_1\le\hat\beta_1+t_{\alpha,n-2}\sqrt{\hat\sigma^2/S_{xx}}$, lower bound $\hat\beta_1-t_{\alpha,n-2}\sqrt{\hat\sigma^2/S_{xx}}\le\beta_1$ (similarly for $\beta_0$), and $\sigma^2\le(n-2)\hat\sigma^2/\chi^2_{1-\alpha,n-2}$, $\sigma^2\ge(n-2)\hat\sigma^2/\chi^2_{\alpha,n-2}$. The matching tests reject $H_1:\beta_1>\beta_{1,0}$ when $t_0>t_{\alpha,n-2}$ and $H_1:\beta_1<\beta_{1,0}$ when $t_0<-t_{\alpha,n-2}$. The end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound, not a one-sided $95\%$ bound. The same applies to the interval on $\mu_{Y|x_0}$ and the prediction interval below: replace $t_{\alpha/2,n-2}$ by $t_{\alpha,n-2}$ and keep one limit.
 \end{theorem}
 
 \begin{example}
@@ -210,13 +214,13 @@ The tests and intervals are valid only if the model assumptions hold: linearity,
 \subsection{Residual Analysis}
 
 \begin{definition}[Residuals]
-$e_i=y_i-\hat{y}_i$. The \emph{standardised residuals} are $d_i=e_i/\hat\sigma$; about $95\%$ of them should lie within $\pm2$ if the model is correct.
+$e_i=y_i-\hat{y}_i$. The \emph{standardised residuals} are $d_i=e_i/\hat\sigma$; about $95\%$ of them should lie within $\pm2$ if the model is correct. A point far outside is a potential outlier, but outliers can carry important information and should not be discarded automatically. The $t$-test of $H_0:\beta_1=0$ is more flexible than the $F$-test because it also allows one-sided alternatives.
 \end{definition}
 
 Graphical checks:
 \begin{itemize}
   \item \textbf{Normal probability plot of residuals:} points near a straight line support normality; curvature indicates skew or heavy tails.
-  \item \textbf{Residuals versus fitted values (or versus $x$):} a random horizontal band is good; a curved pattern means the straight line is the wrong shape (try a quadratic term or a transformation); a funnel (spread increasing with $\hat{y}$) indicates non-constant variance (try transforming $y$ or weighted least squares).
+  \item \textbf{Residuals versus fitted values (or versus $x$):} a random horizontal band is good; a curved pattern means the straight line is the wrong shape (try a quadratic term or a transformation); a funnel (spread increasing with $\hat{y}$) indicates non-constant variance (try a variance-stabilising transformation of the response, $\sqrt{y}$, $\ln y$ or $1/y$, or weighted least squares).
   \item \textbf{Residuals versus time order:} runs of same-sign residuals indicate correlated errors.
 \end{itemize}
 
@@ -226,7 +230,7 @@ Graphical checks:
 $R^2=\dfrac{SS_R}{SS_T}=1-\dfrac{SS_E}{SS_T}$, the proportion of the variability in $y$ explained by the regression, with $0\le R^2\le1$.
 \end{definition}
 
-For the data above $R^2=167.600/167.795=0.9988$. Cautions: a large $R^2$ does not prove that the linear model is correct (a curved relationship over a limited range can give $R^2$ near $1$), and a small $R^2$ is not necessarily a bad model if the noise is naturally large. $R^2$ never decreases when regressors are added, so it cannot be used to compare models with different numbers of regressors (see Chapter~6).
+For the data above $R^2=167.600/167.795=0.9988$. Cautions: $R^2$ does not measure the size of the slope (a large $R^2$ does not mean a steep line) nor the appropriateness of the model (adding polynomial terms can inflate it, and it can be large even when the relationship is nonlinear); you can reach $R^2=1$ by fitting a polynomial of degree $n-1$. Further: a large $R^2$ does not prove that the linear model is correct (a curved relationship over a limited range can give $R^2$ near $1$), and a small $R^2$ is not necessarily a bad model if the noise is naturally large. $R^2$ never decreases when regressors are added, so it cannot be used to compare models with different numbers of regressors (see Chapter~6).
 
 \subsection{Lack-of-Fit Test (CD Only)}
 
@@ -279,6 +283,10 @@ If $(X,Y)$ is bivariate normal:
 For the example data $r=\sqrt{0.9988}=0.9994$; $t_0=0.9994\sqrt6/\sqrt{1-0.9988}=70.7$ (equals the regression $t$ up to rounding). For an interval with $n=20$ and $r=0.6$: $\operatorname{arctanh}0.6=0.693$, so $0.693\pm1.96/\sqrt{17}=0.693\pm0.475$, and $\rho\in(\tanh0.218,\tanh1.168)=(0.21,0.82)$.
 \end{example}
 
+\begin{example}[Textbook example: wire bond pull strength versus wire length]
+For $n=25$ bonds, $S_{xx}=698.56$ and $S_{xy}=2027.7132$ give $r=0.9818$ and $r^2=0.9640$ (96.4\% of the variability in pull strength is explained by wire length). To test $H_0:\rho=0$ at $\alpha=0.05$: $t_0=r\sqrt{23}/\sqrt{1-r^2}\approx24.8>t_{0.025,23}=2.069$, so reject. For $H_0:\rho=\rho_0$ ($\rho_0\ne0$) and moderately large samples ($n\ge25$) use $z_0=(\operatorname{arctanh}r-\operatorname{arctanh}\rho_0)\sqrt{n-3}$, rejecting for $\abs{z_0}>z_{\alpha/2}$ (or $z_\alpha$ one-sided). Here $\operatorname{arctanh}0.9818=2.3452$ and the $95\%$ interval is $\tanh(2.3452\pm1.96/\sqrt{22})=\tanh(1.927,\,2.763)$, i.e.\ $0.958\le\rho\le0.992$. A one-sided $95\%$ lower bound uses $z_{0.05}=1.645$ instead of $1.96$.
+\end{example}
+
 \begin{pitfall}{correlation is not causation, and zero correlation is not independence}
 A high correlation can come from a common cause or pure coincidence. Correlation measures \emph{linear} association only: $Y=X^2$ with $X$ symmetric about zero has $\rho=0$ yet $Y$ is a deterministic function of $X$. And a single outlier can create or destroy a large correlation; always look at the scatter plot (Anscombe's quartet has four very different data sets with identical $r=0.816$ and identical regression lines).
 \end{pitfall}
@@ -287,7 +295,7 @@ A high correlation can come from a common cause or pure coincidence. Correlation
 \begin{summarybox}
 \begin{itemize}
   \item Model $Y=\beta_0+\beta_1x+\varepsilon$, $\varepsilon\sim\Normal(0,\sigma^2)$. Least squares: $\hat\beta_1=S_{xy}/S_{xx}$, $\hat\beta_0=\bar{y}-\hat\beta_1\bar{x}$, $\hat\sigma^2=SS_E/(n-2)$ with $SS_E=S_{yy}-\hat\beta_1S_{xy}$.
-  \item $\Var\hat\beta_1=\sigma^2/S_{xx}$, $\Var\hat\beta_0=\sigma^2(1/n+\bar{x}^2/S_{xx})$; $\hat\beta$'s are BLUE (Gauss--Markov).
+  \item $\Var[\hat\beta_1]=\sigma^2/S_{xx}$, $\Var[\hat\beta_0]=\sigma^2(1/n+\bar{x}^2/S_{xx})$; $\hat\beta$'s are BLUE (Gauss--Markov).
   \item Tests and intervals use $t_{n-2}$; $H_0:\beta_1=0$ is also tested by $F_0=MS_R/MS_E=t_0^2$ with $SS_T=SS_R+SS_E$.
   \item Mean response: $\hat{y}_0\pm t\sqrt{\hat\sigma^2[1/n+(x_0-\bar{x})^2/S_{xx}]}$; new observation: add $1$ inside the bracket; both are narrowest at $\bar{x}$.
   \item Check the residuals (normal plot, versus $\hat{y}$); $R^2=SS_R/SS_T$; lack of fit needs replicates; transformations linearise some nonlinear models.

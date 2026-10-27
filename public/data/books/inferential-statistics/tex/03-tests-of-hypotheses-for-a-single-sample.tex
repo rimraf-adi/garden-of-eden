@@ -1,9 +1,5 @@
 \chapter{Tests of Hypotheses for a Single Sample}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~9 of the course textbook section by section, with the same titles and order. A confidence interval estimates a parameter; a hypothesis test decides between two competing claims about it. We build the general framework (hypotheses, errors, $P$-values, power), then apply it to the mean (variance known and unknown), the variance, a proportion, goodness of fit and contingency tables. Numbering follows the textbook with the chapter number lowered by $6$: Section $3.2$ of this book is Section $9$-$2$ of the textbook, and Section $3.2.1$ is its Section $9$-$2.1$.
-\end{nuance}
-
 \section{Hypothesis Testing}
 
 \subsection{Statistical Hypotheses}
@@ -132,7 +128,11 @@ The $P$-value is \emph{not} the probability that $H_0$ is true, and $1-P$ is not
 \subsection{Connection Between Hypothesis Tests and Confidence Intervals}
 
 \begin{theorem}[Duality]\label{thm:duality}
-The two-sided level-$\alpha$ test of $H_0:\mu=\mu_0$ rejects if and only if $\mu_0$ lies outside the $100(1-\alpha)\%$ confidence interval for $\mu$. Likewise the one-sided tests correspond to one-sided confidence bounds.
+The two-sided level-$\alpha$ test of $H_0:\mu=\mu_0$ rejects if and only if $\mu_0$ lies outside the $100(1-\alpha)\%$ confidence interval for $\mu$. The one-sided tests correspond to one-sided bounds, at the \emph{same} $\alpha$:
+\begin{itemize}
+  \item $H_1:\mu>\mu_0$ is rejected at level $\alpha$ iff $\mu_0<\bar{x}-z_\alpha\sigma/\sqrt n$, i.e.\ iff $\mu_0$ lies below the $100(1-\alpha)\%$ \emph{lower} confidence bound.
+  \item $H_1:\mu<\mu_0$ is rejected at level $\alpha$ iff $\mu_0>\bar{x}+z_\alpha\sigma/\sqrt n$, i.e.\ iff $\mu_0$ lies above the $100(1-\alpha)\%$ \emph{upper} confidence bound.
+\end{itemize}
 \end{theorem}
 
 \begin{proof}
@@ -140,6 +140,10 @@ $\abs{\bar{x}-\mu_0}>z_{\alpha/2}\sigma/\sqrt n$ is exactly the statement that $
 \end{proof}
 
 So a confidence interval answers every possible two-sided hypothesis test at once: it is the set of all values $\mu_0$ that would not be rejected.
+
+\begin{pitfall}{do not mix one-sided tests with two-sided intervals}
+A one-sided test at $\alpha=0.05$ uses $z_{0.05}=1.645$ and matches a one-sided $95\%$ bound. A two-sided $95\%$ interval uses $z_{0.025}=1.96$ and matches a two-sided test at $\alpha=0.05$. If a one-sided test at $\alpha=0.05$ rejects but $\mu_0$ is still inside the two-sided $95\%$ interval, there is no contradiction: the interval corresponds to the two-sided test, which has a stricter cutoff. To compare a one-sided test with an interval, use the two-sided $90\%$ interval (whose end is a one-sided $95\%$ bound) or the one-sided $95\%$ bound. The same holds for $t$, $\chi^2$ and $F$ procedures: one-sided uses $\alpha$ in a single tail, two-sided uses $\alpha/2$ in each.
+\end{pitfall}
 
 \subsection{Type II Error and Choice of Sample Size}
 
@@ -169,6 +173,12 @@ To achieve Type II error $\beta$ at a specified true difference $\delta$ with a 
 
 \begin{example}
 For Example~\ref{ex:beta}, how large must $n$ be to detect $\delta=1$ with probability $0.90$ ($\beta=0.10$) at $\alpha=0.05$? $n=(z_{0.025}+z_{0.10})^2\sigma^2/\delta^2=(1.96+1.28)^2(2)^2/1^2=42$. (The textbook's operating characteristic charts with $d=\delta/\sigma=0.5$ give a very similar value, about $40$.)
+\end{example}
+
+\begin{example}[Textbook examples: propellant burning rate, continued]
+\emph{Strong versus weak conclusions.} If we wish to show with a \emph{strong} conclusion that the burning rate is below $50$ cm/s, we take $H_0:\mu=50$, $H_1:\mu<50$, since rejecting $H_0$ is always the strong conclusion. Failing to reject does not mean $\mu=50$ exactly, only that there is no strong evidence for $H_1$ ($H_0$ is understood to include every value not covered by $H_1$).
+\emph{Test.} $\sigma=2$, $n=25$, $\bar{x}=51.3$: $z_0=(51.3-50)/(2/\sqrt{25})=3.25>1.96$, so $H_0:\mu=50$ is rejected at $\alpha=0.05$ (two-sided $P=2[1-\Phi(3.25)]\approx0.0012$), with strong evidence that the mean exceeds $50$.
+\emph{Power.} If the true mean is $51$ ($\delta=1$, $d=\delta/\sigma=0.5$), with $n=25$: $\beta=\Phi(1.96-2.5)-\Phi(-1.96-2.5)\approx0.30$, i.e.\ about a $30\%$ chance of missing a shift of $1$ cm/s. To detect a shift of $1$ cm/s with probability $0.90$ ($\beta=0.10$) we need $n=(z_{\alpha/2}+z_\beta)^2\sigma^2/\delta^2=(1.96+1.28)^2(4)/1=42$; the OC chart gives about $40$, in close agreement. OC curves exist for the two-sided case (charts VIa, VIb) and the one-sided cases (VIc, VId); for given $n$ and $\alpha$, larger departures are detected more easily, and for a given departure a larger $n$ gives a smaller $\beta$.
 \end{example}
 
 \subsection{Large Sample Test}
@@ -215,6 +225,10 @@ If the true mean is $\mu_0+\delta$, the statistic $T_0$ has a \emph{noncentral} 
 \[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2\sigma^2}{\delta^2}+\frac{z_{\alpha/2}^2}2. \]
 Since $\sigma$ is unknown, a rough estimate from a pilot study or past data is needed; the answer is only as good as that estimate.
 
+\begin{example}[Textbook example: golf club coefficient of restitution]
+$n=15$ drivers, $\bar{x}=0.83725$, $s=0.02456$. To show the mean exceeds $0.82$ at $\alpha=0.05$: $H_0:\mu=0.82$, $H_1:\mu>0.82$. $t_0=(0.83725-0.82)/(0.02456/\sqrt{15})=2.72>t_{0.05,14}=1.761$: reject $H_0$ ($P\approx0.008$, just under $0.01$). The normal probability plot supports normality, and since the aim is to show the mean \emph{exceeds} $0.82$, a one-sided alternative is appropriate. \emph{Sample size:} if the mean exceeds $0.82$ by $0.02$, then $d=0.02/0.02456=0.81$; the OC chart with $n=15$ gives $\beta\approx0.10$, so $n=15$ is adequate for power at least $0.8$.
+\end{example}
+
 \subsection{Likelihood Ratio Approach to Development of Test Procedures (CD Only)}
 
 The tests above are all instances of one general construction.
@@ -254,6 +268,10 @@ Tests on $\sigma$ are the same with $\sigma_0^2$ replaced by its square.
 A filling machine is acceptable if $\sigma^2\le0.01$. A sample of $n=20$ has $s^2=0.0153$. Test $H_0:\sigma^2=0.01$ against $H_1:\sigma^2>0.01$ at $\alpha=0.05$. $\chi_0^2=19(0.0153)/0.01=29.07$ and $\chi^2_{0.05,19}=30.14$. Since $29.07<30.14$, do not reject $H_0$ ($P\approx0.065$): the evidence of a variance exceeding the limit is suggestive but not conclusive at the $5\%$ level.
 \end{example}
 
+\begin{example}[Textbook example: bottle filling]
+$n=20$ bottles, $s^2=0.0153$; is the variance above $0.01$ (fluid ounces)$^2$? $H_0:\sigma^2=0.01$, $H_1:\sigma^2>0.01$, $\alpha=0.05$. $\chi_0^2=(n-1)s^2/\sigma_0^2=19(0.0153)/0.01=29.07<\chi^2_{0.05,19}=30.14$: do not reject, no strong evidence of a problem. From the table, $27.20<29.07<30.14$ gives $0.05<P<0.10$ (exact $P=0.0649$). One-sided tests use $\chi^2_{\alpha,n-1}$ in the upper tail (for $H_1:\sigma^2>\sigma_0^2$) or $\chi^2_{1-\alpha,n-1}$ in the lower tail (for $H_1:\sigma^2<\sigma_0^2$); two-sided uses $\chi^2_{\alpha/2,n-1}$ and $\chi^2_{1-\alpha/2,n-1}$. \emph{Power:} here $\sigma_0=0.10$; if the true $\sigma$ is $25\%$ larger ($\lambda=1.25$) the OC chart with $n=20$ gives $\beta\approx0.6$, so only about a $40\%$ chance of rejecting; to reach $\beta=0.20$ at $\lambda=1.25$ the chart gives $n\approx75$ bottles.
+\end{example}
+
 \subsection{$\beta$-Error and Choice of Sample Size}
 
 If the true variance is $\sigma^2=\lambda^2\sigma_0^2$, then $(n-1)S^2/\sigma_0^2=\lambda^2V$ with $V\sim\chi^2_{n-1}$. For the two-sided test with critical values $c_L=\chi^2_{1-\alpha/2,n-1}$, $c_U=\chi^2_{\alpha/2,n-1}$,
@@ -270,6 +288,10 @@ The decision rules are those of Theorem~\ref{thm:ztest}.
 
 \begin{example}\label{ex:proptest}
 A process makes $5\%$ defectives. After a change, $x=4$ defectives are found in $n=200$ items. Test $H_0:p=0.05$ against $H_1:p<0.05$ at $\alpha=0.05$. $z_0=(4-200\cdot0.05)/\sqrt{200\cdot0.05\cdot0.95}=-6/3.082=-1.947<-1.645$, so reject $H_0$ ($P=\Phi(-1.947)=0.0258$): the defect rate has been reduced.
+\end{example}
+
+\begin{example}[Textbook example: process fallout]
+A customer requires fraction defective at most $0.05$. To demonstrate capability the manufacturer takes $n=200$ devices and finds $4$ defective. The claim to be \emph{demonstrated} goes in $H_1$: $H_0:p=0.05$, $H_1:p<0.05$, $\alpha=0.05$. $z_0=(4-200(0.05))/\sqrt{200(0.05)(0.95)}=-6/3.082=-1.95<-1.645$: reject $H_0$ ($P=0.0256$); the process is capable. Software also gives the \emph{one-sided} $95\%$ upper confidence bound $0.0363<0.05$, consistent with rejection: a one-sided test goes with a one-sided bound, here an \emph{upper} bound because $H_1:p<p_0$. (A \emph{two-sided} $95\%$ interval would use $z_{0.025}=1.96$ and have a larger upper limit.) \emph{Power:} if the true $p$ is $0.03$, $\beta\approx0.7$ (power only $0.3$) with $n=200$; to allow $\beta=0.10$ at $p=0.03$ with $\alpha=0.05$ the sample size needed is $n\approx832$, large because $0.05$ versus $0.03$ is a small difference.
 \end{example}
 
 \subsection{Small-Sample Tests on a Proportion (CD Only)}
@@ -307,6 +329,24 @@ $p$ (large $n$) & $z_0=\dfrac{x-np_0}{\sqrt{np_0(1-p_0)}}$ & $\abs{z_0}>z_{\alph
 \end{tabular}
 \end{center}
 
+The table above is for \emph{two-sided} alternatives. The one-sided versions, with the matching one-sided $100(1-\alpha)\%$ bound, are:
+
+\begin{center}
+\small
+\begin{tabular}{p{2.2cm}p{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+Parameter & $H_1$ and rejection region (level $\alpha$) & Matching bound ($\alpha$, one limit) & Critical value \\
+\midrule
+$\mu$, $\sigma$ known & $\mu>\mu_0$: $z_0>z_\alpha$ ;\quad $\mu<\mu_0$: $z_0<-z_\alpha$ & lower: $\bar{x}-z_\alpha\sigma/\sqrt n\le\mu$ ;\quad upper: $\mu\le\bar{x}+z_\alpha\sigma/\sqrt n$ & $z_\alpha$ \\
+$\mu$, $\sigma$ unknown & $\mu>\mu_0$: $t_0>t_{\alpha,n-1}$ ;\quad $\mu<\mu_0$: $t_0<-t_{\alpha,n-1}$ & lower: $\bar{x}-t_{\alpha,n-1}s/\sqrt n\le\mu$ ;\quad upper: $\mu\le\bar{x}+t_{\alpha,n-1}s/\sqrt n$ & $t_{\alpha,n-1}$ \\
+$\sigma^2$ & $\sigma^2>\sigma_0^2$: $\chi_0^2>\chi^2_{\alpha,n-1}$ ;\quad $\sigma^2<\sigma_0^2$: $\chi_0^2<\chi^2_{1-\alpha,n-1}$ & lower: $\sigma^2\ge(n-1)s^2/\chi^2_{\alpha,n-1}$ ;\quad upper: $\sigma^2\le(n-1)s^2/\chi^2_{1-\alpha,n-1}$ & $\chi^2_{\alpha}$ or $\chi^2_{1-\alpha}$ \\
+$p$ (large $n$) & $p>p_0$: $z_0>z_\alpha$ ;\quad $p<p_0$: $z_0<-z_\alpha$ & lower: $\hat{p}-z_\alpha\widehat{\se}\le p$ ;\quad upper: $p\le\hat{p}+z_\alpha\widehat{\se}$ & $z_\alpha$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Reading rule: a ``greater than'' alternative is paired with a \emph{lower} bound (the data must push the parameter above $\mu_0$, so we ask whether the lowest plausible value is still above it); a ``less than'' alternative is paired with an \emph{upper} bound.
+
 \section{Testing for Goodness of Fit}
 
 A \emph{goodness-of-fit test} checks whether the population follows a specified distribution. Divide the range of the variable into $k$ classes (bins). Let $O_i$ be the observed frequency in class $i$ and $E_i=np_i$ the expected frequency, where $p_i$ is the probability of class $i$ under the hypothesised distribution.
@@ -323,6 +363,11 @@ A die is rolled $60$ times, with counts $8,12,9,11,14,6$ for faces $1$ to $6$. U
 
 \begin{example}[Poisson with estimated mean]
 Suppose the number of defects per unit is to be tested against a Poisson distribution whose mean is estimated by $\bar{x}$ from the same data. With $k=5$ classes after combining, $p=1$ parameter is estimated, so the degrees of freedom are $k-p-1=3$. Estimating a parameter uses up one degree of freedom because it makes the fit look better than it would for a fixed specified distribution.
+\end{example}
+
+\begin{example}[Textbook examples: goodness of fit]
+\emph{Poisson.} $n=60$ printed circuit boards with $32, 15, 9, 4$ boards having $0,1,2,3$ defects: the estimated mean is $\hat\lambda=(0\cdot32+1\cdot15+2\cdot9+3\cdot4)/60=0.75$. Expected counts are $60p_i$ with $p_i$ from Poisson($0.75$); the last expected count is below $3$, so the last two cells are combined, leaving $k=3$ cells, and the degrees of freedom are $k-p-1=3-1-1=1$ because one parameter was estimated. $\chi_0^2=2.94<\chi^2_{0.05,1}=3.84$: cannot reject the Poisson model ($P=0.0864$). Minimum expected frequencies of $3$, $4$ or $5$ are widely used; cells with smaller expected counts are combined with neighbours and $k$ is reduced.
+\emph{Normal, equiprobable cells.} For $n=100$ power-supply voltages ($\bar{x}=5.04$, $s=0.08$) choose $k=8$ cells with equal probability $0.125$, so every expected count is $np_i=12.5$; for the standard normal the boundaries are $0,\ \pm0.32,\ \pm0.675,\ \pm1.15$ (times $s$, plus $\bar{x}$). Two parameters are estimated, so the degrees of freedom are $8-2-1=5$; the test statistic is $0.64$, against $\chi^2_{0.05,5}=11.07$ (the textbook compares with $11.07$): not rejected ($P=0.9861$).
 \end{example}
 
 \section{Contingency Table Tests}

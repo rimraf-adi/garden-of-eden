@@ -59,7 +59,7 @@ A \emph{bootstrap sample} $x_1^*,\dots,x_n^*$ is drawn \emph{with replacement} f
 \begin{itemize}
   \item \textbf{Standard error:} $\se_{\mathrm{boot}}(\hat\theta)=$ the standard deviation of $\hat\theta^*_1,\dots,\hat\theta^*_B$ (Chapter~1).
   \item \textbf{Bias estimate:} $\overline{\hat\theta^*}-\hat\theta$.
-  \item \textbf{Percentile interval:} the $\alpha/2$ and $1-\alpha/2$ quantiles of the bootstrap distribution (Chapter~2).
+  \item \textbf{Percentile interval:} the $\alpha/2$ and $1-\alpha/2$ quantiles of the bootstrap distribution (Chapter~2). This is two-sided; a one-sided $100(1-\alpha)\%$ upper bound is the $1-\alpha$ quantile and a lower bound is the $\alpha$ quantile (all of $\alpha$ in one tail).
   \item \textbf{Basic (pivotal) interval:} $\big[2\hat\theta-q^*_{1-\alpha/2},\ 2\hat\theta-q^*_{\alpha/2}\big]$, which corrects for bias and skewness.
   \item \textbf{Bootstrap-$t$ interval:} resample the studentised statistic $(\hat\theta^*-\hat\theta)/\se^*$ and use its quantiles; it has better coverage than the percentile interval for the mean.
 \end{itemize}
@@ -120,7 +120,7 @@ Baseline conversion $p_1=10\%$; the smallest change worth detecting is $+1$ perc
 
 \subsection{Variance reduction}
 
-A pre-experiment covariate $X$ (for example the user's activity before the test) correlated with the outcome $Y$ can be used to reduce the variance: the \emph{CUPED} estimator replaces $Y$ by $Y-\theta(X-\bar{X})$ with $\theta=\Cov(X,Y)/\Var X$; the adjusted outcome has variance $(1-\rho^2)\Var Y$, where $\rho=\Corr(X,Y)$. With $\rho=0.7$ the variance halves, so half the sample size suffices. This is the regression-adjustment idea of Chapter~6 applied to the treatment effect.
+A pre-experiment covariate $X$ (for example the user's activity before the test) correlated with the outcome $Y$ can be used to reduce the variance: the \emph{CUPED} estimator replaces $Y$ by $Y-\theta(X-\bar{X})$ with $\theta=\Cov(X,Y)/\Var[X]$; the adjusted outcome has variance $(1-\rho^2)\Var[Y]$, where $\rho=\Corr(X,Y)$. With $\rho=0.7$ the variance halves, so half the sample size suffices. This is the regression-adjustment idea of Chapter~6 applied to the treatment effect.
 
 \begin{summarybox}
 \begin{itemize}

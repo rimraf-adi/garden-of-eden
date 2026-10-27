@@ -1,9 +1,5 @@
 \chapter{Point Estimation of Parameters}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~7 of the course textbook (Montgomery and Runger, \emph{Applied Statistics and Probability for Engineers}) section by section, in the same order and with the same section titles, so that it can be read alongside the textbook. The material is written independently. Derivations that the textbook leaves to its accompanying CD are included, and deeper results are collected in the supplementary chapters at the end of the book (Chapter~12 for estimation theory, Chapter~11 for the exact sampling distributions of $\bar{X}$ and $S^2$). Numbering follows the textbook with the chapter number lowered by $6$: Section $1.2$ of this book is Section $7$-$2$ of the textbook, and Section $1.2.1$ is its Section $7$-$2.1$.
-\end{nuance}
-
 \section{Introduction}
 
 A \emph{population} is described by a probability distribution that depends on one or more unknown constants called \emph{parameters}: the mean $\mu$ and variance $\sigma^2$ of a normal distribution, the rate $\lambda$ of an exponential distribution, the success probability $p$ of a Bernoulli trial. We cannot see the parameter. We see a \emph{random sample} $X_1,\dots,X_n$, independent random variables each with the population distribution, and we must use it to say something about the parameter.
@@ -38,9 +34,9 @@ Let $X_1,\dots,X_n$ be a random sample from a distribution with mean $\mu$ and v
 \end{theorem}
 
 \begin{proof}
-(i) $\Exp\bar{X}=\frac1n\sum\Exp X_i=\mu$. (iii) $\Exp X=np$, so $\Exp\hat{P}=p$. (ii) Expand the sum of squares about the true mean:
+(i) $\Exp[\bar{X}]=\frac1n\sum\Exp[X_i]=\mu$. (iii) $\Exp[X]=np$, so $\Exp[\hat{P}]=p$. (ii) Expand the sum of squares about the true mean:
 \[ \sum(X_i-\bar{X})^2=\sum(X_i-\mu)^2-n(\bar{X}-\mu)^2. \]
-Taking expectations, $\Exp\sum(X_i-\bar{X})^2=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2$, using $\Var\bar{X}=\sigma^2/n$. Dividing by $n-1$ gives $\Exp S^2=\sigma^2$.
+Taking expectations, $\Exp\Big[\sum(X_i-\bar{X})^2\Big]=n\sigma^2-n\cdot\frac{\sigma^2}n=(n-1)\sigma^2$, using $\Var[\bar{X}]=\sigma^2/n$. Dividing by $n-1$ gives $\Exp[S^2]=\sigma^2$.
 \end{proof}
 
 \begin{intuition}
@@ -64,10 +60,10 @@ If $\sigma^2>0$ and the sample is not degenerate, $\Exp[S]<\sigma$.
 \end{theorem}
 
 \begin{proof}
-The square root is a strictly concave function, so Jensen's inequality gives $\Exp\sqrt{S^2}<\sqrt{\Exp S^2}=\sqrt{\sigma^2}=\sigma$ (strict inequality because $S^2$ is not constant).
+The square root is a strictly concave function, so Jensen's inequality gives $\Exp[\sqrt{S^2}]<\sqrt{\Exp[S^2]}=\sqrt{\sigma^2}=\sigma$ (strict inequality because $S^2$ is not constant).
 \end{proof}
 
-For a normal sample the bias is explicit: $\Exp S=c_4(n)\,\sigma$ with $c_4(n)=\sqrt{\dfrac2{n-1}}\,\dfrac{\Gamma(n/2)}{\Gamma((n-1)/2)}$; for example $c_4(5)\approx0.940$, $c_4(10)\approx0.973$, $c_4(25)\approx0.990$. The bias is small unless $n$ is small, and it is routinely ignored; control charts (Chapter~10) do use $c_4$ to correct it.
+For a normal sample the bias is explicit: $\Exp[S]=c_4(n)\,\sigma$ with $c_4(n)=\sqrt{\dfrac2{n-1}}\,\dfrac{\Gamma(n/2)}{\Gamma((n-1)/2)}$; for example $c_4(5)\approx0.940$, $c_4(10)\approx0.973$, $c_4(25)\approx0.990$. The bias is small unless $n$ is small, and it is routinely ignored; control charts (Chapter~10) do use $c_4$ to correct it.
 
 \subsection{Variance of a Point Estimator}
 
@@ -78,21 +74,21 @@ Among all unbiased estimators of $\theta$, the one with the smallest variance is
 \end{definition}
 
 \begin{example}[Mean versus median]
-For a sample of size $n$ from $\Normal(\mu,\sigma^2)$ both $\bar{X}$ and the sample median $\tilde{X}$ are unbiased for $\mu$ (the normal is symmetric). But $\Var\bar{X}=\sigma^2/n$ while, for large $n$, $\Var\tilde{X}\approx\frac\pi2\cdot\frac{\sigma^2}n\approx1.57\,\sigma^2/n$. The median needs about $57\%$ more data to reach the same accuracy.
+For a sample of size $n$ from $\Normal(\mu,\sigma^2)$ both $\bar{X}$ and the sample median $\tilde{X}$ are unbiased for $\mu$ (the normal is symmetric). But $\Var[\bar{X}]=\sigma^2/n$ while, for large $n$, $\Var[\tilde{X}]\approx\frac\pi2\cdot\frac{\sigma^2}n\approx1.57\,\sigma^2/n$. The median needs about $57\%$ more data to reach the same accuracy.
 \end{example}
 
 \begin{theorem}[$\bar{X}$ is the MVUE for the normal mean]\label{thm:mvue}
 If $X_1,\dots,X_n$ is a random sample from $\Normal(\mu,\sigma^2)$, then $\bar{X}$ is the MVUE of $\mu$.
 \end{theorem}
 
-This is a consequence of the Cram\'er--Rao inequality, proved in Chapter~12. For non-normal populations the answer changes: for a uniform distribution on $(\mu-a,\mu+a)$ the midrange has variance of order $1/n^2$, far smaller than $\Var\bar{X}=a^2/(3n)$.
+This is a consequence of the Cram\'er--Rao inequality, proved in Chapter~12. For non-normal populations the answer changes: for a uniform distribution on $(\mu-a,\mu+a)$ the midrange has variance of order $1/n^2$, far smaller than $\Var[\bar{X}]=a^2/(3n)$.
 
 \subsection{Standard Error: Reporting a Point Estimator}
 
 A point estimate alone is incomplete without some measure of its precision.
 
 \begin{definition}[Standard error]
-The \emph{standard error} of an estimator $\hat\Theta$ is its standard deviation, $\sigma_{\hat\Theta}=\sqrt{\Var\hat\Theta}$. If this depends on unknown parameters and these are replaced by estimates, the result is the \emph{estimated standard error}, written $\hat\sigma_{\hat\Theta}$ or $\se(\hat\Theta)$.
+The \emph{standard error} of an estimator $\hat\Theta$ is its standard deviation, $\sigma_{\hat\Theta}=\sqrt{\Var[\hat\Theta]}$. If this depends on unknown parameters and these are replaced by estimates, the result is the \emph{estimated standard error}, written $\hat\sigma_{\hat\Theta}$ or $\se(\hat\Theta)$.
 \end{definition}
 
 For the sample mean, $\sigma_{\bar{X}}=\sigma/\sqrt n$, and since $\sigma$ is usually unknown the estimated standard error is $\se(\bar{X})=s/\sqrt n$. The standard practice is to report the estimate together with its standard error, as $\hat\theta\ \pm\ \se(\hat\theta)$.
@@ -104,6 +100,10 @@ Thermal conductivity measurements on $n=10$ specimens give $\bar{x}=41.924$ and 
 \begin{pitfall}{standard error is not standard deviation}
 The standard deviation $s$ measures the spread of individual observations; the standard error $s/\sqrt n$ measures the spread of the \emph{mean} over repeated samples and shrinks as $n$ grows. Reporting $\pm s$ when one means $\pm\se$ overstates the uncertainty of the mean by a factor $\sqrt n$.
 \end{pitfall}
+
+\begin{example}[Textbook example: thermal conductivity of Armco iron]
+Ten measurements of thermal conductivity at $100^\circ$F and $550$ W give $\bar{x}=41.924$ and $s=0.284$. The estimated standard error of $\bar{X}$ is $s/\sqrt{10}=0.0898$, about $0.2\%$ of the estimate, so the estimate is precise. If conductivity is normal, $2\,\widehat{\se}=0.1796$ and we are highly confident that the true mean lies in $41.924\pm0.1796$, i.e.\ $(41.744,\,42.104)$. Even if the estimator is not normal, as long as it is unbiased the estimate deviates from the true value by as much as four standard errors at most about $6\%$ of the time (Chebyshev), so a very conservative statement is that the parameter is within four standard errors of the estimate.
+\end{example}
 
 \subsection{Bootstrap Estimate of the Standard Error (CD Only)}
 
@@ -140,7 +140,7 @@ $\MSE(\hat\Theta)=\Exp\big[(\hat\Theta-\theta)^2\big]$, the expected squared dis
 \end{theorem}
 
 \begin{proof}
-Write $\hat\Theta-\theta=(\hat\Theta-\Exp\hat\Theta)+(\Exp\hat\Theta-\theta)$ and square. The cross term has expectation $2(\Exp\hat\Theta-\theta)\Exp(\hat\Theta-\Exp\hat\Theta)=0$, leaving the variance plus the squared bias.
+Write $\hat\Theta-\theta=(\hat\Theta-\Exp[\hat\Theta])+(\Exp[\hat\Theta]-\theta)$ and square. The cross term has expectation $2(\Exp[\hat\Theta]-\theta)\Exp(\hat\Theta-\Exp[\hat\Theta])=0$, leaving the variance plus the squared bias.
 \end{proof}
 
 For an unbiased estimator the MSE equals the variance. For biased ones the decomposition shows the trade-off.
@@ -168,22 +168,26 @@ Suppose the distribution has $m$ unknown parameters $\theta_1,\dots,\theta_m$. E
 \end{definition}
 
 \begin{example}[Exponential]\label{ex:momexp}
-For the exponential with rate $\lambda$, $\Exp X=1/\lambda$. Equating to $\bar{X}$ gives $\hat\lambda=1/\bar{X}$.
+For the exponential with rate $\lambda$, $\Exp[X]=1/\lambda$. Equating to $\bar{X}$ gives $\hat\lambda=1/\bar{X}$.
 \end{example}
 
 \begin{example}[Normal]
-$\Exp X=\mu$ and $\Exp X^2=\sigma^2+\mu^2$. Equating to $\bar{X}$ and $\frac1n\sum X_i^2$: $\hat\mu=\bar{X}$ and $\hat\sigma^2=\frac1n\sum X_i^2-\bar{X}^2=\frac1n\sum(X_i-\bar{X})^2$, which is the \emph{biased} version of the sample variance.
+$\Exp[X]=\mu$ and $\Exp[X^2]=\sigma^2+\mu^2$. Equating to $\bar{X}$ and $\frac1n\sum X_i^2$: $\hat\mu=\bar{X}$ and $\hat\sigma^2=\frac1n\sum X_i^2-\bar{X}^2=\frac1n\sum(X_i-\bar{X})^2$, which is the \emph{biased} version of the sample variance.
 \end{example}
 
 \begin{example}[Gamma]
-For a gamma distribution with shape $r$ and rate $\lambda$, $\Exp X=r/\lambda$ and $\Var X=r/\lambda^2$. Using the first two moments (equivalently the mean and the variance $\frac1n\sum(X_i-\bar{X})^2=:\hat v$): $\hat r=\bar{X}^2/\hat v$ and $\hat\lambda=\bar{X}/\hat v$.
+For a gamma distribution with shape $r$ and rate $\lambda$, $\Exp[X]=r/\lambda$ and $\Var[X]=r/\lambda^2$. Using the first two moments (equivalently the mean and the variance $\frac1n\sum(X_i-\bar{X})^2=:\hat v$): $\hat r=\bar{X}^2/\hat v$ and $\hat\lambda=\bar{X}/\hat v$.
 \end{example}
 
 \begin{example}[Uniform]
-For a uniform distribution on $(0,\theta)$, $\Exp X=\theta/2$, so $\hat\theta=2\bar{X}$. This estimator is unbiased but can be silly: if the sample is $(1,2,9)$ then $\hat\theta=8$, which is smaller than the observed value $9$ and hence impossible. The maximum likelihood estimator below does not have this defect.
+For a uniform distribution on $(0,\theta)$, $\Exp[X]=\theta/2$, so $\hat\theta=2\bar{X}$. This estimator is unbiased but can be silly: if the sample is $(1,2,9)$ then $\hat\theta=8$, which is smaller than the observed value $9$ and hence impossible. The maximum likelihood estimator below does not have this defect.
 \end{example}
 
 Moment estimators are simple and usually consistent, but they need not be efficient, and may fall outside the parameter space.
+
+\begin{example}[Textbook example: failure-time data]
+Eight electronic modules, tested at elevated temperature, have exponentially distributed failure times (hours) with $\bar{x}=21.65$ and $\sum x_i^2=6639.40$. The moment estimate of the exponential rate is $\hat\lambda=1/\bar{x}=0.0462$. Fitting a gamma distribution by moments gives $\hat{r}=1.30$ and $\hat\lambda=0.0599$; since $\hat{r}$ is slightly above $1$ (where the gamma reduces to the exponential) either distribution could be plausible.
+\end{example}
 
 \subsection{Method of Maximum Likelihood}
 
@@ -230,7 +234,7 @@ Since $\hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2$ is the MLE of $\sigma^2$ for a n
 \begin{theorem}[Large-sample properties of the MLE]\label{thm:mleasymp}
 Under mild regularity conditions, as $n\to\infty$ the MLE $\hat\Theta$ is
 \begin{enumerate}[label=(\roman*)]
-  \item asymptotically unbiased: $\Exp\hat\Theta\to\theta$;
+  \item asymptotically unbiased: $\Exp[\hat\Theta]\to\theta$;
   \item consistent;
   \item asymptotically normal, $\hat\Theta\approx\Normal\big(\theta,\ 1/(n\Fish(\theta))\big)$, with variance equal to the Cram\'er--Rao lower bound, where $\Fish(\theta)=\Exp\big[-\partial^2\ln f(X;\theta)/\partial\theta^2\big]$ is the Fisher information of one observation;
   \item consequently asymptotically the MVUE (no consistent estimator has smaller large-sample variance).
@@ -278,7 +282,7 @@ A population consists of the equally likely values $1,3,5$. For random samples o
 \section{Sampling Distribution of Means}\label{sec:sampmeans}
 
 \begin{theorem}[Distribution of $\bar{X}$]\label{thm:dist-xbar}
-Let $X_1,\dots,X_n$ be a random sample with mean $\mu$ and variance $\sigma^2$. Then $\Exp\bar{X}=\mu$ and $\Var\bar{X}=\sigma^2/n$. If the population is normal, $\bar{X}$ is exactly $\Normal(\mu,\sigma^2/n)$.
+Let $X_1,\dots,X_n$ be a random sample with mean $\mu$ and variance $\sigma^2$. Then $\Exp[\bar{X}]=\mu$ and $\Var[\bar{X}]=\sigma^2/n$. If the population is normal, $\bar{X}$ is exactly $\Normal(\mu,\sigma^2/n)$.
 \end{theorem}
 
 \begin{theorem}[Central limit theorem]\label{thm:clt-text}
@@ -311,6 +315,12 @@ Two machines fill cartons. Machine 1: $\mu_1=500$, $\sigma_1=6$; machine 2: $\mu
   \item $\bar{X}\approx\Normal(\mu,\sigma^2/n)$ (exactly for normal populations, by the CLT otherwise); $\bar{X}_1-\bar{X}_2$ has variance $\sigma_1^2/n_1+\sigma_2^2/n_2$.
 \end{itemize}
 \end{summarybox}
+
+\begin{example}[Textbook examples: sampling distributions]
+\emph{Uniform.} If $X\sim U(4,6)$ then $\mu=5$, $\sigma^2=(6-4)^2/12=1/3$, and for $n=40$ the central limit theorem gives $\bar{X}\approx\Normal(5,\ \sigma^2/n=1/120)$.
+\emph{Two samples.} A jet-engine component has life with mean $5000$ h and $\sigma=40$ (old process), and after improvement mean $5050$ h and $\sigma=30$ (new process); samples $n_1=16$ old and $n_2=25$ new are taken. $\bar{X}_2-\bar{X}_1\sim\Normal\big(50,\ 30^2/25+40^2/16=36+100=136\big)$, so $\Prob(\bar{X}_2-\bar{X}_1\ge25)=\Prob\big(Z\ge(25-50)/\sqrt{136}=-2.14\big)=0.9838$.
+\emph{Likelihood and sample size.} For the exponential failure data the log-likelihood is maximised at $\hat\lambda=0.0462$ but is quite flat for $n=8$, which means $\lambda$ is not estimated very precisely; keeping $\bar{x}=21.65$ fixed, the log-likelihood becomes steeper (more sharply peaked) for $n=20$ and $n=40$. For the gamma model the maximum likelihood estimates, found numerically, are about $\hat{r}=1.75$ and $\hat\lambda=0.08$.
+\end{example}
 
 \section{Exercises}
 

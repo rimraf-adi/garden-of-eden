@@ -1,9 +1,5 @@
 \chapter{Statistical Intervals for a Single Sample}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~8 of the course textbook section by section, with the same section titles and order. A point estimate gives one number and no sense of its reliability; an interval gives a range of plausible values together with a stated level of confidence. We develop confidence intervals for a mean (variance known and unknown), a variance, a proportion, and then prediction and tolerance intervals, which concern future observations rather than a parameter. Numbering follows the textbook with the chapter number lowered by $6$: Section $2.2$ of this book is Section $8$-$2$ of the textbook, and Section $2.2.1$ is its Section $8$-$2.1$.
-\end{nuance}
-
 \section{Introduction}
 
 An estimate $\hat\theta$ will not equal $\theta$ exactly. A \emph{statistical interval} quantifies how far off it may be. Three kinds are used.
@@ -74,15 +70,43 @@ Because $n$ varies as $1/E^2$, halving the error multiplies the sample size by f
 
 \subsection{One-sided Confidence Bounds}
 
-Sometimes only an upper or lower limit is of interest (a maximum emission level, a minimum strength).
+Sometimes only an upper or lower limit is of interest (a maximum emission level, a minimum strength). Nothing is assumed here: the two kinds of statement are built differently, and Table~\ref{tab:onetwo} lists both for every parameter in this chapter.
 
 \begin{definition}[One-sided confidence bounds]
-A $100(1-\alpha)\%$ \emph{upper confidence bound} for $\mu$ is $\mu\le\bar{x}+z_\alpha\sigma/\sqrt n$, and a $100(1-\alpha)\%$ \emph{lower confidence bound} is $\bar{x}-z_\alpha\sigma/\sqrt n\le\mu$. Note $z_\alpha$, not $z_{\alpha/2}$: all of the error probability is placed in one tail.
+A $100(1-\alpha)\%$ \emph{upper confidence bound} for $\mu$ is $\mu\le\bar{x}+z_\alpha\sigma/\sqrt n$, and a $100(1-\alpha)\%$ \emph{lower confidence bound} is $\bar{x}-z_\alpha\sigma/\sqrt n\le\mu$. Note $z_\alpha$, not $z_{\alpha/2}$: all of the error probability $\alpha$ is placed in \emph{one} tail, because only one end of the interval is being claimed. Each bound by itself has coverage $1-\alpha$.
 \end{definition}
 
 \begin{example}
-Using the data above, a $95\%$ lower bound is $64.46-1.645/\sqrt{10}=63.94$, tighter than the two-sided lower limit $63.84$.
+Using the data above, a $95\%$ lower bound is $64.46-1.645/\sqrt{10}=63.94$, tighter than the two-sided lower limit $63.84=64.46-1.96/\sqrt{10}$. The $95\%$ upper bound is $64.46+0.52=64.98$, versus the two-sided upper limit $65.08$.
 \end{example}
+
+\begin{nuance}{one-sided versus two-sided: the rules, with no assumptions}
+\begin{enumerate}
+  \item \textbf{Two-sided} $100(1-\alpha)\%$ interval: $\alpha/2$ in each tail, critical value with subscript $\alpha/2$ ($z_{\alpha/2}$, $t_{\alpha/2,\nu}$, $\chi^2_{\alpha/2,\nu}$ and $\chi^2_{1-\alpha/2,\nu}$, $f_{\alpha/2}$ and $f_{1-\alpha/2}$).
+  \item \textbf{One-sided} $100(1-\alpha)\%$ bound: all of $\alpha$ in one tail, critical value with subscript $\alpha$ ($z_\alpha$, $t_{\alpha,\nu}$, $\chi^2_{\alpha,\nu}$ or $\chi^2_{1-\alpha,\nu}$, $f_\alpha$ or $f_{1-\alpha}$), and \emph{only one} limit is written; the other side is left open ($-\infty$ or $+\infty$, or $0$/$1$ for a variance or proportion that cannot go beyond).
+  \item \textbf{They are not the same confidence level.} A one-sided $95\%$ upper bound is \emph{not} the upper end of a two-sided $95\%$ interval. The upper end of a two-sided $95\%$ interval is a one-sided $97.5\%$ upper bound. Conversely the upper end of a two-sided $90\%$ interval is a one-sided $95\%$ upper bound.
+  \item \textbf{Tests.} A one-sided test at level $\alpha$ corresponds to a one-sided bound at level $100(1-\alpha)\%$; a two-sided test at level $\alpha$ corresponds to a two-sided interval at level $100(1-\alpha)\%$. Reject $H_0:\theta=\theta_0$ against $H_1:\theta>\theta_0$ exactly when the lower bound exceeds $\theta_0$; against $H_1:\theta<\theta_0$ exactly when the upper bound falls below $\theta_0$.
+\end{enumerate}
+\end{nuance}
+
+\begin{table}
+\caption{One-sided and two-sided $100(1-\alpha)\%$ limits. In each row the two-sided interval uses both limits with $\alpha/2$, the upper bound uses only the upper limit with $\alpha$, the lower bound only the lower limit with $\alpha$.}\label{tab:onetwo}
+\centering\small
+\begin{tabular}{p{2.6cm}p{3.6cm}p{3.9cm}p{3.9cm}}
+\toprule
+Parameter & Two-sided ($\alpha/2$) & Upper bound ($\le$, uses $\alpha$) & Lower bound ($\ge$, uses $\alpha$) \\
+\midrule
+$\mu$, $\sigma$ known & $\bar{x}\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt n}$ & $\mu\le\bar{x}+z_\alpha\dfrac{\sigma}{\sqrt n}$ & $\mu\ge\bar{x}-z_\alpha\dfrac{\sigma}{\sqrt n}$ \\
+$\mu$, $\sigma$ unknown & $\bar{x}\pm t_{\alpha/2,n-1}\dfrac{s}{\sqrt n}$ & $\mu\le\bar{x}+t_{\alpha,n-1}\dfrac{s}{\sqrt n}$ & $\mu\ge\bar{x}-t_{\alpha,n-1}\dfrac{s}{\sqrt n}$ \\
+$\sigma^2$ & $\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\le\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}$ & $\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha,n-1}}$ & $\sigma^2\ge\dfrac{(n-1)s^2}{\chi^2_{\alpha,n-1}}$ \\
+$p$ (large $n$) & $\hat{p}\pm z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$ & $p\le\hat{p}+z_\alpha\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$ & $p\ge\hat{p}-z_\alpha\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For a $95\%$ statement the multipliers are $z_{0.025}=1.960$ (two-sided) versus $z_{0.05}=1.645$ (one-sided). For $t$ with $9$ degrees of freedom they are $t_{0.025,9}=2.262$ versus $t_{0.05,9}=1.833$.
+
+\emph{Sample size} follows the same rule: a two-sided interval with error at most $E$ needs $n=(z_{\alpha/2}\sigma/E)^2$, while a one-sided bound whose distance from $\bar{x}$ is at most $E$ needs $n=(z_\alpha\sigma/E)^2$, which is smaller.
 
 \subsection{General Method to Derive a Confidence Interval}
 
@@ -135,7 +159,7 @@ If $X_1,\dots,X_n$ is a random sample from a \emph{normal} distribution with mea
 has a $t$ distribution with $n-1$ degrees of freedom, $T\sim t_{n-1}$.
 \end{theorem}
 
-The $t$ density is bell-shaped and symmetric about $0$, like the standard normal, but with heavier tails; the shape depends on the degrees of freedom $k=n-1$. $\Var T=k/(k-2)$ for $k>2$, and as $k\to\infty$, $t_k\to\Normal(0,1)$. Let $t_{\alpha,k}$ denote the point with right-tail area $\alpha$ under $t_k$. For example $t_{0.025,9}=2.262$ and $t_{0.025,\infty}=1.960$.
+The $t$ density is bell-shaped and symmetric about $0$, like the standard normal, but with heavier tails; the shape depends on the degrees of freedom $k=n-1$. $\Var[T]=k/(k-2)$ for $k>2$, and as $k\to\infty$, $t_k\to\Normal(0,1)$. Let $t_{\alpha,k}$ denote the point with right-tail area $\alpha$ under $t_k$. For example $t_{0.025,9}=2.262$ and $t_{0.025,\infty}=1.960$.
 
 \subsection{Development of the $t$ Distribution (CD Only)}
 
@@ -150,11 +174,16 @@ Using $\Prob(-t_{\alpha/2,n-1}\le T\le t_{\alpha/2,n-1})=1-\alpha$ and rearrangi
 \begin{theorem}[$t$ interval]\label{thm:t-ci}
 If $\bar{x}$ and $s$ are the mean and standard deviation of a random sample from a normal distribution with unknown variance $\sigma^2$, a $100(1-\alpha)\%$ confidence interval on $\mu$ is
 \[ \bar{x}-t_{\alpha/2,n-1}\frac s{\sqrt n}\ \le\ \mu\ \le\ \bar{x}+t_{\alpha/2,n-1}\frac s{\sqrt n}. \]
-One-sided bounds replace $t_{\alpha/2,n-1}$ by $t_{\alpha,n-1}$.
+
+\emph{One-sided $t$ bounds} ($100(1-\alpha)\%$ each): upper $\mu\le\bar{x}+t_{\alpha,n-1}\,s/\sqrt n$; lower $\bar{x}-t_{\alpha,n-1}\,s/\sqrt n\le\mu$. They use $t_{\alpha,n-1}$, not $t_{\alpha/2,n-1}$, and give one limit only.
 \end{theorem}
 
 \begin{example}\label{ex:t-ci}
-Ten measurements of the load at failure of a component have $\bar{x}=22.4$ kN and $s=3.0$ kN. A $95\%$ confidence interval: $t_{0.025,9}=2.262$, so $22.4\pm2.262\cdot3.0/\sqrt{10}=22.4\pm2.15$, that is $20.25\le\mu\le24.55$.
+Ten measurements of the load at failure of a component have $\bar{x}=22.4$ kN and $s=3.0$ kN. A $95\%$ confidence interval: $t_{0.025,9}=2.262$, so $22.4\pm2.262\cdot3.0/\sqrt{10}=22.4\pm2.15$, that is $20.25\le\mu\le24.55$. One-sided $95\%$ bounds use $t_{0.05,9}=1.833$: $\mu\le22.4+1.833(0.9487)=24.14$ and $\mu\ge22.4-1.739=20.66$. Each is tighter than the corresponding end of the two-sided interval.
+\end{example}
+
+\begin{example}[Textbook example: tensile adhesion of U-700 alloy]
+Load at failure for $n=22$ specimens has $\bar{x}=13.71$ and $s=3.55$ (box plot and normal plot support normality). With $n-1=21$ degrees of freedom, $t_{0.025,21}=2.080$ and the $95\%$ interval is $13.71\pm2.080(3.55)/\sqrt{22}=13.71\pm1.57$, i.e.\ $12.14\le\mu\le15.28$. The interval is fairly wide because the variability is large. A sample size for a given length cannot be found directly because the length involves $s$ and $t_{\alpha/2,n-1}$, which depend on the unknown data; $n$ is chosen by trial and error from a prior guess of $\sigma$.
 \end{example}
 
 \begin{pitfall}{using $z$ with a small sample}
@@ -172,11 +201,11 @@ Let $\chi^2_{\alpha,k}$ be the point with right-tail area $\alpha$. Then $\Prob\
 \begin{theorem}[Interval for $\sigma^2$ and $\sigma$]\label{thm:var-ci}
 A $100(1-\alpha)\%$ confidence interval for $\sigma^2$ is
 \[ \frac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\ \le\ \sigma^2\ \le\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}, \]
-and taking square roots gives an interval for $\sigma$. One-sided bounds: $\sigma^2\le(n-1)s^2/\chi^2_{1-\alpha,n-1}$ and $\sigma^2\ge(n-1)s^2/\chi^2_{\alpha,n-1}$.
+and taking square roots gives an interval for $\sigma$. One-sided $100(1-\alpha)\%$ bounds use $\alpha$ (not $\alpha/2$) and one limit: upper $\sigma^2\le(n-1)s^2/\chi^2_{1-\alpha,n-1}$; lower $\sigma^2\ge(n-1)s^2/\chi^2_{\alpha,n-1}$. (The upper bound divides by the \emph{small} chi-square point, the lower bound by the \emph{large} one.)
 \end{theorem}
 
 \begin{example}
-A sample of $n=20$ fill volumes has $s^2=0.0153$. For $95\%$: $\chi^2_{0.025,19}=32.85$ and $\chi^2_{0.975,19}=8.91$, so $19(0.0153)/32.85=0.00885\le\sigma^2\le19(0.0153)/8.91=0.0326$, and $0.094\le\sigma\le0.181$.
+A sample of $n=20$ fill volumes has $s^2=0.0153$. For $95\%$: $\chi^2_{0.025,19}=32.85$ and $\chi^2_{0.975,19}=8.91$, so $19(0.0153)/32.85=0.00885\le\sigma^2\le19(0.0153)/8.91=0.0326$, and $0.094\le\sigma\le0.181$. One-sided $95\%$ bounds: $\chi^2_{0.95,19}=10.12$ and $\chi^2_{0.05,19}=30.14$ give $\sigma^2\le19(0.0153)/10.12=0.0287$ and $\sigma^2\ge19(0.0153)/30.14=0.00965$.
 \end{example}
 
 \begin{nuance}{asymmetry and non-normality}
@@ -190,11 +219,11 @@ Let $X$ be the number of successes in $n$ independent trials with success probab
 \begin{theorem}[Interval for a proportion]\label{thm:prop-ci}
 If $\hat{p}$ is the proportion of successes in a random sample of size $n$, an approximate $100(1-\alpha)\%$ confidence interval for $p$ is
 \[ \hat{p}-z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}n}\ \le\ p\ \le\ \hat{p}+z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}n}. \]
-The approximation is acceptable when $n\hat{p}$ and $n(1-\hat{p})$ are both at least about $5$ to $10$.
+The approximation is acceptable when $n\hat{p}$ and $n(1-\hat{p})$ are both at least about $5$ to $10$. One-sided $100(1-\alpha)\%$ bounds use $z_\alpha$ and one limit: $p\le\hat{p}+z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}$ (upper), $\hat{p}-z_\alpha\sqrt{\hat{p}(1-\hat{p})/n}\le p$ (lower).
 \end{theorem}
 
 \begin{example}
-In a sample of $n=85$ automobile engine crankshaft bearings, $10$ have rough surfaces. $\hat{p}=10/85=0.1176$, and a $95\%$ interval is $0.1176\pm1.96\sqrt{0.1176\cdot0.8824/85}=0.1176\pm0.0685$, that is $0.049\le p\le0.186$.
+In a sample of $n=85$ automobile engine crankshaft bearings, $10$ have rough surfaces. $\hat{p}=10/85=0.1176$, and a $95\%$ interval is $0.1176\pm1.96\sqrt{0.1176\cdot0.8824/85}=0.1176\pm0.0685$, that is $0.049\le p\le0.186$. The one-sided $95\%$ upper bound is $0.1176+1.645(0.0349)=0.175$ and the one-sided lower bound is $0.060$; note these use $1.645$, not $1.96$.
 \end{example}
 
 \begin{theorem}[Sample size for a proportion]\label{thm:samplesize-prop}
@@ -230,6 +259,10 @@ Continuing Example~\ref{ex:t-ci} ($n=10$, $\bar{x}=22.4$, $s=3.0$): the $95\%$ p
 
 As $n\to\infty$ the prediction interval tends to $\mu\pm z_{\alpha/2}\sigma$, which does not shrink to zero: no amount of data removes the variability of a single future value. The confidence interval, by contrast, shrinks to a point.
 
+\begin{example}[Textbook example: prediction interval, same data]
+For a twenty-third specimen, the $95\%$ prediction interval is $13.71\pm2.080(3.55)\sqrt{1+1/22}=13.71\pm7.55$, i.e.\ $6.16$ to $21.26$, considerably longer than the interval $(12.14,\,15.28)$ for the mean. As $n\to\infty$ the prediction interval tends to $\mu\pm z_{\alpha/2}\sigma$, which does not shrink to zero: there is always uncertainty about the next observation even when $\mu$ is known.
+\end{example}
+
 \section{Tolerance Intervals for a Normal Distribution}
 
 A \emph{tolerance interval} is meant to capture a stated proportion of the whole population, with a stated confidence that it really does.
@@ -248,13 +281,17 @@ where $\chi^2_{1-\alpha,n-1}$ is the point with \emph{left} tail area $\alpha$ (
 For $n=10$, $\gamma=0.95$, $1-\alpha=0.95$: $z_{0.975}=1.96$, $\chi^2_{0.95,9}=3.325$, and $k\approx1.96\sqrt{9(1.1)/3.325}=1.96\sqrt{2.977}=3.38$; the exact tabled value is $3.38$. With $\bar{x}=22.4$, $s=3.0$ the tolerance interval is $22.4\pm3.38\cdot3.0$, i.e.\ $12.3$ to $32.5$, which is wider than the prediction interval $15.3$ to $29.5$.
 \end{example}
 
+\begin{example}[Textbook example: tolerance interval, same data]
+To include $90\%$ of the population with $95\%$ confidence for $n=22$, Table XI gives $k=2.264$, so the interval is $\bar{x}\pm2.264s=\bar{x}\pm8.04$. (The textbook prints $\bar{x}=31.71$ here, giving $(23.67,\,39.75)$; with $\bar{x}=13.71$ as in the previous examples the same calculation gives $(5.67,\,21.75)$. The width $16.08$ is what matters.) As $n\to\infty$, $k$ approaches $z_{0.05}=1.645$ for a $90\%$ two-sided tolerance interval, and a $100(1-\alpha)\%$ prediction interval tends to a tolerance interval containing $100(1-\alpha)\%$ of the distribution. For known $\mu=600$ and $\sigma=30$ the interval $600\pm1.96(30)=(541.2,\,658.8)$ captures $95\%$ of the population; with $\bar{x}$ and $s$ in place of $\mu,\sigma$ the plain interval $\bar{x}\pm1.96s$ is likely to contain less than $95\%$, which is why $1.96$ is replaced by the larger factor $k$.
+\end{example}
+
 \begin{interview}{three intervals, three questions}
 \emph{Confidence interval:} where is the population mean? (narrowest, shrinks with $n$.) \emph{Prediction interval:} where will the next single observation fall? (limit $\mu\pm z\sigma$.) \emph{Tolerance interval:} what range covers $95\%$ of all units, with $95\%$ confidence that the claim is right? (widest; limit $\mu\pm z_{(1+\gamma)/2}\sigma$ from above.) Quality engineers use tolerance intervals for specification limits and confidence intervals for process averages.
 \end{interview}
 
 \begin{summarybox}
 \begin{itemize}
-  \item $\sigma$ known: $\bar{x}\pm z_{\alpha/2}\sigma/\sqrt n$; sample size $n=(z_{\alpha/2}\sigma/E)^2$; one-sided bounds use $z_\alpha$.
+  \item $\sigma$ known: $\bar{x}\pm z_{\alpha/2}\sigma/\sqrt n$; sample size $n=(z_{\alpha/2}\sigma/E)^2$. One-sided $100(1-\alpha)\%$ bounds: $\bar{x}+z_\alpha\sigma/\sqrt n$ (upper) or $\bar{x}-z_\alpha\sigma/\sqrt n$ (lower), one limit only, $\alpha$ not $\alpha/2$; the end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound.
   \item $\sigma$ unknown (normal data): $\bar{x}\pm t_{\alpha/2,n-1}s/\sqrt n$; large samples (any population): $\bar{x}\pm z_{\alpha/2}s/\sqrt n$.
   \item Variance: $\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,n-1}}\le\sigma^2\le\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,n-1}}$ (sensitive to non-normality).
   \item Proportion: $\hat{p}\pm z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$; sample size $n=(z_{\alpha/2}/E)^2p(1-p)\le0.25(z_{\alpha/2}/E)^2$.

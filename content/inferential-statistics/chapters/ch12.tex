@@ -18,7 +18,7 @@ Under regularity, $\Exp[U(\theta)]=0$ and
 \end{theorem}
 
 \begin{proof}
-Since $\int f(x;\theta)\,dx=1$, differentiating gives $0=\int\partial_\theta f\,dx=\int(\partial_\theta\ln f)f\,dx=\Exp[U]$. Differentiating $\int(\partial_\theta\ln f)f\,dx=0$ once more: $0=\int(\partial_\theta^2\ln f)f\,dx+\int(\partial_\theta\ln f)\partial_\theta f\,dx=\Exp[\partial_\theta^2\ln f]+\Exp[U^2]$. Since $\Exp U=0$, $\Var U=\Exp U^2=-\Exp[\partial_\theta^2\ln f]$.
+Since $\int f(x;\theta)\,dx=1$, differentiating gives $0=\int\partial_\theta f\,dx=\int(\partial_\theta\ln f)f\,dx=\Exp[U]$. Differentiating $\int(\partial_\theta\ln f)f\,dx=0$ once more: $0=\int(\partial_\theta^2\ln f)f\,dx+\int(\partial_\theta\ln f)\partial_\theta f\,dx=\Exp[\partial_\theta^2\ln f]+\Exp[U^2]$. Since $\Exp[U]=0$, $\Var[U]=\Exp[U^2]=-\Exp[\partial_\theta^2\ln f]$.
 \end{proof}
 
 The second form shows that information is the expected \emph{curvature} of the log-likelihood: a sharply peaked likelihood (large curvature) determines $\theta$ precisely.
@@ -37,11 +37,11 @@ The second form shows that information is the expected \emph{curvature} of the l
 \begin{theorem}[Cram\'er--Rao]\label{thm:cramerrao}
 Let $X_1,\dots,X_n$ be a random sample and let $\hat\Theta$ be an unbiased estimator of $\theta$. Under regularity,
 \[ \Var(\hat\Theta)\ \ge\ \frac1{n\Fish(\theta)}. \]
-More generally, for an estimator with $\Exp\hat\Theta=\theta+b(\theta)$, $\Var(\hat\Theta)\ge[1+b'(\theta)]^2/(n\Fish(\theta))$.
+More generally, for an estimator with $\Exp[\hat\Theta]=\theta+b(\theta)$, $\Var(\hat\Theta)\ge[1+b'(\theta)]^2/(n\Fish(\theta))$.
 \end{theorem}
 
 \begin{proof}
-Let $U_n=\sum_i\partial_\theta\ln f(X_i;\theta)$ be the score of the whole sample, with $\Exp U_n=0$ and $\Var U_n=n\Fish(\theta)$. For unbiased $\hat\Theta$, $\theta=\Exp\hat\Theta=\int\hat\theta(\mathbf{x})f(\mathbf{x};\theta)\,d\mathbf{x}$; differentiating with respect to $\theta$ gives $1=\int\hat\theta\,\partial_\theta f\,d\mathbf{x}=\Exp[\hat\Theta U_n]=\Cov(\hat\Theta,U_n)$ (since $\Exp U_n=0$). By the Cauchy--Schwarz inequality for covariances, $1=\Cov(\hat\Theta,U_n)^2\le\Var(\hat\Theta)\Var(U_n)=\Var(\hat\Theta)\,n\Fish(\theta)$.
+Let $U_n=\sum_i\partial_\theta\ln f(X_i;\theta)$ be the score of the whole sample, with $\Exp[U_n]=0$ and $\Var[U_n]=n\Fish(\theta)$. For unbiased $\hat\Theta$, $\theta=\Exp[\hat\Theta]=\int\hat\theta(\mathbf{x})f(\mathbf{x};\theta)\,d\mathbf{x}$; differentiating with respect to $\theta$ gives $1=\int\hat\theta\,\partial_\theta f\,d\mathbf{x}=\Exp[\hat\Theta U_n]=\Cov(\hat\Theta,U_n)$ (since $\Exp[U_n]=0$). By the Cauchy--Schwarz inequality for covariances, $1=\Cov(\hat\Theta,U_n)^2\le\Var(\hat\Theta)\Var(U_n)=\Var(\hat\Theta)\,n\Fish(\theta)$.
 \end{proof}
 
 \begin{definition}[Efficient estimator]
@@ -49,11 +49,11 @@ An unbiased estimator whose variance equals the Cram\'er--Rao bound is \emph{eff
 \end{definition}
 
 \begin{theorem}[$\bar{X}$ is the MVUE for a normal mean]\label{thm:mvue-proof}
-For $X_i\sim\Normal(\mu,\sigma^2)$ with $\sigma^2$ known, $\bar{X}$ is efficient: $\Var\bar{X}=\sigma^2/n=1/(n\Fish(\mu))$. Hence $\bar{X}$ is the MVUE of $\mu$ (Theorem~\ref{thm:mvue} of Chapter~1).
+For $X_i\sim\Normal(\mu,\sigma^2)$ with $\sigma^2$ known, $\bar{X}$ is efficient: $\Var[\bar{X}]=\sigma^2/n=1/(n\Fish(\mu))$. Hence $\bar{X}$ is the MVUE of $\mu$ (Theorem~\ref{thm:mvue} of Chapter~1).
 \end{theorem}
 
 \begin{example}
-For a Bernoulli sample the sample proportion $\hat{P}$ has $\Var\hat{P}=p(1-p)/n=1/(n\Fish(p))$: it is efficient. For $\Normal(\mu,\sigma^2)$ the sample variance $S^2$ has $\Var S^2=2\sigma^4/(n-1)$ whereas the bound for unbiased estimators of $\sigma^2$ is $2\sigma^4/n$: $S^2$ is not efficient, but its efficiency $(n-1)/n\to1$.
+For a Bernoulli sample the sample proportion $\hat{P}$ has $\Var[\hat{P}]=p(1-p)/n=1/(n\Fish(p))$: it is efficient. For $\Normal(\mu,\sigma^2)$ the sample variance $S^2$ has $\Var[S^2]=2\sigma^4/(n-1)$ whereas the bound for unbiased estimators of $\sigma^2$ is $2\sigma^4/n$: $S^2$ is not efficient, but its efficiency $(n-1)/n\to1$.
 \end{example}
 
 \begin{pitfall}{when the bound does not apply}
@@ -75,7 +75,7 @@ The numerator is $n^{-1/2}$ times a sum of i.i.d.\ scores with mean $0$ and vari
 \end{proof}
 
 \begin{corollary}[Large-sample interval and Wald test]\label{cor:wald}
-An approximate $100(1-\alpha)\%$ confidence interval for $\theta$ is $\hat\theta\pm z_{\alpha/2}/\sqrt{n\Fish(\hat\theta)}$. To test $H_0:\theta=\theta_0$ use $Z=(\hat\theta-\theta_0)\sqrt{n\Fish(\theta_0)}$ (or with $\hat\theta$ in place of $\theta_0$ in $\Fish$), approximately $\Normal(0,1)$ under $H_0$.
+An approximate two-sided $100(1-\alpha)\%$ confidence interval for $\theta$ is $\hat\theta\pm z_{\alpha/2}/\sqrt{n\Fish(\hat\theta)}$; a one-sided $100(1-\alpha)\%$ bound uses $z_\alpha$ and one limit: $\theta\le\hat\theta+z_\alpha/\sqrt{n\Fish(\hat\theta)}$ or $\hat\theta-z_\alpha/\sqrt{n\Fish(\hat\theta)}\le\theta$. To test $H_0:\theta=\theta_0$ use $Z=(\hat\theta-\theta_0)\sqrt{n\Fish(\theta_0)}$ (or with $\hat\theta$ in place of $\theta_0$ in $\Fish$), approximately $\Normal(0,1)$ under $H_0$.
 \end{corollary}
 
 \begin{example}
@@ -125,7 +125,7 @@ with equality only if $\hat\Theta$ is already a function of $T$.
 \end{theorem}
 
 \begin{proof}
-Unbiasedness: $\Exp\tilde\Theta=\Exp\big[\Exp[\hat\Theta\mid T]\big]=\Exp\hat\Theta=\theta$. By the law of total variance, $\Var\hat\Theta=\Var(\Exp[\hat\Theta\mid T])+\Exp[\Var(\hat\Theta\mid T)]\ge\Var\tilde\Theta$.
+Unbiasedness: $\Exp[\tilde\Theta]=\Exp\big[\Exp[\hat\Theta\mid T]\big]=\Exp[\hat\Theta]=\theta$. By the law of total variance, $\Var[\hat\Theta]=\Var(\Exp[\hat\Theta\mid T])+\Exp[\Var(\hat\Theta\mid T)]\ge\Var[\tilde\Theta]$.
 \end{proof}
 
 \begin{example}

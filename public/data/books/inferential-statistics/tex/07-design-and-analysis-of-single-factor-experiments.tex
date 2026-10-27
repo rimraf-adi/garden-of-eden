@@ -1,9 +1,5 @@
 \chapter{Design and Analysis of Single-Factor Experiments: The Analysis of Variance}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~13 of the course textbook section by section, with the same titles and order. When more than two treatments are compared, repeated $t$-tests inflate the error rate; the \emph{analysis of variance} (ANOVA) tests all the treatment means at once with a single $F$-test, by comparing variation between treatments with variation within them. We then handle which means differ (multiple comparisons), check the assumptions, treat factors whose levels are random samples, and remove nuisance variation by blocking. Numbering follows the textbook with the chapter number lowered by $6$: Section $7.2$ of this book is Section $13$-$2$ of the textbook, and Section $7.2.1$ is its Section $13$-$2.1$.
-\end{nuance}
-
 \section{Designing Engineering Experiments}
 
 An \emph{experiment} deliberately changes controllable inputs (\emph{factors}) and observes the effect on a response. A factor takes several \emph{levels}; a \emph{treatment} is a particular combination of factor levels. Statistics enters in three ways: choosing the design, analysing the data, and drawing conclusions with known error rates. The three basic principles of design are:
@@ -84,6 +80,10 @@ $SS_{\mathrm{Tr}}=4\big[(13.5-15.17)^2+(17.5-15.17)^2+(14.5-15.17)^2\big]=34.67$
 
 For unequal sample sizes the formulas above hold unchanged; but balanced designs ($n_i=n$) are preferred since the test is more robust to unequal variances and the power is maximised for a given $N$.
 
+\begin{example}[Textbook example: paper tensile strength]
+A paper manufacturer tests four hardwood concentrations ($5,10,15,20\%$), six specimens each ($a=4$, $n=6$, $N=24$), run in random order so that nuisance effects such as machine warm-up are balanced out. Treatment totals are $60,94,102,127$ (means $10.0,\,15.67,\,17.0,\,21.17$), grand total $383$. $SS_T=512.96$, $SS_{\text{Treatments}}=382.79$, $SS_E=130.17$, with $3$, $20$ and $23$ degrees of freedom, so $MS_{\text{Treatments}}=127.60$, $MS_E=6.51$ and $f_0=19.60$. At $\alpha=0.01$, $f_{0.01,3,20}=4.94$: reject $H_0$ ($P=3.59\times10^{-6}$). The rejection region is the \emph{upper} tail only, because under $H_1$ the expected value of $MS_{\text{Treatments}}$ exceeds $\sigma^2$. A $100(1-\alpha)\%$ interval for one treatment mean is $\bar{y}_{i\cdot}\pm t_{\alpha/2,a(n-1)}\sqrt{MS_E/n}$, and for a difference $\bar{y}_{i\cdot}-\bar{y}_{j\cdot}\pm t_{\alpha/2,a(n-1)}\sqrt{2MS_E/n}$; an interval for a difference that contains $0$ means no detectable difference. Fisher's LSD here: $t_{0.025,20}=2.086$ gives $\mathrm{LSD}=2.086\sqrt{2(6.51)/6}=3.07$, and every pair of means differs by more than $3.07$ except $10\%$ and $15\%$ (means $15.67$ and $17.0$), so $20\%$ hardwood gives the greatest strength.
+\end{example}
+
 \subsection{Multiple Comparisons Following the ANOVA}
 
 A significant $F$ says that \emph{some} means differ, not which. Comparing all $\binom a2$ pairs with $t$-tests at level $\alpha$ each makes the overall probability of at least one false positive (the \emph{experimentwise error rate}) much larger than $\alpha$ (for $a=5$, $10$ pairs and $\alpha=0.05$ each, it is about $0.40$). Several procedures control it.
@@ -91,11 +91,11 @@ A significant $F$ says that \emph{some} means differ, not which. Comparing all $
 \begin{definition}[Tukey's method]
 Declare means $\mu_i$ and $\mu_j$ different if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>T_\alpha$ where, in a balanced design,
 \[ T_\alpha=q_\alpha(a,f)\sqrt{\frac{MS_E}n},\qquad f=N-a, \]
-and $q_\alpha(a,f)$ is the upper $\alpha$ point of the studentised range distribution (tabulated). Tukey's method keeps the \emph{overall} error rate for all pairwise comparisons at exactly $\alpha$ (for a balanced design), and gives simultaneous confidence intervals $\bar{y}_{i\cdot}-\bar{y}_{j\cdot}\pm T_\alpha$ for all $\mu_i-\mu_j$.
+and $q_\alpha(a,f)$ is the upper $\alpha$ point of the studentised range distribution (tabulated). The family error rate quoted by software for all pairwise LSD comparisons (about $0.19$ for $a=4$) is the probability of at least one Type I error among the six comparisons. Tukey's method keeps the \emph{overall} error rate for all pairwise comparisons at exactly $\alpha$ (for a balanced design), and gives simultaneous confidence intervals $\bar{y}_{i\cdot}-\bar{y}_{j\cdot}\pm T_\alpha$ for all $\mu_i-\mu_j$.
 \end{definition}
 
 \begin{definition}[Fisher's least significant difference (LSD)]
-Declare $\mu_i\ne\mu_j$ if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>\mathrm{LSD}=t_{\alpha/2,N-a}\sqrt{MS_E\Big(\dfrac1{n_i}+\dfrac1{n_j}\Big)}$. To protect the error rate, apply LSD only \emph{after} a significant $F$-test (``protected LSD'').
+Declare $\mu_i\ne\mu_j$ if $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>\mathrm{LSD}=t_{\alpha/2,N-a}\sqrt{MS_E\Big(\dfrac1{n_i}+\dfrac1{n_j}\Big)}$. To protect the error rate, apply LSD only \emph{after} a significant $F$-test (``protected LSD''). LSD and Tukey are \emph{two-sided} comparisons ($\alpha/2$ in each tail); for a one-sided comparison $H_1:\mu_i>\mu_j$ replace $t_{\alpha/2,N-a}$ by $t_{\alpha,N-a}$. The ANOVA $F$-test itself rejects only in the upper tail, $f_0>f_{\alpha,a-1,N-a}$, because $MS_{\text{treatments}}/MS_E$ becomes large for \emph{any} departure from equal means; there is no ``two-sided $F$ test'' here.
 \end{definition}
 
 \begin{example}[Continuing Example~\ref{ex:anovacalc}]
@@ -142,7 +142,7 @@ The residuals are $e_{ij}=y_{ij}-\bar{y}_{i\cdot}$. As in regression, check:
 
 The power of the $F$-test depends on the noncentrality parameter. For the balanced case define
 \[ \Phi^2=\frac{n\sum_{i=1}^a\tau_i^2}{a\sigma^2}, \]
-and read the Type II error from OC curves for $a-1$ and $a(n-1)$ degrees of freedom (or compute power from the noncentral $F$ distribution with noncentrality $\lambda=a\Phi^2$). To plan: specify the smallest treatment difference of practical importance, $D$ (maximum minus minimum mean); the worst case for a given $D$ is two means at the extremes with the rest at the centre, giving $\Phi^2=nD^2/(2a\sigma^2)$. Choose $n$ so that the power is adequate (say $0.8$ or $0.9$), using a prior estimate of $\sigma$. Larger $n$, larger $D$ and smaller $\sigma$ all increase power.
+and read the Type II error from OC curves for $a-1$ and $a(n-1)$ degrees of freedom (or compute power from the noncentral $F$ distribution with noncentrality $\lambda=a\Phi^2$). To plan: specify the smallest treatment difference of practical importance, $D$ (maximum minus minimum mean); the worst case for a given $D$ is two means at the extremes with the rest at the centre, giving $\Phi^2=nD^2/(2a\sigma^2)$. Choose $n$ so that the power is adequate (say $0.8$ or $0.9$), using a prior estimate of $\sigma$. Textbook example: five means, $\alpha=0.01$, and we want to reject $H_0$ with probability at least $0.90$ when $\sum\tau_i^2=5.0\sigma^2$. Then $\Phi^2=n\sum\tau_i^2/(a\sigma^2)=n$, with $\nu_1=4$ and $\nu_2=5(n-1)$. Trying $n=4$ gives $\Phi^2=4$, $\Phi=2$, $\nu_2=15$ and the OC curve gives $\beta\approx0.38$, so power $\approx0.62<0.90$: $n=4$ is not enough. Proceeding the same way, the textbook concludes that at least $n=6$ replicates are needed. Larger $n$, larger $D$ and smaller $\sigma$ all increase power.
 
 \subsection{Technical Details about the Analysis of Variance (CD Only)}
 
@@ -169,8 +169,12 @@ so the variance components are estimated (by the method of moments, i.e.\ \emph{
 Treating the settings of Example~\ref{ex:anovacalc} as a random sample of levels: $\hat\sigma^2=1.667$ and $\hat\sigma_\tau^2=(17.33-1.667)/4=3.92$. The fraction of total variance due to the factor (the \emph{intraclass correlation}) is $\hat\sigma_\tau^2/(\hat\sigma_\tau^2+\hat\sigma^2)=3.92/5.58=0.70$.
 \end{example}
 
+\begin{example}[Textbook example: looms]
+A textile company samples four looms at random and makes four strength determinations per loom. The ANOVA shows significant loom-to-loom variability, with estimates $\hat\sigma^2=1.90$ (within looms) and $\hat\sigma_\tau^2=6.96$ (between looms), so $\widehat{V}(Y_{ij})=6.96+1.90=8.86$ and the process standard deviation is $\sqrt{8.86}=2.98$ psi about a mean of $95.45$ psi; most of the variability comes from differences between looms. If the loom-to-loom variability were eliminated the standard deviation would fall to $\sqrt{1.90}=1.38$ psi, greatly reducing fallout below a lower specification limit of $90$ psi. Testing individual random effects $\tau_i=0$ is meaningless; one tests $H_0:\sigma_\tau^2=0$. Note that for random effects $\sum\tau_i=0$ does not apply.
+\end{example}
+
 \begin{pitfall}{negative variance estimates}
-If $MS_{\mathrm{Tr}}<MS_E$ the ANOVA estimate $\hat\sigma_\tau^2$ is negative. This is a sign that the true $\sigma_\tau^2$ is near or at zero; one then reports $\hat\sigma_\tau^2=0$ (or uses maximum-likelihood or REML estimation, which respects the constraint).
+If $MS_{\mathrm{Tr}}<MS_E$ the ANOVA estimate $\hat\sigma_\tau^2$ is negative. This is a sign that the true $\sigma_\tau^2$ is near or at zero; one then reports $\hat\sigma_\tau^2=0$ (or uses maximum-likelihood or REML estimation, which respects the constraint). The textbook lists three courses of action: accept the estimate as evidence that the true component is zero (which disturbs the properties of the other estimates); re-estimate with a method that always gives nonnegative estimates; or treat it as a sign that the assumed linear model is wrong and study the model.
 \end{pitfall}
 
 \subsection{Determining Sample Size in the Random Model (CD Only)}
@@ -224,6 +228,10 @@ Tukey's method applies with $T_\alpha=q_\alpha(a,(a-1)(b-1))\sqrt{MS_E/b}$ (the 
 
 \begin{example}
 For Example~\ref{ex:rcbd}: $q_{0.05}(3,6)=4.34$ and $T=4.34\sqrt{0.361/4}=1.30$. Treatment means are $12.0$, $14.5$, $13.25$: T2 differs from T1 (difference $2.5$), but T3 is not distinguished from either (differences $1.25$ and $1.25$).
+\end{example}
+
+\begin{example}[Textbook example: fabric strength]
+Four chemicals ($a=4$) are tested once each on five fabric samples ($b=5$, the blocks), in random order within each sample; the error has $(a-1)(b-1)=12$ degrees of freedom. The ANOVA gives $f_0=75.13>f_{0.05,3,12}=5.95$, so the chemical types differ. Fisher's LSD (each treatment average uses $b=5$ observations) is $0.39$: any pair of treatment averages differing by $0.39$ or more is significantly different. Chemical~4 differs from the other three; $2$ and $3$ do not differ, nor do $1$ and $3$. Without blocking the same experiment would have $16$ error degrees of freedom, so blocking cost only $b-1=4$; the block effect was large and would otherwise have inflated $MS_E$. Rule of thumb: when in doubt about whether block effects matter, block. The $F$-ratio for blocks that software prints is of doubtful validity as a formal test, because randomisation was restricted to within blocks.
 \end{example}
 
 \begin{interview}{was blocking worth it?}

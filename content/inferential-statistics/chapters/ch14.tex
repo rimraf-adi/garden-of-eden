@@ -6,14 +6,14 @@ This supplementary chapter extends the regression of Chapters~5--6 in two direct
 
 \section{Why ordinary regression is not enough}
 
-Suppose the response is binary, $Y\in\{0,1\}$ (a customer converts or not). The linear model $\Exp[Y\mid x]=\beta_0+\beta_1x$ can predict probabilities outside $[0,1]$, has errors with non-constant variance ($\Var Y=p(1-p)$ depends on the mean), and is far from normal. Counts have the same problems (negative predictions, variance growing with the mean). The remedy is to model a \emph{transformation} of the mean as a linear function of the regressors and to use the correct distribution for the response.
+Suppose the response is binary, $Y\in\{0,1\}$ (a customer converts or not). The linear model $\Exp[Y\mid x]=\beta_0+\beta_1x$ can predict probabilities outside $[0,1]$, has errors with non-constant variance ($\Var[Y]=p(1-p)$ depends on the mean), and is far from normal. Counts have the same problems (negative predictions, variance growing with the mean). The remedy is to model a \emph{transformation} of the mean as a linear function of the regressors and to use the correct distribution for the response.
 
 \section{Generalised linear models}
 
 \begin{definition}[Generalised linear model]
 A generalised linear model (GLM) has three parts:
 \begin{enumerate}[label=(\arabic*)]
-  \item a \emph{random component}: $Y_i$ independent with a distribution from the exponential family (normal, Bernoulli/binomial, Poisson, gamma, \dots) with mean $\mu_i=\Exp Y_i$;
+  \item a \emph{random component}: $Y_i$ independent with a distribution from the exponential family (normal, Bernoulli/binomial, Poisson, gamma, \dots) with mean $\mu_i=\Exp[Y_i]$;
   \item a \emph{linear predictor} $\eta_i=\beta_0+\beta_1x_{i1}+\dots+\beta_kx_{ik}=\mathbf{x}_i\T\boldsymbol\beta$;
   \item a \emph{link function} $g$ with $g(\mu_i)=\eta_i$.
 \end{enumerate}
@@ -92,7 +92,7 @@ A fitted logistic model gives probabilities $\hat{p}_i$; a decision rule classif
 
 \section{Poisson regression}
 
-For count data $Y_i\sim\mathrm{Poisson}(\mu_i)$ with $\ln\mu_i=\mathbf{x}_i\T\boldsymbol\beta$ (possibly with an \emph{offset} $\ln t_i$ for exposure time or population size, modelling a \emph{rate}), the score is $X\T(\mathbf{y}-\boldsymbol\mu)$ and the information matrix $X\T WX$ with $W=\diag(\mu_i)$. A coefficient $\beta_j$ means that a unit increase in $x_j$ multiplies the expected count by $e^{\beta_j}$ (a \emph{rate ratio}). The Poisson model forces $\Var Y=\mu$; if the data have \emph{overdispersion} ($\Var Y>\mu$, estimated from Pearson's statistic divided by its degrees of freedom), use a quasi-Poisson or negative binomial model, otherwise standard errors are too small and tests too liberal.
+For count data $Y_i\sim\mathrm{Poisson}(\mu_i)$ with $\ln\mu_i=\mathbf{x}_i\T\boldsymbol\beta$ (possibly with an \emph{offset} $\ln t_i$ for exposure time or population size, modelling a \emph{rate}), the score is $X\T(\mathbf{y}-\boldsymbol\mu)$ and the information matrix $X\T WX$ with $W=\diag(\mu_i)$. A coefficient $\beta_j$ means that a unit increase in $x_j$ multiplies the expected count by $e^{\beta_j}$ (a \emph{rate ratio}). The Poisson model forces $\Var[Y]=\mu$; if the data have \emph{overdispersion} ($\Var[Y]>\mu$, estimated from Pearson's statistic divided by its degrees of freedom), use a quasi-Poisson or negative binomial model, otherwise standard errors are too small and tests too liberal.
 
 \section{Model assessment: how well will the model predict?}
 
@@ -103,12 +103,12 @@ The \emph{training error} is the average loss on the data used to fit the model;
 \end{definition}
 
 \begin{theorem}[Bias--variance decomposition]\label{thm:biasvar-pred}
-If $Y_0=f(\mathbf{x}_0)+\varepsilon_0$ with $\Exp\varepsilon_0=0$, $\Var\varepsilon_0=\sigma^2$ independent of the training data, then
-\[ \Exp\big[(Y_0-\hat{f}(\mathbf{x}_0))^2\big]=\underbrace{\sigma^2}_{\text{irreducible noise}}+\underbrace{\big(\Exp\hat{f}(\mathbf{x}_0)-f(\mathbf{x}_0)\big)^2}_{\text{bias}^2}+\underbrace{\Var\hat{f}(\mathbf{x}_0)}_{\text{variance}}. \]
+If $Y_0=f(\mathbf{x}_0)+\varepsilon_0$ with $\Exp[\varepsilon_0]=0$, $\Var[\varepsilon_0]=\sigma^2$ independent of the training data, then
+\[ \Exp\big[(Y_0-\hat{f}(\mathbf{x}_0))^2\big]=\underbrace{\sigma^2}_{\text{irreducible noise}}+\underbrace{\big(\Exp[\hat{f}(\mathbf{x}_0)]-f(\mathbf{x}_0)\big)^2}_{\text{bias}^2}+\underbrace{\Var[\hat{f}(\mathbf{x}_0)]}_{\text{variance}}. \]
 \end{theorem}
 
 \begin{proof}
-Add and subtract $f(\mathbf{x}_0)$ and $\Exp\hat{f}(\mathbf{x}_0)$ and expand; the cross terms vanish because $\varepsilon_0$ has mean zero and is independent of $\hat{f}$, and $\Exp[\hat{f}-\Exp\hat{f}]=0$. This is the decomposition $\MSE=\Var+\bias^2$ of Chapter~1 applied to prediction, with the unavoidable noise $\sigma^2$ added.
+Add and subtract $f(\mathbf{x}_0)$ and $\Exp[\hat{f}(\mathbf{x}_0)]$ and expand; the cross terms vanish because $\varepsilon_0$ has mean zero and is independent of $\hat{f}$, and $\Exp[\hat{f}-\Exp[\hat{f}]]=0$. This is the decomposition $\MSE=\Var+\bias^2$ of Chapter~1 applied to prediction, with the unavoidable noise $\sigma^2$ added.
 \end{proof}
 
 More flexible models (more regressors, higher-degree polynomials, smaller regularisation) have lower bias but higher variance; simple models have high bias but low variance. The test error is minimised at an intermediate complexity, which is the bias--variance trade-off; training error, by contrast, keeps decreasing with complexity and is therefore useless for model selection.

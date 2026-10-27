@@ -23,10 +23,10 @@ BOOKS = {
     'inferential-statistics': {
         'title': 'Inferential Statistics',
         'subtitle': 'From Estimation to Experiments and Regression',
-        'files': [f'chapters/ch{n:02d}.tex' for n in range(1, 15)],
+        'files': [f'chapters/ch{n:02d}.tex' for n in range(1, 17)],
         'preamble': None,
         'main': 'main.tex',
-        'parts': {1: 'Estimation & Intervals', 3: 'Tests of Hypotheses', 5: 'Regression & Correlation', 7: 'Designed Experiments', 9: 'Nonparametric & Quality Control', 11: 'Supplementary Chapters'},
+        'parts': {1: 'Estimation & Intervals', 3: 'Tests of Hypotheses', 5: 'Regression & Correlation', 7: 'Designed Experiments', 9: 'Nonparametric & Quality Control', 11: 'Supplementary Chapters', 15: 'Exam Revision'},
         'theorem_counter': True,
     },
     'linear-algebra': {
@@ -86,6 +86,7 @@ BOXES = {  # env -> (kind, default title or None, takes mandatory title arg)
     'practicebox': ('practice', 'Practice', False),
     'answerbox': ('answers', 'Answers', False),
     'remark': ('remark', 'Remark', False),
+    'formulabox': ('formulas', 'Formulas', True),
 }
 PAIR_DELIMS = {'abs': ('\\left\\lvert ', '\\right\\rvert'), 'norm': ('\\left\\lVert ', '\\right\\rVert'),
                'set': ('\\left\\{ ', '\\right\\}')}

@@ -1,4 +1,5 @@
 import MathText, { texHtml } from '@/components/book/MathText';
+import FitMath from './FitMath';
 import type { Block } from '@/lib/books';
 
 function Inline({ x, className }: { x: string; className?: string }) {
@@ -19,7 +20,7 @@ const BOX_STYLES: Record<string, { frame: string; label: string }> = {
 const KIND_ALIAS: Record<string, string> = {
   lemma: 'theorem', proposition: 'theorem', corollary: 'theorem', remark: 'definition',
   key: 'interview', method: 'nuance', worked: 'example', derivation: 'definition',
-  watch: 'pitfall', practice: 'exercise', answers: 'summary',
+  watch: 'pitfall', formulas: 'theorem', practice: 'exercise', answers: 'summary',
 };
 
 function Box({ b, figBook }: { b: Extract<Block, { t: 'box' }>; figBook: string }) {
@@ -73,7 +74,7 @@ export function BlockView({ b, book }: { b: Block; book: string }) {
       const html = texHtml(b.x, true);
       return (
         <div className="my-5 flex items-center justify-between gap-4 overflow-x-auto rounded-2xl border border-white/80 dark:border-white/10 bg-white/60 dark:bg-zinc-900/40 px-5 py-3 shadow-sm">
-          <div className="flex-1 overflow-x-auto" dangerouslySetInnerHTML={{ __html: html }} />
+          <FitMath html={html} />
           {b.tag && (
             <span className="shrink-0 font-mono text-xs font-bold text-amber-700 dark:text-amber-400">({b.tag})</span>
           )}
@@ -125,11 +126,11 @@ export function BlockView({ b, book }: { b: Block; book: string }) {
     case 'table':
       return (
         <div className="my-6 overflow-x-auto rounded-2xl border border-white/80 dark:border-white/10 bg-white/60 dark:bg-zinc-900/40">
-          <table className="w-full text-sm">
+          <table className="w-full text-xs sm:text-sm">
             <tbody>
               {b.rows.map((r, i) => (
                 <tr key={i} className={i === 0 ? 'bg-amber-50/70 dark:bg-amber-950/20 font-semibold' : 'border-t border-zinc-200/70 dark:border-white/10'}>
-                  {r.map((c, j) => <td key={j} className="px-4 py-2.5 align-top"><Inline x={c} /></td>)}
+                  {r.map((c, j) => <td key={j} className="px-1.5 py-2 align-top sm:px-4 sm:py-2.5"><Inline x={c} /></td>)}
                 </tr>
               ))}
             </tbody>

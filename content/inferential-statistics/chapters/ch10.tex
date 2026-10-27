@@ -1,9 +1,5 @@
 \chapter{Statistical Quality Control}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~16 of the course textbook section by section, with the same titles, order, notation (\emph{PCR}, \emph{PCR}$_k$, $A_2$, $D_3$, $D_4$, $c_4$) and the same constants. Worked examples use new data. Control charts apply the hypothesis-testing ideas of Chapter~3 repeatedly over time: each plotted point is a test of the hypothesis that the process is in statistical control. Numbering follows the textbook with the chapter number lowered by $6$: Section $10.2$ of this book is Section $16$-$2$ of the textbook, and Section $10.2.1$ is its Section $16$-$2.1$.
-\end{nuance}
-
 \section{Quality Improvement and Statistics}
 
 \emph{Quality} means \emph{fitness for use}. It is determined by two things: \emph{quality of design} (the grade, performance and reliability deliberately built into the product) and \emph{quality of conformance} (how consistently units meet the design, i.e.\ the systematic reduction of variability and defects). Quality improvement is the systematic elimination of waste: scrap, rework, inspection, warranty cost and the time spent doing things over. Statistics supports quality improvement throughout: designed experiments in product and process development (Chapters~7--8), process-capability studies, process monitoring by control charts, and life testing for reliability.
@@ -51,6 +47,10 @@ A process fills containers with a nominal mean of $\mu=250$ g and a known standa
 \end{example}
 
 The width of the limits is inversely related to $\sqrt n$ for a given multiple of sigma. The designer must choose the sample size and the sampling frequency. Larger samples detect smaller shifts, so if only large shifts matter small samples suffice; one cannot usually sample large and often, so the trade-off is between small frequent samples and larger samples taken less often (current practice favours small, frequent samples).
+
+\begin{example}[Textbook example: piston rings]
+The inside diameter of piston rings has process mean $74$ mm and known $\sigma=0.01$ mm. Samples of $n=5$ rings are taken hourly. $\sigma_{\bar{X}}=0.01/\sqrt5=0.0045$, so the three-sigma limits are $\mathrm{UCL}=74+3(0.0045)=74.0135$ and $\mathrm{LCL}=73.9865$ ($\alpha=0.0027$). Choosing the limits is equivalent to the critical region for repeatedly testing $H_0:\mu=74$ against $H_1:\mu\ne74$ with $\sigma=0.01$ known.
+\end{example}
 
 \subsection{Rational Subgroups}
 
@@ -130,6 +130,10 @@ All the means lie between $47.79$ and $52.61$ and all ranges below $7.53$, so th
 Limits computed from preliminary data are \emph{trial limits}. Plot the $m$ preliminary means and ranges; any point outside the limits should be investigated. If an assignable cause is found and removed, discard those samples and \emph{recompute} the limits from the remaining ones. Study the $R$ (or $S$) chart first: if the variability is not stable, the limits on the $\bar{X}$ chart (which are based on $\bar{R}$) are misleading. Limits should be revised periodically and whenever the process is improved. Never place specification limits on a control chart: specification and control limits are unrelated.
 \end{pitfall}
 
+\begin{example}[Textbook example: vane opening]
+Twenty samples of five parts each (coded data) give $\bar{\bar{x}}=33.3$ and $\bar{r}=5.8$. For $n=5$, $A_2=0.577$, so the trial $\bar{X}$-chart limits are $33.3\pm0.577(5.8)$, i.e.\ about $29.95$ and $36.65$, and the $R$ chart has $\mathrm{CL}=5.8$, $\mathrm{UCL}=D_4\bar{r}$ and $\mathrm{LCL}=0$ (set to zero because $D_3=0$ for $n=5$). Samples $6, 8, 11, 19$ are out of control on the $\bar{X}$ chart and sample $9$ on the $R$ chart (rule 1). All assignable causes traced to a defective tool in the wax-molding area, so these five samples are discarded and the limits recomputed. The limits from $\bar{s}$ are almost identical to those from $\bar{r}$ for such small subgroups. These first 20 samples are estimation data; the revised limits are then used to judge future production, and are revised periodically and whenever the process is improved. Examine the $R$ chart first, because if the variability is not stable the $\bar{X}$ limits can mislead.
+\end{example}
+
 \section{Control Charts for Individual Measurements}
 
 Sometimes the sample consists of a single unit ($n=1$): every unit is measured automatically, output is slow, or only one measurement is meaningful (the output of a batch process). The \emph{control chart for individuals} uses the \emph{moving range} of two successive observations, $MR_i=\abs{x_i-x_{i-1}}$, to estimate variability: $\hat\sigma=\overline{MR}/d_2=\overline{MR}/1.128$, since $d_2=1.128$ for $n=2$.
@@ -144,6 +148,10 @@ Ten concentration readings are $98.2,\ 99.1,\ 97.8,\ 100.4,\ 99.5,\ 98.7,\ 101.0
 \end{example}
 
 The chart for individuals is read like an $\bar{X}$ chart, but cautions apply: the moving ranges are correlated, so apparent runs or cycles on the $MR$ chart need not be real; the individual observations are assumed uncorrelated and non-normality matters more; and the chart is insensitive to small shifts (a one-sigma shift takes about $43.9$ points to detect on average). Narrower limits are \emph{not} the answer, since they greatly increase false alarms; use a CUSUM or EWMA chart for small shifts (Section~\ref{sec:cusum}).
+
+\begin{example}[Textbook example: concentration]
+Twenty hourly concentration readings have $\bar{x}=99.1$ and average moving range $\overline{mr}=2.59$. For $n=2$, $D_3=0$, $D_4=3.267$, $d_2=1.128$: the moving-range chart has $\mathrm{CL}=2.59$, $\mathrm{LCL}=0$, $\mathrm{UCL}=3.267(2.59)=8.46$, and the individuals chart has limits $99.1\pm3(2.59)/1.128=99.1\pm6.89$. No point is outside, so the process is in control. Moving ranges are correlated, so patterns on the $MR$ chart need care; the chart is insensitive to small shifts (a $1\sigma$ shift takes $43.9$ points on average), and narrowing the limits below three sigma raises false alarms dramatically: use CUSUM or EWMA instead.
+\end{example}
 
 \section{Process Capability}
 
@@ -206,6 +214,11 @@ The $C$ chart plots the total number of defects $C$ in a sample (CL $=n\bar{u}$,
 Twenty samples, each of $5$ circuit boards, show $120$ defects in total: $\bar{u}=120/100=1.2$ defects per board, $\mathrm{UCL}=1.2+3\sqrt{1.2/5}=2.67$ and $\mathrm{LCL}<0$, so set to $0$. A control chart can show the process is in control while the defect level is still unacceptably high: 1.2 defects per board need process improvement through investigation of the defect types, often by designed experiments.
 \end{example}
 
+\begin{example}[Textbook examples: $P$ chart and $U$ chart]
+\emph{$P$ chart.} Twenty samples of $100$ ceramic substrates contain $800$ defectives in total ($2000$ units), so $\bar{p}=0.40$ and the limits are $0.40\pm3\sqrt{0.40(0.60)/100}=0.40\pm0.147$, i.e.\ $0.253$ to $0.547$. All samples are in control, but a $40\%$ defective rate is very poor and the defects should be analysed by type. An $NP$ chart plots $D$ directly with limits that are $n$ times those of the $P$ chart.
+\emph{$U$ chart.} Printed circuit boards: five boards inspected per hour, $20$ samples, about $1.6$ defects per board on average. $\bar{u}$ is the average of the $u_i=c_i/n$, with $\mathrm{UCL},\mathrm{LCL}=\bar{u}\pm3\sqrt{\bar{u}/n}$ (negative $\mathrm{LCL}$ set to $0$); the process is in control, but $8$ defects per five boards is too many. A $C$ chart plots the total defects $c$ with limits $n$ times those of the $U$ chart.
+\end{example}
+
 \section{Control Chart Performance}
 
 Placing the limits farther from the center line lowers the risk of a Type~I error (a false alarm: a point outside the limits when no assignable cause is present) but raises the risk of a Type~II error (failing to signal a real shift). A measure of performance is the \emph{average run length} (ARL): the average number of points plotted before a point signals an out-of-control condition. If $p$ is the probability that any single point exceeds the limits, the run length is geometric and
@@ -233,6 +246,10 @@ Shift (multiple of $\sigma$) & ARL, $n=1$ & ARL, $n=4$\\
 \end{center}
 
 A Shewhart chart is good at detecting large shifts quickly, but slow for small ones: with $n=1$, a $1\sigma$ shift takes $43.9$ points on average. This motivates charts with memory.
+
+\begin{example}[Textbook example: piston-ring ARL]
+With a shift of the mean to $74.0135$ mm and $n=5$ the probability that $\bar{X}$ falls between the limits is $0.50$, so $p=0.50$ and $\mathrm{ARL}=1/0.5=2$ samples: on average two hours elapse between the shift and its detection. To detect it faster, sample more often (every half hour gives one hour) or increase $n$: with $n=10$ the limits narrow to $73.9905$ and $74.0095$, the probability of falling between them is about $0.1$ so $p=0.9$ and $\mathrm{ARL}\approx1.11$, about twice as fast. Western Electric rules would lower the in-control ARL below $370$.
+\end{example}
 
 \section{Cumulative Sum Control Chart}\label{sec:cusum}
 
@@ -274,6 +291,10 @@ For a one-sigma shift the CUSUM needs $8.38$ or $10.4$ samples on average agains
 
 \begin{example}\label{ex:cusum}
 Target $\mu_0=50$ and standard deviation $\sigma=1$ for the individual readings. Design for a one-sigma shift with $k=\tfrac12$ and $h=5$: $K=0.5$ and $H=5$. The readings are $50.5,\ 49.0,\ 51.8,\ 52.4,\ 50.9,\ 53.1$. The upper CUSUM $S_H(i)=\max[0,\ x_i-50.5+S_H(i-1)]$ takes the values $0,\ 0,\ 1.3,\ 3.2,\ 3.6,\ 6.2$. The lower CUSUM $S_L(i)=\max[0,\ 49.5-x_i+S_L(i-1)]$ is $0,\ 0.5,\ 0,\ 0,\ 0,\ 0$. At $i=6$, $S_H=6.2>H=5$: signal an upward shift. $S_H$ has been nonzero for $N_H=4$ periods ($i=3,\dots,6$), so the estimated new mean is $\hat\mu=\mu_0+K+S_H/N_H=50+0.5+6.2/4=52.05$. Note that no single reading is outside three-sigma limits ($50\pm3$ would flag only $53.1$), yet the CUSUM has accumulated the evidence of a persistent shift.
+\end{example}
+
+\begin{example}[Textbook example: tabular CUSUM]
+For the chemical concentration data, target $\mu_0=99$, $\sigma=2$, with $K=1$ ($=k\sigma$, $k=\tfrac12$) and $H=10$ ($=h\sigma$, $h=5$). Then $S_H(i)=\max[0,\,x_i-(\mu_0+K)+S_H(i-1)]$ and $S_L(i)=\max[0,\,(\mu_0-K)-x_i+S_L(i-1)]$, both starting at $0$. Neither ever exceeds $H=10$, so the process is in control. When a signal occurs, find the cause, correct it and restart the CUSUMs at zero. The older V-mask method is equivalent but less convenient. Supplementary rules such as Western Electric should not be applied to a CUSUM, because successive CUSUM values are correlated and would give too many false alarms. The textbook's recommendation $h=4$ or $5$, $k=\tfrac12$ detects a $1\sigma$ shift in $8.38$ or $10.4$ samples on average.
 \end{example}
 
 \section{Other SPC Problem-Solving Tools}

@@ -1,9 +1,5 @@
 \chapter{Statistical Inference for Two Samples}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~10 of the course textbook section by section, with the same titles and order. The aim is to compare two populations: two means (variances known, then unknown), paired observations, two variances and two proportions. The machinery is that of Chapters~2 and~3 applied to a \emph{difference}, so each result has the form ``estimate of the difference divided by its standard error''. Numbering follows the textbook with the chapter number lowered by $6$: Section $4.2$ of this book is Section $10$-$2$ of the textbook, and Section $4.2.1$ is its Section $10$-$2.1$.
-\end{nuance}
-
 \section{Introduction}
 
 Let $X_{11},\dots,X_{1n_1}$ be a random sample from population~1 (mean $\mu_1$, variance $\sigma_1^2$) and $X_{21},\dots,X_{2n_2}$ an \emph{independent} random sample from population~2 (mean $\mu_2$, variance $\sigma_2^2$). Throughout, the two samples are independent of one another, except in Section~\ref{sec:paired} where the observations come in matched pairs. Typical questions: Is catalyst A better than catalyst B? Do the two suppliers have equal variability? Is the defect rate lower on the new line?
@@ -37,6 +33,14 @@ To detect a true difference $\Delta-\Delta_0$ with Type II error $\beta$ at leve
 \[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2(\sigma_1^2+\sigma_2^2)}{(\Delta-\Delta_0)^2}\quad\text{(two-sided)},\qquad n=\frac{(z_\alpha+z_\beta)^2(\sigma_1^2+\sigma_2^2)}{(\Delta-\Delta_0)^2}\quad\text{(one-sided)}. \]
 \end{theorem}
 
+\begin{nuance}{operating-characteristic (OC) curves and the equivalent sample size}
+The textbook reads $\beta$ from OC curves (Appendix charts VIIa--VIIf) using the parameter
+\[ d=\frac{\abs{\Delta-\Delta_0}}{\sqrt{\sigma_1^2+\sigma_2^2}}. \]
+When $n_1\ne n_2$ or $\sigma_1\ne\sigma_2$ the chart is entered with the \emph{equivalent} common sample size
+\[ n=\frac{\sigma_1^2+\sigma_2^2}{\sigma_1^2/n_1+\sigma_2^2/n_2}. \]
+Large samples: if $n_1,n_2>40$, the sample standard deviations may be used for $\sigma_1,\sigma_2$ and the $z$-test is applied even when the populations are not normal (central limit theorem).
+\end{nuance}
+
 \begin{example}
 With $\sigma_1=3$, $\sigma_2=4$, to detect a difference of $2$ with power $0.9$ at $\alpha=0.05$ (two-sided): $n=(1.96+1.2816)^2(9+16)/4=65.7$, so $66$ per group.
 \end{example}
@@ -59,8 +63,28 @@ Treatment~A cures $93\%$ of small stones (81 of 87) and $73\%$ of large stones (
 \begin{theorem}[Interval for $\mu_1-\mu_2$, $\sigma_1,\sigma_2$ known]\label{thm:twoz-ci}
 A $100(1-\alpha)\%$ confidence interval is
 \[ (\bar{x}_1-\bar{x}_2)-z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\ \le\ \mu_1-\mu_2\ \le\ (\bar{x}_1-\bar{x}_2)+z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}. \]
-One-sided bounds use $z_\alpha$.
 \end{theorem}
+
+\begin{theorem}[One-sided bounds for $\mu_1-\mu_2$, $\sigma_1,\sigma_2$ known]\label{thm:twoz-onesided}
+With $\sigma_D=\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$, a $100(1-\alpha)\%$ \emph{upper} confidence bound and a $100(1-\alpha)\%$ \emph{lower} confidence bound are
+\[ \mu_1-\mu_2\ \le\ (\bar{x}_1-\bar{x}_2)+z_{\alpha}\,\sigma_D, \qquad (\bar{x}_1-\bar{x}_2)-z_{\alpha}\,\sigma_D\ \le\ \mu_1-\mu_2. \]
+Each bound uses $z_\alpha$ (all of $\alpha$ in one tail), not $z_{\alpha/2}$.
+\end{theorem}
+
+\begin{nuance}{one-sided versus two-sided, stated explicitly}
+\begin{itemize}
+  \item A \emph{two-sided} $100(1-\alpha)\%$ interval puts $\alpha/2$ in each tail and uses the critical value with $\alpha/2$ ($z_{\alpha/2}$ or $t_{\alpha/2,\nu}$).
+  \item A \emph{one-sided} $100(1-\alpha)\%$ bound puts all of $\alpha$ in one tail and uses the critical value with $\alpha$ ($z_{\alpha}$ or $t_{\alpha,\nu}$).
+  \item The two are \emph{different} statements. The upper end of a two-sided $95\%$ interval is a one-sided $97.5\%$ upper bound; a one-sided $95\%$ upper bound is tighter (it uses $z_{0.05}=1.645$, not $z_{0.025}=1.96$).
+  \item Pairing with tests: $H_1:\mu_1-\mu_2>\Delta_0$ is matched by the \emph{lower} bound (reject iff $\Delta_0$ lies below it); $H_1:\mu_1-\mu_2<\Delta_0$ is matched by the \emph{upper} bound; $H_1:\mu_1-\mu_2\ne\Delta_0$ is matched by the two-sided interval, at the same $\alpha$.
+\end{itemize}
+\end{nuance}
+
+\begin{example}[sample size for a confidence interval]\label{ex:twoz-ci-n}
+If $n_1=n_2=n$, the half-width of the two-sided $100(1-\alpha)\%$ interval is $E=z_{\alpha/2}\sqrt{(\sigma_1^2+\sigma_2^2)/n}$, so to have error at most $E$,
+\[ n=\Big(\frac{z_{\alpha/2}}{E}\Big)^2(\sigma_1^2+\sigma_2^2). \]
+For a one-sided bound replace $z_{\alpha/2}$ by $z_\alpha$. With $\sigma_1=3$, $\sigma_2=4$, $E=1$ and $95\%$ two-sided: $n=1.96^2(25)=96.04$, so $97$ per group.
+\end{example}
 
 \begin{example}
 For Example~\ref{ex:twoz}: $2.4\pm1.96(1.348)=2.4\pm2.64$, i.e.\ $-0.24\le\mu_1-\mu_2\le5.04$. The interval contains $0$, matching the two-sided non-rejection at $\alpha=0.05$ (duality, Chapter~3).
@@ -108,7 +132,7 @@ For the data of Example~\ref{ex:pooled}: $\sqrt{s_1^2/n_1+s_2^2/n_2}=\sqrt{0.961
 
 \subsection{More About the Equal Variance Assumption (CD Only)}
 
-The pooled test is slightly more powerful if $\sigma_1^2=\sigma_2^2$, but it can be misleading if the variances differ \emph{and} the sample sizes are unequal: when the smaller sample comes from the more variable population, the pooled test's true Type I error can far exceed $\alpha$. With equal sample sizes $n_1=n_2$ the two statistics are numerically identical ($t_0=t_0^*$), and the pooled test is reasonably robust. Welch's test loses very little when the variances are in fact equal, which is why many analysts use it by default and avoid the preliminary $F$-test of Section~\ref{sec:ftest}, which is itself sensitive to non-normality and affects the overall error rate.
+The pooled test is slightly more powerful if $\sigma_1^2=\sigma_2^2$, but it can be misleading if the variances differ \emph{and} the sample sizes are unequal: when the smaller sample comes from the more variable population, the pooled test's true Type I error can far exceed $\alpha$. With equal sample sizes $n_1=n_2$ the two statistics are numerically identical ($t_0=t_0^*$), and the pooled test is reasonably robust. The pooled test is an exact likelihood-ratio test when normality, independence and equal variances hold, whereas Welch's test is only approximate; but the pooled denominator effectively divides each variance by the wrong sample size when $\sigma_1^2\ne\sigma_2^2$ and $n_1\ne n_2$, which is why choosing $n_1=n_2$ is good practice. A practical check is the normal probability plot of both samples: clearly different slopes of the two straight lines indicate unequal variances, and Welch's procedure is then preferred. Welch's test loses very little when the variances are in fact equal, which is why many analysts use it by default and avoid the preliminary $F$-test of Section~\ref{sec:ftest}, which is itself sensitive to non-normality and affects the overall error rate.
 
 \subsection{Choice of Sample Size}
 
@@ -120,6 +144,10 @@ per group, where $\sigma$ is a prior estimate of the common standard deviation.
 
 \begin{theorem}[$t$ intervals for $\mu_1-\mu_2$]\label{thm:twot-ci}
 Equal variances: $(\bar{x}_1-\bar{x}_2)\pm t_{\alpha/2,n_1+n_2-2}\,s_p\sqrt{1/n_1+1/n_2}$. Unequal variances: $(\bar{x}_1-\bar{x}_2)\pm t_{\alpha/2,\nu}\sqrt{s_1^2/n_1+s_2^2/n_2}$ with $\nu$ from Theorem~\ref{thm:welch}.
+\end{theorem}
+
+\begin{theorem}[One-sided $t$ bounds for $\mu_1-\mu_2$]
+Replace $t_{\alpha/2,\cdot}$ by $t_{\alpha,\cdot}$ and keep only one end. Equal variances: $\mu_1-\mu_2\le(\bar{x}_1-\bar{x}_2)+t_{\alpha,n_1+n_2-2}\,s_p\sqrt{1/n_1+1/n_2}$ (upper) and $(\bar{x}_1-\bar{x}_2)-t_{\alpha,n_1+n_2-2}\,s_p\sqrt{1/n_1+1/n_2}\le\mu_1-\mu_2$ (lower). Unequal variances: the same with $t_{\alpha,\nu}\sqrt{s_1^2/n_1+s_2^2/n_2}$.
 \end{theorem}
 
 \begin{example}
@@ -137,7 +165,7 @@ Observe pairs $(X_{1j},X_{2j})$, $j=1,\dots,n$, where the differences $D_j=X_{1j
 \begin{theorem}[Paired $t$-test and interval]\label{thm:pairedt}
 Let $\bar{D}$ and $S_D$ be the sample mean and standard deviation of the $n$ differences. To test $H_0:\mu_D=\Delta_0$ use
 \[ T_0=\frac{\bar{D}-\Delta_0}{S_D/\sqrt n}\sim t_{n-1}\quad\text{under }H_0, \]
-rejecting for $\abs{t_0}>t_{\alpha/2,n-1}$ (two-sided). A $100(1-\alpha)\%$ confidence interval for $\mu_D$ is $\bar{d}\pm t_{\alpha/2,n-1}s_D/\sqrt n$.
+rejecting for $\abs{t_0}>t_{\alpha/2,n-1}$ (two-sided). A two-sided $100(1-\alpha)\%$ confidence interval for $\mu_D$ is $\bar{d}\pm t_{\alpha/2,n-1}s_D/\sqrt n$. One-sided: reject for $t_0>t_{\alpha,n-1}$ ($H_1:\mu_D>\Delta_0$) or $t_0<-t_{\alpha,n-1}$ ($H_1:\mu_D<\Delta_0$); the $100(1-\alpha)\%$ upper bound is $\mu_D\le\bar{d}+t_{\alpha,n-1}s_D/\sqrt n$ and the lower bound is $\bar{d}-t_{\alpha,n-1}s_D/\sqrt n\le\mu_D$.
 \end{theorem}
 
 The paired test is just the one-sample $t$-test (Chapter~3) applied to the differences.
@@ -150,6 +178,13 @@ Eight subjects' times were measured with and without a device, giving difference
 Pairing removes the variability between pairs (differences among subjects) and focuses on the within-pair difference. If the correlation within pairs is $\rho$, $\Var(D)=2\sigma^2(1-\rho)$, so pairing helps when $\rho>0$ and the variance of the mean difference shrinks by the factor $1-\rho$. The cost is that the degrees of freedom drop from $2n-2$ to $n-1$, which matters only if $\rho$ is small. \emph{Never} use an independent-samples test on paired data: it discards the pairing and usually loses a great deal of power. Conversely, never pair arbitrarily; the pairing must be built into the design (the same subject, matched batches).
 \end{interview}
 
+The textbook's guidelines for choosing between the two designs are:
+\begin{enumerate}
+  \item If the experimental units are relatively homogeneous (small $\sigma$) and the correlation within pairs is small, the gain from pairing is offset by the loss of degrees of freedom, so use independent samples.
+  \item If the units are heterogeneous (large $\sigma$) and the positive correlation within pairs is large, use the paired design. This typically happens when the same units are used for both treatments.
+\end{enumerate}
+If the degrees of freedom are large (say $40$ or $50$) the loss from pairing is not serious; if they are small (say $10$ or $20$), losing half of them is serious unless pairing buys enough precision. The paired interval remains valid when $\sigma_1^2\ne\sigma_2^2$ (since $s_D^2$ estimates $\Var(X_1-X_2)$), and for large samples (about $30$ pairs or more) normality of the differences is not needed by the central limit theorem.
+
 \section{Inference on the Variances of Two Normal Distributions}\label{sec:ftest}
 
 \subsection{The $F$ Distribution}
@@ -158,7 +193,7 @@ Pairing removes the variability between pairs (differences among subjects) and f
 If $U\sim\chi^2_u$ and $V\sim\chi^2_v$ are independent, then $F=\dfrac{U/u}{V/v}$ has an $F$ distribution with $u$ numerator and $v$ denominator degrees of freedom, $F\sim F_{u,v}$. The distribution is skewed right, takes positive values and depends on both degrees of freedom. Let $f_{\alpha,u,v}$ be the point with right-tail area $\alpha$.
 \end{definition}
 
-A useful identity: $f_{1-\alpha,u,v}=\dfrac1{f_{\alpha,v,u}}$, so only upper-tail points need be tabulated.
+A useful identity: $f_{1-\alpha,u,v}=\dfrac1{f_{\alpha,v,u}}$, so only upper-tail points need be tabulated (Table V gives upper points only). For example $f_{0.05,5,10}=3.33$ and $f_{0.95,5,10}=1/f_{0.05,10,5}=1/4.74=0.211$. The mean is $v/(v-2)$ for $v>2$ and the variance is $\dfrac{2v^2(u+v-2)}{u(v-2)^2(v-4)}$ for $v>4$.
 
 \subsection{Development of the $F$ Distribution (CD Only)}
 
@@ -173,19 +208,23 @@ To test $H_0:\sigma_1^2=\sigma_2^2$, use $F_0=S_1^2/S_2^2\sim F_{n_1-1,n_2-1}$ u
 
 \begin{example}
 For Example~\ref{ex:pooled}: $s_1^2=9.61$ ($n_1=10$) and $s_2^2=13.69$ ($n_2=12$), so $f_0=0.702$. With $9$ and $11$ degrees of freedom, $f_{0.025,9,11}=3.59$ and $f_{0.975,9,11}=1/f_{0.025,11,9}=1/3.91=0.256$. Since $0.256<0.702<3.59$, there is no evidence that the variances differ.
+
+\emph{$P$-value for a two-sided $F$-test.} Since it is arbitrary which population is labelled~1, compute the tail probability on the side where $f_0$ falls and add the matching tail for $1/f_0$: the lower-tail probability of $f_0$ plus the upper-tail probability of $1/f_0$. (Textbook example: $n_1=n_2=20$, $s_1=1.96$, $s_2=2.13$, $f_0=0.85$; $\Prob(F_{19,19}<0.85)=0.3634$ and $\Prob(F_{19,19}>1.18)=0.3610$, so $P=0.7244$ and $H_0$ is not rejected.)
 \end{example}
 
 \subsection{$\beta$-Error and Choice of Sample Size}
 
 If the true ratio is $\lambda^2=\sigma_1^2/\sigma_2^2$ then $F_0/\lambda^2\sim F_{n_1-1,n_2-1}$, so for the two-sided test
 \[ \beta=\Prob\Big(\frac{f_{1-\alpha/2,n_1-1,n_2-1}}{\lambda^2}\le F\le\frac{f_{\alpha/2,n_1-1,n_2-1}}{\lambda^2}\Big),\qquad F\sim F_{n_1-1,n_2-1}. \]
-OC curves tabulate this against $\lambda=\sigma_1/\sigma_2$. Detecting a variance ratio of $2$ with decent power needs samples of around $50$ or more.
+OC curves (Appendix charts VIo--VIr, for $\alpha=0.05$ and $0.01$ with $n_1=n_2=n$; two-sided and one-sided versions) tabulate $\beta$ against the parameter $\lambda=\sigma_1/\sigma_2$. For example, to detect with probability at least $0.80$ that one standard deviation is half the other ($\lambda=2$) with $n_1=n_2=20$ at $\alpha=0.05$, the chart gives $\beta\approx0.20$, so power $0.80$ and $n=20$ is adequate.
 
 \subsection{Confidence Interval on the Ratio of Two Variances}
 
 \begin{theorem}[Interval for $\sigma_1^2/\sigma_2^2$]\label{thm:f-ci}
 A $100(1-\alpha)\%$ confidence interval is
 \[ \frac{s_1^2}{s_2^2}\,f_{1-\alpha/2,\,n_2-1,\,n_1-1}\ \le\ \frac{\sigma_1^2}{\sigma_2^2}\ \le\ \frac{s_1^2}{s_2^2}\,f_{\alpha/2,\,n_2-1,\,n_1-1}. \]
+
+One-sided $100(1-\alpha)\%$ bounds use $f_\alpha$ alone: upper bound $\sigma_1^2/\sigma_2^2\le\dfrac{s_1^2}{s_2^2}f_{\alpha,n_2-1,n_1-1}$ and lower bound $\dfrac{s_1^2}{s_2^2}f_{1-\alpha,n_2-1,n_1-1}\le\sigma_1^2/\sigma_2^2$. They are not the ends of the two-sided interval above, which uses $\alpha/2$.
 \end{theorem}
 
 \begin{pitfall}{the $F$-test is not robust}
@@ -232,6 +271,8 @@ An approximate $100(1-\alpha)\%$ interval is
 \begin{example}
 For Example~\ref{ex:twoprop}: $-0.03\pm1.96\sqrt{0.00016+0.00029}=-0.03\pm0.042$, i.e.\ $-0.072\le p_1-p_2\le0.012$. The interval uses the \emph{unpooled} standard error, unlike the test.
 \end{example}
+
+One-sided $100(1-\alpha)\%$ bounds use $z_\alpha$: $p_1-p_2\le(\hat{p}_1-\hat{p}_2)+z_\alpha\,\widehat{\se}$ (upper) and $(\hat{p}_1-\hat{p}_2)-z_\alpha\,\widehat{\se}\le p_1-p_2$ (lower), with the same unpooled $\widehat{\se}$. For Example~\ref{ex:twoprop} at $95\%$: upper bound $-0.03+1.645(0.0212)=0.005$.
 
 \section{Summary Table for Inference Procedures for Two Samples}
 

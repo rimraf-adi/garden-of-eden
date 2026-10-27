@@ -1,9 +1,5 @@
 \chapter{Design of Experiments with Several Factors}
 
-\begin{nuance}{how to use this chapter}
-This chapter follows Chapter~14 of the course textbook section by section, with the same titles and order. Experiments usually involve several factors at once. A \emph{factorial} design runs all combinations of the factor levels, which is more efficient than varying one factor at a time and, crucially, reveals \emph{interactions}. We start with two-factor experiments, then the very useful $2^k$ designs in which each factor has two levels, then blocking, confounding and fractional replication when the full design is too large. Numbering follows the textbook with the chapter number lowered by $6$: Section $8.2$ of this book is Section $14$-$2$ of the textbook, and Section $8.2.1$ is its Section $14$-$2.1$.
-\end{nuance}
-
 \section{Introduction}
 
 In Chapter~7 a single factor was varied. Real processes depend on many factors, and the effect of one factor often depends on the level of another. The \emph{one-factor-at-a-time} strategy cannot detect this and uses the data inefficiently. In a \emph{factorial experiment} all combinations of levels of all factors are run; each observation then contributes to the estimate of every effect.
@@ -21,6 +17,14 @@ The \emph{main effect} of a factor is the change in the mean response caused by 
 \begin{example}\label{ex:interaction}
 Two factors A and B at two levels each, with mean responses: at B low, A low $=10$ and A high $=20$; at B high, A low $=12$ and A high $=14$. The effect of A is $+10$ at low B but only $+2$ at high B, so A and B interact. The average (main) effect of A is $6$, which misrepresents both situations. A graph of the means against the levels of A, with one line per level of B, shows the lines \emph{not parallel}; parallel lines indicate no interaction.
 \end{example}
+
+For two factors at two levels the textbook defines effects as differences of averages. In Table~14-1 of the textbook, with responses $A_{\text{low}}$: $10$ ($B_{\text{low}}$), $20$ ($B_{\text{high}}$) and $A_{\text{high}}$: $30$, $40$:
+\[ A=\frac{30+40}2-\frac{10+20}2=20,\qquad B=\frac{20+40}2-\frac{10+30}2=10,\qquad AB=\frac{10+40}2-\frac{20+30}2=0, \]
+where the interaction effect is the difference of the diagonal averages (one-half the difference between the $A$ effects at the two levels of $B$). The lines of response against $A$ for the two $B$ levels are parallel. Changing the $B_{\text{high}}$, $A_{\text{high}}$ response to $0$ (Table~14-2: $10, 20$ and $30, 0$) gives an $A$ effect of $30-10=20$ at $B_{\text{low}}$ and $0-20=-20$ at $B_{\text{high}}$: the main effect of $A$ is $(30+0)/2-(10+20)/2=0$, which would wrongly suggest that $A$ has no effect, while $AB=(10+0)/2-(20+30)/2=-20$ is large. A significant interaction can mask the main effects; knowledge of the interaction is then more useful than the main effects.
+
+\begin{nuance}{why not one factor at a time?}
+Suppose a chemist fixes temperature at $155^\circ$F and varies time ($0.5,\dots,2.5$ h), finding the best yield near $1.7$ h; then fixes time at $1.7$ h and varies temperature ($140$ to $180^\circ$F), finding the best near $155^\circ$F. The conclusion ``$155^\circ$F and $1.7$ h'' can be at least $20$ yield points below the true optimum, which lies at much shorter times and higher temperatures. The method fails because it cannot detect the time--temperature interaction (only a factorial experiment can), and it also needs more runs than a factorial.
+\end{nuance}
 
 \begin{figure}[h]
 \centering
@@ -91,6 +95,12 @@ A2 & 11, 13 & 18, 20 & 28, 26\\
 Totals: A1 $=90$, A2 $=116$; B1 $=46$, B2 $=68$, B3 $=92$; grand total $206$, correction $206^2/12=3536.33$, $\sum y^2=3894$. $SS_T=357.67$; $SS_A=(90^2+116^2)/6-3536.33=56.33$; $SS_B=(46^2+68^2+92^2)/4-3536.33=264.67$; the cell totals give $SS_{\mathrm{cells}}=(22^2+30^2+38^2+24^2+38^2+54^2)/2-3536.33=345.67$, so $SS_{AB}=345.67-56.33-264.67=24.67$ and $SS_E=357.67-345.67=12.0$. Mean squares: $56.33,\ 132.33,\ 12.33,\ 2.0$ on $1,2,2,6$ df. $F_A=28.2$ ($f_{0.05,1,6}=5.99$), $F_B=66.2$ ($f_{0.05,2,6}=5.14$), $F_{AB}=6.17$ ($>5.14$): both main effects and the interaction are significant.
 \end{example}
 
+\begin{example}[Textbook example: primer paint adhesion]\label{ex:primer}
+Three primer types and two application methods (dipping, spraying), $n=3$ specimens per cell. Cell totals: primer~1 dip $12.8$, spray $15.9$; primer~2 $15.9$, $18.2$; primer~3 $11.5$, $15.5$; grand total $89.8$ over $18$ observations. $SS_T=10.72$, $SS_{\text{types}}=4.58$, $SS_{\text{methods}}=4.91$, $SS_{\text{interaction}}=0.24$ and by subtraction $SS_E=0.99$. With $12$ error degrees of freedom: $f_{\text{types}}=2.29/0.08=28.63$ and $f_{\text{methods}}=4.91/0.08=61.38$, against $f_{0.05,2,12}=3.89$ and $f_{0.05,1,12}=4.75$, both significant; $f_{AB}=0.12/0.08=1.50<3.89$ ($P=0.262$), so there is no evidence of interaction (the interaction plot has nearly parallel lines). Spraying gives the higher adhesion, and primer~2 the highest. With no interaction, compare primer means (for example with Fisher's LSD, as in Chapter~7) using the row averages; if interaction were significant, compare the means of one factor with the other factor held at a fixed level.
+\end{example}
+
+Computing formulas: $SS_T=\sum y_{ijk}^2-\dfrac{y_{\cdots}^2}{abn}$, $SS_A=\dfrac1{bn}\sum y_{i\cdot\cdot}^2-\dfrac{y_{\cdots}^2}{abn}$, $SS_B=\dfrac1{an}\sum y_{\cdot j\cdot}^2-\dfrac{y_{\cdots}^2}{abn}$, $SS_{AB}=\dfrac1n\sum\sum y_{ij\cdot}^2-\dfrac{y_{\cdots}^2}{abn}-SS_A-SS_B$, and $SS_E=SS_T-SS_{AB}-SS_A-SS_B$. It is usually best to test the interaction first and then the main effects.
+
 \begin{pitfall}{interpret the interaction first}
 If the interaction is significant, the main effects of A and B \emph{cannot be interpreted separately}: the effect of A depends on B. In Example~\ref{ex:two-factor} the A effect grows from $+1$ at B1 to $+8$ at B3. One should compare the cell means (an interaction plot) rather than the marginal means, and multiple comparisons should be made among cell means at fixed levels of the other factor. If the interaction is not significant, the main effects can be reported and compared with Tukey's method on the marginal means.
 \end{pitfall}
@@ -114,7 +124,11 @@ For factors A, B, C with $a,b,c$ levels and $n$ replicates, the model contains t
 \[ Y_{ijkl}=\mu+\tau_i+\beta_j+\gamma_k+(\tau\beta)_{ij}+(\tau\gamma)_{ik}+(\beta\gamma)_{jk}+(\tau\beta\gamma)_{ijk}+\varepsilon_{ijkl}. \]
 \end{definition}
 
-The analysis is the natural generalisation of the two-factor case: each sum of squares is computed from the corresponding marginal totals, with degrees of freedom $a-1$, $b-1$, $c-1$, $(a-1)(b-1)$, $(a-1)(c-1)$, $(b-1)(c-1)$, $(a-1)(b-1)(c-1)$ and error $abc(n-1)$, and $F=MS_{\text{effect}}/MS_E$ for fixed effects. Higher-order interactions are rarely large. The number of runs $abc\,n$ grows quickly with the number of factors, motivating the $2^k$ designs.
+The analysis is the natural generalisation of the two-factor case: each sum of squares is computed from the corresponding marginal totals, with degrees of freedom $a-1$, $b-1$, $c-1$, $(a-1)(b-1)$, $(a-1)(c-1)$, $(b-1)(c-1)$, $(a-1)(b-1)(c-1)$ and error $abc(n-1)$, and $F=MS_{\text{effect}}/MS_E$ for fixed effects. Higher-order interactions are rarely large. At least two replicates ($n\ge2$) are needed to compute $SS_E$. It is best to test the highest-order interactions first.
+
+\begin{example}[Textbook example: surface roughness]
+Feed rate (A), depth of cut (B) and tool angle (C), each at two levels, with $n=2$ replicates ($16$ observations, $8$ error degrees of freedom). The critical value for every effect is $f_{0.05,1,8}=5.32$. Feed rate has a strong main effect; depth of cut has $P=0.0710$, only suggestive; the next largest effect is the $AB$ (feed $\times$ depth) interaction. Both feed rate and depth of cut are probably important process variables.
+\end{example} The number of runs $abc\,n$ grows quickly with the number of factors, motivating the $2^k$ designs.
 
 \section{Factorial Experiments with Random Factors (CD Only)}
 
@@ -151,6 +165,12 @@ AB & $+$ & $-$ & $-$ & $+$\\
 \begin{example}\label{ex:22}
 A $2^2$ design with $n=3$ replicates gives: $(1)$: $28,25,27$ (total $80$); $a$: $36,32,32$ (total $100$); $b$: $18,19,23$ (total $60$); $ab$: $31,30,29$ (total $90$). Contrasts: $A=ab+a-b-(1)=50$, $B=ab+b-a-(1)=-30$, $AB=ab+(1)-a-b=10$. Effects: $A=50/6=8.33$, $B=-30/6=-5.0$, $AB=10/6=1.67$. $SS_A=50^2/12=208.3$, $SS_B=30^2/12=75.0$, $SS_{AB}=10^2/12=8.33$; $y_{\cdot\cdot\cdot}=330$, $\sum y^2=9398$, $SS_T=9398-330^2/12=323.0$ and $SS_E=323.0-291.7=31.3$ on $8$ df, $MS_E=3.92$. $F_A=53.2$, $F_B=19.2$, $F_{AB}=2.13$ against $f_{0.05,1,8}=5.32$: the main effects are significant; the interaction is not.
 \end{example}
+
+\begin{example}[Textbook example: epitaxial layer]
+A $2^2$ design with $n=4$ replicates, factors deposition time (A) and arsenic flow rate (B), response layer thickness in $\mu$m. Changing deposition time from low to high changes the mean thickness by $0.836\,\mu$m, while B and AB are small. The ANOVA confirms that only deposition time is significant. The only active variable is deposition time, so the fitted model is $\hat{y}=\bar{y}+\tfrac12(0.836)x_1$ with $x_1=\pm1$, and residuals are $y-\hat{y}$ at each run; one large residual flags a possible outlier.
+\end{example}
+
+In a $2^k$ design, the square of the $t$-statistic that software reports for an effect equals the $F$-ratio for that effect ($t^2=F$ with $1$ and $2^k(n-1)$ degrees of freedom). The design is orthogonal, so sequential and adjusted sums of squares coincide.
 
 A $2^k$ design can be analysed as a regression: code the factors $x_A,x_B=\pm1$. Then $\hat{y}=\hat\beta_0+\hat\beta_Ax_A+\hat\beta_Bx_B+\hat\beta_{AB}x_Ax_B$ where $\hat\beta_0=\bar{y}$ and each coefficient is \emph{half} the corresponding effect (a change of $2$ units in $x$ from $-1$ to $+1$). In Example~\ref{ex:22}: $\hat{y}=27.5+4.17x_A-2.5x_B+0.83x_Ax_B$. Because the columns are orthogonal, the estimates are uncorrelated and each has variance $\sigma^2/(4n)$.
 
@@ -189,7 +209,7 @@ With $k$ factors the number of runs grows as $2^k$, so for $k\ge4$ one often run
   \item \textbf{Normal probability plot of the effects.} Estimated effects of inactive factors are random draws from a $\Normal(0,\sigma_{\text{eff}}^2)$ distribution and fall on a straight line; the active effects stand off the line. This is a graphical test of which effects are real, without needing an estimate of $\sigma$.
   \item \textbf{Pooling.} By the \emph{sparsity of effects principle} high-order interactions (three-factor and above) are usually negligible, so their sums of squares are pooled into an error estimate and used for $F$-tests of the remaining effects.
 \end{itemize}
-Once the significant effects are identified the model is refitted with only those terms, and the residuals checked.
+Once the significant effects are identified the model is refitted with only those terms, and the residuals checked. Dropping $h$ negligible factors from a $2^k$ design with $n$ replicates \emph{projects} it onto a $2^{k-h}$ design with $n2^h$ replicates (for example, dropping factor $C$ collapses the cube onto a square with every run replicated twice as often). A $2^4$ design has $4$ main effects, $6$ two-factor, $4$ three-factor and $1$ four-factor interaction; a $2^6$ has $6, 15, 20, 15, 6, 1$.
 
 \subsection{Addition of Center Points to a $2^k$ Design (CD Only)}
 
@@ -209,7 +229,7 @@ To confound an effect, for example $ABC$ in a $2^3$ design with $L=x_1+x_2+x_3$ 
 For the $2^3$ design confounded with $ABC$: block 1 contains $(1),\ ab,\ ac,\ bc$ (those with an even number of high factors); block 2 contains $a,\ b,\ c,\ abc$. Every main effect and two-factor interaction contrast has two $+$ and two $-$ in each block, so the block difference cancels; the $ABC$ contrast is $+$ for all of block 2 and $-$ for all of block 1, so it cannot be separated from the block effect. If $ABC$ is negligible (as is usual), nothing of value is lost.
 \end{example}
 
-For more blocks, confound several effects: with four blocks choose two defining effects (say $AB$ and $AC$); their product mod 2, $BC$, is confounded as well (the \emph{generalised interaction}), so three effects are lost. In general $2^p$ blocks require $p$ independent confounded effects and sacrifice $2^p-1$ effects. Replicating the design with a \emph{different} effect confounded in each replicate gives \emph{partial confounding}, in which every effect is estimable from some replicates.
+For more blocks, confound several effects: with four blocks choose two defining effects (say $AB$ and $AC$); their product mod 2, $BC$, is confounded as well (the \emph{generalised interaction}), so three effects are lost. In general $2^p$ blocks require $p$ independent confounded effects and sacrifice $2^p-1$ effects. Equivalent construction: with $L=\alpha_1x_1+\dots+\alpha_kx_k \pmod 2$, where $x_i\in\{0,1\}$ is the level of factor $i$ and $\alpha_i$ is its exponent in the confounded effect, runs with the same value of $L$ go in the same block. The block containing $(1)$ is the \emph{principal block}; the other block is obtained by multiplying one of its elements into each element of the principal block, mod 2 on the exponents. For a $2^2$ with $AB$ confounded, the blocks are $\{(1),ab\}$ and $\{a,b\}$; $A$ and $B$ are unaffected because each contrast has one plus and one minus run in each block, while the block effect and $AB$ are identical. In the textbook's missile example a $2^4$ is run in two blocks (two gunners) with $ABCD$ confounded; the three-factor interactions are pooled as error, and target type (A), target range (D) and the $AC$ and $AD$ interactions are large. Replicating the design with a \emph{different} effect confounded in each replicate gives \emph{partial confounding}, in which every effect is estimable from some replicates.
 
 \section{Fractional Replication of the $2^k$ Design}
 
@@ -238,13 +258,15 @@ The \emph{resolution} of a fractional design is the length of the shortest word 
 A $2^{4-1}_{\mathrm{IV}}$ design (eight runs) with $I=ABCD$. Alias structure: $A=BCD$, $B=ACD$, $C=ABD$, $D=ABC$, $AB=CD$, $AC=BD$, $AD=BC$. To construct it, write the full $2^3$ design in A, B, C and set $D=ABC$ (multiply the signs). Four factors are studied in half the runs; main effects are estimated assuming three-factor interactions are negligible.
 \end{example}
 
+In the textbook's plasma etch example the $2^{4-1}$ design with $I=ABCD$ (set $D=ABC$ on a $2^3$ basic design) shows large $A$ (gap), $D$ (power) and $AD$ effects, agreeing with the full factorial; dropping $B$ and $C$ leaves a replicated $2^2$ in $A$ and $D$. If one fraction leaves aliases unresolved, run the alternate fraction ($I=-ABC$) and combine: $\tfrac12(\ell+\ell')$ estimates $A$ and $\tfrac12(\ell-\ell')$ estimates $BC$. Choosing a poor generator (say $I=AB$ in a $2^{3-1}$) aliases two main effects and loses important information. In the injection-molding example a $2^{6-2}$ design (16 runs) shows large $A$ (mold temperature), $B$ (screw speed) and $AB$; residuals plotted against holding time $C$ show smaller scatter at low $C$, pointing to a setting that reduces variability.
+
 \begin{interview}{why fractions work}
 The \emph{sparsity of effects} principle (few effects are large), the \emph{hierarchy} principle (main effects matter more than two-factor interactions, which matter more than three-factor interactions) and the \emph{projection} property (a resolution $R$ design projects onto a full factorial in any $R-1$ factors) together justify fractions. If one factor turns out to be inactive, the $2^{4-1}$ design collapses to a full $2^3$ in the remaining factors, so no information is wasted.
 \end{interview}
 
 \subsection{Smaller Fractions: The $2^{k-p}$ Fractional Factorial}
 
-A $2^{k-p}$ design uses $2^{k-p}$ runs, a $1/2^p$ fraction. It is built from a full $2^{k-p}$ design in $k-p$ \emph{basic} factors; the remaining $p$ factors are assigned to interactions of the basic factors via $p$ independent \emph{generators}. The defining relation contains the $p$ generator words and all their $2^p-1$ products. For example a $2^{7-4}_{\mathrm{III}}$ design (eight runs for seven factors) has generators $D=AB$, $E=AC$, $F=BC$, $G=ABC$. Choose generators to maximise the resolution; tables of best designs are available. A resolution III design is used for pure screening (assume interactions negligible); resolution IV or V when interactions matter. \emph{Foldover} (running the design with all signs reversed) breaks the aliasing of main effects with two-factor interactions, turning a resolution III design into resolution IV when needed. Fractions are used sequentially: begin with a small screening fraction, then augment with extra runs to resolve any ambiguities.
+A $2^{k-p}$ design uses $2^{k-p}$ runs, a $1/2^p$ fraction. It is built from a full $2^{k-p}$ design in $k-p$ \emph{basic} factors; the remaining $p$ factors are assigned to interactions of the basic factors via $p$ independent \emph{generators}. The defining relation contains the $p$ generator words and all their $2^p-1$ products. For example a $2^{7-4}_{\mathrm{III}}$ design (eight runs for seven factors) has generators $D=AB$, $E=AC$, $F=BC$, $G=ABC$. Each effect has $2^p-1$ aliases, and the resolution equals the number of letters in the shortest word of the complete defining relation. Example: a $2^{6-2}$ design (16 runs) from a $2^4$ in $A,B,C,D$ with generators $E=ABC$, $F=BCD$, i.e.\ $I=ABCE=BCDF$; multiplying, $ABCE\cdot BCDF=ADEF$, so $I=ABCE=BCDF=ADEF$. The shortest word has $4$ letters, so this is resolution IV: main effects are aliased with three-factor interactions (e.g.\ $A=BCE=DEF=ABCDF$) and two-factor interactions with each other ($AB=CE$, $AC=BE$, $AD=EF$, $AF=DE$, \dots). Similarly a $2^{7-3}_{\mathrm{IV}}$ design (16 runs) uses $E=ABC$, $F=BCD$, $G=ACD$ with $I=ABCE=BCDF=ADEF=ACDG=BDEG=CEFG=ABFG$. The $2^{7-4}_{\mathrm{III}}$ design is \emph{saturated}: all seven degrees of freedom estimate main effects, and its $15$-word defining relation includes $ABD=ACE=BCF=ABCG$ and their products. Choose generators to maximise the resolution; tables of best designs are available. A resolution III design is used for pure screening (assume interactions negligible); resolution IV or V when interactions matter. \emph{Foldover} (running the design with all signs reversed) breaks the aliasing of main effects with two-factor interactions, turning a resolution III design into resolution IV when needed. Fractions are used sequentially: begin with a small screening fraction, then augment with extra runs to resolve any ambiguities.
 
 \section{Response Surface Methods and Designs (CD Only)}
 

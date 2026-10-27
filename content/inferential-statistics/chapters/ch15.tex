@@ -1,0 +1,800 @@
+\chapter{Final Exam Summary: Formulae and Nuances}
+
+\section{Golden rules (read these first)}
+
+These nine rules cause most of the lost marks in exams. Learn them before the formulas.
+
+\begin{enumerate}
+  \item \textbf{Count the tails.}
+  \begin{itemize}
+    \item Two-sided: split $\alpha$ into two parts, $\alpha/2$ in each tail. Use $z_{\alpha/2}$, $t_{\alpha/2}$, $\chi^2_{\alpha/2}$ and $\chi^2_{1-\alpha/2}$, $f_{\alpha/2}$ and $f_{1-\alpha/2}$.
+    \item One-sided: put all of $\alpha$ in one tail. Use $z_\alpha$, $t_\alpha$, $\chi^2_\alpha$ or $\chi^2_{1-\alpha}$, $f_\alpha$ or $f_{1-\alpha}$.
+    \item A one-sided bound has one limit only. The other side is open.
+  \end{itemize}
+  \item \textbf{A one-sided $95\%$ bound is not the end of a two-sided $95\%$ interval.}
+  \begin{itemize}
+    \item The end of a two-sided $95\%$ interval is a one-sided $97.5\%$ bound.
+    \item A one-sided $95\%$ bound is the end of a two-sided $90\%$ interval.
+    \item \emph{Reason.} Every $100(1-\alpha)\%$ statement allows a total error of $\alpha$. A two-sided interval can be wrong in two ways ($\mu$ above $U$ or $\mu$ below $L$), so $\alpha$ is shared: $2.5\%$ per side for $95\%$. A one-sided bound can be wrong in one way only, so the whole $5\%$ is used on that side.
+    \item \emph{Multipliers.} $1.960$ belongs to two-sided $95\%$ (each end) and to one-sided $97.5\%$. $1.645$ belongs to two-sided $90\%$ (each end) and to one-sided $95\%$.
+    \item \emph{Conversion.} Each end of a two-sided interval at level $C$ is a one-sided bound at level $C+\tfrac{100-C}{2}$ (for example $95\to97.5$). A one-sided bound at level $C$ is the end of a two-sided interval at level $2C-100$ (for example $95\to90$).
+    \item \emph{Numerical check} (impact-energy data: $\bar{x}=64.46$, standard error $0.316$). Two-sided $95\%$: $(63.84,\,65.08)$. One-sided $95\%$: $\mu\le64.98$ or $\mu\ge63.94$. Two-sided $90\%$: $(63.94,\,64.98)$, which equals the two one-sided $95\%$ bounds. One-sided $97.5\%$ upper bound: $65.08$.
+  \end{itemize}
+  \item \textbf{Match each test with the right interval, using the same $\alpha$.}
+  \begin{itemize}
+    \item Two-sided test at $\alpha$ $\leftrightarrow$ two-sided $100(1-\alpha)\%$ interval.
+    \item One-sided test at $\alpha$ $\leftrightarrow$ one-sided $100(1-\alpha)\%$ bound.
+    \item $H_1:\theta>\theta_0$ goes with the lower bound: reject if $\theta_0$ is below it. $H_1:\theta<\theta_0$ goes with the upper bound.
+    \item A one-sided test (cutoff $1.645$) can reject while $\theta_0$ is still inside the two-sided $95\%$ interval (cutoff $1.96$). This is not a contradiction. Compare a one-sided test with a one-sided bound, or with the two-sided $90\%$ interval.
+  \end{itemize}
+  \item \textbf{Put the claim you want to prove in $H_1$.} Rejecting $H_0$ is a strong conclusion. Failing to reject only means there is not enough evidence. It never proves $H_0$.
+  \item \textbf{Read the $P$-value correctly.} $P$ is the probability of a result at least this extreme if $H_0$ is true. It is not the probability that $H_0$ is true. Reject $H_0$ when $P\le\alpha$.
+  \item \textbf{Read confidence correctly.} The $95\%$ describes the method: $95\%$ of intervals made this way contain the parameter. It does not give a probability for one computed interval.
+  \item \textbf{Know the three intervals.} A confidence interval bounds a parameter. A prediction interval bounds one future value and is always wider. A tolerance interval bounds a stated proportion of the population.
+  \item \textbf{State and check the assumptions.} Normal population for $t$, $\chi^2$ and $F$. Independent samples. Equal variances for the pooled $t$-test and for ANOVA.
+  \item \textbf{Use the eight steps for every test.} Parameter; $H_0$; $H_1$; $\alpha$; test statistic; rejection rule; computation; conclusion in words.
+\end{enumerate}
+
+Common $z$ values:
+
+\begin{center}
+\small
+\begin{tabular}{lcc}
+\toprule
+Confidence & two-sided: $z_{\alpha/2}$ & one-sided: $z_\alpha$ \\
+\midrule
+$90\%$ & $1.645$ & $1.282$ \\
+$95\%$ & $1.960$ & $1.645$ \\
+$99\%$ & $2.576$ & $2.326$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Full tables for $z$, $t$, $\chi^2$ and $F$, with one-tail and two-tail columns, are in Chapter~16.
+
+\section{Chapter 7: Point Estimation (book Chapter~1)}
+
+\begin{formulabox}{Judging an estimator}
+\begin{itemize}
+  \item \textbf{Unbiased; bias:} $\Exp[\hat\Theta]=\theta$
+  \item $\text{bias}=\Exp[\hat\Theta]-\theta$
+  \item \textbf{Standard error:} $\se(\hat\Theta)=\sqrt{\Var[\hat\Theta]}$
+\end{itemize}
+\[ \se(\bar{X})=\frac{\sigma}{\sqrt n} \]
+\begin{itemize}
+  \item \textbf{Mean square error:} $\MSE(\hat\Theta)=\Var[\hat\Theta]+(\text{bias})^2$
+  \item \textbf{Relative efficiency (less than 1 means $\hat\Theta_1$ is better):} $\MSE(\hat\Theta_1)\big/\MSE(\hat\Theta_2)$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{Building estimators}
+\textbf{Method of moments: equate $\Exp[X^k]$ to $\frac1n\sum X_i^k$ and solve}
+\[ \text{Exponential: }\hat\lambda=\frac1{\bar{x}} \]
+\begin{itemize}
+  \item $\text{Uniform}(0,a):\ \hat{a}=2\bar{x}$
+  \item \textbf{Normal (moments and likelihood agree):} $\hat\mu=\bar{x}$
+\end{itemize}
+\[ \hat\sigma^2=\frac1n\sum(x_i-\bar{x})^2 \]
+\textbf{Gamma by moments, with $m_2=\frac1n\sum x_i^2$}
+\[ \hat{r}=\frac{\bar{x}^2}{m_2-\bar{x}^2} \]
+\[ \hat\lambda=\frac{\bar{x}}{m_2-\bar{x}^2} \]
+\begin{itemize}
+  \item \textbf{Maximum likelihood: maximise $\prod f(x_i;\theta)$, usually through $\ln L$:} $\text{Bernoulli: }\hat{p}=\bar{x}$
+\end{itemize}
+\[ \text{Exponential: }\hat\lambda=\frac1{\bar{x}} \]
+\begin{itemize}
+  \item $\text{Uniform}(0,a):\ \hat{a}=\max x_i$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{Sampling distributions}
+\textbf{One mean}
+\[ \bar{X}\sim\Normal\!\Big(\mu,\frac{\sigma^2}{n}\Big) \]
+\textbf{Difference of two independent means}
+\[ \begin{aligned}\bar{X}_1-\bar{X}_2\ &\sim\ \Normal(\mu_1-\mu_2,\ \sigma_D^2)\\ \sigma_D^2\ &=\ \frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}\end{aligned} \]
+Exact for normal populations; approximate by the CLT when $n\ge30$.
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item $\bar{X}$, $S^2$ (divisor $n-1$) and $\hat{P}=X/n$ are unbiased, but $S$ is biased for $\sigma$ ($\Exp[S]=c_4\sigma$; $c_4=0.94,\ 0.9727,\ 0.9896$ for $n=5,10,25$).
+  \item A biased estimator can have a smaller MSE than an unbiased one. $\bar{X}$ is the MVUE of $\mu$ for a normal sample.
+  \item MLE \emph{invariance}: the MLE of $h(\theta)$ is $h(\hat\theta)$, so the MLE of $\sigma$ is $\sqrt{\hat\sigma^2}$, not $s$. The normal $\hat\sigma^2$ has divisor $n$: biased, but asymptotically unbiased.
+  \item Uniform$(0,a)$: the likelihood has no stationary point, so calculus fails and $\hat{a}=\max x_i$.
+  \item Bayes: posterior $\propto$ likelihood $\times$ prior; Bernoulli with a $\mathrm{Beta}(a,b)$ prior gives $\mathrm{Beta}(a+x,\,b+n-x)$. Bootstrap: resample with replacement; the spread of $\hat\theta^*$ estimates $\se(\hat\theta)$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: estimators]
+\textbf{(a) Method of moments and maximum likelihood.} Eight exponential failure times have mean $\bar{x}=21.65$ hours. For the exponential, $\Exp[X]=1/\lambda$, so both methods give
+\[ \hat\lambda=\frac{1}{\bar{x}}=\frac{1}{21.65}=0.0462\ \text{per hour} \]
+\textbf{(b) Comparing two estimators.} Estimator 1 is unbiased with variance $4$. Estimator 2 has bias $1$ and variance $2$.
+\[ \MSE_1=4+0^2=4,\qquad \MSE_2=2+1^2=3 \]
+Relative efficiency $\MSE_2/\MSE_1=3/4=0.75<1$, so estimator 2 is better in the MSE sense even though it is biased.
+
+\textbf{(c) Standard error and sampling distribution.} A normal population has $\sigma=10$, $n=25$. Then $\se(\bar{X})=10/\sqrt{25}=2$. For $\mu=100$:
+\[ \Prob(\bar{X}<95)=\Prob\Big(Z<\frac{95-100}{2}\Big)=\Prob(Z<-2.5)=0.0062 \]
+\textbf{(d) Difference of means.} $\mu_1=5050$, $\sigma_1=30$, $n_1=25$; $\mu_2=5000$, $\sigma_2=40$, $n_2=16$. The variance of $\bar{X}_1-\bar{X}_2$ is $30^2/25+40^2/16=36+100=136$, so $\sigma_D=11.66$.
+\[ \Prob(\bar{X}_1-\bar{X}_2\ge25)=\Prob\Big(Z\ge\frac{25-50}{11.66}\Big)=\Prob(Z\ge-2.14)=0.9838 \]
+\end{example}
+
+\section{Chapter 8: Statistical Intervals (book Chapter~2)}
+
+\begin{formulabox}{Two-sided $100(1-\alpha)\%$ intervals}
+\textbf{Mean, $\sigma$ known}
+\[ \bar{x}\pm z_{\alpha/2}\,\frac{\sigma}{\sqrt n} \]
+\textbf{Mean, $\sigma$ unknown (for $n\ge40$ use $z_{\alpha/2}$)}
+\[ \bar{x}\pm t_{\alpha/2,\,n-1}\,\frac{s}{\sqrt n} \]
+\textbf{Variance}
+\[ \begin{aligned}\sigma^2&\ \ge\ \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\\[4pt] \sigma^2&\ \le\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\end{aligned} \]
+\textbf{Proportion (large $n$)}
+\[ \hat{p}\pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]
+\textbf{Prediction interval for one new value}
+\[ \bar{x}\pm t_{\alpha/2,\,n-1}\,s\sqrt{1+\frac1n} \]
+\begin{itemize}
+  \item \textbf{Tolerance interval ($k$ from Table XI):} $\bar{x}\pm ks$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{One-sided bounds: use $\alpha$ and keep one limit}
+\textbf{Mean, $\sigma$ known (unknown $\sigma$: use $t_{\alpha,n-1}$)}
+\[ \mu\le\bar{x}+z_\alpha\frac{\sigma}{\sqrt n} \]
+\[ \mu\ge\bar{x}-z_\alpha\frac{\sigma}{\sqrt n} \]
+\textbf{Variance}
+\[ \sigma^2\le\frac{(n-1)s^2}{\chi^2_{1-\alpha,\,n-1}} \]
+\[ \sigma^2\ge\frac{(n-1)s^2}{\chi^2_{\alpha,\,n-1}} \]
+\begin{itemize}
+  \item \textbf{Proportion:} $p\le\hat{p}+z_\alpha\sqrt{\tfrac{\hat{p}(1-\hat{p})}{n}}$
+  \item $p\ge\hat{p}-z_\alpha\sqrt{\tfrac{\hat{p}(1-\hat{p})}{n}}$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{Sample size for error at most $E$ (round up)}
+\textbf{Mean}
+\[ n=\Big(\frac{z_{\alpha/2}\,\sigma}{E}\Big)^2 \]
+\textbf{Proportion (worst case $p=0.5$)}
+\[ n=\Big(\frac{z_{\alpha/2}}{E}\Big)^2p(1-p) \]
+Use $z_\alpha$ for a one-sided bound. The interval length is $2E$.
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item Halving $E$ quadruples $n$. Higher confidence gives a longer interval; larger $n$ a shorter one.
+  \item The $\sigma^2$ interval is not symmetric and is very sensitive to non-normality. The proportion interval needs $np\ge5$ and $n(1-p)\ge5$.
+  \item Pivot method: find $g(X;\theta)$ whose distribution is free of $\theta$ and solve $a\le g\le b$ for $\theta$.
+  \item Textbook values: impact energy ($\bar{x}=64.46$, $\sigma=1$, $n=10$) gives $(63.84,\,65.08)$; adhesion ($n=22$, $\bar{x}=13.71$, $s=3.55$) gives $(12.14,\,15.28)$ with $t_{0.025,21}=2.080$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: intervals and sample size]
+\textbf{(a) Two-sided $t$ interval.} $n=25$, $\bar{x}=50$, $s=4$, confidence $95\%$. Degrees of freedom $24$, so $t_{0.025,24}=2.064$.
+\[ \bar{x}\pm t\frac{s}{\sqrt n}=50\pm2.064\,(0.8)=50\pm1.65,\qquad 48.35\le\mu\le51.65 \]
+\textbf{(b) One-sided bound, same data.} Use the one-tail value $t_{0.05,24}=1.711$.
+\[ \mu\le50+1.711(0.8)=51.37 \]
+This is smaller than $51.65$, as expected.
+
+\textbf{(c) Sample size.} $\sigma=3$, error at most $E=0.5$, confidence $95\%$.
+\[ n=\Big(\frac{1.96\times3}{0.5}\Big)^2=138.3\quad\Rightarrow\quad n=139\ \text{(round up)} \]
+\textbf{(d) Variance.} $n=15$, $s^2=4$, $95\%$ two-sided. $\chi^2_{0.025,14}=26.119$ and $\chi^2_{0.975,14}=5.629$.
+\[ \frac{14(4)}{26.119}\le\sigma^2\le\frac{14(4)}{5.629},\qquad 2.14\le\sigma^2\le9.95 \]
+The one-sided $95\%$ upper bound uses $\chi^2_{0.95,14}=6.571$ (lower-tail point): $\sigma^2\le56/6.571=8.52$.
+
+\textbf{(e) Proportion.} $40$ defectives in $200$: $\hat{p}=0.20$.
+\[ 0.20\pm1.96\sqrt{\frac{0.20(0.80)}{200}}=0.20\pm0.055,\qquad 0.145\le p\le0.255 \]
+\end{example}
+
+\section{Chapter 9: Tests on a Single Sample (book Chapter~3)}
+
+\begin{formulabox}{Test statistics}
+\textbf{Mean, $\sigma$ known}
+\[ z_0=\frac{\bar{x}-\mu_0}{\sigma/\sqrt n} \]
+\textbf{Mean, $\sigma$ unknown ($n-1$ df)}
+\[ t_0=\frac{\bar{x}-\mu_0}{s/\sqrt n} \]
+\textbf{Variance ($n-1$ df)}
+\[ \chi_0^2=\frac{(n-1)s^2}{\sigma_0^2} \]
+\textbf{Proportion (large $n$)}
+\[ z_0=\frac{x-np_0}{\sqrt{np_0(1-p_0)}} \]
+\end{formulabox}
+
+\begin{formulabox}{Two-sided tests: reject $H_0$ when}
+\begin{itemize}
+  \item \textbf{$z$-test ($H_1:\mu\ne\mu_0$):} $\abs{z_0}>z_{\alpha/2}$
+  \item \textbf{$t$-test ($H_1:\mu\ne\mu_0$):} $\abs{t_0}>t_{\alpha/2,\,n-1}$
+  \item \textbf{Variance test ($H_1:\sigma^2\ne\sigma_0^2$):} $\chi_0^2>\chi^2_{\alpha/2,\,n-1}$
+  \item $\chi_0^2<\chi^2_{1-\alpha/2,\,n-1}$
+  \item \textbf{Proportion test:} $\abs{z_0}>z_{\alpha/2}$
+  \item \textbf{$P$-value for $z$:} $P=2\,[1-\Phi(\abs{z_0})]$
+\end{itemize}
+Each tail holds $\alpha/2$.
+\end{formulabox}
+
+\begin{formulabox}{One-sided tests: reject $H_0$ when}
+\begin{itemize}
+  \item \textbf{$z$-test, $H_1:\mu>\mu_0$:} $z_0>z_\alpha$
+  \item $P=1-\Phi(z_0)$
+  \item \textbf{$z$-test, $H_1:\mu<\mu_0$:} $z_0<-z_\alpha$
+  \item $P=\Phi(z_0)$
+  \item \textbf{$t$-test, $H_1:\mu>\mu_0$:} $t_0>t_{\alpha,\,n-1}$
+  \item \textbf{$t$-test, $H_1:\mu<\mu_0$:} $t_0<-t_{\alpha,\,n-1}$
+  \item \textbf{Variance test, $H_1:\sigma^2>\sigma_0^2$:} $\chi_0^2>\chi^2_{\alpha,\,n-1}$
+  \item \textbf{Variance test, $H_1:\sigma^2<\sigma_0^2$:} $\chi_0^2<\chi^2_{1-\alpha,\,n-1}$
+  \item \textbf{Proportion test, $H_1:p>p_0$:} $z_0>z_\alpha$
+  \item \textbf{Proportion test, $H_1:p<p_0$:} $z_0<-z_\alpha$
+\end{itemize}
+All of $\alpha$ sits in one tail: $H_1:>$ rejects in the upper tail, $H_1:<$ in the lower tail.
+\end{formulabox}
+
+\begin{formulabox}{Errors and sample size ($\sigma$ known, true mean $\mu_0+\delta$)}
+\begin{itemize}
+  \item \textbf{Error probabilities:} $\alpha=\Prob(\text{reject }H_0\mid H_0\text{ true})$
+  \item $\beta=\Prob(\text{fail to reject}\mid H_0\text{ false})$
+  \item $\text{power}=1-\beta$
+\end{itemize}
+\textbf{$\beta$, two-sided}
+\[ \begin{aligned}\beta&=\Phi\!\Big(z_{\alpha/2}-\frac{\delta\sqrt n}{\sigma}\Big)\\&\quad-\Phi\!\Big(-z_{\alpha/2}-\frac{\delta\sqrt n}{\sigma}\Big)\end{aligned} \]
+\textbf{$\beta$, one-sided}
+\[ \beta=\Phi\!\Big(z_\alpha-\frac{\delta\sqrt n}{\sigma}\Big) \]
+\textbf{Sample size, two-sided and one-sided}
+\[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2\sigma^2}{\delta^2} \]
+\[ n=\frac{(z_\alpha+z_\beta)^2\sigma^2}{\delta^2} \]
+\end{formulabox}
+
+\begin{formulabox}{Goodness of fit and contingency tables}
+\textbf{Statistic}
+\[ \chi_0^2=\sum\frac{(O_i-E_i)^2}{E_i} \]
+\textbf{Degrees of freedom}
+\[ \begin{aligned}\text{fit: }&\ k-p-1\\ \text{contingency: }&\ (r-1)(c-1)\\ E_{ij}&=\frac{R_iC_j}{N}\end{aligned} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item A two-sided test rejects iff $\mu_0$ is outside the two-sided $100(1-\alpha)\%$ interval (duality). Reject iff $P\le\alpha$.
+  \item Goodness of fit: $p$ is the number of estimated parameters; combine cells with $E_i<3$--$5$; upper tail only.
+  \item Statistical significance is not practical significance: with a huge $n$, a trivial shift gives a tiny $P$.
+  \item Textbook sample size: $\sigma=2$, $\delta=1$, power $0.90$ gives $n=42$. OC curves use $d=\abs{\mu-\mu_0}/\sigma$.
+  \item Proportion sample size: $n\approx\Big[\dfrac{z_{\alpha/2}\sqrt{p_0(1-p_0)}+z_\beta\sqrt{p(1-p)}}{p-p_0}\Big]^2$ ($z_\alpha$ if one-sided).
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: tests on one sample]
+\textbf{(a) $z$-test.} $H_0:\mu=100$, $\sigma=5$, $n=25$, $\bar{x}=102.4$, $\alpha=0.05$.
+\[ z_0=\frac{102.4-100}{5/\sqrt{25}}=2.4 \]
+Two-sided: reject if $\abs{z_0}>1.96$. Yes, reject. $P=2(0.0082)=0.0164$.
+One-sided ($H_1:\mu>100$): reject if $z_0>1.645$. Yes, reject. $P=0.0082$.
+
+\textbf{(b) $t$-test.} $H_0:\mu=50$, $n=16$, $\bar{x}=52.3$, $s=4$, $\alpha=0.05$, $15$ df.
+\[ t_0=\frac{52.3-50}{4/\sqrt{16}}=2.3 \]
+Two-sided: $t_{0.025,15}=2.131$, and $2.3>2.131$, so reject. One-sided ($H_1:\mu>50$): $t_{0.05,15}=1.753$, and $2.3>1.753$, so reject.
+
+\textbf{(c) Variance test.} $H_0:\sigma^2=9$ against $H_1:\sigma^2>9$, $n=21$, $s^2=14$, $\alpha=0.05$, $20$ df.
+\[ \chi_0^2=\frac{20(14)}{9}=31.11 \]
+The critical value is $\chi^2_{0.05,20}=31.41$. Since $31.11<31.41$, do not reject (the $P$-value is about $0.054$).
+
+\textbf{(d) Proportion.} $H_0:p=0.10$ against $H_1:p>0.10$, $n=100$, $x=16$.
+\[ z_0=\frac{16-100(0.10)}{\sqrt{100(0.10)(0.90)}}=\frac{6}{3}=2.0,\qquad P=0.0228 \]
+Reject at $\alpha=0.05$ because $2.0>1.645$.
+
+\textbf{(e) Sample size.} Detect a shift $\delta=1$ with $\sigma=2$, $\alpha=0.05$ (two-sided), power $0.90$ ($\beta=0.10$, $z_\beta=1.282$).
+\[ n=\frac{(1.96+1.282)^2(2)^2}{1^2}=42.0\quad\Rightarrow\quad n=42 \]
+\end{example}
+
+\section{Chapter 10: Two Samples (book Chapter~4)}
+
+\begin{formulabox}{Tests for a difference in means}
+\textbf{$\sigma$'s known}
+\[ z_0=\frac{\bar{x}_1-\bar{x}_2-\Delta_0}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}} \]
+\textbf{Pooled, equal variances ($n_1+n_2-2$ df)}
+\[ \begin{aligned}t_0&=\frac{\bar{x}_1-\bar{x}_2-\Delta_0}{s_p\sqrt{1/n_1+1/n_2}}\\[4pt] s_p^2&=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\end{aligned} \]
+\textbf{Welch, unequal variances}
+\[ t_0^*=\frac{\bar{x}_1-\bar{x}_2-\Delta_0}{\sqrt{s_1^2/n_1+s_2^2/n_2}} \]
+\textbf{Welch degrees of freedom (round down)}
+\[ \nu=\frac{(a_1+a_2)^2}{\dfrac{a_1^2}{n_1-1}+\dfrac{a_2^2}{n_2-1}} \]
+\[ a_i=\frac{s_i^2}{n_i} \]
+\textbf{Paired ($n-1$ df)}
+\[ t_0=\frac{\bar{d}-\Delta_0}{s_d/\sqrt n} \]
+\end{formulabox}
+
+\begin{formulabox}{Variances and proportions}
+\textbf{Variance ratio}
+\[ f_0=\frac{s_1^2}{s_2^2}\sim F_{n_1-1,\,n_2-1} \]
+\[ f_{1-\alpha,u,v}=\frac1{f_{\alpha,v,u}} \]
+\textbf{Two proportions (pooled $\hat{p}$ for the test)}
+\[ \begin{aligned}z_0&=\frac{\hat{p}_1-\hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})\big(\frac1{n_1}+\frac1{n_2}\big)}}\\[4pt] \hat{p}&=\frac{x_1+x_2}{n_1+n_2}\end{aligned} \]
+Two-sided regions: $\abs{z_0}>z_{\alpha/2}$, $\abs{t_0}>t_{\alpha/2,\cdot}$, and $f_0>f_{\alpha/2}$ or $f_0<f_{1-\alpha/2}$.
+\end{formulabox}
+
+\begin{formulabox}{Two-sided intervals}
+\begin{itemize}
+  \item \textbf{$\sigma$'s known:} $(\bar{x}_1-\bar{x}_2)\pm z_{\alpha/2}\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$
+  \item \textbf{Pooled:} $(\bar{x}_1-\bar{x}_2)\pm t_{\alpha/2,\,n_1+n_2-2}\,s_p\sqrt{1/n_1+1/n_2}$
+  \item \textbf{Welch:} $(\bar{x}_1-\bar{x}_2)\pm t_{\alpha/2,\,\nu}\sqrt{s_1^2/n_1+s_2^2/n_2}$
+  \item \textbf{Paired:} $\bar{d}\pm t_{\alpha/2,\,n-1}\,s_d/\sqrt n$
+\end{itemize}
+\textbf{Variance ratio}
+\[ \begin{aligned}\frac{\sigma_1^2}{\sigma_2^2}&\ \ge\ \frac{s_1^2}{s_2^2}f_{1-\alpha/2,\,n_2-1,\,n_1-1}\\[4pt] \frac{\sigma_1^2}{\sigma_2^2}&\ \le\ \frac{s_1^2}{s_2^2}f_{\alpha/2,\,n_2-1,\,n_1-1}\end{aligned} \]
+\textbf{Two proportions (unpooled)}
+\[ \begin{aligned}&(\hat{p}_1-\hat{p}_2)\pm z_{\alpha/2}\,\widehat{\se}\\ &\widehat{\se}=\sqrt{\tfrac{\hat{p}_1\hat{q}_1}{n_1}+\tfrac{\hat{p}_2\hat{q}_2}{n_2}}\end{aligned} \]
+\end{formulabox}
+
+\begin{formulabox}{One-sided tests: reject $H_0$ when}
+\begin{itemize}
+  \item \textbf{$H_1:\mu_1-\mu_2>\Delta_0$ ($z$ or $t$):} $z_0>z_\alpha$
+  \item $t_0>t_{\alpha,\,\cdot}$
+  \item \textbf{$H_1:\mu_1-\mu_2<\Delta_0$ ($z$ or $t$):} $z_0<-z_\alpha$
+  \item $t_0<-t_{\alpha,\,\cdot}$
+  \item \textbf{Variance ratio, $H_1:\sigma_1^2>\sigma_2^2$:} $f_0>f_{\alpha,\,n_1-1,\,n_2-1}$
+  \item \textbf{Variance ratio, $H_1:\sigma_1^2<\sigma_2^2$:} $f_0<f_{1-\alpha,\,n_1-1,\,n_2-1}$
+  \item \textbf{Two proportions, $H_1:p_1>p_2$:} $z_0>z_\alpha$
+  \item \textbf{Two proportions, $H_1:p_1<p_2$:} $z_0<-z_\alpha$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{One-sided bounds: use $\alpha$, keep one limit}
+\begin{itemize}
+  \item \textbf{Means, upper bound (here $\sigma_D=\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$; with unknown $\sigma$ use $t_{\alpha,\cdot}$ and $s$):} $\mu_1-\mu_2\le(\bar{x}_1-\bar{x}_2)+z_\alpha\,\sigma_D$
+  \item \textbf{Means, lower bound:} $\mu_1-\mu_2\ge(\bar{x}_1-\bar{x}_2)-z_\alpha\,\sigma_D$
+  \item \textbf{Paired, upper bound:} $\mu_D\le\bar{d}+t_{\alpha,\,n-1}\tfrac{s_d}{\sqrt n}$
+  \item \textbf{Paired, lower bound:} $\mu_D\ge\bar{d}-t_{\alpha,\,n-1}\tfrac{s_d}{\sqrt n}$
+\end{itemize}
+\textbf{Variance ratio, upper bound}
+\[ \frac{\sigma_1^2}{\sigma_2^2}\le\frac{s_1^2}{s_2^2}f_{\alpha,\,n_2-1,\,n_1-1} \]
+\textbf{Variance ratio, lower bound}
+\[ \frac{\sigma_1^2}{\sigma_2^2}\ge\frac{s_1^2}{s_2^2}f_{1-\alpha,\,n_2-1,\,n_1-1} \]
+\end{formulabox}
+
+\begin{formulabox}{Sample size}
+\textbf{Test, $\sigma$'s known}
+\[ n\approx\frac{(z_{\alpha/2}+z_\beta)^2(\sigma_1^2+\sigma_2^2)}{\delta^2} \]
+\textbf{Interval}
+\[ n=\Big(\frac{z_{\alpha/2}}{E}\Big)^2(\sigma_1^2+\sigma_2^2) \]
+\textbf{OC chart parameter, and equivalent $n$ for unequal sizes}
+\[ d=\frac{\abs{\delta}}{\sqrt{\sigma_1^2+\sigma_2^2}} \]
+\[ n=\frac{\sigma_1^2+\sigma_2^2}{\sigma_1^2/n_1+\sigma_2^2/n_2} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item Pooled versus Welch: with $n_1=n_2$ they coincide. Pooled misleads when variances differ \emph{and} $n_1\ne n_2$. Decide from the normal plots, not a preliminary $F$-test; very different slopes mean use Welch.
+  \item Paired: $\Var(\bar{D})=2\sigma^2(1-\rho)/n$. Pairing helps when units are heterogeneous and $\rho$ is large; it costs $n-1$ degrees of freedom. Never run an independent test on paired data.
+  \item The $F$-test is not robust to non-normality; its two-sided $P$-value adds the tails of $f_0$ and $1/f_0$.
+  \item For $n_1,n_2>40$ use $s_i$ in the $z$-test. Test the proportion difference with the \emph{pooled} $\hat{p}$ but build the interval with the \emph{unpooled} standard error.
+  \item Cause and effect needs randomisation; observational differences can be confounded (Simpson's paradox).
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: two samples]
+\textbf{(a) Pooled $t$-test.} Method A: $n_1=10$, $\bar{x}_1=48.2$, $s_1=3.1$. Method B: $n_2=12$, $\bar{x}_2=45.1$, $s_2=3.7$. Test $H_0:\mu_1=\mu_2$, $H_1:\mu_1\ne\mu_2$, $\alpha=0.05$, equal variances assumed.
+\[ s_p^2=\frac{9(9.61)+11(13.69)}{20}=11.854,\qquad s_p=3.443 \]
+\[ t_0=\frac{48.2-45.1}{3.443\sqrt{1/10+1/12}}=\frac{3.1}{1.474}=2.10 \]
+With $20$ df, $t_{0.025,20}=2.086$. Since $2.10>2.086$, reject. The $95\%$ interval is $3.1\pm2.086(1.474)=(0.03,\,6.17)$. It excludes $0$, which agrees with the test.
+
+\textbf{(b) Welch, same data.} $a_1=9.61/10=0.961$, $a_2=13.69/12=1.141$.
+\[ t_0^*=\frac{3.1}{\sqrt{0.961+1.141}}=2.14,\qquad \nu=\frac{(2.102)^2}{0.961^2/9+1.141^2/11}=19.99\to19 \]
+Critical value $t_{0.025,19}=2.093$. Reject again.
+
+\textbf{(c) Paired.} Differences $2.1,\ 1.4,\ -0.3,\ 3.0,\ 1.8,\ 0.9,\ 2.5,\ 1.2$. Then $\bar{d}=1.575$, $s_d=1.025$, $n=8$.
+\[ t_0=\frac{1.575}{1.025/\sqrt8}=4.35,\qquad t_{0.005,7}=3.499 \]
+Since $4.35>3.499$, reject $H_0:\mu_D=0$ even at $\alpha=0.01$.
+
+\textbf{(d) Variance ratio.} $s_1^2=9.61$ ($n_1=10$), $s_2^2=13.69$ ($n_2=12$), $f_0=0.702$. Two-sided $\alpha=0.05$: $f_{0.025,9,11}=3.59$ and $f_{0.975,9,11}=1/f_{0.025,11,9}=1/3.91=0.256$. Since $0.256<0.702<3.59$, do not reject.
+
+\textbf{(e) Two proportions.} Line 1: $15/300$ defective. Line 2: $20/250$ defective.
+\[ \hat{p}=\frac{35}{550}=0.0636,\quad z_0=\frac{0.05-0.08}{\sqrt{0.0636(0.9364)(1/300+1/250)}}=\frac{-0.03}{0.0209}=-1.44 \]
+Two-sided $P=0.15$. Do not reject at $0.05$. The interval uses the unpooled standard error: $-0.03\pm1.96(0.0212)=(-0.072,\,0.012)$.
+\end{example}
+
+\section{Chapter 11: Simple Linear Regression and Correlation (book Chapter~5)}
+
+\begin{formulabox}{Least squares}
+\textbf{Sums}
+\[ \begin{aligned}S_{xx}&=\sum(x_i-\bar{x})^2\\ S_{xy}&=\sum(x_i-\bar{x})(y_i-\bar{y})\end{aligned} \]
+\textbf{Estimates}
+\[ \hat\beta_1=\frac{S_{xy}}{S_{xx}} \]
+\begin{itemize}
+  \item $\hat\beta_0=\bar{y}-\hat\beta_1\bar{x}$
+  \item \textbf{Error variance (two parameters estimated):} $SS_E=S_{yy}-\hat\beta_1S_{xy}$
+\end{itemize}
+\[ \hat\sigma^2=\frac{SS_E}{n-2} \]
+\textbf{Standard errors}
+\[ \begin{aligned}\se(\hat\beta_1)&=\sqrt{\frac{\hat\sigma^2}{S_{xx}}}\\[4pt] \se(\hat\beta_0)&=\sqrt{\hat\sigma^2\Big(\frac1n+\frac{\bar{x}^2}{S_{xx}}\Big)}\end{aligned} \]
+\end{formulabox}
+
+\begin{formulabox}{Tests}
+\textbf{Slope $t$-test ($n-2$ df)}
+\[ t_0=\frac{\hat\beta_1-\beta_{1,0}}{\se(\hat\beta_1)} \]
+\textbf{ANOVA form of the test for $\beta_1=0$}
+\[ \begin{aligned}F_0&=\frac{MS_R}{MS_E}=t_0^2\\ &(1,\ n-2\text{ df})\\ SS_T&=SS_R+SS_E\\ SS_R&=\hat\beta_1S_{xy}\end{aligned} \]
+\textbf{Coefficient of determination}
+\[ R^2=\frac{SS_R}{SS_T} \]
+\end{formulabox}
+
+\begin{formulabox}{Intervals ($t=t_{\alpha/2,\,n-2}$)}
+\begin{itemize}
+  \item \textbf{Slope:} $\hat\beta_1\pm t\,\se(\hat\beta_1)$
+\end{itemize}
+\textbf{Mean response at $x_0$}
+\[ \begin{aligned}&\hat{y}_0\pm t\,\se_{\mu}\\ &\se_{\mu}=\sqrt{\hat\sigma^2\Big[\frac1n+\frac{(x_0-\bar{x})^2}{S_{xx}}\Big]}\end{aligned} \]
+\textbf{New observation at $x_0$}
+\[ \begin{aligned}&\hat{y}_0\pm t\,\se_{\text{pred}}\\ &\se_{\text{pred}}=\sqrt{\hat\sigma^2\Big[1+\frac1n+\frac{(x_0-\bar{x})^2}{S_{xx}}\Big]}\end{aligned} \]
+\end{formulabox}
+
+\begin{formulabox}{Correlation}
+\textbf{Sample correlation}
+\[ r=\frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}} \]
+\[ \hat\beta_1=r\sqrt{\frac{S_{yy}}{S_{xx}}} \]
+\begin{itemize}
+  \item $r^2=R^2$
+\end{itemize}
+\textbf{Test of $\rho=0$ ($n-2$ df; same as the slope test)}
+\[ t_0=\frac{r\sqrt{n-2}}{\sqrt{1-r^2}} \]
+\textbf{Approximate interval for $\rho$ (Fisher)}
+\[ \tanh\!\Big(\operatorname{arctanh}r\pm\frac{z_{\alpha/2}}{\sqrt{n-3}}\Big) \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item $\hat\sigma^2$ divides by $n-2$ (two parameters estimated). $\operatorname{cov}(\hat\beta_0,\hat\beta_1)=-\bar{x}\sigma^2/S_{xx}$. The $\hat\beta$'s are unbiased and BLUE.
+  \item The $t$-test allows one-sided alternatives; the $F$-test does not. One-sided bounds use $t_{\alpha,n-2}$.
+  \item Both intervals are narrowest at $x_0=\bar{x}$; the prediction interval is always wider. The confidence level applies to one $x_0$, not the whole line.
+  \item $R^2$ does not measure the slope or whether the model is correct, and it always rises with more terms.
+  \item Residuals: standardised $d_i=e_i/\hat\sigma$ (about $95\%$ within $\pm2$). A curve means the wrong form; a funnel means transform $y$ ($\sqrt{y}$, $\ln y$, $1/y$). Linearise $y=\beta_0e^{\beta_1x}$ by $\ln y$, $y=\beta_0x^{\beta_1}$ by logs of both.
+  \item Correlation is not causation, and $\rho=0$ is not independence. Textbook values: oxygen purity $\hat\beta_1=14.947$, $\hat\beta_0=74.283$, $R^2=0.877$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: simple regression]
+Data: $x=1,2,3,4,5$ and $y=2.1,\ 3.9,\ 6.2,\ 7.8,\ 10.1$. Here $n=5$, $\bar{x}=3$, $\bar{y}=6.02$.
+
+\textbf{Step 1: sums.} $S_{xx}=10$, $S_{xy}=19.9$, $S_{yy}=39.708$.
+
+\textbf{Step 2: estimates.}
+\[ \hat\beta_1=\frac{19.9}{10}=1.99,\qquad \hat\beta_0=6.02-1.99(3)=0.05,\qquad \hat{y}=0.05+1.99x \]
+\textbf{Step 3: error variance.} $SS_E=39.708-1.99(19.9)=0.107$ and $\hat\sigma^2=0.107/3=0.0357$ (3 df).
+
+\textbf{Step 4: test the slope.}
+\[ \se(\hat\beta_1)=\sqrt{0.0357/10}=0.0597,\qquad t_0=\frac{1.99}{0.0597}=33.3 \]
+Since $t_{0.025,3}=3.182$, the slope is highly significant. Also $R^2=1-0.107/39.708=0.997$.
+
+\textbf{Step 5: intervals at $x_0=3.5$.} $\hat{y}_0=0.05+1.99(3.5)=7.015$.
+\[ \se_\mu=\sqrt{0.0357\Big(\tfrac15+\tfrac{0.25}{10}\Big)}=0.0896,\qquad 7.015\pm3.182(0.0896)=7.015\pm0.285 \]
+\[ \se_{\text{pred}}=\sqrt{0.0357\Big(1+\tfrac15+\tfrac{0.25}{10}\Big)}=0.209,\qquad 7.015\pm3.182(0.209)=7.015\pm0.665 \]
+The prediction interval is wider because it includes the variation of one new observation.
+\end{example}
+
+\section{Chapter 12: Multiple Linear Regression (book Chapter~6)}
+
+\begin{formulabox}{Estimation}
+\begin{itemize}
+  \item \textbf{Model and estimator ($p=k+1$ parameters):} $\mathbf{y}=X\boldsymbol\beta+\boldsymbol\varepsilon$
+  \item $\hat{\boldsymbol\beta}=(X\T X)^{-1}X\T\mathbf{y}$
+  \item \textbf{Covariance and standard error:} $\Cov[\hat{\boldsymbol\beta}]=\sigma^2(X\T X)^{-1}$
+  \item $\se(\hat\beta_j)=\sqrt{\hat\sigma^2C_{jj}}$
+\end{itemize}
+\textbf{Error variance}
+\[ \hat\sigma^2=\frac{SS_E}{n-p} \]
+\begin{itemize}
+  \item \textbf{Hat matrix, fitted values, residuals:} $H=X(X\T X)^{-1}X\T$
+  \item $\hat{\mathbf{y}}=H\mathbf{y}$
+  \item $\mathbf{e}=(I-H)\mathbf{y}$
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}{Tests}
+\textbf{Overall (upper tail)}
+\[ \begin{aligned}F_0&=\frac{SS_R/k}{SS_E/(n-p)}\\ F_0&\sim F_{k,\,n-p}\end{aligned} \]
+\textbf{One coefficient, given the others ($n-p$ df)}
+\[ t_0=\frac{\hat\beta_j}{\se(\hat\beta_j)} \]
+\textbf{A subset of $r$ coefficients (partial $F$; for $r=1$, $F_0=t_0^2$)}
+\[ \begin{aligned}F_0&=\frac{SS_R(\boldsymbol\beta_2\mid\boldsymbol\beta_1)/r}{MS_E(\text{full})}\\ F_0&\sim F_{r,\,n-p}\end{aligned} \]
+\textbf{Adjusted $R^2$}
+\[ R^2_{\mathrm{adj}}=1-\frac{SS_E/(n-p)}{SS_T/(n-1)} \]
+\end{formulabox}
+
+\begin{formulabox}{Intervals ($t=t_{\alpha/2,\,n-p}$)}
+\begin{itemize}
+  \item \textbf{Coefficient:} $\hat\beta_j\pm t\sqrt{\hat\sigma^2C_{jj}}$
+  \item \textbf{Mean response:} $\hat\mu_0\pm t\sqrt{\hat\sigma^2\,h_{00}}$
+\end{itemize}
+\textbf{New observation (adds 1 inside the root)}
+\[ \begin{aligned}&\hat{y}_0\pm t\sqrt{\hat\sigma^2(1+h_{00})}\\ &h_{00}=\mathbf{x}_0\T(X\T X)^{-1}\mathbf{x}_0\end{aligned} \]
+\end{formulabox}
+
+\begin{formulabox}{Diagnostics}
+\textbf{Studentised residual and Cook's distance}
+\[ r_i=\frac{e_i}{\sqrt{\hat\sigma^2(1-h_{ii})}} \]
+\[ D_i=\frac{r_i^2}{p}\,\frac{h_{ii}}{1-h_{ii}} \]
+\textbf{PRESS and variance inflation factor}
+\[ \begin{aligned}\mathrm{PRESS}&=\sum\Big(\frac{e_i}{1-h_{ii}}\Big)^2\\ \mathrm{VIF}_j&=\frac1{1-R_j^2}\end{aligned} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item High leverage: $h_{ii}>2p/n$. Influential: $D_i>1$. Beware hidden extrapolation.
+  \item Model building: all possible regressions (minimum $MS_E$, $C_p\approx p$, using the full-model $MS_E$); stepwise uses $f_{\mathrm{in}}\ge f_{\mathrm{out}}$ (default $\alpha=0.15$); forward only adds, backward only removes. Selection makes the reported $P$-values optimistic.
+  \item Indicator variables: $m$ levels need $m-1$ indicators.
+  \item Multicollinearity: $\mathrm{VIF}>10$ is a concern (some use $4$--$5$). Sign: significant overall $F$ but insignificant individual $t$'s. Fixes: more data, drop terms, ridge $(X\T X+\lambda I)^{-1}X\T\mathbf{y}$. Interpolation can stay accurate; extrapolation cannot.
+  \item Textbook values (wire bond, $n=25$): $\hat\beta=(2.264,\,2.744,\,0.01253)$, $\hat\sigma^2=5.236$, $R^2=0.9811$, $R^2_{\mathrm{adj}}=0.979$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: multiple regression]
+A model with $k=3$ regressors is fitted to $n=20$ observations, so $p=4$. Given $SS_T=500$, $SS_R=420$, $SS_E=80$.
+
+\textbf{Overall test.}
+\[ F_0=\frac{420/3}{80/16}=\frac{140}{5}=28 \]
+Critical value $f_{0.05,3,16}=3.24$. Since $28>3.24$, the regression is significant.
+
+\textbf{Adjusted $R^2$.}
+\[ R^2=\frac{420}{500}=0.84,\qquad R^2_{\mathrm{adj}}=1-\frac{80/16}{500/19}=1-\frac{5}{26.32}=0.810 \]
+\textbf{Partial $F$.} Remove one regressor. The reduced model has $SS_R=400$. Then $SS_R(\beta_j\mid\text{others})=420-400=20$.
+\[ F_0=\frac{20/1}{5}=4.0,\qquad t_0=\sqrt{4.0}=2.0 \]
+Since $f_{0.05,1,16}=4.49$, this regressor is not significant (equivalently $t_{0.025,16}=2.120>2.0$). Dropping it is reasonable.
+
+\textbf{Leverage check.} With $p=4$ and $n=20$, the cutoff is $2p/n=0.40$. An observation with $h_{ii}=0.55$ has high leverage.
+\end{example}
+
+\section{Chapter 13: Single-Factor Experiments, ANOVA (book Chapter~7)}
+
+\begin{formulabox}{One-way ANOVA}
+\begin{itemize}
+  \item \textbf{Model and degrees of freedom:} $Y_{ij}=\mu+\tau_i+\varepsilon_{ij}$
+  \item $N-1=(a-1)+a(n-1)$
+\end{itemize}
+\textbf{Sums of squares}
+\[ SS_T=\sum\sum y_{ij}^2-\frac{y_{\cdot\cdot}^2}{N} \]
+\[ SS_{\text{Tr}}=\frac1n\sum y_{i\cdot}^2-\frac{y_{\cdot\cdot}^2}{N} \]
+\begin{itemize}
+  \item $SS_E=SS_T-SS_{\text{Tr}}$
+\end{itemize}
+\textbf{Test (upper tail only)}
+\[ F_0=\frac{MS_{\text{Tr}}}{MS_E}\sim F_{a-1,\,N-a} \]
+\end{formulabox}
+
+\begin{formulabox}{Follow-up comparisons}
+\begin{itemize}
+  \item \textbf{Treatment mean:} $\bar{y}_{i\cdot}\pm t_{\alpha/2,\,N-a}\sqrt{MS_E/n}$
+  \item \textbf{Difference of two means:} $\bar{y}_{i\cdot}-\bar{y}_{j\cdot}\pm t_{\alpha/2,\,N-a}\sqrt{2MS_E/n}$
+\end{itemize}
+\textbf{Fisher LSD: means differ if}
+\[ \begin{aligned}\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}&>\mathrm{LSD}\\ \mathrm{LSD}&=t_{\alpha/2,\,N-a}\sqrt{MS_E\,c_{ij}}\\ c_{ij}&=\frac1{n_i}+\frac1{n_j}\end{aligned} \]
+\begin{itemize}
+  \item \textbf{Tukey: means differ if:} $\abs{\bar{y}_{i\cdot}-\bar{y}_{j\cdot}}>q_\alpha(a,f)\sqrt{MS_E/n}$
+\end{itemize}
+\textbf{Contrast (1 df, $\sum c_i=0$)}
+\[ SS_C=\frac{\big(\sum c_iy_{i\cdot}\big)^2}{n\sum c_i^2} \]
+\end{formulabox}
+
+\begin{formulabox}{Random effects and blocks}
+\begin{itemize}
+  \item \textbf{Variance components (a negative $\hat\sigma_\tau^2$ is treated as 0):} $\hat\sigma^2=MS_E$
+\end{itemize}
+\[ \hat\sigma_\tau^2=\frac{MS_{\text{Tr}}-MS_E}{n} \]
+\begin{itemize}
+  \item \textbf{Randomized complete block design:} $SS_T=SS_{\text{Tr}}+SS_{\text{Blocks}}+SS_E$
+  \item $\text{error df}=(a-1)(b-1)$
+\end{itemize}
+\[ F_0=\frac{MS_{\text{Tr}}}{MS_E} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item $F$ is upper-tail only because $\Exp[MS_{\text{Tr}}]=\sigma^2+n\sum\tau_i^2/(a-1)$. A balanced design is robust to unequal variances.
+  \item LSD is liberal (experimentwise error exceeds $\alpha$); Tukey keeps the overall error at $\alpha$. Both are two-sided.
+  \item Residual checks: normal plot, residuals versus fitted ($\ln y$ or $\sqrt{y}$ if the variance grows with the mean), and versus run order.
+  \item In a random-effects model test $\sigma_\tau^2$, not individual $\tau_i$.
+  \item RCBD: blocking costs $b-1$ degrees of freedom; when in doubt, block. The $F$ for blocks is not a reliable test.
+  \item Sample size: $\Phi^2=n\sum\tau_i^2/(a\sigma^2)$ with OC curves; textbook $a=5$, $\sum\tau_i^2=5\sigma^2$, power $0.90$ gives $n=6$.
+  \item Textbook values: hardwood $f_0=19.60$ ($f_{0.01,3,20}=4.94$), LSD $=3.07$; fabric RCBD $f_0=75.13$ ($f_{0.05,3,12}=5.95$), LSD $=0.39$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: one-way ANOVA]
+Three machine settings, $n=4$ runs each: A: $12,14,13,15$ (mean $13.5$); B: $16,18,17,19$ (mean $17.5$); C: $13,15,14,16$ (mean $14.5$). Grand mean $15.17$, $N=12$, $a=3$.
+
+\textbf{Sums of squares.}
+\[ SS_{\text{Tr}}=4\big[(13.5-15.17)^2+(17.5-15.17)^2+(14.5-15.17)^2\big]=34.67 \]
+\[ SS_T=49.67,\qquad SS_E=49.67-34.67=15.00 \]
+\textbf{ANOVA table.}
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Source & SS & df & MS & $f_0$ \\
+\midrule
+Settings & $34.67$ & $2$ & $17.33$ & $10.4$ \\
+Error & $15.00$ & $9$ & $1.667$ & \\
+Total & $49.67$ & $11$ & & \\
+\bottomrule
+\end{tabular}
+\end{center}
+Since $f_{0.05,2,9}=4.26$ and $10.4>4.26$, reject: the settings differ.
+
+\textbf{Which differ? Fisher LSD.}
+\[ \mathrm{LSD}=t_{0.025,9}\sqrt{\frac{2MS_E}{n}}=2.262\sqrt{\frac{2(1.667)}{4}}=2.07 \]
+$B-A=4.0>2.07$ and $B-C=3.0>2.07$ differ; $C-A=1.0<2.07$ does not. So B is different from both.
+\end{example}
+
+\section{Chapter 14: Several Factors (book Chapter~8)}
+
+\begin{formulabox}{Two-factor factorial}
+\begin{itemize}
+  \item \textbf{Model:} $Y_{ijk}=\mu+\tau_i+\beta_j+(\tau\beta)_{ij}+\varepsilon_{ijk}$
+  \item \textbf{Degrees of freedom:} $A:\ a-1,\quad B:\ b-1,\quad AB:\ (a-1)(b-1),\quad E:\ ab(n-1),\quad T:\ abn-1$
+\end{itemize}
+\textbf{Sums of squares}
+\[ \begin{aligned}SS_A&=\frac1{bn}\sum y_{i\cdot\cdot}^2-\frac{y_{\cdots}^2}{abn}\\[4pt] SS_{\text{cells}}&=\frac1n\sum\sum y_{ij\cdot}^2-\frac{y_{\cdots}^2}{abn}\\[4pt] SS_{AB}&=SS_{\text{cells}}-SS_A-SS_B\end{aligned} \]
+Each effect is tested with $F=MS/MS_E$; test the interaction $AB$ first.
+\end{formulabox}
+
+\begin{formulabox}{$2^k$ designs}
+\textbf{Effect, sum of squares, coefficient ($C$ = contrast from the sign table)}
+\[ \text{effect}=\frac{C}{2^{k-1}n} \]
+\[ SS=\frac{C^2}{2^kn} \]
+\begin{itemize}
+  \item $\text{coefficient}=\tfrac12\,\text{effect}$
+  \item \textbf{$2^2$ effects:} $A=\tfrac1{2n}[ab+a-b-(1)],\quad B=\tfrac1{2n}[ab+b-a-(1)],\quad AB=\tfrac1{2n}[ab+(1)-a-b]$
+\end{itemize}
+\textbf{Curvature test with centre points ($1,\ n_C-1$ df)}
+\[ \begin{aligned}SS_{\text{curv}}&=\frac{n_Fn_C(\bar{y}_F-\bar{y}_C)^2}{n_F+n_C}\\[4pt] F_0&=\frac{SS_{\text{curv}}}{MS_E}\end{aligned} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item Main effect (two levels) is the average at high minus the average at low. The interaction $AB$ is the difference of the diagonal averages. A significant interaction means read the cell means, not the main effects.
+  \item One observation per cell: assume no interaction and use $MS_{AB}$ as error. Three factors need $n\ge2$. With $A$ fixed and $B$ random, test $A$ against $MS_{AB}$ and $B$ against $MS_E$.
+  \item Single replicate: normal plot of the effects, or pool high-order interactions as error. Dropping $h$ factors projects onto a $2^{k-h}$ with $n2^h$ replicates.
+  \item Blocking: $L=\sum\alpha_ix_i\pmod2$; confound the highest-order interaction ($2^3$ with $ABC$: blocks $\{(1),ab,ac,bc\}$ and $\{a,b,c,abc\}$). $2^p$ blocks lose $2^p-1$ effects.
+  \item Fractions $2^{k-p}$: aliases come from multiplying by the defining relation ($A^2=I$); each effect has $2^p-1$ aliases; resolution is the length of the shortest word. III: main effects aliased with two-factor interactions; IV: main effects clear, two-factor interactions aliased in groups; V: both clear.
+  \item Examples: $2^{3-1}_{\mathrm{III}}$ ($I=ABC$), $2^{4-1}_{\mathrm{IV}}$ ($I=ABCD$), $2^{6-2}_{\mathrm{IV}}$ ($I=ABCE=BCDF=ADEF$), $2^{7-4}_{\mathrm{III}}$ saturated. The alternate fraction $I=-ABC$ de-aliases.
+  \item Response surfaces: steepest ascent far from the optimum; central composite design and canonical analysis near it.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: $2^2$ factorial]
+A $2^2$ design with $n=3$ replicates. Treatment totals: $(1)=80$, $a=100$, $b=60$, $ab=90$.
+
+\textbf{Contrasts and effects.}
+\[ A=\frac{1}{2n}[ab+a-b-(1)]=\frac{90+100-60-80}{6}=\frac{50}{6}=8.33 \]
+\[ B=\frac{1}{6}[ab+b-a-(1)]=\frac{90+60-100-80}{6}=-5.00 \]
+\[ AB=\frac{1}{6}[ab+(1)-a-b]=\frac{90+80-100-60}{6}=1.67 \]
+\textbf{Sums of squares} ($SS=C^2/(4n)=C^2/12$): $SS_A=50^2/12=208.3$, $SS_B=30^2/12=75.0$, $SS_{AB}=10^2/12=8.33$.
+
+\textbf{Regression equation} (coded $\pm1$; coefficient $=$ effect$/2$): $\hat{y}=\bar{y}+4.17x_A-2.5x_B+0.83x_Ax_B$.
+
+\textbf{Fraction example.} In a $2^{3-1}$ design with $I=ABC$, the aliases follow by multiplying by $ABC$ and using $A^2=I$. For example $A\cdot ABC=BC$, so $A$ is aliased with $BC$. The design has resolution III (shortest word $ABC$ has $3$ letters).
+\end{example}
+
+\section{Chapter 15: Nonparametric Statistics (book Chapter~9)}
+
+\begin{formulabox}{Rank-based tests}
+\textbf{Sign test: $R^+\sim\mathrm{Bin}(n,\tfrac12)$; reject if $\min(r^+,r^-)\le r^*$; for $n\ge10$}
+\[ z_0=\frac{r^+-0.5n}{0.5\sqrt n} \]
+\textbf{Signed-rank: $W^++W^-=\frac{n(n+1)}2$; reject if $\min(w^+,w^-)\le w^*$; for $n\ge20$}
+\[ \mu_W=\frac{n(n+1)}{4} \]
+\[ \sigma_W^2=\frac{n(n+1)(2n+1)}{24} \]
+\textbf{Rank-sum: $W_1+W_2=\frac{(n_1+n_2)(n_1+n_2+1)}2$; for $n_1,n_2>8$}
+\[ \begin{aligned}\mu_{W_1}&=\frac{n_1(n_1+n_2+1)}{2}\\[4pt] \sigma^2_{W_1}&=\frac{n_1n_2(n_1+n_2+1)}{12}\end{aligned} \]
+\textbf{Kruskal--Wallis (reject for large $H$)}
+\[ \begin{aligned}H&=\frac{12}{N(N+1)}\sum\frac{R_{i\cdot}^2}{n_i}\\ &\quad-3(N+1)\\ H&\approx\chi^2_{a-1}\end{aligned} \]
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item Sign test: drop ties. One-sided puts all of $\alpha$ in one tail, so use the table column for two-sided $2\alpha$; for $H_1:\tilde\mu>\tilde\mu_0$ reject when $r^-$ is small.
+  \item Signed-rank (symmetric continuous population): rank $\abs{x_i-\mu_0}$ with average ranks for ties. One-sided: $H_1:\mu>\mu_0$ rejects if $w^-\le w^*$; $H_1:\mu<\mu_0$ rejects if $w^+\le w^*$. Normal approximation for $n\ge20$.
+  \item Rank-sum (Mann--Whitney): $W_1$ is the rank sum of the smaller sample; reject if $w_1$ or $w_2\le w_\alpha$. Normal approximation for $n_1,n_2>8$.
+  \item Efficiency versus the $t$-test: about $0.95$ for the Wilcoxon tests with normal data and never below $0.86$; the sign test is about $2/\pi\approx0.64$.
+  \item Kruskal--Wallis: use the tie-corrected form with many ties. If ANOVA on ranks disagrees with ANOVA on the raw data, trust the ranks.
+  \item Textbook values: sign test $n=20$, $r^+=14$, $P=0.1153$; signed-rank $w=60$ against $w^*=52$.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: nonparametric tests]
+\textbf{(a) Sign test.} $H_0:\tilde\mu=\tilde\mu_0$ against $H_1:\tilde\mu\ne\tilde\mu_0$. Of $n=12$ differences (after removing ties), $9$ are positive. Under $H_0$, $R^+\sim\mathrm{Bin}(12,\tfrac12)$.
+\[ \Prob(R^+\ge9)=\frac{220+66+12+1}{4096}=0.0730,\qquad P=2(0.0730)=0.146 \]
+Since $0.146>0.05$, do not reject. By the table, $\min(9,3)=3$ and $r^*_{0.05}=2$ for $n=12$; $3>2$, so again do not reject.
+
+\textbf{(b) Signed-rank test.} Differences $1.2,\ -0.4,\ 2.0,\ 0.8,\ -0.6,\ 1.5,\ 0.9,\ 2.2$. Ranks of $\abs{d}$: $0.4\to1$, $0.6\to2$, $0.8\to3$, $0.9\to4$, $1.2\to5$, $1.5\to6$, $2.0\to7$, $2.2\to8$.
+\[ W^-=1+2=3,\qquad W^+=36-3=33,\qquad w=\min=3 \]
+For $n=8$, $w^*_{0.05}=3$. Since $3\le3$, reject $H_0:\mu_D=0$ (two-sided, $\alpha=0.05$).
+
+\textbf{(c) Large-sample rank-sum.} $n_1=10$, $n_2=10$, observed $w_1=85$.
+\[ \mu_{W_1}=\frac{10(21)}{2}=105,\qquad \sigma_{W_1}=\sqrt{\frac{10\cdot10\cdot21}{12}}=13.23,\qquad z_0=\frac{85-105}{13.23}=-1.51 \]
+Since $\abs{-1.51}<1.96$, do not reject at $\alpha=0.05$.
+\end{example}
+
+\section{Chapter 16: Statistical Quality Control (book Chapter~10)}
+
+\begin{formulabox}{Control limits}
+\begin{itemize}
+  \item \textbf{Shewhart chart ($\alpha=0.0027$ per point):} $\mu_W\pm3\sigma_W$
+  \item \textbf{$\bar{X}$ and $R$ charts (or $\bar{\bar{x}}\pm A_3\bar{s}$ with $\hat\sigma=\bar{s}/c_4$):} $\bar{\bar{x}}\pm A_2\bar{r}$
+\end{itemize}
+\[ \hat\sigma=\frac{\bar{r}}{d_2} \]
+\begin{itemize}
+  \item $\mathrm{UCL}_R=D_4\bar{r},\quad \mathrm{LCL}_R=D_3\bar{r}$
+\end{itemize}
+\textbf{Individuals and moving range}
+\[ \bar{x}\pm\frac{3\,\overline{mr}}{1.128} \]
+\begin{itemize}
+  \item $\mathrm{UCL}_{MR}=3.267\,\overline{mr}$
+\end{itemize}
+\textbf{$P$ chart (and $NP$)}
+\[ \bar{p}\pm3\sqrt{\frac{\bar{p}(1-\bar{p})}{n}} \]
+\begin{itemize}
+  \item $n\bar{p}\pm3\sqrt{n\bar{p}(1-\bar{p})}$
+\end{itemize}
+\textbf{$U$ chart (and $C$)}
+\[ \bar{u}\pm3\sqrt{\frac{\bar{u}}{n}} \]
+\begin{itemize}
+  \item $\bar{c}\pm3\sqrt{\bar{c}}$
+\end{itemize}
+\textbf{Constants}
+\[ \begin{array}{c|cccc}n&2&3&4&5\\\hline A_2&1.880&1.023&0.729&0.577\\D_3&0&0&0&0\\D_4&3.267&2.575&2.282&2.114\\d_2&1.128&1.693&2.059&2.326\end{array} \]
+\end{formulabox}
+
+\begin{formulabox}{Capability, run length and CUSUM}
+\textbf{Process capability}
+\[ \begin{aligned}\mathrm{PCR}&=\frac{\mathrm{USL}-\mathrm{LSL}}{6\sigma}\\[4pt] \mathrm{PCR}_k&=\min(c_U,\ c_L)\\ c_U&=\frac{\mathrm{USL}-\mu}{3\sigma}\\ c_L&=\frac{\mu-\mathrm{LSL}}{3\sigma}\end{aligned} \]
+\textbf{Average run length}
+\[ \begin{aligned}\mathrm{ARL}&=\frac1p\\ \mathrm{ARL}_0&=\frac1{0.0027}=370\\ \mathrm{ARL}_{\text{out}}&=\frac1{1-\beta}\end{aligned} \]
+\begin{itemize}
+  \item \textbf{Tabular CUSUM (signal if either exceeds $H$):} $S_H(i)=\max[0,\,x_i-(\mu_0+K)+S_H(i-1)]$
+  \item $S_L(i)=\max[0,\,(\mu_0-K)-x_i+S_L(i-1)]$
+\end{itemize}
+Design: $K=\tfrac12\sigma$ and $H=4\sigma$ or $5\sigma$; a $1\sigma$ shift is detected in $8.38$ or $10.4$ samples.
+\end{formulabox}
+
+\begin{notebox}
+\begin{itemize}
+  \item A control chart is a repeated hypothesis test. Never plot specification limits on it.
+  \item Western Electric rules: (1) a point beyond $3\sigma$; (2) two of three beyond $2\sigma$ on one side; (3) four of five beyond $1\sigma$ on one side; (4) eight in a row on one side. Do not add them to a CUSUM.
+  \item Build limits from $20$--$25$ preliminary samples of size $4$--$6$; remove samples with assignable causes and recompute; check the $R$ chart first.
+  \item $\mathrm{PCR}=1$ means $0.27\%$ ($2700$ ppm) fallout; minimum $1.33$, critical $1.66$, six-sigma $2.0$ ($3.4$ ppm with a $1.5\sigma$ shift). $\mathrm{PCR}=\mathrm{PCR}_k$ iff centred. Capability is meaningful only for a stable process.
+  \item A $1\sigma$ shift with $n=1$ takes $43.9$ points on average to detect. Narrower limits raise false alarms.
+  \item Other tools: histogram, Pareto chart, fishbone diagram, defect-concentration diagram, scatter diagram, check sheet.
+\end{itemize}
+\end{notebox}
+
+\begin{example}[Worked numericals: quality control]
+\textbf{(a) $\bar{X}$ and $R$ chart.} $20$ samples of size $n=5$: $\bar{\bar{x}}=33.3$, $\bar{r}=5.8$. From the table ($n=5$): $A_2=0.577$, $D_3=0$, $D_4=2.114$.
+\[ \bar{X}:\ 33.3\pm0.577(5.8)=33.3\pm3.35,\quad (29.95,\ 36.65) \]
+\[ R:\ \mathrm{UCL}=2.114(5.8)=12.26,\quad \mathrm{LCL}=0 \]
+Estimated $\hat\sigma=\bar{r}/d_2=5.8/2.326=2.49$.
+
+\textbf{(b) $P$ chart.} Average fraction defective $\bar{p}=0.40$ (from $800$ defectives in $2000$ units), subgroup size $n=100$.
+\[ 0.40\pm3\sqrt{\frac{0.40(0.60)}{100}}=0.40\pm0.147,\qquad (0.253,\ 0.547) \]
+\textbf{(c) Capability.} $\mathrm{LSL}=90$, $\mathrm{USL}=110$, process $\mu=102$, $\sigma=2$.
+\[ \mathrm{PCR}=\frac{110-90}{6(2)}=1.67,\qquad \mathrm{PCR}_k=\min\Big(\frac{110-102}{6},\frac{102-90}{6}\Big)=\min(1.33,\,2.00)=1.33 \]
+The process is capable but off-centre ($\mathrm{PCR}_k<\mathrm{PCR}$). Fallout is mainly above $\mathrm{USL}$: $\Prob(X>110)=\Prob(Z>4)\approx3\times10^{-5}$.
+
+\textbf{(d) ARL.} A $3\sigma$ $\bar{X}$ chart. If the shift gives $p=0.50$ per sample, $\mathrm{ARL}=1/0.50=2$ samples. In control, $\mathrm{ARL}_0=1/0.0027=370$.
+
+\textbf{(e) Tabular CUSUM.} $\mu_0=99$, $K=1$, $H=10$. Observations $x=100,\ 102,\ 101,\ 103$.
+\[ S_H(1)=\max(0,\,100-100+0)=0,\quad S_H(2)=\max(0,\,102-100+0)=2 \]
+\[ S_H(3)=\max(0,\,101-100+2)=3,\quad S_H(4)=\max(0,\,103-100+3)=6 \]
+All below $H=10$, so there is no signal yet. The sum is growing, which suggests an upward drift.
+\end{example}
+
+\section{Which procedure? A quick decision guide}
+
+\begin{enumerate}
+  \item \emph{One mean?} $\sigma$ known (or $n\ge40$): $z$. $\sigma$ unknown, normal: $t$. Not normal and small: sign or signed-rank.
+  \item \emph{One variance?} $\chi^2$. \emph{One proportion?} $z$ ($np,nq\ge5$) or exact binomial.
+  \item \emph{Two means, independent?} Known $\sigma$: $z$. Unknown equal: pooled $t$. Unknown unequal (or in doubt): Welch. Not normal: rank-sum.
+  \item \emph{Two means, matched pairs?} Paired $t$ on the differences (or sign / signed-rank).
+  \item \emph{Two variances?} $F$ (not robust). \emph{Two proportions?} Pooled $z$ for the test, unpooled for the interval.
+  \item \emph{More than two means?} One factor: ANOVA $F$, then LSD or Tukey; non-normal: Kruskal--Wallis. With a nuisance factor: RCBD. Several factors: factorial ANOVA, $2^k$, fractions.
+  \item \emph{Relationship?} One regressor: simple regression, $t$ or $F$ for $\beta_1$; several: multiple regression with partial $F$; both variables random: correlation.
+  \item \emph{Distribution fit or independence of categories?} $\chi^2$ goodness of fit or contingency table.
+  \item \emph{Monitoring a process?} Mean and spread: $\bar{X}$--$R$ or $\bar{X}$--$S$; individuals; attributes: $P$, $U$; small shifts: CUSUM.
+\end{enumerate}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Count tails first: $\alpha/2$ for two-sided, $\alpha$ for one-sided, and one limit only for a bound.
+  \item State the model assumptions and check them (normal plot, residuals, equal variances).
+  \item Degrees of freedom: $n-1$ ($t$, $\chi^2$, paired), $n_1+n_2-2$ (pooled), $n-2$ (simple regression), $n-p$ (multiple), $N-a$ (one-way), $ab(n-1)$ (two-way), $(a-1)(b-1)$ (RCBD error), $k-p-1$ (goodness of fit).
+  \item Round sample sizes \emph{up}; keep the strong claim in $H_1$; report an interval with every test.
+\end{itemize}
+\end{summarybox}
