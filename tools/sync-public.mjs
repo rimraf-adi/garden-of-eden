@@ -1,7 +1,8 @@
 // Mirrors module assets into public/ so Next.js can serve them.
 //   modules/<m>/images/**            -> public/books/<m>/**
 //   modules/intro-to-ml/data/ste100  -> public/data/ste100
-// public/books and public/data are generated (gitignored); modules/ is the source of truth.
+//   modules/gate-da/official         -> public/gate-da  (official syllabus PDFs)
+// public/ copies are committed so deploys serve them as-is; edit modules/ and re-run this (npm run sync).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -18,4 +19,5 @@ for (const m of fs.readdirSync(path.join(root, 'modules'))) {
   mirror(path.join(root, 'modules', m, 'images'), path.join(root, 'public', 'books', m));
 }
 mirror(path.join(root, 'modules', 'intro-to-ml', 'data', 'ste100'), path.join(root, 'public', 'data', 'ste100'));
+mirror(path.join(root, 'modules', 'gate-da', 'official'), path.join(root, 'public', 'gate-da'));
 console.log('synced module assets to public/');

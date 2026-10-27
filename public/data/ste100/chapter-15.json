@@ -1,0 +1,134 @@
+{
+  "chapterNum": 15,
+  "slug": "15-hidden-markov-models",
+  "title": "Hidden Markov Models",
+  "sections": [
+    {
+      "id": "15.1",
+      "title": "Introduction",
+      "rules": [
+        "Many machine learning problems process temporal sequences or spatial patterns.",
+        "Examples include speech recognition, natural language processing, and biological sequence analysis.",
+        "Successive observations in a sequence exhibit strong statistical dependencies.",
+        "We need models that capture dependencies across time.",
+        "Hidden Markov Models provide a probabilistic framework for sequence modeling."
+      ]
+    },
+    {
+      "id": "15.2",
+      "title": "Discrete Markov Processes",
+      "rules": [
+        "A system exists in one of N distinct states at each time step.",
+        "At discrete time intervals, the system changes state according to transition probabilities.",
+        "A first-order Markov process assumes the next state depends only on the current state.",
+        "Transition probability a_ij is the probability of moving from state i to state j.",
+        "State transition probabilities must be non-negative and sum to one for each state.",
+        "The initial state distribution defines the probability of starting in each state.",
+        "In an observable Markov model, the states are directly visible to the observer."
+      ]
+    },
+    {
+      "id": "15.3",
+      "title": "Hidden Markov Models",
+      "rules": [
+        "In a Hidden Markov Model, the actual states are not directly observable.",
+        "The underlying state sequence is a hidden stochastic process.",
+        "In each state, the system emits an observable symbol from a discrete alphabet.",
+        "The emission probability b_j(k) is the probability of observing symbol k in state j.",
+        "An HMM has two stochastic layers: hidden state transitions and visible symbol emissions.",
+        "A complete model contains the transition matrix, the emission matrix, and initial probabilities."
+      ]
+    },
+    {
+      "id": "15.4",
+      "title": "Three Basic Problems of HMMs",
+      "rules": [
+        "Problem 1 is evaluation: Calculate the probability that a model generated an observed sequence.",
+        "Problem 2 is decoding: Find the most likely hidden state sequence for an observed sequence.",
+        "Problem 3 is learning: Adjust model parameters to maximize the probability of observed training sequences.",
+        "We must solve these three problems to use HMMs in practical applications."
+      ]
+    },
+    {
+      "id": "15.5",
+      "title": "Evaluation Problem",
+      "rules": [
+        "Direct evaluation requires summing probabilities across all possible hidden state sequences.",
+        "Direct computation requires exponential time and is impractical for long sequences.",
+        "The forward algorithm uses dynamic programming to solve the evaluation problem efficiently.",
+        "The forward variable alpha_t(i) is the joint probability of past observations and current state i.",
+        "We calculate forward variables recursively from the first time step to the last.",
+        "The backward algorithm computes probabilities backwards from the final time step.",
+        "The backward variable beta_t(i) represents the probability of remaining observations given state i.",
+        "Both forward and backward algorithms run in polynomial time proportional to sequence length."
+      ]
+    },
+    {
+      "id": "15.6",
+      "title": "Finding the State Sequence",
+      "rules": [
+        "Decoding identifies the optimal sequence of hidden states that explains the observations.",
+        "Finding the best state at each time step independently can produce invalid transitions.",
+        "The Viterbi algorithm finds the single best global state path through dynamic programming.",
+        "The Viterbi variable delta_t(i) stores the maximum probability along a path ending in state i.",
+        "Backtracking pointers record the preceding state that maximized the transition probability.",
+        "After reaching the final time step, we trace pointers backward to retrieve the optimal path.",
+        "The Viterbi algorithm runs in quadratic time with respect to the number of states."
+      ]
+    },
+    {
+      "id": "15.7",
+      "title": "Learning Model Parameters",
+      "rules": [
+        "In the learning problem, we train model parameters from observed sequences without state labels.",
+        "The Baum-Welch algorithm is an Expectation-Maximization method for HMM parameter estimation.",
+        "In the E-step, we compute expected state visits and expected transitions using forward-backward variables.",
+        "In the M-step, we update transition probabilities, emission probabilities, and initial probabilities.",
+        "Each iteration of Baum-Welch guarantees non-decreasing likelihood of the observed data.",
+        "The algorithm stops when parameter changes fall below a small threshold.",
+        "We apply scaling factors to forward and backward variables to prevent numerical underflow."
+      ]
+    },
+    {
+      "id": "15.8",
+      "title": "Continuous Observations",
+      "rules": [
+        "In many tasks, observations are continuous feature vectors rather than discrete symbols.",
+        "We replace discrete emission probabilities with continuous probability density functions.",
+        "A Gaussian distribution models continuous observation vectors for each state.",
+        "When state emissions are complex, we use Gaussian Mixture Models.",
+        "The learning algorithm re-estimates mixture weights, mean vectors, and covariance matrices."
+      ]
+    },
+    {
+      "id": "15.9",
+      "title": "The HMM with Input",
+      "rules": [
+        "An input-output HMM conditions state transitions and emissions on external input sequences.",
+        "External inputs influence state dynamics at each time step.",
+        "This architecture models sequence transduction and conditioned temporal responses.",
+        "We can implement transition and emission mappings with generalized linear models or neural networks."
+      ]
+    },
+    {
+      "id": "15.10",
+      "title": "Model Selection in HMM",
+      "rules": [
+        "Model topology defines allowable transitions between hidden states.",
+        "An ergodic model permits transitions between all pairs of states.",
+        "A left-to-right model only allows transitions to current or subsequent states.",
+        "Left-to-right topologies model irreversible temporal processes such as spoken phonemes.",
+        "We select the number of hidden states using cross-validation or Bayesian information criteria."
+      ]
+    },
+    {
+      "id": "15.11",
+      "title": "Notes",
+      "rules": [
+        "Hidden Markov Models became the primary technology for automatic speech recognition systems.",
+        "Molecular biologists use HMMs for sequence alignment and gene finding in DNA.",
+        "Extensions include factorial HMMs and hidden semi-Markov models for variable state durations."
+      ]
+    }
+  ]
+}

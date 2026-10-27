@@ -1,0 +1,155 @@
+{
+  "chapterNum": 13,
+  "slug": "13-kernel-machines",
+  "title": "Kernel Machines",
+  "sections": [
+    {
+      "id": "13.1",
+      "title": "Introduction",
+      "rules": [
+        "Kernel machines provide linear algorithms that operate in high-dimensional feature spaces.",
+        "They combine linear model simplicity with nonlinear mapping power.",
+        "Support vector machines find maximum margin hyperplanes for classification.",
+        "Convex optimization guarantees a unique global solution without local minima.",
+        "The solution depends only on a subset of critical training points called support vectors."
+      ]
+    },
+    {
+      "id": "13.2",
+      "title": "Optimal Separating Hyperplane",
+      "rules": [
+        "For linearly separable classes, many valid hyperplanes can separate the data.",
+        "The optimal separating hyperplane maximizes the margin between the two classes.",
+        "The margin is the minimum distance from the hyperplane to the nearest training instances.",
+        "Maximizing the margin minimizes the VC dimension and lowers structural risk.",
+        "We formulate the search as a quadratic programming problem with linear inequality constraints.",
+        "In the dual formulation, parameters express as linear combinations of support vectors.",
+        "Points with positive Lagrange multipliers are the support vectors on the margin boundaries."
+      ]
+    },
+    {
+      "id": "13.3",
+      "title": "The Nonseparable Case: Soft Margin Hyperplane",
+      "rules": [
+        "Real datasets are rarely linearly separable due to noise and overlapping distributions.",
+        "The soft margin hyperplane introduces non-negative slack variables for misclassifications.",
+        "Slack variables measure the distance by which a data point violates the margin.",
+        "A regularization parameter C controls the trade-off between margin size and classification errors.",
+        "A large C penalizes margin violations heavily and creates a narrow margin.",
+        "A small C tolerates more violations to achieve a wider, smoother margin.",
+        "The optimization problem remains a convex quadratic programming task."
+      ]
+    },
+    {
+      "id": "13.4",
+      "title": "nu-SVM",
+      "rules": [
+        "The nu-SVM formulation replaces parameter C with a parameter nu in the range (0, 1].",
+        "Parameter nu sets an upper bound on the fraction of margin errors.",
+        "Parameter nu also sets a lower bound on the fraction of support vectors.",
+        "The parameter nu provides a more intuitive interpretation than the penalty constant C.",
+        "The dual problem adds an equality constraint that balances positive and negative multipliers."
+      ]
+    },
+    {
+      "id": "13.5",
+      "title": "Kernel Trick",
+      "rules": [
+        "Nonlinear classification maps inputs into a high-dimensional feature space using a mapping function.",
+        "Calculating explicit high-dimensional feature vectors requires extreme computational resources.",
+        "The kernel trick replaces the inner product with an equivalent kernel function K(x, y).",
+        "The algorithm evaluates dot products directly in the original input space.",
+        "Mercer's theorem states that any positive semidefinite symmetric function defines a valid kernel.",
+        "The kernel trick allows linear algorithms to learn complex nonlinear decision boundaries."
+      ]
+    },
+    {
+      "id": "13.6",
+      "title": "Vectorial Kernels",
+      "rules": [
+        "Polynomial kernels compute dot products raised to power q with an optional constant offset.",
+        "The polynomial kernel of degree two captures all pairwise feature interactions.",
+        "The Gaussian radial basis function kernel measures similarity using squared Euclidean distance.",
+        "The Gaussian kernel maps inputs into an infinite-dimensional Hilbert space.",
+        "The spread parameter gamma controls the width of the Gaussian receptive field.",
+        "Sigmoid kernels implement hyperbolic tangent functions similar to multilayer perceptrons."
+      ]
+    },
+    {
+      "id": "13.7",
+      "title": "Defining Kernels",
+      "rules": [
+        "Kernels represent generalized similarity measures between pairs of data objects.",
+        "We can define kernels on structured non-vector data such as strings, trees, and graphs.",
+        "String kernels measure similarity by counting matching substrings between text sequences.",
+        "Graph kernels compare substructures like walks, paths, or subtrees between graphs.",
+        "Application-specific kernels enable machine learning on complex biological and linguistic objects."
+      ]
+    },
+    {
+      "id": "13.8",
+      "title": "Multiple Kernel Learning",
+      "rules": [
+        "Different kernels represent different feature spaces or different data sources.",
+        "Multiple kernel learning combines several basic kernels into a composite kernel function.",
+        "A linear combination of valid positive semidefinite kernels produces a valid kernel.",
+        "The algorithm learns kernel combination weights concurrently with classifier parameters.",
+        "Multiple kernel learning performs automated feature and kernel selection."
+      ]
+    },
+    {
+      "id": "13.9",
+      "title": "Multiclass Kernel Machines",
+      "rules": [
+        "Support vector machines are fundamentally binary classifiers.",
+        "One-vs-all trains K separate SVM models, each separating one class from all other classes.",
+        "One-vs-one trains K*(K - 1)/2 classifiers for all class pairs and applies majority voting.",
+        "Error-correcting output codes map multiclass problems to codewords of binary predictions.",
+        "Native multiclass formulations optimize all discriminant hyperplanes simultaneously in one objective function."
+      ]
+    },
+    {
+      "id": "13.10",
+      "title": "Kernel Machines for Regression",
+      "rules": [
+        "Support vector regression uses an epsilon-insensitive loss function.",
+        "The model ignores prediction errors smaller than epsilon within an insensitive tube.",
+        "Errors outside the tube incur a linear penalty measured with slack variables.",
+        "Support vectors are points that lie on or outside the boundary of the epsilon-tube.",
+        "Insensitive loss ensures sparsity in the dual regression solution."
+      ]
+    },
+    {
+      "id": "13.11",
+      "title": "One-Class Kernel Machines",
+      "rules": [
+        "One-class SVMs learn the support of a probability distribution for novelty detection.",
+        "The algorithm fits a minimal bounding hypersphere around the data in feature space.",
+        "Alternatively, the algorithm separates training instances from the origin with maximum margin.",
+        "Normal data points fall inside the boundary, while outliers fall outside.",
+        "One-class machines detect fraud, system anomalies, and rare manufacturing defects."
+      ]
+    },
+    {
+      "id": "13.12",
+      "title": "Kernel Dimensionality Reduction",
+      "rules": [
+        "Kernel Principal Components Analysis computes nonlinear principal components.",
+        "The algorithm constructs the Gram kernel matrix of all pairwise training dot products.",
+        "It centers the kernel matrix in feature space without computing explicit coordinates.",
+        "Eigenvalue decomposition of the centered kernel matrix reveals nonlinear directions of maximum variance.",
+        "Kernel PCA extracts complex manifold structures that linear PCA cannot detect."
+      ]
+    },
+    {
+      "id": "13.13",
+      "title": "Notes",
+      "rules": [
+        "Vapnik and Chervonenkis developed Statistical Learning Theory and the VC dimension.",
+        "Boser, Guyon, and Vapnik introduced support vector machines with the kernel trick in 1992.",
+        "Cortes and Vapnik introduced the soft margin formulation in 1995.",
+        "Kernel machines provide strong theoretical generalization bounds based on margin maximization."
+      ]
+    }
+  ]
+}

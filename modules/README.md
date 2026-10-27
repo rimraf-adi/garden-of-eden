@@ -10,4 +10,4 @@ modules/<subject>/
   raw/      (gate-da only) downloaded GateXAIML HTML
 ```
 
-`npm run dev` and `npm run build` run the sync automatically; `public/books` and `public/data` are generated and gitignored.
+`npm run dev` and `npm run build` run the sync automatically; `public/books`, `public/data` and `public/gate-da` are generated copies; they are committed, so edit `modules/` and run `npm run sync`.

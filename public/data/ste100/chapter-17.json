@@ -1,0 +1,148 @@
+{
+  "chapterNum": 17,
+  "slug": "17-combining-multiple-learners",
+  "title": "Combining Multiple Learners",
+  "sections": [
+    {
+      "id": "17.1",
+      "title": "Rationale",
+      "rules": [
+        "No single machine learning algorithm outperforms all others on every task.",
+        "This principle is known as the No Free Lunch theorem.",
+        "Combining multiple base learners creates an ensemble with higher generalization accuracy.",
+        "Ensembles succeed when base learners are accurate and diverse.",
+        "Accurate learners perform better than random guessing.",
+        "Diverse learners make errors on different subsets of the data.",
+        "Ensembles reduce prediction error by lowering model variance or model bias."
+      ]
+    },
+    {
+      "id": "17.2",
+      "title": "Generating Diverse Learners",
+      "rules": [
+        "We can generate diverse learners by using different learning algorithms.",
+        "We can use identical algorithms with different hyperparameter settings.",
+        "We can train base learners on different training subsets using resampling techniques.",
+        "We can train learners on different input feature representations.",
+        "The random subspace method trains base models on randomly chosen feature subsets."
+      ]
+    },
+    {
+      "id": "17.3",
+      "title": "Model Combination Schemes",
+      "rules": [
+        "Combiners can be non-trainable or trainable.",
+        "Non-trainable combiners use fixed rules like majority voting or average probability.",
+        "Trainable combiners learn combination weights from validation data.",
+        "Parallel ensembles run base learners independently at the same time.",
+        "Sequential ensembles train or evaluate models in ordered stages.",
+        "Combiners can process hard discrete class labels or soft continuous probability outputs."
+      ]
+    },
+    {
+      "id": "17.4",
+      "title": "Voting",
+      "rules": [
+        "In majority voting, the ensemble chooses the class with the most votes.",
+        "In weighted voting, we give higher weights to more accurate base learners.",
+        "For probability outputs, we can apply sum, product, maximum, minimum, or median rules.",
+        "Condorcet's Jury Theorem states that ensemble accuracy approaches one as independent voter count increases.",
+        "The theorem requires each individual voter to have an accuracy greater than fifty percent."
+      ]
+    },
+    {
+      "id": "17.5",
+      "title": "Error-Correcting Output Codes",
+      "rules": [
+        "Error-correcting output codes decompose a multiclass problem into multiple binary classification problems.",
+        "A code matrix defines binary target values for each class across multiple classifiers.",
+        "Each row of the matrix represents a unique codeword for a class.",
+        "Redundant binary classifiers create large Hamming distances between different class codewords.",
+        "During testing, the base classifiers output a predicted binary vector.",
+        "The ensemble assigns the instance to the class with the closest codeword.",
+        "The ensemble corrects independent binary prediction errors if the Hamming distance is sufficiently large."
+      ]
+    },
+    {
+      "id": "17.6",
+      "title": "Bagging",
+      "rules": [
+        "Bagging stands for bootstrap aggregating.",
+        "Bagging draws multiple bootstrap samples with replacement from the original training dataset.",
+        "Each bootstrap sample has the same size as the original training dataset.",
+        "We train an unstable, low-bias model independently on each bootstrap sample.",
+        "Unpruned decision trees are ideal base learners for bagging.",
+        "The ensemble averages predictions for regression or uses majority voting for classification.",
+        "Bagging significantly decreases model variance without increasing model bias.",
+        "Out-of-bag samples provide an unbiased internal estimate of generalization error."
+      ]
+    },
+    {
+      "id": "17.7",
+      "title": "Boosting",
+      "rules": [
+        "Boosting trains base learners sequentially in an adaptive chain.",
+        "Each new learner focuses on instances that previous learners misclassified.",
+        "AdaBoost maintains a probability distribution of weights over training instances.",
+        "After training a weak learner, we increase weights of misclassified instances.",
+        "We decrease weights of correctly classified instances.",
+        "The final prediction is a weighted vote of all base learners.",
+        "Each learner's vote weight depends on its training accuracy.",
+        "Boosting primarily reduces bias, but also improves classification margins."
+      ]
+    },
+    {
+      "id": "17.8",
+      "title": "Mixture of Experts Revisited",
+      "rules": [
+        "Mixture of experts is a divide-and-conquer ensemble strategy.",
+        "Local expert models specialize in distinct regions of the input space.",
+        "A gating network inspects the input and outputs soft weights for each expert.",
+        "The overall prediction is the weighted sum of expert outputs.",
+        "We train the gating network and experts simultaneously using Expectation-Maximization or gradient descent."
+      ]
+    },
+    {
+      "id": "17.9",
+      "title": "Stacked Generalization",
+      "rules": [
+        "Stacked generalization, or stacking, uses a meta-learner to combine base learners.",
+        "Base learners are called level-zero models.",
+        "The meta-learner is called a level-one model.",
+        "Base learners generate predictions on validation folds using cross-validation.",
+        "These out-of-fold predictions form the training features for the meta-learner.",
+        "Stacking learns how to balance the strengths and weaknesses of diverse model types."
+      ]
+    },
+    {
+      "id": "17.10",
+      "title": "Fine-Tuning an Ensemble",
+      "rules": [
+        "Large ensembles contain redundant or correlated base learners.",
+        "Ensemble pruning selects a compact subset of base models.",
+        "Pruning decreases computation time and memory requirements during inference.",
+        "Greedy forward selection iteratively adds the best complementary model to the sub-ensemble."
+      ]
+    },
+    {
+      "id": "17.11",
+      "title": "Cascading",
+      "rules": [
+        "Cascading organizes classifiers into a sequential multi-stage hierarchy.",
+        "Early stages evaluate fast, simple classifiers to filter easy instances.",
+        "Confident predictions stop early without evaluating later stages.",
+        "Only difficult or ambiguous instances trigger expensive classifiers in deeper stages.",
+        "Cascading dramatically reduces average inference latency in applications like face detection."
+      ]
+    },
+    {
+      "id": "17.12",
+      "title": "Notes",
+      "rules": [
+        "Random forests combine bagging with random feature subspace selection at each tree split.",
+        "Gradient boosting machines optimize arbitrary differentiable loss functions through gradient descent in function space.",
+        "Modern implementations like XGBoost and LightGBM dominate competitive machine learning challenges."
+      ]
+    }
+  ]
+}

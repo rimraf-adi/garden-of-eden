@@ -1,0 +1,111 @@
+{
+  "chapterNum": 5,
+  "slug": "05-multivariate-methods",
+  "title": "Multivariate Methods",
+  "sections": [
+    {
+      "id": "5.1",
+      "title": "Multivariate Data",
+      "rules": [
+        "In multivariate data, each observation is a vector of d distinct features.",
+        "A dataset of N observations forms an N by d data matrix.",
+        "Each row of the data matrix represents a single observed instance.",
+        "Each column of the data matrix represents a single variable or feature.",
+        "Multivariate features can combine continuous, discrete, and binary variables."
+      ]
+    },
+    {
+      "id": "5.2",
+      "title": "Parameter Estimation",
+      "rules": [
+        "The sample mean vector contains the sample mean of each feature column.",
+        "The sample mean vector is an unbiased estimator of the population mean vector.",
+        "Covariance measures the linear association between two distinct variables.",
+        "The sample covariance matrix is a symmetric d by d matrix.",
+        "Diagonal elements of the covariance matrix represent individual feature variances.",
+        "Off-diagonal elements represent pairwise covariances between different features.",
+        "The correlation matrix normalizes covariances between negative one and positive one."
+      ]
+    },
+    {
+      "id": "5.3",
+      "title": "Estimation of Missing Values",
+      "rules": [
+        "Missing values occur when sensors fail or subjects skip questions.",
+        "Discarding instances with missing values discards useful information from observed features.",
+        "Mean imputation replaces each missing entry with the sample mean of that feature.",
+        "Regression imputation predicts the missing feature from the observed features.",
+        "The Expectation-Maximization algorithm estimates parameters iteratively in the presence of missing values."
+      ]
+    },
+    {
+      "id": "5.4",
+      "title": "Multivariate Normal Distribution",
+      "rules": [
+        "The multivariate normal distribution is defined by a mean vector and a covariance matrix.",
+        "The Mahalanobis distance measures distance between a point and the mean vector.",
+        "Mahalanobis distance scales distances by the inverse of the covariance matrix.",
+        "Contours of constant probability density form hyperellipsoids centered at the mean vector.",
+        "Eigenvectors of the covariance matrix determine the principal axes of the hyperellipsoids.",
+        "Eigenvalues of the covariance matrix determine the variances along the principal axes.",
+        "When the covariance matrix is spherical, Mahalanobis distance reduces to Euclidean distance."
+      ]
+    },
+    {
+      "id": "5.5",
+      "title": "Multivariate Classification",
+      "rules": [
+        "Multivariate classification models each class with a multivariate normal density.",
+        "Quadratic discriminant analysis allows each class to have an arbitrary covariance matrix.",
+        "Quadratic discriminant analysis produces quadratic, curved decision boundaries between classes.",
+        "Linear discriminant analysis assumes all classes share an identical covariance matrix.",
+        "Shared covariance cancels quadratic terms, producing linear hyperplane decision boundaries.",
+        "When covariance matrices are diagonal, features are conditionally independent given the class.",
+        "When covariance matrices are spherical, the classifier assigns instances to the nearest class mean."
+      ]
+    },
+    {
+      "id": "5.6",
+      "title": "Tuning Complexity",
+      "rules": [
+        "An unconstrained d by d covariance matrix requires estimating d times d plus one divided by two parameters.",
+        "When the number of features is large, full covariance matrices cause overfitting.",
+        "We reduce complexity by constraining covariance matrices to be shared, diagonal, or spherical.",
+        "Regularized discriminant analysis interpolates between class covariance, pooled covariance, and spherical identity matrices.",
+        "Cross-validation selects the regularization parameters that achieve the lowest classification error."
+      ]
+    },
+    {
+      "id": "5.7",
+      "title": "Discrete Features",
+      "rules": [
+        "Discrete features take values from a finite set of categories.",
+        "Binary features take values of zero or one.",
+        "The naive Bayes classifier assumes discrete features are conditionally independent given the class.",
+        "Under naive Bayes, the class-conditional probability is the product of individual feature probabilities.",
+        "Independent Bernoulli distributions model binary features.",
+        "Multinomial distributions model discrete features with more than two categories."
+      ]
+    },
+    {
+      "id": "5.8",
+      "title": "Multivariate Regression",
+      "rules": [
+        "Multivariate linear regression predicts a continuous target from a vector of input features.",
+        "The model computes the output as a linear combination of input features plus an intercept.",
+        "We find the optimal weight vector by solving the normal equations in matrix form.",
+        "The closed-form solution requires computing the inverse of the feature correlation matrix.",
+        "When predicting multiple response variables, we solve multivariate regression for each output dimension."
+      ]
+    },
+    {
+      "id": "5.9",
+      "title": "Notes",
+      "rules": [
+        "Harold Hotelling and P. C. Mahalanobis developed foundational theory for multivariate statistics.",
+        "Ronald Fisher introduced linear discriminant analysis for multivariate classification in nineteen thirty-six.",
+        "High dimensionality requires careful regularization to avoid the curse of dimensionality."
+      ]
+    }
+  ]
+}

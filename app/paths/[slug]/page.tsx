@@ -198,10 +198,10 @@ export default async function PathPage({ params }: Props) {
                   </p>
                   {book.id === 'gate-da' && (
                     <Link
-                      href="/gate-da/pyq-analysis"
+                      href="/gate-da"
                       className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-amber-600/40 text-amber-700 dark:text-amber-300 text-sm font-medium hover:bg-amber-500/10 transition"
                     >
-                      <span>PYQ pattern analysis 2024–26</span>
+                      <span>Prep board: syllabus, PYQs, trends</span>
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   )}

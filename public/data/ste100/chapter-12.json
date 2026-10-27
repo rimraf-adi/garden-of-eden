@@ -1,0 +1,124 @@
+{
+  "chapterNum": 12,
+  "slug": "12-local-models",
+  "title": "Local Models",
+  "sections": [
+    {
+      "id": "12.1",
+      "title": "Introduction",
+      "rules": [
+        "Global models fit a single function over the whole input space.",
+        "Local models divide the input space into small regions and fit separate local functions.",
+        "In local models, only units close to the input influence the final output.",
+        "Local representations allow fast adaptation and modular learning.",
+        "Changes in one region of the input space do not disrupt learned fits in other regions."
+      ]
+    },
+    {
+      "id": "12.2",
+      "title": "Competitive Learning",
+      "rules": [
+        "In competitive learning, units compete with each other to represent input instances.",
+        "The unit with the prototype closest to the input becomes the winner.",
+        "The winner-take-all rule updates only the winning prototype toward the input.",
+        "Online k-means updates cluster centers incrementally after each training sample.",
+        "Adaptive Resonance Theory creates new clusters when inputs differ from existing prototypes.",
+        "Kohonen Self-Organizing Maps arrange units on a low-dimensional topological grid.",
+        "In SOM, the winner and its topological neighbors update their prototype vectors together."
+      ]
+    },
+    {
+      "id": "12.3",
+      "title": "Radial Basis Functions",
+      "rules": [
+        "A Radial Basis Function network has one hidden layer of localized receptive fields.",
+        "Each hidden unit calculates the distance between the input and its center vector.",
+        "The activation decreases monotonically as distance from the center increases.",
+        "The Gaussian function is the most common radial basis function.",
+        "The output layer computes a linear combination of hidden unit activations.",
+        "We train RBF networks in two stages: find centers unsupervised, then solve output weights."
+      ]
+    },
+    {
+      "id": "12.4",
+      "title": "Incorporating Rule-Based Knowledge",
+      "rules": [
+        "RBF networks map naturally to IF-THEN fuzzy rule systems.",
+        "Each hidden unit corresponds to the premise of a rule in feature space.",
+        "The center and spread of the basis function define the input membership region.",
+        "The output connection weight specifies the conclusion or action of the rule.",
+        "Domain experts can initialize centers and widths directly from expert knowledge.",
+        "Training then refines parameters using empirical sample data."
+      ]
+    },
+    {
+      "id": "12.5",
+      "title": "Normalized Basis Functions",
+      "rules": [
+        "Standard RBF activations can sum to zero in regions far from all centers.",
+        "Normalized basis functions divide each activation by the sum of all activations.",
+        "Normalized activations sum to one and form a partition of unity.",
+        "Normalized units represent the posterior probability that an input belongs to a local patch.",
+        "Softmax normalization ensures that every input receives a valid prediction."
+      ]
+    },
+    {
+      "id": "12.6",
+      "title": "Competitive Basis Functions",
+      "rules": [
+        "In standard RBF networks, multiple basis functions overlap and cooperate to form outputs.",
+        "Competitive basis functions enforce competition among local units.",
+        "Only the winning unit or a small subset of units contributes to the output.",
+        "Competitive basis functions prevent interference between distant regions.",
+        "Competition produces piecewise local fits across distinct regions of the feature space."
+      ]
+    },
+    {
+      "id": "12.7",
+      "title": "Learning Vector Quantization",
+      "rules": [
+        "Learning Vector Quantization is a supervised competitive learning algorithm for classification.",
+        "Each class possesses a set of labeled codebook vectors or prototypes.",
+        "For each training instance, the algorithm finds the closest codebook vector.",
+        "If the winning vector has the correct class label, it moves closer to the input.",
+        "If the winning vector has an incorrect class label, it moves away from the input.",
+        "LVQ adjusts codebook locations to minimize classification errors near class boundaries."
+      ]
+    },
+    {
+      "id": "12.8",
+      "title": "Mixture of Experts",
+      "rules": [
+        "A mixture of experts combines multiple local models called expert networks.",
+        "Each expert network learns to make predictions in a specific region of the input space.",
+        "A gating network inspects the input and assigns weights to each expert.",
+        "The final output is the weighted sum of expert predictions.",
+        "Cooperative mixtures allow multiple experts to blend their outputs smoothly.",
+        "Competitive mixtures use competitive gating to select a single winning expert.",
+        "We train the gating network and experts simultaneously with the EM algorithm."
+      ]
+    },
+    {
+      "id": "12.9",
+      "title": "Hierarchical Mixture of Experts",
+      "rules": [
+        "A hierarchical mixture of experts extends the architecture into a tree structure.",
+        "Internal nodes contain gating networks that divide the space recursively.",
+        "Leaf nodes contain local expert networks that produce predictions.",
+        "The system corresponds to a soft decision tree with probabilistic routing.",
+        "Smooth probabilistic decisions avoid discontinuous boundaries found in standard decision trees.",
+        "The entire hierarchy trains end-to-end using gradient descent or EM algorithms."
+      ]
+    },
+    {
+      "id": "12.10",
+      "title": "Notes",
+      "rules": [
+        "Local models connect statistical mixture models, neural networks, and fuzzy logic.",
+        "Broomhead and Lowe introduced Radial Basis Functions to neural networks in 1988.",
+        "Jacobs, Jordan, Nowlan, and Hinton proposed the mixture of experts architecture in 1991.",
+        "Local models offer fast training and clear interpretability compared to deep feedforward networks."
+      ]
+    }
+  ]
+}

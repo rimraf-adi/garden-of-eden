@@ -37,7 +37,7 @@ export default function PyqAnalysisPage() {
         <h1 className="mt-2 text-3xl sm:text-4xl font-serif font-medium tracking-tight">Exam pattern analysis, 2024–2026</h1>
         <p className="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-400">
           195 questions across IISc Bengaluru (2024), IIT Roorkee (2025) and IIT Guwahati (2026), reduced to what should change how you study.
-          Source: {data.source}. <Link href="/gate-da/pyq-bank" className="underline underline-offset-2">Topic-wise question bank →</Link> · <Link href="/paths/gate-da" className="underline underline-offset-2">GATE DA notes →</Link>
+          Source: {data.source}. <Link href="/gate-da" className="underline underline-offset-2">Prep board →</Link> · <Link href="/gate-da/pyq-bank" className="underline underline-offset-2">Question bank →</Link> · <Link href="/paths/gate-da" className="underline underline-offset-2">GATE DA notes →</Link>
         </p>
         <dl className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
           {[

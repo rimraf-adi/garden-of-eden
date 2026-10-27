@@ -1,0 +1,137 @@
+{
+  "chapterNum": 2,
+  "slug": "02-supervised-learning",
+  "title": "Supervised Learning",
+  "sections": [
+    {
+      "id": "2.1",
+      "title": "Learning a Class from Examples",
+      "rules": [
+        "In supervised learning, a training set contains labeled examples.",
+        "Each example pairs an input vector with an output label.",
+        "Positive examples belong to the target class.",
+        "Negative examples do not belong to the target class.",
+        "We want to find a description that fits all positive examples.",
+        "The learned description must exclude all negative examples.",
+        "We define a hypothesis class as the set of candidate descriptions.",
+        "For a family car, we use price and engine power as input features.",
+        "A rectangle in feature space defines the hypothesis class.",
+        "The hypothesis function outputs one for positive examples and zero for negative examples.",
+        "The most specific hypothesis is the smallest rectangle enclosing all positive examples.",
+        "The most general hypothesis is the largest rectangle enclosing positive examples without negative examples.",
+        "The version space contains all hypotheses consistent with the training set.",
+        "The margin is the distance between the decision boundary and the nearest instances.",
+        "A hypothesis with the maximum margin provides better generalization on unseen data."
+      ]
+    },
+    {
+      "id": "2.2",
+      "title": "Vapnik-Chervonenkis (VC) Dimension",
+      "rules": [
+        "The VC dimension measures the capacity of a hypothesis class.",
+        "A dataset of N points allows two to the power of N distinct binary labelings.",
+        "A hypothesis class shatters a dataset if it can implement all possible labelings.",
+        "The VC dimension is the maximum number of points that the hypothesis class can shatter.",
+        "Axis-aligned rectangles in two dimensions shatter four points.",
+        "Axis-aligned rectangles cannot shatter any set of five points.",
+        "The VC dimension of axis-aligned rectangles in two dimensions is four.",
+        "The VC dimension does not depend on the probability distribution of the data."
+      ]
+    },
+    {
+      "id": "2.3",
+      "title": "Probably Approximately Correct (PAC) Learning",
+      "rules": [
+        "Leslie Valiant introduced Probably Approximately Correct learning.",
+        "In PAC learning, epsilon is the error tolerance.",
+        "The parameter delta is the probability of failure.",
+        "The learner must find a hypothesis with error less than epsilon.",
+        "The guarantee must hold with probability at least one minus delta.",
+        "We calculate the required sample size N from epsilon and delta.",
+        "Sample complexity increases when you decrease epsilon.",
+        "Sample complexity increases when you decrease delta.",
+        "PAC learning gives distribution-free sample size bounds for hypothesis classes."
+      ]
+    },
+    {
+      "id": "2.4",
+      "title": "Noise",
+      "rules": [
+        "Noise is any unwanted anomaly in the data.",
+        "Incorrect sensor readings cause noise in input values.",
+        "Human errors cause noise in teacher labels.",
+        "Hidden and unobserved variables also act as noise.",
+        "Noise makes class separation difficult with simple hypotheses.",
+        "Complex hypotheses can fit noise and cause poor generalization.",
+        "Occam's razor states that we must prefer simpler models.",
+        "A simpler model with small training error generalizes better than an overly complex model."
+      ]
+    },
+    {
+      "id": "2.5",
+      "title": "Learning Multiple Classes",
+      "rules": [
+        "In multiclass learning, each instance belongs to one of K classes.",
+        "We encode target labels as one-of-K binary vectors.",
+        "The target vector contains a single one and K minus one zeros.",
+        "We train K separate discriminant functions for the K classes.",
+        "The classifier assigns an input to the class with the highest score.",
+        "An ambiguity region occurs when two classes yield the same highest score.",
+        "In ambiguous regions, the classifier can reject the decision.",
+        "Rejection prevents costly classification errors."
+      ]
+    },
+    {
+      "id": "2.6",
+      "title": "Regression",
+      "rules": [
+        "Regression predicts a continuous numeric output from input features.",
+        "We assume the target value equals a deterministic function plus zero-mean random noise.",
+        "The model approximates the true function with parameters theta.",
+        "Linear regression models the output as a straight line.",
+        "The sum of squared errors measures the difference between actual targets and model outputs.",
+        "We calculate optimal parameters by minimizing the sum of squared errors.",
+        "The optimal line minimizes the vertical distances between data points and the regression line."
+      ]
+    },
+    {
+      "id": "2.7",
+      "title": "Model Selection and Generalization",
+      "rules": [
+        "Generalization measures model performance on new and unseen data.",
+        "Underfitting occurs when the model is too simple for the data.",
+        "Overfitting occurs when the model memorizes training noise.",
+        "Inductive bias represents the assumptions that allow a model to generalize.",
+        "We split available data into training, validation, and test sets.",
+        "The algorithm trains model parameters on the training set.",
+        "The user selects model complexity and hyperparameters on the validation set.",
+        "The test set evaluates the final generalization error.",
+        "Cross-validation rotates data folds to evaluate models on small datasets."
+      ]
+    },
+    {
+      "id": "2.8",
+      "title": "Dimensions of a Supervised Machine Learning Algorithm",
+      "rules": [
+        "Three core dimensions define any supervised learning algorithm.",
+        "The first dimension is the model or hypothesis class.",
+        "The second dimension is the loss function that penalizes errors.",
+        "The third dimension is the optimization algorithm that minimizes the loss.",
+        "Linear models, neural networks, and decision trees represent different model classes.",
+        "Zero-one loss and squared error represent common loss functions.",
+        "Gradient descent and closed-form equations represent common optimization algorithms.",
+        "Choosing different combinations of these three dimensions produces different learning algorithms."
+      ]
+    },
+    {
+      "id": "2.9",
+      "title": "Notes",
+      "rules": [
+        "Tom Mitchell introduced version spaces and candidate elimination.",
+        "Vladimir Vapnik developed statistical learning theory and the VC dimension.",
+        "Leslie Valiant formulated PAC learning theory in nineteen eighty-four.",
+        "A machine learning algorithm must possess inductive bias to learn from finite data."
+      ]
+    }
+  ]
+}

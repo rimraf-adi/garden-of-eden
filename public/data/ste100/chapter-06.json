@@ -1,0 +1,116 @@
+{
+  "chapterNum": 6,
+  "slug": "06-dimensionality-reduction",
+  "title": "Dimensionality Reduction",
+  "sections": [
+    {
+      "id": "6.1",
+      "title": "Introduction",
+      "rules": [
+        "High-dimensional data increases storage costs, computational runtime, and model variance.",
+        "The curse of dimensionality makes data sparse in high-dimensional spaces.",
+        "Dimensionality reduction maps data from d dimensions to a lower dimension k.",
+        "Feature selection chooses a subset of the original features.",
+        "Feature extraction creates new combinations of the original features.",
+        "Reducing dimensionality improves learning speed, prevents overfitting, and enables visual data exploration."
+      ]
+    },
+    {
+      "id": "6.2",
+      "title": "Subset Selection",
+      "rules": [
+        "Subset selection finds the best subset of k features out of d original features.",
+        "Evaluating all two to the power of d subsets is computationally infeasible.",
+        "Forward feature selection starts with an empty set and greedily adds the most useful feature.",
+        "Backward feature selection starts with all features and greedily removes the least useful feature.",
+        "Filter methods rank features using statistical tests independent of the machine learning model.",
+        "Wrapper methods evaluate feature subsets using the classification accuracy of a specific learning algorithm."
+      ]
+    },
+    {
+      "id": "6.3",
+      "title": "Principal Components Analysis",
+      "rules": [
+        "Principal Components Analysis is an unsupervised linear dimensionality reduction method.",
+        "PCA finds orthogonal projection axes that maximize the variance of projected data.",
+        "Maximizing projected variance is equivalent to minimizing reconstruction error.",
+        "The first principal component is the eigenvector of the covariance matrix with the largest eigenvalue.",
+        "Each subsequent principal component is an orthogonal eigenvector with the next largest eigenvalue.",
+        "The eigenvalues quantify the variance captured along each principal axis.",
+        "We choose k components to capture a desired proportion of the total data variance.",
+        "Standardizing input features is necessary when features have different measurement scales."
+      ]
+    },
+    {
+      "id": "6.4",
+      "title": "Factor Analysis",
+      "rules": [
+        "Factor analysis assumes observed variables depend linearly on a small number of unobserved latent factors.",
+        "Latent factors represent shared underlying causes that generate correlations among observed features.",
+        "The factor loadings matrix specifies the contribution of each latent factor to observed variables.",
+        "Factor analysis explicitly separates common variance from unique variable-specific noise.",
+        "Unlike PCA, factor analysis assumes a generative statistical model for observed data.",
+        "Factor rotation rotates the factor axes to make loadings easier to interpret."
+      ]
+    },
+    {
+      "id": "6.5",
+      "title": "Multidimensional Scaling",
+      "rules": [
+        "Multidimensional scaling maps high-dimensional points into two or three dimensions while preserving pairwise distances.",
+        "The input to multidimensional scaling is an N by N matrix of pairwise distances.",
+        "Classical multidimensional scaling uses double centering to convert the distance matrix into an inner product matrix.",
+        "The algorithm calculates low-dimensional coordinates from the top eigenvectors of the inner product matrix.",
+        "Non-metric multidimensional scaling preserves the rank order of distances using a stress objective function."
+      ]
+    },
+    {
+      "id": "6.6",
+      "title": "Linear Discriminant Analysis",
+      "rules": [
+        "Linear Discriminant Analysis is a supervised linear dimensionality reduction method.",
+        "LDA finds projection directions that maximize separation between class means.",
+        "LDA simultaneously minimizes the variance within each individual class.",
+        "The within-class scatter matrix measures the spread of instances around their class means.",
+        "The between-class scatter matrix measures the spread of class means around the overall mean.",
+        "Fisher's linear discriminant maximizes the ratio of between-class scatter to within-class scatter.",
+        "For K classes, LDA projects data into at most K minus one dimensions."
+      ]
+    },
+    {
+      "id": "6.7",
+      "title": "Isomap",
+      "rules": [
+        "Euclidean distance fails when high-dimensional data lies on a curved non-linear manifold.",
+        "Isomap is a non-linear dimensionality reduction algorithm based on geodesic distances.",
+        "The algorithm first builds a neighborhood graph connecting each point to its k-nearest neighbors.",
+        "Isomap calculates shortest path lengths between all node pairs on the graph using Dijkstra's algorithm.",
+        "The shortest graph paths approximate true geodesic distances across the curved manifold surface.",
+        "Classical multidimensional scaling then embeds the geodesic distance matrix into low-dimensional Euclidean space."
+      ]
+    },
+    {
+      "id": "6.8",
+      "title": "Locally Linear Embedding",
+      "rules": [
+        "Locally Linear Embedding is an unsupervised non-linear manifold learning algorithm.",
+        "LLE preserves local neighborhood relationships without estimating global pairwise distances.",
+        "In the first step, LLE finds the k-nearest neighbors for each data point.",
+        "In the second step, LLE computes weights that reconstruct each point as a linear combination of its neighbors.",
+        "The reconstruction weights are invariant to rotation, translation, and scaling.",
+        "In the third step, LLE computes low-dimensional coordinates that preserve these linear reconstruction weights.",
+        "Solving the third step reduces to finding the bottom eigenvectors of a sparse matrix."
+      ]
+    },
+    {
+      "id": "6.9",
+      "title": "Notes",
+      "rules": [
+        "Karl Pearson invented Principal Components Analysis in nineteen zero-one.",
+        "Ronald Fisher developed Linear Discriminant Analysis in nineteen thirty-six.",
+        "Joshua Tenenbaum and colleagues introduced Isomap in two thousand.",
+        "Sam Roweis and Lawrence Saul introduced Locally Linear Embedding in two thousand."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "chapterNum": 4,
+  "slug": "04-parametric-methods",
+  "title": "Parametric Methods",
+  "sections": [
+    {
+      "id": "4.1",
+      "title": "Introduction",
+      "rules": [
+        "Parametric methods assume that data comes from a known probability distribution family.",
+        "The density function depends on a fixed set of unknown parameters.",
+        "We estimate the parameters from an observed sample of data.",
+        "Estimating a few parameters simplifies the learning problem compared to non-parametric density estimation."
+      ]
+    },
+    {
+      "id": "4.2",
+      "title": "Maximum Likelihood Estimation",
+      "rules": [
+        "We assume a sample of independent and identically distributed instances.",
+        "The likelihood function is the joint probability density of the observed sample.",
+        "The log likelihood function sums the log probabilities of individual observations.",
+        "Maximum likelihood estimation chooses parameter values that maximize the log likelihood.",
+        "For a Bernoulli distribution, the maximum likelihood estimate is the sample mean.",
+        "For a Gaussian distribution, the maximum likelihood mean is the sample average.",
+        "The maximum likelihood variance is the average squared deviation from the sample mean."
+      ]
+    },
+    {
+      "id": "4.3",
+      "title": "Evaluating an Estimator: Bias and Variance",
+      "rules": [
+        "An estimator is a statistic calculated from sample data.",
+        "Because the sample is random, the estimator is also a random variable.",
+        "The bias of an estimator is the difference between its expected value and the true parameter.",
+        "An unbiased estimator has an expected value equal to the true parameter.",
+        "The sample mean is an unbiased estimator of the population mean.",
+        "The maximum likelihood variance estimator underestimates the true population variance.",
+        "Dividing the sum of squared deviations by N minus one yields an unbiased variance estimator.",
+        "Variance measures how much the estimator varies across different random samples.",
+        "Mean squared error equals the variance plus the squared bias of the estimator.",
+        "A consistent estimator converges to the true parameter value as sample size approaches infinity."
+      ]
+    },
+    {
+      "id": "4.4",
+      "title": "The Bayes’ Estimator",
+      "rules": [
+        "The Bayesian approach treats unknown parameters as random variables with prior probability distributions.",
+        "The prior distribution encodes prior knowledge about parameters before observing data.",
+        "Bayes' rule updates the prior distribution into a posterior distribution using the sample likelihood.",
+        "The maximum a posteriori estimator chooses the parameter value that maximizes the posterior density.",
+        "The Bayes' estimator calculates the expected value of the posterior distribution.",
+        "A conjugate prior produces a posterior distribution from the same probability distribution family.",
+        "As the sample size increases, the posterior distribution becomes sharper around the maximum likelihood estimate."
+      ]
+    },
+    {
+      "id": "4.5",
+      "title": "Parametric Classification",
+      "rules": [
+        "In parametric classification, we model each class-conditional density with a parametric distribution.",
+        "When class densities follow Gaussian distributions, each class has a mean and a variance.",
+        "Bayes' rule produces the posterior probability for each class.",
+        "When classes share equal variances, the quadratic terms cancel and the discriminant function is linear.",
+        "When classes have unequal variances, the discriminant function is quadratic.",
+        "The decision boundary is the point where the discriminant functions of two classes are equal."
+      ]
+    },
+    {
+      "id": "4.6",
+      "title": "Regression",
+      "rules": [
+        "Parametric regression models the dependent variable as a function of the input plus Gaussian noise.",
+        "The conditional distribution of the response given the input follows a normal distribution.",
+        "Maximizing the log likelihood in regression is mathematically equivalent to minimizing the sum of squared errors.",
+        "Linear regression models the output as a linear combination of input features.",
+        "We compute optimal regression coefficients by solving the normal equations.",
+        "Polynomial regression uses higher-order terms of input features to fit non-linear curves."
+      ]
+    },
+    {
+      "id": "4.7",
+      "title": "Tuning Model Complexity: Bias/Variance Dilemma",
+      "rules": [
+        "Expected test error decomposes into bias squared, variance, and irreducible noise.",
+        "Bias measures the systematic error caused by incorrect model assumptions.",
+        "Variance measures how much the model changes when trained on different datasets.",
+        "Simple models have high bias and low variance, causing underfitting.",
+        "Complex models have low bias and high variance, causing overfitting.",
+        "The optimal model complexity minimizes the sum of squared bias and variance."
+      ]
+    },
+    {
+      "id": "4.8",
+      "title": "Model Selection Procedures",
+      "rules": [
+        "Cross-validation estimates generalization error by repeatedly splitting data into training and validation sets.",
+        "K-fold cross-validation divides data into K parts, training on K minus one parts.",
+        "Leave-one-out cross-validation uses N folds where each fold leaves out one instance.",
+        "Regularization adds a penalty term for model complexity to the loss function.",
+        "The Akaike Information Criterion penalizes models based on twice the number of free parameters.",
+        "The Bayesian Information Criterion applies a stronger penalty based on the logarithm of sample size."
+      ]
+    },
+    {
+      "id": "4.9",
+      "title": "Notes",
+      "rules": [
+        "Ronald Fisher introduced the method of maximum likelihood estimation in the nineteen twenties.",
+        "Statistical inference provides formal hypothesis tests to compare different parameter estimates.",
+        "Balancing bias and variance remains a fundamental challenge across all supervised learning algorithms."
+      ]
+    }
+  ]
+}

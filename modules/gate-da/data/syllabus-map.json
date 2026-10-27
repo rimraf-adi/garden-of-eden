@@ -1,0 +1,2922 @@
+{
+ "syllabus": "GATE 2027 DA (IIT Madras); content identical to GATE 2026 DA (IIT Guwahati)",
+ "topics": [
+  {
+   "id": "t1",
+   "section": "Probability & Statistics",
+   "topic": "Counting: permutations and combinations",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 1,
+     "slug": "01-probability-statistics-counting",
+     "title": "Counting",
+     "min": 16
+    },
+    {
+     "num": 5,
+     "slug": "05-probability-statistics-mean-and-variance-of-a-random-variable",
+     "title": "Mean and Variance of a Random Variable",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 2,
+   "questions": 2,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q1.26.19",
+    "Q4.26.33"
+   ]
+  },
+  {
+   "id": "t2",
+   "section": "Probability & Statistics",
+   "topic": "Probability axioms, sample space, events",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 47,
+     "slug": "47-dbms-normalization",
+     "title": "Normalization",
+     "min": 27
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 2,
+    "2026": 3
+   },
+   "totalMarks": 8,
+   "questions": 5,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.19",
+    "Q1.26.64",
+    "Q1.25.45",
+    "Q1.24.12",
+    "Q1.24.36"
+   ]
+  },
+  {
+   "id": "t3",
+   "section": "Probability & Statistics",
+   "topic": "Independent and mutually exclusive events",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 3,
+     "slug": "03-probability-statistics-the-probability-theory",
+     "title": "The Probability Theory",
+     "min": 7
+    },
+    {
+     "num": 1,
+     "slug": "01-probability-statistics-counting",
+     "title": "Counting",
+     "min": 16
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 2,
+    "2026": 4
+   },
+   "totalMarks": 7,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.44",
+    "Q1.26.53",
+    "Q1.25.45",
+    "Q1.24.12"
+   ]
+  },
+  {
+   "id": "t4",
+   "section": "Probability & Statistics",
+   "topic": "Marginal, conditional, joint probability; Bayes theorem",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 54,
+     "slug": "54-ml-supervised-classification-models-i",
+     "title": "Classification Models - I",
+     "min": 5
+    },
+    {
+     "num": 55,
+     "slug": "55-ml-supervised-classification-models-ii",
+     "title": "Classification Models - II",
+     "min": 4
+    },
+    {
+     "num": 3,
+     "slug": "03-probability-statistics-the-probability-theory",
+     "title": "The Probability Theory",
+     "min": 7
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 2
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.57",
+    "Q1.25.31",
+    "Q1.24.58"
+   ]
+  },
+  {
+   "id": "t5",
+   "section": "Probability & Statistics",
+   "topic": "Conditional expectation and variance",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 5,
+     "slug": "05-probability-statistics-mean-and-variance-of-a-random-variable",
+     "title": "Mean and Variance of a Random Variable",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 4,
+    "2025": 3,
+    "2026": 4
+   },
+   "totalMarks": 11,
+   "questions": 6,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.44",
+    "Q1.26.63",
+    "Q1.25.11",
+    "Q1.25.61",
+    "Q1.24.59",
+    "Q1.24.65"
+   ]
+  },
+  {
+   "id": "t6",
+   "section": "Probability & Statistics",
+   "topic": "Mean, median, mode, standard deviation",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 49,
+     "slug": "49-data-warehousing-the-data",
+     "title": "The Data",
+     "min": 11
+    },
+    {
+     "num": 51,
+     "slug": "51-data-warehousing-data-warehousing-and-online-analytical-processing",
+     "title": "Data Warehousing and Online Analytical Processing",
+     "min": 22
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 2,
+    "2026": 2
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.62",
+    "Q1.25.54",
+    "Q1.24.34"
+   ]
+  },
+  {
+   "id": "t7",
+   "section": "Probability & Statistics",
+   "topic": "Correlation and covariance",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 5,
+     "slug": "05-probability-statistics-mean-and-variance-of-a-random-variable",
+     "title": "Mean and Variance of a Random Variable",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.63",
+    "Q1.24.65"
+   ]
+  },
+  {
+   "id": "t8",
+   "section": "Probability & Statistics",
+   "topic": "Discrete RVs, PMF: uniform, Bernoulli, binomial",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 6,
+     "slug": "06-probability-statistics-discrete-probability-distributions",
+     "title": "Discrete Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 6,
+    "2026": 6
+   },
+   "totalMarks": 14,
+   "questions": 7,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.44",
+    "Q1.26.47",
+    "Q1.26.64",
+    "Q1.25.40",
+    "Q1.25.54",
+    "Q1.25.61",
+    "Q1.24.36"
+   ]
+  },
+  {
+   "id": "t9",
+   "section": "Probability & Statistics",
+   "topic": "Continuous RVs, PDF, CDF, conditional PDF",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 4,
+     "slug": "04-probability-statistics-the-random-variables",
+     "title": "The Random Variables",
+     "min": 11
+    },
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 4,
+    "2025": 3,
+    "2026": 2
+   },
+   "totalMarks": 9,
+   "questions": 5,
+   "yearsAsked": 3,
+   "trend": "fading",
+   "pyq": [
+    "Q1.26.54",
+    "Q1.25.19",
+    "Q1.25.39",
+    "Q1.24.56",
+    "Q1.24.59"
+   ]
+  },
+  {
+   "id": "t10",
+   "section": "Probability & Statistics",
+   "topic": "Exponential distribution",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 3,
+    "2026": 1
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q1.26.34",
+    "Q1.25.21",
+    "Q1.25.41",
+    "Q1.24.57"
+   ]
+  },
+  {
+   "id": "t11",
+   "section": "Probability & Statistics",
+   "topic": "Poisson distribution",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 6,
+     "slug": "06-probability-statistics-discrete-probability-distributions",
+     "title": "Discrete Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 0,
+    "2026": 3
+   },
+   "totalMarks": 4,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.20",
+    "Q1.26.45",
+    "Q1.24.11"
+   ]
+  },
+  {
+   "id": "t12",
+   "section": "Probability & Statistics",
+   "topic": "Normal and standard normal",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 3,
+    "2026": 5
+   },
+   "totalMarks": 9,
+   "questions": 6,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.28",
+    "Q1.26.44",
+    "Q1.26.53",
+    "Q1.25.20",
+    "Q1.25.36",
+    "Q1.24.11"
+   ]
+  },
+  {
+   "id": "t13",
+   "section": "Probability & Statistics",
+   "topic": "t-distribution and chi-squared distribution",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 3
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.28",
+    "Q1.26.53",
+    "Q1.25.36"
+   ]
+  },
+  {
+   "id": "t14",
+   "section": "Probability & Statistics",
+   "topic": "Central limit theorem",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 8,
+     "slug": "08-probability-statistics-central-limit-theorem-and-confidence-intervals",
+     "title": "Central Limit Theorem and Confidence Intervals",
+     "min": 4
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q1.26.45",
+    "Q1.25.40"
+   ]
+  },
+  {
+   "id": "t15",
+   "section": "Probability & Statistics",
+   "topic": "Confidence intervals",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 8,
+     "slug": "08-probability-statistics-central-limit-theorem-and-confidence-intervals",
+     "title": "Central Limit Theorem and Confidence Intervals",
+     "min": 4
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t16",
+   "section": "Probability & Statistics",
+   "topic": "z-test, t-test, chi-squared test",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t17",
+   "section": "Linear Algebra",
+   "topic": "Vector spaces and subspaces",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 16,
+     "slug": "16-vector-spaces-vector-spaces",
+     "title": "Vector Spaces",
+     "min": 9
+    },
+    {
+     "num": 17,
+     "slug": "17-vector-spaces-orthogonal-vectors-subspaces-matrices-and-projections",
+     "title": "Orthogonal Vectors, Subspaces, Matrices, and Projections",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 4,
+    "2025": 3,
+    "2026": 3
+   },
+   "totalMarks": 10,
+   "questions": 6,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q2.26.22",
+    "Q2.26.65",
+    "Q2.25.25",
+    "Q2.25.50",
+    "Q2.24.47",
+    "Q2.24.49"
+   ]
+  },
+  {
+   "id": "t18",
+   "section": "Linear Algebra",
+   "topic": "Linear dependence, independence, bases",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 16,
+     "slug": "16-vector-spaces-vector-spaces",
+     "title": "Vector Spaces",
+     "min": 9
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 1,
+    "2026": 0
+   },
+   "totalMarks": 1,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q2.25.25"
+   ]
+  },
+  {
+   "id": "t19",
+   "section": "Linear Algebra",
+   "topic": "Matrix properties, partitioned matrices",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 14,
+     "slug": "14-matrices-special-matrices",
+     "title": "Special Matrices",
+     "min": 2
+    },
+    {
+     "num": 19,
+     "slug": "19-vector-spaces-singular-value-decomposition-svd",
+     "title": "Singular Value Decomposition (SVD)",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 5,
+    "2025": 8,
+    "2026": 5
+   },
+   "totalMarks": 18,
+   "questions": 11,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q2.26.21",
+    "Q2.26.52",
+    "Q2.26.65",
+    "Q2.25.12",
+    "Q2.25.28",
+    "Q2.25.37",
+    "Q2.25.38",
+    "Q2.25.52",
+    "Q2.24.35",
+    "Q2.24.48",
+    "Q2.24.61"
+   ]
+  },
+  {
+   "id": "t20",
+   "section": "Linear Algebra",
+   "topic": "Projection and idempotent matrices",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 17,
+     "slug": "17-vector-spaces-orthogonal-vectors-subspaces-matrices-and-projections",
+     "title": "Orthogonal Vectors, Subspaces, Matrices, and Projections",
+     "min": 2
+    },
+    {
+     "num": 14,
+     "slug": "14-matrices-special-matrices",
+     "title": "Special Matrices",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q2.25.50",
+    "Q2.24.49"
+   ]
+  },
+  {
+   "id": "t21",
+   "section": "Linear Algebra",
+   "topic": "Orthogonal matrices",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 14,
+     "slug": "14-matrices-special-matrices",
+     "title": "Special Matrices",
+     "min": 2
+    },
+    {
+     "num": 17,
+     "slug": "17-vector-spaces-orthogonal-vectors-subspaces-matrices-and-projections",
+     "title": "Orthogonal Vectors, Subspaces, Matrices, and Projections",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q2.25.52"
+   ]
+  },
+  {
+   "id": "t22",
+   "section": "Linear Algebra",
+   "topic": "Quadratic forms",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 18,
+     "slug": "18-vector-spaces-quadratic-forms",
+     "title": "Quadratic Forms",
+     "min": 1
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q2.26.65"
+   ]
+  },
+  {
+   "id": "t23",
+   "section": "Linear Algebra",
+   "topic": "Systems of linear equations, Gaussian elimination",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 12,
+     "slug": "12-matrices-systems-of-linear-equations",
+     "title": "Systems of Linear Equations",
+     "min": 5
+    }
+   ],
+   "marks": {
+    "2024": 4,
+    "2025": 8,
+    "2026": 3
+   },
+   "totalMarks": 15,
+   "questions": 9,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q2.26.21",
+    "Q2.26.52",
+    "Q2.25.12",
+    "Q2.25.28",
+    "Q2.25.37",
+    "Q2.25.38",
+    "Q2.25.52",
+    "Q2.24.48",
+    "Q2.24.61"
+   ]
+  },
+  {
+   "id": "t24",
+   "section": "Linear Algebra",
+   "topic": "Eigenvalues and eigenvectors",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 11,
+     "slug": "11-matrices-eigenvalues-and-eigenvectors",
+     "title": "Eigenvalues and Eigenvectors",
+     "min": 4
+    },
+    {
+     "num": 19,
+     "slug": "19-vector-spaces-singular-value-decomposition-svd",
+     "title": "Singular Value Decomposition (SVD)",
+     "min": 6
+    },
+    {
+     "num": 15,
+     "slug": "15-matrices-summary-very-important",
+     "title": "Summary - Very Important",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 1,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q2.26.46",
+    "Q2.25.13",
+    "Q2.24.13"
+   ]
+  },
+  {
+   "id": "t25",
+   "section": "Linear Algebra",
+   "topic": "Determinant",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 9,
+     "slug": "09-matrices-matrices-and-determinants",
+     "title": "Matrices and Determinants",
+     "min": 7
+    },
+    {
+     "num": 15,
+     "slug": "15-matrices-summary-very-important",
+     "title": "Summary - Very Important",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 1,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q2.24.35"
+   ]
+  },
+  {
+   "id": "t26",
+   "section": "Linear Algebra",
+   "topic": "Rank and nullity",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 10,
+     "slug": "10-matrices-rank-and-nullity",
+     "title": "Rank and Nullity",
+     "min": 4
+    },
+    {
+     "num": 15,
+     "slug": "15-matrices-summary-very-important",
+     "title": "Summary - Very Important",
+     "min": 2
+    },
+    {
+     "num": 19,
+     "slug": "19-vector-spaces-singular-value-decomposition-svd",
+     "title": "Singular Value Decomposition (SVD)",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 3,
+    "2026": 0
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q2.25.28",
+    "Q2.25.37",
+    "Q2.24.48"
+   ]
+  },
+  {
+   "id": "t27",
+   "section": "Linear Algebra",
+   "topic": "LU decomposition",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 13,
+     "slug": "13-matrices-matrix-factorizations",
+     "title": "Matrix Factorizations",
+     "min": 1
+    },
+    {
+     "num": 15,
+     "slug": "15-matrices-summary-very-important",
+     "title": "Summary - Very Important",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t28",
+   "section": "Linear Algebra",
+   "topic": "Singular value decomposition",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 19,
+     "slug": "19-vector-spaces-singular-value-decomposition-svd",
+     "title": "Singular Value Decomposition (SVD)",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q2.24.61"
+   ]
+  },
+  {
+   "id": "t29",
+   "section": "Calculus & Optimization",
+   "topic": "Functions of a single variable",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 29,
+     "slug": "29-python-functions",
+     "title": "Functions",
+     "min": 14
+    },
+    {
+     "num": 20,
+     "slug": "20-calculus-functions",
+     "title": "Functions",
+     "min": 7
+    },
+    {
+     "num": 22,
+     "slug": "22-calculus-continuity",
+     "title": "Continuity",
+     "min": 1
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q3.25.51"
+   ]
+  },
+  {
+   "id": "t30",
+   "section": "Calculus & Optimization",
+   "topic": "Limits",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 21,
+     "slug": "21-calculus-limits",
+     "title": "Limits",
+     "min": 7
+    },
+    {
+     "num": 8,
+     "slug": "08-probability-statistics-central-limit-theorem-and-confidence-intervals",
+     "title": "Central Limit Theorem and Confidence Intervals",
+     "min": 4
+    },
+    {
+     "num": 25,
+     "slug": "25-calculus-taylor-series",
+     "title": "Taylor series",
+     "min": 1
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 1
+   },
+   "totalMarks": 4,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q3.26.35",
+    "Q3.25.32",
+    "Q3.24.60"
+   ]
+  },
+  {
+   "id": "t31",
+   "section": "Calculus & Optimization",
+   "topic": "Continuity and differentiability",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 23,
+     "slug": "23-calculus-differentiability",
+     "title": "Differentiability",
+     "min": 2
+    },
+    {
+     "num": 22,
+     "slug": "22-calculus-continuity",
+     "title": "Continuity",
+     "min": 1
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 4,
+    "2026": 0
+   },
+   "totalMarks": 7,
+   "questions": 5,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q3.25.14",
+    "Q3.25.24",
+    "Q3.25.59",
+    "Q3.24.33",
+    "Q3.24.37"
+   ]
+  },
+  {
+   "id": "t32",
+   "section": "Calculus & Optimization",
+   "topic": "Taylor series",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 25,
+     "slug": "25-calculus-taylor-series",
+     "title": "Taylor series",
+     "min": 1
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t33",
+   "section": "Calculus & Optimization",
+   "topic": "Maxima and minima; single-variable optimisation",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 24,
+     "slug": "24-calculus-optimization-maxima-minima",
+     "title": "Optimization (Maxima/Minima)",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 2,
+    "2026": 1
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "fading",
+   "pyq": [
+    "Q3.26.27",
+    "Q3.25.49",
+    "Q3.24.15",
+    "Q3.24.50"
+   ]
+  },
+  {
+   "id": "t34",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Programming in Python",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 26,
+     "slug": "26-python-python-basics",
+     "title": "Python Basics",
+     "min": 14
+    }
+   ],
+   "marks": {
+    "2024": 6,
+    "2025": 7,
+    "2026": 7
+   },
+   "totalMarks": 20,
+   "questions": 11,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q4.26.16",
+    "Q4.26.39",
+    "Q4.26.50",
+    "Q4.26.58",
+    "Q4.25.23",
+    "Q4.25.47",
+    "Q4.25.63",
+    "Q4.25.64",
+    "Q4.24.38",
+    "Q4.24.39",
+    "Q4.24.41"
+   ]
+  },
+  {
+   "id": "t35",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Basic data structures (general)",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 27,
+     "slug": "27-python-built-in-data-structures",
+     "title": "Built-in Data Structures",
+     "min": 16
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 1,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q4.24.16"
+   ]
+  },
+  {
+   "id": "t36",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Stacks",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 33,
+     "slug": "33-dsa-stacks",
+     "title": "Stacks",
+     "min": 11
+    },
+    {
+     "num": 35,
+     "slug": "35-dsa-linked-lists",
+     "title": "Linked Lists",
+     "min": 16
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q4.26.39",
+    "Q4.25.64"
+   ]
+  },
+  {
+   "id": "t37",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Queues",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 34,
+     "slug": "34-dsa-queues",
+     "title": "Queues",
+     "min": 6
+    },
+    {
+     "num": 35,
+     "slug": "35-dsa-linked-lists",
+     "title": "Linked Lists",
+     "min": 16
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 1,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q4.24.32"
+   ]
+  },
+  {
+   "id": "t38",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Linked lists",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 35,
+     "slug": "35-dsa-linked-lists",
+     "title": "Linked Lists",
+     "min": 16
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t39",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Trees (incl. heaps)",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 36,
+     "slug": "36-dsa-trees",
+     "title": "Trees",
+     "min": 26
+    },
+    {
+     "num": 48,
+     "slug": "48-dbms-data-organization-and-indexing",
+     "title": "Data Organization and Indexing",
+     "min": 26
+    },
+    {
+     "num": 57,
+     "slug": "57-ml-supervised-regression-classification-models",
+     "title": "Regression & Classification Models",
+     "min": 13
+    }
+   ],
+   "marks": {
+    "2024": 5,
+    "2025": 0,
+    "2026": 1
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q4.26.25",
+    "Q4.24.28",
+    "Q4.24.38",
+    "Q4.24.52"
+   ]
+  },
+  {
+   "id": "t40",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Hash tables",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 37,
+     "slug": "37-dsa-hash-tables",
+     "title": "Hash Tables",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 1,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q4.25.18",
+    "Q4.24.21"
+   ]
+  },
+  {
+   "id": "t41",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Linear and binary search",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 36,
+     "slug": "36-dsa-trees",
+     "title": "Trees",
+     "min": 26
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 1
+   },
+   "totalMarks": 4,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q4.26.31",
+    "Q4.25.27",
+    "Q4.24.40"
+   ]
+  },
+  {
+   "id": "t42",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Selection, bubble, insertion sort",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 41,
+     "slug": "41-dsa-searching-and-sorting",
+     "title": "Searching and Sorting",
+     "min": 22
+    },
+    {
+     "num": 32,
+     "slug": "32-dsa-algorithm-analysis",
+     "title": "Algorithm Analysis",
+     "min": 66
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 4
+   },
+   "totalMarks": 7,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q4.26.49",
+    "Q4.26.58",
+    "Q4.25.29",
+    "Q4.24.45"
+   ]
+  },
+  {
+   "id": "t43",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Divide and conquer: mergesort, quicksort",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 41,
+     "slug": "41-dsa-searching-and-sorting",
+     "title": "Searching and Sorting",
+     "min": 22
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 0,
+    "2026": 1
+   },
+   "totalMarks": 2,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "steady",
+   "pyq": [
+    "Q4.26.15",
+    "Q4.24.30"
+   ]
+  },
+  {
+   "id": "t44",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Graph theory basics",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 38,
+     "slug": "38-dsa-graph-theory-introduction",
+     "title": "Graph Theory — Introduction",
+     "min": 17
+    },
+    {
+     "num": 39,
+     "slug": "39-dsa-graph-traversals",
+     "title": "Graph Traversals",
+     "min": 12
+    },
+    {
+     "num": 7,
+     "slug": "07-probability-statistics-continuous-probability-distributions",
+     "title": "Continuous Probability Distributions",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 4,
+    "2026": 2
+   },
+   "totalMarks": 7,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q4.26.40",
+    "Q4.25.58",
+    "Q4.25.65",
+    "Q4.24.14"
+   ]
+  },
+  {
+   "id": "t45",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Graph traversals (BFS, DFS)",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 39,
+     "slug": "39-dsa-graph-traversals",
+     "title": "Graph Traversals",
+     "min": 12
+    },
+    {
+     "num": 36,
+     "slug": "36-dsa-trees",
+     "title": "Trees",
+     "min": 26
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 2,
+    "2026": 2
+   },
+   "totalMarks": 7,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q4.26.40",
+    "Q4.25.65",
+    "Q4.24.14",
+    "Q4.24.38"
+   ]
+  },
+  {
+   "id": "t46",
+   "section": "Programming, Data Structures & Algorithms",
+   "topic": "Shortest paths",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 40,
+     "slug": "40-dsa-shortest-path-algorithms",
+     "title": "Shortest Path Algorithms",
+     "min": 11
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q4.25.58"
+   ]
+  },
+  {
+   "id": "t47",
+   "section": "Database Management & Warehousing",
+   "topic": "ER model",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 43,
+     "slug": "43-dbms-er-model",
+     "title": "ER Model",
+     "min": 18
+    },
+    {
+     "num": 9,
+     "slug": "09-matrices-matrices-and-determinants",
+     "title": "Matrices and Determinants",
+     "min": 7
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q5.26.61"
+   ]
+  },
+  {
+   "id": "t48",
+   "section": "Database Management & Warehousing",
+   "topic": "Relational model and integrity constraints",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 47,
+     "slug": "47-dbms-normalization",
+     "title": "Normalization",
+     "min": 27
+    },
+    {
+     "num": 44,
+     "slug": "44-dbms-relational-model",
+     "title": "Relational Model",
+     "min": 21
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 2,
+    "2026": 1
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q5.26.26",
+    "Q5.25.56",
+    "Q5.24.46"
+   ]
+  },
+  {
+   "id": "t49",
+   "section": "Database Management & Warehousing",
+   "topic": "Relational algebra",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 45,
+     "slug": "45-dbms-relational-algebra-tuple-calculus",
+     "title": "Relational Algebra & Tuple Calculus",
+     "min": 15
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 3,
+    "2026": 4
+   },
+   "totalMarks": 8,
+   "questions": 5,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q5.26.42",
+    "Q5.26.59",
+    "Q5.25.17",
+    "Q5.25.62",
+    "Q5.24.26"
+   ]
+  },
+  {
+   "id": "t50",
+   "section": "Database Management & Warehousing",
+   "topic": "Tuple relational calculus",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 45,
+     "slug": "45-dbms-relational-algebra-tuple-calculus",
+     "title": "Relational Algebra & Tuple Calculus",
+     "min": 15
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q5.26.59"
+   ]
+  },
+  {
+   "id": "t51",
+   "section": "Database Management & Warehousing",
+   "topic": "SQL",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 46,
+     "slug": "46-dbms-structured-query-language-sql",
+     "title": "Structured Query Language (SQL)",
+     "min": 32
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 1,
+    "2026": 4
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q5.26.51",
+    "Q5.26.60",
+    "Q5.25.33",
+    "Q5.24.31"
+   ]
+  },
+  {
+   "id": "t52",
+   "section": "Database Management & Warehousing",
+   "topic": "Normal forms and dependencies",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 47,
+     "slug": "47-dbms-normalization",
+     "title": "Normalization",
+     "min": 27
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 3,
+    "2026": 3
+   },
+   "totalMarks": 8,
+   "questions": 5,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q5.26.17",
+    "Q5.26.61",
+    "Q5.25.16",
+    "Q5.25.57",
+    "Q5.24.46"
+   ]
+  },
+  {
+   "id": "t53",
+   "section": "Database Management & Warehousing",
+   "topic": "File organisation and indexing",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 48,
+     "slug": "48-dbms-data-organization-and-indexing",
+     "title": "Data Organization and Indexing",
+     "min": 26
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 3
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q5.26.32",
+    "Q5.26.41",
+    "Q5.24.55"
+   ]
+  },
+  {
+   "id": "t54",
+   "section": "Database Management & Warehousing",
+   "topic": "Data transformation: normalisation, discretisation, sampling, compression",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 2,
+     "slug": "02-probability-statistics-introduction-to-statistics",
+     "title": "Introduction to Statistics",
+     "min": 6
+    },
+    {
+     "num": 50,
+     "slug": "50-data-warehousing-data-preprocessing",
+     "title": "Data Preprocessing",
+     "min": 26
+    },
+    {
+     "num": 47,
+     "slug": "47-dbms-normalization",
+     "title": "Normalization",
+     "min": 27
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 5,
+    "2026": 4
+   },
+   "totalMarks": 12,
+   "questions": 8,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q5.26.17",
+    "Q5.26.26",
+    "Q5.26.61",
+    "Q5.25.16",
+    "Q5.25.56",
+    "Q5.25.57",
+    "Q5.24.46",
+    "Q6.24.27"
+   ]
+  },
+  {
+   "id": "t55",
+   "section": "Database Management & Warehousing",
+   "topic": "Warehouse schemas, concept hierarchies, measures, OLAP",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 51,
+     "slug": "51-data-warehousing-data-warehousing-and-online-analytical-processing",
+     "title": "Data Warehousing and Online Analytical Processing",
+     "min": 22
+    },
+    {
+     "num": 2,
+     "slug": "02-probability-statistics-introduction-to-statistics",
+     "title": "Introduction to Statistics",
+     "min": 6
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 3
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q5.26.18",
+    "Q5.26.43",
+    "Q5.25.46"
+   ]
+  },
+  {
+   "id": "t56",
+   "section": "Machine Learning",
+   "topic": "Simple, multiple and ridge regression",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 53,
+     "slug": "53-ml-supervised-regression-models",
+     "title": "Regression Models",
+     "min": 8
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 1,
+    "2026": 5
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q6.26.23",
+    "Q6.26.37",
+    "Q6.26.55",
+    "Q6.25.34"
+   ]
+  },
+  {
+   "id": "t57",
+   "section": "Machine Learning",
+   "topic": "Logistic regression",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 54,
+     "slug": "54-ml-supervised-classification-models-i",
+     "title": "Classification Models - I",
+     "min": 5
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t58",
+   "section": "Machine Learning",
+   "topic": "k-nearest neighbour",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 54,
+     "slug": "54-ml-supervised-classification-models-i",
+     "title": "Classification Models - I",
+     "min": 5
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q6.25.55",
+    "Q6.24.63"
+   ]
+  },
+  {
+   "id": "t59",
+   "section": "Machine Learning",
+   "topic": "Naive Bayes classifier",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 54,
+     "slug": "54-ml-supervised-classification-models-i",
+     "title": "Classification Models - I",
+     "min": 5
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 0
+   },
+   "totalMarks": 3,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q6.25.35",
+    "Q6.24.18",
+    "Q6.24.20"
+   ]
+  },
+  {
+   "id": "t60",
+   "section": "Machine Learning",
+   "topic": "Linear discriminant analysis",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 55,
+     "slug": "55-ml-supervised-classification-models-ii",
+     "title": "Classification Models - II",
+     "min": 4
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 3,
+   "questions": 2,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q6.24.22",
+    "Q6.24.53"
+   ]
+  },
+  {
+   "id": "t61",
+   "section": "Machine Learning",
+   "topic": "Support vector machine",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 57,
+     "slug": "57-ml-supervised-regression-classification-models",
+     "title": "Regression & Classification Models",
+     "min": 13
+    }
+   ],
+   "marks": {
+    "2024": 1,
+    "2025": 2,
+    "2026": 0
+   },
+   "totalMarks": 3,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q6.25.53",
+    "Q6.24.17"
+   ]
+  },
+  {
+   "id": "t62",
+   "section": "Machine Learning",
+   "topic": "Decision trees",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 57,
+     "slug": "57-ml-supervised-regression-classification-models",
+     "title": "Regression & Classification Models",
+     "min": 13
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q6.24.62"
+   ]
+  },
+  {
+   "id": "t63",
+   "section": "Machine Learning",
+   "topic": "Bias-variance trade-off",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 53,
+     "slug": "53-ml-supervised-regression-models",
+     "title": "Regression Models",
+     "min": 8
+    },
+    {
+     "num": 56,
+     "slug": "56-ml-supervised-model-evaluation-and-generalization",
+     "title": "Model Evaluation and Generalization",
+     "min": 7
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t64",
+   "section": "Machine Learning",
+   "topic": "Cross-validation (LOO, k-fold)",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 56,
+     "slug": "56-ml-supervised-model-evaluation-and-generalization",
+     "title": "Model Evaluation and Generalization",
+     "min": 7
+    }
+   ],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 1
+   },
+   "totalMarks": 1,
+   "questions": 1,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q6.26.12"
+   ]
+  },
+  {
+   "id": "t65",
+   "section": "Machine Learning",
+   "topic": "MLP and feed-forward networks",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 57,
+     "slug": "57-ml-supervised-regression-classification-models",
+     "title": "Regression & Classification Models",
+     "min": 13
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 5,
+    "2026": 3
+   },
+   "totalMarks": 10,
+   "questions": 6,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q6.26.29",
+    "Q6.26.56",
+    "Q6.25.22",
+    "Q6.25.42",
+    "Q6.25.48",
+    "Q6.24.43"
+   ]
+  },
+  {
+   "id": "t66",
+   "section": "Machine Learning",
+   "topic": "k-means / k-medoid clustering",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 59,
+     "slug": "59-ml-unsupervised-clustering-algorithms",
+     "title": "Clustering Algorithms",
+     "min": 9
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 2,
+   "questions": 2,
+   "yearsAsked": 1,
+   "trend": "sporadic",
+   "pyq": [
+    "Q6.24.18",
+    "Q6.24.19"
+   ]
+  },
+  {
+   "id": "t67",
+   "section": "Machine Learning",
+   "topic": "Hierarchical clustering (single/multiple linkage)",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 59,
+     "slug": "59-ml-unsupervised-clustering-algorithms",
+     "title": "Clustering Algorithms",
+     "min": 9
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 2
+   },
+   "totalMarks": 5,
+   "questions": 3,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q6.26.36",
+    "Q6.25.30",
+    "Q6.24.42"
+   ]
+  },
+  {
+   "id": "t68",
+   "section": "Machine Learning",
+   "topic": "Principal component analysis",
+   "status": "covered",
+   "chapters": [
+    {
+     "num": 60,
+     "slug": "60-ml-unsupervised-dimensionality-reduction",
+     "title": "Dimensionality Reduction",
+     "min": 2
+    }
+   ],
+   "marks": {
+    "2024": 2,
+    "2025": 2,
+    "2026": 1
+   },
+   "totalMarks": 5,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q6.26.11",
+    "Q6.25.60",
+    "Q6.24.18",
+    "Q6.24.22"
+   ]
+  },
+  {
+   "id": "t69",
+   "section": "Artificial Intelligence",
+   "topic": "Uninformed and informed search (A*)",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 3,
+    "2025": 2,
+    "2026": 1
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "fading",
+   "pyq": [
+    "Q7.26.13",
+    "Q7.25.44",
+    "Q7.24.23",
+    "Q7.24.44"
+   ]
+  },
+  {
+   "id": "t70",
+   "section": "Artificial Intelligence",
+   "topic": "Adversarial search (minimax, alpha-beta)",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 3,
+    "2025": 2,
+    "2026": 1
+   },
+   "totalMarks": 6,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "fading",
+   "pyq": [
+    "Q7.26.30",
+    "Q7.25.43",
+    "Q7.24.25",
+    "Q7.24.51"
+   ]
+  },
+  {
+   "id": "t71",
+   "section": "Artificial Intelligence",
+   "topic": "Propositional logic",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 1,
+    "2025": 1,
+    "2026": 3
+   },
+   "totalMarks": 5,
+   "questions": 4,
+   "yearsAsked": 3,
+   "trend": "rising",
+   "pyq": [
+    "Q7.26.24",
+    "Q7.26.38",
+    "Q7.25.15",
+    "Q7.24.29"
+   ]
+  },
+  {
+   "id": "t72",
+   "section": "Artificial Intelligence",
+   "topic": "Predicate (first-order) logic",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 2,
+    "2025": 0,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "steady",
+   "pyq": [
+    "Q7.26.48",
+    "Q7.24.54"
+   ]
+  },
+  {
+   "id": "t73",
+   "section": "Artificial Intelligence",
+   "topic": "Conditional independence, Bayesian networks",
+   "status": "partial",
+   "chapters": [
+    {
+     "num": 54,
+     "slug": "54-ml-supervised-classification-models-i",
+     "title": "Classification Models - I",
+     "min": 5
+    }
+   ],
+   "marks": {
+    "2024": 3,
+    "2025": 1,
+    "2026": 0
+   },
+   "totalMarks": 4,
+   "questions": 3,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q7.25.26",
+    "Q7.24.24",
+    "Q7.24.64"
+   ]
+  },
+  {
+   "id": "t74",
+   "section": "Artificial Intelligence",
+   "topic": "Exact inference (variable elimination)",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 2,
+    "2025": 1,
+    "2026": 0
+   },
+   "totalMarks": 3,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "fading",
+   "pyq": [
+    "Q7.25.26",
+    "Q7.24.64"
+   ]
+  },
+  {
+   "id": "t75",
+   "section": "Artificial Intelligence",
+   "topic": "Approximate inference (sampling)",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+   },
+   "totalMarks": 0,
+   "questions": 0,
+   "yearsAsked": 0,
+   "trend": "never asked",
+   "pyq": []
+  },
+  {
+   "id": "t76",
+   "section": "General Aptitude",
+   "topic": "Verbal aptitude",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 3,
+    "2025": 4,
+    "2026": 4
+   },
+   "totalMarks": 11,
+   "questions": 8,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q8.26.1",
+    "Q8.26.5",
+    "Q8.26.6",
+    "Q8.25.1",
+    "Q8.25.2",
+    "Q8.25.6",
+    "Q8.24.1",
+    "Q8.24.6"
+   ]
+  },
+  {
+   "id": "t77",
+   "section": "General Aptitude",
+   "topic": "Quantitative aptitude",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 7,
+    "2025": 6,
+    "2026": 6
+   },
+   "totalMarks": 19,
+   "questions": 13,
+   "yearsAsked": 3,
+   "trend": "steady",
+   "pyq": [
+    "Q8.26.2",
+    "Q8.26.4",
+    "Q8.26.7",
+    "Q8.26.9",
+    "Q8.25.3",
+    "Q8.25.5",
+    "Q8.25.9",
+    "Q8.25.10",
+    "Q8.24.3",
+    "Q8.24.4",
+    "Q8.24.5",
+    "Q8.24.7",
+    "Q8.24.8"
+   ]
+  },
+  {
+   "id": "t78",
+   "section": "General Aptitude",
+   "topic": "Analytical aptitude",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 0,
+    "2025": 2,
+    "2026": 2
+   },
+   "totalMarks": 4,
+   "questions": 2,
+   "yearsAsked": 2,
+   "trend": "rising",
+   "pyq": [
+    "Q8.26.8",
+    "Q8.25.7"
+   ]
+  },
+  {
+   "id": "t79",
+   "section": "General Aptitude",
+   "topic": "Spatial aptitude",
+   "status": "missing",
+   "chapters": [],
+   "marks": {
+    "2024": 5,
+    "2025": 3,
+    "2026": 3
+   },
+   "totalMarks": 11,
+   "questions": 7,
+   "yearsAsked": 3,
+   "trend": "fading",
+   "pyq": [
+    "Q8.26.3",
+    "Q8.26.10",
+    "Q8.25.4",
+    "Q8.25.8",
+    "Q8.24.2",
+    "Q8.24.9",
+    "Q8.24.10"
+   ]
+  }
+ ],
+ "chapters": [
+  {
+   "num": 1,
+   "title": "Counting",
+   "tag": "Probability & Statistics",
+   "min": 16,
+   "words": 3268,
+   "topics": 2,
+   "pyqMarks": 9
+  },
+  {
+   "num": 2,
+   "title": "Introduction to Statistics",
+   "tag": "Probability & Statistics",
+   "min": 6,
+   "words": 1282,
+   "topics": 2,
+   "pyqMarks": 17
+  },
+  {
+   "num": 3,
+   "title": "The Probability Theory",
+   "tag": "Probability & Statistics",
+   "min": 7,
+   "words": 1391,
+   "topics": 2,
+   "pyqMarks": 12
+  },
+  {
+   "num": 4,
+   "title": "The Random Variables",
+   "tag": "Probability & Statistics",
+   "min": 11,
+   "words": 2293,
+   "topics": 1,
+   "pyqMarks": 9
+  },
+  {
+   "num": 5,
+   "title": "Mean and Variance of a Random Variable",
+   "tag": "Probability & Statistics",
+   "min": 6,
+   "words": 1212,
+   "topics": 3,
+   "pyqMarks": 17
+  },
+  {
+   "num": 6,
+   "title": "Discrete Probability Distributions",
+   "tag": "Probability & Statistics",
+   "min": 8,
+   "words": 1551,
+   "topics": 2,
+   "pyqMarks": 18
+  },
+  {
+   "num": 7,
+   "title": "Continuous Probability Distributions",
+   "tag": "Probability & Statistics",
+   "min": 8,
+   "words": 1655,
+   "topics": 6,
+   "pyqMarks": 36
+  },
+  {
+   "num": 8,
+   "title": "Central Limit Theorem and Confidence Intervals",
+   "tag": "Probability & Statistics",
+   "min": 4,
+   "words": 709,
+   "topics": 3,
+   "pyqMarks": 8
+  },
+  {
+   "num": 9,
+   "title": "Matrices and Determinants",
+   "tag": "Matrices & Linear Algebra",
+   "min": 7,
+   "words": 1446,
+   "topics": 2,
+   "pyqMarks": 3
+  },
+  {
+   "num": 10,
+   "title": "Rank and Nullity",
+   "tag": "Matrices & Linear Algebra",
+   "min": 4,
+   "words": 822,
+   "topics": 1,
+   "pyqMarks": 5
+  },
+  {
+   "num": 11,
+   "title": "Eigenvalues and Eigenvectors",
+   "tag": "Matrices & Linear Algebra",
+   "min": 4,
+   "words": 823,
+   "topics": 1,
+   "pyqMarks": 4
+  },
+  {
+   "num": 12,
+   "title": "Systems of Linear Equations",
+   "tag": "Matrices & Linear Algebra",
+   "min": 5,
+   "words": 903,
+   "topics": 1,
+   "pyqMarks": 15
+  },
+  {
+   "num": 13,
+   "title": "Matrix Factorizations",
+   "tag": "Matrices & Linear Algebra",
+   "min": 1,
+   "words": 153,
+   "topics": 1,
+   "pyqMarks": 0
+  },
+  {
+   "num": 14,
+   "title": "Special Matrices",
+   "tag": "Matrices & Linear Algebra",
+   "min": 2,
+   "words": 353,
+   "topics": 3,
+   "pyqMarks": 24
+  },
+  {
+   "num": 15,
+   "title": "Summary - Very Important",
+   "tag": "Matrices & Linear Algebra",
+   "min": 2,
+   "words": 355,
+   "topics": 4,
+   "pyqMarks": 10
+  },
+  {
+   "num": 16,
+   "title": "Vector Spaces",
+   "tag": "Vector Spaces",
+   "min": 9,
+   "words": 1827,
+   "topics": 2,
+   "pyqMarks": 11
+  },
+  {
+   "num": 17,
+   "title": "Orthogonal Vectors, Subspaces, Matrices, and Projections",
+   "tag": "Vector Spaces",
+   "min": 2,
+   "words": 392,
+   "topics": 3,
+   "pyqMarks": 16
+  },
+  {
+   "num": 18,
+   "title": "Quadratic Forms",
+   "tag": "Vector Spaces",
+   "min": 1,
+   "words": 237,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 19,
+   "title": "Singular Value Decomposition (SVD)",
+   "tag": "Vector Spaces",
+   "min": 6,
+   "words": 1241,
+   "topics": 4,
+   "pyqMarks": 29
+  },
+  {
+   "num": 20,
+   "title": "Functions",
+   "tag": "Calculus & Optimization",
+   "min": 7,
+   "words": 1327,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 21,
+   "title": "Limits",
+   "tag": "Calculus & Optimization",
+   "min": 7,
+   "words": 1311,
+   "topics": 1,
+   "pyqMarks": 4
+  },
+  {
+   "num": 22,
+   "title": "Continuity",
+   "tag": "Calculus & Optimization",
+   "min": 1,
+   "words": 238,
+   "topics": 2,
+   "pyqMarks": 9
+  },
+  {
+   "num": 23,
+   "title": "Differentiability",
+   "tag": "Calculus & Optimization",
+   "min": 2,
+   "words": 367,
+   "topics": 1,
+   "pyqMarks": 7
+  },
+  {
+   "num": 24,
+   "title": "Optimization (Maxima/Minima)",
+   "tag": "Calculus & Optimization",
+   "min": 8,
+   "words": 1514,
+   "topics": 1,
+   "pyqMarks": 6
+  },
+  {
+   "num": 25,
+   "title": "Taylor series",
+   "tag": "Calculus & Optimization",
+   "min": 1,
+   "words": 114,
+   "topics": 2,
+   "pyqMarks": 4
+  },
+  {
+   "num": 26,
+   "title": "Python Basics",
+   "tag": "Python Programming",
+   "min": 14,
+   "words": 2870,
+   "topics": 1,
+   "pyqMarks": 20
+  },
+  {
+   "num": 27,
+   "title": "Built-in Data Structures",
+   "tag": "Python Programming",
+   "min": 16,
+   "words": 3173,
+   "topics": 1,
+   "pyqMarks": 1
+  },
+  {
+   "num": 28,
+   "title": "Control Flow",
+   "tag": "Python Programming",
+   "min": 5,
+   "words": 1084,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 29,
+   "title": "Functions",
+   "tag": "Python Programming",
+   "min": 14,
+   "words": 2856,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 30,
+   "title": "Comprehensions & Generators",
+   "tag": "Python Programming",
+   "min": 2,
+   "words": 370,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 31,
+   "title": "Object-Oriented Programming",
+   "tag": "Python Programming",
+   "min": 7,
+   "words": 1337,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 32,
+   "title": "Algorithm Analysis",
+   "tag": "Data Structures & Algorithms",
+   "min": 66,
+   "words": 13289,
+   "topics": 1,
+   "pyqMarks": 7
+  },
+  {
+   "num": 33,
+   "title": "Stacks",
+   "tag": "Data Structures & Algorithms",
+   "min": 11,
+   "words": 2244,
+   "topics": 1,
+   "pyqMarks": 4
+  },
+  {
+   "num": 34,
+   "title": "Queues",
+   "tag": "Data Structures & Algorithms",
+   "min": 6,
+   "words": 1217,
+   "topics": 1,
+   "pyqMarks": 1
+  },
+  {
+   "num": 35,
+   "title": "Linked Lists",
+   "tag": "Data Structures & Algorithms",
+   "min": 16,
+   "words": 3226,
+   "topics": 3,
+   "pyqMarks": 5
+  },
+  {
+   "num": 36,
+   "title": "Trees",
+   "tag": "Data Structures & Algorithms",
+   "min": 26,
+   "words": 5158,
+   "topics": 3,
+   "pyqMarks": 17
+  },
+  {
+   "num": 37,
+   "title": "Hash Tables",
+   "tag": "Data Structures & Algorithms",
+   "min": 8,
+   "words": 1696,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 38,
+   "title": "Graph Theory — Introduction",
+   "tag": "Data Structures & Algorithms",
+   "min": 17,
+   "words": 3498,
+   "topics": 1,
+   "pyqMarks": 7
+  },
+  {
+   "num": 39,
+   "title": "Graph Traversals",
+   "tag": "Data Structures & Algorithms",
+   "min": 12,
+   "words": 2350,
+   "topics": 2,
+   "pyqMarks": 14
+  },
+  {
+   "num": 40,
+   "title": "Shortest Path Algorithms",
+   "tag": "Data Structures & Algorithms",
+   "min": 11,
+   "words": 2144,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 41,
+   "title": "Searching and Sorting",
+   "tag": "Data Structures & Algorithms",
+   "min": 22,
+   "words": 4476,
+   "topics": 2,
+   "pyqMarks": 9
+  },
+  {
+   "num": 42,
+   "title": "Introduction",
+   "tag": "Database Management Systems",
+   "min": 15,
+   "words": 3076,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 43,
+   "title": "ER Model",
+   "tag": "Database Management Systems",
+   "min": 18,
+   "words": 3558,
+   "topics": 1,
+   "pyqMarks": 2
+  },
+  {
+   "num": 44,
+   "title": "Relational Model",
+   "tag": "Database Management Systems",
+   "min": 21,
+   "words": 4143,
+   "topics": 1,
+   "pyqMarks": 5
+  },
+  {
+   "num": 45,
+   "title": "Relational Algebra & Tuple Calculus",
+   "tag": "Database Management Systems",
+   "min": 15,
+   "words": 3031,
+   "topics": 2,
+   "pyqMarks": 10
+  },
+  {
+   "num": 46,
+   "title": "Structured Query Language (SQL)",
+   "tag": "Database Management Systems",
+   "min": 32,
+   "words": 6450,
+   "topics": 1,
+   "pyqMarks": 6
+  },
+  {
+   "num": 47,
+   "title": "Normalization",
+   "tag": "Database Management Systems",
+   "min": 27,
+   "words": 5340,
+   "topics": 4,
+   "pyqMarks": 33
+  },
+  {
+   "num": 48,
+   "title": "Data Organization and Indexing",
+   "tag": "Database Management Systems",
+   "min": 26,
+   "words": 5298,
+   "topics": 2,
+   "pyqMarks": 11
+  },
+  {
+   "num": 49,
+   "title": "The Data",
+   "tag": "Data Warehousing & OLAP",
+   "min": 11,
+   "words": 2144,
+   "topics": 1,
+   "pyqMarks": 5
+  },
+  {
+   "num": 50,
+   "title": "Data Preprocessing",
+   "tag": "Data Warehousing & OLAP",
+   "min": 26,
+   "words": 5149,
+   "topics": 1,
+   "pyqMarks": 12
+  },
+  {
+   "num": 51,
+   "title": "Data Warehousing and Online Analytical Processing",
+   "tag": "Data Warehousing & OLAP",
+   "min": 22,
+   "words": 4346,
+   "topics": 2,
+   "pyqMarks": 10
+  },
+  {
+   "num": 52,
+   "title": "Introduction to Machine Learning",
+   "tag": "Machine Learning: Supervised",
+   "min": 13,
+   "words": 2549,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 53,
+   "title": "Regression Models",
+   "tag": "Machine Learning: Supervised",
+   "min": 8,
+   "words": 1516,
+   "topics": 2,
+   "pyqMarks": 6
+  },
+  {
+   "num": 54,
+   "title": "Classification Models - I",
+   "tag": "Machine Learning: Supervised",
+   "min": 5,
+   "words": 1079,
+   "topics": 5,
+   "pyqMarks": 16
+  },
+  {
+   "num": 55,
+   "title": "Classification Models - II",
+   "tag": "Machine Learning: Supervised",
+   "min": 4,
+   "words": 846,
+   "topics": 2,
+   "pyqMarks": 8
+  },
+  {
+   "num": 56,
+   "title": "Model Evaluation and Generalization",
+   "tag": "Machine Learning: Supervised",
+   "min": 7,
+   "words": 1494,
+   "topics": 2,
+   "pyqMarks": 1
+  },
+  {
+   "num": 57,
+   "title": "Regression & Classification Models",
+   "tag": "Machine Learning: Supervised",
+   "min": 13,
+   "words": 2573,
+   "topics": 4,
+   "pyqMarks": 21
+  },
+  {
+   "num": 58,
+   "title": "Unsupervised Learning",
+   "tag": "Machine Learning: Unsupervised",
+   "min": 1,
+   "words": 246,
+   "topics": 0,
+   "pyqMarks": 0
+  },
+  {
+   "num": 59,
+   "title": "Clustering Algorithms",
+   "tag": "Machine Learning: Unsupervised",
+   "min": 9,
+   "words": 1826,
+   "topics": 2,
+   "pyqMarks": 7
+  },
+  {
+   "num": 60,
+   "title": "Dimensionality Reduction",
+   "tag": "Machine Learning: Unsupervised",
+   "min": 2,
+   "words": 412,
+   "topics": 1,
+   "pyqMarks": 5
+  }
+ ],
+ "unmapped": [
+  {
+   "id": "Q5.26.14",
+   "year": 2026,
+   "subject": "Database Management & Warehousing",
+   "area": "Transactions and Concurrency",
+   "topic": "ACID Properties and Serializability",
+   "marks": 1
+  }
+ ]
+}

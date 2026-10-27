@@ -1,0 +1,167 @@
+{
+  "chapterNum": 19,
+  "slug": "19-machine-learning-experiments",
+  "title": "Design and Analysis of Machine Learning Experiments",
+  "sections": [
+    {
+      "id": "19.1",
+      "title": "Introduction",
+      "rules": [
+        "Machine learning is an empirical science that requires rigorous experimental evaluation.",
+        "We run statistical experiments to measure and validate algorithm performance.",
+        "We need formal statistical tests to confirm that observed improvements are not random chance."
+      ]
+    },
+    {
+      "id": "19.2",
+      "title": "Factors, Response, and Strategy of Experimentation",
+      "rules": [
+        "Factors are independent variables controlled or set by the experimenter.",
+        "Examples of factors include learning algorithms, hyperparameter values, and dataset characteristics.",
+        "Response variables are dependent outcome metrics such as classification error, runtime, and memory.",
+        "Changing one factor at a time is inefficient and cannot detect interactions between factors.",
+        "Factorial design tests all combinations of factor levels to evaluate main effects and interaction effects."
+      ]
+    },
+    {
+      "id": "19.3",
+      "title": "Response Surface Design",
+      "rules": [
+        "Response surface methodology explores relationships between continuous factors and response metrics.",
+        "We fit low-order polynomial models to experimental measurements across the factor space.",
+        "The fitted response surface helps find optimal hyperparameter values that minimize error."
+      ]
+    },
+    {
+      "id": "19.4",
+      "title": "Randomization, Replication, and Blocking",
+      "rules": [
+        "Experimental design relies on three fundamental principles: randomization, replication, and blocking.",
+        "Randomization assigns data samples and run orders randomly to eliminate systematic experimental bias.",
+        "Replication repeats experimental runs to estimate random experimental error variance accurately.",
+        "Blocking groups homogeneous experimental units together to isolate known nuisance sources of variation.",
+        "Using identical cross-validation folds across tested algorithms is a standard blocking technique."
+      ]
+    },
+    {
+      "id": "19.5",
+      "title": "Guidelines for Machine Learning Experiments",
+      "rules": [
+        "We must define clear experimental objectives and select meaningful response metrics.",
+        "We identify all relevant control factors, noise factors, and factor level ranges.",
+        "We select an appropriate experimental design before collecting evaluation data.",
+        "We analyze experimental results using statistical inference methods before drawing definitive conclusions."
+      ]
+    },
+    {
+      "id": "19.6",
+      "title": "Cross-Validation and Resampling Methods",
+      "rules": [
+        "K-fold cross-validation divides the dataset into K disjoint folds of equal size.",
+        "The model trains on K minus one folds and tests on the remaining fold.",
+        "The process repeats K times so each fold serves as the test set once.",
+        "The overall performance estimate is the average of the K test results.",
+        "In 5x2 cross-validation, we run 2-fold cross-validation five independent times.",
+        "Bootstrapping samples N instances with replacement from a dataset of size N.",
+        "On average, a bootstrap training sample contains approximately 63.2 percent of the original instances.",
+        "Unselected instances form the out-of-bag test set in the 0.632 bootstrap estimator."
+      ]
+    },
+    {
+      "id": "19.7",
+      "title": "Measuring Classifier Performance",
+      "rules": [
+        "A confusion matrix records counts of true positives, false positives, true negatives, and false negatives.",
+        "Accuracy is the proportion of total test instances correctly classified.",
+        "Error rate is one minus accuracy.",
+        "Precision measures the proportion of predicted positive instances that are truly positive.",
+        "Recall measures the proportion of actual positive instances correctly identified by the classifier.",
+        "The F1 score is the harmonic mean of precision and recall.",
+        "A Receiver Operating Characteristic (ROC) curve plots true positive rate against false positive rate.",
+        "The Area Under the Curve (AUC) summarizes overall classification performance across all possible decision thresholds."
+      ]
+    },
+    {
+      "id": "19.8",
+      "title": "Interval Estimation",
+      "rules": [
+        "Point estimates provide a single number for an unknown population parameter.",
+        "Confidence intervals provide a range that contains the true parameter with specified probability.",
+        "The confidence level is typically set to 95 percent or 99 percent.",
+        "When sample sizes are large, the central limit theorem justifies normal distribution intervals.",
+        "For small sample sizes with unknown variance, we calculate intervals using Student's t distribution."
+      ]
+    },
+    {
+      "id": "19.9",
+      "title": "Hypothesis Testing",
+      "rules": [
+        "Hypothesis testing decides whether experimental evidence supports rejecting a null hypothesis.",
+        "The null hypothesis H_0 assumes no difference exists between compared learning algorithms.",
+        "The alternative hypothesis H_1 claims a statistically significant difference exists.",
+        "A Type I error occurs when we reject a true null hypothesis.",
+        "The significance level alpha is the maximum allowable probability of committing a Type I error.",
+        "A Type II error occurs when we fail to reject a false null hypothesis.",
+        "The p-value is the probability of obtaining test results as extreme as observed under H_0.",
+        "We reject the null hypothesis when the p-value is less than alpha."
+      ]
+    },
+    {
+      "id": "19.10",
+      "title": "Assessing a Classification Algorithm\u2019s Performance",
+      "rules": [
+        "We test whether a classifier's error rate differs significantly from a baseline target value.",
+        "The binomial test computes exact probabilities of observed error counts on an independent test set.",
+        "When the sample size is large, we use an approximate normal z-test.",
+        "For cross-validated error rates across multiple folds, we perform a one-sample t-test."
+      ]
+    },
+    {
+      "id": "19.11",
+      "title": "Comparing Two Classification Algorithms",
+      "rules": [
+        "Paired tests evaluate both algorithms on the exact same test instances or data folds.",
+        "McNemar's test evaluates binary classification differences using a single shared test set.",
+        "McNemar's test examines instances where one algorithm succeeds and the other algorithm fails.",
+        "The standard paired t-test over K folds underestimates variance because training sets overlap.",
+        "Dietterich's 5x2 cross-validated paired t-test corrects for variance overlap.",
+        "Alpaydin's 5x2 cross-validated paired F-test combines all ten fold differences into an F-statistic.",
+        "The 5x2 paired F-test provides higher statistical power and lower Type I error."
+      ]
+    },
+    {
+      "id": "19.12",
+      "title": "Comparing Multiple Algorithms: Analysis of Variance",
+      "rules": [
+        "Analysis of Variance (ANOVA) tests whether multiple algorithms have identical mean performance.",
+        "One-way ANOVA decomposes total variation into between-algorithm variation and within-algorithm error.",
+        "An F-test determines whether differences between algorithm means exceed random experimental variation.",
+        "When ANOVA rejects the null hypothesis, we run post-hoc tests to identify specific differing pairs.",
+        "Tukey's honestly significant difference test controls the family-wise error rate across all pairwise comparisons."
+      ]
+    },
+    {
+      "id": "19.13",
+      "title": "Comparison over Multiple Datasets",
+      "rules": [
+        "Comparing algorithms across diverse benchmark datasets requires non-parametric statistical tests.",
+        "Non-parametric tests do not assume normal distribution of algorithm performance scores.",
+        "The sign test counts how many datasets favor one algorithm over another.",
+        "The Wilcoxon signed-rank test ranks absolute performance differences between two algorithms across datasets.",
+        "The Friedman test ranks multiple algorithms on each benchmark dataset.",
+        "The Nemenyi post-hoc test calculates critical difference thresholds for pairwise algorithm comparisons.",
+        "Critical difference diagrams visualize which algorithms perform significantly better than others."
+      ]
+    },
+    {
+      "id": "19.14",
+      "title": "Notes",
+      "rules": [
+        "Public benchmark repositories like the UCI Machine Learning Repository promote reproducible research.",
+        "Statistical significance does not always guarantee practical significance in real-world deployment.",
+        "Testing multiple hypotheses simultaneously without correction severely inflates overall false positive rates.",
+        "Researchers must report effect sizes and confidence intervals alongside p-values."
+      ]
+    }
+  ]
+}
