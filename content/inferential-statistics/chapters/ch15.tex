@@ -105,17 +105,46 @@ Exact for normal populations; approximate by the CLT when $n\ge30$.
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: estimators]
-\textbf{(a) Method of moments and maximum likelihood.} Eight exponential failure times have mean $\bar{x}=21.65$ hours. For the exponential, $\Exp[X]=1/\lambda$, so both methods give
-\[ \hat\lambda=\frac{1}{\bar{x}}=\frac{1}{21.65}=0.0462\ \text{per hour} \]
-\textbf{(b) Comparing two estimators.} Estimator 1 is unbiased with variance $4$. Estimator 2 has bias $1$ and variance $2$.
-\[ \MSE_1=4+0^2=4,\qquad \MSE_2=2+1^2=3 \]
-Relative efficiency $\MSE_2/\MSE_1=3/4=0.75<1$, so estimator 2 is better in the MSE sense even though it is biased.
+\subsubsection*{Worked numericals}
 
-\textbf{(c) Standard error and sampling distribution.} A normal population has $\sigma=10$, $n=25$. Then $\se(\bar{X})=10/\sqrt{25}=2$. For $\mu=100$:
-\[ \Prob(\bar{X}<95)=\Prob\Big(Z<\frac{95-100}{2}\Big)=\Prob(Z<-2.5)=0.0062 \]
-\textbf{(d) Difference of means.} $\mu_1=5050$, $\sigma_1=30$, $n_1=25$; $\mu_2=5000$, $\sigma_2=40$, $n_2=16$. The variance of $\bar{X}_1-\bar{X}_2$ is $30^2/25+40^2/16=36+100=136$, so $\sigma_D=11.66$.
-\[ \Prob(\bar{X}_1-\bar{X}_2\ge25)=\Prob\Big(Z\ge\frac{25-50}{11.66}\Big)=\Prob(Z\ge-2.14)=0.9838 \]
+\begin{example}[Maximum likelihood for an exponential rate]
+\begin{itemize}
+  \item \textbf{Given.} Eight failure times with mean $\bar{x}=21.65$ hours. Model: exponential, $\Exp[X]=1/\lambda$.
+  \item \textbf{Estimator.} $\hat\lambda=1/\bar{x}$ (method of moments and maximum likelihood agree).
+  \item \textbf{Compute.} $\hat\lambda=\dfrac{1}{21.65}=0.0462$ per hour.
+  \item \textbf{Conclusion.} The estimated failure rate is $0.0462$ per hour.
+\end{itemize}
+\end{example}
+
+\begin{example}[Comparing two estimators]
+\begin{itemize}
+  \item \textbf{Given.} Estimator 1: unbiased, variance $4$. Estimator 2: bias $1$, variance $2$.
+  \item \textbf{MSE of 1.} $\MSE_1=4+0^2=4$.
+  \item \textbf{MSE of 2.} $\MSE_2=2+1^2=3$.
+  \item \textbf{Relative efficiency.} $\MSE_2/\MSE_1=3/4=0.75<1$.
+  \item \textbf{Conclusion.} Estimator 2 is better in the MSE sense even though it is biased.
+\end{itemize}
+\end{example}
+
+\begin{example}[Probability about a sample mean]
+\begin{itemize}
+  \item \textbf{Given.} Normal population, $\sigma=10$, $n=25$, $\mu=100$. Find $\Prob(\bar{X}<95)$.
+  \item \textbf{Standard error.} $\se(\bar{X})=10/\sqrt{25}=2$.
+  \item \textbf{Standardise.} $z=\dfrac{95-100}{2}=-2.5$.
+  \item \textbf{Probability.} $\Prob(Z<-2.5)=0.0062$.
+  \item \textbf{Conclusion.} There is about a $0.6\%$ chance that the sample mean is below $95$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Difference of two sample means]
+\begin{itemize}
+  \item \textbf{Given.} Old process: $\mu=5000$, $\sigma=40$, $n=16$. New process: $\mu=5050$, $\sigma=30$, $n=25$. Find $\Prob(\bar{X}_{\text{new}}-\bar{X}_{\text{old}}\ge25)$.
+  \item \textbf{Mean.} $50$.
+  \item \textbf{Variance.} $\dfrac{30^2}{25}+\dfrac{40^2}{16}=36+100=136$, so the standard deviation is $11.66$.
+  \item \textbf{Standardise.} $z=\dfrac{25-50}{11.66}=-2.14$.
+  \item \textbf{Probability.} $\Prob(Z\ge-2.14)=0.9838$.
+  \item \textbf{Conclusion.} The new process beats the old by at least $25$ hours with probability $0.984$.
+\end{itemize}
 \end{example}
 
 \section{Chapter 8: Statistical Intervals (book Chapter~2)}
@@ -166,21 +195,53 @@ Use $z_\alpha$ for a one-sided bound. The interval length is $2E$.
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: intervals and sample size]
-\textbf{(a) Two-sided $t$ interval.} $n=25$, $\bar{x}=50$, $s=4$, confidence $95\%$. Degrees of freedom $24$, so $t_{0.025,24}=2.064$.
-\[ \bar{x}\pm t\frac{s}{\sqrt n}=50\pm2.064\,(0.8)=50\pm1.65,\qquad 48.35\le\mu\le51.65 \]
-\textbf{(b) One-sided bound, same data.} Use the one-tail value $t_{0.05,24}=1.711$.
-\[ \mu\le50+1.711(0.8)=51.37 \]
-This is smaller than $51.65$, as expected.
+\subsubsection*{Worked numericals}
 
-\textbf{(c) Sample size.} $\sigma=3$, error at most $E=0.5$, confidence $95\%$.
-\[ n=\Big(\frac{1.96\times3}{0.5}\Big)^2=138.3\quad\Rightarrow\quad n=139\ \text{(round up)} \]
-\textbf{(d) Variance.} $n=15$, $s^2=4$, $95\%$ two-sided. $\chi^2_{0.025,14}=26.119$ and $\chi^2_{0.975,14}=5.629$.
-\[ \frac{14(4)}{26.119}\le\sigma^2\le\frac{14(4)}{5.629},\qquad 2.14\le\sigma^2\le9.95 \]
-The one-sided $95\%$ upper bound uses $\chi^2_{0.95,14}=6.571$ (lower-tail point): $\sigma^2\le56/6.571=8.52$.
+\begin{example}[Two-sided $t$ interval]
+\begin{itemize}
+  \item \textbf{Given.} $n=25$, $\bar{x}=50$, $s=4$, confidence $95\%$.
+  \item \textbf{Critical value.} $24$ df, so $t_{0.025,24}=2.064$.
+  \item \textbf{Standard error.} $s/\sqrt n=4/5=0.8$.
+  \item \textbf{Interval.} $50\pm2.064(0.8)=50\pm1.65$.
+  \item \textbf{Conclusion.} $48.35\le\mu\le51.65$.
+\end{itemize}
+\end{example}
 
-\textbf{(e) Proportion.} $40$ defectives in $200$: $\hat{p}=0.20$.
-\[ 0.20\pm1.96\sqrt{\frac{0.20(0.80)}{200}}=0.20\pm0.055,\qquad 0.145\le p\le0.255 \]
+\begin{example}[One-sided bound, same data]
+\begin{itemize}
+  \item \textbf{Given.} Same $n=25$, $\bar{x}=50$, $s=4$. Find the $95\%$ upper bound.
+  \item \textbf{Critical value.} Use the one-tail value $t_{0.05,24}=1.711$.
+  \item \textbf{Bound.} $\mu\le50+1.711(0.8)=51.37$.
+  \item \textbf{Conclusion.} The upper bound $51.37$ is smaller than the two-sided upper limit $51.65$, as expected.
+\end{itemize}
+\end{example}
+
+\begin{example}[Sample size for a mean]
+\begin{itemize}
+  \item \textbf{Given.} $\sigma=3$, error at most $E=0.5$, confidence $95\%$.
+  \item \textbf{Formula.} $n=\Big(\dfrac{z_{\alpha/2}\sigma}{E}\Big)^2$.
+  \item \textbf{Compute.} $n=\Big(\dfrac{1.96\times3}{0.5}\Big)^2=138.3$.
+  \item \textbf{Conclusion.} Round up: $n=139$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Interval for a variance]
+\begin{itemize}
+  \item \textbf{Given.} $n=15$, $s^2=4$, confidence $95\%$ two-sided, $14$ df.
+  \item \textbf{Critical values.} $\chi^2_{0.025,14}=26.119$ and $\chi^2_{0.975,14}=5.629$.
+  \item \textbf{Lower limit.} $\dfrac{14(4)}{26.119}=2.14$.
+  \item \textbf{Upper limit.} $\dfrac{14(4)}{5.629}=9.95$.
+  \item \textbf{Conclusion.} $2.14\le\sigma^2\le9.95$. For a one-sided $95\%$ upper bound use $\chi^2_{0.95,14}=6.571$: $\sigma^2\le56/6.571=8.52$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Interval for a proportion]
+\begin{itemize}
+  \item \textbf{Given.} $40$ defectives in $n=200$, so $\hat{p}=0.20$; confidence $95\%$.
+  \item \textbf{Standard error.} $\sqrt{\dfrac{0.20(0.80)}{200}}=0.0283$.
+  \item \textbf{Interval.} $0.20\pm1.96(0.0283)=0.20\pm0.055$.
+  \item \textbf{Conclusion.} $0.145\le p\le0.255$.
+\end{itemize}
 \end{example}
 
 \section{Chapter 9: Tests on a Single Sample (book Chapter~3)}
@@ -196,32 +257,40 @@ The one-sided $95\%$ upper bound uses $\chi^2_{0.95,14}=6.571$ (lower-tail point
 \[ z_0=\frac{x-np_0}{\sqrt{np_0(1-p_0)}} \]
 \end{formulabox}
 
-\begin{formulabox}{Two-sided tests: reject $H_0$ when}
+\begin{formulabox}{Decision rule: when to reject $H_0$}
+Compute the test statistic ($z_0$, $t_0$, $\chi_0^2$ or $f_0$). Find the critical value in the table. Then look at the sign in $H_1$: it tells you which tail to check.
 \begin{itemize}
-  \item \textbf{$z$-test ($H_1:\mu\ne\mu_0$):} $\abs{z_0}>z_{\alpha/2}$
-  \item \textbf{$t$-test ($H_1:\mu\ne\mu_0$):} $\abs{t_0}>t_{\alpha/2,\,n-1}$
-  \item \textbf{Variance test ($H_1:\sigma^2\ne\sigma_0^2$):} $\chi_0^2>\chi^2_{\alpha/2,\,n-1}$
-  \item $\chi_0^2<\chi^2_{1-\alpha/2,\,n-1}$
-  \item \textbf{Proportion test:} $\abs{z_0}>z_{\alpha/2}$
-  \item \textbf{$P$-value for $z$:} $P=2\,[1-\Phi(\abs{z_0})]$
+  \item $H_1$ has $\ne$ (two-sided): reject if the statistic is far from zero in \emph{either} direction. For $z$ and $t$, reject if $\abs{\text{statistic}}>$ critical value at $\alpha/2$.
+  \item $H_1$ has $>$ (one-sided, right tail): reject if the statistic is \emph{larger than} the critical value at $\alpha$.
+  \item $H_1$ has $<$ (one-sided, left tail): reject if the statistic is \emph{smaller than} minus the critical value at $\alpha$. (For $\chi^2$ and $F$, smaller than the lower-tail point.)
+  \item If the statistic does not pass the critical value, do not reject $H_0$.
+  \item $P$-value form of the same rule: reject if $P\le\alpha$.
 \end{itemize}
-Each tail holds $\alpha/2$.
+Example: $z_0=2.4$. One-sided $H_1:\mu>\mu_0$ at $\alpha=0.05$: $z_\alpha=1.645$ and $2.4>1.645$, so reject. Two-sided at $\alpha=0.05$: $z_{\alpha/2}=1.96$ and $\abs{2.4}>1.96$, so reject. If $z_0=-2.4$ with $H_1:\mu>\mu_0$, the statistic is on the wrong side, so do not reject.
 \end{formulabox}
 
-\begin{formulabox}{One-sided tests: reject $H_0$ when}
-\begin{itemize}
-  \item \textbf{$z$-test, $H_1:\mu>\mu_0$:} $z_0>z_\alpha$
-  \item $P=1-\Phi(z_0)$
-  \item \textbf{$z$-test, $H_1:\mu<\mu_0$:} $z_0<-z_\alpha$
-  \item $P=\Phi(z_0)$
-  \item \textbf{$t$-test, $H_1:\mu>\mu_0$:} $t_0>t_{\alpha,\,n-1}$
-  \item \textbf{$t$-test, $H_1:\mu<\mu_0$:} $t_0<-t_{\alpha,\,n-1}$
-  \item \textbf{Variance test, $H_1:\sigma^2>\sigma_0^2$:} $\chi_0^2>\chi^2_{\alpha,\,n-1}$
-  \item \textbf{Variance test, $H_1:\sigma^2<\sigma_0^2$:} $\chi_0^2<\chi^2_{1-\alpha,\,n-1}$
-  \item \textbf{Proportion test, $H_1:p>p_0$:} $z_0>z_\alpha$
-  \item \textbf{Proportion test, $H_1:p<p_0$:} $z_0<-z_\alpha$
-\end{itemize}
-All of $\alpha$ sits in one tail: $H_1:>$ rejects in the upper tail, $H_1:<$ in the lower tail.
+\begin{formulabox}{Two-sided tests ($H_1$ uses $\ne$): reject $H_0$ if}
+\textbf{$z$-test and proportion test}
+\[ \abs{z_0}>z_{\alpha/2}\qquad\text{that is}\qquad z_0>z_{\alpha/2}\ \text{ or }\ z_0<-z_{\alpha/2} \]
+\textbf{$t$-test}
+\[ \abs{t_0}>t_{\alpha/2,\,n-1} \]
+\textbf{Variance test}
+\[ \chi_0^2>\chi^2_{\alpha/2,\,n-1}\qquad\text{or}\qquad\chi_0^2<\chi^2_{1-\alpha/2,\,n-1} \]
+\textbf{$P$-value for the $z$-test}
+\[ P=2\,[1-\Phi(\abs{z_0})] \]
+Each tail holds $\alpha/2$, so look up the table at one-tail area $\alpha/2$.
+\end{formulabox}
+
+\begin{formulabox}{One-sided tests ($H_1$ uses $>$ or $<$): reject $H_0$ if}
+\textbf{$z$-test and proportion test}
+\[ \begin{aligned} H_1:\mu>\mu_0&:\ z_0>z_\alpha\\ H_1:\mu<\mu_0&:\ z_0<-z_\alpha\end{aligned} \]
+\textbf{$t$-test}
+\[ \begin{aligned} H_1:\mu>\mu_0&:\ t_0>t_{\alpha,\,n-1}\\ H_1:\mu<\mu_0&:\ t_0<-t_{\alpha,\,n-1}\end{aligned} \]
+\textbf{Variance test}
+\[ \begin{aligned} H_1:\sigma^2>\sigma_0^2&:\ \chi_0^2>\chi^2_{\alpha,\,n-1}\\ H_1:\sigma^2<\sigma_0^2&:\ \chi_0^2<\chi^2_{1-\alpha,\,n-1}\end{aligned} \]
+\textbf{$P$-value for the $z$-test}
+\[ \begin{aligned} H_1:>&:\ P=1-\Phi(z_0)\\ H_1:<&:\ P=\Phi(z_0)\end{aligned} \]
+All of $\alpha$ sits in one tail, so look up the table at one-tail area $\alpha$. The sign in $H_1$ points to the tail: $>$ means right tail, $<$ means left tail.
 \end{formulabox}
 
 \begin{formulabox}{Errors and sample size ($\sigma$ known, true mean $\mu_0+\delta$)}
@@ -256,26 +325,54 @@ All of $\alpha$ sits in one tail: $H_1:>$ rejects in the upper tail, $H_1:<$ in 
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: tests on one sample]
-\textbf{(a) $z$-test.} $H_0:\mu=100$, $\sigma=5$, $n=25$, $\bar{x}=102.4$, $\alpha=0.05$.
-\[ z_0=\frac{102.4-100}{5/\sqrt{25}}=2.4 \]
-Two-sided: reject if $\abs{z_0}>1.96$. Yes, reject. $P=2(0.0082)=0.0164$.
-One-sided ($H_1:\mu>100$): reject if $z_0>1.645$. Yes, reject. $P=0.0082$.
+\subsubsection*{Worked numericals}
 
-\textbf{(b) $t$-test.} $H_0:\mu=50$, $n=16$, $\bar{x}=52.3$, $s=4$, $\alpha=0.05$, $15$ df.
-\[ t_0=\frac{52.3-50}{4/\sqrt{16}}=2.3 \]
-Two-sided: $t_{0.025,15}=2.131$, and $2.3>2.131$, so reject. One-sided ($H_1:\mu>50$): $t_{0.05,15}=1.753$, and $2.3>1.753$, so reject.
+\begin{example}[$z$-test (known $\sigma$)]
+\begin{itemize}
+  \item \textbf{Given.} $H_0:\mu=100$, $\sigma=5$, $n=25$, $\bar{x}=102.4$, $\alpha=0.05$.
+  \item \textbf{Statistic.} $z_0=\dfrac{102.4-100}{5/\sqrt{25}}=2.4$.
+  \item \textbf{Two-sided.} Critical value $1.96$. $\abs{2.4}>1.96$, so reject. $P=2(0.0082)=0.0164$.
+  \item \textbf{One-sided ($H_1:\mu>100$).} Critical value $1.645$. $2.4>1.645$, so reject. $P=0.0082$.
+  \item \textbf{Conclusion.} Both tests reject $H_0$: the mean is greater than $100$.
+\end{itemize}
+\end{example}
 
-\textbf{(c) Variance test.} $H_0:\sigma^2=9$ against $H_1:\sigma^2>9$, $n=21$, $s^2=14$, $\alpha=0.05$, $20$ df.
-\[ \chi_0^2=\frac{20(14)}{9}=31.11 \]
-The critical value is $\chi^2_{0.05,20}=31.41$. Since $31.11<31.41$, do not reject (the $P$-value is about $0.054$).
+\begin{example}[$t$-test (unknown $\sigma$)]
+\begin{itemize}
+  \item \textbf{Given.} $H_0:\mu=50$, $n=16$, $\bar{x}=52.3$, $s=4$, $\alpha=0.05$, $15$ df.
+  \item \textbf{Statistic.} $t_0=\dfrac{52.3-50}{4/\sqrt{16}}=2.3$.
+  \item \textbf{Two-sided.} $t_{0.025,15}=2.131$. $2.3>2.131$, so reject.
+  \item \textbf{One-sided ($H_1:\mu>50$).} $t_{0.05,15}=1.753$. $2.3>1.753$, so reject.
+  \item \textbf{Conclusion.} Both tests reject $H_0$.
+\end{itemize}
+\end{example}
 
-\textbf{(d) Proportion.} $H_0:p=0.10$ against $H_1:p>0.10$, $n=100$, $x=16$.
-\[ z_0=\frac{16-100(0.10)}{\sqrt{100(0.10)(0.90)}}=\frac{6}{3}=2.0,\qquad P=0.0228 \]
-Reject at $\alpha=0.05$ because $2.0>1.645$.
+\begin{example}[Test on a variance]
+\begin{itemize}
+  \item \textbf{Given.} $H_0:\sigma^2=9$ against $H_1:\sigma^2>9$, $n=21$, $s^2=14$, $\alpha=0.05$, $20$ df.
+  \item \textbf{Statistic.} $\chi_0^2=\dfrac{20(14)}{9}=31.11$.
+  \item \textbf{Critical value.} $\chi^2_{0.05,20}=31.41$ (upper tail).
+  \item \textbf{Decision.} $31.11<31.41$, so do not reject. $P\approx0.054$.
+  \item \textbf{Conclusion.} The evidence is just short of significance at $\alpha=0.05$.
+\end{itemize}
+\end{example}
 
-\textbf{(e) Sample size.} Detect a shift $\delta=1$ with $\sigma=2$, $\alpha=0.05$ (two-sided), power $0.90$ ($\beta=0.10$, $z_\beta=1.282$).
-\[ n=\frac{(1.96+1.282)^2(2)^2}{1^2}=42.0\quad\Rightarrow\quad n=42 \]
+\begin{example}[Test on a proportion]
+\begin{itemize}
+  \item \textbf{Given.} $H_0:p=0.10$ against $H_1:p>0.10$, $n=100$, $x=16$, $\alpha=0.05$.
+  \item \textbf{Statistic.} $z_0=\dfrac{16-100(0.10)}{\sqrt{100(0.10)(0.90)}}=\dfrac{6}{3}=2.0$.
+  \item \textbf{Decision.} $2.0>1.645$, so reject. $P=0.0228$.
+  \item \textbf{Conclusion.} The proportion is greater than $0.10$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Sample size for a test]
+\begin{itemize}
+  \item \textbf{Given.} Detect a shift $\delta=1$ with $\sigma=2$, $\alpha=0.05$ two-sided, power $0.90$ ($\beta=0.10$, $z_\beta=1.282$).
+  \item \textbf{Formula.} $n=\dfrac{(z_{\alpha/2}+z_\beta)^2\sigma^2}{\delta^2}$.
+  \item \textbf{Compute.} $n=\dfrac{(1.96+1.282)^2(4)}{1}=42.0$.
+  \item \textbf{Conclusion.} $n=42$.
+\end{itemize}
 \end{example}
 
 \section{Chapter 10: Two Samples (book Chapter~4)}
@@ -316,17 +413,14 @@ Two-sided regions: $\abs{z_0}>z_{\alpha/2}$, $\abs{t_0}>t_{\alpha/2,\cdot}$, and
 \[ \begin{aligned}&(\hat{p}_1-\hat{p}_2)\pm z_{\alpha/2}\,\widehat{\se}\\ &\widehat{\se}=\sqrt{\tfrac{\hat{p}_1\hat{q}_1}{n_1}+\tfrac{\hat{p}_2\hat{q}_2}{n_2}}\end{aligned} \]
 \end{formulabox}
 
-\begin{formulabox}{One-sided tests: reject $H_0$ when}
-\begin{itemize}
-  \item \textbf{$H_1:\mu_1-\mu_2>\Delta_0$ ($z$ or $t$):} $z_0>z_\alpha$
-  \item $t_0>t_{\alpha,\,\cdot}$
-  \item \textbf{$H_1:\mu_1-\mu_2<\Delta_0$ ($z$ or $t$):} $z_0<-z_\alpha$
-  \item $t_0<-t_{\alpha,\,\cdot}$
-  \item \textbf{Variance ratio, $H_1:\sigma_1^2>\sigma_2^2$:} $f_0>f_{\alpha,\,n_1-1,\,n_2-1}$
-  \item \textbf{Variance ratio, $H_1:\sigma_1^2<\sigma_2^2$:} $f_0<f_{1-\alpha,\,n_1-1,\,n_2-1}$
-  \item \textbf{Two proportions, $H_1:p_1>p_2$:} $z_0>z_\alpha$
-  \item \textbf{Two proportions, $H_1:p_1<p_2$:} $z_0<-z_\alpha$
-\end{itemize}
+\begin{formulabox}{One-sided tests ($H_1$ uses $>$ or $<$): reject $H_0$ if}
+The sign in $H_1$ points to the tail: $>$ means the statistic must be large and positive; $<$ means it must be large and negative.
+\textbf{Difference of means ($z$ or $t$)}
+\[ \begin{aligned} H_1:\mu_1-\mu_2>\Delta_0&:\ z_0>z_\alpha\ \ \text{or}\ \ t_0>t_{\alpha,\,\cdot}\\ H_1:\mu_1-\mu_2<\Delta_0&:\ z_0<-z_\alpha\ \ \text{or}\ \ t_0<-t_{\alpha,\,\cdot}\end{aligned} \]
+\textbf{Variance ratio ($F$)}
+\[ \begin{aligned} H_1:\sigma_1^2>\sigma_2^2&:\ f_0>f_{\alpha,\,n_1-1,\,n_2-1}\\ H_1:\sigma_1^2<\sigma_2^2&:\ f_0<f_{1-\alpha,\,n_1-1,\,n_2-1}\end{aligned} \]
+\textbf{Two proportions ($z$)}
+\[ \begin{aligned} H_1:p_1>p_2&:\ z_0>z_\alpha\\ H_1:p_1<p_2&:\ z_0<-z_\alpha\end{aligned} \]
 \end{formulabox}
 
 \begin{formulabox}{One-sided bounds: use $\alpha$, keep one limit}
@@ -362,25 +456,60 @@ Two-sided regions: $\abs{z_0}>z_{\alpha/2}$, $\abs{t_0}>t_{\alpha/2,\cdot}$, and
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: two samples]
-\textbf{(a) Pooled $t$-test.} Method A: $n_1=10$, $\bar{x}_1=48.2$, $s_1=3.1$. Method B: $n_2=12$, $\bar{x}_2=45.1$, $s_2=3.7$. Test $H_0:\mu_1=\mu_2$, $H_1:\mu_1\ne\mu_2$, $\alpha=0.05$, equal variances assumed.
-\[ s_p^2=\frac{9(9.61)+11(13.69)}{20}=11.854,\qquad s_p=3.443 \]
-\[ t_0=\frac{48.2-45.1}{3.443\sqrt{1/10+1/12}}=\frac{3.1}{1.474}=2.10 \]
-With $20$ df, $t_{0.025,20}=2.086$. Since $2.10>2.086$, reject. The $95\%$ interval is $3.1\pm2.086(1.474)=(0.03,\,6.17)$. It excludes $0$, which agrees with the test.
+\subsubsection*{Worked numericals}
 
-\textbf{(b) Welch, same data.} $a_1=9.61/10=0.961$, $a_2=13.69/12=1.141$.
-\[ t_0^*=\frac{3.1}{\sqrt{0.961+1.141}}=2.14,\qquad \nu=\frac{(2.102)^2}{0.961^2/9+1.141^2/11}=19.99\to19 \]
-Critical value $t_{0.025,19}=2.093$. Reject again.
+\begin{example}[Pooled two-sample $t$-test]
+\begin{itemize}
+  \item \textbf{Given.} Method A: $n_1=10$, $\bar{x}_1=48.2$, $s_1=3.1$. Method B: $n_2=12$, $\bar{x}_2=45.1$, $s_2=3.7$. $H_0:\mu_1=\mu_2$ against $H_1:\mu_1\ne\mu_2$, $\alpha=0.05$, equal variances.
+  \item \textbf{Pooled variance.} $s_p^2=\dfrac{9(9.61)+11(13.69)}{20}=11.854$, so $s_p=3.443$.
+  \item \textbf{Standard error.} $3.443\sqrt{1/10+1/12}=1.474$.
+  \item \textbf{Statistic.} $t_0=\dfrac{3.1}{1.474}=2.10$ with $20$ df.
+  \item \textbf{Critical value.} $t_{0.025,20}=2.086$. Since $2.10>2.086$, reject.
+  \item \textbf{Interval.} $3.1\pm2.086(1.474)$, i.e.\ $(0.03,\ 6.17)$. It excludes $0$.
+  \item \textbf{Conclusion.} The means differ (barely). The interval agrees with the test.
+\end{itemize}
+\end{example}
 
-\textbf{(c) Paired.} Differences $2.1,\ 1.4,\ -0.3,\ 3.0,\ 1.8,\ 0.9,\ 2.5,\ 1.2$. Then $\bar{d}=1.575$, $s_d=1.025$, $n=8$.
-\[ t_0=\frac{1.575}{1.025/\sqrt8}=4.35,\qquad t_{0.005,7}=3.499 \]
-Since $4.35>3.499$, reject $H_0:\mu_D=0$ even at $\alpha=0.01$.
+\begin{example}[Welch test, same data]
+\begin{itemize}
+  \item \textbf{Given.} Same samples, but do not assume equal variances. $a_1=s_1^2/n_1=0.961$, $a_2=s_2^2/n_2=1.141$.
+  \item \textbf{Statistic.} $t_0^*=\dfrac{3.1}{\sqrt{0.961+1.141}}=2.14$.
+  \item \textbf{Degrees of freedom.} $\nu=\dfrac{(2.102)^2}{0.961^2/9+1.141^2/11}=19.99$, round down to $19$.
+  \item \textbf{Critical value.} $t_{0.025,19}=2.093$. Since $2.14>2.093$, reject.
+  \item \textbf{Conclusion.} Same conclusion as the pooled test.
+\end{itemize}
+\end{example}
 
-\textbf{(d) Variance ratio.} $s_1^2=9.61$ ($n_1=10$), $s_2^2=13.69$ ($n_2=12$), $f_0=0.702$. Two-sided $\alpha=0.05$: $f_{0.025,9,11}=3.59$ and $f_{0.975,9,11}=1/f_{0.025,11,9}=1/3.91=0.256$. Since $0.256<0.702<3.59$, do not reject.
+\begin{example}[Paired $t$-test]
+\begin{itemize}
+  \item \textbf{Given.} Eight differences: $2.1,\ 1.4,\ -0.3,\ 3.0,\ 1.8,\ 0.9,\ 2.5,\ 1.2$. $H_0:\mu_D=0$.
+  \item \textbf{Summary.} $\bar{d}=1.575$, $s_d=1.025$, $n=8$.
+  \item \textbf{Statistic.} $t_0=\dfrac{1.575}{1.025/\sqrt8}=4.35$ with $7$ df.
+  \item \textbf{Critical value.} $t_{0.005,7}=3.499$. Since $4.35>3.499$, reject even at $\alpha=0.01$.
+  \item \textbf{Conclusion.} The mean difference is not zero.
+\end{itemize}
+\end{example}
 
-\textbf{(e) Two proportions.} Line 1: $15/300$ defective. Line 2: $20/250$ defective.
-\[ \hat{p}=\frac{35}{550}=0.0636,\quad z_0=\frac{0.05-0.08}{\sqrt{0.0636(0.9364)(1/300+1/250)}}=\frac{-0.03}{0.0209}=-1.44 \]
-Two-sided $P=0.15$. Do not reject at $0.05$. The interval uses the unpooled standard error: $-0.03\pm1.96(0.0212)=(-0.072,\,0.012)$.
+\begin{example}[$F$-test for two variances]
+\begin{itemize}
+  \item \textbf{Given.} $s_1^2=9.61$ ($n_1=10$), $s_2^2=13.69$ ($n_2=12$). $H_0:\sigma_1^2=\sigma_2^2$, $\alpha=0.05$ two-sided.
+  \item \textbf{Statistic.} $f_0=9.61/13.69=0.702$ with $(9,\,11)$ df.
+  \item \textbf{Upper point.} $f_{0.025,9,11}=3.59$.
+  \item \textbf{Lower point.} $f_{0.975,9,11}=1/f_{0.025,11,9}=1/3.91=0.256$.
+  \item \textbf{Decision.} $0.256<0.702<3.59$, so do not reject.
+  \item \textbf{Conclusion.} No evidence that the variances differ.
+\end{itemize}
+\end{example}
+
+\begin{example}[Two proportions]
+\begin{itemize}
+  \item \textbf{Given.} Line 1: $15$ defective of $300$ ($\hat{p}_1=0.05$). Line 2: $20$ of $250$ ($\hat{p}_2=0.08$). $H_0:p_1=p_2$, two-sided, $\alpha=0.05$.
+  \item \textbf{Pooled proportion.} $\hat{p}=35/550=0.0636$.
+  \item \textbf{Statistic.} $z_0=\dfrac{-0.03}{\sqrt{0.0636(0.9364)(1/300+1/250)}}=\dfrac{-0.03}{0.0209}=-1.44$.
+  \item \textbf{Decision.} $\abs{-1.44}<1.96$ ($P=0.15$), so do not reject.
+  \item \textbf{Interval (unpooled).} $-0.03\pm1.96(0.0212)$, i.e.\ $(-0.072,\ 0.012)$.
+  \item \textbf{Conclusion.} No evidence of a difference. The test uses the pooled $\hat{p}$; the interval uses the unpooled standard error.
+\end{itemize}
 \end{example}
 
 \section{Chapter 11: Simple Linear Regression and Correlation (book Chapter~5)}
@@ -442,23 +571,37 @@ Two-sided $P=0.15$. Do not reject at $0.05$. The interval uses the unpooled stan
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: simple regression]
-Data: $x=1,2,3,4,5$ and $y=2.1,\ 3.9,\ 6.2,\ 7.8,\ 10.1$. Here $n=5$, $\bar{x}=3$, $\bar{y}=6.02$.
+\subsubsection*{Worked numericals}
 
-\textbf{Step 1: sums.} $S_{xx}=10$, $S_{xy}=19.9$, $S_{yy}=39.708$.
+\begin{example}[Fit a regression line]
+\begin{itemize}
+  \item \textbf{Given.} $x=1,2,3,4,5$ and $y=2.1,\ 3.9,\ 6.2,\ 7.8,\ 10.1$. So $n=5$, $\bar{x}=3$, $\bar{y}=6.02$.
+  \item \textbf{Sums.} $S_{xx}=10$, $S_{xy}=19.9$, $S_{yy}=39.708$.
+  \item \textbf{Slope.} $\hat\beta_1=19.9/10=1.99$.
+  \item \textbf{Intercept.} $\hat\beta_0=6.02-1.99(3)=0.05$.
+  \item \textbf{Error variance.} $SS_E=39.708-1.99(19.9)=0.107$; $\hat\sigma^2=0.107/3=0.0357$ ($3$ df).
+  \item \textbf{Conclusion.} Fitted line: $\hat{y}=0.05+1.99x$.
+\end{itemize}
+\end{example}
 
-\textbf{Step 2: estimates.}
-\[ \hat\beta_1=\frac{19.9}{10}=1.99,\qquad \hat\beta_0=6.02-1.99(3)=0.05,\qquad \hat{y}=0.05+1.99x \]
-\textbf{Step 3: error variance.} $SS_E=39.708-1.99(19.9)=0.107$ and $\hat\sigma^2=0.107/3=0.0357$ (3 df).
+\begin{example}[Test the slope and report $R^2$]
+\begin{itemize}
+  \item \textbf{Given.} Continue from the fitted line. $H_0:\beta_1=0$, $\alpha=0.05$.
+  \item \textbf{Standard error.} $\se(\hat\beta_1)=\sqrt{0.0357/10}=0.0597$.
+  \item \textbf{Statistic.} $t_0=1.99/0.0597=33.3$.
+  \item \textbf{Critical value.} $t_{0.025,3}=3.182$. Since $33.3>3.182$, reject.
+  \item \textbf{$R^2$.} $1-0.107/39.708=0.997$.
+  \item \textbf{Conclusion.} The slope is highly significant, and $99.7\%$ of the variability is explained.
+\end{itemize}
+\end{example}
 
-\textbf{Step 4: test the slope.}
-\[ \se(\hat\beta_1)=\sqrt{0.0357/10}=0.0597,\qquad t_0=\frac{1.99}{0.0597}=33.3 \]
-Since $t_{0.025,3}=3.182$, the slope is highly significant. Also $R^2=1-0.107/39.708=0.997$.
-
-\textbf{Step 5: intervals at $x_0=3.5$.} $\hat{y}_0=0.05+1.99(3.5)=7.015$.
-\[ \se_\mu=\sqrt{0.0357\Big(\tfrac15+\tfrac{0.25}{10}\Big)}=0.0896,\qquad 7.015\pm3.182(0.0896)=7.015\pm0.285 \]
-\[ \se_{\text{pred}}=\sqrt{0.0357\Big(1+\tfrac15+\tfrac{0.25}{10}\Big)}=0.209,\qquad 7.015\pm3.182(0.209)=7.015\pm0.665 \]
-The prediction interval is wider because it includes the variation of one new observation.
+\begin{example}[Intervals at $x_0=3.5$]
+\begin{itemize}
+  \item \textbf{Given.} Continue from the fitted line. $\hat{y}_0=0.05+1.99(3.5)=7.015$. Use $t_{0.025,3}=3.182$.
+  \item \textbf{Mean response.} $\se=\sqrt{0.0357\big(\tfrac15+\tfrac{0.25}{10}\big)}=0.0896$, so $7.015\pm3.182(0.0896)=7.015\pm0.285$.
+  \item \textbf{New observation.} $\se=\sqrt{0.0357\big(1+\tfrac15+\tfrac{0.25}{10}\big)}=0.209$, so $7.015\pm3.182(0.209)=7.015\pm0.665$.
+  \item \textbf{Conclusion.} The prediction interval is wider because it includes the variation of a single new observation.
+\end{itemize}
 \end{example}
 
 \section{Chapter 12: Multiple Linear Regression (book Chapter~6)}
@@ -517,20 +660,35 @@ The prediction interval is wider because it includes the variation of one new ob
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: multiple regression]
-A model with $k=3$ regressors is fitted to $n=20$ observations, so $p=4$. Given $SS_T=500$, $SS_R=420$, $SS_E=80$.
+\subsubsection*{Worked numericals}
 
-\textbf{Overall test.}
-\[ F_0=\frac{420/3}{80/16}=\frac{140}{5}=28 \]
-Critical value $f_{0.05,3,16}=3.24$. Since $28>3.24$, the regression is significant.
+\begin{example}[Overall $F$-test and adjusted $R^2$]
+\begin{itemize}
+  \item \textbf{Given.} $k=3$ regressors, $n=20$ (so $p=4$, error df $16$). $SS_T=500$, $SS_R=420$, $SS_E=80$.
+  \item \textbf{Statistic.} $F_0=\dfrac{420/3}{80/16}=\dfrac{140}{5}=28$.
+  \item \textbf{Critical value.} $f_{0.05,3,16}=3.24$. Since $28>3.24$, reject.
+  \item \textbf{$R^2$.} $420/500=0.84$.
+  \item \textbf{Adjusted $R^2$.} $1-\dfrac{80/16}{500/19}=1-\dfrac{5}{26.32}=0.810$.
+  \item \textbf{Conclusion.} The regression is significant.
+\end{itemize}
+\end{example}
 
-\textbf{Adjusted $R^2$.}
-\[ R^2=\frac{420}{500}=0.84,\qquad R^2_{\mathrm{adj}}=1-\frac{80/16}{500/19}=1-\frac{5}{26.32}=0.810 \]
-\textbf{Partial $F$.} Remove one regressor. The reduced model has $SS_R=400$. Then $SS_R(\beta_j\mid\text{others})=420-400=20$.
-\[ F_0=\frac{20/1}{5}=4.0,\qquad t_0=\sqrt{4.0}=2.0 \]
-Since $f_{0.05,1,16}=4.49$, this regressor is not significant (equivalently $t_{0.025,16}=2.120>2.0$). Dropping it is reasonable.
+\begin{example}[Partial $F$ for one regressor]
+\begin{itemize}
+  \item \textbf{Given.} Remove one regressor. The reduced model has $SS_R=400$, so $SS_R(\beta_j\mid\text{others})=420-400=20$. Use $MS_E=5$ from the full model.
+  \item \textbf{Statistic.} $F_0=\dfrac{20/1}{5}=4.0$, and $t_0=\sqrt{4.0}=2.0$.
+  \item \textbf{Critical value.} $f_{0.05,1,16}=4.49$ (equivalently $t_{0.025,16}=2.120$). Since $4.0<4.49$, do not reject.
+  \item \textbf{Conclusion.} This regressor is not significant. Dropping it is reasonable.
+\end{itemize}
+\end{example}
 
-\textbf{Leverage check.} With $p=4$ and $n=20$, the cutoff is $2p/n=0.40$. An observation with $h_{ii}=0.55$ has high leverage.
+\begin{example}[Leverage check]
+\begin{itemize}
+  \item \textbf{Given.} $p=4$, $n=20$. One observation has $h_{ii}=0.55$.
+  \item \textbf{Cutoff.} $2p/n=8/20=0.40$.
+  \item \textbf{Compare.} $0.55>0.40$.
+  \item \textbf{Conclusion.} This observation has high leverage. Check Cook's distance ($D_i>1$ means influential).
+\end{itemize}
 \end{example}
 
 \section{Chapter 13: Single-Factor Experiments, ANOVA (book Chapter~7)}
@@ -588,30 +746,28 @@ Since $f_{0.05,1,16}=4.49$, this regressor is not significant (equivalently $t_{
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: one-way ANOVA]
-Three machine settings, $n=4$ runs each: A: $12,14,13,15$ (mean $13.5$); B: $16,18,17,19$ (mean $17.5$); C: $13,15,14,16$ (mean $14.5$). Grand mean $15.17$, $N=12$, $a=3$.
+\subsubsection*{Worked numericals}
 
-\textbf{Sums of squares.}
-\[ SS_{\text{Tr}}=4\big[(13.5-15.17)^2+(17.5-15.17)^2+(14.5-15.17)^2\big]=34.67 \]
-\[ SS_T=49.67,\qquad SS_E=49.67-34.67=15.00 \]
-\textbf{ANOVA table.}
-\begin{center}
-\small
-\begin{tabular}{lcccc}
-\toprule
-Source & SS & df & MS & $f_0$ \\
-\midrule
-Settings & $34.67$ & $2$ & $17.33$ & $10.4$ \\
-Error & $15.00$ & $9$ & $1.667$ & \\
-Total & $49.67$ & $11$ & & \\
-\bottomrule
-\end{tabular}
-\end{center}
-Since $f_{0.05,2,9}=4.26$ and $10.4>4.26$, reject: the settings differ.
+\begin{example}[One-way ANOVA]
+\begin{itemize}
+  \item \textbf{Given.} Three machine settings, $4$ runs each. A: $12,14,13,15$ (mean $13.5$). B: $16,18,17,19$ (mean $17.5$). C: $13,15,14,16$ (mean $14.5$). Grand mean $15.17$, $N=12$, $a=3$.
+  \item \textbf{Treatments.} $SS_{\text{Tr}}=4[(13.5-15.17)^2+(17.5-15.17)^2+(14.5-15.17)^2]=34.67$ ($2$ df).
+  \item \textbf{Total.} $SS_T=49.67$ ($11$ df).
+  \item \textbf{Error.} $SS_E=49.67-34.67=15.00$ ($9$ df).
+  \item \textbf{Mean squares.} $MS_{\text{Tr}}=17.33$, $MS_E=1.667$.
+  \item \textbf{Statistic.} $f_0=17.33/1.667=10.4$.
+  \item \textbf{Critical value.} $f_{0.05,2,9}=4.26$. Since $10.4>4.26$, reject.
+  \item \textbf{Conclusion.} The three settings do not all have the same mean.
+\end{itemize}
+\end{example}
 
-\textbf{Which differ? Fisher LSD.}
-\[ \mathrm{LSD}=t_{0.025,9}\sqrt{\frac{2MS_E}{n}}=2.262\sqrt{\frac{2(1.667)}{4}}=2.07 \]
-$B-A=4.0>2.07$ and $B-C=3.0>2.07$ differ; $C-A=1.0<2.07$ does not. So B is different from both.
+\begin{example}[Which means differ? (Fisher LSD)]
+\begin{itemize}
+  \item \textbf{Given.} Continue from the ANOVA above: $MS_E=1.667$, $n=4$, $9$ error df.
+  \item \textbf{LSD.} $t_{0.025,9}\sqrt{2MS_E/n}=2.262\sqrt{2(1.667)/4}=2.07$.
+  \item \textbf{Compare.} $B-A=4.0>2.07$ and $B-C=3.0>2.07$ differ; $C-A=1.0<2.07$ does not.
+  \item \textbf{Conclusion.} Setting B differs from both A and C; A and C cannot be separated.
+\end{itemize}
 \end{example}
 
 \section{Chapter 14: Several Factors (book Chapter~8)}
@@ -650,18 +806,27 @@ Each effect is tested with $F=MS/MS_E$; test the interaction $AB$ first.
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: $2^2$ factorial]
-A $2^2$ design with $n=3$ replicates. Treatment totals: $(1)=80$, $a=100$, $b=60$, $ab=90$.
+\subsubsection*{Worked numericals}
 
-\textbf{Contrasts and effects.}
-\[ A=\frac{1}{2n}[ab+a-b-(1)]=\frac{90+100-60-80}{6}=\frac{50}{6}=8.33 \]
-\[ B=\frac{1}{6}[ab+b-a-(1)]=\frac{90+60-100-80}{6}=-5.00 \]
-\[ AB=\frac{1}{6}[ab+(1)-a-b]=\frac{90+80-100-60}{6}=1.67 \]
-\textbf{Sums of squares} ($SS=C^2/(4n)=C^2/12$): $SS_A=50^2/12=208.3$, $SS_B=30^2/12=75.0$, $SS_{AB}=10^2/12=8.33$.
+\begin{example}[Effects in a $2^2$ factorial]
+\begin{itemize}
+  \item \textbf{Given.} $n=3$ replicates. Treatment totals: $(1)=80$, $a=100$, $b=60$, $ab=90$.
+  \item \textbf{Effect of $A$.} $\dfrac{1}{2n}[ab+a-b-(1)]=\dfrac{90+100-60-80}{6}=8.33$.
+  \item \textbf{Effect of $B$.} $\dfrac{1}{6}[ab+b-a-(1)]=\dfrac{90+60-100-80}{6}=-5.00$.
+  \item \textbf{Interaction $AB$.} $\dfrac{1}{6}[ab+(1)-a-b]=\dfrac{90+80-100-60}{6}=1.67$.
+  \item \textbf{Sums of squares.} $SS=C^2/(4n)=C^2/12$: $SS_A=50^2/12=208.3$, $SS_B=30^2/12=75.0$, $SS_{AB}=10^2/12=8.33$.
+  \item \textbf{Regression.} Coefficient $=$ effect$/2$: $\hat{y}=\bar{y}+4.17x_A-2.5x_B+0.83x_Ax_B$ (coded $\pm1$).
+  \item \textbf{Conclusion.} The effect of $A$ is large and positive, $B$ is negative, and the interaction is small.
+\end{itemize}
+\end{example}
 
-\textbf{Regression equation} (coded $\pm1$; coefficient $=$ effect$/2$): $\hat{y}=\bar{y}+4.17x_A-2.5x_B+0.83x_Ax_B$.
-
-\textbf{Fraction example.} In a $2^{3-1}$ design with $I=ABC$, the aliases follow by multiplying by $ABC$ and using $A^2=I$. For example $A\cdot ABC=BC$, so $A$ is aliased with $BC$. The design has resolution III (shortest word $ABC$ has $3$ letters).
+\begin{example}[Aliases in a fraction]
+\begin{itemize}
+  \item \textbf{Given.} $2^{3-1}$ design with defining relation $I=ABC$.
+  \item \textbf{Multiply by $ABC$.} Use $A^2=B^2=C^2=I$: $A\cdot ABC=BC$, so $A=BC$; likewise $B=AC$ and $C=AB$.
+  \item \textbf{Resolution.} The shortest word in $I=ABC$ has $3$ letters, so the design has resolution III.
+  \item \textbf{Conclusion.} Each main effect is aliased with a two-factor interaction.
+\end{itemize}
 \end{example}
 
 \section{Chapter 15: Nonparametric Statistics (book Chapter~9)}
@@ -689,18 +854,38 @@ A $2^2$ design with $n=3$ replicates. Treatment totals: $(1)=80$, $a=100$, $b=60
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: nonparametric tests]
-\textbf{(a) Sign test.} $H_0:\tilde\mu=\tilde\mu_0$ against $H_1:\tilde\mu\ne\tilde\mu_0$. Of $n=12$ differences (after removing ties), $9$ are positive. Under $H_0$, $R^+\sim\mathrm{Bin}(12,\tfrac12)$.
-\[ \Prob(R^+\ge9)=\frac{220+66+12+1}{4096}=0.0730,\qquad P=2(0.0730)=0.146 \]
-Since $0.146>0.05$, do not reject. By the table, $\min(9,3)=3$ and $r^*_{0.05}=2$ for $n=12$; $3>2$, so again do not reject.
+\subsubsection*{Worked numericals}
 
-\textbf{(b) Signed-rank test.} Differences $1.2,\ -0.4,\ 2.0,\ 0.8,\ -0.6,\ 1.5,\ 0.9,\ 2.2$. Ranks of $\abs{d}$: $0.4\to1$, $0.6\to2$, $0.8\to3$, $0.9\to4$, $1.2\to5$, $1.5\to6$, $2.0\to7$, $2.2\to8$.
-\[ W^-=1+2=3,\qquad W^+=36-3=33,\qquad w=\min=3 \]
-For $n=8$, $w^*_{0.05}=3$. Since $3\le3$, reject $H_0:\mu_D=0$ (two-sided, $\alpha=0.05$).
+\begin{example}[Sign test]
+\begin{itemize}
+  \item \textbf{Given.} $H_0:\tilde\mu=\tilde\mu_0$ against $H_1:\tilde\mu\ne\tilde\mu_0$. Of $n=12$ nonzero differences, $9$ are positive. Under $H_0$, $R^+\sim\mathrm{Bin}(12,\tfrac12)$.
+  \item \textbf{Tail probability.} $\Prob(R^+\ge9)=\dfrac{220+66+12+1}{4096}=0.0730$.
+  \item \textbf{$P$-value.} $2(0.0730)=0.146$.
+  \item \textbf{Decision.} $0.146>0.05$, so do not reject.
+  \item \textbf{Table check.} $\min(9,3)=3$ and $r^*_{0.05}=2$ for $n=12$; $3>2$, so again do not reject.
+  \item \textbf{Conclusion.} No evidence that the median differs from $\tilde\mu_0$.
+\end{itemize}
+\end{example}
 
-\textbf{(c) Large-sample rank-sum.} $n_1=10$, $n_2=10$, observed $w_1=85$.
-\[ \mu_{W_1}=\frac{10(21)}{2}=105,\qquad \sigma_{W_1}=\sqrt{\frac{10\cdot10\cdot21}{12}}=13.23,\qquad z_0=\frac{85-105}{13.23}=-1.51 \]
-Since $\abs{-1.51}<1.96$, do not reject at $\alpha=0.05$.
+\begin{example}[Wilcoxon signed-rank test]
+\begin{itemize}
+  \item \textbf{Given.} Differences: $1.2,\ -0.4,\ 2.0,\ 0.8,\ -0.6,\ 1.5,\ 0.9,\ 2.2$. $H_0:\mu_D=0$, two-sided, $\alpha=0.05$.
+  \item \textbf{Ranks of $\abs{d}$.} $0.4\to1$, $0.6\to2$, $0.8\to3$, $0.9\to4$, $1.2\to5$, $1.5\to6$, $2.0\to7$, $2.2\to8$.
+  \item \textbf{Rank sums.} $W^-=1+2=3$ and $W^+=36-3=33$, so $w=\min=3$.
+  \item \textbf{Critical value.} $w^*_{0.05}=3$ for $n=8$. Since $3\le3$, reject.
+  \item \textbf{Conclusion.} The mean difference is not zero.
+\end{itemize}
+\end{example}
+
+\begin{example}[Large-sample rank-sum test]
+\begin{itemize}
+  \item \textbf{Given.} $n_1=n_2=10$, observed $w_1=85$. $H_0:\mu_1=\mu_2$, $\alpha=0.05$ two-sided.
+  \item \textbf{Mean.} $\mu_{W_1}=\dfrac{10(21)}{2}=105$.
+  \item \textbf{Standard deviation.} $\sigma_{W_1}=\sqrt{\dfrac{10\cdot10\cdot21}{12}}=13.23$.
+  \item \textbf{Statistic.} $z_0=\dfrac{85-105}{13.23}=-1.51$.
+  \item \textbf{Decision.} $\abs{-1.51}<1.96$, so do not reject.
+  \item \textbf{Conclusion.} No evidence that the means differ.
+\end{itemize}
 \end{example}
 
 \section{Chapter 16: Statistical Quality Control (book Chapter~10)}
@@ -756,24 +941,55 @@ Design: $K=\tfrac12\sigma$ and $H=4\sigma$ or $5\sigma$; a $1\sigma$ shift is de
 \end{itemize}
 \end{notebox}
 
-\begin{example}[Worked numericals: quality control]
-\textbf{(a) $\bar{X}$ and $R$ chart.} $20$ samples of size $n=5$: $\bar{\bar{x}}=33.3$, $\bar{r}=5.8$. From the table ($n=5$): $A_2=0.577$, $D_3=0$, $D_4=2.114$.
-\[ \bar{X}:\ 33.3\pm0.577(5.8)=33.3\pm3.35,\quad (29.95,\ 36.65) \]
-\[ R:\ \mathrm{UCL}=2.114(5.8)=12.26,\quad \mathrm{LCL}=0 \]
-Estimated $\hat\sigma=\bar{r}/d_2=5.8/2.326=2.49$.
+\subsubsection*{Worked numericals}
 
-\textbf{(b) $P$ chart.} Average fraction defective $\bar{p}=0.40$ (from $800$ defectives in $2000$ units), subgroup size $n=100$.
-\[ 0.40\pm3\sqrt{\frac{0.40(0.60)}{100}}=0.40\pm0.147,\qquad (0.253,\ 0.547) \]
-\textbf{(c) Capability.} $\mathrm{LSL}=90$, $\mathrm{USL}=110$, process $\mu=102$, $\sigma=2$.
-\[ \mathrm{PCR}=\frac{110-90}{6(2)}=1.67,\qquad \mathrm{PCR}_k=\min\Big(\frac{110-102}{6},\frac{102-90}{6}\Big)=\min(1.33,\,2.00)=1.33 \]
-The process is capable but off-centre ($\mathrm{PCR}_k<\mathrm{PCR}$). Fallout is mainly above $\mathrm{USL}$: $\Prob(X>110)=\Prob(Z>4)\approx3\times10^{-5}$.
+\begin{example}[$\bar{X}$ and $R$ chart limits]
+\begin{itemize}
+  \item \textbf{Given.} $20$ samples of size $n=5$: $\bar{\bar{x}}=33.3$, $\bar{r}=5.8$. Constants for $n=5$: $A_2=0.577$, $D_3=0$, $D_4=2.114$, $d_2=2.326$.
+  \item \textbf{$\bar{X}$ chart.} $33.3\pm0.577(5.8)=33.3\pm3.35$, i.e.\ $(29.95,\ 36.65)$.
+  \item \textbf{$R$ chart.} $\mathrm{UCL}=2.114(5.8)=12.26$, $\mathrm{LCL}=0$.
+  \item \textbf{Process sigma.} $\hat\sigma=\bar{r}/d_2=5.8/2.326=2.49$.
+  \item \textbf{Conclusion.} Plot each sample mean and range against these limits.
+\end{itemize}
+\end{example}
 
-\textbf{(d) ARL.} A $3\sigma$ $\bar{X}$ chart. If the shift gives $p=0.50$ per sample, $\mathrm{ARL}=1/0.50=2$ samples. In control, $\mathrm{ARL}_0=1/0.0027=370$.
+\begin{example}[$P$ chart limits]
+\begin{itemize}
+  \item \textbf{Given.} Average fraction defective $\bar{p}=0.40$ ($800$ defectives in $2000$ units); subgroup size $n=100$.
+  \item \textbf{Standard error.} $\sqrt{\dfrac{0.40(0.60)}{100}}=0.049$.
+  \item \textbf{Limits.} $0.40\pm3(0.049)=0.40\pm0.147$.
+  \item \textbf{Conclusion.} $\mathrm{LCL}=0.253$, $\mathrm{UCL}=0.547$.
+\end{itemize}
+\end{example}
 
-\textbf{(e) Tabular CUSUM.} $\mu_0=99$, $K=1$, $H=10$. Observations $x=100,\ 102,\ 101,\ 103$.
-\[ S_H(1)=\max(0,\,100-100+0)=0,\quad S_H(2)=\max(0,\,102-100+0)=2 \]
-\[ S_H(3)=\max(0,\,101-100+2)=3,\quad S_H(4)=\max(0,\,103-100+3)=6 \]
-All below $H=10$, so there is no signal yet. The sum is growing, which suggests an upward drift.
+\begin{example}[Process capability]
+\begin{itemize}
+  \item \textbf{Given.} $\mathrm{LSL}=90$, $\mathrm{USL}=110$, process mean $\mu=102$, $\sigma=2$.
+  \item \textbf{$\mathrm{PCR}$.} $\dfrac{110-90}{6(2)}=1.67$.
+  \item \textbf{$\mathrm{PCR}_k$.} $\min\Big(\dfrac{110-102}{6},\ \dfrac{102-90}{6}\Big)=\min(1.33,\ 2.00)=1.33$.
+  \item \textbf{Fallout.} Mainly above the USL: $\Prob(X>110)=\Prob(Z>4)\approx3\times10^{-5}$.
+  \item \textbf{Conclusion.} The process is capable but off-centre, because $\mathrm{PCR}_k<\mathrm{PCR}$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Average run length]
+\begin{itemize}
+  \item \textbf{Given.} A $3\sigma$ $\bar{X}$ chart.
+  \item \textbf{In control.} $\mathrm{ARL}_0=1/0.0027=370$ samples between false alarms.
+  \item \textbf{After a shift.} If each sample signals with probability $p=0.50$, then $\mathrm{ARL}=1/0.50=2$ samples.
+  \item \textbf{Conclusion.} A larger sample size or more frequent sampling shortens the detection time.
+\end{itemize}
+\end{example}
+
+\begin{example}[Tabular CUSUM]
+\begin{itemize}
+  \item \textbf{Given.} Target $\mu_0=99$, $K=1$, $H=10$. Observations $x=100,\ 102,\ 101,\ 103$. Upper sum: $S_H(i)=\max[0,\ x_i-(\mu_0+K)+S_H(i-1)]$, start at $0$.
+  \item \textbf{$i=1$.} $S_H=\max(0,\ 100-100+0)=0$.
+  \item \textbf{$i=2$.} $S_H=\max(0,\ 102-100+0)=2$.
+  \item \textbf{$i=3$.} $S_H=\max(0,\ 101-100+2)=3$.
+  \item \textbf{$i=4$.} $S_H=\max(0,\ 103-100+3)=6$.
+  \item \textbf{Conclusion.} All values are below $H=10$, so there is no signal yet, but the sum keeps rising, which suggests an upward drift.
+\end{itemize}
 \end{example}
 
 \section{Which procedure? A quick decision guide}
